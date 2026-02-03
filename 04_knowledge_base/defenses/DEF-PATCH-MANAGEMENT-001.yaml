@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -123,3 +123,7 @@ metadata:
       - "패치 관리"
       - "WSUS"
       - "Vulnerability Remediation"
+    related_queries:
+      - "Patch Management 보안 통제란?"
+      - "Patch Management을 어떻게 구현하는가?"
+      - "Patch Management의 효과는?"

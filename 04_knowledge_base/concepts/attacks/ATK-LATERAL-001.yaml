@@ -91,3 +91,7 @@ metadata:
       - "측면 이동"
       - "Pivoting"
       - "Pass-the-Hash"
+    related_queries:
+      - "Lateral Movement이란 무엇인가?"
+      - "Lateral Movement의 핵심 원리는?"
+      - "Lateral Movement을 어떻게 적용하는가?"

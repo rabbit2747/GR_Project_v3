@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -117,3 +117,7 @@ metadata:
       - "Certificate"
       - "인증서"
       - "CA"
+    related_queries:
+      - "Public Key Infrastructure 보안 통제란?"
+      - "Public Key Infrastructure을 어떻게 구현하는가?"
+      - "Public Key Infrastructure의 효과는?"

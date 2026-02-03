@@ -116,3 +116,7 @@ metadata:
       - "ASM"
       - "EASM"
       - "외부 노출"
+    related_queries:
+      - "Attack Surface Management이란 무엇인가?"
+      - "Attack Surface Management의 핵심 원리는?"
+      - "Attack Surface Management을 어떻게 적용하는가?"

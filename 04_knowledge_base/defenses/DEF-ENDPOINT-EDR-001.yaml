@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -114,3 +114,7 @@ metadata:
       - "Endpoint Detection"
       - "위협 탐지"
       - "인시던트 대응"
+    related_queries:
+      - "Endpoint Detection and Response 보안 통제란?"
+      - "Endpoint Detection and Response을 어떻게 구현하는가?"
+      - "Endpoint Detection and Response의 효과는?"

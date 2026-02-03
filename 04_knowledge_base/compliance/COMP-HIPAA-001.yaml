@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -123,3 +123,7 @@ metadata:
       - "PHI"
       - "의료정보"
       - "Healthcare Security"
+    related_queries:
+      - "Health Insurance Portability and Accountability Act 보안 통제란?"
+      - "Health Insurance Portability and Accountability Act을 어떻게 구현하는가?"
+      - "Health Insurance Portability and Accountability Act의 효과는?"

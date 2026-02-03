@@ -13,7 +13,7 @@ identity:
 
 classification:
   domain: security
-  type: fingerprint
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -178,3 +178,7 @@ metadata:
       - "WAITFOR"
       - "xp_cmdshell"
       - "@@servername"
+    related_queries:
+      - "MSSQL DBMS Fingerprint 패턴이란?"
+      - "MSSQL DBMS Fingerprint을 어떻게 식별하는가?"
+      - "MSSQL DBMS Fingerprint의 특징은?"

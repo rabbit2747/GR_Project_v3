@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
@@ -111,3 +111,7 @@ metadata:
       - "VLAN"
       - "Microsegmentation"
       - "네트워크 분리"
+    related_queries:
+      - "Network Segmentation 보안 통제란?"
+      - "Network Segmentation을 어떻게 구현하는가?"
+      - "Network Segmentation의 효과는?"

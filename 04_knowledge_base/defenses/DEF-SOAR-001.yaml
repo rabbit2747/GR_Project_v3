@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -113,3 +113,7 @@ metadata:
       - "Security Automation"
       - "Playbook"
       - "자동화"
+    related_queries:
+      - "Security Orchestration, Automation and Response 보안 통제란?"
+      - "Security Orchestration, Automation and Response을 어떻게 구현하는가?"
+      - "Security Orchestration, Automation and Response의 효과는?"

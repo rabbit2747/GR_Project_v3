@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -111,3 +111,7 @@ metadata:
       - "Multi-Factor Authentication"
       - "2FA"
       - "OTP"
+    related_queries:
+      - "Multi-Factor Authentication 보안 통제란?"
+      - "Multi-Factor Authentication을 어떻게 구현하는가?"
+      - "Multi-Factor Authentication의 효과는?"

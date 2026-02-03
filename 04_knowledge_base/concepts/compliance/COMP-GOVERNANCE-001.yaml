@@ -78,3 +78,7 @@ metadata:
       - "보안 거버넌스"
       - "Policy"
       - "Risk Management"
+    related_queries:
+      - "Security Governance이란 무엇인가?"
+      - "Security Governance의 핵심 원리는?"
+      - "Security Governance을 어떻게 적용하는가?"

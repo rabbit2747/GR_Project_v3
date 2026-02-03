@@ -76,3 +76,7 @@ metadata:
       - "암호화 취약점"
       - "Weak Encryption"
       - "Key Management"
+    related_queries:
+      - "Cryptographic Vulnerability이란 무엇인가?"
+      - "Cryptographic Vulnerability의 핵심 원리는?"
+      - "Cryptographic Vulnerability을 어떻게 적용하는가?"

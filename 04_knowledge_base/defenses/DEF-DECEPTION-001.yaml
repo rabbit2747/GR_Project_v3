@@ -16,7 +16,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -128,3 +128,7 @@ metadata:
       - "Honeypot"
       - "Honeytoken"
       - "Decoy"
+    related_queries:
+      - "Deception Technology 보안 통제란?"
+      - "Deception Technology을 어떻게 구현하는가?"
+      - "Deception Technology의 효과는?"

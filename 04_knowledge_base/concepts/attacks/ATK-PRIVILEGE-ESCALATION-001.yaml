@@ -92,3 +92,7 @@ metadata:
       - "권한 상승"
       - "PrivEsc"
       - "Root"
+    related_queries:
+      - "Privilege Escalation이란 무엇인가?"
+      - "Privilege Escalation의 핵심 원리는?"
+      - "Privilege Escalation을 어떻게 적용하는가?"

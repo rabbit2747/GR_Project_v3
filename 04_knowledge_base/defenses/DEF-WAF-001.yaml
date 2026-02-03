@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -114,3 +114,7 @@ metadata:
       - "Web Application Firewall"
       - "웹 방화벽"
       - "OWASP"
+    related_queries:
+      - "Web Application Firewall 보안 통제란?"
+      - "Web Application Firewall을 어떻게 구현하는가?"
+      - "Web Application Firewall의 효과는?"

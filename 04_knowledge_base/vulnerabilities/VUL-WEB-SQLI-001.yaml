@@ -101,3 +101,7 @@ metadata:
       - "SQLi"
       - "데이터베이스 공격"
       - "Injection"
+    related_queries:
+      - "SQL Injection 취약점이란?"
+      - "SQL Injection의 위험성은?"
+      - "SQL Injection을 어떻게 방어하는가?"

@@ -16,7 +16,7 @@ identity:
 
 classification:
   domain: infrastructure
-  type: data
+  type: component
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"

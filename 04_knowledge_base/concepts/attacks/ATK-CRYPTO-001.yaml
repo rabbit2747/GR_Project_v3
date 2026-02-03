@@ -75,3 +75,7 @@ metadata:
       - "암호 공격"
       - "Encryption"
       - "Decryption"
+    related_queries:
+      - "Cryptographic Attack이란 무엇인가?"
+      - "Cryptographic Attack의 핵심 원리는?"
+      - "Cryptographic Attack을 어떻게 적용하는가?"

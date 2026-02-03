@@ -13,7 +13,7 @@ identity:
 
 classification:
   domain: security
-  type: payload
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -134,3 +134,7 @@ metadata:
       - "tautology"
       - "true false"
       - "blind detection"
+    related_queries:
+      - "Boolean True/False Detection Payload 패턴이란?"
+      - "Boolean True/False Detection Payload을 어떻게 식별하는가?"
+      - "Boolean True/False Detection Payload의 특징은?"

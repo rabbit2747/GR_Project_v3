@@ -105,3 +105,7 @@ metadata:
       - "최소 권한"
       - "PoLP"
       - "Access Control"
+    related_queries:
+      - "Principle of Least Privilege이란 무엇인가?"
+      - "Principle of Least Privilege의 핵심 원리는?"
+      - "Principle of Least Privilege을 어떻게 적용하는가?"

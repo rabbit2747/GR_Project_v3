@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -109,3 +109,7 @@ metadata:
       - "Cloud Entitlement"
       - "클라우드 권한"
       - "Least Privilege"
+    related_queries:
+      - "Cloud Infrastructure Entitlement Management 보안 통제란?"
+      - "Cloud Infrastructure Entitlement Management을 어떻게 구현하는가?"
+      - "Cloud Infrastructure Entitlement Management의 효과는?"

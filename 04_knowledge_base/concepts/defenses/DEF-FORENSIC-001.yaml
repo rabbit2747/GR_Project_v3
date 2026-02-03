@@ -94,3 +94,7 @@ metadata:
       - "포렌식"
       - "DFIR"
       - "Investigation"
+    related_queries:
+      - "Forensic Analysis이란 무엇인가?"
+      - "Forensic Analysis의 핵심 원리는?"
+      - "Forensic Analysis을 어떻게 적용하는가?"

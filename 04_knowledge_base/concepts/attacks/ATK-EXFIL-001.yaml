@@ -92,3 +92,7 @@ metadata:
       - "유출"
       - "Data Theft"
       - "탈취"
+    related_queries:
+      - "Exfiltration이란 무엇인가?"
+      - "Exfiltration의 핵심 원리는?"
+      - "Exfiltration을 어떻게 적용하는가?"

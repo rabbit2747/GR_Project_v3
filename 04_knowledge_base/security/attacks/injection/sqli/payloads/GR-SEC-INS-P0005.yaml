@@ -13,7 +13,7 @@ identity:
 
 classification:
   domain: security
-  type: payload
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -172,3 +172,7 @@ metadata:
       - "data extraction"
       - "table enumeration"
       - "데이터 추출"
+    related_queries:
+      - "UNION Data Extraction Payload 패턴이란?"
+      - "UNION Data Extraction Payload을 어떻게 식별하는가?"
+      - "UNION Data Extraction Payload의 특징은?"

@@ -98,3 +98,7 @@ metadata:
       - "Vulnerability"
       - "Nessus"
       - "스캐너"
+    related_queries:
+      - "Vulnerability Scanner이란 무엇인가?"
+      - "Vulnerability Scanner의 핵심 원리는?"
+      - "Vulnerability Scanner을 어떻게 적용하는가?"

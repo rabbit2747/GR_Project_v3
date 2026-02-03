@@ -89,3 +89,7 @@ metadata:
       - "실행"
       - "Code Execution"
       - "PowerShell"
+    related_queries:
+      - "Execution이란 무엇인가?"
+      - "Execution의 핵심 원리는?"
+      - "Execution을 어떻게 적용하는가?"

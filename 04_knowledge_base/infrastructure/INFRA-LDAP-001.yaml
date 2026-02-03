@@ -114,3 +114,7 @@ metadata:
       - "Directory Service"
       - "Active Directory"
       - "인증"
+    related_queries:
+      - "Lightweight Directory Access Protocol 프로토콜이란?"
+      - "Lightweight Directory Access Protocol의 동작 방식은?"
+      - "Lightweight Directory Access Protocol의 보안 고려사항은?"

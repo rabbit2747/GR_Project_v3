@@ -106,3 +106,7 @@ metadata:
       - "Template Injection"
       - "Jinja2"
       - "FreeMarker"
+    related_queries:
+      - "Server-Side Template Injection 취약점이란?"
+      - "Server-Side Template Injection의 위험성은?"
+      - "Server-Side Template Injection을 어떻게 방어하는가?"

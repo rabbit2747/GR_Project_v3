@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -93,3 +93,7 @@ metadata:
       - "DLL Injection"
       - "Process Hollowing"
       - "T1055"
+    related_queries:
+      - "Process Injection 기법이란?"
+      - "Process Injection 공격 방법은?"
+      - "Process Injection을 어떻게 탐지하는가?"

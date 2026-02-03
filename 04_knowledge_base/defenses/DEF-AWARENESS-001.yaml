@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -115,3 +115,7 @@ metadata:
       - "Phishing Training"
       - "보안 교육"
       - "KnowBe4"
+    related_queries:
+      - "Security Awareness Training 보안 통제란?"
+      - "Security Awareness Training을 어떻게 구현하는가?"
+      - "Security Awareness Training의 효과는?"

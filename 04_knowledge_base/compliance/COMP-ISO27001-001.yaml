@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -114,3 +114,7 @@ metadata:
       - "ISMS"
       - "정보보호관리체계"
       - "보안 인증"
+    related_queries:
+      - "ISO/IEC 27001 보안 통제란?"
+      - "ISO/IEC 27001을 어떻게 구현하는가?"
+      - "ISO/IEC 27001의 효과는?"

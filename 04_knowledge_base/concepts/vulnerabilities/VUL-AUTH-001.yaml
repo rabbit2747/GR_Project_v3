@@ -75,3 +75,7 @@ metadata:
       - "인증 취약점"
       - "Auth Bypass"
       - "Weak Password"
+    related_queries:
+      - "Authentication Vulnerability이란 무엇인가?"
+      - "Authentication Vulnerability의 핵심 원리는?"
+      - "Authentication Vulnerability을 어떻게 적용하는가?"

@@ -112,3 +112,7 @@ metadata:
       - "Beacon"
       - "C2"
       - "Red Team"
+    related_queries:
+      - "Cobalt Strike 사용법은?"
+      - "Cobalt Strike의 주요 기능은?"
+      - "Cobalt Strike으로 무엇을 할 수 있는가?"

@@ -95,3 +95,7 @@ metadata:
       - "PrivEsc"
       - "LinPEAS"
       - "WinPEAS"
+    related_queries:
+      - "Enumeration Tool이란 무엇인가?"
+      - "Enumeration Tool의 핵심 원리는?"
+      - "Enumeration Tool을 어떻게 적용하는가?"

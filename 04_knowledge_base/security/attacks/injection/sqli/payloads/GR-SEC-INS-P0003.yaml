@@ -13,7 +13,7 @@ identity:
 
 classification:
   domain: security
-  type: payload
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -152,3 +152,7 @@ metadata:
       - "time-based"
       - "timing attack"
       - "delay test"
+    related_queries:
+      - "Time-based SLEEP Detection Payload 패턴이란?"
+      - "Time-based SLEEP Detection Payload을 어떻게 식별하는가?"
+      - "Time-based SLEEP Detection Payload의 특징은?"

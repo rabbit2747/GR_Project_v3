@@ -101,3 +101,7 @@ metadata:
       - "Scanner"
       - "Assessment"
       - "감사"
+    related_queries:
+      - "Security Audit Tool이란 무엇인가?"
+      - "Security Audit Tool의 핵심 원리는?"
+      - "Security Audit Tool을 어떻게 적용하는가?"

@@ -116,3 +116,7 @@ metadata:
       - "Vulnerability Scanner"
       - "Tenable"
       - "취약점 스캔"
+    related_queries:
+      - "Nessus 사용법은?"
+      - "Nessus의 주요 기능은?"
+      - "Nessus으로 무엇을 할 수 있는가?"

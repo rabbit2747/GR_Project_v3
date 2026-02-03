@@ -109,3 +109,7 @@ metadata:
       - "암호화"
       - "Encryption"
       - "AES"
+    related_queries:
+      - "Cryptography이란 무엇인가?"
+      - "Cryptography의 핵심 원리는?"
+      - "Cryptography을 어떻게 적용하는가?"

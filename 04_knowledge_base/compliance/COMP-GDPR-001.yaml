@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -113,3 +113,7 @@ metadata:
       - "개인정보보호"
       - "EU Privacy"
       - "Data Protection"
+    related_queries:
+      - "General Data Protection Regulation 보안 통제란?"
+      - "General Data Protection Regulation을 어떻게 구현하는가?"
+      - "General Data Protection Regulation의 효과는?"

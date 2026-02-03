@@ -76,3 +76,7 @@ metadata:
       - "접근 통제 취약점"
       - "Authorization"
       - "IDOR"
+    related_queries:
+      - "Access Control Vulnerability이란 무엇인가?"
+      - "Access Control Vulnerability의 핵심 원리는?"
+      - "Access Control Vulnerability을 어떻게 적용하는가?"

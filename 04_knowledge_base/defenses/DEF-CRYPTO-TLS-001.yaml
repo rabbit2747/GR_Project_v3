@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
@@ -110,3 +110,7 @@ metadata:
       - "SSL"
       - "HTTPS"
       - "암호화 통신"
+    related_queries:
+      - "Transport Layer Security 보안 통제란?"
+      - "Transport Layer Security을 어떻게 구현하는가?"
+      - "Transport Layer Security의 효과는?"

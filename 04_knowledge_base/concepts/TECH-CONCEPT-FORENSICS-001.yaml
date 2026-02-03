@@ -118,3 +118,7 @@ metadata:
       - "포렌식"
       - "Evidence"
       - "Investigation"
+    related_queries:
+      - "Digital Forensics이란 무엇인가?"
+      - "Digital Forensics의 핵심 원리는?"
+      - "Digital Forensics을 어떻게 적용하는가?"

@@ -113,3 +113,7 @@ metadata:
       - "AES"
       - "암호화"
       - "Data Protection"
+    related_queries:
+      - "Data Encryption이란 무엇인가?"
+      - "Data Encryption의 핵심 원리는?"
+      - "Data Encryption을 어떻게 적용하는가?"

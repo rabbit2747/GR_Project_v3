@@ -114,3 +114,7 @@ metadata:
       - "SBOM"
       - "Dependency"
       - "공급망 보안"
+    related_queries:
+      - "Supply Chain Security이란 무엇인가?"
+      - "Supply Chain Security의 핵심 원리는?"
+      - "Supply Chain Security을 어떻게 적용하는가?"

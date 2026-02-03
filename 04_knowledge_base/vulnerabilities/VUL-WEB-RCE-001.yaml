@@ -104,3 +104,7 @@ metadata:
       - "Remote Code Execution"
       - "Command Injection"
       - "원격 실행"
+    related_queries:
+      - "Remote Code Execution 취약점이란?"
+      - "Remote Code Execution의 위험성은?"
+      - "Remote Code Execution을 어떻게 방어하는가?"

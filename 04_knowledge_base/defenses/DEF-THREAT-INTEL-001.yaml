@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -119,3 +119,7 @@ metadata:
       - "Threat Intelligence"
       - "IOC"
       - "STIX TAXII"
+    related_queries:
+      - "Threat Intelligence Platform 보안 통제란?"
+      - "Threat Intelligence Platform을 어떻게 구현하는가?"
+      - "Threat Intelligence Platform의 효과는?"

@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
@@ -110,3 +110,7 @@ metadata:
       - "Intrusion Detection"
       - "Snort"
       - "Suricata"
+    related_queries:
+      - "Intrusion Detection System 보안 통제란?"
+      - "Intrusion Detection System을 어떻게 구현하는가?"
+      - "Intrusion Detection System의 효과는?"

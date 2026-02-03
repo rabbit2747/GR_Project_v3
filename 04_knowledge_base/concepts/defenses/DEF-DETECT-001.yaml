@@ -100,3 +100,7 @@ metadata:
       - "탐지"
       - "Monitoring"
       - "SIEM"
+    related_queries:
+      - "Detection이란 무엇인가?"
+      - "Detection의 핵심 원리는?"
+      - "Detection을 어떻게 적용하는가?"

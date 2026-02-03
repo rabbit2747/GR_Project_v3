@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -100,3 +100,7 @@ metadata:
       - "SPN"
       - "Service Ticket"
       - "TGS Cracking"
+    related_queries:
+      - "Kerberoasting 기법이란?"
+      - "Kerberoasting 공격 방법은?"
+      - "Kerberoasting을 어떻게 탐지하는가?"

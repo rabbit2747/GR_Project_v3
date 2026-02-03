@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -117,3 +117,7 @@ metadata:
       - "T1087"
       - "User Enumeration"
       - "계정 열거"
+    related_queries:
+      - "Account Discovery 기법이란?"
+      - "Account Discovery 공격 방법은?"
+      - "Account Discovery을 어떻게 탐지하는가?"

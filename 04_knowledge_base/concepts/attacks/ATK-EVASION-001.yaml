@@ -88,3 +88,7 @@ metadata:
       - "우회"
       - "Bypass"
       - "Detection"
+    related_queries:
+      - "Defense Evasion이란 무엇인가?"
+      - "Defense Evasion의 핵심 원리는?"
+      - "Defense Evasion을 어떻게 적용하는가?"

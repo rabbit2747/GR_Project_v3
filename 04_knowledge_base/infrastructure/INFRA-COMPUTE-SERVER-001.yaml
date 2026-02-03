@@ -16,7 +16,7 @@ identity:
 
 classification:
   domain: infrastructure
-  type: compute
+  type: component
   abstraction_level: 3
   gr_coordinates:
     layer: "L1"

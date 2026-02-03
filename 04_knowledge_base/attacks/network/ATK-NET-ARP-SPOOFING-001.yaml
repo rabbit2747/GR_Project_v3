@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
@@ -105,3 +105,7 @@ metadata:
       - "ARP Poisoning"
       - "MITM"
       - "Layer 2"
+    related_queries:
+      - "ARP Spoofing 기법이란?"
+      - "ARP Spoofing 공격 방법은?"
+      - "ARP Spoofing을 어떻게 탐지하는가?"

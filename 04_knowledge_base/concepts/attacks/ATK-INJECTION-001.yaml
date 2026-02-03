@@ -91,3 +91,7 @@ metadata:
       - "인젝션"
       - "SQLi"
       - "Command Injection"
+    related_queries:
+      - "Injection Attack이란 무엇인가?"
+      - "Injection Attack의 핵심 원리는?"
+      - "Injection Attack을 어떻게 적용하는가?"

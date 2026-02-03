@@ -95,3 +95,7 @@ metadata:
       - "Fail Safe"
       - "Default Deny"
       - "안전 실패"
+    related_queries:
+      - "Fail Secure Principle 원칙이란?"
+      - "Fail Secure Principle을 왜 적용해야 하는가?"
+      - "Fail Secure Principle 구현 방법은?"

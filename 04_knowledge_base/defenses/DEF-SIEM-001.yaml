@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -114,3 +114,7 @@ metadata:
       - "Log Management"
       - "상관분석"
       - "보안 모니터링"
+    related_queries:
+      - "Security Information and Event Management 보안 통제란?"
+      - "Security Information and Event Management을 어떻게 구현하는가?"
+      - "Security Information and Event Management의 효과는?"

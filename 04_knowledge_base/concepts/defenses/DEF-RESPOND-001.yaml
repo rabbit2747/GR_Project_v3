@@ -97,3 +97,7 @@ metadata:
       - "대응"
       - "Incident Response"
       - "Recovery"
+    related_queries:
+      - "Response이란 무엇인가?"
+      - "Response의 핵심 원리는?"
+      - "Response을 어떻게 적용하는가?"

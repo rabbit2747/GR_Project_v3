@@ -80,3 +80,7 @@ metadata:
       - "로깅 기술"
       - "SIEM"
       - "ELK"
+    related_queries:
+      - "Logging Technology이란 무엇인가?"
+      - "Logging Technology의 핵심 원리는?"
+      - "Logging Technology을 어떻게 적용하는가?"

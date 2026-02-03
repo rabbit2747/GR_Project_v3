@@ -102,3 +102,7 @@ metadata:
       - "프로토콜"
       - "TLS"
       - "Authentication"
+    related_queries:
+      - "Security Protocol이란 무엇인가?"
+      - "Security Protocol의 핵심 원리는?"
+      - "Security Protocol을 어떻게 적용하는가?"

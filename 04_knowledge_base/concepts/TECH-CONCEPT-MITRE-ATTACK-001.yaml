@@ -125,3 +125,7 @@ metadata:
       - "TTP"
       - "위협 프레임워크"
       - "전술 기법"
+    related_queries:
+      - "MITRE ATT&CK Framework이란 무엇인가?"
+      - "MITRE ATT&CK Framework의 핵심 원리는?"
+      - "MITRE ATT&CK Framework을 어떻게 적용하는가?"

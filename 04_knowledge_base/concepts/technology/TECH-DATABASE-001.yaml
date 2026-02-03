@@ -80,3 +80,7 @@ metadata:
       - "데이터베이스 기술"
       - "SQL"
       - "NoSQL"
+    related_queries:
+      - "Database Technology이란 무엇인가?"
+      - "Database Technology의 핵심 원리는?"
+      - "Database Technology을 어떻게 적용하는가?"

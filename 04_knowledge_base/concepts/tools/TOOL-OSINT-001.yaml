@@ -95,3 +95,7 @@ metadata:
       - "Intelligence"
       - "Maltego"
       - "정보 수집"
+    related_queries:
+      - "OSINT Tool이란 무엇인가?"
+      - "OSINT Tool의 핵심 원리는?"
+      - "OSINT Tool을 어떻게 적용하는가?"

@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -91,3 +91,7 @@ metadata:
       - "Compromised Credentials"
       - "Account Takeover"
       - "T1078"
+    related_queries:
+      - "Valid Accounts 기법이란?"
+      - "Valid Accounts 공격 방법은?"
+      - "Valid Accounts을 어떻게 탐지하는가?"

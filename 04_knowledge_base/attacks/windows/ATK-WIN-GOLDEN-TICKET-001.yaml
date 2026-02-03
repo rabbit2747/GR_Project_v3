@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -101,3 +101,7 @@ metadata:
       - "Kerberos"
       - "KRBTGT"
       - "TGT Forgery"
+    related_queries:
+      - "Golden Ticket Attack 기법이란?"
+      - "Golden Ticket Attack 공격 방법은?"
+      - "Golden Ticket Attack을 어떻게 탐지하는가?"

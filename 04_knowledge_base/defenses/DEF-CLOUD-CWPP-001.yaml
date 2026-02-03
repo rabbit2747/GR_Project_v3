@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -106,3 +106,7 @@ metadata:
       - "Cloud Workload"
       - "Container Security"
       - "워크로드 보호"
+    related_queries:
+      - "Cloud Workload Protection Platform 보안 통제란?"
+      - "Cloud Workload Protection Platform을 어떻게 구현하는가?"
+      - "Cloud Workload Protection Platform의 효과는?"

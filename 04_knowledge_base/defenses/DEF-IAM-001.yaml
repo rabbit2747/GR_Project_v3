@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -116,3 +116,7 @@ metadata:
       - "Identity Management"
       - "Access Control"
       - "신원 관리"
+    related_queries:
+      - "Identity and Access Management 보안 통제란?"
+      - "Identity and Access Management을 어떻게 구현하는가?"
+      - "Identity and Access Management의 효과는?"

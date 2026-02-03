@@ -103,3 +103,7 @@ metadata:
       - "Direct Object Reference"
       - "BOLA"
       - "접근 통제"
+    related_queries:
+      - "Insecure Direct Object Reference 취약점이란?"
+      - "Insecure Direct Object Reference의 위험성은?"
+      - "Insecure Direct Object Reference을 어떻게 방어하는가?"

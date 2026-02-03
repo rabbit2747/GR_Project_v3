@@ -75,3 +75,7 @@ metadata:
       - "비즈니스 로직 취약점"
       - "Logic Flaw"
       - "Race Condition"
+    related_queries:
+      - "Business Logic Vulnerability이란 무엇인가?"
+      - "Business Logic Vulnerability의 핵심 원리는?"
+      - "Business Logic Vulnerability을 어떻게 적용하는가?"

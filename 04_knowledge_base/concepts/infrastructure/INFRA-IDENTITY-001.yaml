@@ -80,3 +80,7 @@ metadata:
       - "계정 인프라"
       - "SSO"
       - "Identity Provider"
+    related_queries:
+      - "Identity Infrastructure이란 무엇인가?"
+      - "Identity Infrastructure의 핵심 원리는?"
+      - "Identity Infrastructure을 어떻게 적용하는가?"

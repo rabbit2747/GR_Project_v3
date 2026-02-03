@@ -78,3 +78,7 @@ metadata:
       - "컨테이너 기술"
       - "Docker"
       - "Kubernetes"
+    related_queries:
+      - "Container Technology이란 무엇인가?"
+      - "Container Technology의 핵심 원리는?"
+      - "Container Technology을 어떻게 적용하는가?"

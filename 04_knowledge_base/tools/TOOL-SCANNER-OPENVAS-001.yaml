@@ -109,3 +109,7 @@ metadata:
       - "GVM"
       - "Open Source Scanner"
       - "Greenbone"
+    related_queries:
+      - "OpenVAS 사용법은?"
+      - "OpenVAS의 주요 기능은?"
+      - "OpenVAS으로 무엇을 할 수 있는가?"

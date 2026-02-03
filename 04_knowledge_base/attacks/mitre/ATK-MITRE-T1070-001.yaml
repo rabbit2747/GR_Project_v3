@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -93,3 +93,7 @@ metadata:
       - "Log Deletion"
       - "Timestomp"
       - "T1070"
+    related_queries:
+      - "Indicator Removal 기법이란?"
+      - "Indicator Removal 공격 방법은?"
+      - "Indicator Removal을 어떻게 탐지하는가?"

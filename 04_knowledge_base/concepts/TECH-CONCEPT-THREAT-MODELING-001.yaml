@@ -131,3 +131,7 @@ metadata:
       - "STRIDE"
       - "DREAD"
       - "Security Design"
+    related_queries:
+      - "Threat Modeling이란 무엇인가?"
+      - "Threat Modeling의 핵심 원리는?"
+      - "Threat Modeling을 어떻게 적용하는가?"

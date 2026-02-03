@@ -96,3 +96,7 @@ metadata:
       - "AD"
       - "BloodHound"
       - "Kerberos"
+    related_queries:
+      - "Active Directory Tool이란 무엇인가?"
+      - "Active Directory Tool의 핵심 원리는?"
+      - "Active Directory Tool을 어떻게 적용하는가?"

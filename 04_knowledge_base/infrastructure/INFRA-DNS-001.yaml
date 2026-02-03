@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: infrastructure
-  type: service
+  type: component
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -117,3 +117,7 @@ metadata:
       - "Domain Name"
       - "Name Resolution"
       - "DNSSEC"
+    related_queries:
+      - "Domain Name System 구성요소란?"
+      - "Domain Name System의 역할은?"
+      - "Domain Name System 보안 설정은?"

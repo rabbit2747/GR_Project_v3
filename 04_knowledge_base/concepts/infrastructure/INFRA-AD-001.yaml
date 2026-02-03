@@ -79,3 +79,7 @@ metadata:
       - "AD 인프라"
       - "Domain Controller"
       - "Kerberos"
+    related_queries:
+      - "Active Directory Infrastructure이란 무엇인가?"
+      - "Active Directory Infrastructure의 핵심 원리는?"
+      - "Active Directory Infrastructure을 어떻게 적용하는가?"

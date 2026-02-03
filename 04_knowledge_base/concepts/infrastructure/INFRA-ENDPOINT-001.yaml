@@ -79,3 +79,7 @@ metadata:
       - "엔드포인트 인프라"
       - "Workstation"
       - "Mobile Device"
+    related_queries:
+      - "Endpoint Infrastructure이란 무엇인가?"
+      - "Endpoint Infrastructure의 핵심 원리는?"
+      - "Endpoint Infrastructure을 어떻게 적용하는가?"

@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -104,3 +104,7 @@ metadata:
       - "DNS Exfiltration"
       - "dnscat2"
       - "Covert Channel"
+    related_queries:
+      - "DNS Tunneling 기법이란?"
+      - "DNS Tunneling 공격 방법은?"
+      - "DNS Tunneling을 어떻게 탐지하는가?"

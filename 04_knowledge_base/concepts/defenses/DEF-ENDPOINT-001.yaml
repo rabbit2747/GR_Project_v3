@@ -92,3 +92,7 @@ metadata:
       - "EDR"
       - "엔드포인트"
       - "Antivirus"
+    related_queries:
+      - "Endpoint Defense이란 무엇인가?"
+      - "Endpoint Defense의 핵심 원리는?"
+      - "Endpoint Defense을 어떻게 적용하는가?"

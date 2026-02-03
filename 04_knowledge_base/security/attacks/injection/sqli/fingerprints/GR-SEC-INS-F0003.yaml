@@ -13,7 +13,7 @@ identity:
 
 classification:
   domain: security
-  type: fingerprint
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -190,3 +190,7 @@ metadata:
       - "pg_query"
       - "::cast"
       - "dblink"
+    related_queries:
+      - "PostgreSQL DBMS Fingerprint 패턴이란?"
+      - "PostgreSQL DBMS Fingerprint을 어떻게 식별하는가?"
+      - "PostgreSQL DBMS Fingerprint의 특징은?"

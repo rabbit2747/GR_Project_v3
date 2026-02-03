@@ -17,7 +17,7 @@ identity:
 
 classification:
   domain: network
-  type: attack
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L6"

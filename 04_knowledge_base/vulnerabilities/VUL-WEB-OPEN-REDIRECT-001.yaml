@@ -103,3 +103,7 @@ metadata:
       - "URL Redirection"
       - "리다이렉트"
       - "피싱"
+    related_queries:
+      - "Open Redirect 취약점이란?"
+      - "Open Redirect의 위험성은?"
+      - "Open Redirect을 어떻게 방어하는가?"

@@ -96,3 +96,7 @@ metadata:
       - "Never Trust"
       - "Always Verify"
       - "제로 트러스트"
+    related_queries:
+      - "Zero Trust Principle 원칙이란?"
+      - "Zero Trust Principle을 왜 적용해야 하는가?"
+      - "Zero Trust Principle 구현 방법은?"

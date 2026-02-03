@@ -92,3 +92,7 @@ metadata:
       - "데이터 보안"
       - "Encryption"
       - "DLP"
+    related_queries:
+      - "Data Defense이란 무엇인가?"
+      - "Data Defense의 핵심 원리는?"
+      - "Data Defense을 어떻게 적용하는가?"

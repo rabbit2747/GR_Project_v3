@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -111,3 +111,7 @@ metadata:
       - "Payment Card"
       - "카드 보안"
       - "Cardholder Data"
+    related_queries:
+      - "Payment Card Industry Data Security Standard 보안 통제란?"
+      - "Payment Card Industry Data Security Standard을 어떻게 구현하는가?"
+      - "Payment Card Industry Data Security Standard의 효과는?"

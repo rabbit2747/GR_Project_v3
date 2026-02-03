@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
@@ -101,3 +101,7 @@ metadata:
       - "Switch Spoofing"
       - "Double Tagging"
       - "DTP"
+    related_queries:
+      - "VLAN Hopping 기법이란?"
+      - "VLAN Hopping 공격 방법은?"
+      - "VLAN Hopping을 어떻게 탐지하는가?"

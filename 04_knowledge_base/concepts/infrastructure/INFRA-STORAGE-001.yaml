@@ -78,3 +78,7 @@ metadata:
       - "스토리지 인프라"
       - "SAN"
       - "NAS"
+    related_queries:
+      - "Storage Infrastructure이란 무엇인가?"
+      - "Storage Infrastructure의 핵심 원리는?"
+      - "Storage Infrastructure을 어떻게 적용하는가?"

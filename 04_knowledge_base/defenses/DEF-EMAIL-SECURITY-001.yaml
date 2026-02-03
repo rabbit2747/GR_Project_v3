@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -112,3 +112,7 @@ metadata:
       - "Phishing Protection"
       - "DMARC"
       - "이메일 보안"
+    related_queries:
+      - "Email Security Gateway 보안 통제란?"
+      - "Email Security Gateway을 어떻게 구현하는가?"
+      - "Email Security Gateway의 효과는?"

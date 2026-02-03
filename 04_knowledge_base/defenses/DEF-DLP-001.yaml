@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -112,3 +112,7 @@ metadata:
       - "Data Loss Prevention"
       - "데이터 유출"
       - "정보 보호"
+    related_queries:
+      - "Data Loss Prevention 보안 통제란?"
+      - "Data Loss Prevention을 어떻게 구현하는가?"
+      - "Data Loss Prevention의 효과는?"

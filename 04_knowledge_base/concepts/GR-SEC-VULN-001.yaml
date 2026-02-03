@@ -102,3 +102,7 @@ metadata:
       - "취약점"
       - "Security Weakness"
       - "CVE"
+    related_queries:
+      - "Security Vulnerability이란 무엇인가?"
+      - "Security Vulnerability의 핵심 원리는?"
+      - "Security Vulnerability을 어떻게 적용하는가?"

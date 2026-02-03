@@ -98,3 +98,7 @@ metadata:
       - "Layered Security"
       - "다계층 방어"
       - "DiD"
+    related_queries:
+      - "Defense in Depth 원칙이란?"
+      - "Defense in Depth을 왜 적용해야 하는가?"
+      - "Defense in Depth 구현 방법은?"

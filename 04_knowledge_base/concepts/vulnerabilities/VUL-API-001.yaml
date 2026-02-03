@@ -79,3 +79,7 @@ metadata:
       - "API 취약점"
       - "REST Security"
       - "GraphQL Security"
+    related_queries:
+      - "API Vulnerability이란 무엇인가?"
+      - "API Vulnerability의 핵심 원리는?"
+      - "API Vulnerability을 어떻게 적용하는가?"

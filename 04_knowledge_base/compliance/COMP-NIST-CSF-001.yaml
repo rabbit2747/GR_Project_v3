@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -125,3 +125,7 @@ metadata:
       - "Cybersecurity Framework"
       - "사이버보안"
       - "리스크 관리"
+    related_queries:
+      - "NIST Cybersecurity Framework 보안 통제란?"
+      - "NIST Cybersecurity Framework을 어떻게 구현하는가?"
+      - "NIST Cybersecurity Framework의 효과는?"

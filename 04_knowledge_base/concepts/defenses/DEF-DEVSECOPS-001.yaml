@@ -96,3 +96,7 @@ metadata:
       - "Shift Left"
       - "SAST"
       - "보안 개발"
+    related_queries:
+      - "DevSecOps Defense이란 무엇인가?"
+      - "DevSecOps Defense의 핵심 원리는?"
+      - "DevSecOps Defense을 어떻게 적용하는가?"

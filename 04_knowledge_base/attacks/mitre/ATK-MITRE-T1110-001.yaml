@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -110,3 +110,7 @@ metadata:
       - "T1110"
       - "Password Attack"
       - "무차별 대입"
+    related_queries:
+      - "Brute Force 기법이란?"
+      - "Brute Force 공격 방법은?"
+      - "Brute Force을 어떻게 탐지하는가?"

@@ -96,3 +96,7 @@ metadata:
       - "Pentest"
       - "Exploit"
       - "공격 도구"
+    related_queries:
+      - "Offensive Security Tool이란 무엇인가?"
+      - "Offensive Security Tool의 핵심 원리는?"
+      - "Offensive Security Tool을 어떻게 적용하는가?"

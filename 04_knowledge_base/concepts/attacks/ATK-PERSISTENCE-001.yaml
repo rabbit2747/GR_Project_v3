@@ -95,3 +95,7 @@ metadata:
       - "지속성"
       - "Backdoor"
       - "Maintain Access"
+    related_queries:
+      - "Persistence이란 무엇인가?"
+      - "Persistence의 핵심 원리는?"
+      - "Persistence을 어떻게 적용하는가?"

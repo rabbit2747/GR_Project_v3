@@ -103,3 +103,7 @@ metadata:
       - "XML External Entity"
       - "XML Injection"
       - "파일 읽기"
+    related_queries:
+      - "XML External Entity 취약점이란?"
+      - "XML External Entity의 위험성은?"
+      - "XML External Entity을 어떻게 방어하는가?"

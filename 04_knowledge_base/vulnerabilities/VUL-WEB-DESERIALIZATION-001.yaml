@@ -101,3 +101,7 @@ metadata:
       - "Object Injection"
       - "ysoserial"
       - "RCE"
+    related_queries:
+      - "Insecure Deserialization 취약점이란?"
+      - "Insecure Deserialization의 위험성은?"
+      - "Insecure Deserialization을 어떻게 방어하는가?"

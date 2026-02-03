@@ -78,3 +78,7 @@ metadata:
       - "서버 인프라"
       - "Virtual Machine"
       - "Physical Server"
+    related_queries:
+      - "Server Infrastructure이란 무엇인가?"
+      - "Server Infrastructure의 핵심 원리는?"
+      - "Server Infrastructure을 어떻게 적용하는가?"

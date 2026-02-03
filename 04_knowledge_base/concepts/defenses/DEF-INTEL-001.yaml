@@ -97,3 +97,7 @@ metadata:
       - "위협 인텔리전스"
       - "IOC"
       - "TTP"
+    related_queries:
+      - "Threat Intelligence이란 무엇인가?"
+      - "Threat Intelligence의 핵심 원리는?"
+      - "Threat Intelligence을 어떻게 적용하는가?"

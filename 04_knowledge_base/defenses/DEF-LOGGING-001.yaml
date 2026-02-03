@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -112,3 +112,7 @@ metadata:
       - "Audit Log"
       - "SIEM"
       - "Event Monitoring"
+    related_queries:
+      - "Security Logging and Monitoring 보안 통제란?"
+      - "Security Logging and Monitoring을 어떻게 구현하는가?"
+      - "Security Logging and Monitoring의 효과는?"

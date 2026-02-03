@@ -81,3 +81,7 @@ metadata:
       - "네트워크 프로토콜"
       - "TCP/IP"
       - "HTTP"
+    related_queries:
+      - "Network Protocol이란 무엇인가?"
+      - "Network Protocol의 핵심 원리는?"
+      - "Network Protocol을 어떻게 적용하는가?"

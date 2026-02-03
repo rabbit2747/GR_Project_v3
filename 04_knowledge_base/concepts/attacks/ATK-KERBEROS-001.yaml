@@ -97,3 +97,7 @@ metadata:
       - "Kerberoasting"
       - "Golden Ticket"
       - "AD Attack"
+    related_queries:
+      - "Kerberos Attack이란 무엇인가?"
+      - "Kerberos Attack의 핵심 원리는?"
+      - "Kerberos Attack을 어떻게 적용하는가?"

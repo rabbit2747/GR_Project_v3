@@ -98,3 +98,7 @@ metadata:
       - "REST"
       - "GraphQL"
       - "API 테스트"
+    related_queries:
+      - "API Security Tool이란 무엇인가?"
+      - "API Security Tool의 핵심 원리는?"
+      - "API Security Tool을 어떻게 적용하는가?"

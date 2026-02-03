@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -103,3 +103,7 @@ metadata:
       - "T1048"
       - "DNS Exfiltration"
       - "ICMP Tunnel"
+    related_queries:
+      - "Exfiltration Over Alternative Protocol 기법이란?"
+      - "Exfiltration Over Alternative Protocol 공격 방법은?"
+      - "Exfiltration Over Alternative Protocol을 어떻게 탐지하는가?"

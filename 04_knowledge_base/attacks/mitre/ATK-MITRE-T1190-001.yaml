@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -102,3 +102,7 @@ metadata:
       - "T1190"
       - "Web Exploitation"
       - "Initial Access"
+    related_queries:
+      - "Exploit Public-Facing Application 기법이란?"
+      - "Exploit Public-Facing Application 공격 방법은?"
+      - "Exploit Public-Facing Application을 어떻게 탐지하는가?"

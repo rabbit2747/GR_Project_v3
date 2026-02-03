@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -110,3 +110,7 @@ metadata:
       - "Cloud Security"
       - "Shadow IT"
       - "SaaS 보안"
+    related_queries:
+      - "Cloud Access Security Broker 보안 통제란?"
+      - "Cloud Access Security Broker을 어떻게 구현하는가?"
+      - "Cloud Access Security Broker의 효과는?"

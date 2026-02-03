@@ -98,3 +98,7 @@ metadata:
       - "Command Control"
       - "Cobalt Strike"
       - "Beacon"
+    related_queries:
+      - "Command and Control Tool이란 무엇인가?"
+      - "Command and Control Tool의 핵심 원리는?"
+      - "Command and Control Tool을 어떻게 적용하는가?"

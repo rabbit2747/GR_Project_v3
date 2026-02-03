@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -108,3 +108,7 @@ metadata:
       - "T1547"
       - "Registry Run"
       - "Persistence"
+    related_queries:
+      - "Boot or Logon Autostart Execution 기법이란?"
+      - "Boot or Logon Autostart Execution 공격 방법은?"
+      - "Boot or Logon Autostart Execution을 어떻게 탐지하는가?"

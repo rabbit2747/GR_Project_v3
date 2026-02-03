@@ -78,3 +78,7 @@ metadata:
       - "공급망"
       - "Dependency"
       - "Third-Party"
+    related_queries:
+      - "Supply Chain Attack이란 무엇인가?"
+      - "Supply Chain Attack의 핵심 원리는?"
+      - "Supply Chain Attack을 어떻게 적용하는가?"

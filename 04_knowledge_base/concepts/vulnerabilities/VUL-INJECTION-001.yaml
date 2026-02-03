@@ -78,3 +78,7 @@ metadata:
       - "인젝션 취약점"
       - "SQL Injection"
       - "Command Injection"
+    related_queries:
+      - "Injection Vulnerability이란 무엇인가?"
+      - "Injection Vulnerability의 핵심 원리는?"
+      - "Injection Vulnerability을 어떻게 적용하는가?"

@@ -122,3 +122,7 @@ metadata:
       - "Security Operations"
       - "보안관제"
       - "모니터링"
+    related_queries:
+      - "Security Operations Center이란 무엇인가?"
+      - "Security Operations Center의 핵심 원리는?"
+      - "Security Operations Center을 어떻게 적용하는가?"

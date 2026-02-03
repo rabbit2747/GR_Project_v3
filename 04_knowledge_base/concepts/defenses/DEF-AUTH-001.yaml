@@ -94,3 +94,7 @@ metadata:
       - "인증"
       - "MFA"
       - "Access Control"
+    related_queries:
+      - "Authentication Defense이란 무엇인가?"
+      - "Authentication Defense의 핵심 원리는?"
+      - "Authentication Defense을 어떻게 적용하는가?"

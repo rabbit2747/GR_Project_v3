@@ -76,3 +76,7 @@ metadata:
       - "설정 취약점"
       - "Misconfiguration"
       - "Default Credentials"
+    related_queries:
+      - "Configuration Vulnerability이란 무엇인가?"
+      - "Configuration Vulnerability의 핵심 원리는?"
+      - "Configuration Vulnerability을 어떻게 적용하는가?"

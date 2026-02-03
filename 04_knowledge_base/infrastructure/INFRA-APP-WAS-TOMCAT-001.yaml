@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: infrastructure
-  type: application_server
+  type: component
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"

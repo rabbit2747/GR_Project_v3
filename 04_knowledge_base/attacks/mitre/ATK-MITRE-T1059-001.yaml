@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -106,3 +106,7 @@ metadata:
       - "T1059.001"
       - "Execution"
       - "Living off the Land"
+    related_queries:
+      - "PowerShell 기법이란?"
+      - "PowerShell 공격 방법은?"
+      - "PowerShell을 어떻게 탐지하는가?"

@@ -12,7 +12,7 @@ identity:
 
 classification:
   domain: security
-  type: fingerprint
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -153,3 +153,7 @@ metadata:
       - "@@version"
       - "SLEEP"
       - "information_schema"
+    related_queries:
+      - "MySQL DBMS Fingerprint 패턴이란?"
+      - "MySQL DBMS Fingerprint을 어떻게 식별하는가?"
+      - "MySQL DBMS Fingerprint의 특징은?"

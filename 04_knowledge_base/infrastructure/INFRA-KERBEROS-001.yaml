@@ -116,3 +116,7 @@ metadata:
       - "TGT"
       - "티켓 인증"
       - "KDC"
+    related_queries:
+      - "Kerberos Protocol 프로토콜이란?"
+      - "Kerberos Protocol의 동작 방식은?"
+      - "Kerberos Protocol의 보안 고려사항은?"

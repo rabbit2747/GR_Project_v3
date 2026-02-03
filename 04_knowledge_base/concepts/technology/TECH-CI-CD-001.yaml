@@ -79,3 +79,7 @@ metadata:
       - "DevOps"
       - "Jenkins"
       - "Pipeline"
+    related_queries:
+      - "CI/CD Technology이란 무엇인가?"
+      - "CI/CD Technology의 핵심 원리는?"
+      - "CI/CD Technology을 어떻게 적용하는가?"

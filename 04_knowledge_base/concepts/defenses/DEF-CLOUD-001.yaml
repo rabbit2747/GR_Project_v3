@@ -96,3 +96,7 @@ metadata:
       - "클라우드 보안"
       - "CSPM"
       - "CWPP"
+    related_queries:
+      - "Cloud Defense이란 무엇인가?"
+      - "Cloud Defense의 핵심 원리는?"
+      - "Cloud Defense을 어떻게 적용하는가?"

@@ -78,3 +78,7 @@ metadata:
       - "클라우드 취약점"
       - "AWS Security"
       - "Azure Security"
+    related_queries:
+      - "Cloud Vulnerability이란 무엇인가?"
+      - "Cloud Vulnerability의 핵심 원리는?"
+      - "Cloud Vulnerability을 어떻게 적용하는가?"

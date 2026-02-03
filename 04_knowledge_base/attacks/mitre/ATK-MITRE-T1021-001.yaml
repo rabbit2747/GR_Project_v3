@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -93,3 +93,7 @@ metadata:
       - "Lateral Movement"
       - "RDP"
       - "T1021"
+    related_queries:
+      - "Remote Services 기법이란?"
+      - "Remote Services 공격 방법은?"
+      - "Remote Services을 어떻게 탐지하는가?"

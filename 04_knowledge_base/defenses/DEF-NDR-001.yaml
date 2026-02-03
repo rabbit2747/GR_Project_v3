@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
@@ -110,3 +110,7 @@ metadata:
       - "Network Detection"
       - "NTA"
       - "트래픽 분석"
+    related_queries:
+      - "Network Detection and Response 보안 통제란?"
+      - "Network Detection and Response을 어떻게 구현하는가?"
+      - "Network Detection and Response의 효과는?"

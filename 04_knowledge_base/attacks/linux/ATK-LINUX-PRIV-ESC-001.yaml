@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -114,3 +114,7 @@ metadata:
       - "Privilege Escalation"
       - "SUID"
       - "Root"
+    related_queries:
+      - "Linux Privilege Escalation 기법이란?"
+      - "Linux Privilege Escalation 공격 방법은?"
+      - "Linux Privilege Escalation을 어떻게 탐지하는가?"

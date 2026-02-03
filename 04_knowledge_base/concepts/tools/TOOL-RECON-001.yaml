@@ -100,3 +100,7 @@ metadata:
       - "정찰"
       - "OSINT"
       - "Enumeration"
+    related_queries:
+      - "Reconnaissance Tool이란 무엇인가?"
+      - "Reconnaissance Tool의 핵심 원리는?"
+      - "Reconnaissance Tool을 어떻게 적용하는가?"

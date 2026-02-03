@@ -75,17 +75,23 @@ atom:
     type:
       type: enum
       values:
-        - concept
-        - technique
-        - tool
-        - vulnerability
-        - control
-        - protocol
-        - component
-        - pattern
-        - principle
+        - concept       # 개념, 사상, 전술 (예: Zero Trust, Defense in Depth)
+        - technique     # 공격/방어 기법 (예: SQL Injection, Phishing)
+        - tool          # 도구 (예: Burp Suite, Metasploit)
+        - vulnerability # 취약점 (예: CVE, CWE)
+        - control       # 보안 통제, 방어책, 컴플라이언스 (예: WAF, DLP)
+        - protocol      # 프로토콜, 포맷 (예: OAuth, JWT, TLS)
+        - component     # 인프라/시스템 구성요소 (예: Server, Database, Cloud)
+        - pattern       # 패턴, 시그니처 (예: Payload, Fingerprint)
+        - principle     # 원칙 (예: Least Privilege, Separation of Duties)
       required: true
-      note: "type과 abstraction_level은 독립적인 두 축"
+      note: |
+        [GR Framework 분류 원칙]
+        - type은 9개의 고수준 분류로 고정 (확장 금지)
+        - 세부 분류는 gr_coordinates.tags를 사용
+        - 예: application_server → type: component, tags: [APP, SERVER]
+        - 예: attack_tactic → type: concept, tags: [ATK, TACTIC]
+        - type과 abstraction_level은 독립적인 두 축
 
     abstraction_level:
       type: integer
@@ -95,6 +101,11 @@ atom:
       note: "type과 abstraction_level은 독립적인 두 축"
 
     gr_coordinates:
+      description: |
+        GR Framework 3D 좌표계 (Layer × Zone × Tags)
+        - Layer: 인프라 추상화 레벨 (L1=물리 ~ L7=응용)
+        - Zone: 보안 영역 (Zone1=외부 ~ Zone7=핵심)
+        - Tags: 세부 분류 태그 (type의 상세 분류)
       layer:
         type: string
         pattern: "L[1-7]"
@@ -106,7 +117,11 @@ atom:
       tags:
         type: array
         items: string
-        description: "GR Framework Tags"
+        description: |
+          GR Framework 세부 분류 태그
+          - type의 세부 분류를 담당 (type 확장 대신 사용)
+          - 예: ["APP", "SERVER"], ["ATK", "TACTIC"], ["CLOUD", "AWS"]
+          - 복합 분류 가능 (다중 태그)
 
   # ═══════════════════════════════════════════════════════════════
   # 정의 (Definition) - 필수

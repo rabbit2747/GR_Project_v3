@@ -97,3 +97,7 @@ metadata:
       - "SoD"
       - "직무 분리"
       - "Dual Control"
+    related_queries:
+      - "Separation of Duties 원칙이란?"
+      - "Separation of Duties을 왜 적용해야 하는가?"
+      - "Separation of Duties 구현 방법은?"

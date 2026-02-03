@@ -101,3 +101,7 @@ metadata:
       - "SIEM"
       - "EDR"
       - "방어 도구"
+    related_queries:
+      - "Defensive Security Tool이란 무엇인가?"
+      - "Defensive Security Tool의 핵심 원리는?"
+      - "Defensive Security Tool을 어떻게 적용하는가?"

@@ -99,3 +99,7 @@ metadata:
       - "Burp Suite"
       - "OWASP"
       - "웹 보안"
+    related_queries:
+      - "Web Security Tool이란 무엇인가?"
+      - "Web Security Tool의 핵심 원리는?"
+      - "Web Security Tool을 어떻게 적용하는가?"

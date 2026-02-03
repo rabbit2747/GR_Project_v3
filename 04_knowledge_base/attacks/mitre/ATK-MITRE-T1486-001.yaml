@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack_technique
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -111,3 +111,7 @@ metadata:
       - "Data Encryption"
       - "T1486"
       - "랜섬웨어"
+    related_queries:
+      - "Data Encrypted for Impact 기법이란?"
+      - "Data Encrypted for Impact 공격 방법은?"
+      - "Data Encrypted for Impact을 어떻게 탐지하는가?"

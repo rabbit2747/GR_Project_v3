@@ -98,3 +98,7 @@ metadata:
       - "Local File Inclusion"
       - "Path Traversal"
       - "Directory Traversal"
+    related_queries:
+      - "Local File Inclusion 취약점이란?"
+      - "Local File Inclusion의 위험성은?"
+      - "Local File Inclusion을 어떻게 방어하는가?"

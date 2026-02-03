@@ -82,3 +82,7 @@ metadata:
       - "계정 관리"
       - "RBAC"
       - "Access Control"
+    related_queries:
+      - "Identity and Access Management이란 무엇인가?"
+      - "Identity and Access Management의 핵심 원리는?"
+      - "Identity and Access Management을 어떻게 적용하는가?"

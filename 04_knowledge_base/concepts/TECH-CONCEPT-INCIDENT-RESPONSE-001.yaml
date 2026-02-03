@@ -123,3 +123,7 @@ metadata:
       - "IR"
       - "침해사고"
       - "대응"
+    related_queries:
+      - "Incident Response이란 무엇인가?"
+      - "Incident Response의 핵심 원리는?"
+      - "Incident Response을 어떻게 적용하는가?"

@@ -93,3 +93,7 @@ metadata:
       - "Minimal Access"
       - "PoLP"
       - "권한 최소화"
+    related_queries:
+      - "Principle of Least Privilege 원칙이란?"
+      - "Principle of Least Privilege을 왜 적용해야 하는가?"
+      - "Principle of Least Privilege 구현 방법은?"

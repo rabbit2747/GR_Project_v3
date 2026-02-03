@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -113,3 +113,7 @@ metadata:
       - "Behavior Analytics"
       - "내부자 위협"
       - "이상 탐지"
+    related_queries:
+      - "User and Entity Behavior Analytics 보안 통제란?"
+      - "User and Entity Behavior Analytics을 어떻게 구현하는가?"
+      - "User and Entity Behavior Analytics의 효과는?"

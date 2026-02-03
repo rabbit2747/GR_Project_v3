@@ -79,3 +79,7 @@ metadata:
       - "OT 인프라"
       - "SCADA"
       - "ICS"
+    related_queries:
+      - "OT Infrastructure이란 무엇인가?"
+      - "OT Infrastructure의 핵심 원리는?"
+      - "OT Infrastructure을 어떻게 적용하는가?"

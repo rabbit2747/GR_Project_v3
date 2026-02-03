@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -111,3 +111,7 @@ metadata:
       - "Recovery"
       - "3-2-1"
       - "Ransomware Protection"
+    related_queries:
+      - "Backup and Recovery 보안 통제란?"
+      - "Backup and Recovery을 어떻게 구현하는가?"
+      - "Backup and Recovery의 효과는?"

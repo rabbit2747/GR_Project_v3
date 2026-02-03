@@ -1,8 +1,8 @@
 # GR Knowledge Atomization Constitution
 
 > AI를 위한 지식 원자화 헌법
-> Version: 2.0
-> Effective Date: 2025-01-26
+> Version: 2.1
+> Effective Date: 2025-02-03
 > Status: RATIFIED
 
 ---
@@ -180,6 +180,43 @@ good_example:
 - 둘은 **독립적인 두 축**이다
 
 예: vulnerability도 Level 3(개념)일 수 있고, Level 1(특정 CVE)일 수도 있다.
+
+**Type 분류 원칙 (9개 고정):**
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Type 분류 체계                            │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  type은 9개의 고수준 분류로 고정되며 확장 금지:             │
+│                                                              │
+│  • concept     : 개념, 사상, 전술                          │
+│  • technique   : 공격/방어 기법                            │
+│  • tool        : 도구                                       │
+│  • vulnerability: 취약점                                   │
+│  • control     : 보안 통제, 방어책, 컴플라이언스           │
+│  • protocol    : 프로토콜, 포맷                            │
+│  • component   : 인프라/시스템 구성요소                    │
+│  • pattern     : 패턴, 시그니처                            │
+│  • principle   : 원칙                                       │
+│                                                              │
+│  세부 분류는 gr_coordinates.tags로 표현:                    │
+│                                                              │
+│  예: application_server                                     │
+│      → type: component, tags: [APP, SERVER]                │
+│                                                              │
+│  예: attack_tactic                                          │
+│      → type: concept, tags: [ATK, TACTIC]                  │
+│                                                              │
+│  예: cloud_platform                                         │
+│      → type: component, tags: [CLOUD, PLATFORM]            │
+│                                                              │
+│  이유:                                                      │
+│  1. type 무분별한 확장 방지 (스키마 안정성)                │
+│  2. 태그의 유연성 활용 (복합 분류 가능)                    │
+│  3. AI 학습 및 검색 일관성 유지                            │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ### 제2장 제3조: 명시적 관계 원칙 (Explicit Relations)
 
@@ -492,6 +529,7 @@ metadata:
 
 | 버전 | 날짜 | 변경 내용 |
 |------|------|-----------|
+| 2.1 | 2025-02-03 | Type 분류 원칙 명확화 (9개 고정, 세부는 Tags) |
 | 2.0 | 2025-01-26 | 스키마 분리, 장-조 체계 정비 |
 | 1.3 | 2025-01-26 | 내부 정합성 강화 |
 | 1.2 | 2025-01-26 | Canonical 원칙 명확화 |
@@ -508,8 +546,8 @@ metadata:
 이를 준수해야 한다.
 
 제정일: 2025-01-26
-최종 개정: 2025-01-26
-헌법 버전: 2.0
+최종 개정: 2025-02-03
+헌법 버전: 2.1
 스키마 버전: 1.2
 
 ---

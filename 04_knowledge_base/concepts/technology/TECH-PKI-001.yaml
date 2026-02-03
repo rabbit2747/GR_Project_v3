@@ -78,3 +78,7 @@ metadata:
       - "인증서"
       - "Certificate"
       - "Public Key"
+    related_queries:
+      - "PKI Technology이란 무엇인가?"
+      - "PKI Technology의 핵심 원리는?"
+      - "PKI Technology을 어떻게 적용하는가?"

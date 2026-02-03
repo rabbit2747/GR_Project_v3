@@ -80,3 +80,7 @@ metadata:
       - "API 기술"
       - "REST"
       - "GraphQL"
+    related_queries:
+      - "API Technology이란 무엇인가?"
+      - "API Technology의 핵심 원리는?"
+      - "API Technology을 어떻게 적용하는가?"

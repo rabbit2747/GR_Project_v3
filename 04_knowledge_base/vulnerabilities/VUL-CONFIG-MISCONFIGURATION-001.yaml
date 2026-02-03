@@ -111,3 +111,7 @@ metadata:
       - "Security Configuration"
       - "설정 오류"
       - "Hardening"
+    related_queries:
+      - "Security Misconfiguration 취약점이란?"
+      - "Security Misconfiguration의 위험성은?"
+      - "Security Misconfiguration을 어떻게 방어하는가?"

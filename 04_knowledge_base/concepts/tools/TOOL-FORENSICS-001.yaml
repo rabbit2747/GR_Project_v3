@@ -101,3 +101,7 @@ metadata:
       - "포렌식"
       - "Investigation"
       - "Evidence"
+    related_queries:
+      - "Forensics Tool이란 무엇인가?"
+      - "Forensics Tool의 핵심 원리는?"
+      - "Forensics Tool을 어떻게 적용하는가?"

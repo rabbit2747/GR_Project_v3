@@ -78,3 +78,7 @@ metadata:
       - "메모리 취약점"
       - "Buffer Overflow"
       - "Use-After-Free"
+    related_queries:
+      - "Memory Vulnerability이란 무엇인가?"
+      - "Memory Vulnerability의 핵심 원리는?"
+      - "Memory Vulnerability을 어떻게 적용하는가?"

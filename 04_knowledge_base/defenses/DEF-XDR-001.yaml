@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
@@ -110,3 +110,7 @@ metadata:
       - "Extended Detection"
       - "통합 보안"
       - "탐지 대응"
+    related_queries:
+      - "Extended Detection and Response 보안 통제란?"
+      - "Extended Detection and Response을 어떻게 구현하는가?"
+      - "Extended Detection and Response의 효과는?"

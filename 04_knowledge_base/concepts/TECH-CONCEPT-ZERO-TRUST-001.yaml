@@ -111,3 +111,7 @@ metadata:
       - "ZTA"
       - "제로 트러스트"
       - "BeyondCorp"
+    related_queries:
+      - "Zero Trust Architecture이란 무엇인가?"
+      - "Zero Trust Architecture의 핵심 원리는?"
+      - "Zero Trust Architecture을 어떻게 적용하는가?"

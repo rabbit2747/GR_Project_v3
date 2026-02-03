@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: infrastructure
+  type: component
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"

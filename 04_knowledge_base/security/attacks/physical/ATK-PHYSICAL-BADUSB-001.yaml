@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: attack
+  type: technique
   abstraction_level: 2
   gr_coordinates:
     layer: "L1"

@@ -114,3 +114,7 @@ metadata:
       - "OSINT"
       - "Link Analysis"
       - "Graph Visualization"
+    related_queries:
+      - "Maltego 사용법은?"
+      - "Maltego의 주요 기능은?"
+      - "Maltego으로 무엇을 할 수 있는가?"

@@ -87,3 +87,7 @@ metadata:
       - "초기 접근"
       - "Entry"
       - "Foothold"
+    related_queries:
+      - "Initial Access이란 무엇인가?"
+      - "Initial Access의 핵심 원리는?"
+      - "Initial Access을 어떻게 적용하는가?"

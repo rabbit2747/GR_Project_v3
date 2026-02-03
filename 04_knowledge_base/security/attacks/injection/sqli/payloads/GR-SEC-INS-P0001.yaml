@@ -12,7 +12,7 @@ identity:
 
 classification:
   domain: security
-  type: payload
+  type: pattern
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
@@ -123,3 +123,7 @@ metadata:
       - "따옴표 테스트"
       - "SQLi detection"
       - "error probe"
+    related_queries:
+      - "Single Quote Error Payload 패턴이란?"
+      - "Single Quote Error Payload을 어떻게 식별하는가?"
+      - "Single Quote Error Payload의 특징은?"

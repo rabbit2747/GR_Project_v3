@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: compliance
+  type: control
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
@@ -113,3 +113,7 @@ metadata:
       - "Service Organization"
       - "Trust Services"
       - "클라우드 감사"
+    related_queries:
+      - "SOC 2 보안 통제란?"
+      - "SOC 2을 어떻게 구현하는가?"
+      - "SOC 2의 효과는?"

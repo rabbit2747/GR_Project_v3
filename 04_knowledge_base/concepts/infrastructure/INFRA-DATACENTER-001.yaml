@@ -80,3 +80,7 @@ metadata:
       - "데이터센터"
       - "Physical Security"
       - "Facility"
+    related_queries:
+      - "Data Center Infrastructure이란 무엇인가?"
+      - "Data Center Infrastructure의 핵심 원리는?"
+      - "Data Center Infrastructure을 어떻게 적용하는가?"

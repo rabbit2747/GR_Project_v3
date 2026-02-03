@@ -82,3 +82,7 @@ metadata:
       - "보안 인프라"
       - "SIEM"
       - "Firewall"
+    related_queries:
+      - "Security Infrastructure이란 무엇인가?"
+      - "Security Infrastructure의 핵심 원리는?"
+      - "Security Infrastructure을 어떻게 적용하는가?"

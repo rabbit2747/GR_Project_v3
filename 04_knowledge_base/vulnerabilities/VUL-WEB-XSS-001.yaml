@@ -105,3 +105,7 @@ metadata:
       - "Cross-Site Scripting"
       - "JavaScript Injection"
       - "쿠키 탈취"
+    related_queries:
+      - "Cross-Site Scripting 취약점이란?"
+      - "Cross-Site Scripting의 위험성은?"
+      - "Cross-Site Scripting을 어떻게 방어하는가?"

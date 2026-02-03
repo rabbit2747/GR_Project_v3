@@ -15,7 +15,7 @@ identity:
 
 classification:
   domain: security
-  type: defense
+  type: control
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
@@ -116,3 +116,7 @@ metadata:
       - "방화벽"
       - "NGFW"
       - "패킷 필터링"
+    related_queries:
+      - "Firewall 보안 통제란?"
+      - "Firewall을 어떻게 구현하는가?"
+      - "Firewall의 효과는?"
