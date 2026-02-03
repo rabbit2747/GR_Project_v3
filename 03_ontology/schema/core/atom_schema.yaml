@@ -76,12 +76,12 @@ atom:
     type:
       type: enum
       values:
-        # 인프라 요소 (entity_class: true)
+        # 인프라 요소 (is_infrastructure: true)
         - component           # 인프라 구성요소 (Server, Database, Cloud VM)
         - component_tool      # 배포된 도구 (SIEM, EDR, 방어 도구)
         - component_control   # 배포된 보안 통제 (WAF 장비, IDS/IPS)
         
-        # 지식 요소 (entity_class: false)
+        # 지식 요소 (is_infrastructure: false)
         - concept             # 개념, 사상, 전술 (Zero Trust, Defense in Depth)
         - technique           # 공격/방어 기법 (SQL Injection, Phishing)
         - vulnerability       # 취약점 (CVE, CWE)
@@ -93,11 +93,11 @@ atom:
       required: true
       note: |
         [GR Framework 분류 원칙]
-        - type에 따라 entity_class가 자동 결정됨
+        - type에 따라 is_infrastructure가 자동 결정됨
         - 인프라 요소: component, component_tool, component_control
         - 지식 요소: 그 외 모든 type
 
-    entity_class:
+    is_infrastructure:
       type: boolean
       required: true
       description: |
@@ -121,17 +121,17 @@ atom:
       required: true
 
     # ─────────────────────────────────────────────────────────────
-    # 3D 좌표 (entity_class: true인 경우만 사용)
+    # 3D 좌표 (is_infrastructure: true인 경우만 사용)
     # ─────────────────────────────────────────────────────────────
     gr_coordinates:
       description: |
         GR Framework 3D 좌표계 (Layer × Zone × Function)
-        entity_class: true인 원자만 사용
+        is_infrastructure: true인 원자만 사용
         
         - Layer: 인프라 추상화 레벨 (L0=External ~ L7=Application, Cross)
         - Zone: 보안 영역 (Z0A, Z0B, Z1~Z5)
         - Function: 기능적 역할 태그 (A1.1, S2.1, M3.2 등 계층적)
-      required_if: "entity_class == true"
+      required_if: "is_infrastructure == true"
       
       layer:
         type: string
@@ -160,15 +160,15 @@ atom:
           - ["N2.1", "S1.2"]           # Firewall + Encryption
 
     # ─────────────────────────────────────────────────────────────
-    # 적용 범위 (entity_class: false인 경우만 사용)
+    # 적용 범위 (is_infrastructure: false인 경우만 사용)
     # ─────────────────────────────────────────────────────────────
     scope:
       description: |
         지식 원자의 적용 대상/범위
-        entity_class: false인 원자만 사용
+        is_infrastructure: false인 원자만 사용
         
         "이 기법/취약점/개념이 어디에 적용되는가"
-      required_if: "entity_class == false"
+      required_if: "is_infrastructure == false"
       
       target_layers:
         type: array
@@ -408,11 +408,11 @@ changelog:
   - version: "2.0"
     date: "2026-02-03"
     changes:
-      - "entity_class 필드 추가 (인프라 vs 지식 구분)"
+      - "is_infrastructure 필드 추가 (인프라 vs 지식 구분)"
       - "type 값 분리: tool → component_tool, tool_knowledge"
       - "type 값 분리: control → component_control, control_policy"
       - "gr_coordinates.tags → gr_coordinates.function (명칭 변경)"
-      - "scope 필드 추가 (entity_class: false용)"
+      - "scope 필드 추가 (is_infrastructure: false용)"
       - "atom_tags 필드 추가 (모든 원자 공통)"
       - "Zone 패턴 수정: Zone[1-7] → Z(0A|0B|[1-5])"
       - "Layer 패턴 수정: L[1-7] → L[0-7]|Cross"
