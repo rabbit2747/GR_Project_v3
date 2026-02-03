@@ -24,7 +24,7 @@ classification:
   gr_coordinates:
     layer: "L7"           # Business Logic & Applications
     zone: "Z2"         # Service/Application Zone
-    function_tags:
+    atom_tags:
       - "A-runtime"       # 애플리케이션 실행 환경
       - "A-business"      # 비즈니스 로직 처리
       - "R-process"       # 프로세스/스레드 관리
