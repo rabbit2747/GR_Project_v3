@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "MITRE", "DEF-EVASION"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-MITRE-DEF-EVASION-001"
-    related_to:
-      - "ATK-MALWARE-PACKER-001"
-      - "DEF-DETECT-XDR-001"
 
 properties:
   technical:

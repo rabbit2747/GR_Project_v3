@@ -19,7 +19,7 @@ classification:
   abstraction_level: 1
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "MITRE", "EXECUTION"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-MITRE-T1059-001"
-    related_to:
-      - "ATK-MITRE-EXECUTION-001"
-      - "TECH-CONCEPT-SHELL-001"
 
 properties:
   technical:

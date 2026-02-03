@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L6"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["TOOL", "DEFENSE", "MONITORING"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-DEFENSE-001"
-    related_to:
-      - "DEF-DETECT-MONITORING-001"
-      - "DEF-DETECT-LOGGING-001"
   causal:
     supports:
       - "DEF-RESPOND-INCIDENT-001"

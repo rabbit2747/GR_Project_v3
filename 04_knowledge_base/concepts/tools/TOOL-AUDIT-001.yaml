@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "AUDIT"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "TOOL-SCANNER-001"
       - "DEF-DEVSECOPS-SAST-001"
       - "DEF-DEVSECOPS-DAST-001"
-    related_to:
-      - "GR-SEC-VULN-001"
-      - "GR-SEC-COMP-001"
 
 properties:
   technical:

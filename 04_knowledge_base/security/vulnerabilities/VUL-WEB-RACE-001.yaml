@@ -20,7 +20,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["VUL", "WEB", "RACE"]
 
 definition:
@@ -40,8 +40,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-VULN-001"
-    related_to:
-      - "VUL-WEB-BUSINESS-LOGIC-001"
 
 properties:
   technical:

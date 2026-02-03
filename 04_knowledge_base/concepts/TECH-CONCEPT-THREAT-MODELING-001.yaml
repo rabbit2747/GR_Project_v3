@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "SECURITY", "DESIGN"]
 
 definition:
@@ -39,10 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SECURITY-001"
-    related_to:
-      - "TECH-CONCEPT-ATTACK-SURFACE-001"
-      - "TECH-CONCEPT-ZERO-TRUST-001"
-      - "COMP-ISO27001-001"
 
 properties:
   technical:

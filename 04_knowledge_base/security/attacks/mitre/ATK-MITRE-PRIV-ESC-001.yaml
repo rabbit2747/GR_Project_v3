@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "MITRE", "TACTIC"]
 
 definition:
@@ -45,8 +45,6 @@ relations:
     followed_by:
       - "ATK-MITRE-DEF-EVASION-001"
   causal:
-    related_to:
-      - "ATK-CLOUD-PRIVESC-001"
 
 properties:
   technical:

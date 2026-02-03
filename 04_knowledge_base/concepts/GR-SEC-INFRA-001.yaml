@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "ROOT"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "INFRA-CONTAINER-001"
       - "INFRA-IDENTITY-001"
       - "INFRA-SERVER-001"
-    related_to:
-      - "GR-SEC-DEF-001"
-      - "GR-SEC-VULN-001"
 
 properties:
   technical:

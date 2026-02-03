@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "NETWORK"]
 
 definition:
@@ -38,10 +38,6 @@ relations:
       - "TECH-NET-ROUTING-001"
       - "TECH-NET-SWITCHING-001"
       - "TECH-NET-SDN-001"
-    related_to:
-      - "TECH-PROTOCOL-001"
-      - "ATK-NETWORK-001"
-      - "DEF-NET-001"
 
 properties:
   technical:

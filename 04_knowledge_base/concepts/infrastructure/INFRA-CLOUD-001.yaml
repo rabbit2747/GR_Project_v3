@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "CLOUD"]
 
 definition:
@@ -38,10 +38,6 @@ relations:
       - "INFRA-CLOUD-AWS-001"
       - "INFRA-CLOUD-AZURE-001"
       - "INFRA-CLOUD-GCP-001"
-    related_to:
-      - "ATK-CLOUD-001"
-      - "VUL-CLOUD-001"
-      - "DEF-CLOUD-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["CONCEPT", "COMPLIANCE", "GOVERNANCE"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "COMP-GOV-POLICY-001"
       - "COMP-GOV-RISK-001"
-    related_to:
-      - "GR-SEC-PRI-001"
-      - "COMP-FRAMEWORK-001"
 
 properties:
   technical:

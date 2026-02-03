@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "CONFIG"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "VUL-CONFIG-DEFAULT-001"
       - "VUL-CONFIG-EXPOSED-001"
-    related_to:
-      - "DEF-HARDENING-001"
-      - "COMP-CIS-001"
 
 properties:
   technical:

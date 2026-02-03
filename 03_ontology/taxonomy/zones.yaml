@@ -1,80 +1,124 @@
 # GR Framework Zone Definition
-# Version: 1.0
-# Description: 수평적 영역 분류 체계 (신뢰 경계 기반)
+# Version: 2.0
+# Last Updated: 2026-02-03
+# Description: 수평적 영역 분류 체계 (신뢰 경계 기반, 3D 좌표계 2차원)
+#
+# 참조: 02_framework/GR_DB/02_차원2_Security_Zone/
 
-version: "1.0"
+version: "2.0"
 
 zones:
-  Zone0A:
+  Z0A:
     name: "External Untrusted"
     description: "외부 비신뢰 영역 (인터넷)"
     trust_level: 0
+    trust_percentage: "0%"
     examples:
       - "공격자"
       - "익명 사용자"
       - "외부 시스템"
     boundary: "인터넷 경계"
 
-  Zone0B:
+  Z0B:
     name: "External Partners"
     description: "외부 파트너 영역"
     trust_level: 1
+    trust_percentage: "10%"
     examples:
       - "협력업체"
       - "외부 API"
       - "B2B 연동"
     boundary: "파트너 경계"
 
-  Zone1:
-    name: "DMZ"
-    description: "비무장 지대"
+  Z1:
+    name: "Perimeter / DMZ"
+    description: "경계 / 비무장 지대"
     trust_level: 2
+    trust_percentage: "30%"
     examples:
       - "웹 서버"
       - "리버스 프록시"
       - "WAF"
+      - "로드밸런서"
     boundary: "외부/내부 경계"
 
-  Zone2:
+  Z2:
     name: "Application"
     description: "애플리케이션 영역"
     trust_level: 3
+    trust_percentage: "50%"
     examples:
       - "WAS"
       - "API 서버"
       - "마이크로서비스"
+      - "내부 서비스"
     boundary: "DMZ/내부 경계"
 
-  Zone3:
-    name: "Database"
+  Z3:
+    name: "Data"
     description: "데이터 영역"
     trust_level: 4
+    trust_percentage: "80%"
     examples:
       - "데이터베이스 서버"
       - "파일 서버"
       - "스토리지"
+      - "백업 시스템"
     boundary: "애플리케이션/데이터 경계"
 
-  Zone4:
+  Z4:
     name: "Management"
     description: "관리 영역"
     trust_level: 5
+    trust_percentage: "90%"
     examples:
       - "관리 콘솔"
       - "CI/CD"
       - "모니터링"
+      - "로깅 서버"
     boundary: "운영 경계"
 
-  Zone5:
-    name: "Core/Secrets"
+  Z5:
+    name: "Core / Secrets"
     description: "핵심 비밀 영역"
     trust_level: 6
+    trust_percentage: "100%"
     examples:
       - "HSM"
-      - "비밀 관리"
+      - "비밀 관리 (Vault)"
       - "인증서 저장소"
+      - "마스터 키"
     boundary: "최고 보안 경계"
 
+# ═══════════════════════════════════════════════════════════════
+# 신뢰 경계 원칙
+# ═══════════════════════════════════════════════════════════════
 trust_boundaries:
   description: "Zone 간 경계는 보안 통제 지점"
   principle: "낮은 신뢰 → 높은 신뢰 영역 진입 시 인증/인가 필수"
+  flow: "Z0A/Z0B → Z1 → Z2 → Z3 → Z4 → Z5"
+
+# ═══════════════════════════════════════════════════════════════
+# Zone 패턴
+# ═══════════════════════════════════════════════════════════════
+pattern:
+  regex: "Z(0A|0B|[1-5])"
+  examples: ["Z0A", "Z0B", "Z1", "Z2", "Z3", "Z4", "Z5"]
+  note: "원자 파일에서는 Z1, Z2 형식 사용 (Zone1, Zone2 아님)"
+
+# ═══════════════════════════════════════════════════════════════
+# 변경 이력
+# ═══════════════════════════════════════════════════════════════
+changelog:
+  - version: "2.0"
+    date: "2026-02-03"
+    changes:
+      - "Zone ID 형식 변경: Zone0A → Z0A, Zone1 → Z1"
+      - "trust_percentage 필드 추가"
+      - "pattern 섹션 추가"
+      - "참조 문서 경로 추가"
+      
+  - version: "1.0"
+    date: "2025-01-26"
+    changes:
+      - "Initial version"

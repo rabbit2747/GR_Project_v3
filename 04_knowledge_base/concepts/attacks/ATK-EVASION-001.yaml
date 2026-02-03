@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "ATTACK", "EVASION"]
 
 definition:
@@ -43,9 +43,6 @@ relations:
       - "GR-SEC-ATK-001"
     has_children:
       - "ATK-MITRE-T1070-001"
-    related_to:
-      - "ATK-MITRE-DEF-EVASION-001"
-      - "DEF-DETECT-001"
 
 properties:
   technical:

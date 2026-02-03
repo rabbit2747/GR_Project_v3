@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "AD"]
 
 definition:
@@ -44,9 +44,6 @@ relations:
     has_children:
       - "TOOL-AD-BLOODHOUND-001"
       - "TOOL-AD-CERTIPY-001"
-    related_to:
-      - "ATK-KERBEROS-001"
-      - "INFRA-LDAP-001"
 
 properties:
   technical:

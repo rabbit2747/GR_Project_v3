@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["CONCEPT", "OPERATIONS", "DEFENSE"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SECURITY-OPERATIONS-001"
-    related_to:
-      - "DEF-SIEM-001"
-      - "DEF-SOAR-001"
 
 properties:
   technical:

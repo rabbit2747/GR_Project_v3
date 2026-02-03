@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["DEF", "PREVENT", "DLP"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-DEF-001"
-    related_to:
-      - "COMP-FRAMEWORK-GDPR-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "CONTAINER", "PRIV-ESC"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-MITRE-PRIV-ESC-001"
-    related_to:
-      - "INFRA-CONTAINER-DOCKER-001"
-      - "INFRA-CONTAINER-K8S-001"
 
 properties:
   technical:

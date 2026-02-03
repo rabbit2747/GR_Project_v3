@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "MITRE", "IMPACT"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-MITRE-IMPACT-001"
-    related_to:
-      - "ATK-MALWARE-RANSOMWARE-001"
 
 properties:
   technical:

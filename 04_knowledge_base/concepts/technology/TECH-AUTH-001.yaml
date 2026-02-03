@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "AUTH"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "TECH-AUTH-KERBEROS-001"
       - "TECH-AUTH-OAUTH-001"
       - "TECH-AUTH-SAML-001"
-    related_to:
-      - "VUL-AUTH-001"
-      - "DEF-MFA-001"
 
 properties:
   technical:

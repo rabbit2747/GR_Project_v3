@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["CONCEPT", "TESTING", "AUTOMATION"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SECURITY-TESTING-001"
-    related_to:
-      - "TECH-CONCEPT-PURPLE-TEAM-001"
-      - "TECH-CONCEPT-PENTESTING-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "MITRE", "LATERAL"]
 
 definition:

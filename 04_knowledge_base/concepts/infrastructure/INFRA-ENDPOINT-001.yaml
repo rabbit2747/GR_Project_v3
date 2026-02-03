@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "ENDPOINT"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "INFRA-ENDPOINT-WORKSTATION-001"
       - "INFRA-ENDPOINT-MOBILE-001"
-    related_to:
-      - "DEF-EDR-001"
-      - "ATK-MOBILE-001"
 
 properties:
   technical:

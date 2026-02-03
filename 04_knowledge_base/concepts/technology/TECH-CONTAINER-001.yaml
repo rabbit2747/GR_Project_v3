@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "CONTAINER"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "TECH-CONTAINER-DOCKER-001"
       - "TECH-CONTAINER-K8S-001"
-    related_to:
-      - "INFRA-CLOUD-001"
-      - "DEF-CONTAINER-SEC-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 1
   gr_coordinates:
     layer: "L3"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["TOOL", "SCAN", "VULN"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-TOOL-001"
-    related_to:
-      - "TOOL-SCAN-QUALYS-001"
-      - "TOOL-SCAN-OPENVAS-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "ATTACK", "PHISHING"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
       - "ATK-PHISHING-SPEAR-001"
       - "ATK-PHISHING-WHALING-001"
       - "ATK-PHISHING-SMISHING-001"
-    related_to:
-      - "ATK-MITRE-T1566-001"
-      - "DEF-AWARENESS-001"
 
 properties:
   technical:

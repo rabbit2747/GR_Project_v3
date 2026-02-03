@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "ATTACK", "ROOT"]
 
 definition:
@@ -46,10 +46,6 @@ relations:
       - "ATK-LATERAL-001"
       - "ATK-KERBEROS-001"
       - "ATK-NETWORK-001"
-    related_to:
-      - "GR-SEC-VULN-001"
-      - "GR-SEC-DEF-001"
-      - "TECH-CONCEPT-MITRE-ATTACK-001"
 
 properties:
   technical:

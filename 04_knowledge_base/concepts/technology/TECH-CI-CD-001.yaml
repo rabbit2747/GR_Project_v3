@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "DEVOPS"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "TECH-CI-JENKINS-001"
       - "TECH-CI-GITHUB-ACTIONS-001"
-    related_to:
-      - "DEF-DEVSECOPS-001"
-      - "ATK-SUPPLY-001"
 
 properties:
   technical:

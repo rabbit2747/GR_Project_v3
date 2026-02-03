@@ -21,7 +21,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["ATK", "NET", "DNS"]
 
 definition:
@@ -42,8 +42,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-NETWORK-ATTACK-001"
-    related_to:
-      - "ATK-NET-MITM-001"
   causal:
     targets:
       - "INFRA-NET-DNS-001"

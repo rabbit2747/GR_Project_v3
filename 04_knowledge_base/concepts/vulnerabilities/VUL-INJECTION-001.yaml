@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "INJECTION"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
       - "VUL-SQLI-001"
       - "VUL-COMMAND-INJECTION-001"
       - "VUL-LDAP-INJECTION-001"
-    related_to:
-      - "ATK-INJECTION-001"
-      - "DEF-INPUT-VALIDATION-001"
 
 properties:
   technical:

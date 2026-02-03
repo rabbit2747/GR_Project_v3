@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["VUL", "WEB", "OWASP"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "VUL-INJECTION-001"
-    related_to:
-      - "VUL-WEB-CSRF-001"
-      - "ATK-WEB-CLIENT-001"
 
 properties:
   technical:

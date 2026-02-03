@@ -21,7 +21,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["ATK", "CRYPTO", "NET"]
 
 definition:
@@ -42,9 +42,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-NETWORK-ATTACK-001"
-    related_to:
-      - "ATK-NET-MITM-001"
-      - "ATK-CRYPTO-WEAK-001"
   causal:
     exploits:
       - "VUL-CRYPTO-WEAK-001"

@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "WIRELESS"]
 
 definition:
@@ -44,8 +44,6 @@ relations:
     has_children:
       - "TOOL-WIRELESS-AIRCRACK-001"
       - "TOOL-WIRELESS-WIFITE-001"
-    related_to:
-      - "ATK-NET-WIRELESS-001"
 
 properties:
   technical:

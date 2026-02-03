@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "WEB"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "TOOL-PENTEST-BURPSUITE-001"
       - "TOOL-SCANNER-OWASP-ZAP-001"
       - "TOOL-API-001"
-    related_to:
-      - "VUL-WEB-001"
-      - "ATK-WEB-001"
 
 properties:
   technical:

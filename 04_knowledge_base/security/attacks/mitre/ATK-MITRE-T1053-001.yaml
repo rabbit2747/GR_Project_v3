@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "MITRE", "PERSISTENCE"]
 
 definition:
@@ -40,8 +40,6 @@ relations:
     is_a:
       - "ATK-MITRE-PERSISTENCE-001"
       - "ATK-MITRE-EXECUTION-001"
-    related_to:
-      - "DEF-DETECT-XDR-001"
 
 properties:
   technical:

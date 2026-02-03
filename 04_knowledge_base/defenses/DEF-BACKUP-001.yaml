@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "RECOVER", "DATA"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-RECOVER-001"
-    related_to:
-      - "ATK-MITRE-T1486-001"
-      - "TECH-CONCEPT-BCP-001"
 
 properties:
   technical:

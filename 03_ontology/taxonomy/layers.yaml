@@ -1,10 +1,25 @@
 # GR Framework Layer Definition
-# Version: 1.0
-# Description: 수직적 계층 분류 체계
+# Version: 2.0
+# Last Updated: 2026-02-03
+# Description: 수직적 계층 분류 체계 (3D 좌표계 1차원)
+#
+# 참조: 02_framework/GR_DB/01_차원1_Deployment_Layer/
 
-version: "1.0"
+version: "2.0"
 
 layers:
+  L0:
+    name: "External"
+    description: "외부 환경 (인터넷, 외부 사용자)"
+    examples:
+      - "인터넷"
+      - "외부 공격자"
+      - "외부 API"
+    security_concerns:
+      - "외부 위협"
+      - "DDoS"
+      - "인터넷 노출"
+
   L1:
     name: "Physical"
     description: "물리적 인프라 계층"
@@ -29,68 +44,105 @@ layers:
       - "중간자 공격"
 
   L3:
-    name: "Operating System"
-    description: "운영체제 계층"
+    name: "Compute"
+    description: "컴퓨팅/운영체제 계층"
     examples:
       - "Linux"
       - "Windows Server"
       - "컨테이너 런타임"
+      - "가상머신"
     security_concerns:
       - "권한 상승"
       - "커널 취약점"
       - "설정 오류"
 
   L4:
-    name: "Middleware"
-    description: "미들웨어 계층"
+    name: "Platform"
+    description: "플랫폼/미들웨어 계층"
     examples:
       - "웹 서버"
       - "WAS"
       - "메시지 큐"
+      - "Kubernetes"
     security_concerns:
       - "서비스 설정 오류"
       - "알려진 취약점"
+      - "컨테이너 탈출"
 
   L5:
-    name: "Database"
-    description: "데이터베이스 계층"
+    name: "Data"
+    description: "데이터 계층"
     examples:
       - "RDBMS"
       - "NoSQL"
       - "캐시 서버"
+      - "스토리지"
     security_concerns:
       - "SQL Injection"
       - "접근 통제"
       - "데이터 유출"
+      - "암호화"
 
   L6:
+    name: "Runtime"
+    description: "런타임 계층"
+    examples:
+      - "Java Runtime"
+      - "Node.js"
+      - "Python 인터프리터"
+      - ".NET Runtime"
+    security_concerns:
+      - "런타임 취약점"
+      - "디펜던시 취약점"
+      - "메모리 취약점"
+
+  L7:
     name: "Application"
     description: "애플리케이션 계층"
     examples:
       - "웹 애플리케이션"
       - "API"
       - "마이크로서비스"
+      - "AI/ML 모델"
     security_concerns:
       - "OWASP Top 10"
       - "비즈니스 로직 취약점"
-
-  L7:
-    name: "Data"
-    description: "데이터 계층"
-    examples:
-      - "사용자 데이터"
-      - "인증 정보"
-      - "로그"
-    security_concerns:
-      - "데이터 암호화"
-      - "개인정보 보호"
-      - "무결성"
+      - "API 보안"
 
   Cross:
-    name: "Cross-Layer"
-    description: "여러 계층에 걸친 요소"
+    name: "Cross-Layer Management"
+    description: "여러 계층에 걸친 관리 요소"
     examples:
       - "인증/인가 시스템"
       - "로깅 시스템"
       - "모니터링"
+      - "CI/CD"
+      - "시크릿 관리"
     note: "특정 계층에 국한되지 않는 원자에 사용"
+
+# ═══════════════════════════════════════════════════════════════
+# Layer 패턴
+# ═══════════════════════════════════════════════════════════════
+pattern:
+  regex: "L[0-7]|Cross"
+  examples: ["L0", "L1", "L7", "Cross"]
+
+# ═══════════════════════════════════════════════════════════════
+# 변경 이력
+# ═══════════════════════════════════════════════════════════════
+changelog:
+  - version: "2.0"
+    date: "2026-02-03"
+    changes:
+      - "L0 (External) 추가"
+      - "L3: Operating System → Compute로 명칭 변경"
+      - "L4: Middleware → Platform으로 명칭 변경"
+      - "L5: Database → Data로 명칭 변경"
+      - "L6: Application → Runtime으로 명칭 변경"
+      - "L7: Data → Application으로 명칭 변경"
+      - "pattern 섹션 추가"
+      
+  - version: "1.0"
+    date: "2025-01-26"
+    changes:
+      - "Initial version"

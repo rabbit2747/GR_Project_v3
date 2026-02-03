@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "DEFENSE", "PREVENT"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "DEF-NET-FIREWALL-001"
       - "DEF-WAF-001"
       - "DEF-AUTH-MFA-001"
-    related_to:
-      - "DEF-DETECT-001"
-      - "GR-SEC-PRI-DEFENSE-DEPTH-001"
 
 properties:
   technical:

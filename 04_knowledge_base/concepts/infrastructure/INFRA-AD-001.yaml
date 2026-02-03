@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "AD"]
 
 definition:
@@ -37,10 +37,6 @@ relations:
     has_children:
       - "INFRA-AD-DC-001"
       - "INFRA-AD-FOREST-001"
-    related_to:
-      - "ATK-KERBEROS-001"
-      - "TECH-AUTH-001"
-      - "ATK-LATERAL-001"
 
 properties:
   technical:

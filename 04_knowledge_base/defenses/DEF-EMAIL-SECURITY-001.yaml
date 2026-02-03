@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "EMAIL", "PREVENT"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-PREVENT-001"
-    related_to:
-      - "ATK-SOCIAL-PHISHING-001"
-      - "ATK-MITRE-T1566-001"
 
 properties:
   technical:

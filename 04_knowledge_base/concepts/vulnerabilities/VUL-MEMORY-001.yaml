@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "MEMORY"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "VUL-BUFFER-OVERFLOW-001"
       - "VUL-USE-AFTER-FREE-001"
       - "VUL-HEAP-OVERFLOW-001"
-    related_to:
-      - "ATK-EXECUTION-001"
-      - "DEF-ASLR-001"
 
 properties:
   technical:

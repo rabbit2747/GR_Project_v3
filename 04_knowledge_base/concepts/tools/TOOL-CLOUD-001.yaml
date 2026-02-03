@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "CLOUD"]
 
 definition:
@@ -44,9 +44,6 @@ relations:
     has_children:
       - "TOOL-CLOUD-PROWLER-001"
       - "TOOL-CLOUD-SCOUTSUITE-001"
-    related_to:
-      - "ATK-CLOUD-001"
-      - "DEF-CLOUD-001"
 
 properties:
   technical:

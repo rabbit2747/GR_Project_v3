@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "DEFENSE", "DATA"]
 
 definition:
@@ -44,9 +44,6 @@ relations:
     has_children:
       - "DEF-DLP-001"
       - "DEF-CRYPTO-TLS-001"
-    related_to:
-      - "GR-SEC-CRYPTO-001"
-      - "COMP-GDPR-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L4"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "NET", "CRYPTO"]
 
 definition:
@@ -40,9 +40,6 @@ relations:
     is_a:
       - "ATK-NET-MITM-001"
       - "ATK-CRYPTO-DOWNGRADE-001"
-    related_to:
-      - "DEF-PREVENT-HTTPS-001"
-      - "DEF-PREVENT-HSTS-001"
 
 properties:
   technical:

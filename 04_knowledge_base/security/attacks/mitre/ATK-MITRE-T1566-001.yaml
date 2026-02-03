@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "MITRE", "INITIAL-ACCESS"]
 
 definition:
@@ -41,8 +41,6 @@ relations:
       - "ATK-MITRE-INITIAL-ACCESS-001"
     enables:
       - "ATK-MITRE-EXECUTION-001"
-    related_to:
-      - "ATK-SOCIAL-PRETEXTING-001"
 
 properties:
   technical:

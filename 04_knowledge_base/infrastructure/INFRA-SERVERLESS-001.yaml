@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INFRA", "CLOUD", "SERVERLESS"]
 
 definition:
@@ -39,10 +39,6 @@ relations:
   structural:
     is_a:
       - "INFRA-CLOUD-COMPUTE-001"
-    related_to:
-      - "INFRA-CLOUD-AWS-001"
-      - "INFRA-CLOUD-AZURE-001"
-      - "INFRA-CLOUD-GCP-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "AUTH", "ACCESS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-AUTH-001"
-    related_to:
-      - "DEF-AUTH-SSO-001"
-      - "ATK-AUTH-PHISHING-001"
 
 properties:
   technical:

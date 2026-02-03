@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L4"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "WEB", "DNS"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-VULN-001"
-    related_to:
-      - "ATK-NET-DNS-001"
 
 properties:
   technical:

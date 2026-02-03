@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "SERVER"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "INFRA-SERVER-PHYSICAL-001"
       - "INFRA-SERVER-VIRTUAL-001"
-    related_to:
-      - "TECH-OS-001"
-      - "DEF-HARDENING-001"
 
 properties:
   technical:

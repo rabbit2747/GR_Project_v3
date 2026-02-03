@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "CLOUD", "WORKLOAD"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-CLOUD-001"
-    related_to:
-      - "DEF-CONTAINER-RUNTIME-001"
-      - "DEF-CLOUD-POSTURE-001"
 
 properties:
   technical:

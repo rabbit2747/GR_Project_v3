@@ -21,7 +21,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L2"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["EXPLOIT", "NET"]
 
 definition:

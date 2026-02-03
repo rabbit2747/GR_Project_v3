@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["COMP", "FRAMEWORK", "ISMS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-COMPLIANCE-001"
-    related_to:
-      - "COMP-FRAMEWORK-SOC2-001"
-      - "COMP-FRAMEWORK-NIST-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["COMP", "FRAMEWORK", "AUDIT"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-COMPLIANCE-001"
-    related_to:
-      - "COMP-FRAMEWORK-ISO27001-001"
-      - "COMP-FRAMEWORK-PCIDSS-001"
 
 properties:
   technical:

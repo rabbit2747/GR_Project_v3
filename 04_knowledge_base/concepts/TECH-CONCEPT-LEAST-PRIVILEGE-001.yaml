@@ -19,7 +19,7 @@ classification:
   abstraction_level: 4
   gr_coordinates:
     layer: "L7"
-    zone: "Zone0"
+    zone: "Z0"
     tags: ["CONCEPT", "PRINCIPLE", "ACCESS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SECURITY-PRINCIPLE-001"
-    related_to:
-      - "DEF-IAM-001"
-      - "TECH-CONCEPT-ZERO-TRUST-001"
 
 properties:
   technical:

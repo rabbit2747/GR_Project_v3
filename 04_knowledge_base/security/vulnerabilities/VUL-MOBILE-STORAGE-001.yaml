@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["VUL", "MOBILE", "STORAGE"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-VULNERABILITY-001"
-    related_to:
-      - "VUL-DATA-EXPOSURE-001"
 
 properties:
   technical:

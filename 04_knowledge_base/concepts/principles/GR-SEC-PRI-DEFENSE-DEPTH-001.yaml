@@ -21,7 +21,7 @@ classification:
   abstraction_level: 4
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["PRINCIPLE", "DEFENSE", "ARCHITECTURE"]
 
 definition:
@@ -42,10 +42,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-PRI-00001"
-    related_to:
-      - "GR-SEC-PRI-FAIL-SECURE-001"
-      - "TECH-CONCEPT-ZERO-TRUST-001"
-      - "GR-SEC-DEF-001"
 
 properties:
   technical:

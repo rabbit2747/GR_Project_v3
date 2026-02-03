@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "BACKUP"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "TECH-BACKUP-FULL-001"
       - "TECH-BACKUP-INCREMENTAL-001"
-    related_to:
-      - "DEF-RECOVERY-001"
-      - "COMP-BCDR-001"
 
 properties:
   technical:

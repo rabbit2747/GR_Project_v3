@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L4"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "CRYPTO", "SSL"]
 
 definition:
@@ -40,8 +40,6 @@ relations:
     is_a:
       - "ATK-CRYPTO-PADDING-ORACLE-001"
       - "ATK-CRYPTO-DOWNGRADE-001"
-    related_to:
-      - "TECH-PROTOCOL-TLS-001"
 
 properties:
   technical:

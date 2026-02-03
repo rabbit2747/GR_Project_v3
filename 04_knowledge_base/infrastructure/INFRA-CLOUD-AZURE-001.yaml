@@ -19,7 +19,7 @@ classification:
   abstraction_level: 1
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INFRA", "CLOUD", "AZURE"]
 
 definition:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["VUL", "WEB", "SSRF"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-VULN-001"
-    related_to:
-      - "ATK-WEB-SSRF-001"
-      - "INFRA-CLOUD-AWS-001"
 
 properties:
   technical:

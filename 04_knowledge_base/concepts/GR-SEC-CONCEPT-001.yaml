@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "THEORY", "ROOT"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "TECH-CONCEPT-OSINT-001"
       - "TECH-CONCEPT-PENTESTING-001"
       - "TECH-CONCEPT-THREAT-MODELING-001"
-    related_to:
-      - "GR-SEC-DEF-001"
-      - "GR-SEC-ATK-001"
 
 properties:
   technical:

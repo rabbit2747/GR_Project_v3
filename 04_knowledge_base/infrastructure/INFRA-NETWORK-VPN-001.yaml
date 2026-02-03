@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INFRA", "NET", "VPN"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-CONCEPT-001"
-    related_to:
-      - "DEF-ARCH-ZERO-TRUST-001"
-      - "TECH-PROTO-IPSEC-001"
 
 properties:
   technical:

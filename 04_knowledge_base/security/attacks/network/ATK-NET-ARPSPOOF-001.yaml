@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["ATK", "NET", "SPOOF"]
 
 definition:

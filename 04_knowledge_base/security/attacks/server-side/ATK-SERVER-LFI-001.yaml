@@ -20,7 +20,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["ATK", "FILE", "PATH"]
 
 definition:
@@ -41,9 +41,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SERVER-ATTACK-001"
-    related_to:
-      - "ATK-SERVER-PATH-001"
-      - "ATK-SERVER-RFI-001"
   causal:
     exploits:
       - "VUL-PATH-TRAVERSAL-001"

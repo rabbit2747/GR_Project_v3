@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "ATTACK", "MOBILE"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "ATK-MOBILE-MALWARE-001"
       - "ATK-MOBILE-REVERSING-001"
-    related_to:
-      - "DEF-MOBILE-001"
-      - "VUL-MOBILE-001"
 
 properties:
   technical:

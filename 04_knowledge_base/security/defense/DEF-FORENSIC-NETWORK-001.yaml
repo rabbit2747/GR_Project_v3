@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["DEF", "FORENSIC", "NET"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-FORENSIC-ANALYSIS-001"
-    related_to:
-      - "TOOL-SCAN-WIRESHARK-001"
-      - "DEF-NET-IDS-001"
 
 properties:
   technical:

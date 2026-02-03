@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "NET", "ICMP"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-NETWORK-ATTACK-001"
-    related_to:
-      - "ATK-NET-DDOS-001"
-      - "DEF-NET-FIREWALL-001"
 
 properties:
   technical:

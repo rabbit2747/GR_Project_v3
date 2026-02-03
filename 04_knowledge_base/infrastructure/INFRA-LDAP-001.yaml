@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INFRA", "AUTH", "DIRECTORY"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "INFRA-PROTOCOL-001"
-    related_to:
-      - "TECH-CONCEPT-AD-SECURITY-001"
-      - "ATK-LDAP-INJECTION-001"
 
 properties:
   technical:

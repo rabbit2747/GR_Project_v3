@@ -1,13 +1,13 @@
 # GR Relation Types Definition
-# Version: 1.2
-# Last Updated: 2025-01-26
+# Version: 2.0
+# Last Updated: 2026-02-03
 #
 # 헌법: ../constitution/GR_KNOWLEDGE_ATOMIZATION_CONSTITUTION.md
 # 원자 스키마: ./atom_schema.yaml
 #
 # Canonical 관계만 원자 파일에 저장되며, Inverse는 쿼리 시 파생됩니다.
 
-version: "1.2"
+version: "2.0"
 
 # ═══════════════════════════════════════════════════════════════
 # Inverse 정의
@@ -26,6 +26,25 @@ inverse_definition:
   storage_rule: |
     inverse는 원자 파일에 저장되지 않는다.
     쿼리 엔진/인덱스가 canonical → inverse 매핑을 처리한다.
+
+# ═══════════════════════════════════════════════════════════════
+# 금지된 관계 (Prohibited Relations)
+# ═══════════════════════════════════════════════════════════════
+prohibited_relations:
+  related_to:
+    status: "PROHIBITED"
+    reason: |
+      related_to는 의미가 모호하고 무한히 확장될 수 있음.
+      - 하나의 원자에 수십~수백 개의 related_to가 달릴 수 있음
+      - "다 연결되면 아무것도 연결 안 된 것과 같음"
+      - 그래프 탐색/추론 시 노이즈만 증가
+      
+    alternative: |
+      정밀한 관계 타입을 사용하거나, atom_tags로 대체:
+      - 구조적 연관 → is_a, part_of
+      - 인과 연관 → enables, causes
+      - 적용 연관 → applies_to
+      - 단순 태깅 → atom_tags 사용
 
 # ═══════════════════════════════════════════════════════════════
 # 관계 타입 분류
@@ -134,6 +153,18 @@ relation_types:
         inverse: vulnerable_to
         canonical: true
 
+  implementation:
+    description: "구현 관계 (컴포넌트 ↔ 프로토콜/표준)"
+    relations:
+      implements:
+        meaning: "프로토콜/표준을 구현한다"
+        example: "Apache implements HTTP"
+        inverse: implemented_by
+        canonical: true
+        note: |
+          component → protocol 관계에 사용
+          Atlas에서 노드(컴포넌트)와 엣지(프로토콜) 연결에 활용
+
   epistemic:
     description: "인식론적 관계 (지식 충돌)"
     relations:
@@ -170,6 +201,7 @@ storage_rules:
     examples:
       - "is_a 저장 → has_subtype는 쿼리 시 역추적"
       - "causes 저장 → caused_by는 쿼리 시 역추적"
+      - "implements 저장 → implemented_by는 쿼리 시 역추적"
 
   symmetric_relations:
     rule: "대칭 관계는 한 번만 저장 (min(id_a, id_b) 기준)"
@@ -183,6 +215,7 @@ storage_rules:
     - "원자 파일에 inverse 관계명 사용 금지"
     - "has_subtype, has_instance, prevented_by, follows 등 저장 금지"
     - "동일 관계의 양방향 중복 저장 금지"
+    - "related_to 사용 절대 금지 (prohibited_relations 참조)"
 
 # ═══════════════════════════════════════════════════════════════
 # 관계 무결성 규칙
@@ -201,6 +234,9 @@ integrity_rules:
     supersedes:
       type: "1:1"
       constraint: "하나의 원자는 하나의 후속 버전만 가짐"
+    implements:
+      type: "N:M"
+      constraint: "컴포넌트는 여러 프로토콜 구현 가능, 프로토콜은 여러 컴포넌트에 구현됨"
 
   cycle_prevention:
     prohibited:
@@ -236,3 +272,19 @@ integrity_rules:
       recommended:
         - "abstracts: 이 원리가 추상화하는 개념들"
         - "is_a: 더 상위 원리가 있다면 연결"
+
+# ═══════════════════════════════════════════════════════════════
+# 변경 이력
+# ═══════════════════════════════════════════════════════════════
+changelog:
+  - version: "2.0"
+    date: "2026-02-03"
+    changes:
+      - "prohibited_relations 섹션 추가 (related_to 금지)"
+      - "implementation 카테고리 및 implements 관계 추가"
+      - "implements cardinality 규칙 추가"
+      
+  - version: "1.2"
+    date: "2025-01-26"
+    changes:
+      - "Initial structured version"

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "CRYPTO"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "VUL-CRYPTO-WEAK-CIPHER-001"
       - "VUL-CRYPTO-KEY-MGMT-001"
-    related_to:
-      - "GR-SEC-CRYPTO-001"
-      - "ATK-CRYPTO-001"
 
 properties:
   technical:

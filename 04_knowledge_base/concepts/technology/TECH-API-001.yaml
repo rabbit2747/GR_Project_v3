@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "API"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "TECH-API-REST-001"
       - "TECH-API-GRAPHQL-001"
       - "TECH-API-GRPC-001"
-    related_to:
-      - "VUL-API-001"
-      - "DEF-API-GATEWAY-001"
 
 properties:
   technical:

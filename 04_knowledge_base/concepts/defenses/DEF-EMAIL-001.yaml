@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "DEFENSE", "EMAIL"]
 
 definition:
@@ -43,9 +43,6 @@ relations:
       - "GR-SEC-DEF-001"
     has_children:
       - "DEF-EMAIL-SECURITY-001"
-    related_to:
-      - "ATK-MITRE-T1566-001"
-      - "ATK-SOCIAL-001"
 
 properties:
   technical:

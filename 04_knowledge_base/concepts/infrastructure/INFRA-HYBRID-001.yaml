@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "HYBRID"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "INFRA-HYBRID-CONNECTIVITY-001"
       - "INFRA-HYBRID-MULTICLOUD-001"
-    related_to:
-      - "INFRA-CLOUD-001"
-      - "INFRA-DATACENTER-001"
 
 properties:
   technical:

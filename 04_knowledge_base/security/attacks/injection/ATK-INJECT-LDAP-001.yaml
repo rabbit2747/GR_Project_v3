@@ -20,7 +20,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["ATK", "INJECT", "AUTH"]
 
 definition:
@@ -41,8 +41,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-CON-00001"  # Injection Vulnerability concept
-    related_to:
-      - "ATK-INJECT-SQL-001"
   causal:
     exploits:
       - "VUL-INJECT-SQL-001"  # Similar pattern

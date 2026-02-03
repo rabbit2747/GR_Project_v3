@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "API"]
 
 definition:
@@ -43,9 +43,6 @@ relations:
       - "TOOL-WEB-001"
     has_children:
       - "TOOL-API-POSTMAN-001"
-    related_to:
-      - "VUL-API-001"
-      - "TECH-CONCEPT-REST-001"
 
 properties:
   technical:

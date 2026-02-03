@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["DEF", "K8S", "NET"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-PREVENT-SEGMENTATION-001"
-    related_to:
-      - "INFRA-CONTAINER-K8S-001"
-      - "ATK-MITRE-LATERAL-001"
 
 properties:
   technical:

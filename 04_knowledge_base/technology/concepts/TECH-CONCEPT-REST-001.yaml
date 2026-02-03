@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["TECH", "API", "REST"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-APPLICATION-001"
-    related_to:
-      - "TECH-PROTOCOL-HTTP-001"
-      - "TECH-FORMAT-JSON-001"
   causal:
     vulnerable_to:
       - "VUL-API-BOLA-001"

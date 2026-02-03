@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["DEF", "DEVSECOPS", "ANALYSIS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TOOL-AUDIT-001"
-    related_to:
-      - "VUL-INJECT-SQL-001"
-      - "VUL-INJECT-XSS-001"
 
 properties:
   technical:

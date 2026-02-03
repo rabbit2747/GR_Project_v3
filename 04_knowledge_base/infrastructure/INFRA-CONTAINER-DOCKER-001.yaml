@@ -18,7 +18,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INFRA", "CONTAINER", "DOCKER"]
 
 definition:
@@ -38,8 +38,6 @@ relations:
   structural:
     is_a:
       - "INFRA-RUNTIME-CONTAINER-001"
-    related_to:
-      - "INFRA-CONTAINER-K8S-001"
 
 properties:
   technical:

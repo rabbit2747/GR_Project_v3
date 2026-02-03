@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["TECH", "CONCEPT", "DESIGN"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-CONCEPT-001"
-    related_to:
-      - "TECH-CONCEPT-DEVSECOPS-001"
 
 properties:
   technical:

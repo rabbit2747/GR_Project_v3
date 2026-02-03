@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "CLOUD", "SERVERLESS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-CLOUD-PRIVESC-001"
-    related_to:
-      - "INFRA-SERVERLESS-001"
-      - "ATK-INJECT-CMD-001"
 
 properties:
   technical:

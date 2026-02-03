@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "CLOUD", "STORAGE"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-VULN-001"
-    related_to:
-      - "INFRA-CLOUD-AWS-001"
-      - "ATK-MITRE-EXFIL-001"
 
 properties:
   technical:

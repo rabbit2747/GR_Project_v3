@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "API"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "VUL-API-BOLA-001"
       - "VUL-API-RATE-LIMIT-001"
-    related_to:
-      - "TECH-API-001"
-      - "DEF-API-GATEWAY-001"
 
 properties:
   technical:

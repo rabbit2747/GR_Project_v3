@@ -1,0 +1,389 @@
+# GR Atom Tags Definition
+# Version: 2.0
+# Last Updated: 2026-02-03
+# Description: 원자 특성 분류 태그 (모든 원자에 적용)
+#
+# ※ 주의: 이 파일은 "atom_tags"를 정의합니다.
+#   - atom_tags: 원자의 특성 분류 (검색/필터링용)
+#   - Function: 3D 좌표계 3차원 (02_framework/.../Function_Tag/)
+#   - 둘은 다른 개념입니다!
+
+version: "2.0"
+
+# ═══════════════════════════════════════════════════════════════
+# 태그 거버넌스
+# ═══════════════════════════════════════════════════════════════
+governance:
+  rules:
+    - "모든 태그는 이 파일에 사전 등록 필수"
+    - "자유 태그 금지 (통제된 어휘만 사용)"
+    - "새 태그 필요 시 이 파일 먼저 업데이트"
+    - "태그당 명확한 정의 + 사용 기준 필수"
+  
+  naming_convention:
+    pattern: "대문자 약어 (3-10자)"
+    examples: ["INJ", "WEB", "MYSQL", "LINUX"]
+
+# ═══════════════════════════════════════════════════════════════
+# 태그 카테고리
+# ═══════════════════════════════════════════════════════════════
+tag_categories:
+
+  # ─────────────────────────────────────────────────────────────
+  # 공격 단계 (Kill Chain / MITRE 기반)
+  # ─────────────────────────────────────────────────────────────
+  attack_phase:
+    description: "공격 단계 (Kill Chain 기반)"
+    tags:
+      RECON:
+        name: "Reconnaissance"
+        description: "정찰"
+        mitre_tactic: "TA0043"
+      RESOURCE:
+        name: "Resource Development"
+        description: "리소스 개발"
+        mitre_tactic: "TA0042"
+      INITIAL:
+        name: "Initial Access"
+        description: "초기 접근"
+        mitre_tactic: "TA0001"
+      EXEC:
+        name: "Execution"
+        description: "실행"
+        mitre_tactic: "TA0002"
+      PERSIST:
+        name: "Persistence"
+        description: "지속성"
+        mitre_tactic: "TA0003"
+      PRIVESC:
+        name: "Privilege Escalation"
+        description: "권한 상승"
+        mitre_tactic: "TA0004"
+      EVASION:
+        name: "Defense Evasion"
+        description: "방어 우회"
+        mitre_tactic: "TA0005"
+      CRED:
+        name: "Credential Access"
+        description: "자격 증명 접근"
+        mitre_tactic: "TA0006"
+      DISCOV:
+        name: "Discovery"
+        description: "탐색"
+        mitre_tactic: "TA0007"
+      LATERAL:
+        name: "Lateral Movement"
+        description: "횡적 이동"
+        mitre_tactic: "TA0008"
+      COLLECT:
+        name: "Collection"
+        description: "수집"
+        mitre_tactic: "TA0009"
+      C2:
+        name: "Command & Control"
+        description: "명령 및 제어"
+        mitre_tactic: "TA0011"
+      EXFIL:
+        name: "Exfiltration"
+        description: "유출"
+        mitre_tactic: "TA0010"
+      IMPACT:
+        name: "Impact"
+        description: "영향"
+        mitre_tactic: "TA0040"
+
+  # ─────────────────────────────────────────────────────────────
+  # 취약점 유형 (CWE 기반)
+  # ─────────────────────────────────────────────────────────────
+  vulnerability_type:
+    description: "취약점 유형"
+    tags:
+      INJ:
+        name: "Injection"
+        description: "인젝션 계열"
+        cwe: "CWE-74"
+      XSS:
+        name: "Cross-Site Scripting"
+        description: "XSS 계열"
+        cwe: "CWE-79"
+      AUTHN:
+        name: "Authentication Issues"
+        description: "인증 취약점"
+        cwe: "CWE-287"
+      AUTHZ:
+        name: "Authorization Issues"
+        description: "인가 취약점"
+        cwe: "CWE-285"
+      CRYPTO:
+        name: "Cryptographic Issues"
+        description: "암호화 취약점"
+        cwe: "CWE-310"
+      CONFIG:
+        name: "Misconfiguration"
+        description: "설정 오류"
+        cwe: "CWE-16"
+      OVERFLOW:
+        name: "Buffer Overflow"
+        description: "버퍼 오버플로우"
+        cwe: "CWE-119"
+      RACE:
+        name: "Race Condition"
+        description: "경쟁 상태"
+        cwe: "CWE-362"
+      DESERIAL:
+        name: "Deserialization"
+        description: "역직렬화 취약점"
+        cwe: "CWE-502"
+      SSRF:
+        name: "SSRF"
+        description: "서버 사이드 요청 위조"
+        cwe: "CWE-918"
+      PATH:
+        name: "Path Traversal"
+        description: "경로 탐색"
+        cwe: "CWE-22"
+      UPLOAD:
+        name: "File Upload"
+        description: "파일 업로드 취약점"
+        cwe: "CWE-434"
+
+  # ─────────────────────────────────────────────────────────────
+  # 기술 스택
+  # ─────────────────────────────────────────────────────────────
+  technology_stack:
+    description: "기술 스택"
+    tags:
+      WEB:
+        name: "Web"
+        description: "웹 기술"
+      API:
+        name: "API"
+        description: "API 관련"
+      MOBILE:
+        name: "Mobile"
+        description: "모바일"
+      CLOUD:
+        name: "Cloud"
+        description: "클라우드"
+      CONTAINER:
+        name: "Container"
+        description: "컨테이너/쿠버네티스"
+      IOT:
+        name: "IoT"
+        description: "사물인터넷"
+      NETWORK:
+        name: "Network"
+        description: "네트워크"
+      EMBEDDED:
+        name: "Embedded"
+        description: "임베디드 시스템"
+
+  # ─────────────────────────────────────────────────────────────
+  # 플랫폼/OS
+  # ─────────────────────────────────────────────────────────────
+  platform:
+    description: "운영체제/플랫폼"
+    tags:
+      WINDOWS:
+        name: "Windows"
+        description: "Windows OS"
+      LINUX:
+        name: "Linux"
+        description: "Linux OS"
+      MACOS:
+        name: "macOS"
+        description: "macOS"
+      UNIX:
+        name: "Unix"
+        description: "Unix 계열"
+      AD:
+        name: "Active Directory"
+        description: "Windows Active Directory"
+      AWS:
+        name: "AWS"
+        description: "Amazon Web Services"
+      AZURE:
+        name: "Azure"
+        description: "Microsoft Azure"
+      GCP:
+        name: "GCP"
+        description: "Google Cloud Platform"
+      K8S:
+        name: "Kubernetes"
+        description: "Kubernetes 환경"
+
+  # ─────────────────────────────────────────────────────────────
+  # DBMS
+  # ─────────────────────────────────────────────────────────────
+  dbms:
+    description: "데이터베이스 관리 시스템"
+    tags:
+      MYSQL:
+        name: "MySQL"
+        description: "MySQL/MariaDB"
+      MSSQL:
+        name: "MSSQL"
+        description: "Microsoft SQL Server"
+      ORACLE:
+        name: "Oracle"
+        description: "Oracle Database"
+      PGSQL:
+        name: "PostgreSQL"
+        description: "PostgreSQL"
+      SQLITE:
+        name: "SQLite"
+        description: "SQLite"
+      MONGODB:
+        name: "MongoDB"
+        description: "MongoDB (NoSQL)"
+      REDIS:
+        name: "Redis"
+        description: "Redis"
+      NOSQL:
+        name: "NoSQL"
+        description: "NoSQL 일반"
+
+  # ─────────────────────────────────────────────────────────────
+  # 프로토콜
+  # ─────────────────────────────────────────────────────────────
+  protocol:
+    description: "프로토콜/통신"
+    tags:
+      HTTP:
+        name: "HTTP"
+        description: "HTTP/HTTPS"
+      DNS:
+        name: "DNS"
+        description: "DNS"
+      SMTP:
+        name: "SMTP"
+        description: "이메일 (SMTP/POP3/IMAP)"
+      FTP:
+        name: "FTP"
+        description: "FTP/SFTP"
+      SSH:
+        name: "SSH"
+        description: "SSH"
+      RDP:
+        name: "RDP"
+        description: "Remote Desktop Protocol"
+      SMB:
+        name: "SMB"
+        description: "SMB/CIFS"
+      LDAP:
+        name: "LDAP"
+        description: "LDAP"
+      KERBEROS:
+        name: "Kerberos"
+        description: "Kerberos 인증"
+      TLS:
+        name: "TLS"
+        description: "TLS/SSL"
+      TCP:
+        name: "TCP"
+        description: "TCP"
+      UDP:
+        name: "UDP"
+        description: "UDP"
+      ICMP:
+        name: "ICMP"
+        description: "ICMP"
+
+  # ─────────────────────────────────────────────────────────────
+  # 방어 도메인
+  # ─────────────────────────────────────────────────────────────
+  defense:
+    description: "방어 도메인"
+    tags:
+      WAF:
+        name: "WAF"
+        description: "Web Application Firewall"
+      IDS:
+        name: "IDS/IPS"
+        description: "침입 탐지/방지"
+      EDR:
+        name: "EDR"
+        description: "Endpoint Detection & Response"
+      SIEM:
+        name: "SIEM"
+        description: "Security Information & Event Management"
+      DLP:
+        name: "DLP"
+        description: "Data Loss Prevention"
+      AV:
+        name: "Antivirus"
+        description: "안티바이러스"
+      FW:
+        name: "Firewall"
+        description: "방화벽"
+      IAM:
+        name: "IAM"
+        description: "Identity & Access Management"
+      PENTEST:
+        name: "Pentest"
+        description: "침투 테스트 관련"
+
+  # ─────────────────────────────────────────────────────────────
+  # 일반 분류
+  # ─────────────────────────────────────────────────────────────
+  general:
+    description: "일반 분류"
+    tags:
+      PROXY:
+        name: "Proxy"
+        description: "프록시 관련"
+      CACHE:
+        name: "Cache"
+        description: "캐시 관련"
+      LOG:
+        name: "Logging"
+        description: "로깅 관련"
+      BACKUP:
+        name: "Backup"
+        description: "백업 관련"
+      HA:
+        name: "High Availability"
+        description: "고가용성"
+      LB:
+        name: "Load Balancer"
+        description: "로드밸런서"
+
+# ═══════════════════════════════════════════════════════════════
+# 사용 예시
+# ═══════════════════════════════════════════════════════════════
+usage:
+  description: "atom_tags는 복수 선택 가능, 카테고리 무관하게 조합"
+  examples:
+    - atom: "SQL Injection"
+      atom_tags: ["INJ", "INITIAL", "WEB", "API"]
+      
+    - atom: "Nginx Web Server"
+      atom_tags: ["WEB", "LINUX", "PROXY", "LB", "HTTP"]
+      
+    - atom: "Kerberoasting"
+      atom_tags: ["CRED", "AD", "WINDOWS", "KERBEROS"]
+      
+    - atom: "Log4Shell (CVE-2021-44228)"
+      atom_tags: ["DESERIAL", "INITIAL", "WEB", "CLOUD"]
+
+# ═══════════════════════════════════════════════════════════════
+# 변경 이력
+# ═══════════════════════════════════════════════════════════════
+changelog:
+  - version: "2.0"
+    date: "2026-02-03"
+    changes:
+      - "파일명 변경: function_tags.yaml → atom_tags.yaml"
+      - "개념 명확화: Function(3D좌표)과 atom_tags(특성분류) 구분"
+      - "MITRE Tactics 전체 추가 (14개)"
+      - "platform 카테고리 추가 (OS, 클라우드)"
+      - "dbms 카테고리 추가"
+      - "protocol 카테고리 추가"
+      - "defense 카테고리 추가"
+      - "general 카테고리 추가"
+      - "governance 섹션 추가"
+      
+  - version: "1.0"
+    date: "2025-01-26"
+    changes:
+      - "Initial version (as function_tags.yaml)"

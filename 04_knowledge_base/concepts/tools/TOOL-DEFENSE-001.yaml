@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "DEFENSE"]
 
 definition:
@@ -45,9 +45,6 @@ relations:
       - "DEF-SIEM-001"
       - "DEF-ENDPOINT-EDR-001"
       - "DEF-XDR-001"
-    related_to:
-      - "GR-SEC-DEF-001"
-      - "DEF-DETECT-001"
 
 properties:
   technical:

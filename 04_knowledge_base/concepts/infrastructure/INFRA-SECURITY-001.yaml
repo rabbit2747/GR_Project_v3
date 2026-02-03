@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "SECURITY"]
 
 definition:
@@ -38,10 +38,6 @@ relations:
       - "INFRA-SEC-FIREWALL-001"
       - "INFRA-SEC-IDS-001"
       - "INFRA-SEC-SIEM-001"
-    related_to:
-      - "DEF-DETECT-001"
-      - "DEF-PREVENT-001"
-      - "TOOL-DEFENSE-001"
 
 properties:
   technical:

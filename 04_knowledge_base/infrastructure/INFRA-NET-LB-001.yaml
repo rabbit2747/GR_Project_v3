@@ -21,7 +21,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["N"]
 
 definition:

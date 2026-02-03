@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "WIN", "KERBEROS"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-WIN-GOLDEN-TICKET-001"
-    related_to:
-      - "ATK-WIN-KERBEROASTING-001"
-      - "TECH-PROTO-KERBEROS-001"
 
 properties:
   technical:

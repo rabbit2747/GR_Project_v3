@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["ATK", "SUPPLY-CHAIN", "TYPO"]
 
 definition:
@@ -39,8 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-SERVER-ATTACK-001"
-    related_to:
-      - "ATK-SUPPLY-DEPENDENCY-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["CONCEPT", "COMPLIANCE", "FRAMEWORK"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "COMP-FRAMEWORK-NIST-001"
       - "COMP-FRAMEWORK-ISO27001-001"
       - "COMP-FRAMEWORK-CIS-001"
-    related_to:
-      - "DEF-GOVERNANCE-001"
-      - "GR-SEC-PRI-001"
 
 properties:
   technical:

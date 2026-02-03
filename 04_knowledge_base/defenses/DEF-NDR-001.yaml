@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "DETECT", "NETWORK"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-DETECT-001"
-    related_to:
-      - "DEF-NET-IDS-001"
-      - "DEF-XDR-001"
 
 properties:
   technical:

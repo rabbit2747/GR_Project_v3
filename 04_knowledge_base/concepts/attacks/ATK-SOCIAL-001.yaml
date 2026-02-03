@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "ATTACK", "SOCIAL"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
     has_children:
       - "ATK-PHISHING-001"
       - "ATK-SOCIAL-PRETEXTING-001"
-    related_to:
-      - "ATK-MITRE-T1566-001"
-      - "DEF-AWARENESS-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["TECH", "PROTO", "IDENTITY"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-AUTH-001"
-    related_to:
-      - "TECH-PROTO-OIDC-001"
-      - "INFRA-CLOUD-AZURE-AD-001"
 
 properties:
   technical:

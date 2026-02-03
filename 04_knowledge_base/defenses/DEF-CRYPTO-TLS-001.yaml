@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["DEF", "CRYPTO", "NETWORK"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "DEF-CRYPTO-001"
-    related_to:
-      - "DEF-PREVENT-CERT-PINNING-001"
-      - "ATK-NET-SSL-STRIP-001"
 
 properties:
   technical:

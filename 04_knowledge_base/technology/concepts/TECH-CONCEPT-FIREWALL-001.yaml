@@ -20,7 +20,7 @@ classification:
   abstraction_level: 4
   gr_coordinates:
     layer: "L2"
-    zone: "Zone1"
+    zone: "Z1"
     tags: ["SEC", "N", "D"]
 
 definition:

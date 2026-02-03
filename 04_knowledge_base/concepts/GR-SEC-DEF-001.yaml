@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "DEFENSE", "ROOT"]
 
 definition:
@@ -46,9 +46,6 @@ relations:
       - "DEF-RESPOND-001"
       - "DEF-CLOUD-001"
       - "DEF-NET-001"
-    related_to:
-      - "GR-SEC-VULN-001"
-      - "GR-SEC-ATK-001"
 
 properties:
   technical:

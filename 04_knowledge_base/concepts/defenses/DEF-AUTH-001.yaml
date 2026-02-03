@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "DEFENSE", "AUTH"]
 
 definition:
@@ -44,9 +44,6 @@ relations:
     has_children:
       - "DEF-AUTH-MFA-001"
       - "DEF-AUTH-SSO-001"
-    related_to:
-      - "DEF-IAM-001"
-      - "TECH-PROTOCOL-OAUTH-001"
 
 properties:
   technical:

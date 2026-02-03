@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["CONCEPT", "COMPLIANCE", "AUDIT"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "COMP-AUDIT-INTERNAL-001"
       - "COMP-AUDIT-EXTERNAL-001"
-    related_to:
-      - "DEF-AUDIT-001"
-      - "COMP-FRAMEWORK-001"
 
 properties:
   technical:

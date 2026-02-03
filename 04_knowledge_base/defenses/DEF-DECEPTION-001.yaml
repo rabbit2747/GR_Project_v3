@@ -20,7 +20,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["DEF", "DETECTION", "DECEPTION"]
 
 definition:
@@ -41,10 +41,6 @@ relations:
   structural:
     is_a:
       - "DEF-DETECTION-001"
-    related_to:
-      - "DEF-SIEM-001"
-      - "TECH-CONCEPT-INCIDENT-RESPONSE-001"
-      - "DEF-THREAT-INTEL-001"
 
 properties:
   technical:

@@ -1,12 +1,13 @@
 # GR Universal Atom Schema
-# Version: 1.2
-# Last Updated: 2025-01-26
+# Version: 2.0
+# Last Updated: 2026-02-03
 #
 # 헌법: ../constitution/GR_KNOWLEDGE_ATOMIZATION_CONSTITUTION.md
 # 관계 타입: ./relation_types.yaml
+# 원자 태그: ../../taxonomy/atom_tags.yaml
 
 schema:
-  version: "1.2"
+  version: "2.0"
   description: "GR DB에 저장되는 모든 원자의 구조 정의"
 
 atom:
@@ -75,53 +76,138 @@ atom:
     type:
       type: enum
       values:
-        - concept       # 개념, 사상, 전술 (예: Zero Trust, Defense in Depth)
-        - technique     # 공격/방어 기법 (예: SQL Injection, Phishing)
-        - tool          # 도구 (예: Burp Suite, Metasploit)
-        - vulnerability # 취약점 (예: CVE, CWE)
-        - control       # 보안 통제, 방어책, 컴플라이언스 (예: WAF, DLP)
-        - protocol      # 프로토콜, 포맷 (예: OAuth, JWT, TLS)
-        - component     # 인프라/시스템 구성요소 (예: Server, Database, Cloud)
-        - pattern       # 패턴, 시그니처 (예: Payload, Fingerprint)
-        - principle     # 원칙 (예: Least Privilege, Separation of Duties)
+        # 인프라 요소 (entity_class: true)
+        - component           # 인프라 구성요소 (Server, Database, Cloud VM)
+        - component_tool      # 배포된 도구 (SIEM, EDR, 방어 도구)
+        - component_control   # 배포된 보안 통제 (WAF 장비, IDS/IPS)
+        
+        # 지식 요소 (entity_class: false)
+        - concept             # 개념, 사상, 전술 (Zero Trust, Defense in Depth)
+        - technique           # 공격/방어 기법 (SQL Injection, Phishing)
+        - vulnerability       # 취약점 (CVE, CWE)
+        - principle           # 원칙 (Least Privilege, Separation of Duties)
+        - pattern             # 패턴, 시그니처 (Payload, Fingerprint)
+        - protocol            # 프로토콜, 표준 (HTTP, TLS, OAuth)
+        - tool_knowledge      # 도구 지식 (Metasploit 사용법, Burp Suite 기능)
+        - control_policy      # 정책/절차 (접근통제 정책, 보안 절차)
       required: true
       note: |
         [GR Framework 분류 원칙]
-        - type은 9개의 고수준 분류로 고정 (확장 금지)
-        - 세부 분류는 gr_coordinates.tags를 사용
-        - 예: application_server → type: component, tags: [APP, SERVER]
-        - 예: attack_tactic → type: concept, tags: [ATK, TACTIC]
-        - type과 abstraction_level은 독립적인 두 축
+        - type에 따라 entity_class가 자동 결정됨
+        - 인프라 요소: component, component_tool, component_control
+        - 지식 요소: 그 외 모든 type
+
+    entity_class:
+      type: boolean
+      required: true
+      description: |
+        원자가 실체화될 수 있는 인프라 요소인지 여부
+        
+        판정 기준 (4가지 질문 중 하나라도 Yes면 true):
+        1. 네트워크 주소를 가질 수 있는가?
+        2. 프로세스로 실행될 수 있는가?
+        3. 물리적 형태가 있을 수 있는가?
+        4. 시스템 자원을 소비하는가?
+        
+        자동 판정:
+        - true: component, component_tool, component_control
+        - false: concept, technique, vulnerability, principle, 
+                 pattern, protocol, tool_knowledge, control_policy
 
     abstraction_level:
       type: integer
       range: [1, 4]
       description: "1=인스턴스, 2=기법, 3=개념, 4=원리"
       required: true
-      note: "type과 abstraction_level은 독립적인 두 축"
 
+    # ─────────────────────────────────────────────────────────────
+    # 3D 좌표 (entity_class: true인 경우만 사용)
+    # ─────────────────────────────────────────────────────────────
     gr_coordinates:
       description: |
-        GR Framework 3D 좌표계 (Layer × Zone × Tags)
-        - Layer: 인프라 추상화 레벨 (L1=물리 ~ L7=응용)
-        - Zone: 보안 영역 (Zone1=외부 ~ Zone7=핵심)
-        - Tags: 세부 분류 태그 (type의 상세 분류)
+        GR Framework 3D 좌표계 (Layer × Zone × Function)
+        entity_class: true인 원자만 사용
+        
+        - Layer: 인프라 추상화 레벨 (L0=External ~ L7=Application, Cross)
+        - Zone: 보안 영역 (Z0A, Z0B, Z1~Z5)
+        - Function: 기능적 역할 태그 (A1.1, S2.1, M3.2 등 계층적)
+      required_if: "entity_class == true"
+      
       layer:
         type: string
-        pattern: "L[1-7]"
-        description: "GR Framework Layer"
+        pattern: "L[0-7]|Cross"
+        description: "GR Framework Layer (L0~L7 또는 Cross)"
+        examples: ["L7", "L5", "L2", "Cross"]
+        
       zone:
         type: string
-        pattern: "Zone[1-7]"
+        pattern: "Z(0A|0B|[1-5])"
         description: "GR Framework Zone"
-      tags:
+        examples: ["Z0A", "Z0B", "Z1", "Z2", "Z3", "Z4", "Z5"]
+        
+      function:
         type: array
         items: string
+        pattern: "[A-Z][0-9]+(\\.[0-9]+)*"
         description: |
-          GR Framework 세부 분류 태그
-          - type의 세부 분류를 담당 (type 확장 대신 사용)
-          - 예: ["APP", "SERVER"], ["ATK", "TACTIC"], ["CLOUD", "AWS"]
-          - 복합 분류 가능 (다중 태그)
+          GR Framework Function 태그 (계층적)
+          - 02_framework/GR_DB/03_차원3_Function_Tag/ 참조
+          - 예: ["A2.2", "S3.1", "M8.2"]
+          - 복합 기능 가능 (다중 태그)
+        examples:
+          - ["A2.2"]                    # Microservices
+          - ["A2.2", "S2.1", "M2.1"]   # Microservices + Auth + Logging
+          - ["N2.1", "S1.2"]           # Firewall + Encryption
+
+    # ─────────────────────────────────────────────────────────────
+    # 적용 범위 (entity_class: false인 경우만 사용)
+    # ─────────────────────────────────────────────────────────────
+    scope:
+      description: |
+        지식 원자의 적용 대상/범위
+        entity_class: false인 원자만 사용
+        
+        "이 기법/취약점/개념이 어디에 적용되는가"
+      required_if: "entity_class == false"
+      
+      target_layers:
+        type: array
+        items: string
+        pattern: "L[0-7]|Cross"
+        description: "적용 대상 Layer들"
+        examples: [["L7"], ["L5", "L7"], ["L2", "L3"]]
+        
+      target_zones:
+        type: array
+        items: string
+        pattern: "Z(0A|0B|[1-5])"
+        description: "적용 대상 Zone들"
+        examples: [["Z2"], ["Z2", "Z3"], ["Z1", "Z2"]]
+        
+      target_functions:
+        type: array
+        items: string
+        description: "적용 대상 Function들 (선택)"
+        required: false
+        examples: [["A2", "D1"], ["S1", "S2"]]
+
+    # ─────────────────────────────────────────────────────────────
+    # 원자 태그 (모든 원자 공통)
+    # ─────────────────────────────────────────────────────────────
+    atom_tags:
+      type: array
+      items: string
+      description: |
+        원자 특성 분류 태그 (taxonomy/atom_tags.yaml 참조)
+        - 모든 원자에 적용 가능
+        - 검색/필터링/분류 용도
+        - Function과 다름 (Function은 인프라 좌표, atom_tags는 특성 분류)
+      required: true
+      min_items: 1
+      examples:
+        - ["INJ", "EXPLOIT", "WEB"]      # SQL Injection
+        - ["LINUX", "WEB", "PROXY"]      # Nginx
+        - ["CRYPTO", "AUTH", "PROTOCOL"] # TLS
 
   # ═══════════════════════════════════════════════════════════════
   # 정의 (Definition) - 필수
@@ -146,6 +232,7 @@ atom:
   # ═══════════════════════════════════════════════════════════════
   # 관계 (Relations) - 필수 (빈 객체 허용)
   # Canonical 관계만 포함. Inverse는 relation_types.yaml 참조.
+  # ※ related_to는 사용 금지 - 정밀한 관계 타입 사용 필수
   # ═══════════════════════════════════════════════════════════════
   relations:
     structural:
@@ -176,6 +263,10 @@ atom:
       contradicts: ["atom_id"]
       disputes: ["atom_id"]
       refines: ["atom_id"]
+      
+    implementation:
+      implements: ["atom_id"]
+      description: "프로토콜/표준을 구현함 (component → protocol)"
 
   # ═══════════════════════════════════════════════════════════════
   # 속성 (Properties) - 도메인별 확장
@@ -210,7 +301,7 @@ atom:
     trust:
       source:
         type: enum
-        values: [official, research, community, experimental]
+        values: [official, research, community, experimental, ai_generated]
         required: true
       references:
         type: array
@@ -309,3 +400,26 @@ atom:
       related_queries:
         type: array
         description: "이 원자가 답이 될 수 있는 질문들"
+
+# ═══════════════════════════════════════════════════════════════
+# 변경 이력
+# ═══════════════════════════════════════════════════════════════
+changelog:
+  - version: "2.0"
+    date: "2026-02-03"
+    changes:
+      - "entity_class 필드 추가 (인프라 vs 지식 구분)"
+      - "type 값 분리: tool → component_tool, tool_knowledge"
+      - "type 값 분리: control → component_control, control_policy"
+      - "gr_coordinates.tags → gr_coordinates.function (명칭 변경)"
+      - "scope 필드 추가 (entity_class: false용)"
+      - "atom_tags 필드 추가 (모든 원자 공통)"
+      - "Zone 패턴 수정: Zone[1-7] → Z(0A|0B|[1-5])"
+      - "Layer 패턴 수정: L[1-7] → L[0-7]|Cross"
+      - "implements 관계 추가 (component → protocol)"
+      - "related_to 사용 금지 명시"
+      
+  - version: "1.2"
+    date: "2025-01-26"
+    changes:
+      - "Initial structured version"

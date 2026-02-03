@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone0"
+    zone: "Z0"
     tags: ["TECH", "FRAMEWORK", "TTP"]
 
 definition:

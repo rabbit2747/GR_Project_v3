@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "ATTACK", "WEB"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "ATK-WEB-PROTOTYPE-POLLUTION-001"
       - "ATK-WEB-SUBDOMAIN-TAKEOVER-001"
-    related_to:
-      - "VUL-WEB-001"
-      - "TOOL-WEB-001"
 
 properties:
   technical:

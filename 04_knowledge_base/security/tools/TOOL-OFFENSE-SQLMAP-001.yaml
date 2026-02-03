@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone0A"
+    zone: "Z0"A"
     tags: ["INJ"]
 
 definition:

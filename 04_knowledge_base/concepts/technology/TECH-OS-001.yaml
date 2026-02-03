@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "OS"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "TECH-OS-WINDOWS-001"
       - "TECH-OS-LINUX-001"
       - "TECH-OS-MACOS-001"
-    related_to:
-      - "ATK-WIN-PRIV-ESC-001"
-      - "DEF-HARDENING-001"
 
 properties:
   technical:

@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L3"  # OS 레벨
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["INJ", "EXPLOIT"]
 
 definition:

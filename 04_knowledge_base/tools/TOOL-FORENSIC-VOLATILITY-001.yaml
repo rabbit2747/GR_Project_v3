@@ -19,7 +19,7 @@ classification:
   abstraction_level: 1
   gr_coordinates:
     layer: "L5"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["TOOL", "FORENSIC", "MEMORY"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TOOL-FORENSIC-001"
-    related_to:
-      - "DEF-FORENSIC-MEMORY-001"
-      - "ATK-MALWARE-RANSOMWARE-001"
 
 properties:
   technical:

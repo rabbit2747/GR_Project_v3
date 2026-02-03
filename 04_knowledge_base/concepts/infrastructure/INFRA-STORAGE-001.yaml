@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "STORAGE"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "INFRA-STORAGE-SAN-001"
       - "INFRA-STORAGE-NAS-001"
       - "INFRA-STORAGE-OBJECT-001"
-    related_to:
-      - "TECH-BACKUP-001"
-      - "VUL-CLOUD-001"
 
 properties:
   technical:

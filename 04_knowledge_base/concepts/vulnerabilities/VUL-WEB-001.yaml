@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["CONCEPT", "VULNERABILITY", "WEB"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "VUL-WEB-XSS-001"
       - "VUL-WEB-SQLI-001"
       - "VUL-WEB-SSRF-001"
-    related_to:
-      - "ATK-WEB-001"
-      - "DEF-WAF-001"
 
 properties:
   technical:

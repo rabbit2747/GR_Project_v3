@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["ATK", "API", "INJECT"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-CON-00001"
-    related_to:
-      - "ATK-INJECT-SQL-001"
-      - "ATK-WEB-NOSQL-001"
 
 properties:
   technical:

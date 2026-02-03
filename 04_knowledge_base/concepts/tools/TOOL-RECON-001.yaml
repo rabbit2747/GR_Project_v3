@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "RECON"]
 
 definition:
@@ -47,9 +47,6 @@ relations:
       - "TOOL-RECON-THEHARVESTER-001"
       - "TOOL-OSINT-001"
       - "TOOL-ENUM-001"
-    related_to:
-      - "TECH-CONCEPT-OSINT-001"
-      - "ATK-RECON-SCAN-001"
 
 properties:
   technical:

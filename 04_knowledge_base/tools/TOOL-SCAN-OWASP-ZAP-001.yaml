@@ -19,7 +19,7 @@ classification:
   abstraction_level: 1
   gr_coordinates:
     layer: "L5"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["TOOL", "WEB", "DAST"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "GR-SEC-TOOL-001"
-    related_to:
-      - "TOOL-SCAN-BURP-001"
-      - "TOOL-AUDIT-DAST-001"
 
 properties:
   technical:

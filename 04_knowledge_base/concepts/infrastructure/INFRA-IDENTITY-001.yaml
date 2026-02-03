@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L4"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "INFRASTRUCTURE", "IDENTITY"]
 
 definition:
@@ -37,10 +37,6 @@ relations:
     has_children:
       - "INFRA-IDENTITY-IDP-001"
       - "INFRA-IDENTITY-DIRECTORY-001"
-    related_to:
-      - "TECH-IAM-001"
-      - "TECH-AUTH-001"
-      - "INFRA-AD-001"
 
 properties:
   technical:

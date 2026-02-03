@@ -40,8 +40,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-VULNERABILITY-001"
-    related_to:
-      - "VUL-LOG-INSUFFICIENT-001"
   causal:
     detected_by:
       - "DEF-DETECT-MONITORING-001"

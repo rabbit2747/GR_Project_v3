@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "PKI"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "TECH-PKI-CA-001"
       - "TECH-PKI-CERT-001"
-    related_to:
-      - "TECH-ENCRYPTION-001"
-      - "TECH-AUTH-001"
 
 properties:
   technical:

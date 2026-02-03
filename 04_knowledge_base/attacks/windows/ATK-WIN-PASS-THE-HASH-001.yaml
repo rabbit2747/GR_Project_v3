@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["ATK", "WIN", "LATERAL"]
 
 definition:
@@ -39,10 +39,6 @@ relations:
   structural:
     is_a:
       - "ATK-LATERAL-001"
-    related_to:
-      - "ATK-MITRE-T1003-001"
-      - "ATK-WIN-PASS-THE-TICKET-001"
-      - "TOOL-PENTEST-MIMIKATZ-001"
 
 properties:
   technical:

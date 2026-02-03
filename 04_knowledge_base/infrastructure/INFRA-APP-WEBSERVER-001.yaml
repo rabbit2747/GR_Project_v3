@@ -21,7 +21,7 @@ classification:
   abstraction_level: 2  # Type
   gr_coordinates:
     layer: "L7"
-    zone: "Zone1"  # DMZ/Edge
+    zone: "Z1"  # DMZ/Edge
     tags: ["N", "WEB"]
 
 definition:

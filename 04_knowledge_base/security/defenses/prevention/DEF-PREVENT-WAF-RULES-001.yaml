@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
-    zone: "Zone4"
+    zone: "Z4"
     tags: ["DEF", "PREVENT", "WAF"]
 
 definition:
@@ -39,9 +39,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-DEFENSE-001"
-    related_to:
-      - "INFRA-NET-WAF-001"
-      - "TOOL-DEFENSE-MODSEC-001"
 
 properties:
   technical:

@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "CRYPTO"]
 
 definition:
@@ -38,9 +38,6 @@ relations:
       - "TECH-CRYPTO-AES-001"
       - "TECH-CRYPTO-RSA-001"
       - "TECH-CRYPTO-HASH-001"
-    related_to:
-      - "VUL-CRYPTO-001"
-      - "ATK-CRYPTO-001"
 
 properties:
   technical:

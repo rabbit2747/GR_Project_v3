@@ -20,7 +20,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TOOL", "ENUM"]
 
 definition:
@@ -44,9 +44,6 @@ relations:
     has_children:
       - "TOOL-LINUX-LINPEAS-001"
       - "TOOL-WINDOWS-WINPEAS-001"
-    related_to:
-      - "ATK-PRIVILEGE-ESCALATION-001"
-      - "ATK-LINUX-PRIV-ESC-001"
 
 properties:
   technical:

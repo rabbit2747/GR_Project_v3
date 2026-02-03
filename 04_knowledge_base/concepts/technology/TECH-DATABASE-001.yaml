@@ -19,7 +19,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L5"
-    zone: "Zone2"
+    zone: "Z2"
     tags: ["CONCEPT", "TECHNOLOGY", "DATABASE"]
 
 definition:
@@ -37,9 +37,6 @@ relations:
     has_children:
       - "TECH-DB-SQL-001"
       - "TECH-DB-NOSQL-001"
-    related_to:
-      - "VUL-INJECTION-001"
-      - "DEF-DB-SEC-001"
 
 properties:
   technical:

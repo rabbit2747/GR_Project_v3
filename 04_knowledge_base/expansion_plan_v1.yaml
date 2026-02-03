@@ -993,8 +993,6 @@ atom_template: |
     structural:
       is_a:
         - "{parent_id}"
-      related_to:
-        - "{related_ids}"
 
   properties:
     technical:

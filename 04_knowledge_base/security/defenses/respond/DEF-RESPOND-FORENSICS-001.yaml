@@ -19,7 +19,7 @@ classification:
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Zone5"
+    zone: "Z5"
     tags: ["DEF", "RESPOND", "FORENSICS"]
 
 definition:
@@ -40,8 +40,6 @@ relations:
   structural:
     is_a:
       - "TECH-CONCEPT-DEFENSE-001"
-    related_to:
-      - "DEF-RESPOND-INCIDENT-001"
 
 properties:
   technical:
