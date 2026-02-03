@@ -8,9 +8,9 @@
 | **한글명** | 빌드 시스템 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Build & Package Tool |
-| **Function Tag (Primary)** | P6.1 (Build Tool) |
-| **Function Tag (Secondary)** | P6.2 (Package Manager) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P6.1 (Build Tool) |
+| **Function (Secondary)** | P6.2 (Package Manager) |
+| **Function (Control)** | 없음 |
 
 ---
 

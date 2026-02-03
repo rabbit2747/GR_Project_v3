@@ -1,8 +1,8 @@
 # GR Knowledge Atomization Constitution
 
 > AI를 위한 지식 원자화 헌법
-> Version: 2.1
-> Effective Date: 2025-02-03
+> Version: 2.2
+> Effective Date: 2026-02-03
 > Status: RATIFIED
 
 ---
@@ -181,38 +181,43 @@ good_example:
 
 예: vulnerability도 Level 3(개념)일 수 있고, Level 1(특정 CVE)일 수도 있다.
 
-**Type 분류 원칙 (9개 고정):**
+**Type 분류 원칙 (v2.0):**
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Type 분류 체계                            │
+│                    Type 분류 체계 v2.0                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
-│  type은 9개의 고수준 분류로 고정되며 확장 금지:             │
+│  type은 entity_class에 따라 구분됨:                         │
 │                                                              │
-│  • concept     : 개념, 사상, 전술                          │
-│  • technique   : 공격/방어 기법                            │
-│  • tool        : 도구                                       │
-│  • vulnerability: 취약점                                   │
-│  • control     : 보안 통제, 방어책, 컴플라이언스           │
-│  • protocol    : 프로토콜, 포맷                            │
-│  • component   : 인프라/시스템 구성요소                    │
-│  • pattern     : 패턴, 시그니처                            │
-│  • principle   : 원칙                                       │
+│  [entity_class: true] 인프라 요소 (배포 가능)               │
+│  • component         : 인프라/시스템 구성요소              │
+│  • component_tool    : 배포되는 도구 (Burp Suite 등)       │
+│  • component_control : 배포되는 보안 통제 (WAF 등)         │
 │                                                              │
-│  세부 분류는 gr_coordinates.tags로 표현:                    │
+│  [entity_class: false] 지식 요소 (개념/기법)                │
+│  • concept           : 개념, 사상, 전술                    │
+│  • technique         : 공격/방어 기법                      │
+│  • vulnerability     : 취약점                              │
+│  • protocol          : 프로토콜, 포맷 (지식으로 취급)      │
+│  • pattern           : 패턴, 시그니처                      │
+│  • principle         : 원칙                                │
+│  • tool_knowledge    : 도구에 관한 지식 (사용법 등)        │
+│  • control_policy    : 보안 정책 (문서, 규정)              │
+│                                                              │
+│  세부 분류는 atom_tags로 표현:                              │
 │                                                              │
 │  예: application_server                                     │
-│      → type: component, tags: [APP, SERVER]                │
+│      → type: component, atom_tags: [APP, SERVER]           │
 │                                                              │
 │  예: attack_tactic                                          │
-│      → type: concept, tags: [ATK, TACTIC]                  │
+│      → type: concept, atom_tags: [ATK, TACTIC]             │
 │                                                              │
 │  예: cloud_platform                                         │
-│      → type: component, tags: [CLOUD, PLATFORM]            │
+│      → type: component, atom_tags: [CLOUD, PLATFORM]       │
 │                                                              │
 │  이유:                                                      │
-│  1. type 무분별한 확장 방지 (스키마 안정성)                │
-│  2. 태그의 유연성 활용 (복합 분류 가능)                    │
+│  1. entity_class로 인프라/지식 명확히 구분                 │
+│  2. atom_tags의 유연성 활용 (복합 분류 가능)               │
 │  3. AI 학습 및 검색 일관성 유지                            │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘

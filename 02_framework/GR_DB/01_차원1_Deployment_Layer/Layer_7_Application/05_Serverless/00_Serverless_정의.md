@@ -8,9 +8,9 @@
 | **한글명** | 서버리스 |
 | **Layer** | Layer 7 (Application) |
 | **분류** | Function as a Service (FaaS) |
-| **Function Tag (Primary)** | A5.1 (Lambda) |
-| **Function Tag (Secondary)** | A5.2 (Edge Functions) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A5.1 (Lambda) |
+| **Function (Secondary)** | A5.2 (Edge Functions) |
+| **Function (Control)** | 없음 |
 
 ---
 

@@ -8,9 +8,9 @@
 | **한글명** | 방화벽 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Security Gateway |
-| **Function Tag (Primary)** | S1.1 (Stateful FW) |
-| **Function Tag (Secondary)** | S1.2 (NGFW) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | S1.1 (Stateful FW) |
+| **Function (Secondary)** | S1.2 (NGFW) |
+| **Function (Control)** | 없음 |
 
 ---
 

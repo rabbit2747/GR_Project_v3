@@ -8,9 +8,9 @@
 | **한글명** | 보안 정보 및 이벤트 관리 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Security |
-| **Function Tag (Primary)** | M4.1 (Log Analysis) |
-| **Function Tag (Secondary)** | M4.2 (Threat Detection), M4.3 (Incident Response) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M4.1 (Log Analysis) |
+| **Function (Secondary)** | M4.2 (Threat Detection), M4.3 (Incident Response) |
+| **Function (Control)** | 없음 |
 
 ---
 

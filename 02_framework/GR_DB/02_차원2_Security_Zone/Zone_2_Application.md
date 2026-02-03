@@ -87,7 +87,7 @@ API 제공:
   - XSS 방어
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.5` (Backend API Server)
 - Interface: `I1.1` (HTTP/REST), `I1.2` (GraphQL), `I1.3` (gRPC)
 
@@ -128,7 +128,7 @@ Stateful:
   - Circuit Breaker (장애 격리)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.5` (Backend Application)
 - Secondary: `R3.2` (Auto Scaling)
 
@@ -159,7 +159,7 @@ Redis Streams:
   - Consumer Group
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D3.3` (Event Streaming), `D3.1` (Message Queue)
 - Interface: `I3.1` (AMQP), `I3.2` (Kafka Protocol)
 
@@ -202,7 +202,7 @@ Observability:
   - 로그 수집
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R5.3` (Service Mesh)
 - Control: `S5.3` (mTLS), `M2.1` (Distributed Tracing)
 
@@ -229,7 +229,7 @@ GPU 요구사항:
   - 70B Model: A100 (80GB) × 2 이상
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.1` (LLM Inference)
 - Tech Stack: `T1.3` (Python), `T5.1` (PyTorch), `T5.2` (CUDA)
 

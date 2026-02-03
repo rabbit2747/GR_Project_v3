@@ -8,9 +8,9 @@
 | **한글명** | 지속적 통합/배포 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Automation Platform |
-| **Function Tag (Primary)** | P1.1 (Continuous Integration) |
-| **Function Tag (Secondary)** | P1.2 (Continuous Deployment) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P1.1 (Continuous Integration) |
+| **Function (Secondary)** | P1.2 (Continuous Deployment) |
+| **Function (Control)** | 없음 |
 
 ---
 

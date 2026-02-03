@@ -8,9 +8,9 @@
 | **한글명** | 하이퍼바이저 |
 | **Layer** | Layer 3 (Computing Infrastructure) |
 | **분류** | Virtualization Platform |
-| **Function Tag (Primary)** | C3.1 (Type 1 Hypervisor) |
-| **Function Tag (Secondary)** | C3.2 (Type 2 Hypervisor) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | C3.1 (Type 1 Hypervisor) |
+| **Function (Secondary)** | C3.2 (Type 2 Hypervisor) |
+| **Function (Control)** | 없음 |
 
 ---
 

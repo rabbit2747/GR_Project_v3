@@ -8,9 +8,9 @@
 | **한글명** | 콘텐츠 전송 네트워크 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Content Distribution |
-| **Function Tag (Primary)** | N3.1 (CDN) |
-| **Function Tag (Secondary)** | D2.1 (Edge Caching) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | N3.1 (CDN) |
+| **Function (Secondary)** | D2.1 (Edge Caching) |
+| **Function (Control)** | 없음 |
 
 ---
 

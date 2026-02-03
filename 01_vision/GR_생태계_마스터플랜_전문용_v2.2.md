@@ -144,7 +144,7 @@ AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
 
 ---
 
-### 축 3: Function Tag & Attributes (기능과 속성)
+### 축 3: Function & Attributes (기능과 속성)
 
 **AI의 관점**: "이 녀석의 정체는 무엇이고, 어떤 DNA를 가졌는가?"
 
@@ -270,7 +270,7 @@ GR 생태계는 **데이터 구축 단계**와 **고객 배포 단계**에서 LL
 - ✅ **외부 LLM API 자유 사용**
   - GPT-4 (추론), Claude (분석), Gemini (검증)
   - 제품 설명 → Archetype 추론
-  - 공식 문서 → Function Tag 추출
+  - 공식 문서 → Function 추출
   - CVE 설명 → MITRE Technique 매핑
 
 **비용 구조** (연간):
@@ -483,10 +483,10 @@ CREATE TABLE products (
 ```python
 # LLM에게 질문
 prompt = f"""
-Redis의 공식 문서를 분석하여, GR Framework의 Function Tag 목록 중
+Redis의 공식 문서를 분석하여, GR Framework의 Function 목록 중
 매칭되는 기능을 모두 찾아내고, 각 기능별로 적합한 Layer와 Zone을 추천해줘.
 
-Function Tag 목록: [D3.1 (Cache), D3.3 (Session Store), R3.2 (Message Queue), ...]
+Function 목록: [D3.1 (Cache), D3.3 (Session Store), R3.2 (Message Queue), ...]
 """
 ```
 

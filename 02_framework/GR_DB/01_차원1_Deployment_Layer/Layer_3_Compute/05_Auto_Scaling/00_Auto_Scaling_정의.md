@@ -8,9 +8,9 @@
 | **한글명** | 자동 확장 |
 | **Layer** | Layer 3 (Computing Infrastructure) |
 | **분류** | Elastic Compute |
-| **Function Tag (Primary)** | C5.1 (Horizontal Scaling) |
-| **Function Tag (Secondary)** | C5.2 (Vertical Scaling) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | C5.1 (Horizontal Scaling) |
+| **Function (Secondary)** | C5.2 (Vertical Scaling) |
+| **Function (Control)** | 없음 |
 
 ---
 

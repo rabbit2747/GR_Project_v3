@@ -76,7 +76,7 @@ HR & 급여:
   - Rippling, Greenhouse
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A6.1` (SaaS Application)
 - Interface: `I1.1` (HTTP/REST API)
 
@@ -107,7 +107,7 @@ LLM 추론:
   - AssemblyAI: STT (음성 인식)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.1` (LLM Inference)
 - Secondary: `D5.1` (Vector Embeddings)
 - Interface: `I1.1` (HTTP/REST API)
@@ -150,7 +150,7 @@ LLM 추론:
   - Kakao Pay, Naver Pay (간편 결제)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A5.1` (Payment Processing)
 - Control: `S6.1` (PCI-DSS Compliance)
 - Interface: `I1.1` (HTTP/REST API)
@@ -181,7 +181,7 @@ LLM 추론:
   - 가비아 CDN
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N3.1` (Content Caching)
 - Secondary: `S1.3` (DDoS Protection)
 - Interface: `I1.1` (HTTP/HTTPS)
@@ -215,7 +215,7 @@ LLM 추론:
   - PagerDuty (On-call 관리)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: 기능별 상이 (예: `N4.1` for SMS, `A4.1` for Auth)
 - Interface: `I1.1` (HTTP/REST API)
 

@@ -926,7 +926,7 @@ LLM confidence ≥ 0.9   →  자동 승인 (나중에 샘플링 검증)
 
 이미 존재하는 Edge Case 문서 활용:
 - `3D_INFRASTRUCTURE_CLASSIFICATION_V2.2_EDGE_CASE`
-- `IT_Infrastructure_Function_Tag_Classification_Guide`
+- `IT_Infrastructure_Function_Classification_Guide`
 
 **이 문서들의 예시를 전부 classification_unit으로 만들어서:**
 1. LLM 분류 실행

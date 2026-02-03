@@ -8,9 +8,9 @@
 | **한글명** | 역방향 프록시 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Traffic Gateway |
-| **Function Tag (Primary)** | N1.3 (Reverse Proxy) |
-| **Function Tag (Secondary)** | 없음 |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | N1.3 (Reverse Proxy) |
+| **Function (Secondary)** | 없음 |
+| **Function (Control)** | 없음 |
 
 ---
 

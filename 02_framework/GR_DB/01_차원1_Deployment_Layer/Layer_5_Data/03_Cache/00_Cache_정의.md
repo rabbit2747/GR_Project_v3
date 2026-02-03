@@ -8,9 +8,9 @@
 | **한글명** | 캐시 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | In-Memory Data Store |
-| **Function Tag (Primary)** | D3.1 (Application Cache) |
-| **Function Tag (Secondary)** | D3.2 (Distributed Cache) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D3.1 (Application Cache) |
+| **Function (Secondary)** | D3.2 (Distributed Cache) |
+| **Function (Control)** | 없음 |
 
 ---
 

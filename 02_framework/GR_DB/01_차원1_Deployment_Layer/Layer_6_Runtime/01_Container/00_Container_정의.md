@@ -8,9 +8,9 @@
 | **한글명** | 컨테이너 |
 | **Layer** | Layer 6 (Runtime) |
 | **분류** | Container Runtime |
-| **Function Tag (Primary)** | R1.1 (Docker) |
-| **Function Tag (Secondary)** | R1.2 (containerd) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | R1.1 (Docker) |
+| **Function (Secondary)** | R1.2 (containerd) |
+| **Function (Control)** | 없음 |
 
 ---
 

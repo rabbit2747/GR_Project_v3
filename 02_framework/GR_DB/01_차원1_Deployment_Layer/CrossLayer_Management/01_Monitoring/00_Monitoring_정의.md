@@ -8,9 +8,9 @@
 | **한글명** | 모니터링 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Observability |
-| **Function Tag (Primary)** | M1.1 (Metrics) |
-| **Function Tag (Secondary)** | M1.2 (Logging), M1.3 (Tracing) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M1.1 (Metrics) |
+| **Function (Secondary)** | M1.2 (Logging), M1.3 (Tracing) |
+| **Function (Control)** | 없음 |
 
 ---
 

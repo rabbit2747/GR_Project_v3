@@ -8,9 +8,9 @@
 | **한글명** | Git 기반 운영 자동화 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Deployment Automation |
-| **Function Tag (Primary)** | P4.1 (GitOps Controller) |
-| **Function Tag (Secondary)** | P4.2 (Continuous Deployment) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P4.1 (GitOps Controller) |
+| **Function (Secondary)** | P4.2 (Continuous Deployment) |
+| **Function (Control)** | 없음 |
 
 ---
 

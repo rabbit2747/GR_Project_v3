@@ -539,7 +539,7 @@ CREATE TABLE archetypes (
     layer VARCHAR(10) NOT NULL,                  -- "L5", "L6", "L7"
     zone VARCHAR(20) NOT NULL,                   -- "Z2", "Z3"
 
-    -- Function Tags
+    -- Functions
     primary_tag VARCHAR(20) NOT NULL,            -- "D3.1" (In-Memory Cache)
     secondary_tags JSONB,                        -- ["P2.1", "M1.3"]
 

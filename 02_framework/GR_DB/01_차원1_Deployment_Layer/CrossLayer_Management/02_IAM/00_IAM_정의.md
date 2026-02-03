@@ -8,9 +8,9 @@
 | **한글명** | 신원 및 접근 관리 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Security |
-| **Function Tag (Primary)** | M2.1 (Authentication) |
-| **Function Tag (Secondary)** | M2.2 (Authorization), M2.3 (SSO) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M2.1 (Authentication) |
+| **Function (Secondary)** | M2.2 (Authorization), M2.3 (SSO) |
+| **Function (Control)** | 없음 |
 
 ---
 

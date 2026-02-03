@@ -8,9 +8,9 @@
 | **한글명** | 그래프큐엘 |
 | **Layer** | Layer 7 (Application) |
 | **분류** | Query Language |
-| **Function Tag (Primary)** | A4.1 (GraphQL Server) |
-| **Function Tag (Secondary)** | A4.2 (GraphQL Gateway) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A4.1 (GraphQL Server) |
+| **Function (Secondary)** | A4.2 (GraphQL Gateway) |
+| **Function (Control)** | 없음 |
 
 ---
 

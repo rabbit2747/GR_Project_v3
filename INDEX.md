@@ -62,7 +62,7 @@ GR_Project_v3/
     │   ├── Zone_3_Data.md
     │   ├── Zone_4_Management.md
     │   └── Zone_5_Endpoint.md
-    ├── 03_차원3_Function_Tag/         # 10개 Function Domain (A-T)
+    ├── 03_차원3_Function/         # 10개 Function Domain (A-T)
     │   ├── Domain_A_Application.md
     │   ├── Domain_C_Compliance.md
     │   ├── Domain_D_Data.md
@@ -166,7 +166,7 @@ GR_Project_v3/
 ### 3D 좌표 시스템 상세
 1. `02_framework/GR_DB/01_차원1_Deployment_Layer/` (Layer 상세)
 2. `02_framework/GR_DB/02_차원2_Security_Zone/` (Zone 상세)
-3. `02_framework/GR_DB/03_차원3_Function_Tag/` (Tag 상세)
+3. `02_framework/GR_DB/03_차원3_Function/` (Function 상세)
 
 ### 지식 원자화 체계
 1. `03_ontology/constitution/GR_KNOWLEDGE_ATOMIZATION_CONSTITUTION.md`
@@ -194,12 +194,13 @@ GR_Project_v3/
 
 ## 🚀 다음 단계 (TODO)
 
-1. [ ] 통합 마스터플랜 문서 작성 (v1+v2 내용 병합)
-2. [ ] Context Modifier 시스템 설계 추가
-3. [ ] Instance DB 구조 설계
-4. [ ] 3D 좌표 → 정책 자동 추론 API 설계
+1. [ ] Knowledge Base 원자 파일 스키마 v2.0 마이그레이션
+2. [ ] 통합 마스터플랜 문서 작성 (v1+v2 내용 병합)
+3. [ ] Context Modifier 시스템 설계 추가
+4. [ ] Instance DB 구조 설계
+5. [ ] 3D 좌표 → 정책 자동 추론 API 설계
 
 ---
 
-*Generated: 2025-01-30*
-*Version: v3.0*
+*Updated: 2026-02-03*
+*Schema Version: 2.0*

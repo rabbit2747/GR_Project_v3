@@ -8,9 +8,9 @@
 | **한글명** | 가상 사설망 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Secure Remote Access |
-| **Function Tag (Primary)** | S1.6 (VPN Gateway) |
-| **Function Tag (Secondary)** | S1.7 (IPsec), S1.8 (SSL VPN) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | S1.6 (VPN Gateway) |
+| **Function (Secondary)** | S1.7 (IPsec), S1.8 (SSL VPN) |
+| **Function (Control)** | 없음 |
 
 ---
 

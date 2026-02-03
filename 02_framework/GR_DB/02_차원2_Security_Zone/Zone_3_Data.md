@@ -82,7 +82,7 @@ SQL Server:
   - 로그 보존: 1년 이상
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D1.3` (Relational Storage)
 - Tech Stack: `T2.1` (SQL Database)
 
@@ -115,7 +115,7 @@ Graph Database:
   - ArangoDB
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D2.1` (NoSQL Storage)
 
 **Zone 배치**: Zone 3 (Data)
@@ -162,7 +162,7 @@ NoSQL Extension:
   - 이미지 유사도 검색
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D5.2` (Vector Search)
 - Secondary: `A7.2` (RAG - Retrieval-Augmented Generation)
 
@@ -186,7 +186,7 @@ In-Memory Cache:
   - Rate Limiting 카운터
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D2.1` (In-Memory Caching)
 - Secondary: `P1.1` (Performance Optimization)
 
@@ -214,7 +214,7 @@ Self-Hosted:
   - ML 모델 저장
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D4.1` (Object Storage)
 
 **Zone 배치**: Zone 3 (Data)
@@ -238,7 +238,7 @@ Self-Hosted:
   - 대시보드 (Tableau, Looker)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D6.1` (Data Warehouse)
 
 **Zone 배치**: Zone 3 (Data)

@@ -8,9 +8,9 @@
 | **한글명** | 서비스 메시 |
 | **Layer** | Layer 6 (Runtime) |
 | **분류** | Service Communication |
-| **Function Tag (Primary)** | R4.1 (Istio) |
-| **Function Tag (Secondary)** | R4.2 (Linkerd) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | R4.1 (Istio) |
+| **Function (Secondary)** | R4.2 (Linkerd) |
+| **Function (Control)** | 없음 |
 
 ---
 

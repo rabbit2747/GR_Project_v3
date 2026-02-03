@@ -47,7 +47,7 @@ Cloud Monitoring:
   - Google Cloud Monitoring
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M1.1` (Metrics Collection)
 - Secondary: `M1.2` (Visualization)
 
@@ -69,7 +69,7 @@ Loki:
   - Prometheus와 유사한 설계
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M2.1` (Log Aggregation)
 - Secondary: `M2.2` (Log Analysis)
 
@@ -92,7 +92,7 @@ Dynatrace:
   - Zipkin
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M3.1` (APM)
 - Secondary: `M3.2` (Distributed Tracing)
 
@@ -117,7 +117,7 @@ Self-Hosted:
   - FreeIPA
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S2.1` (RBAC - Role-Based Access Control)
 - Control: `S2.2` (MFA), `S2.3` (SSO)
 
@@ -144,7 +144,7 @@ Kubernetes Secrets:
   - External Secrets Operator 권장
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S4.2` (Secrets Management)
 - Control: `S4.1` (Encryption at Rest)
 
@@ -165,7 +165,7 @@ Commercial:
   - Elastic Security (ELK + SIEM)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S9.1` (SIEM)
 - Secondary: `S9.2` (Threat Detection), `S9.3` (Incident Response)
 
@@ -187,7 +187,7 @@ Freshservice, Zendesk:
   - SaaS ITSM
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M4.1` (ITSM)
 
 ---
@@ -241,7 +241,7 @@ Locust (Python):
   - Python 기반 분산 Load Testing
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M5.1` (Testing)
 - Secondary: `M5.2` (E2E Testing), `M5.3` (Performance Testing)
 

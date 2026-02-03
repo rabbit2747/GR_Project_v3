@@ -63,7 +63,7 @@ Google Cloud Platform (GCP):
 Oracle Cloud, IBM Cloud, Alibaba Cloud
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R4.1` (Cloud Infrastructure)
 - Secondary: `R3.2` (Auto Scaling)
 
@@ -95,7 +95,7 @@ GCP Machine Types:
   - m2 (Memory Optimized)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R4.2` (Virtual Machine)
 - Tech Stack: `T3.1` (Linux), `T3.2` (Windows)
 
@@ -125,7 +125,7 @@ Container Runtime (경량 가상화):
   - CRI-O
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R4.3` (Hypervisor)
 - Tech Stack: `T3.3` (Virtualization)
 
@@ -154,7 +154,7 @@ Container Runtime (경량 가상화):
   - IBM Cloud Bare Metal
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R4.4` (Bare Metal)
 
 **Zone 배치**: Zone 3 (Data), Zone 4 (Management)
@@ -181,7 +181,7 @@ Azure VM Scale Sets:
   - Automatic OS Upgrades
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R3.2` (Auto Scaling)
 - Secondary: `P1.1` (Resource Optimization)
 

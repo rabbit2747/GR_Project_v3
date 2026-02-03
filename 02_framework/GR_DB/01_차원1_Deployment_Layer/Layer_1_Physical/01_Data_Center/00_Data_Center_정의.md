@@ -8,9 +8,9 @@
 | **한글명** | 데이터센터 |
 | **Layer** | Layer 1 (Physical Infrastructure) |
 | **분류** | Facility |
-| **Function Tag (Primary)** | P1.1 (Colocation) |
-| **Function Tag (Secondary)** | P1.2 (Managed Hosting) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P1.1 (Colocation) |
+| **Function (Secondary)** | P1.2 (Managed Hosting) |
+| **Function (Control)** | 없음 |
 
 ---
 

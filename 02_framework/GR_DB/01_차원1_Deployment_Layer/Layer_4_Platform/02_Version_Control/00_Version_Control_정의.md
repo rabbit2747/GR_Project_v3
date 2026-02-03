@@ -8,9 +8,9 @@
 | **한글명** | 버전 관리 시스템 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Source Code Management |
-| **Function Tag (Primary)** | P2.1 (Git Server) |
-| **Function Tag (Secondary)** | P2.2 (Code Repository) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P2.1 (Git Server) |
+| **Function (Secondary)** | P2.2 (Code Repository) |
+| **Function (Control)** | 없음 |
 
 ---
 

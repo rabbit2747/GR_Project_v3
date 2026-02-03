@@ -8,9 +8,9 @@
 | **한글명** | 클라우드 플랫폼 |
 | **Layer** | Layer 3 (Computing Infrastructure) |
 | **분류** | IaaS Provider |
-| **Function Tag (Primary)** | C1.1 (Public Cloud) |
-| **Function Tag (Secondary)** | C1.2 (Private Cloud), C1.3 (Hybrid Cloud) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | C1.1 (Public Cloud) |
+| **Function (Secondary)** | C1.2 (Private Cloud), C1.3 (Hybrid Cloud) |
+| **Function (Control)** | 없음 |
 
 ---
 

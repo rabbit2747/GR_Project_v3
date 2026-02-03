@@ -52,7 +52,7 @@ SQL Server:
   - Windows 최적화
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D1.3` (Relational Storage)
 - Tech Stack: `T2.1` (SQL Database)
 
@@ -86,7 +86,7 @@ Graph Database:
   - ArangoDB
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D2.1` (NoSQL Storage)
 
 ---
@@ -105,7 +105,7 @@ Application-Level Cache:
   - Caffeine (Java)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D2.1` (In-Memory Caching)
 - Secondary: `P1.1` (Performance Optimization)
 
@@ -132,7 +132,7 @@ NoSQL Extension:
   - Redis Vector Similarity Search
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D5.2` (Vector Search)
 - Secondary: `A7.2` (RAG - Retrieval-Augmented Generation)
 
@@ -154,7 +154,7 @@ Self-Hosted:
   - Ceph
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D4.1` (Object Storage)
 
 ---
@@ -170,7 +170,7 @@ Self-Hosted:
   - Azure Synapse Analytics
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D6.1` (Data Warehouse)
 
 ---

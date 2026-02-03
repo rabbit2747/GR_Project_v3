@@ -75,7 +75,7 @@ HTTPS Only:
   - IndexedDB: 암호화 권장
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N/A` (사용자 디바이스, 우리가 태그 부여 안 함)
 
 **Zone 배치**: Zone 5 (Endpoint)
@@ -113,7 +113,7 @@ Certificate Pinning:
   - Tamper Detection (변조 탐지)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.7` (Mobile Application)
 
 **Zone 배치**: Zone 5 (Endpoint)
@@ -157,7 +157,7 @@ Enterprise VPN:
   - 해외 출장
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N4.1` (VPN)
 - Secondary: `S5.4` (Secure Remote Access)
 
@@ -198,7 +198,7 @@ Consumer IoT:
   - Zero Trust 접근
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.8` (IoT Device)
 
 **Zone 배치**: Zone 5 (Endpoint)

@@ -8,9 +8,9 @@
 | **한글명** | 테스트 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Quality Assurance |
-| **Function Tag (Primary)** | M6.1 (Unit Testing) |
-| **Function Tag (Secondary)** | M6.2 (Integration Testing), M6.3 (E2E Testing) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M6.1 (Unit Testing) |
+| **Function (Secondary)** | M6.2 (Integration Testing), M6.3 (E2E Testing) |
+| **Function (Control)** | 없음 |
 
 ---
 

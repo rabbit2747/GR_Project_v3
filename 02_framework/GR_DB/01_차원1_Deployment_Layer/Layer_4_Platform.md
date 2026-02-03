@@ -48,7 +48,7 @@ Self-Hosted:
   - CircleCI (Self-hosted 지원)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `P2.1` (CI/CD Pipeline)
 - Secondary: `P2.2` (Build Automation), `P2.3` (Deployment Automation)
 
@@ -82,7 +82,7 @@ Kubernetes Manifests:
   - Kustomize
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `P3.1` (Infrastructure Automation)
 
 ---
@@ -102,7 +102,7 @@ Legacy:
   - Perforce (게임 개발)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `P1.1` (Version Control)
 
 ---
@@ -126,7 +126,7 @@ Public:
   - Quay.io
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `P4.1` (Container Registry)
 - Control: `S8.1` (Image Scanning - Vulnerability)
 

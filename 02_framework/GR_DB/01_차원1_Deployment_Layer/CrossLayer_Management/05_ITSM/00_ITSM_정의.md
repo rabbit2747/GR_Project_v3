@@ -8,9 +8,9 @@
 | **한글명** | IT 서비스 관리 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Operations |
-| **Function Tag (Primary)** | M5.1 (Ticketing) |
-| **Function Tag (Secondary)** | M5.2 (Change Management), M5.3 (Asset Management) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M5.1 (Ticketing) |
+| **Function (Secondary)** | M5.2 (Change Management), M5.3 (Asset Management) |
+| **Function (Control)** | 없음 |
 
 ---
 

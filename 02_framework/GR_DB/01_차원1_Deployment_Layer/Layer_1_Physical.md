@@ -64,7 +64,7 @@ Tier 등급 (Uptime Institute):
   - NHN 춘천 각 데이터센터
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R1.1` (Data Center Facility)
 - Secondary: `S3.1` (Physical Security - 출입 통제)
 
@@ -93,7 +93,7 @@ Tower Server:
   - 예: Dell PowerEdge T-Series
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R1.2` (Physical Server)
 - Tech Stack: `T3.1` (x86 Architecture), `T3.2` (ARM Architecture)
 
@@ -120,7 +120,7 @@ Direct-Attached Storage (DAS):
   - 서버에 직접 연결된 스토리지
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D4.1` (Block Storage), `D4.2` (File Storage)
 
 **Zone 배치**: 물리적 위치 (Data Center)
@@ -146,7 +146,7 @@ Core Switch:
   - Cat6, Cat6a 이더넷 케이블
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N2.1` (Physical Networking)
 - Interface: `I2.1` (Ethernet), `I2.2` (Fiber Optic)
 
@@ -183,7 +183,7 @@ Hot Aisle / Cold Aisle:
   - 냉각 효율 최대화
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R2.1` (Power Supply), `R2.2` (Cooling System)
 
 ---

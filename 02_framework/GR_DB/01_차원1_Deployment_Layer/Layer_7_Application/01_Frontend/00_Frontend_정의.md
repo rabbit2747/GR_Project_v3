@@ -8,9 +8,9 @@
 | **한글명** | 프론트엔드 |
 | **Layer** | Layer 7 (Application) |
 | **분류** | Web UI |
-| **Function Tag (Primary)** | A1.1 (SPA) |
-| **Function Tag (Secondary)** | A1.2 (SSR) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A1.1 (SPA) |
+| **Function (Secondary)** | A1.2 (SSR) |
+| **Function (Control)** | 없음 |
 
 ---
 

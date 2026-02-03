@@ -78,7 +78,7 @@ AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
 | **Zone 4** | 관리 영역 (Management) | 80% | 시스템 전체 통제 관제탑 | 최고 수준 접근 제어 | 모니터링, 로깅, CI/CD |
 | **Zone 5** | 엔드포인트 영역 | 50% | 제로 트러스트 기반 사용자 단말 | 지속적 검증 | 사용자 PC, 모바일, VPN Client |
 
-### 2.3 축 3: Function Tag & Attributes (기능과 속성)
+### 2.3 축 3: Function & Attributes (기능과 속성)
 
 **AI의 관점**: "이 녀석의 정체는 무엇이고, 어떤 DNA를 가졌는가?"
 
@@ -518,7 +518,7 @@ LIMIT 10
 **LLM 사용**:
 - 외부 LLM API 자유 사용 (GPT-4, Claude, Gemini)
 - 제품 설명 → Archetype 추론
-- 공식 문서 → Function Tag 추출
+- 공식 문서 → Function 추출
 - CVE 설명 → MITRE Technique 매핑
 
 **데이터 안전성**:

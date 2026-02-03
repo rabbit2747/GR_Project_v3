@@ -77,7 +77,7 @@ Bot Management:
   - CAPTCHA Challenge
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S5.2` (WAF - Web Application Firewall)
 - Secondary: `S9.2` (Threat Detection)
 
@@ -119,7 +119,7 @@ SSL/TLS 종료:
   - SNI (Server Name Indication)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N2.2` (Load Balancing)
 - Secondary: `R3.1` (High Availability)
 
@@ -159,7 +159,7 @@ Apache HTTP Server:
   - CORS 헤더 설정
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N2.1` (Reverse Proxy)
 - Secondary: `P1.1` (Performance - Caching)
 
@@ -194,7 +194,7 @@ Apache HTTP Server:
   - 이미지 최적화 (WebP)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N3.1` (CDN)
 - Secondary: `S5.1` (DDoS Protection)
 
@@ -218,7 +218,7 @@ Apache HTTP Server:
   - Rate Limiting
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S5.1` (DDoS Protection)
 
 **Zone 배치**: Zone 1 (Perimeter)

@@ -8,9 +8,9 @@
 | **한글명** | 네트워크 장비 |
 | **Layer** | Layer 1 (Physical Infrastructure) |
 | **분류** | Network Hardware |
-| **Function Tag (Primary)** | P2.1 (Router) |
-| **Function Tag (Secondary)** | P2.2 (Switch), P2.3 (Firewall) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P2.1 (Router) |
+| **Function (Secondary)** | P2.2 (Switch), P2.3 (Firewall) |
+| **Function (Control)** | 없음 |
 
 ---
 

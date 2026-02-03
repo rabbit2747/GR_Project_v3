@@ -66,7 +66,7 @@ v2.0 세분화:
   - 입력 값 철저한 검증
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N/A` (우리가 태그를 부여할 수 없음)
 - 대신 Zone 1에서 유입 트래픽 분류
 

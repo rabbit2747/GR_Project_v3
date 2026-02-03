@@ -98,12 +98,12 @@ GR 생태계란 GR DB, GR Framework 을 기반으로 GR Edu, GR Consulting, GR s
    Zone 0-A (0%) ← Zone 0-B (10%) ← Zone 1 (30%) ← Zone 2 (50%)
    ← Zone 3 (80%) ← Zone 4 (90%) → Zone 5 (20%)
 
- 각 제품/컴포넌트 = (Layer, Zone) 좌표 + Function Tags
+ 각 제품/컴포넌트 = (Layer, Zone) 좌표 + Functions
  ```
 
  **2. 자동 좌표 결정 (Automatic Coordinate Determination)**
 
- 제품의 기능 분석 → Function Tags 부여 → Layer/Zone 좌표 자동 도출
+ 제품의 기능 분석 → Functions 부여 → Layer/Zone 좌표 자동 도출
 
  예시: PostgreSQL 신규 버전
  ```
@@ -221,11 +221,11 @@ GR 생태계란 GR DB, GR Framework 을 기반으로 GR Edu, GR Consulting, GR s
  ```
  Component: Kubernetes v1.28
    Primary Coordinate: (Cross-Layer, Zone 4)    # 단일 좌표 (가장 중요한 역할 기준)
-   Function Tags: [P3.2, R2.2, M7.3, S5.2, ...]  # 다중 기능 표현
+   Functions: [P3.2, R2.2, M7.3, S5.2, ...]  # 다중 기능 표현
 
    Policy Checklist (자동 생성):
      좌표 기반: 18 policies (Layer + Zone + Boundary)
-     Function Tag 기반: 29 policies (각 태그별 정책)
+     Function 기반: 29 policies (각 태그별 정책)
      Total Required: 47 policies
 
    Compliance Measurement (준수도 측정):
@@ -241,7 +241,7 @@ GR 생태계란 GR DB, GR Framework 을 기반으로 GR Edu, GR Consulting, GR s
     - Zone 공통 정책
     - Layer × Zone 경계 정책
 
- 2. Function Tag 기반 정책 수집
+ 2. Function 기반 정책 수집
     - 각 태그별 특화 정책
     - 태그 조합 정책
 
@@ -279,7 +279,7 @@ GR 생태계란 GR DB, GR Framework 을 기반으로 GR Edu, GR Consulting, GR s
 
  **체크리스트 프레임워크의 가치**:
  - ✅ **정책 충돌 방지**: 단일 좌표 원칙으로 정책 일관성 유지
- - ✅ **다중 기능 지원**: Function Tags로 복잡한 제품의 역할 완전 표현
+ - ✅ **다중 기능 지원**: Functions로 복잡한 제품의 역할 완전 표현
  - ✅ **정량적 측정**: 0-100% 준수도 점수로 보안 수준 명확화
  - ✅ **Gap 가시화**: 미구현 정책 식별 및 위험도 기반 우선순위화
  - ✅ **지속적 개선**: 주기적 재평가로 보안 성숙도 향상 추적
@@ -390,7 +390,7 @@ GR 생태계란 GR DB, GR Framework 을 기반으로 GR Edu, GR Consulting, GR s
    - 파트너사 연동 구간 명확히 분리
    - 신뢰 수준 세밀화 (0% / 10% / 20% / ...)
 
- **Function Tag 확장**: 210+ Tags → 280+ Tags (10 Domains)
+ **Function 확장**: 210+ Tags → 280+ Tags (10 Domains)
  - **신규 Domain**:
    - **T (Tech Stack)**: PostgreSQL, React, Python 등 구체적 기술 스택 (CVE 매핑 핵심)
    - **I (Interface)**: REST API, gRPC, MQTT 등 통신 프로토콜

@@ -61,7 +61,7 @@ Angular:
   - Solid.js
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.6` (Frontend Application)
 - Tech Stack: `T1.1` (JavaScript), `T1.2` (TypeScript)
 
@@ -93,7 +93,7 @@ Go:
   - ASP.NET Core
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.5` (Backend API Server)
 - Interface: `I1.1` (HTTP/REST), `I1.2` (GraphQL), `I1.3` (gRPC)
 
@@ -113,7 +113,7 @@ Native:
   - Android: Kotlin, Jetpack Compose
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A1.7` (Mobile Application)
 
 ---
@@ -141,7 +141,7 @@ GPU 요구사항:
   - 70B Model: A100 (80GB) × 2 이상
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.1` (LLM Inference)
 - Tech Stack: `T1.3` (Python), `T5.1` (PyTorch), `T5.2` (CUDA)
 
@@ -165,7 +165,7 @@ Generation:
   - LLM (GPT-4, Claude, Self-hosted)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.2` (RAG System)
 - Secondary: `D5.2` (Vector Search), `A7.1` (LLM Inference)
 
@@ -189,7 +189,7 @@ CrewAI:
   - Role-based Agent
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.3` (AI Agent)
 
 ---
@@ -224,7 +224,7 @@ QLoRA:
   - 4-bit Quantization
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.4` (Model Serving), `A7.5` (Model Training)
 
 ---
@@ -246,7 +246,7 @@ Weights & Biases:
   - 프롬프트 최적화
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `A7.6` (Prompt Engineering)
 
 ---

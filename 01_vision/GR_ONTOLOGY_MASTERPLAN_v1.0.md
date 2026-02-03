@@ -130,7 +130,7 @@ Zone 4:   Management          - 관리 (인프라 관리, 운영)
 Zone 5:   Endpoint            - 엔드포인트 (사용자 디바이스)
 ```
 
-#### Function Tags (10개 도메인)
+#### Functions (10개 도메인)
 ```
 M: Monitoring    - 모니터링, 메트릭
 N: Networking    - 네트워킹, 프로토콜

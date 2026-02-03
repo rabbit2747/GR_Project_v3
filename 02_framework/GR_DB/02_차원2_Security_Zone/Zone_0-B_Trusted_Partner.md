@@ -83,7 +83,7 @@ LLM 추론:
   - SLA 제공 (가용성 99.9%+)
 ```
 
-**Function Tags** (Layer 0):
+**Functions** (Layer 0):
 - Primary: `A7.1` (LLM Inference)
 - Secondary: `D5.1` (Vector Embeddings)
 - Interface: `I1.1` (HTTP/REST API)
@@ -128,7 +128,7 @@ CRM:
   - Twilio (SMS)
 ```
 
-**Function Tags** (Layer 0):
+**Functions** (Layer 0):
 - Primary: `A1.5` (SaaS Application)
 - Interface: `I1.1` (HTTP/REST), `I1.2` (GraphQL)
 
@@ -167,7 +167,7 @@ SLA:
   - NHN KCP
 ```
 
-**Function Tags** (Layer 0):
+**Functions** (Layer 0):
 - Primary: `A2.1` (Payment Processing)
 - Secondary: `C1.1` (PCI-DSS Compliance)
 - Interface: `I1.1` (HTTP/REST API)
@@ -209,7 +209,7 @@ PCI-DSS 준수:
   - SSL/TLS 종료
 ```
 
-**Function Tags** (Layer 0):
+**Functions** (Layer 0):
 - Primary: `N3.1` (CDN)
 - Secondary: `S5.1` (DDoS Protection)
 - Interface: `I1.1` (HTTP/HTTPS)
@@ -249,7 +249,7 @@ Enterprise SSO:
   - Facebook Login
 ```
 
-**Function Tags** (Layer 0):
+**Functions** (Layer 0):
 - Primary: `S2.3` (SSO - Single Sign-On)
 - Secondary: `S2.2` (MFA)
 - Interface: `I1.4` (OAuth 2.0/OIDC)

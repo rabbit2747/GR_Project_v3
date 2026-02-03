@@ -8,9 +8,9 @@
 | **한글명** | 비밀 정보 관리 |
 | **Layer** | Cross-Layer (Management) |
 | **분류** | Security |
-| **Function Tag (Primary)** | M3.1 (Vault) |
-| **Function Tag (Secondary)** | M3.2 (Key Management) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | M3.1 (Vault) |
+| **Function (Secondary)** | M3.2 (Key Management) |
+| **Function (Control)** | 없음 |
 
 ---
 

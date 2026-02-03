@@ -8,9 +8,9 @@
 | **한글명** | 백업 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | Data Protection |
-| **Function Tag (Primary)** | D6.1 (Full Backup) |
-| **Function Tag (Secondary)** | D6.2 (Incremental Backup) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D6.1 (Full Backup) |
+| **Function (Secondary)** | D6.2 (Incremental Backup) |
+| **Function (Control)** | 없음 |
 
 ---
 

@@ -8,9 +8,9 @@
 | **한글명** | 전원 & 냉각 |
 | **Layer** | Layer 1 (Physical Infrastructure) |
 | **분류** | Facility Infrastructure |
-| **Function Tag (Primary)** | P1.7 (UPS) |
-| **Function Tag (Secondary)** | P1.8 (PDU), P1.9 (HVAC) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P1.7 (UPS) |
+| **Function (Secondary)** | P1.8 (PDU), P1.9 (HVAC) |
+| **Function (Control)** | 없음 |
 
 ---
 

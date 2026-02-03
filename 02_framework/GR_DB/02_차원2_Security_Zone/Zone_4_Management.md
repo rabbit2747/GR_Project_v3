@@ -82,7 +82,7 @@ Commercial:
   - Compliance 리포트 (GDPR, PCI-DSS)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S9.1` (SIEM)
 - Secondary: `S9.2` (Threat Detection), `S9.3` (Incident Response)
 
@@ -129,7 +129,7 @@ Self-Hosted:
   - 이상 로그인 탐지 (Impossible Travel)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S2.1` (RBAC - Role-Based Access Control)
 - Control: `S2.2` (MFA), `S2.3` (SSO)
 
@@ -178,7 +178,7 @@ Kubernetes Secrets:
   - Audit Logging
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S4.2` (Secrets Management)
 - Control: `S4.1` (Encryption at Rest)
 
@@ -226,7 +226,7 @@ APM (Application Performance Monitoring):
   - 비즈니스 메트릭 (주문 수, 결제 금액)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M1.1` (Metrics Collection)
 - Secondary: `M1.2` (Visualization)
 
@@ -270,7 +270,7 @@ Knowledge Base:
   - FAQ
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `M4.1` (ITSM)
 
 **Zone 배치**: Zone 4 (Management)

@@ -8,9 +8,9 @@
 | **한글명** | 데이터 웨어하우스 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | Analytics Database |
-| **Function Tag (Primary)** | D5.1 (Cloud DW) |
-| **Function Tag (Secondary)** | D5.2 (On-Premise DW) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D5.1 (Cloud DW) |
+| **Function (Secondary)** | D5.2 (On-Premise DW) |
+| **Function (Control)** | 없음 |
 
 ---
 

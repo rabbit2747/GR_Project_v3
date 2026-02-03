@@ -8,9 +8,9 @@
 | **한글명** | API 게이트웨이 |
 | **Layer** | Layer 7 (Application) |
 | **분류** | API Management |
-| **Function Tag (Primary)** | A3.1 (API Gateway) |
-| **Function Tag (Secondary)** | A3.2 (Service Mesh Gateway) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A3.1 (API Gateway) |
+| **Function (Secondary)** | A3.2 (Service Mesh Gateway) |
+| **Function (Control)** | 없음 |
 
 ---
 

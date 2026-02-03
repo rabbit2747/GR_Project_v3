@@ -8,9 +8,9 @@
 | **한글명** | 가상 머신 |
 | **Layer** | Layer 3 (Computing Infrastructure) |
 | **분류** | Virtualized Compute |
-| **Function Tag (Primary)** | C2.1 (VM Instance) |
-| **Function Tag (Secondary)** | 없음 |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | C2.1 (VM Instance) |
+| **Function (Secondary)** | 없음 |
+| **Function (Control)** | 없음 |
 
 ---
 

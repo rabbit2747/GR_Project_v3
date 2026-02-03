@@ -47,7 +47,7 @@ CRI-O:
   - Lightweight
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R5.1` (Container Runtime)
 
 ---
@@ -70,7 +70,7 @@ AWS ECS/ECS:
   - Fargate (Serverless)
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R5.2` (Container Orchestration)
 - Secondary: `R3.2` (Auto Scaling), `M1.1` (Self-Healing)
 
@@ -97,7 +97,7 @@ Redis Streams:
   - 경량 메시지 큐
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `D3.3` (Event Streaming), `D3.1` (Message Queue)
 - Interface: `I3.1` (AMQP), `I3.2` (Kafka Protocol)
 
@@ -122,7 +122,7 @@ Consul Connect:
   - Service Discovery + Mesh
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `R5.3` (Service Mesh)
 - Control: `S5.3` (mTLS), `M2.1` (Distributed Tracing)
 

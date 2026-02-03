@@ -8,9 +8,9 @@
 | **한글명** | 관계형 데이터베이스 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | RDBMS |
-| **Function Tag (Primary)** | D1.1 (PostgreSQL) |
-| **Function Tag (Secondary)** | D1.2 (MySQL), D1.3 (SQL Server) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D1.1 (PostgreSQL) |
+| **Function (Secondary)** | D1.2 (MySQL), D1.3 (SQL Server) |
+| **Function (Control)** | 없음 |
 
 ---
 

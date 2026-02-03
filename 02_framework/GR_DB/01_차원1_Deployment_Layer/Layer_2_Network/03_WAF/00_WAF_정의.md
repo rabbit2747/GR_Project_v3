@@ -8,9 +8,9 @@
 | **한글명** | 웹 애플리케이션 방화벽 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Application Security |
-| **Function Tag (Primary)** | S1.3 (WAF) |
-| **Function Tag (Secondary)** | 없음 |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | S1.3 (WAF) |
+| **Function (Secondary)** | 없음 |
+| **Function (Control)** | 없음 |
 
 ---
 

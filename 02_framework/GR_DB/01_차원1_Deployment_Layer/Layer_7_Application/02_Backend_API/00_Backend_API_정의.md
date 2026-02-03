@@ -8,9 +8,9 @@
 | **한글명** | 백엔드 API |
 | **Layer** | Layer 7 (Application) |
 | **분류** | RESTful API |
-| **Function Tag (Primary)** | A2.1 (REST API) |
-| **Function Tag (Secondary)** | A2.2 (Microservices) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A2.1 (REST API) |
+| **Function (Secondary)** | A2.2 (Microservices) |
+| **Function (Control)** | 없음 |
 
 ---
 

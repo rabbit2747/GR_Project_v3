@@ -59,7 +59,7 @@ Global Load Balancer:
   - 대표: AWS Route53, Cloudflare Load Balancing
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N1.1` (L4 Load Balancing), `N1.2` (L7 Load Balancing)
 - Secondary: `S5.1` (SSL/TLS Termination), `R3.1` (Health Check)
 
@@ -92,7 +92,7 @@ Web Application Firewall (WAF):
   - 대표: Cloudflare WAF, AWS WAF, F5 ASM
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `S1.1` (Network Firewall), `S1.2` (WAF)
 - Control: `S1.3` (DDoS Protection), `S1.4` (IPS/IDS)
 
@@ -126,7 +126,7 @@ Caddy:
   - 간편한 설정
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N2.1` (Reverse Proxy)
 - Secondary: `S5.1` (SSL/TLS Termination), `D2.5` (Static Content Caching)
 - Interface: `I1.1` (HTTP/HTTPS)
@@ -157,7 +157,7 @@ Zero Trust Network Access (ZTNA):
   - 대표: Zscaler Private Access, Cloudflare Access
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N5.1` (VPN Tunnel)
 - Control: `S5.2` (Encrypted Communication)
 
@@ -184,7 +184,7 @@ Zero Trust Network Access (ZTNA):
   - Geo-blocking
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N3.1` (Content Caching)
 - Secondary: `S1.3` (DDoS Protection), `D2.2` (Edge Caching)
 - Control: `S7.1` (Geo-blocking)
@@ -214,7 +214,7 @@ Private DNS:
   - AWS Route53 Private Hosted Zone
 ```
 
-**Function Tags**:
+**Functions**:
 - Primary: `N3.2` (DNS Resolution)
 - Secondary: `N1.3` (Global Load Balancing - DNS 기반)
 

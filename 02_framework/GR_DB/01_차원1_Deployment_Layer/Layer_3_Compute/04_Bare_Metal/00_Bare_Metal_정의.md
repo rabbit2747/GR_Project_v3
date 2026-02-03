@@ -8,9 +8,9 @@
 | **한글명** | 베어메탈 서버 |
 | **Layer** | Layer 3 (Computing Infrastructure) |
 | **분류** | Physical Compute |
-| **Function Tag (Primary)** | C4.1 (Dedicated Server) |
-| **Function Tag (Secondary)** | C4.2 (Bare Metal Cloud) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | C4.1 (Dedicated Server) |
+| **Function (Secondary)** | C4.2 (Bare Metal Cloud) |
+| **Function (Control)** | 없음 |
 
 ---
 

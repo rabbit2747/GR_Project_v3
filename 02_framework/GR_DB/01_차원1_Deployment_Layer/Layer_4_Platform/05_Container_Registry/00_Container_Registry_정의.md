@@ -8,9 +8,9 @@
 | **한글명** | 컨테이너 레지스트리 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Artifact Repository |
-| **Function Tag (Primary)** | P5.1 (Image Registry) |
-| **Function Tag (Secondary)** | P5.2 (Artifact Storage) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P5.1 (Image Registry) |
+| **Function (Secondary)** | P5.2 (Artifact Storage) |
+| **Function (Control)** | 없음 |
 
 ---
 

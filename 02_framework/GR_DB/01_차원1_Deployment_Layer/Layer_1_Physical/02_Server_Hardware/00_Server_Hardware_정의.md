@@ -8,9 +8,9 @@
 | **한글명** | 서버 하드웨어 |
 | **Layer** | Layer 1 (Physical Infrastructure) |
 | **분류** | Computing Hardware |
-| **Function Tag (Primary)** | P1.3 (Rack Server) |
-| **Function Tag (Secondary)** | P1.4 (Blade Server) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P1.3 (Rack Server) |
+| **Function (Secondary)** | P1.4 (Blade Server) |
+| **Function (Control)** | 없음 |
 
 ---
 

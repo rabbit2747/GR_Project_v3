@@ -8,9 +8,9 @@
 | **한글명** | 코드형 인프라 |
 | **Layer** | Layer 4 (Platform Services) |
 | **분류** | Automation & Provisioning |
-| **Function Tag (Primary)** | P3.1 (IaC Tool) |
-| **Function Tag (Secondary)** | P3.2 (Configuration Management) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P3.1 (IaC Tool) |
+| **Function (Secondary)** | P3.2 (Configuration Management) |
+| **Function (Control)** | 없음 |
 
 ---
 

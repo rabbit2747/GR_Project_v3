@@ -8,9 +8,9 @@
 | **한글명** | 메시지 큐 |
 | **Layer** | Layer 6 (Runtime) |
 | **분류** | Asynchronous Messaging |
-| **Function Tag (Primary)** | R3.1 (Message Broker) |
-| **Function Tag (Secondary)** | R3.2 (Event Streaming) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | R3.1 (Message Broker) |
+| **Function (Secondary)** | R3.2 (Event Streaming) |
+| **Function (Control)** | 없음 |
 
 ---
 

@@ -22,7 +22,7 @@
 7. `Zone_4_Management.md` - v2.0
 8. `Zone_5_Endpoint.md` - v2.0
 
-**Function Tag 개요 (차원3)**:
+**Function 개요 (차원3)**:
 9. `00_차원3_개요.md` - v2.0 (10-Domain Model)
 
 **주요 변경사항**:
@@ -375,9 +375,9 @@ Mitigation: S7.1 (SAST), Input Validation
 └── Zone_5_Endpoint.md (v2.0)
 ```
 
-**차원3 (Function Tag)**: 11개 파일
+**차원3 (Function)**: 11개 파일
 ```
-03_차원3_Function_Tag/
+03_차원3_Function/
 ├── 00_차원3_개요.md (v2.0)
 ├── Domain_M_Monitoring.md (NEW v2.0)
 ├── Domain_N_Networking.md (v2.0)

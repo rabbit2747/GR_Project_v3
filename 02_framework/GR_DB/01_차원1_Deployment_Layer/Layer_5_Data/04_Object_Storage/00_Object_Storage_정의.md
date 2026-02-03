@@ -8,9 +8,9 @@
 | **한글명** | 객체 스토리지 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | Unstructured Data Storage |
-| **Function Tag (Primary)** | D4.1 (Cloud Storage) |
-| **Function Tag (Secondary)** | D4.2 (On-Premise Storage) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D4.1 (Cloud Storage) |
+| **Function (Secondary)** | D4.2 (On-Premise Storage) |
+| **Function (Control)** | 없음 |
 
 ---
 

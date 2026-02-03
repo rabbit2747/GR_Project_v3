@@ -8,9 +8,9 @@
 | **한글명** | 스토리지 |
 | **Layer** | Layer 1 (Physical Infrastructure) |
 | **분류** | Storage Hardware |
-| **Function Tag (Primary)** | P1.5 (SAN) |
-| **Function Tag (Secondary)** | P1.6 (NAS), D4.1 (Object Storage - 논리적) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | P1.5 (SAN) |
+| **Function (Secondary)** | P1.6 (NAS), D4.1 (Object Storage - 논리적) |
+| **Function (Control)** | 없음 |
 
 ---
 

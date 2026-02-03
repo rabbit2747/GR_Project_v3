@@ -8,9 +8,9 @@
 | **한글명** | 로드 밸런서 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Traffic Distribution |
-| **Function Tag (Primary)** | N1.1 (L4 LB) |
-| **Function Tag (Secondary)** | N1.2 (L7 LB) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | N1.1 (L4 LB) |
+| **Function (Secondary)** | N1.2 (L7 LB) |
+| **Function (Control)** | 없음 |
 
 ---
 

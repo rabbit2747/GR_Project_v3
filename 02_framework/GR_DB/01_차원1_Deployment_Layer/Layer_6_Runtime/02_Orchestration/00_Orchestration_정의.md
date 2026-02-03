@@ -8,9 +8,9 @@
 | **한글명** | 오케스트레이션 |
 | **Layer** | Layer 6 (Runtime) |
 | **분류** | Container Orchestration |
-| **Function Tag (Primary)** | R2.1 (Kubernetes) |
-| **Function Tag (Secondary)** | R2.2 (ECS/EKS) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | R2.1 (Kubernetes) |
+| **Function (Secondary)** | R2.2 (ECS/EKS) |
+| **Function (Control)** | 없음 |
 
 ---
 

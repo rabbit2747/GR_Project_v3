@@ -8,9 +8,9 @@
 | **한글명** | NoSQL 데이터베이스 |
 | **Layer** | Layer 5 (Data Services) |
 | **분류** | Non-Relational Database |
-| **Function Tag (Primary)** | D2.1 (Document DB) |
-| **Function Tag (Secondary)** | D2.2 (Key-Value), D2.3 (Wide-Column), D2.4 (Graph) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | D2.1 (Document DB) |
+| **Function (Secondary)** | D2.2 (Key-Value), D2.3 (Wide-Column), D2.4 (Graph) |
+| **Function (Control)** | 없음 |
 
 ---
 

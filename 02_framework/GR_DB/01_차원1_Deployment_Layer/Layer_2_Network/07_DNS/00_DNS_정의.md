@@ -8,9 +8,9 @@
 | **한글명** | 도메인 네임 시스템 |
 | **Layer** | Layer 2 (Network Infrastructure) |
 | **분류** | Name Resolution |
-| **Function Tag (Primary)** | N2.1 (DNS Resolver) |
-| **Function Tag (Secondary)** | N2.2 (Authoritative DNS) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | N2.1 (DNS Resolver) |
+| **Function (Secondary)** | N2.2 (Authoritative DNS) |
+| **Function (Control)** | 없음 |
 
 ---
 

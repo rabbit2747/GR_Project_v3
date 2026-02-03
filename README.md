@@ -35,7 +35,7 @@ GR Ontology는 보안 지식을 **연결된 그래프(Knowledge Graph)**로 구�
 │   - 방어 기법           │   - applies_to                │
 │   - 취약점              │   - implements                │
 │                         │                               │
-│   is_infrastructure ────┘   ※ related_to 금지          │
+│   entity_class ─────────┘   ※ related_to 금지          │
 │   true/false 구분                                       │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
@@ -65,7 +65,7 @@ GR_Project_v3/
 │   └── GR_DB/
 │       ├── 01_차원1_Deployment_Layer/
 │       ├── 02_차원2_Security_Zone/
-│       └── 03_차원3_Function_Tag/
+│       └── 03_차원3_Function/
 │
 ├── 03_ontology/                 # 온톨로지 정의
 │   ├── constitution/            # 헌법 (원칙)
@@ -75,7 +75,7 @@ GR_Project_v3/
 │   └── taxonomy/                # 분류 체계
 │       ├── layers.yaml
 │       ├── zones.yaml
-│       └── atom_tags.yaml       # ※ atom_tags 아님
+│       └── atom_tags.yaml       # 원자 특성 태그
 │
 ├── 04_knowledge_base/           # 지식 저장소 (원자들)
 │   ├── concepts/
@@ -98,14 +98,14 @@ GR_Project_v3/
 
 ## 핵심 개념
 
-### 원자 분류: is_infrastructure
+### 원자 분류: entity_class
 
 모든 원자는 **인프라 요소**와 **지식**으로 구분됩니다.
 
-| is_infrastructure | 설명 | type | 좌표 |
-|:-----------------:|------|------|------|
-| **true** | 배포 가능한 인프라 | component, component_tool, component_control | gr_coordinates |
-| **false** | 지식/개념/기법 | technique, vulnerability, concept, protocol... | scope |
+| entity_class | 설명 | type | 좌표 |
+|:------------:|------|------|------|
+| **true** | 배포 가능한 인프라 | component, component_tool, component_control | gr_coordinates (layer, zone, function) |
+| **false** | 지식/개념/기법 | technique, vulnerability, concept, protocol, tool_knowledge, control_policy... | scope (target_layers, target_zones) |
 
 ### 인프라 원자 예시
 
@@ -117,12 +117,12 @@ identity:
 classification:
   domain: application
   type: component
-  is_infrastructure: true        # ✅ 인프라 요소
+  entity_class: true             # ✅ 인프라 요소
   gr_coordinates:
     layer: "L7"
-    zone: "Z2"                   # ※ Z2 아님!
-    function: ["A2.1", "S2.2"]   # ※ tags 아님!
-  atom_tags: ["WEB", "LINUX"]
+    zone: "Z2"
+    function: ["A2.1", "S2.2"]   # 계층적 Function 좌표
+  atom_tags: ["WEB", "LINUX"]    # 평면적 특성 태그
 
 relations:
   structural:
@@ -141,8 +141,8 @@ identity:
 classification:
   domain: security
   type: technique
-  is_infrastructure: false       # ✅ 지식 요소
-  scope:                         # gr_coordinates 대신 scope
+  entity_class: false            # ✅ 지식 요소
+  scope:                         # 인프라가 아니므로 scope 사용
     target_layers: ["L7"]
     target_zones: ["Z2", "Z3"]
   atom_tags: ["INJ", "WEB", "INITIAL"]

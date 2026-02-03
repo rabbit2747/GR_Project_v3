@@ -8,9 +8,9 @@
 | **한글명** | 모바일 백엔드 |
 | **Layer** | Layer 7 (Application) |
 | **분류** | Backend as a Service (BaaS) |
-| **Function Tag (Primary)** | A6.1 (BaaS) |
-| **Function Tag (Secondary)** | A6.2 (mBaaS) |
-| **Function Tag (Control)** | 없음 |
+| **Function (Primary)** | A6.1 (BaaS) |
+| **Function (Secondary)** | A6.2 (mBaaS) |
+| **Function (Control)** | 없음 |
 
 ---
 
