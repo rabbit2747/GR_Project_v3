@@ -187,14 +187,14 @@ good_example:
 │                    Type 분류 체계 v2.0                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
-│  type은 entity_class에 따라 구분됨:                         │
+│  type은 is_infrastructure에 따라 구분됨:                         │
 │                                                              │
-│  [entity_class: true] 인프라 요소 (배포 가능)               │
+│  [is_infrastructure: true] 인프라 요소 (배포 가능)               │
 │  • component         : 인프라/시스템 구성요소              │
 │  • component_tool    : 배포되는 도구 (Burp Suite 등)       │
 │  • component_control : 배포되는 보안 통제 (WAF 등)         │
 │                                                              │
-│  [entity_class: false] 지식 요소 (개념/기법)                │
+│  [is_infrastructure: false] 지식 요소 (개념/기법)                │
 │  • concept           : 개념, 사상, 전술                    │
 │  • technique         : 공격/방어 기법                      │
 │  • vulnerability     : 취약점                              │
@@ -216,7 +216,7 @@ good_example:
 │      → type: component, atom_tags: [CLOUD, PLATFORM]       │
 │                                                              │
 │  이유:                                                      │
-│  1. entity_class로 인프라/지식 명확히 구분                 │
+│  1. is_infrastructure로 인프라/지식 명확히 구분                 │
 │  2. atom_tags의 유연성 활용 (복합 분류 가능)               │
 │  3. AI 학습 및 검색 일관성 유지                            │
 │                                                              │

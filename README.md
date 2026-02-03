@@ -35,7 +35,7 @@ GR Ontology는 보안 지식을 **연결된 그래프(Knowledge Graph)**로 구�
 │   - 방어 기법           │   - applies_to                │
 │   - 취약점              │   - implements                │
 │                         │                               │
-│   entity_class ─────────┘   ※ related_to 금지          │
+│   is_infrastructure ─────────┘   ※ related_to 금지          │
 │   true/false 구분                                       │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
@@ -98,11 +98,11 @@ GR_Project_v3/
 
 ## 핵심 개념
 
-### 원자 분류: entity_class
+### 원자 분류: is_infrastructure
 
 모든 원자는 **인프라 요소**와 **지식**으로 구분됩니다.
 
-| entity_class | 설명 | type | 좌표 |
+| is_infrastructure | 설명 | type | 좌표 |
 |:------------:|------|------|------|
 | **true** | 배포 가능한 인프라 | component, component_tool, component_control | gr_coordinates (layer, zone, function) |
 | **false** | 지식/개념/기법 | technique, vulnerability, concept, protocol, tool_knowledge, control_policy... | scope (target_layers, target_zones) |
@@ -117,7 +117,7 @@ identity:
 classification:
   domain: application
   type: component
-  entity_class: true             # ✅ 인프라 요소
+  is_infrastructure: true             # ✅ 인프라 요소
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
@@ -141,7 +141,7 @@ identity:
 classification:
   domain: security
   type: technique
-  entity_class: false            # ✅ 지식 요소
+  is_infrastructure: false            # ✅ 지식 요소
   scope:                         # 인프라가 아니므로 scope 사용
     target_layers: ["L7"]
     target_zones: ["Z2", "Z3"]

@@ -27,31 +27,31 @@
 
 ---
 
-## 2. 핵심 개념: entity_class
+## 2. 핵심 개념: is_infrastructure
 
 ### 2.1 정의
 
 모든 원자는 **인프라 요소**인지 **지식**인지 구분해야 합니다.
 
 ```yaml
-entity_class: true   # 인프라 요소 (배포/설치 가능)
-entity_class: false  # 지식 (개념/기법/취약점)
+is_infrastructure: true   # 인프라 요소 (배포/설치 가능)
+is_infrastructure: false  # 지식 (개념/기법/취약점)
 ```
 
 ### 2.2 판정 기준 (4가지 질문)
 
-| 질문 | Yes면 entity_class: true |
+| 질문 | Yes면 is_infrastructure: true |
 |------|:-----------------------------:|
 | 네트워크 주소를 가질 수 있는가? | ✅ |
 | 프로세스로 실행될 수 있는가? | ✅ |
 | 물리적 형태가 있을 수 있는가? | ✅ |
 | 시스템 자원을 소비하는가? | ✅ |
 
-**하나라도 Yes → `entity_class: true`**
+**하나라도 Yes → `is_infrastructure: true`**
 
 ### 2.3 Type별 자동 판정
 
-| entity_class | type |
+| is_infrastructure | type |
 |:-----------------:|------|
 | **true** | component, component_tool, component_control |
 | **false** | concept, technique, vulnerability, principle, pattern, protocol, tool_knowledge, control_policy |
@@ -75,14 +75,14 @@ entity_class: false  # 지식 (개념/기법/취약점)
 
 ### 4.1 Type 목록
 
-**인프라 요소 (entity_class: true)**
+**인프라 요소 (is_infrastructure: true)**
 | type | 설명 | 예시 |
 |------|------|------|
 | component | 인프라 구성요소 | Server, Database, VM |
 | component_tool | 배포된 도구 | SIEM, EDR |
 | component_control | 배포된 보안 통제 | WAF 장비, IDS/IPS |
 
-**지식 요소 (entity_class: false)**
+**지식 요소 (is_infrastructure: false)**
 | type | 설명 | 예시 |
 |------|------|------|
 | concept | 개념, 사상 | Zero Trust |
@@ -96,7 +96,7 @@ entity_class: false  # 지식 (개념/기법/취약점)
 
 ### 4.2 ID 프리픽스
 
-| 유형 | ID 프리픽스 | entity_class |
+| 유형 | ID 프리픽스 | is_infrastructure |
 |------|-------------|:-----------------:|
 | Infrastructure | INFRA-*, COMP-* | true |
 | Attack | ATK-* | false |
@@ -117,7 +117,7 @@ entity_class: false  # 지식 (개념/기법/취약점)
 
 ## 5. 원자 기본 구조
 
-### 5.1 인프라 원자 (entity_class: true)
+### 5.1 인프라 원자 (is_infrastructure: true)
 
 ```yaml
 identity:
@@ -134,7 +134,7 @@ identity:
 classification:
   domain: application
   type: component
-  entity_class: true           # ✅ 인프라 요소
+  is_infrastructure: true           # ✅ 인프라 요소
   abstraction_level: 2
   gr_coordinates:                   # 3D 좌표 (위치)
     layer: "L7"
@@ -181,7 +181,7 @@ metadata:
       - "애플리케이션 서버"
 ```
 
-### 5.2 지식 원자 (entity_class: false)
+### 5.2 지식 원자 (is_infrastructure: false)
 
 ```yaml
 identity:
@@ -197,7 +197,7 @@ identity:
 classification:
   domain: security
   type: technique
-  entity_class: false          # ✅ 지식 요소
+  is_infrastructure: false          # ✅ 지식 요소
   abstraction_level: 2
   scope:                            # 적용 범위 (gr_coordinates 대신)
     target_layers: ["L7"]
@@ -291,7 +291,7 @@ related_to: [...]   # 의미 모호, 무한 확장 가능
 
 | 구분 | gr_coordinates.function | atom_tags |
 |------|------------------------|-----------|
-| **대상** | 인프라만 (entity_class: true) | 모든 원자 |
+| **대상** | 인프라만 (is_infrastructure: true) | 모든 원자 |
 | **의미** | "어디에 위치하는가" (3D 좌표) | "어떤 특성인가" (분류) |
 | **구조** | 계층적 (A2.1, S3.2) | 평면적 (INJ, WEB) |
 | **참조** | 02_framework/.../Function/ | 03_ontology/taxonomy/atom_tags.yaml |
@@ -325,7 +325,7 @@ atom_tags: ["INJ", "WEB", "MYSQL"]     # 특성 분류
 
 - [ ] ID가 명명 규칙을 따르는가?
 - [ ] type이 올바른가?
-- [ ] entity_class가 type과 일치하는가?
+- [ ] is_infrastructure가 type과 일치하는가?
 - [ ] 인프라 원자: gr_coordinates (layer, zone, function)가 모두 있는가?
 - [ ] 지식 원자: scope (target_layers, target_zones)가 있는가?
 - [ ] atom_tags가 1개 이상인가?
@@ -365,7 +365,7 @@ atom_tags: ["INJ", "WEB", "MYSQL"]     # 특성 분류
 
 | 버전 | 날짜 | 변경 내용 |
 |------|------|----------|
-| 2.0 | 2026-02-03 | entity_class 추가, related_to 금지, function/atom_tags 구분, Zone 형식 변경 |
+| 2.0 | 2026-02-03 | is_infrastructure 추가, related_to 금지, function/atom_tags 구분, Zone 형식 변경 |
 | 1.0 | 2025-01-29 | 초기 버전 |
 
 ---
