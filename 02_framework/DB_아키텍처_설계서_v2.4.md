@@ -537,7 +537,7 @@ CREATE TABLE archetypes (
 
     -- GR Framework 분류
     layer VARCHAR(10) NOT NULL,                  -- "L5", "L6", "L7"
-    zone VARCHAR(20) NOT NULL,                   -- "Zone2", "Zone3"
+    zone VARCHAR(20) NOT NULL,                   -- "Z2", "Z3"
 
     -- Function Tags
     primary_tag VARCHAR(20) NOT NULL,            -- "D3.1" (In-Memory Cache)
@@ -583,18 +583,18 @@ VALUES (
     (SELECT id FROM products WHERE name = 'Redis'),
     '5.0.0', '6.0.0',
     'Simple Cache',
-    'L5', 'Zone2',
+    'L5', 'Z2',
     'D3.1',  -- In-Memory Cache
     'Application-level caching for fast data access'
 );
 
--- Redis 6.x: SSL/TLS 추가, Zone3도 가능
+-- Redis 6.x: SSL/TLS 추가, Z3도 가능
 INSERT INTO archetypes (product_id, min_version, max_version, role, layer, zone, primary_tag, secondary_tags, use_case)
 VALUES (
     (SELECT id FROM products WHERE name = 'Redis'),
     '6.0.0', '7.0.0',
     'Secure Cache',
-    'L5', 'Zone3',  -- SSL/TLS로 Zone3 가능
+    'L5', 'Z3',  -- SSL/TLS로 Z3 가능
     'D3.1',
     '["S2.2", "P2.1"]'::jsonb,  -- SSL/TLS (S2.2), Performance (P2.1)
     'Encrypted caching with ACL for sensitive data'
@@ -606,7 +606,7 @@ VALUES (
     (SELECT id FROM products WHERE name = 'Redis'),
     '7.0.0', '8.0.0',
     'Advanced Cache + Functions',
-    'L5', 'Zone2',
+    'L5', 'Z2',
     'D3.1',
     '["A1.7", "S2.2", "P2.1"]'::jsonb,  -- Functions (A1.7), SSL (S2.2), Performance (P2.1)
     'Cache with server-side computation using Functions'
@@ -618,7 +618,7 @@ VALUES (
     (SELECT id FROM products WHERE name = 'Redis'),
     '7.0.0', '8.0.0',
     'Message Broker',
-    'L6', 'Zone2',  -- Runtime 레이어
+    'L6', 'Z2',  -- Runtime 레이어
     'R3.2',  -- Message Queue
     '["I1.4"]'::jsonb,  -- Pub/Sub Protocol
     'Event-driven architecture with Pub/Sub and Streams'
@@ -1032,7 +1032,7 @@ CREATE TABLE mitre_techniques (
 
     -- GR Framework 매핑
     common_layers JSONB,                       -- ["L2", "L7"]
-    common_zones JSONB,                        -- ["Zone1", "Zone2"]
+    common_zones JSONB,                        -- ["Z1", "Z2"]
     affected_tags JSONB,                       -- ["N2.1", "S3.4", "A1.5"]
 
     description TEXT,
@@ -1091,7 +1091,7 @@ INSERT INTO mitre_techniques (technique_id, name, tactic, common_layers, common_
 VALUES
 ('T1190', 'Exploit Public-Facing Application', 'Initial Access',
  '["L2", "L7"]'::jsonb,
- '["Zone1", "Zone2"]'::jsonb,
+ '["Z1", "Z2"]'::jsonb,
  '["N2.1", "A1.5", "T1.1"]'::jsonb,
  'Adversaries may attempt to take advantage of a weakness in an Internet-facing computer or program using software, data, or commands in order to cause unintended or unanticipated behavior.',
  'Update software, use Web Application Firewall (WAF), implement proper input validation',
@@ -1099,7 +1099,7 @@ VALUES
 
 ('T1059.007', 'Command and Scripting Interpreter: JavaScript', 'Execution',
  '["L6", "L7"]'::jsonb,
- '["Zone2", "Zone3"]'::jsonb,
+ '["Z2", "Z3"]'::jsonb,
  '["T1.4", "A1.5"]'::jsonb,
  'Adversaries may abuse various implementations of JavaScript for execution.',
  'Restrict execution environments, use sandboxing, implement script signing',
@@ -1107,7 +1107,7 @@ VALUES
 
 ('T1003', 'OS Credential Dumping', 'Credential Access',
  '["L5", "L3"]'::jsonb,
- '["Zone3", "Zone4"]'::jsonb,
+ '["Z3", "Z4"]'::jsonb,
  '["T2.1", "S2.1"]'::jsonb,
  'Adversaries may attempt to dump credentials to obtain account login and credential material.',
  'Implement credential guard, use hardware security modules, monitor access to credential stores',
@@ -1123,7 +1123,7 @@ VALUES
  10.0,
  '2021-12-10',
  '["L2", "L6", "L7"]'::jsonb,
- '["Zone1", "Zone2", "Zone3"]'::jsonb,
+ '["Z1", "Z2", "Z3"]'::jsonb,
  '["A1.5", "T1.1", "T2.4", "N2.1"]'::jsonb);
 
 -- 3. CVE-MITRE 매핑
@@ -1172,7 +1172,7 @@ SELECT
 FROM cves c
 JOIN cve_mitre_mapping cm ON c.id = cm.cve_id
 JOIN mitre_techniques m ON cm.technique_id = m.id
-WHERE c.vulnerable_zones ?| array['Zone1', 'Zone2', 'Zone3']
+WHERE c.vulnerable_zones ?| array['Z1', 'Z2', 'Z3']
 GROUP BY c.id, c.cve_id, c.description, c.cvss_score, c.vulnerable_zones
 ORDER BY c.cvss_score DESC;
 
@@ -1188,7 +1188,7 @@ FROM mitre_techniques m
 LEFT JOIN cve_mitre_mapping cm ON m.id = cm.technique_id
 LEFT JOIN cves c ON cm.cve_id = c.id
 WHERE m.common_layers ?| array['L7']
-  AND m.common_zones ?| array['Zone2']
+  AND m.common_zones ?| array['Z2']
 GROUP BY m.id, m.technique_id, m.name, m.tactic, m.common_layers, m.common_zones
 ORDER BY related_cve_count DESC;
 ```
@@ -1242,7 +1242,7 @@ CREATE (a1:Archetype {
   id: 'arch-redis-cache',
   role: 'In-Memory Cache',
   layer: 'L5',
-  zone: 'Zone2',
+  zone: 'Z2',
   primary_tag: 'D3.1',
   secondary_tags: ['P2.1', 'M1.3'],
   use_case: 'Application-level caching for fast data access'
@@ -1252,7 +1252,7 @@ CREATE (a2:Archetype {
   id: 'arch-redis-session',
   role: 'Session Store',
   layer: 'L5',
-  zone: 'Zone3',
+  zone: 'Z3',
   primary_tag: 'D3.3',
   secondary_tags: ['S2.2'],
   use_case: 'Persistent session management with encryption'
@@ -1262,7 +1262,7 @@ CREATE (a3:Archetype {
   id: 'arch-redis-pubsub',
   role: 'Message Broker',
   layer: 'L6',
-  zone: 'Zone2',
+  zone: 'Z2',
   primary_tag: 'R3.2',
   secondary_tags: ['I1.4'],
   use_case: 'Pub/Sub messaging queue for event-driven architecture'
@@ -1279,8 +1279,8 @@ CREATE (l5:Layer {code: 'L5', name: 'Data Services', order: 5})
 CREATE (l6:Layer {code: 'L6', name: 'Runtime Environment', order: 6})
 
 // Zone 노드
-CREATE (z2:Zone {code: 'Zone2', name: 'Application', trust_level: 30})
-CREATE (z3:Zone {code: 'Zone3', name: 'Data', trust_level: 60})
+CREATE (z2:Zone {code: 'Z2', name: 'Application', trust_level: 30})
+CREATE (z3:Zone {code: 'Z3', name: 'Data', trust_level: 60})
 
 // Tag 노드
 CREATE (t1:Tag {code: 'D3.1', domain: 'D', name: 'In-Memory Cache'})
@@ -1307,7 +1307,7 @@ CREATE (a)-[:LOCATED_IN]->(l)
 
 // Archetype → Zone
 MATCH (a:Archetype {id: 'arch-redis-cache'})
-MATCH (z:Zone {code: 'Zone2'})
+MATCH (z:Zone {code: 'Z2'})
 CREATE (a)-[:BELONGS_TO]->(z)
 
 // Archetype → Tag (Primary)
@@ -1338,8 +1338,8 @@ CREATE (ap:AttackPath {
   name: 'Log4Shell Exploitation Chain',
   severity: 'Critical',
 
-  start_zone: 'Zone1',
-  end_zone: 'Zone3',
+  start_zone: 'Z1',
+  end_zone: 'Z3',
 
   cves: ['CVE-2021-44228'],
   mitre_techniques: ['T1190', 'T1059.007', 'T1003'],
@@ -1353,7 +1353,7 @@ CREATE (ap:AttackPath {
 })
 
 // Zone-to-Zone 공격 관계 생성
-MATCH (z1:Zone {code: 'Zone1'}), (z2:Zone {code: 'Zone2'})
+MATCH (z1:Zone {code: 'Z1'}), (z2:Zone {code: 'Z2'})
 CREATE (z1)-[:ATTACK_PATH {
   technique: 'T1190',
   technique_name: 'Exploit Public-Facing Application',
@@ -1367,7 +1367,7 @@ CREATE (z1)-[:ATTACK_PATH {
   mitigation: 'Update Log4j to 2.17.0+, Block outbound LDAP'
 }]->(z2)
 
-MATCH (z2:Zone {code: 'Zone2'}), (z3:Zone {code: 'Zone3'})
+MATCH (z2:Zone {code: 'Z2'}), (z3:Zone {code: 'Z3'})
 CREATE (z2)-[:ATTACK_PATH {
   technique: 'T1059.007',
   technique_name: 'Command and Scripting Interpreter',
@@ -1376,7 +1376,7 @@ CREATE (z2)-[:ATTACK_PATH {
   time_to_exploit: '15 minutes',
   detection_difficulty: 'High',
 
-  prerequisites: ['Initial foothold in Zone2', 'Database credentials'],
+  prerequisites: ['Initial foothold in Z2', 'Database credentials'],
   indicators: ['Suspicious process execution', 'Unusual database queries'],
   mitigation: 'Network segmentation, Database access controls'
 }]->(z3)
@@ -1389,7 +1389,7 @@ CREATE (t1:MITRETechnique {
   platforms: ['Linux', 'Windows'],
 
   common_layers: ['L2', 'L7'],
-  common_zones: ['Zone0-A', 'Zone1'],
+  common_zones: ['Zone0-A', 'Z1'],
 
   detection_methods: ['Network IDS', 'Application logs', 'WAF alerts'],
   mitigation_methods: ['Patch management', 'Input validation', 'WAF deployment']
@@ -1402,7 +1402,7 @@ CREATE (t2:MITRETechnique {
   platforms: ['Linux', 'Windows'],
 
   common_layers: ['L6', 'L7'],
-  common_zones: ['Zone2', 'Zone3'],
+  common_zones: ['Z2', 'Z3'],
 
   detection_methods: ['Runtime monitoring', 'Script execution logs'],
   mitigation_methods: ['Application whitelisting', 'Script signing']
@@ -1426,7 +1426,7 @@ CREATE (cve:CVE {
   published_date: '2021-12-10',
 
   vulnerable_layers: ['L2', 'L6', 'L7'],
-  vulnerable_zones: ['Zone1', 'Zone2', 'Zone3']
+  vulnerable_zones: ['Z1', 'Z2', 'Z3']
 })
 
 MATCH (ap:AttackPath {id: 'path-log4shell-001'})
@@ -1438,7 +1438,7 @@ CREATE (ap)-[:EXPLOITS_CVE]->(cve)
 
 ```cypher
 // 1. 특정 Zone에서 시작하는 모든 공격 경로 찾기
-MATCH path = (start:Zone {code: 'Zone1'})-[:ATTACK_PATH*1..5]->(end:Zone)
+MATCH path = (start:Zone {code: 'Z1'})-[:ATTACK_PATH*1..5]->(end:Zone)
 RETURN start.code AS from_zone,
        end.code AS to_zone,
        [rel IN relationships(path) | rel.technique_name] AS attack_chain,
@@ -1458,7 +1458,7 @@ RETURN ap.name,
 
 // 3. Zone X에서 Zone Y까지의 최단 공격 경로 찾기
 MATCH path = shortestPath(
-  (z1:Zone {code: 'Zone1'})-[:ATTACK_PATH*1..10]->(z2:Zone {code: 'Zone4'})
+  (z1:Zone {code: 'Z1'})-[:ATTACK_PATH*1..10]->(z2:Zone {code: 'Z4'})
 )
 RETURN path,
        LENGTH(path) AS hop_count,
@@ -1499,9 +1499,9 @@ ORDER BY cve.cvss_score DESC;
 
 ```cypher
 // Zone 1에서 Zone 3까지 도달 가능한 모든 경로 찾기
-MATCH path = (z1:Zone {code: 'Zone1'})<-[:BELONGS_TO]-(a1:Archetype)
+MATCH path = (z1:Zone {code: 'Z1'})<-[:BELONGS_TO]-(a1:Archetype)
              -[:COMMUNICATES_WITH*1..5]-
-             (a2:Archetype)-[:BELONGS_TO]->(z3:Zone {code: 'Zone3'})
+             (a2:Archetype)-[:BELONGS_TO]->(z3:Zone {code: 'Z3'})
 RETURN path, LENGTH(path) AS hop_count
 ORDER BY hop_count
 LIMIT 10
@@ -1641,7 +1641,7 @@ index.upsert(vectors=[
             "product_name": "Redis",
             "role": "In-Memory Cache",
             "layer": "L5",
-            "zone": "Zone2",
+            "zone": "Z2",
             "primary_tag": "D3.1",
             "type": "archetype"
         }
@@ -1703,7 +1703,7 @@ results = index.query(
     include_metadata=True,
     filter={
         "type": {"$eq": "archetype"},
-        "zone": {"$eq": "Zone2"},
+        "zone": {"$eq": "Z2"},
         "primary_tag": {"$in": ["D3.1", "D3.2", "D3.3"]}  # Cache 관련 태그
     }
 )
@@ -2543,7 +2543,7 @@ def parse_llm_response(response: str) -> dict:
     # 간단한 파싱 로직 (실제로는 더 정교하게)
     return {
         "layer": "L7",
-        "zone": "Zone2",
+        "zone": "Z2",
         "tags": ["A1.5", "N2.1"]
     }
 ```
@@ -2955,7 +2955,7 @@ Tables:
   - archetypes (PostgreSQL 내에서 관계 관리)
   - cves, cve_product_versions
   - mitre_techniques, cve_mitre_mapping
-  - function_tags, layer_zone_mapping
+  - atom_tags, layer_zone_mapping
 
 Vector Search:
   - pgvector 확장 사용

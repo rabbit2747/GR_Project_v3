@@ -952,7 +952,7 @@ UNKNOWN 발생 시 처리:
 
 - `layer_id`: 문자열 (예: "L7", "L6") - `layers.layer_id`와 동일 타입
 - `zone_id`: 문자열 (예: "Z2", "Z0-A") - `security_zones.zone_id`와 동일 타입
-- `tag_id`: 문자열 (예: "A1.5") - `function_tags.tag_id`와 동일 타입
+- `tag_id`: 문자열 (예: "A1.5") - `atom_tags.tag_id`와 동일 타입
 
 #### JSONB vs 정규화 확장 옵션
 > 초기에는 JSONB로 빠르게 구현, 필요 시 정규화

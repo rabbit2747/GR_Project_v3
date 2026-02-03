@@ -1382,12 +1382,12 @@ sqli_gr_mapping:
   # 발생 위치
   occurrence:
     layer: "L7"  # Application Layer
-    zone: "Zone3-4"  # 일반적인 웹앱 위치
+    zone: "Z3-4"  # 일반적인 웹앱 위치
 
   # 영향 범위
   impact:
     layer: "L5"  # Data Layer (DBMS)
-    zone: "Zone4-5"  # 내부 데이터 영역
+    zone: "Z4-5"  # 내부 데이터 영역
 
   # 관련 태그
   tags:

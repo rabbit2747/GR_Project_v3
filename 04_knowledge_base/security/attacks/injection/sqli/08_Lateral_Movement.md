@@ -542,7 +542,7 @@ postgresql_hardening:
 lateral_movement_gr_mapping:
   attack_phase:
     layer: "L3-L2"  # Network → Internal
-    zone: "Zone5 → Zone6+"
+    zone: "Z5 → Zone6+"
 
   attack_vectors:
     db_link:

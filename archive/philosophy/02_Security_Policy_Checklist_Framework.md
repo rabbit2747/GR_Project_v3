@@ -73,7 +73,7 @@ class ComponentInput:
     component_id: str                    # "COMP-K8S-001"
     name: str                            # "Kubernetes v1.28"
     primary_coordinate: tuple            # (Layer, Zone)
-    function_tags: list                  # [P3.2, R2.2, M7.3, S5.2]
+    atom_tags: list                  # [P3.2, R2.2, M7.3, S5.2]
     deployment_context: dict             # 추가 메타데이터
 ```
 
@@ -104,7 +104,7 @@ def generate_policy_checklist(component: ComponentInput) -> PolicyChecklist:
     checklist.add_policies(boundary_policies, category="BOUNDARY", priority="MANDATORY")
 
     # Step 2: Function Tag 기반 정책 수집
-    for tag in component.function_tags:
+    for tag in component.atom_tags:
         tag_policies = get_function_tag_policies(tag)
 
         # 태그별 우선순위 결정
@@ -323,7 +323,7 @@ CREATE TABLE checklist_policies (
 
     -- 정책 출처
     source_type VARCHAR(50) NOT NULL,        -- LAYER, ZONE, BOUNDARY, TAG
-    source_value VARCHAR(100),               -- L3, Zone4, P3.2, etc.
+    source_value VARCHAR(100),               -- L3, Z4, P3.2, etc.
 
     -- 우선순위
     priority VARCHAR(50) NOT NULL,           -- CRITICAL, MANDATORY, RECOMMENDED, OPTIONAL

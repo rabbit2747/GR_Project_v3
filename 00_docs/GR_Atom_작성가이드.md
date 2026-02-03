@@ -1,7 +1,10 @@
 # GR Atom 작성 가이드
 
 > **목적**: 일관된 품질의 원자를 작성하기 위한 표준 가이드
-> **최종 수정**: 2025-01-29
+> **버전**: 2.0
+> **최종 수정**: 2026-02-03
+> 
+> **참조 스키마**: `03_ontology/schema/core/atom_schema.yaml` v2.0
 
 ---
 
@@ -24,7 +27,38 @@
 
 ---
 
-## 2. 추상화 수준 (Level 1-4)
+## 2. 핵심 개념: is_infrastructure
+
+### 2.1 정의
+
+모든 원자는 **인프라 요소**인지 **지식**인지 구분해야 합니다.
+
+```yaml
+is_infrastructure: true   # 인프라 요소 (배포/설치 가능)
+is_infrastructure: false  # 지식 (개념/기법/취약점)
+```
+
+### 2.2 판정 기준 (4가지 질문)
+
+| 질문 | Yes면 is_infrastructure: true |
+|------|:-----------------------------:|
+| 네트워크 주소를 가질 수 있는가? | ✅ |
+| 프로세스로 실행될 수 있는가? | ✅ |
+| 물리적 형태가 있을 수 있는가? | ✅ |
+| 시스템 자원을 소비하는가? | ✅ |
+
+**하나라도 Yes → `is_infrastructure: true`**
+
+### 2.3 Type별 자동 판정
+
+| is_infrastructure | type |
+|:-----------------:|------|
+| **true** | component, component_tool, component_control |
+| **false** | concept, technique, vulnerability, principle, pattern, protocol, tool_knowledge, control_policy |
+
+---
+
+## 3. 추상화 수준 (Level 1-4)
 
 | Level | 이름 | 설명 | 예시 |
 |-------|------|------|------|
@@ -37,265 +71,251 @@
 
 ---
 
-## 3. 원자 유형 및 ID 체계
+## 4. 원자 유형 및 ID 체계
 
-### 3.1 ID 프리픽스
+### 4.1 Type 목록
 
-| 유형 | ID 프리픽스 | 설명 | 예시 |
-|------|-------------|------|------|
-| Infrastructure | INFRA-* | 인프라 구성요소 | WAS, DB, 방화벽 |
-| Attack | ATK-* | 공격 기법 | SQL Injection, XSS |
-| Defense | DEF-* | 방어 기법 | WAF, 암호화 |
-| Vulnerability | VUL-* | 취약점 유형 | CWE 기반 |
-| Tool | TOOL-* | 도구 | Burp Suite, nmap |
-| Concept | CON-* | 개념/원칙 | Zero Trust, Defense in Depth |
-| Technology | TECH-* | 기술 | Protocol, Algorithm |
-| Compliance | COMP-* | 컴플라이언스 | ISO 27001, GDPR |
+**인프라 요소 (is_infrastructure: true)**
+| type | 설명 | 예시 |
+|------|------|------|
+| component | 인프라 구성요소 | Server, Database, VM |
+| component_tool | 배포된 도구 | SIEM, EDR |
+| component_control | 배포된 보안 통제 | WAF 장비, IDS/IPS |
 
-### 3.2 ID 규칙
+**지식 요소 (is_infrastructure: false)**
+| type | 설명 | 예시 |
+|------|------|------|
+| concept | 개념, 사상 | Zero Trust |
+| technique | 공격/방어 기법 | SQL Injection |
+| vulnerability | 취약점 | CVE, CWE |
+| principle | 원칙 | Least Privilege |
+| pattern | 패턴, 시그니처 | Payload |
+| protocol | 프로토콜, 표준 | HTTP, TLS |
+| tool_knowledge | 도구 지식 | Metasploit 사용법 |
+| control_policy | 정책/절차 | 접근통제 정책 |
 
-- 형식: `{DOMAIN}-{SUBDOMAIN}-{NAME}-{###}`
-- 예: `INFRA-APP-WAS-001`, `ATK-INJECT-SQL-001`
+### 4.2 ID 프리픽스
+
+| 유형 | ID 프리픽스 | is_infrastructure |
+|------|-------------|:-----------------:|
+| Infrastructure | INFRA-*, COMP-* | true |
+| Attack | ATK-* | false |
+| Defense | DEF-* | false |
+| Vulnerability | VUL-* | false |
+| Tool | TOOL-* | true/false |
+| Concept | CON-* | false |
+| Protocol | PROTO-* | false |
+| Compliance | COMP-* | false |
+
+### 4.3 ID 규칙
+
+- 형식: `{PREFIX}-{SUBDOMAIN}-{NAME}-{###}`
+- 예: `INFRA-APP-WAS-001`, `ATK-INJ-SQL-001`
 - 숫자는 001부터 순차 부여
 
 ---
 
-## 4. 원자 기본 구조
+## 5. 원자 기본 구조
+
+### 5.1 인프라 원자 (is_infrastructure: true)
 
 ```yaml
 identity:
-  id: "INFRA-APP-WAS-001"           # 필수: 고유 ID
-  name: "Web Application Server"    # 필수: 정식 명칭
+  id: "COMP-APP-WAS-001"
+  name: "Web Application Server"
   normalization:
-    normalized_name: "web_application_server"  # 필수: 정규화된 이름
+    normalized_name: "web application server"
     normalization_version: "1.0"
-  aliases:                          # 권장: 검색용 별칭
+  aliases:
     - "WAS"
     - "App Server"
     - "웹 애플리케이션 서버"
 
 classification:
-  domain: "infrastructure"          # 필수: 도메인
-  type: "component"                 # 필수: 유형
-  abstraction_level: 2              # 필수: 추상화 수준 (1-4)
-  gr_coordinates:                   # 필수: GR 좌표
+  domain: application
+  type: component
+  is_infrastructure: true           # ✅ 인프라 요소
+  abstraction_level: 2
+  gr_coordinates:                   # 3D 좌표 (위치)
     layer: "L7"
-    zone: "Zone2"
-    tags: ["A-runtime", "S-session"]
+    zone: "Z2"
+    function: ["A2.1", "S2.2"]      # ※ tags 아님!
+  atom_tags: ["WEB", "LINUX"]       # 원자 특성 태그
 
 definition:
   what: |
-    [200-300자] 이것이 무엇인가? 핵심 특징과 역할 설명
+    웹 애플리케이션을 실행하는 서버 소프트웨어...
   why: |
-    [150-200자] 왜 중요한가? 존재 이유와 가치
+    비즈니스 로직 실행과 웹 서비스 제공을 위해...
   how: |
-    [200-400자] 어떻게 작동하는가? 동작 원리나 프로세스
+    HTTP 요청을 받아 서블릿/JSP를 처리하고...
 
 relations:
   structural:
-    is_a:
-      - "CON-MIDDLEWARE-001"        # 상위 개념
-    has_children:
-      - "INFRA-APP-WAS-TOMCAT-001"  # 하위 유형
-    related_to:
-      - "INFRA-DATA-RDBMS-001"      # 관련 개념
+    is_a: ["CON-MIDDLEWARE-001"]
   causal:
-    enables:
-      - "ATK-EXEC-DESER-001"        # 가능하게 하는 것
-    requires:
-      - "INFRA-RUNTIME-JVM-001"     # 필요로 하는 것
+    enables: ["ATK-EXEC-DESER-001"]
+    requires: ["INFRA-RUNTIME-JVM-001"]
+  implementation:
+    implements: ["PROTO-HTTP-001"]   # 프로토콜 구현
 
 properties:
   technical:
-    # 원자 유형별 기술 속성
-    components: []
-    protocols: []
+    default_port: 8080
     # ...
 
 metadata:
   trust:
-    source: "official"
-    references:
-      - "공식 문서 URL"
-      - "MITRE/CWE/OWASP 참조"
-    confidence: 0.95                # 0.0-1.0 신뢰도
-    verified:
-      status: verified
-      date: 2025-01-29
-      by: "작성자"
+    source: official
+    confidence: 0.95
   temporal:
-    created: 2025-01-29
-    modified: 2025-01-29
+    created: 2026-02-03
+    modified: 2026-02-03
     revision: 1
-  security:
-    sensitivity: public
   ai:
     embedding_text: |
-      LLM 임베딩을 위한 요약 텍스트
+      Web Application Server는 웹 애플리케이션을...
     search_keywords:
-      - "keyword1"
-      - "keyword2"
+      - "WAS"
+      - "웹서버"
+      - "애플리케이션 서버"
+```
+
+### 5.2 지식 원자 (is_infrastructure: false)
+
+```yaml
+identity:
+  id: "ATK-INJ-SQL-001"
+  name: "SQL Injection"
+  normalization:
+    normalized_name: "sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "SQLi"
+    - "SQL 인젝션"
+
+classification:
+  domain: security
+  type: technique
+  is_infrastructure: false          # ✅ 지식 요소
+  abstraction_level: 2
+  scope:                            # 적용 범위 (gr_coordinates 대신)
+    target_layers: ["L7"]
+    target_zones: ["Z2", "Z3"]
+  atom_tags: ["INJ", "WEB", "INITIAL", "MYSQL", "PGSQL"]
+
+definition:
+  what: |
+    사용자 입력이 SQL 쿼리에 삽입되어 데이터베이스를 조작하는 공격...
+  why: |
+    데이터 유출, 인증 우회, 시스템 장악이 가능하기 때문에...
+  how: |
+    1) 입력 필드 식별 2) 메타문자 주입 3) 쿼리 조작...
+
+relations:
+  structural:
+    is_a: ["CON-INJECTION-001"]
+  causal:
+    enables: ["ATK-DATA-EXFIL-001"]
+    requires: ["TECH-SQL-001"]
+    prevents: []
+  applicability:
+    applies_to: ["COMP-RDBMS-001", "COMP-WAS-001"]
+    effective_against: ["DEF-INPUT-VALID-001"]
+
+properties:
+  technical:
+    mitre_id: "T1190"
+    cwe_id: "CWE-89"
+    # ...
+
+metadata:
+  # ... (동일 구조)
 ```
 
 ---
 
-## 5. 주요 관계 타입
+## 6. 관계 타입
 
-### 5.1 구조적 관계 (Structural)
+### 6.1 허용된 관계 (Canonical)
 
+**구조적 (structural)**
 ```
-is_a           → A는 B의 하위 개념이다
-has_children   → A는 B를 하위 개념으로 갖는다
-has_parts      → A는 B를 구성요소로 갖는다
-related_to     → A는 B와 관련된다
-```
-
-### 5.2 인과 관계 (Causal)
-
-```
-requires       → A는 B를 필요로 한다
-enables        → A는 B를 가능하게 한다
-prevents       → A는 B를 방지한다
-causes         → A는 B를 유발한다
+is_a         → 상위 개념이다 (SQLi is_a Injection)
+part_of      → 구성 요소다 (Payload part_of Attack)
+instance_of  → 구체적 사례다 (' OR 1=1 instance_of SQLi)
+abstracts    → 추상화한다 (원리 → 개념)
 ```
 
-### 5.3 보안 관계
-
+**인과적 (causal)**
 ```
-targets        → 공격이 대상으로 하는 것
-exploits       → 공격이 악용하는 취약점
-mitigates      → 방어가 완화하는 것
-protects       → 방어가 보호하는 것
-vulnerable_to  → 인프라가 취약한 공격/취약점
+causes       → 야기한다 (SQLi causes DataBreach)
+enables      → 가능하게 한다 (FileRead enables RCE)
+prevents     → 방지한다 (PreparedStatement prevents SQLi)
 ```
 
-**최소 관계 수**: 5개 이상
+**조건적 (conditional)**
+```
+requires     → 필요로 한다 (xp_cmdshell requires sysadmin)
+conflicts_with → 상충한다 (대칭)
+alternative_to → 대체 가능하다 (대칭)
+```
 
----
+**적용 (applicability)**
+```
+applies_to       → 적용 대상이다 (SQLi applies_to RDBMS)
+effective_against → 효과적이다 (Bypass effective_against WAF)
+```
 
-## 6. 권장 섹션
+**구현 (implementation)**
+```
+implements   → 프로토콜/표준을 구현한다 (Apache implements HTTP)
+```
 
-### 6.1 Core Concepts (핵심 개념)
+### 6.2 금지된 관계
 
 ```yaml
-core_concepts:
-  - name: "Thread Pool"
-    description: "동시 요청 처리를 위한 스레드 재사용 메커니즘"
-    security_relevance: "과도한 요청 시 DoS 가능"
-```
+# ❌ 절대 금지
+related_to: [...]   # 의미 모호, 무한 확장 가능
 
-**작성 기준**: 해당 원자 이해에 필수적인 개념만 포함 (3-7개)
-
-### 6.2 Security Profile (보안 프로파일)
-
-```yaml
-security:
-  attack_surface:
-    exposed_ports:
-      - port: 8080
-        service: "HTTP"
-        risk: "medium"
-    exposed_interfaces:
-      - "Management Console"
-      - "REST API"
-
-  common_vulnerabilities:
-    - id: "VUL-DESER-001"
-      name: "Insecure Deserialization"
-      cwe: "CWE-502"
-
-  attack_techniques:
-    - id: "ATK-RCE-DESER-001"
-      name: "Deserialization RCE"
-      mitre: "T1190"
-
-  defenses:
-    - id: "DEF-WAF-001"
-      name: "Web Application Firewall"
-      effectiveness: "high"
-```
-
-### 6.3 Products (제품) - 인프라 원자용
-
-```yaml
-products:
-  open_source:
-    - name: "Apache Tomcat"
-      vendor: "Apache Foundation"
-      use_case: "경량, 단독 실행"
-  commercial:
-    - name: "Oracle WebLogic"
-      vendor: "Oracle"
-      use_case: "엔터프라이즈"
-```
-
-### 6.4 MITRE/CWE 매핑 - 공격/방어 원자용
-
-```yaml
-mitre_mapping:
-  technique_id: "T1190"
-  technique_name: "Exploit Public-Facing Application"
-  tactic: "Initial Access"
-
-cwe_mapping:
-  cwe_id: "CWE-89"
-  cwe_name: "SQL Injection"
+# 대안:
+# - 정밀한 관계 타입 사용 (is_a, enables, applies_to 등)
+# - 느슨한 연관은 atom_tags로 처리
 ```
 
 ---
 
-## 7. 원자 유형별 특화 가이드
+## 7. GR 좌표계 vs atom_tags
 
-### 7.1 인프라 원자 (INFRA-*)
+### 7.1 차이점
 
-**필수 추가 섹션**:
-- `products`: 실제 제품 목록
-- `protocols`: 사용 프로토콜
-- `security.attack_surface`: 노출 포트/인터페이스
+| 구분 | gr_coordinates.function | atom_tags |
+|------|------------------------|-----------|
+| **대상** | 인프라만 (is_infrastructure: true) | 모든 원자 |
+| **의미** | "어디에 위치하는가" (3D 좌표) | "어떤 특성인가" (분류) |
+| **구조** | 계층적 (A2.1, S3.2) | 평면적 (INJ, WEB) |
+| **참조** | 02_framework/.../Function_Tag/ | 03_ontology/taxonomy/atom_tags.yaml |
 
-**관계 중점**:
-- `connects_to`: 네트워크 토폴로지
-- `runs_on`: 실행 환경
-- `vulnerable_to`: 관련 취약점
+### 7.2 예시
 
-### 7.2 공격 원자 (ATK-*)
+```yaml
+# 인프라 원자
+gr_coordinates:
+  layer: "L7"
+  zone: "Z2"
+  function: ["A2.2", "S2.1", "M2.1"]  # 3D 좌표 Function
 
-**필수 추가 섹션**:
-- `mitre_mapping`: ATT&CK 매핑
-- `typical_flow`: 공격 단계
-- `indicators`: 탐지 지표
+atom_tags: ["WEB", "LINUX", "PROXY"]   # 특성 분류
 
-**관계 중점**:
-- `targets`: 공격 대상 인프라
-- `exploits`: 악용 취약점
-- `enables`: 후속 공격
-- `countered_by`: 방어 기법
+---
 
-### 7.3 방어 원자 (DEF-*)
+# 지식 원자 (gr_coordinates 없음)
+scope:
+  target_layers: ["L7"]
+  target_zones: ["Z2", "Z3"]
 
-**필수 추가 섹션**:
-- `d3fend_mapping`: D3FEND 매핑
-- `implementation`: 구현 방법
-- `effectiveness`: 효과성 평가
-
-**관계 중점**:
-- `mitigates`: 완화 대상 (공격/취약점)
-- `protects`: 보호 대상 인프라
-- `requires`: 필요 조건
-- `complements`: 보완 기법
-
-### 7.4 취약점 원자 (VUL-*)
-
-**필수 추가 섹션**:
-- `cwe_id`: CWE 매핑
-- `severity`: 심각도
-- `exploitation`: 악용 방법
-
-**관계 중점**:
-- `affects`: 영향받는 인프라
-- `exploited_by`: 악용 공격 기법
-- `mitigated_by`: 완화 방법
-- `related_cves`: 실제 CVE 사례
+atom_tags: ["INJ", "WEB", "MYSQL"]     # 특성 분류
+```
 
 ---
 
@@ -304,62 +324,26 @@ cwe_mapping:
 ### 필수 항목
 
 - [ ] ID가 명명 규칙을 따르는가?
-- [ ] GR 좌표(Layer/Zone/Tags)가 모두 지정되었는가?
-- [ ] definition의 what/why가 모두 작성되었는가?
-- [ ] 관계가 5개 이상인가?
-- [ ] 출처가 명시되었는가?
-- [ ] confidence 값이 설정되었는가?
+- [ ] type이 올바른가?
+- [ ] is_infrastructure가 type과 일치하는가?
+- [ ] 인프라 원자: gr_coordinates (layer, zone, function)가 모두 있는가?
+- [ ] 지식 원자: scope (target_layers, target_zones)가 있는가?
+- [ ] atom_tags가 1개 이상인가?
+- [ ] definition.what이 작성되었는가?
+- [ ] 관계가 3개 이상인가?
+- [ ] `related_to`를 사용하지 않았는가?
+- [ ] Zone 형식이 "Z숫자"인가? (Z3 ❌ → Z3 ✅)
 
 ### 권장 항목
 
-- [ ] core_concepts가 3개 이상인가?
-- [ ] 보안 관련 원자의 경우 security 섹션이 있는가?
-- [ ] 인프라 원자의 경우 products 섹션이 있는가?
-- [ ] protocols 정보가 있는가?
-
-### 품질 기준
-
-- [ ] 전문 용어가 적절히 설명되었는가?
-- [ ] 문장이 명확하고 간결한가?
-- [ ] 보안 관련성이 충분히 설명되었는가?
-- [ ] 관계가 양방향으로 일관성 있는가?
-- [ ] 고립된 원자가 아닌가? (관계 없는 원자는 의미 없음)
+- [ ] definition.why, definition.how가 있는가?
+- [ ] 관계가 5개 이상인가?
+- [ ] embedding_text가 충실한가?
+- [ ] search_keywords가 5개 이상인가?
 
 ---
 
-## 9. 작성 프로세스
-
-```
-1. 주제 선정
-   └── 우선순위 목록에서 선택
-
-2. 자료 조사
-   ├── 공식 문서
-   ├── MITRE/CWE/OWASP
-   ├── 기술 블로그
-   └── 실무 경험
-
-3. 템플릿 복사
-   └── 기존 원자 참고
-
-4. 섹션별 작성
-   ├── Identity → Classification → Definition
-   └── Relations → Security → Properties → Metadata
-
-5. 품질 검증
-   ├── 체크리스트 확인
-   └── 관계 일관성 검토
-
-6. 피어 리뷰
-   └── PR 생성 및 리뷰
-
-7. 머지 및 인덱싱
-   └── 관계 연결 확인
-```
-
----
-
-## 10. 외부 참조
+## 9. 외부 참조
 
 ### 표준 프레임워크
 - MITRE ATT&CK: https://attack.mitre.org/
@@ -367,9 +351,22 @@ cwe_mapping:
 - CWE: https://cwe.mitre.org/
 - OWASP: https://owasp.org/
 
-### 프로젝트 참조
-- 스키마: `01_schema/gr_atom_schema.yaml`
-- 기존 원자 예시: `02_knowledge_base/` 디렉토리
+### 프로젝트 내부 참조
+- 스키마: `03_ontology/schema/core/atom_schema.yaml`
+- 관계 타입: `03_ontology/schema/core/relation_types.yaml`
+- Atom Tags: `03_ontology/taxonomy/atom_tags.yaml`
+- Layer: `03_ontology/taxonomy/layers.yaml`
+- Zone: `03_ontology/taxonomy/zones.yaml`
+- Function: `02_framework/GR_DB/03_차원3_Function_Tag/`
+
+---
+
+## 10. 변경 이력
+
+| 버전 | 날짜 | 변경 내용 |
+|------|------|----------|
+| 2.0 | 2026-02-03 | is_infrastructure 추가, related_to 금지, function/atom_tags 구분, Zone 형식 변경 |
+| 1.0 | 2025-01-29 | 초기 버전 |
 
 ---
 

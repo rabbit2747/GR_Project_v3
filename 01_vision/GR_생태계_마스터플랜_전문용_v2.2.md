@@ -452,19 +452,19 @@ CREATE TABLE products (
 ```
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:Cache)
                                      ├─ layer: "L5"
-                                     ├─ zone: "Zone2"
+                                     ├─ zone: "Z2"
                                      ├─ primary_tag: "D3.1"
                                      └─ use_case: "Application cache"
 
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:SessionStore)
                                      ├─ layer: "L5"
-                                     ├─ zone: "Zone3"
+                                     ├─ zone: "Z3"
                                      ├─ primary_tag: "D3.3"
                                      └─ use_case: "Session management"
 
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:MessageBroker)
                                      ├─ layer: "L6"
-                                     ├─ zone: "Zone2"
+                                     ├─ zone: "Z2"
                                      ├─ primary_tag: "R3.2"
                                      └─ use_case: "Pub/Sub messaging"
 ```
@@ -696,7 +696,7 @@ CREATE TABLE mitre_techniques (
 
     -- GR Framework 매핑
     common_layers JSONB,              -- ["L2", "L7"]
-    common_zones JSONB,               -- ["Zone1", "Zone2"]
+    common_zones JSONB,               -- ["Z1", "Z2"]
     affected_tags JSONB,              -- ["N2.1", "S3.4", "A1.5"]
 
     description TEXT,
@@ -736,7 +736,7 @@ VALUES (
     'Critical',
     10.0,
     '["L7", "L6"]'::jsonb,            -- Application & Runtime
-    '["Zone2", "Zone3"]'::jsonb,      -- Application & Data
+    '["Z2", "Z3"]'::jsonb,      -- Application & Data
     '["T1.1", "T2.1", "A1.5"]'::jsonb -- Java, JVM, Backend API
 );
 
@@ -767,8 +767,8 @@ CREATE (ap:AttackPath {
   severity: 'Critical',
 
   // 공격 흐름
-  start_zone: 'Zone1',
-  end_zone: 'Zone3',
+  start_zone: 'Z1',
+  end_zone: 'Z3',
 
   // 사용된 CVE & MITRE 기법
   cves: ['CVE-2021-44228'],
@@ -780,7 +780,7 @@ CREATE (ap:AttackPath {
 })
 
 // Zone-to-Zone 공격 관계
-MATCH (z1:Zone {code: 'Zone1'}), (z2:Zone {code: 'Zone2'})
+MATCH (z1:Zone {code: 'Z1'}), (z2:Zone {code: 'Z2'})
 CREATE (z1)-[:ATTACK_PATH {
   technique: 'T1190',
   cve: 'CVE-2021-44228',
@@ -789,7 +789,7 @@ CREATE (z1)-[:ATTACK_PATH {
   detection_difficulty: 'Medium'
 }]->(z2)
 
-MATCH (z2:Zone {code: 'Zone2'}), (z3:Zone {code: 'Zone3'})
+MATCH (z2:Zone {code: 'Z2'}), (z3:Zone {code: 'Z3'})
 CREATE (z2)-[:ATTACK_PATH {
   technique: 'T1003',
   cve: null,
@@ -802,9 +802,9 @@ CREATE (z2)-[:ATTACK_PATH {
 **공격 경로 쿼리**:
 ```cypher
 // Zone 1에서 Zone 3까지의 모든 공격 경로 찾기
-MATCH path = (z1:Zone {code: 'Zone1'})
+MATCH path = (z1:Zone {code: 'Z1'})
              -[:ATTACK_PATH*1..5]->
-             (z3:Zone {code: 'Zone3'})
+             (z3:Zone {code: 'Z3'})
 WHERE ALL(r IN relationships(path) WHERE r.difficulty IN ['Low', 'Medium'])
 RETURN path,
        [r IN relationships(path) | r.technique] AS techniques,
@@ -846,7 +846,7 @@ async def auto_map_cve_to_mitre(cve_id: str):
     gr_context = await infer_gr_context(cve_data)
     # {
     #   "layers": ["L2", "L7"],
-    #   "zones": ["Zone1", "Zone2"],
+    #   "zones": ["Z1", "Z2"],
     #   "tags": ["N2.1", "A1.5"]
     # }
 
@@ -885,21 +885,21 @@ Path_1:
   attack_flow:
     step1:
       layer: L2
-      zone: Zone1
+      zone: Z1
       component: "Nginx (웹 서버)"
       vulnerability: "CVE-2021-44228"
       action: "Log4j exploit → RCE"
 
     step2:
       layer: L7
-      zone: Zone2
+      zone: Z2
       component: "Spring Boot API"
       vulnerability: null
       action: "내부 네트워크 스캔, DB 접근 시도"
 
     step3:
       layer: L5
-      zone: Zone3
+      zone: Z3
       component: "PostgreSQL"
       vulnerability: "CVE-2023-12345"
       action: "SQL Injection → 데이터 유출"

@@ -160,7 +160,7 @@ Atom:
     type: component | technique | vulnerability | control | protocol
     gr_coordinates:
       layer: "L0-L7 | Cross"
-      zone: "Zone0A-Zone5"
+      zone: "Z0A-Z5"
       tags: ["M", "N", "S", ...]
 
   # ─── 정의 (LLM 학습용) ───
@@ -298,7 +298,7 @@ ATK-INJECT-SQL-001:
   # GR 확장: WHERE 정보 추가
   gr_extension:
     target_layers: ["L5", "L7"]
-    target_zones: ["Zone2", "Zone3"]
+    target_zones: ["Z2", "Z3"]
     target_components: ["INFRA-DATA-RDBMS-*", "INFRA-APP-WAS-*"]
 ```
 
@@ -318,11 +318,11 @@ VUL-INJECT-SQL-001:
   gr_context:
     commonly_found_in:
       - layer: "L7"
-        zone: "Zone2"
+        zone: "Z2"
         components: ["Web Application"]
     attack_path:
       entry: "Zone0-A"
-      target: "Zone3"
+      target: "Z3"
 ```
 
 ### 5.3 MITRE D3FEND 연동

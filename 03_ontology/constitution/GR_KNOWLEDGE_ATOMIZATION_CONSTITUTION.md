@@ -460,7 +460,7 @@ classification:
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Zone3"
+    zone: "Z3"
     tags: ["A-WEB-API", "D-DB-SQL", "S-VUL-INJ"]
 
 definition:

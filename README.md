@@ -1,6 +1,8 @@
 # GR Ontology
 
 > **보안 지식의 표준 온톨로지 - 인프라 맥락 기반 AI 추론 시스템**
+> 
+> **Schema Version**: 2.0 (2026-02-03)
 
 ---
 
@@ -23,21 +25,24 @@ GR Ontology는 보안 지식을 **연결된 그래프(Knowledge Graph)**로 구�
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     GR Ontology                          │
+│                     GR Ontology v2.0                     │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │   [원자 Atom]              [관계 Relation]              │
 │   최소 지식 단위            원자 간 연결                 │
-│   - 인프라 요소             - is_a, requires            │
-│   - 공격 기법               - enables, prevents         │
-│   - 방어 기법               - applies_to                │
-│   - 취약점                  - countered_by              │
+│   - 인프라 요소 ────────┐   - is_a, requires            │
+│   - 공격 기법           │   - enables, prevents         │
+│   - 방어 기법           │   - applies_to                │
+│   - 취약점              │   - implements                │
+│                         │                               │
+│   is_infrastructure ────┘   ※ related_to 금지          │
+│   true/false 구분                                       │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
-│                    3D 좌표계 (Classification)            │
+│                    3D 좌표계 (인프라 요소만)             │
 │                                                         │
-│   Layer (수직)    ×    Zone (수평)    ×    Tags         │
-│   L0-L7, Cross         Zone0A-Zone5       M,N,S,A,D...  │
+│   Layer (수직)    ×    Zone (수평)    ×   Function      │
+│   L0-L7, Cross         Z0A,Z0B,Z1-Z5      A2.1, S3.2... │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
 │                      활용 (Applications)                 │
@@ -52,87 +57,119 @@ GR Ontology는 보안 지식을 **연결된 그래프(Knowledge Graph)**로 구�
 ## 디렉토리 구조
 
 ```
-GR_Project_v2/
+GR_Project_v3/
 │
-├── 01_ontology/                 # 온톨로지 정의
+├── 00_docs/                     # 프로젝트 운영 문서
+├── 01_vision/                   # 비전 & 마스터플랜
+├── 02_framework/                # 3D 분류체계 상세
+│   └── GR_DB/
+│       ├── 01_차원1_Deployment_Layer/
+│       ├── 02_차원2_Security_Zone/
+│       └── 03_차원3_Function_Tag/
+│
+├── 03_ontology/                 # 온톨로지 정의
 │   ├── constitution/            # 헌법 (원칙)
-│   ├── schema/                  # 스키마 정의
-│   │   ├── core/                # 핵심 스키마
-│   │   └── extensions/          # 도메인별 확장
-│   ├── taxonomy/                # 분류 체계 (Layer/Zone/Tags)
-│   └── guides/                  # 작성 가이드
+│   ├── schema/core/             # 핵심 스키마 (v2.0)
+│   │   ├── atom_schema.yaml
+│   │   └── relation_types.yaml
+│   └── taxonomy/                # 분류 체계
+│       ├── layers.yaml
+│       ├── zones.yaml
+│       └── atom_tags.yaml       # ※ atom_tags 아님
 │
-├── 02_knowledge_base/           # 지식 저장소 (원자들)
-│   ├── infrastructure/          # 인프라 원자
-│   ├── technology/              # 기술 지식 (SQL, 프로토콜 등)
-│   ├── security/                # 보안 원자
-│   │   ├── attacks/             # 공격 기법
-│   │   ├── defenses/            # 방어 기법
-│   │   ├── vulnerabilities/     # 취약점
-│   │   └── tools/               # 도구
-│   ├── concepts/                # 개념/원칙
-│   └── mappings/                # 외부 표준 매핑 (MITRE, CWE)
+├── 04_knowledge_base/           # 지식 저장소 (원자들)
+│   ├── concepts/
+│   ├── infrastructure/
+│   └── security/
+│       ├── attacks/
+│       ├── defenses/
+│       └── vulnerabilities/
 │
-├── 03_applications/             # 활용 애플리케이션
-│   ├── dast/                    # 자동화 진단 도구
-│   ├── atlas/                   # 시각화
-│   ├── edu/                     # 교육 플랫폼
-│   └── iac/                     # IaC 생성
+├── 05_engine/                   # Engine A/B 설계
+├── 06_applications/             # 애플리케이션
+│   ├── atlas/                   # 시각화 엔진
+│   └── dast/
 │
-├── 04_infrastructure/           # 기술 인프라
-│   ├── database/                # DB 스키마
-│   └── tools/                   # 자동화 도구
-│
-├── 05_docs/                     # 문서
-│   ├── vision/                  # 비전/전략
-│   ├── technical/               # 기술 문서
-│   └── guides/                  # 사용 가이드
-│
-└── 99_references/               # 참고 자료
+├── 07_references/               # 참조 자료
+└── archive/                     # 철학/정책 문서
 ```
 
 ---
 
 ## 핵심 개념
 
-### 원자 (Atom)
+### 원자 분류: is_infrastructure
 
-온톨로지의 최소 지식 단위입니다.
+모든 원자는 **인프라 요소**와 **지식**으로 구분됩니다.
+
+| is_infrastructure | 설명 | type | 좌표 |
+|:-----------------:|------|------|------|
+| **true** | 배포 가능한 인프라 | component, component_tool, component_control | gr_coordinates |
+| **false** | 지식/개념/기법 | technique, vulnerability, concept, protocol... | scope |
+
+### 인프라 원자 예시
 
 ```yaml
 identity:
-  id: "ATK-SQLI-UNION-001"
-  name: "UNION-based SQL Injection"
+  id: "COMP-APP-WAS-001"
+  name: "Web Application Server"
+
+classification:
+  domain: application
+  type: component
+  is_infrastructure: true        # ✅ 인프라 요소
+  gr_coordinates:
+    layer: "L7"
+    zone: "Z2"                   # ※ Z2 아님!
+    function: ["A2.1", "S2.2"]   # ※ tags 아님!
+  atom_tags: ["WEB", "LINUX"]
+
+relations:
+  structural:
+    is_a: ["CON-MIDDLEWARE-001"]
+  implementation:
+    implements: ["PROTO-HTTP-001"]
+```
+
+### 지식 원자 예시
+
+```yaml
+identity:
+  id: "ATK-INJ-SQL-001"
+  name: "SQL Injection"
 
 classification:
   domain: security
-  type: attack_technique
-  gr_coordinates:
-    layer: "L7"
-    zone: "Zone2"
-
-definition:
-  what: "UNION 연산자를 이용해..."
-  why: "데이터베이스 정보 유출..."
-  how: "1) 컬럼 수 파악 2) ..."
+  type: technique
+  is_infrastructure: false       # ✅ 지식 요소
+  scope:                         # gr_coordinates 대신 scope
+    target_layers: ["L7"]
+    target_zones: ["Z2", "Z3"]
+  atom_tags: ["INJ", "WEB", "INITIAL"]
 
 relations:
-  requires: ["TECH-SQL-UNION-001"]
-  enables: ["ATK-DATA-EXFIL-001"]
-  countered_by: ["DEF-PARAMETERIZED-QUERY-001"]
+  structural:
+    is_a: ["CON-INJECTION-001"]
+  causal:
+    enables: ["ATK-DATA-EXFIL-001"]
+    requires: ["TECH-SQL-001"]
+  applicability:
+    applies_to: ["COMP-RDBMS-001"]
 ```
 
 ### 관계 (Relation)
 
-원자 간 연결로, AI 추론의 핵심입니다.
+| 카테고리 | 관계 | 의미 |
+|----------|------|------|
+| structural | is_a | 상위 개념 |
+| structural | part_of | 구성 요소 |
+| causal | enables | 가능하게 함 |
+| causal | prevents | 방지함 |
+| causal | requires | 필요로 함 |
+| applicability | applies_to | 적용 대상 |
+| implementation | implements | 프로토콜 구현 |
 
-| 관계 | 의미 | 예시 |
-|------|------|------|
-| `is_a` | 상위 개념 | SQLi is_a Injection |
-| `requires` | 필요 조건 | UNION SQLi requires SQL UNION 지식 |
-| `enables` | 가능하게 함 | SQLi enables Data Exfiltration |
-| `countered_by` | 방어 기법 | SQLi countered_by Parameterized Query |
-| `applies_to` | 적용 대상 | SQLi applies_to RDBMS |
+**⚠️ `related_to`는 금지됩니다** - 정밀한 관계 타입을 사용하세요.
 
 ---
 
@@ -140,7 +177,7 @@ relations:
 
 ### 1. RAG (Retrieval-Augmented Generation)
 ```
-질문 → 관련 원자 검색 → 관계 따라 연관 원자 수집 → LLM에 컨텍스트 제공
+질문 → 임베딩 검색 + atom_tags 필터 → 관계 그래프 탐색 → LLM 컨텍스트
 ```
 
 ### 2. Fine-tuning
@@ -163,13 +200,15 @@ LLM Agent → 온톨로지 API로 그래프 탐색 → 맥락 기반 추론
 
 ---
 
-## 관련 문서
+## 주요 참조 문서
 
 | 문서 | 설명 |
 |------|------|
-| [온톨로지 헌법](01_ontology/constitution/) | 원자화 원칙 |
-| [원자 작성 가이드](01_ontology/guides/) | 원자 작성 방법 |
-| [마스터플랜](05_docs/vision/) | 프로젝트 비전 및 전략 |
+| [Atom 작성 가이드](00_docs/GR_Atom_작성가이드.md) | 원자 작성 방법 |
+| [스키마 정의](03_ontology/schema/core/atom_schema.yaml) | 원자 스키마 v2.0 |
+| [관계 타입](03_ontology/schema/core/relation_types.yaml) | 허용된 관계 |
+| [Atom Tags](03_ontology/taxonomy/atom_tags.yaml) | 원자 특성 태그 |
+| [Atlas 명세](06_applications/atlas/GR_ATLAS_SPECIFICATION.md) | 시각화 엔진 |
 
 ---
 

@@ -113,7 +113,7 @@ def determine_coordinates(product):
     functions = analyze_product_functions(product)
 
     # Step 2: Function Tags 매핑
-    tags = map_to_function_tags(functions)
+    tags = map_to_atom_tags(functions)
 
     # Step 3: Layer 결정 (기능 기반)
     layer = determine_layer_from_tags(tags)
@@ -331,7 +331,7 @@ WHERE lp.layer_id = 'L3' AND zp.zone_id = 'Zone_3';
 
 ```yaml
 거리 계산:
-  distance = |Layer1 - Layer2| + |Zone1 - Zone2|
+  distance = |Layer1 - Layer2| + |Z1 - Z2|
 
 관계 강도:
   - distance = 0: 동일 좌표 (같은 보안 정책)
@@ -460,7 +460,7 @@ def generate_policy_checklist(component):
     checklist += get_boundary_policies(layer, zone)  # 경계 정책
 
     # 2. Function Tag 기반 정책 수집
-    for tag in component.function_tags:
+    for tag in component.atom_tags:
         checklist += get_function_tag_policies(tag)
 
     # 3. 중복 제거 및 우선순위 정렬

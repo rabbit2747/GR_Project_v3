@@ -91,7 +91,7 @@ GR_Project_v3/
 ├── taxonomy/
 │   ├── layers.yaml               # Layer 분류 (YAML)
 │   ├── zones.yaml                # Zone 분류 (YAML)
-│   └── function_tags.yaml        # Function Tag 분류 (YAML)
+│   └── atom_tags.yaml        # Atom Tags 분류 (원자 특성)
 └── guides/
     └── PHASE1_ATOM_LIST.md       # Phase 1 Atom 목록
 ```

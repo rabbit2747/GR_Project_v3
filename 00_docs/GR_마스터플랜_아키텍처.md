@@ -133,7 +133,7 @@ Atom:
     abstraction_level: 1-4  # 인스턴스~원칙
     gr_coordinates:
       layer: "L0-L7 | Cross"
-      zone: "Zone0A-Zone5"
+      zone: "Z0A-Z5"
       tags: ["M", "N", "S", ...]
 
   # ─── 정의 (LLM 학습용) ───
@@ -363,19 +363,19 @@ CREATE TABLE products (
 ```
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:Cache)
                                      ├─ layer: "L5"
-                                     ├─ zone: "Zone2"
+                                     ├─ zone: "Z2"
                                      ├─ primary_tag: "D3.1"
                                      └─ use_case: "Application cache"
 
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:SessionStore)
                                      ├─ layer: "L5"
-                                     ├─ zone: "Zone3"
+                                     ├─ zone: "Z3"
                                      ├─ primary_tag: "D3.3"
                                      └─ use_case: "Session management"
 
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:MessageBroker)
                                      ├─ layer: "L6"
-                                     ├─ zone: "Zone2"
+                                     ├─ zone: "Z2"
                                      ├─ primary_tag: "R3.2"
                                      └─ use_case: "Pub/Sub messaging"
 ```
@@ -399,7 +399,7 @@ ATK-INJECT-SQL-001:
   # GR 확장: WHERE 정보 추가
   gr_extension:
     target_layers: ["L5", "L7"]
-    target_zones: ["Zone2", "Zone3"]
+    target_zones: ["Z2", "Z3"]
     target_components: ["INFRA-DATA-RDBMS-*", "INFRA-APP-WAS-*"]
 ```
 
@@ -419,11 +419,11 @@ VUL-INJECT-SQL-001:
   gr_context:
     commonly_found_in:
       - layer: "L7"
-        zone: "Zone2"
+        zone: "Z2"
         components: ["Web Application"]
     attack_path:
       entry: "Zone0-A"
-      target: "Zone3"
+      target: "Z3"
 ```
 
 ### 7.3 MITRE D3FEND 연동
@@ -460,7 +460,7 @@ CREATE TABLE mitre_techniques (
 
     -- GR Framework 매핑
     common_layers JSONB,              -- ["L2", "L7"]
-    common_zones JSONB,               -- ["Zone1", "Zone2"]
+    common_zones JSONB,               -- ["Z1", "Z2"]
     affected_tags JSONB,              -- ["N2.1", "S3.4", "A1.5"]
 
     description TEXT,
@@ -493,9 +493,9 @@ ALTER TABLE cves ADD COLUMN vulnerable_tags JSONB;
 
 ```cypher
 // Zone 간 공격 경로 쿼리
-MATCH path = (z1:Zone {code: 'Zone1'})
+MATCH path = (z1:Zone {code: 'Z1'})
              -[:ATTACK_PATH*1..5]->
-             (z3:Zone {code: 'Zone3'})
+             (z3:Zone {code: 'Z3'})
 WHERE ALL(r IN relationships(path) WHERE r.difficulty IN ['Low', 'Medium'])
 RETURN path,
        [r IN relationships(path) | r.technique] AS techniques,

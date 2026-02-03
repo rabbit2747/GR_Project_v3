@@ -628,11 +628,11 @@ elasticsearch_hardening:
 nosql_injection_gr_mapping:
   occurrence:
     layer: "L7"  # Application Layer
-    zone: "Zone3-4"
+    zone: "Z3-4"
 
   impact:
     layer: "L5"  # Data Layer
-    zone: "Zone4-5"
+    zone: "Z4-5"
 
   tags:
     - "A-WEB-API"
