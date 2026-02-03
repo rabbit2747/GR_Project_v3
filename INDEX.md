@@ -128,7 +128,19 @@ GR_Project_v3/
 ```
 
 ### 06_applications/ - 애플리케이션
-- `dast/` - DAST 스캐너 관련
+```
+06_applications/
+├── atlas/                 # GR Atlas 시각화 엔진 ⭐ (v1에서 복원)
+│   └── GR_ATLAS_SPECIFICATION.md  # Atlas 기능 명세
+├── dast/                  # DAST 스캐너 관련
+└── gr-engine-core/        # 엔진 코어
+```
+
+**GR Atlas**: IT 인프라를 지도처럼 시각화하는 기능
+- 3D 좌표계 기반 인프라 맵
+- 취약점/공격 흐름 하이라이트
+- MITRE ATT&CK 연동 drill-down
+- 자동화 진단, 컨설팅, 교육 등에 내장되는 공통 컴포넌트
 
 ### 07_references/ - 참조 자료
 - `strix/` - Strix 참조 구현
