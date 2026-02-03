@@ -1,0 +1,83 @@
+# GR Atom: Web Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-WEB-001"
+  name: "Web Technology"
+  normalization:
+    normalized_name: "web technology http javascript frontend backend"
+    normalization_version: "1.0"
+  aliases:
+    - "Web Technology"
+    - "웹 기술"
+    - "Web Development Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "WEB"]
+
+definition:
+  what: |
+    웹 애플리케이션 개발과 운영을 위한 기술 분류이다.
+  why: |
+    웹 기술 스택을 이해한다.
+    웹 보안 요소를 파악한다.
+    웹 아키텍처를 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-WEB-FRONTEND-001"
+      - "TECH-WEB-BACKEND-001"
+      - "TECH-WEB-API-001"
+    related_to:
+      - "VUL-WEB-001"
+      - "ATK-WEB-001"
+
+properties:
+  technical:
+    frontend:
+      - "HTML/CSS"
+      - "JavaScript"
+      - "React"
+      - "Vue"
+      - "Angular"
+    backend:
+      - "Node.js"
+      - "Python"
+      - "Java"
+      - "PHP"
+      - "Go"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "W3C Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Technology는 웹 애플리케이션 개발 기술 분류이다.
+    search_keywords:
+      - "Web Technology"
+      - "웹 기술"
+      - "Frontend"
+      - "Backend"

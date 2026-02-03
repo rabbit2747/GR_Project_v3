@@ -1,0 +1,114 @@
+# GR Atom: Cobalt Strike
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-C2-COBALTSTRIKE-001"
+  name: "Cobalt Strike"
+  normalization:
+    normalized_name: "cobalt strike c2 beacon red team adversary simulation"
+    normalization_version: "1.0"
+  aliases:
+    - "Cobalt Strike"
+    - "CS"
+    - "Beacon"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "C2", "REDTEAM"]
+
+definition:
+  what: |
+    상용 적대자 시뮬레이션 및 레드팀 플랫폼으로
+    Beacon 페이로드와 C2 인프라를 제공한다.
+  why: |
+    고급 지속 위협(APT)을 시뮬레이션한다.
+    레드팀 작전을 수행한다.
+  how: |
+    1. C2 서버 설정
+    2. Listener 생성
+    3. Beacon 페이로드 배포
+    4. 포스트 익스플로잇 수행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-C2-001"
+    related_to:
+      - "TOOL-PENTEST-METASPLOIT-001"
+      - "TECH-CONCEPT-RED-TEAM-001"
+
+properties:
+  technical:
+    developer: "Fortra (HelpSystems)"
+    license: "상용 (연간 라이선스)"
+    beacon:
+      description: "Cobalt Strike의 페이로드"
+      protocols:
+        - "HTTP/HTTPS"
+        - "DNS"
+        - "SMB"
+        - "TCP"
+      features:
+        - "Malleable C2 (트래픽 위장)"
+        - "Sleep/Jitter"
+        - "Peer-to-Peer"
+    capabilities:
+      - "스피어피싱"
+      - "페이로드 생성"
+      - "포스트 익스플로잇"
+      - "권한 상승"
+      - "측면 이동"
+      - "데이터 유출"
+    post_exploitation:
+      - "Mimikatz 통합"
+      - "키로깅"
+      - "스크린샷"
+      - "포트 스캔"
+      - "프로세스 인젝션"
+    detection:
+      - "Beacon 통신 패턴"
+      - "Named Pipe"
+      - "메모리 시그니처"
+      - "YARA 규칙"
+    alternatives:
+      open_source:
+        - "Sliver"
+        - "Havoc"
+        - "Mythic"
+      commercial:
+        - "Brute Ratel"
+        - "Nighthawk"
+    ethical_note: "인가된 테스트 환경에서만 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Cobalt Strike Documentation"
+      - "Fortra"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cobalt Strike는 Beacon 페이로드와 Malleable C2를 제공하는
+      상용 레드팀 및 적대자 시뮬레이션 플랫폼이다.
+    search_keywords:
+      - "Cobalt Strike"
+      - "Beacon"
+      - "C2"
+      - "Red Team"

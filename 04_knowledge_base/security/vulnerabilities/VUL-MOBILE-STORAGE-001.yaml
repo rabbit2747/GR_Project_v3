@@ -1,0 +1,118 @@
+# GR Atom: Insecure Mobile Data Storage
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-MOBILE-STORAGE-001"
+  name: "Insecure Mobile Data Storage"
+  normalization:
+    normalized_name: "mobile insecure storage data leakage shared preferences keychain"
+    normalization_version: "1.0"
+  aliases:
+    - "모바일 안전하지 않은 저장"
+    - "M2 - Insecure Data Storage"
+    - "로컬 데이터 유출"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["VUL", "MOBILE", "STORAGE"]
+
+definition:
+  what: |
+    모바일 안전하지 않은 저장은 민감한 데이터가 기기에 적절한 보호 없이
+    저장되어 유출될 수 있는 취약점이다.
+  why: |
+    OWASP Mobile Top 10 2위 취약점이다. 분실/도난 기기, 악성 앱,
+    루팅된 기기에서 민감한 데이터가 노출된다.
+  how: |
+    1. 앱 데이터 디렉토리 접근 (/data/data/<package>)
+    2. SharedPreferences, SQLite DB, 파일 검사
+    3. 평문 저장된 민감 정보 추출
+    4. 자격 증명, 토큰, 개인정보 탈취
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-DATA-EXPOSURE-001"
+
+properties:
+  technical:
+    storage_locations:
+      android:
+        - "SharedPreferences (XML)"
+        - "SQLite Database"
+        - "Internal Storage (/data/data/)"
+        - "External Storage (SD Card)"
+        - "Content Providers"
+      ios:
+        - "Keychain"
+        - "NSUserDefaults"
+        - "Core Data / SQLite"
+        - "Plist Files"
+        - "Documents Directory"
+    common_mistakes:
+      - "비밀번호/토큰 평문 저장"
+      - "SharedPreferences에 민감 정보"
+      - "SQLite DB 암호화 미적용"
+      - "External Storage에 민감 데이터"
+      - "로그에 민감 정보 출력"
+      - "키체인 접근 제어 미설정 (iOS)"
+    sensitive_data:
+      - "인증 토큰"
+      - "세션 ID"
+      - "API 키"
+      - "개인정보 (PII)"
+      - "금융 정보"
+      - "암호화 키"
+    secure_storage:
+      android:
+        - "EncryptedSharedPreferences"
+        - "Android Keystore"
+        - "SQLCipher"
+      ios:
+        - "Keychain Services"
+        - "Data Protection API"
+    prevention:
+      - "민감 데이터 암호화 저장"
+      - "Android Keystore / iOS Keychain 사용"
+      - "로컬 저장 최소화"
+      - "External Storage 사용 금지"
+      - "로깅에서 민감 정보 제외"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Mobile Top 10"
+      - "MASTG - Data Storage"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      모바일 안전하지 않은 저장은 민감 데이터가 보호 없이 저장되는 취약점이다.
+      SharedPreferences, SQLite가 주요 위치며 Keystore/Keychain, 암호화로 방어한다.
+    search_keywords:
+      - "모바일 저장"
+      - "Insecure Storage"
+      - "SharedPreferences"
+      - "Keychain"
+    related_queries:
+      - "모바일 데이터 보호"
+      - "Android Keystore"
+      - "iOS 보안 저장"

@@ -1,0 +1,112 @@
+# GR Atom: RPKI (Resource Public Key Infrastructure)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-RPKI-001"
+  name: "RPKI (Resource Public Key Infrastructure)"
+  normalization:
+    normalized_name: "rpki resource public key infrastructure bgp security"
+    normalization_version: "1.0"
+  aliases:
+    - "RPKI"
+    - "리소스 공개키 인프라"
+    - "BGP 보안 프레임워크"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["DEF", "NET", "PKI"]
+
+definition:
+  what: |
+    인터넷 번호 자원(IP 주소, AS 번호)의 소유권을 암호학적으로
+    증명하여 BGP 라우팅 보안을 강화하는 PKI 프레임워크이다.
+  why: |
+    BGP 하이재킹을 방지한다.
+    라우팅 정보의 신뢰성을 보장한다.
+  how: |
+    1. ROA(Route Origin Authorization) 생성
+    2. IP 프리픽스와 AS 바인딩
+    3. RPKI 캐시 서버에서 검증
+    4. 라우터에서 경로 필터링
+
+relations:
+  structural:
+    is_a:
+      - "DEF-CRYPTO-PKI-001"
+    related_to:
+      - "ATK-NET-BGP-HIJACK-001"
+      - "INFRA-NET-NETWORK-001"
+
+properties:
+  technical:
+    components:
+      - name: "ROA (Route Origin Authorization)"
+        description: "IP 프리픽스 소유권 증명"
+      - name: "Certificate Authority"
+        description: "RIR 기반 인증 기관"
+      - name: "RPKI Repository"
+        description: "RPKI 객체 저장소"
+      - name: "RPKI-to-Router Protocol"
+        description: "라우터 연동 프로토콜"
+    rirs:
+      - "ARIN (북미)"
+      - "RIPE NCC (유럽)"
+      - "APNIC (아시아태평양)"
+      - "LACNIC (남미)"
+      - "AFRINIC (아프리카)"
+    validation_states:
+      - state: "Valid"
+        action: "경로 수용"
+      - state: "Invalid"
+        action: "경로 거부"
+      - state: "Unknown"
+        action: "정책에 따라 처리"
+    benefits:
+      - "BGP 하이재킹 방지"
+      - "라우팅 보안 강화"
+      - "자동화된 검증"
+    challenges:
+      - "ROA 배포율"
+      - "운영 복잡성"
+      - "최신성 유지"
+    implementation:
+      - "ROA 생성 (RIR 포털)"
+      - "RPKI 검증 소프트웨어"
+      - "라우터 정책 설정"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 6480 RPKI"
+      - "NIST BGP Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      RPKI는 IP 주소 소유권을 암호학적으로 증명하여
+      BGP 하이재킹을 방지하는 라우팅 보안 프레임워크이다.
+    search_keywords:
+      - "RPKI"
+      - "BGP 보안"
+      - "ROA"
+      - "라우팅 보안"
+    related_queries:
+      - "BGP 하이재킹 방지"
+      - "인터넷 라우팅"
+      - "네트워크 보안"

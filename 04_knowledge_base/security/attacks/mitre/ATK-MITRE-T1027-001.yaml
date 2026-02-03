@@ -1,0 +1,111 @@
+# GR Atom: Obfuscated Files or Information
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1027-001"
+  name: "Obfuscated Files or Information"
+  normalization:
+    normalized_name: "obfuscated files information encoding packing defense evasion"
+    normalization_version: "1.0"
+  aliases:
+    - "난독화된 파일"
+    - "정보 난독화"
+    - "코드 난독화"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "DEF-EVASION"]
+
+definition:
+  what: |
+    파일이나 정보를 난독화하여 보안 도구의 탐지를 회피하는 기법이다.
+    인코딩, 암호화, 패킹, 스테가노그래피 등이 포함된다.
+  why: |
+    안티바이러스 및 보안 솔루션 탐지를 회피한다.
+    포렌식 분석을 어렵게 만든다.
+  how: |
+    1. 페이로드 또는 데이터 준비
+    2. 난독화 기법 적용
+    3. 난독화된 내용 배포
+    4. 실행 시 역난독화
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-DEF-EVASION-001"
+    related_to:
+      - "ATK-MALWARE-PACKER-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1027"
+    tactic: "Defense Evasion"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1027.001"
+        name: "Binary Padding"
+        description: "바이너리 패딩"
+      - id: "T1027.002"
+        name: "Software Packing"
+        description: "소프트웨어 패킹"
+      - id: "T1027.003"
+        name: "Steganography"
+        description: "스테가노그래피"
+      - id: "T1027.004"
+        name: "Compile After Delivery"
+        description: "배포 후 컴파일"
+      - id: "T1027.005"
+        name: "Indicator Removal from Tools"
+        description: "도구에서 지표 제거"
+    obfuscation_types:
+      - "Base64 인코딩"
+      - "XOR 암호화"
+      - "문자열 난독화"
+      - "컨트롤 플로우 난독화"
+      - "패커/크립터"
+    detection:
+      - "엔트로피 분석"
+      - "패턴 기반 탐지"
+      - "행위 기반 분석"
+      - "샌드박스 분석"
+    mitigation:
+      - "EDR 솔루션"
+      - "샌드박스 분석"
+      - "행위 기반 탐지"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1027"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      난독화된 파일/정보는 인코딩, 패킹 등으로 보안 도구 탐지를
+      회피하는 MITRE ATT&CK Defense Evasion 기법이다.
+    search_keywords:
+      - "난독화"
+      - "Obfuscation"
+      - "패킹"
+      - "인코딩"
+    related_queries:
+      - "악성코드 난독화"
+      - "탐지 회피"
+      - "패커 분석"

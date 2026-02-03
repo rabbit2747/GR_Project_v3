@@ -1,0 +1,115 @@
+# GR Atom: Zero Trust Architecture
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-ZERO-TRUST-001"
+  name: "Zero Trust Architecture"
+  normalization:
+    normalized_name: "zero trust architecture never trust always verify ztna"
+    normalization_version: "1.0"
+  aliases:
+    - "제로 트러스트"
+    - "Zero Trust"
+    - "ZTNA"
+    - "Never Trust, Always Verify"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["DEF", "ARCHITECTURE", "FRAMEWORK"]
+
+definition:
+  what: |
+    제로 트러스트는 "절대 신뢰하지 말고, 항상 검증하라"는 원칙에 기반한
+    보안 아키텍처다. 네트워크 위치에 관계없이 모든 접근을 검증한다.
+  why: |
+    전통적인 경계 보안의 한계를 극복한다. 클라우드, 원격 근무 환경에서
+    내부/외부 구분이 무의미해지면서 필수적인 보안 모델이 되었다.
+  how: |
+    1. Verify Explicitly: 모든 접근 요청 검증
+    2. Least Privilege: 최소 권한 접근
+    3. Assume Breach: 침해 가정하에 설계
+    4. Continuous Validation: 지속적 검증
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    enables:
+      - "DEF-PREVENT-SEGMENTATION-001"
+  causal:
+    mitigates:
+      - "ATK-MITRE-LATERAL-001"
+      - "VUL-ACCESS-BROKEN-001"
+
+properties:
+  technical:
+    core_principles:
+      - name: "Never Trust, Always Verify"
+        description: "모든 요청을 명시적으로 검증"
+      - name: "Least Privilege Access"
+        description: "필요한 최소 권한만 부여"
+      - name: "Assume Breach"
+        description: "이미 침해되었다고 가정하고 설계"
+      - name: "Continuous Validation"
+        description: "지속적으로 신뢰 수준 재평가"
+    pillars:
+      - name: "Identity"
+        components: ["MFA", "SSO", "Identity Governance"]
+      - name: "Devices"
+        components: ["Device Trust", "EDR", "Compliance Check"]
+      - name: "Network"
+        components: ["Micro-segmentation", "Encryption", "SDN"]
+      - name: "Applications"
+        components: ["CASB", "DLP", "Secure Access"]
+      - name: "Data"
+        components: ["Classification", "Encryption", "DLP"]
+    implementation_steps:
+      - "자산 식별 및 분류"
+      - "트랜잭션 흐름 매핑"
+      - "제로 트러스트 아키텍처 구축"
+      - "정책 생성 및 적용"
+      - "모니터링 및 유지보수"
+    technologies:
+      - "ZTNA (Zero Trust Network Access)"
+      - "SDP (Software Defined Perimeter)"
+      - "IAM (Identity and Access Management)"
+      - "Micro-segmentation"
+      - "SASE (Secure Access Service Edge)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-207 Zero Trust Architecture"
+      - "Forrester Zero Trust"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      제로 트러스트는 "절대 신뢰하지 말고 항상 검증하라"는 보안 아키텍처다.
+      Identity, Device, Network, Application, Data 5개 축으로 구현하며
+      ZTNA, SDP, Micro-segmentation이 핵심 기술이다.
+    search_keywords:
+      - "Zero Trust"
+      - "제로 트러스트"
+      - "ZTNA"
+      - "Never Trust Always Verify"
+    related_queries:
+      - "제로 트러스트 구현"
+      - "NIST 800-207"
+      - "SASE"

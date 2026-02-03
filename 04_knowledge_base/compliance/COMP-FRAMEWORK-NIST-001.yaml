@@ -1,0 +1,134 @@
+# GR Atom: NIST Cybersecurity Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-NIST-001"
+  name: "NIST Cybersecurity Framework"
+  normalization:
+    normalized_name: "nist csf cybersecurity framework identify protect detect respond recover"
+    normalization_version: "1.0"
+  aliases:
+    - "NIST CSF"
+    - "NIST 사이버보안 프레임워크"
+    - "CSF"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["COMP", "FRAMEWORK", "NIST"]
+
+definition:
+  what: |
+    NIST 사이버보안 프레임워크는 조직의 사이버보안 위험을 관리하기 위한
+    자발적 지침으로, 5가지 핵심 기능을 기반으로 한다.
+  why: |
+    산업 표준과 모범 사례를 통합한 유연한 프레임워크다.
+    다양한 규모와 산업의 조직에 적용 가능하다.
+  how: |
+    1. 현재 상태 평가
+    2. 목표 프로필 설정
+    3. 갭 분석
+    4. 개선 계획 수립 및 실행
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMPLIANCE-001"
+    related_to:
+      - "COMP-FRAMEWORK-ISO27001-001"
+
+properties:
+  technical:
+    current_version: "2.0 (2024)"
+    core_functions:
+      - name: "Govern (신규 v2.0)"
+        description: "사이버보안 거버넌스"
+        categories:
+          - "조직 상황"
+          - "위험 관리 전략"
+          - "역할 및 책임"
+      - name: "Identify"
+        description: "자산, 위험, 역량 식별"
+        categories:
+          - "자산 관리"
+          - "비즈니스 환경"
+          - "위험 평가"
+          - "공급망 위험"
+      - name: "Protect"
+        description: "보안 통제 구현"
+        categories:
+          - "접근 통제"
+          - "인식 및 교육"
+          - "데이터 보안"
+          - "보호 기술"
+      - name: "Detect"
+        description: "사이버보안 이벤트 탐지"
+        categories:
+          - "이상 및 이벤트"
+          - "지속적 모니터링"
+          - "탐지 프로세스"
+      - name: "Respond"
+        description: "탐지된 사건 대응"
+        categories:
+          - "대응 계획"
+          - "통신"
+          - "분석"
+          - "완화"
+      - name: "Recover"
+        description: "정상 운영 복구"
+        categories:
+          - "복구 계획"
+          - "개선"
+          - "통신"
+    implementation_tiers:
+      - tier: "Tier 1: Partial"
+        description: "비공식적, 반응적"
+      - tier: "Tier 2: Risk Informed"
+        description: "위험 인식, 부분 통합"
+      - tier: "Tier 3: Repeatable"
+        description: "공식화, 일관된 적용"
+      - tier: "Tier 4: Adaptive"
+        description: "지속적 개선, 선제적"
+    profiles:
+      current: "현재 보안 상태"
+      target: "목표 보안 상태"
+    related_publications:
+      - "NIST 800-53: 보안 통제"
+      - "NIST 800-61: 사고 대응"
+      - "NIST 800-171: CUI 보호"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cybersecurity Framework"
+      - "NIST CSF 2.0"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      NIST CSF는 6개 핵심 기능 기반 사이버보안 프레임워크다. Govern, Identify,
+      Protect, Detect, Respond, Recover로 구성되며 4개 티어로 성숙도를 평가한다.
+    search_keywords:
+      - "NIST CSF"
+      - "사이버보안"
+      - "프레임워크"
+      - "위험 관리"
+    related_queries:
+      - "NIST 800-53"
+      - "보안 프레임워크"
+      - "위험 평가"

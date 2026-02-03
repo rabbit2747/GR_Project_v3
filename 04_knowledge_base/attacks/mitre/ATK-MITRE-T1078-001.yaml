@@ -1,0 +1,93 @@
+# GR Atom: Valid Accounts
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1078-001"
+  name: "Valid Accounts"
+  normalization:
+    normalized_name: "valid accounts compromised credentials legitimate access"
+    normalization_version: "1.0"
+  aliases:
+    - "Compromised Credentials"
+    - "계정 탈취"
+    - "유효 계정 악용"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "ACCESS"]
+
+definition:
+  what: |
+    유효한 계정 자격 증명을 획득하여 합법적인 접근처럼
+    시스템에 인증하고 활동하는 기법이다.
+  why: |
+    탐지를 회피하면서 접근한다.
+    정상 사용자로 위장한다.
+  how: |
+    1. 자격 증명 탈취/구매
+    2. 합법적 인증
+    3. 권한 범위 내 활동
+    4. 장기 접근 유지
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0001-001"
+    related_to:
+      - "ATK-MITRE-T1003-001"
+      - "ATK-SOCIAL-PHISHING-001"
+
+properties:
+  technical:
+    mitre_id: "T1078"
+    tactic: "Defense Evasion, Persistence, Privilege Escalation, Initial Access"
+    sub_techniques:
+      - id: "T1078.001"
+        name: "Default Accounts"
+      - id: "T1078.002"
+        name: "Domain Accounts"
+      - id: "T1078.003"
+        name: "Local Accounts"
+      - id: "T1078.004"
+        name: "Cloud Accounts"
+    acquisition_methods:
+      - "Credential Stuffing"
+      - "Phishing"
+      - "Dark Web Purchase"
+      - "Insider Threat"
+    detection:
+      - "이상 로그인 패턴"
+      - "지리적 불가능 로그인"
+      - "UEBA 분석"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1078"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Valid Accounts는 탈취된 유효 자격 증명으로
+      합법적 접근처럼 활동하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "Valid Accounts"
+      - "Compromised Credentials"
+      - "Account Takeover"
+      - "T1078"

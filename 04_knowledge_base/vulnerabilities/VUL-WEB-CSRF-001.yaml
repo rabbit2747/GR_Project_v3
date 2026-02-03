@@ -1,0 +1,106 @@
+# GR Atom: Cross-Site Request Forgery
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-CSRF-001"
+  name: "Cross-Site Request Forgery"
+  normalization:
+    normalized_name: "csrf cross site request forgery session riding"
+    normalization_version: "1.0"
+  aliases:
+    - "CSRF"
+    - "XSRF"
+    - "크로스 사이트 요청 위조"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "SESSION"]
+
+definition:
+  what: |
+    인증된 사용자가 악성 사이트를 방문할 때
+    사용자의 권한으로 원치 않는 요청이 실행되는 취약점이다.
+  why: |
+    사용자 권한으로 악의적 행동을 수행한다.
+    계정 설정 변경, 거래 수행이 가능하다.
+  how: |
+    1. 악성 페이지 준비
+    2. 피해자 유인
+    3. 숨겨진 요청 전송
+    4. 쿠키 자동 포함으로 인증
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "VUL-WEB-XSS-001"
+      - "VUL-WEB-SESSION-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-352"
+    owasp_rank: "OWASP Top 10 2013 - A8"
+    attack_vectors:
+      - name: "Image Tag"
+        payload: '<img src="https://bank.com/transfer?to=attacker&amount=1000">'
+      - name: "Form Submit"
+        payload: '<form action="https://bank.com/transfer" method="POST">...</form>'
+      - name: "XHR/Fetch"
+        payload: "JavaScript를 통한 요청"
+    conditions:
+      - "세션 쿠키 사용"
+      - "예측 가능한 요청 구조"
+      - "CSRF 토큰 미사용"
+    impact:
+      - "계정 설정 변경"
+      - "비밀번호 변경"
+      - "금융 거래"
+      - "데이터 삭제"
+    prevention:
+      primary:
+        - name: "CSRF Token"
+          description: "예측 불가능한 토큰을 요청에 포함"
+        - name: "SameSite Cookie"
+          values: ["Strict", "Lax"]
+      secondary:
+        - "Referer/Origin 헤더 검증"
+        - "사용자 재인증"
+        - "CAPTCHA"
+    testing:
+      - "Burp Suite CSRF PoC Generator"
+      - "OWASP ZAP"
+      - "수동 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP CSRF"
+      - "CWE-352"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CSRF는 인증된 사용자가 악성 사이트 방문 시
+      사용자 권한으로 원치 않는 요청이 실행되는 취약점이다.
+    search_keywords:
+      - "CSRF"
+      - "Cross-Site Request Forgery"
+      - "XSRF"
+      - "요청 위조"

@@ -1,0 +1,111 @@
+# GR Atom: REST API
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-REST-001"
+  name: "REST (Representational State Transfer)"
+  normalization:
+    normalized_name: "rest api representational state transfer http web service"
+    normalization_version: "1.0"
+  aliases:
+    - "REST API"
+    - "RESTful API"
+    - "RESTful 웹 서비스"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["TECH", "API", "REST"]
+
+definition:
+  what: |
+    REST(Representational State Transfer)는 HTTP 기반의 아키텍처 스타일로
+    웹 서비스 구현에 널리 사용된다. 리소스 중심 설계와 HTTP 메서드 활용이 특징이다.
+  why: |
+    현대 웹 애플리케이션과 마이크로서비스의 표준 통신 방식이다. API 보안의
+    핵심 대상이며 OWASP API Security Top 10의 주요 적용 대상이다.
+  how: |
+    1. Resource: URI로 식별되는 리소스 (/users, /orders)
+    2. HTTP Methods: GET, POST, PUT, PATCH, DELETE
+    3. Representations: JSON, XML 형식의 데이터
+    4. Stateless: 각 요청은 독립적
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-APPLICATION-001"
+    related_to:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-FORMAT-JSON-001"
+  causal:
+    vulnerable_to:
+      - "VUL-API-BOLA-001"
+      - "VUL-ACCESS-BROKEN-001"
+
+properties:
+  technical:
+    core_principles:
+      - name: "Client-Server"
+        description: "클라이언트와 서버 분리"
+      - name: "Stateless"
+        description: "서버에 클라이언트 상태 저장 안함"
+      - name: "Cacheable"
+        description: "응답 캐싱 가능"
+      - name: "Uniform Interface"
+        description: "일관된 인터페이스"
+      - name: "Layered System"
+        description: "계층화된 시스템 아키텍처"
+    http_methods:
+      - "GET: 리소스 조회 (Safe, Idempotent)"
+      - "POST: 리소스 생성"
+      - "PUT: 리소스 전체 수정 (Idempotent)"
+      - "PATCH: 리소스 부분 수정"
+      - "DELETE: 리소스 삭제 (Idempotent)"
+    security_concerns:
+      - "인증/인가 미흡"
+      - "과도한 데이터 노출"
+      - "속도 제한 부재"
+      - "입력 검증 미흡"
+      - "IDOR 취약점"
+    best_practices:
+      - "HTTPS 필수 사용"
+      - "OAuth 2.0/JWT 인증"
+      - "속도 제한 구현"
+      - "입력 검증 및 출력 인코딩"
+      - "적절한 HTTP 상태 코드 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Roy Fielding Dissertation"
+      - "OWASP API Security Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      REST API는 HTTP 기반 웹 서비스 아키텍처다. 리소스 중심 설계,
+      HTTP 메서드 활용이 특징이며 API 보안의 핵심 대상이다.
+    search_keywords:
+      - "REST API"
+      - "RESTful"
+      - "웹 서비스"
+      - "HTTP API"
+    related_queries:
+      - "REST API 보안"
+      - "API 설계"
+      - "마이크로서비스"

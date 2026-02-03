@@ -1,0 +1,104 @@
+# GR Atom: Mobile API Backend
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-MOBILE-API-001"
+  name: "Mobile API Backend"
+  normalization:
+    normalized_name: "mobile api backend mobile backend baas"
+    normalization_version: "1.0"
+  aliases:
+    - "Mobile Backend"
+    - "모바일 API"
+    - "Mobile BaaS"
+    - "App Backend"
+
+classification:
+  domain: application
+  type: application
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INFRA", "APP", "MOBILE", "API"]
+
+definition:
+  what: |
+    모바일 API 백엔드는 모바일 앱(iOS, Android)에 데이터와 서비스를
+    제공하는 서버 측 애플리케이션이다. REST/GraphQL API를 통해 통신한다.
+  why: |
+    모바일 앱의 핵심 인프라다. API 인증 우회, 과도한 데이터 노출,
+    클라이언트 측 검증 의존이 주요 보안 위협이다.
+  how: |
+    1. API Gateway: 인증, 속도 제한, 라우팅
+    2. Business Logic: 핵심 비즈니스 로직
+    3. Data Layer: 데이터베이스, 캐시
+    4. Push Notification: 푸시 알림 서비스
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-APP-API-001"
+  causal:
+    consumed_by:
+      - "INFRA-APP-SPA-001"
+    vulnerable_to:
+      - "ATK-SERVER-IDOR-001"
+      - "VUL-ACCESS-BROKEN-001"
+
+properties:
+  technical:
+    api_patterns:
+      - "REST API"
+      - "GraphQL"
+      - "gRPC"
+    security_concerns:
+      - name: "Broken Object Level Authorization (BOLA)"
+        risk: "다른 사용자 데이터 접근"
+        owasp: "API1:2023"
+      - name: "Broken Authentication"
+        risk: "인증 우회"
+        owasp: "API2:2023"
+      - name: "Excessive Data Exposure"
+        risk: "민감 정보 노출"
+        owasp: "API3:2023"
+      - name: "Client-Side Validation Only"
+        risk: "서버 측 검증 부재"
+    security_best_practices:
+      - "서버 측 권한 검증 (모든 요청)"
+      - "JWT/OAuth 2.0 적절한 구현"
+      - "응답 데이터 최소화"
+      - "Rate Limiting"
+      - "Certificate Pinning 지원"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "OWASP Mobile Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Mobile API Backend는 모바일 앱에 서비스를 제공하는 서버다.
+      BOLA, 인증 우회, 과도한 데이터 노출이 주요 보안 위협이다.
+    search_keywords:
+      - "Mobile API"
+      - "모바일 백엔드"
+      - "Mobile Backend"
+      - "OWASP API"
+    related_queries:
+      - "모바일 API 보안"
+      - "OWASP API Top 10"
+      - "모바일 백엔드 설계"

@@ -1,0 +1,99 @@
+# GR Atom: Query Language (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-QUERY-LANG-001"
+  name: "Query Language"
+  normalization:
+    normalized_name: "query language database query data query"
+    normalization_version: "1.0"
+  aliases:
+    - "쿼리 언어"
+    - "Database Query Language"
+    - "데이터베이스 쿼리 언어"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TECH", "DATA", "DB"]
+
+definition:
+  what: |
+    쿼리 언어(Query Language)는 데이터베이스에서 데이터를 조회,
+    삽입, 수정, 삭제하기 위한 언어다. SQL이 가장 널리 사용되며,
+    NoSQL DB는 각자의 쿼리 방식을 가진다.
+  why: |
+    SQL Injection이 가장 위험한 웹 취약점인 이유가
+    쿼리 언어의 강력함 때문이다. 데이터 조회뿐 아니라
+    파일 읽기, 명령 실행까지 가능할 수 있다.
+  how: |
+    1. SQL: SELECT, INSERT, UPDATE, DELETE
+    2. NoSQL: MongoDB 쿼리, Redis 명령
+    3. GraphQL: API 쿼리 언어
+    4. ORM: 객체-관계 매핑 쿼리
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-LANG-SQL-001"
+  causal:
+    enables:
+      - "ATK-INJECT-SQL-001"
+
+properties:
+  technical:
+    query_types:
+      - name: "SQL"
+        databases: ["MySQL", "PostgreSQL", "Oracle"]
+        risks: ["SQL Injection"]
+      - name: "NoSQL Query"
+        databases: ["MongoDB", "CouchDB"]
+        risks: ["NoSQL Injection"]
+      - name: "GraphQL"
+        usage: "API Query"
+        risks: ["Injection", "DoS via complex queries"]
+    security_measures:
+      - "Parameterized Queries"
+      - "ORM Usage"
+      - "Input Validation"
+      - "Least Privilege"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SQL Injection Prevention"
+      - "CWE-89 SQL Injection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Query Language(쿼리 언어)는 데이터베이스를 조작하는 언어다.
+      SQL이 대표적이며 NoSQL, GraphQL도 있다. SQL Injection이
+      가장 위험한 취약점인 이유는 쿼리의 강력함 때문이다.
+      Parameterized Query와 ORM으로 방어한다.
+    search_keywords:
+      - "Query Language"
+      - "쿼리 언어"
+      - "SQL"
+      - "SQL Injection"
+      - "Parameterized Query"
+    related_queries:
+      - "쿼리 언어 종류"
+      - "SQL Injection 방어"
+      - "Parameterized Query란?"
+      - "ORM 보안"

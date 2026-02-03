@@ -1,0 +1,93 @@
+# GR Atom: Injection Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECTION-001"
+  name: "Injection Attack"
+  normalization:
+    normalized_name: "injection attack sql command code"
+    normalization_version: "1.0"
+  aliases:
+    - "Injection Attack"
+    - "인젝션 공격"
+    - "Code Injection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "INJECTION"]
+
+definition:
+  what: |
+    악의적인 코드나 명령을 입력에 삽입하여 실행시키는
+    공격 기법 분류이다.
+  why: |
+    시스템 명령을 실행한다.
+    데이터를 탈취/조작한다.
+    인증을 우회한다.
+  how: |
+    1. 입력 지점 식별
+    2. 페이로드 제작
+    3. 삽입 및 실행
+    4. 결과 확인
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-INJECT-SQL-001"
+      - "ATK-INJECT-CMD-001"
+      - "ATK-INJECT-XSS-001"
+      - "ATK-INJECT-LDAP-001"
+    related_to:
+      - "VUL-INJECTION-001"
+      - "GR-SEC-PRI-00001"
+
+properties:
+  technical:
+    types:
+      sql: "SQL Injection"
+      command: "Command Injection"
+      xss: "Cross-Site Scripting"
+      ldap: "LDAP Injection"
+      xpath: "XPath Injection"
+      template: "Template Injection"
+    root_cause: "신뢰할 수 없는 입력과 코드의 혼합"
+    prevention:
+      - "입력 검증"
+      - "파라미터화된 쿼리"
+      - "출력 인코딩"
+      - "최소 권한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Injection"
+      - "CWE-74"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Injection Attack은 악의적인 코드를 입력에 삽입하여
+      실행시키는 공격 기법 분류이다.
+    search_keywords:
+      - "Injection"
+      - "인젝션"
+      - "SQLi"
+      - "Command Injection"

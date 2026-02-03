@@ -1,0 +1,103 @@
+# GR Atom: Message Queue
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-DATA-MQ-001"
+  name: "Message Queue"
+  normalization:
+    normalized_name: "message queue mq message broker async messaging"
+    normalization_version: "1.0"
+  aliases:
+    - "메시지 큐"
+    - "Message Broker"
+    - "메시지 브로커"
+    - "MQ"
+
+classification:
+  domain: infrastructure
+  type: data
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["INFRA", "DATA", "MESSAGING"]
+
+definition:
+  what: |
+    메시지 큐(Message Queue)는 애플리케이션 간 비동기 메시지 전달을 위한
+    미들웨어다. RabbitMQ, Apache Kafka, AWS SQS 등이 있다.
+  why: |
+    마이크로서비스 간 통신, 이벤트 드리븐 아키텍처의 핵심이다.
+    인증 우회, 메시지 조작, DoS가 주요 보안 위협이다.
+  how: |
+    1. 프로듀서: 메시지 생성 및 전송
+    2. 브로커: 메시지 저장 및 라우팅
+    3. 큐/토픽: 메시지 버퍼링
+    4. 컨슈머: 메시지 수신 및 처리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DATABASE-001"
+  causal:
+    supports:
+      - "INFRA-APP-WAS-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    implementations:
+      - name: "RabbitMQ"
+        protocol: "AMQP"
+        feature: "Flexible routing"
+      - name: "Apache Kafka"
+        protocol: "Custom"
+        feature: "High throughput, streaming"
+      - name: "AWS SQS"
+        protocol: "HTTP"
+        feature: "Managed, serverless"
+      - name: "Redis Pub/Sub"
+        protocol: "RESP"
+        feature: "Lightweight, fast"
+    security_features:
+      - "TLS encryption"
+      - "Authentication (username/password, certificates)"
+      - "Authorization (ACLs)"
+      - "Message signing"
+    common_vulnerabilities:
+      - "Unauthenticated access"
+      - "Message injection"
+      - "Denial of Service (queue flooding)"
+      - "Sensitive data in messages"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RabbitMQ Security Guide"
+      - "Apache Kafka Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Message Queue(메시지 큐)는 비동기 메시지 전달을 위한 미들웨어다.
+      RabbitMQ, Kafka가 대표적이며 인증 우회, 메시지 주입이 보안 위협이다.
+    search_keywords:
+      - "Message Queue"
+      - "메시지 큐"
+      - "RabbitMQ"
+      - "Kafka"
+    related_queries:
+      - "메시지 큐 보안"
+      - "RabbitMQ vs Kafka"
+      - "MQ 인증"

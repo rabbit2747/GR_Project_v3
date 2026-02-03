@@ -1,0 +1,106 @@
+# GR Atom: DNS Tunneling
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-DNS-TUNNELING-001"
+  name: "DNS Tunneling"
+  normalization:
+    normalized_name: "dns tunneling exfiltration c2 covert channel"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS Tunneling"
+    - "DNS Exfiltration"
+    - "DNS 터널링"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "NETWORK", "COVERT"]
+
+definition:
+  what: |
+    DNS 프로토콜을 사용하여 데이터를 은밀하게 전송하거나
+    방화벽을 우회하는 C2 채널을 구축하는 기법이다.
+  why: |
+    방화벽을 우회한다.
+    탐지를 회피하며 데이터를 유출한다.
+  how: |
+    1. DNS 터널 서버 설정
+    2. 데이터 인코딩
+    3. DNS 쿼리로 전송
+    4. 서버에서 수신/디코딩
+
+relations:
+  structural:
+    is_a:
+      - "ATK-COVERT-CHANNEL-001"
+    related_to:
+      - "ATK-MITRE-T1048-001"
+      - "INFRA-DNS-001"
+
+properties:
+  technical:
+    mitre_id: "T1071.004"
+    mechanism:
+      - "서브도메인에 데이터 인코딩"
+      - "TXT 레코드로 응답"
+      - "DNS 쿼리/응답 반복"
+    encoding:
+      - "Base64"
+      - "Hex"
+      - "Base32"
+    tools:
+      - name: "dnscat2"
+        type: "C2 및 데이터 전송"
+      - name: "iodine"
+        type: "IP over DNS"
+      - name: "DNSExfiltrator"
+        type: "데이터 유출"
+      - name: "Cobalt Strike"
+        type: "DNS Beacon"
+    bandwidth:
+      description: "느린 전송 속도"
+      typical: "수 KB/s"
+    detection:
+      - "긴 서브도메인"
+      - "높은 DNS 쿼리 볼륨"
+      - "비정상 TXT 쿼리"
+      - "엔트로피 분석"
+      - "NXDOMAIN 급증"
+    prevention:
+      - "DNS 트래픽 모니터링"
+      - "DNS 쿼리 필터링"
+      - "내부 DNS 서버 강제"
+      - "ML 기반 이상 탐지"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1071.004"
+      - "SANS DNS Tunneling"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS Tunneling은 DNS 프로토콜로 데이터를 은밀히 전송하여
+      방화벽을 우회하고 C2 채널을 구축하는 기법이다.
+    search_keywords:
+      - "DNS Tunneling"
+      - "DNS Exfiltration"
+      - "dnscat2"
+      - "Covert Channel"

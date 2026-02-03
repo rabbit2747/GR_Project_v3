@@ -1,0 +1,107 @@
+# GR Atom: Principle of Least Privilege
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-LEAST-PRIVILEGE-001"
+  name: "Principle of Least Privilege"
+  normalization:
+    normalized_name: "least privilege minimum access rights permission"
+    normalization_version: "1.0"
+  aliases:
+    - "Least Privilege"
+    - "최소 권한 원칙"
+    - "PoLP"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["CONCEPT", "PRINCIPLE", "ACCESS"]
+
+definition:
+  what: |
+    사용자, 프로세스, 시스템에 업무 수행에 필요한
+    최소한의 권한만 부여하는 보안 원칙이다.
+  why: |
+    침해 영향을 최소화한다.
+    권한 오용을 방지한다.
+  how: |
+    1. 필요 권한 분석
+    2. 최소 권한 할당
+    3. 정기적 검토
+    4. 임시 권한 관리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-PRINCIPLE-001"
+    related_to:
+      - "DEF-IAM-001"
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+
+properties:
+  technical:
+    application:
+      users:
+        - "역할 기반 최소 권한"
+        - "일시적 권한 상승"
+        - "정기 검토"
+      applications:
+        - "필요한 API만 접근"
+        - "서비스 계정 제한"
+        - "컨테이너 권한 제한"
+      systems:
+        - "루트/관리자 사용 최소화"
+        - "네트워크 접근 제한"
+        - "파일 시스템 권한"
+    implementation:
+      - name: "JIT (Just-in-Time)"
+        description: "필요 시에만 권한 부여"
+      - name: "JEA (Just Enough Access)"
+        description: "필요한 만큼만 권한 부여"
+      - name: "PAM"
+        description: "특권 접근 관리"
+    benefits:
+      - "침해 영향 범위 제한"
+      - "내부자 위협 완화"
+      - "컴플라이언스 준수"
+      - "감사 용이성"
+    challenges:
+      - "생산성 영향"
+      - "권한 관리 복잡성"
+      - "적정 권한 판단"
+    related_concepts:
+      - "Need-to-Know"
+      - "Separation of Duties"
+      - "Defense in Depth"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-53"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      최소 권한 원칙은 업무에 필요한 최소한의 권한만 부여하여
+      침해 영향을 최소화하는 핵심 보안 원칙이다.
+    search_keywords:
+      - "Least Privilege"
+      - "최소 권한"
+      - "PoLP"
+      - "Access Control"

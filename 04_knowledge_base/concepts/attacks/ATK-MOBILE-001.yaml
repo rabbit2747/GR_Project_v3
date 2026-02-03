@@ -1,0 +1,77 @@
+# GR Atom: Mobile Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MOBILE-001"
+  name: "Mobile Attack"
+  normalization:
+    normalized_name: "mobile attack android ios"
+    normalization_version: "1.0"
+  aliases:
+    - "Mobile Attack"
+    - "모바일 공격"
+    - "Mobile Security Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "MOBILE"]
+
+definition:
+  what: |
+    모바일 플랫폼과 애플리케이션의 취약점을 악용하는 공격 기법 분류이다.
+  why: |
+    모바일 기기에 접근한다.
+    개인 정보를 탈취한다.
+    모바일 인프라를 침해한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MOBILE-MALWARE-001"
+      - "ATK-MOBILE-REVERSING-001"
+    related_to:
+      - "DEF-MOBILE-001"
+      - "VUL-MOBILE-001"
+
+properties:
+  technical:
+    platforms: ["Android", "iOS"]
+    vectors:
+      - "Malicious Apps"
+      - "Mobile Malware"
+      - "App Tampering"
+      - "Insecure Storage"
+      - "Certificate Pinning Bypass"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Mobile Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Mobile Attack은 모바일 플랫폼을 대상으로 하는 공격 기법 분류이다.
+    search_keywords:
+      - "Mobile Attack"
+      - "모바일 공격"
+      - "Android"
+      - "iOS"

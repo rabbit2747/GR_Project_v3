@@ -1,0 +1,132 @@
+# GR Atom: Account Quarantine
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-RESPOND-QUARANTINE-001"
+  name: "Account Quarantine"
+  normalization:
+    normalized_name: "account quarantine"
+    normalization_version: "1.0"
+  aliases:
+    - "계정 격리"
+    - "Account Isolation"
+    - "계정 잠금"
+    - "Account Lockout"
+    - "Account Suspension"
+    - "계정 정지"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["R", "AUTH"]
+
+definition:
+  what: |
+    침해 의심 계정을 격리하여 추가 피해를 방지하는 대응 조치.
+    의심스러운 활동이 감지된 계정의 접근 권한을 임시로 제한하거나,
+    세션을 강제 종료하고, 비밀번호 재설정을 요구하며,
+    조사 완료까지 계정을 격리 상태로 유지한다.
+  why: |
+    계정이 탈취되거나 침해된 경우, 해당 계정을 통한 추가 데이터 유출,
+    권한 상승, 횡적 이동(Lateral Movement) 등 2차 피해를 방지해야 한다.
+    즉각적인 격리 조치는 공격자의 행동 반경을 제한하고,
+    조사에 필요한 시간을 확보한다.
+  how: |
+    1. 이상 행위 탐지 시스템에서 의심 계정 식별
+    2. 해당 계정의 활성 세션 강제 종료
+    3. 계정 상태를 격리(Quarantine)로 변경
+    4. 접근 권한을 최소한으로 제한 또는 완전 차단
+    5. 계정 소유자에게 통지 및 본인 확인 요구
+    6. 보안팀의 조사 후 격리 해제 또는 계정 비활성화
+
+relations:
+  structural:
+    is_a:
+      - "DEF-RESPOND"  # 대응 방어의 하위 개념
+    depends_on:
+      - "DEF-DETECT-ANOMALY-001"    # 이상 탐지로 의심 계정 식별
+      - "DEF-DETECT-MONITORING-001" # 모니터링으로 침해 감지
+  causal:
+    prevents:
+      - "ATK-AUTH-BRUTEFORCE-001"   # 브루트포스 공격 후 계정 보호
+      - "ATK-SESSION-HIJACK-001"    # 세션 탈취 후 추가 피해 방지
+      - "ATK-AUTH-BYPASS-001"       # 인증 우회 후 계정 보호
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    quarantine_actions:
+      - name: "Session Termination"
+        description: "모든 활성 세션 강제 종료"
+        immediacy: "즉시"
+      - name: "Password Reset Required"
+        description: "비밀번호 강제 재설정 요구"
+        immediacy: "즉시"
+      - name: "MFA Re-enrollment"
+        description: "MFA 재등록 요구"
+        immediacy: "복구 시"
+      - name: "Permission Restriction"
+        description: "접근 권한을 읽기 전용 또는 완전 차단"
+        immediacy: "즉시"
+      - name: "Activity Review"
+        description: "격리 기간 동안 계정 활동 이력 조사"
+        immediacy: "조사 시"
+    quarantine_triggers:
+      - "다수 실패 후 성공 로그인"
+      - "비정상 위치/시간 접속"
+      - "대량 데이터 접근/다운로드"
+      - "권한 상승 시도"
+      - "알려진 침해 자격증명 목록에 포함"
+    automation:
+      - "SOAR 연동 자동 격리"
+      - "UEBA 기반 자동 감지 및 격리"
+      - "임계값 기반 자동 계정 잠금"
+    considerations:
+      - "합법적 사용자의 업무 중단 최소화"
+      - "격리 해제 프로세스 명확화"
+      - "계정 소유자 통지 절차"
+      - "VIP/서비스 계정 별도 처리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-63B Digital Identity Guidelines"
+      - "OWASP Account Lockout Design"
+      - "SANS Incident Handling - Containment"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Account Quarantine은 침해 의심 계정을 격리하여 추가 피해를 방지하는 대응 조치이다.
+      세션 강제 종료, 비밀번호 재설정, 권한 제한 등을 수행하며,
+      브루트포스, 세션 탈취 후 2차 피해를 방지한다. SOAR/UEBA 연동 자동 격리 가능.
+    search_keywords:
+      - "Account Quarantine"
+      - "계정 격리"
+      - "계정 잠금"
+      - "Account Lockout"
+      - "계정 정지"
+      - "세션 종료"
+    related_queries:
+      - "계정 격리란?"
+      - "침해 계정 대응 방법"
+      - "계정 잠금 정책 설정법"
+      - "자동 계정 격리 방법"

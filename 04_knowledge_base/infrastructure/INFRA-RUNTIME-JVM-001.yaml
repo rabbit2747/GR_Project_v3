@@ -1,0 +1,96 @@
+# GR Atom: JVM Runtime
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-RUNTIME-JVM-001"
+  name: "JVM (Java Virtual Machine)"
+  normalization:
+    normalized_name: "jvm java virtual machine java runtime"
+    normalization_version: "1.0"
+  aliases:
+    - "JVM"
+    - "자바 가상 머신"
+    - "Java Runtime Environment"
+    - "JRE"
+
+classification:
+  domain: infrastructure
+  type: runtime
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["INFRA", "RUNTIME", "JAVA"]
+
+definition:
+  what: |
+    JVM(Java Virtual Machine)은 Java 바이트코드를 실행하는 가상 머신이다.
+    플랫폼 독립성을 제공하며, Tomcat, JBoss 등 Java 기반 WAS의 기반이 된다.
+  why: |
+    많은 엔터프라이즈 애플리케이션이 JVM 위에서 실행된다. JVM 취약점,
+    역직렬화 공격, 메모리 설정 오류가 공격 대상이다.
+  how: |
+    1. 바이트코드 로딩: 클래스 로더가 .class 파일 로드
+    2. 바이트코드 검증: 보안 검사
+    3. JIT 컴파일: 실시간 네이티브 코드 변환
+    4. 가비지 컬렉션: 자동 메모리 관리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    supports:
+      - "INFRA-APP-WAS-001"
+  causal:
+    enables:
+      - "ATK-SERVER-DESER-001"
+
+properties:
+  technical:
+    implementations:
+      - name: "Oracle JDK"
+        license: "Commercial"
+      - name: "OpenJDK"
+        license: "GPL"
+      - name: "Amazon Corretto"
+        license: "GPL"
+    security_features:
+      - "Security Manager (deprecated)"
+      - "Bytecode Verification"
+      - "Class Loading Isolation"
+    common_vulnerabilities:
+      - "Deserialization attacks"
+      - "Log4j-style injection"
+      - "Memory exhaustion"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Oracle JVM Security Guide"
+      - "CVE Database - Java"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      JVM(Java Virtual Machine)은 Java 바이트코드를 실행하는 런타임 환경이다.
+      엔터프라이즈 WAS(Tomcat, JBoss)의 기반이며 역직렬화 공격의 대상이 된다.
+    search_keywords:
+      - "JVM"
+      - "Java Virtual Machine"
+      - "JRE"
+      - "Java Runtime"
+    related_queries:
+      - "JVM 보안"
+      - "Java 역직렬화 공격"
+      - "JVM 취약점"

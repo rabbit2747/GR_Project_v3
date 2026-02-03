@@ -1,0 +1,116 @@
+# GR Atom: Lightweight Directory Access Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-LDAP-001"
+  name: "Lightweight Directory Access Protocol"
+  normalization:
+    normalized_name: "ldap directory service active directory authentication"
+    normalization_version: "1.0"
+  aliases:
+    - "LDAP"
+    - "디렉토리 서비스"
+    - "AD LDAP"
+
+classification:
+  domain: infrastructure
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INFRA", "AUTH", "DIRECTORY"]
+
+definition:
+  what: |
+    디렉토리 서비스에 접근하고 관리하기 위한 개방형
+    애플리케이션 프로토콜이다.
+  why: |
+    중앙 집중식 인증을 제공한다.
+    조직 정보를 구조화한다.
+  how: |
+    1. 바인드 (인증)
+    2. 검색/조회
+    3. 수정 작업
+    4. 언바인드 (종료)
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-PROTOCOL-001"
+    related_to:
+      - "TECH-CONCEPT-AD-SECURITY-001"
+      - "ATK-LDAP-INJECTION-001"
+
+properties:
+  technical:
+    default_ports:
+      ldap: 389
+      ldaps: 636
+      global_catalog: 3268
+      global_catalog_ssl: 3269
+    structure:
+      components:
+        - "DN (Distinguished Name)"
+        - "RDN (Relative DN)"
+        - "Attribute"
+        - "Object Class"
+      hierarchy:
+        - "dc (Domain Component)"
+        - "ou (Organizational Unit)"
+        - "cn (Common Name)"
+    operations:
+      - "Bind: 인증"
+      - "Search: 검색"
+      - "Add: 항목 추가"
+      - "Delete: 항목 삭제"
+      - "Modify: 속성 수정"
+      - "Compare: 속성 비교"
+    implementations:
+      - "Microsoft Active Directory"
+      - "OpenLDAP"
+      - "389 Directory Server"
+      - "ApacheDS"
+    security_issues:
+      - "LDAP Injection"
+      - "Anonymous Bind"
+      - "Cleartext Credentials"
+      - "LDAP Reconnaissance"
+    security_recommendations:
+      - "LDAPS 사용 (SSL/TLS)"
+      - "Anonymous Bind 비활성화"
+      - "LDAP Signing"
+      - "Channel Binding"
+      - "최소 권한 바인드 계정"
+    common_queries:
+      all_users: "(objectClass=user)"
+      admins: "(memberOf=CN=Domain Admins,CN=Users,DC=domain,DC=com)"
+      computers: "(objectClass=computer)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 4511"
+      - "Microsoft AD LDAP"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LDAP는 디렉토리 서비스 접근 프로토콜로
+      Active Directory의 핵심 기술이다.
+    search_keywords:
+      - "LDAP"
+      - "Directory Service"
+      - "Active Directory"
+      - "인증"

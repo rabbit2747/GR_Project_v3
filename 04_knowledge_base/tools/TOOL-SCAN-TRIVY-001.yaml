@@ -1,0 +1,127 @@
+# GR Atom: Trivy Container Scanner
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-TRIVY-001"
+  name: "Trivy Container Scanner"
+  normalization:
+    normalized_name: "trivy container vulnerability scanner aqua security"
+    normalization_version: "1.0"
+  aliases:
+    - "Trivy"
+    - "컨테이너 스캐너"
+    - "Aqua Trivy"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "CONTAINER", "SCAN"]
+
+definition:
+  what: |
+    Trivy는 컨테이너 이미지, 파일시스템, Git 리포지토리의
+    취약점과 설정 오류를 스캔하는 오픈소스 도구다.
+  why: |
+    컨테이너 보안의 표준 도구로 빠르고 정확하다.
+    CI/CD 파이프라인에 쉽게 통합된다.
+  how: |
+    1. 스캔 대상 지정 (이미지, 파일시스템)
+    2. 취약점 데이터베이스 업데이트
+    3. 스캔 실행
+    4. 결과 분석 및 조치
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "INFRA-CONTAINER-DOCKER-001"
+      - "TECH-CONCEPT-DEVSECOPS-001"
+
+properties:
+  technical:
+    scan_targets:
+      - "Container Images"
+      - "Filesystem"
+      - "Git Repositories"
+      - "Kubernetes"
+      - "AWS"
+      - "Terraform/CloudFormation"
+    scanner_types:
+      - name: "취약점 스캐너"
+        detects: "OS 패키지, 앱 종속성"
+      - name: "비밀 스캐너"
+        detects: "API 키, 비밀번호"
+      - name: "설정 스캐너"
+        detects: "IaC, Dockerfile 오류"
+      - name: "라이선스 스캐너"
+        detects: "오픈소스 라이선스"
+    vulnerability_sources:
+      - "NVD"
+      - "Debian/Ubuntu/Alpine Security"
+      - "Red Hat CVE"
+      - "GitHub Advisory"
+      - "Arch Linux"
+    features:
+      - "빠른 스캔 (30초 미만)"
+      - "오프라인 모드"
+      - "다양한 출력 형식"
+      - "SBOM 생성"
+      - "정책 엔진"
+    ci_cd_integration:
+      - "GitHub Actions"
+      - "GitLab CI"
+      - "Jenkins"
+      - "CircleCI"
+      - "Docker Hub"
+    commands:
+      - cmd: "trivy image nginx:latest"
+        desc: "이미지 스캔"
+      - cmd: "trivy fs --security-checks vuln,secret ."
+        desc: "파일시스템 스캔"
+      - cmd: "trivy k8s --report summary cluster"
+        desc: "쿠버네티스 스캔"
+      - cmd: "trivy config ."
+        desc: "IaC 스캔"
+    severity_levels:
+      - "CRITICAL"
+      - "HIGH"
+      - "MEDIUM"
+      - "LOW"
+      - "UNKNOWN"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Aqua Trivy"
+      - "Trivy Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Trivy는 컨테이너, 파일시스템, IaC 취약점 스캐너다. 빠르고 정확하며
+      CI/CD 통합으로 DevSecOps 파이프라인의 핵심 도구다.
+    search_keywords:
+      - "Trivy"
+      - "컨테이너 스캔"
+      - "취약점"
+      - "Docker"
+    related_queries:
+      - "컨테이너 보안"
+      - "이미지 스캔"
+      - "SBOM"

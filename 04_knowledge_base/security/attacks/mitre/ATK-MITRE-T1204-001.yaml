@@ -1,0 +1,113 @@
+# GR Atom: User Execution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1204-001"
+  name: "User Execution"
+  normalization:
+    normalized_name: "user execution malicious file link social engineering"
+    normalization_version: "1.0"
+  aliases:
+    - "사용자 실행"
+    - "사용자 유도 실행"
+    - "악성 파일 실행"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    사용자가 악성 파일, 링크, 문서를 실행하도록 유도하여
+    악성 코드를 실행하는 기법이다.
+  why: |
+    기술적 취약점 없이 코드 실행을 달성한다.
+    사회공학적 기법으로 보안 우회한다.
+  how: |
+    1. 악성 페이로드 준비
+    2. 사회공학적 유인 생성
+    3. 피해자에게 전달
+    4. 사용자가 실행하도록 유도
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "ATK-MITRE-T1566-001"
+      - "ATK-SOCIAL-PRETEXTING-001"
+
+properties:
+  technical:
+    mitre_id: "T1204"
+    tactic: "Execution"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1204.001"
+        name: "Malicious Link"
+        description: "악성 링크 클릭 유도"
+      - id: "T1204.002"
+        name: "Malicious File"
+        description: "악성 파일 실행 유도"
+      - id: "T1204.003"
+        name: "Malicious Image"
+        description: "악성 컨테이너 이미지"
+    delivery_methods:
+      - "이메일 첨부파일"
+      - "피싱 링크"
+      - "USB 드롭"
+      - "가짜 소프트웨어"
+      - "악성 문서 (매크로)"
+    common_file_types:
+      - ".exe, .msi"
+      - ".js, .vbs"
+      - ".docm, .xlsm"
+      - ".lnk"
+      - ".hta"
+    detection:
+      - "파일 다운로드 모니터링"
+      - "프로세스 생성 추적"
+      - "Office 매크로 실행"
+      - "사용자 행동 분석"
+    mitigation:
+      - "사용자 보안 인식 교육"
+      - "이메일 필터링"
+      - "매크로 차단"
+      - "샌드박스"
+      - "ASR 규칙"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1204"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      User Execution은 사용자가 악성 파일이나 링크를 실행하도록
+      유도하여 코드를 실행하는 MITRE ATT&CK Execution 기법이다.
+    search_keywords:
+      - "User Execution"
+      - "악성 파일"
+      - "피싱"
+      - "사회공학"
+    related_queries:
+      - "악성코드 전달"
+      - "피싱 공격"
+      - "매크로 악용"

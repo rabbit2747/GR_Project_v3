@@ -1,0 +1,112 @@
+# GR Atom: Lateral Movement (MITRE ATT&CK TA0008)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-LATERAL-001"
+  name: "Lateral Movement (TA0008)"
+  normalization:
+    normalized_name: "lateral movement mitre attack ta0008 pivot network spread"
+    normalization_version: "1.0"
+  aliases:
+    - "횡적 이동"
+    - "Lateral Movement"
+    - "TA0008"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Lateral Movement는 공격자가 네트워크 내 다른 시스템으로
+    이동하는 전술이다. 더 가치 있는 타겟에 접근하기 위해 사용된다.
+  why: |
+    초기 침투 지점과 최종 목표(데이터, 시스템)가 다른 경우가 대부분이다.
+    내부 네트워크 이동으로 고가치 자산에 도달한다.
+  how: |
+    1. Remote Services (T1021): RDP, SSH, SMB 등
+    2. Exploitation of Remote Services (T1210): 내부 취약점 악용
+    3. Internal Spearphishing (T1534): 내부 피싱
+    4. Pass the Hash (T1550.002): 해시로 인증
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    preceded_by:
+      - "ATK-MITRE-CRED-ACCESS-001"
+    followed_by:
+      - "ATK-MITRE-EXFILTRATION-001"
+
+properties:
+  technical:
+    mitre_id: "TA0008"
+    techniques:
+      - id: "T1021"
+        name: "Remote Services"
+        sub_techniques:
+          - "T1021.001: Remote Desktop Protocol"
+          - "T1021.002: SMB/Windows Admin Shares"
+          - "T1021.004: SSH"
+          - "T1021.006: Windows Remote Management"
+      - id: "T1550"
+        name: "Use Alternate Authentication Material"
+        sub_techniques:
+          - "T1550.001: Application Access Token"
+          - "T1550.002: Pass the Hash"
+          - "T1550.003: Pass the Ticket"
+      - id: "T1210"
+        name: "Exploitation of Remote Services"
+        description: "내부 서비스 취약점 악용"
+      - id: "T1534"
+        name: "Internal Spearphishing"
+        description: "내부 사용자 대상 피싱"
+      - id: "T1570"
+        name: "Lateral Tool Transfer"
+        description: "도구를 다른 시스템으로 전송"
+    detection:
+      - "비정상 로그인 패턴"
+      - "내부 RDP/SSH 연결 모니터링"
+      - "PtH/PtT 탐지"
+      - "네트워크 세그먼트 간 트래픽"
+    prevention:
+      - "네트워크 세그먼테이션"
+      - "제로 트러스트 아키텍처"
+      - "권한 있는 접근 관리 (PAM)"
+      - "MFA 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Lateral Movement"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Lateral Movement(TA0008)는 네트워크 내 횡적 이동 전술이다. RDP, SMB, Pass the Hash
+      등이 주요 기법이며 네트워크 세그먼테이션, 제로 트러스트로 방어한다.
+    search_keywords:
+      - "Lateral Movement"
+      - "TA0008"
+      - "횡적 이동"
+      - "Pass the Hash"
+    related_queries:
+      - "네트워크 이동"
+      - "PtH 공격"
+      - "내부 침투"

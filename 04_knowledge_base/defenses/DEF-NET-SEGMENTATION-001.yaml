@@ -1,0 +1,113 @@
+# GR Atom: Network Segmentation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-SEGMENTATION-001"
+  name: "Network Segmentation"
+  normalization:
+    normalized_name: "network segmentation vlan dmz microsegmentation isolation"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Segmentation"
+    - "네트워크 세그멘테이션"
+    - "Network Isolation"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["DEF", "NETWORK", "ARCHITECTURE"]
+
+definition:
+  what: |
+    네트워크를 논리적/물리적으로 분리하여 공격 확산을
+    제한하고 접근 통제를 강화하는 보안 아키텍처이다.
+  why: |
+    측면 이동을 제한한다.
+    공격 영향 범위를 최소화한다.
+  how: |
+    1. 자산 분류
+    2. 세그먼트 설계
+    3. 접근 정책 정의
+    4. 모니터링 구현
+
+relations:
+  structural:
+    is_a:
+      - "DEF-ARCHITECTURE-001"
+    related_to:
+      - "DEF-NET-FIREWALL-001"
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+
+properties:
+  technical:
+    types:
+      physical:
+        description: "물리적 네트워크 분리"
+        method: "별도 스위치/라우터"
+      logical:
+        description: "논리적 분리"
+        methods: ["VLAN", "VRF", "ACL"]
+      micro:
+        description: "워크로드 수준 분리"
+        methods: ["SDN", "Host-based FW"]
+    common_segments:
+      - "DMZ"
+      - "내부 네트워크"
+      - "서버 세그먼트"
+      - "사용자 세그먼트"
+      - "IoT/OT 세그먼트"
+      - "관리 네트워크"
+    technologies:
+      - "VLAN"
+      - "방화벽"
+      - "ACL"
+      - "SDN"
+      - "NSX, ACI"
+      - "Host-based Firewall"
+    microsegmentation:
+      description: "워크로드 간 세밀한 격리"
+      benefits:
+        - "East-West 트래픽 통제"
+        - "제로 트러스트 구현"
+      solutions:
+        - "VMware NSX"
+        - "Cisco ACI"
+        - "Illumio"
+        - "Guardicore"
+    best_practices:
+      - "최소 권한 접근"
+      - "기본 거부 정책"
+      - "세그먼트 간 트래픽 모니터링"
+      - "정기적인 검토"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-125B"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Segmentation은 네트워크를 분리하여 측면 이동을
+      제한하고 공격 영향을 최소화하는 보안 아키텍처이다.
+    search_keywords:
+      - "Network Segmentation"
+      - "VLAN"
+      - "Microsegmentation"
+      - "네트워크 분리"

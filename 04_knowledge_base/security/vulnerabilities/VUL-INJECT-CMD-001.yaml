@@ -1,0 +1,107 @@
+# GR Atom: Command Injection Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-INJECT-CMD-001"
+  name: "OS Command Injection Vulnerability"
+  normalization:
+    normalized_name: "command injection vulnerability os command injection"
+    normalization_version: "1.0"
+  aliases:
+    - "명령어 삽입 취약점"
+    - "Command Injection Flaw"
+    - "Shell Injection 취약점"
+    - "OS Injection 결함"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone2"
+    tags: ["INJ", "OS"]
+
+definition:
+  what: |
+    Command Injection 취약점은 애플리케이션이 사용자 입력을 운영체제 명령어에
+    검증 없이 포함하여, 공격자가 서버에서 임의의 시스템 명령을 실행할 수 있는
+    보안 결함이다. CWE-78에 해당하며, 서버 완전 장악이 가능하다.
+  why: |
+    SQL Injection보다 더 치명적일 수 있는 취약점으로, 데이터베이스 뿐 아니라
+    전체 운영체제 수준의 접근 권한을 획득할 수 있다. 내부 네트워크 침투,
+    백도어 설치, 데이터 탈취 등 후속 공격의 발판이 된다.
+  how: |
+    1. 시스템 명령을 호출하는 코드에서 사용자 입력을 직접 명령어에 삽입
+    2. 셸 메타문자(;, |, &&, `, $() 등) 필터링 미적용
+    3. 파일명 처리, 시스템 유틸리티 호출, 이미지 변환 등에서 주로 발생
+    4. 정적 분석으로 system(), exec(), popen() 등 위험 함수 호출 탐지
+    5. 동적 분석으로 시간 지연 기반 탐지 (; sleep 5)
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  causal:
+    exploited_by:
+      - "ATK-INJECT-CMD-001"  # Command Injection 공격 기법
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  security:
+    cwe_id: "CWE-78"
+    owasp: "A03:2021"
+    cvss_base: 9.8
+    impact:
+      confidentiality: "CRITICAL - 전체 시스템 파일 접근"
+      integrity: "CRITICAL - 시스템 변조, 백도어 설치"
+      availability: "CRITICAL - 시스템 파괴 가능"
+  countermeasures:
+    primary:
+      - name: "시스템 명령 호출 회피"
+        description: "라이브러리/API 대체 사용"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-INPUTVAL-001"
+        name: "화이트리스트 입력 검증"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "최소 권한 원칙"
+        description: "애플리케이션을 제한된 권한으로 실행"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-78: Improper Neutralization of Special Elements used in an OS Command"
+      - "OWASP Command Injection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Command Injection 취약점(CWE-78)은 사용자 입력이 OS 명령어에 삽입되어
+      공격자가 서버에서 임의 명령을 실행할 수 있는 보안 결함이다. 셸 메타문자
+      필터링 부재로 발생하며, 시스템 명령 호출 회피와 입력 검증으로 방어한다.
+      OWASP A03:2021, CVSS 9.8.
+    search_keywords:
+      - "Command Injection 취약점"
+      - "명령어 삽입 결함"
+      - "CWE-78"
+      - "OS Command Injection vulnerability"
+      - "Shell Injection 취약점"
+    related_queries:
+      - "Command Injection 취약점이란?"
+      - "Command Injection 방어 방법"
+      - "CWE-78 대응 방안"

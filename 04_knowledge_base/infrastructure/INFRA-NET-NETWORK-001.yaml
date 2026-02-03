@@ -1,0 +1,107 @@
+# GR Atom: Network Infrastructure (Abstract)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-NETWORK-001"
+  name: "Network Infrastructure"
+  normalization:
+    normalized_name: "network infrastructure networking lan wan"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 인프라"
+    - "Network"
+    - "네트워크"
+    - "Networking"
+
+classification:
+  domain: infrastructure
+  type: network
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L2"
+    zone: "Cross"
+    tags: ["INFRA", "NET"]
+
+definition:
+  what: |
+    네트워크 인프라(Network Infrastructure)는 시스템 간 통신을 가능하게 하는
+    하드웨어, 소프트웨어, 프로토콜의 집합이다. 스위치, 라우터, 방화벽 등으로 구성된다.
+  why: |
+    모든 분산 시스템의 기반이다. 네트워크 장비 취약점, 설정 오류,
+    트래픽 가로채기가 주요 보안 위협이다.
+  how: |
+    1. Physical Layer: 케이블, 스위치, 라우터
+    2. Network Layer: IP 라우팅, 서브넷팅
+    3. Security Layer: 방화벽, IDS/IPS, VPN
+    4. Management: 모니터링, 설정 관리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-DEVICE-001"
+    has_part:
+      - "INFRA-NET-FIREWALL-001"
+      - "INFRA-NET-LB-001"
+      - "INFRA-NET-DNS-001"
+  causal:
+    targeted_by:
+      - "ATK-NET-MITM-001"
+      - "ATK-NET-SNIFF-001"
+
+properties:
+  technical:
+    components:
+      - name: "Switch"
+        layer: "L2"
+        function: "프레임 스위칭"
+      - name: "Router"
+        layer: "L3"
+        function: "패킷 라우팅"
+      - name: "Firewall"
+        layer: "L3-L7"
+        function: "접근 제어"
+      - name: "Load Balancer"
+        layer: "L4-L7"
+        function: "트래픽 분산"
+    security_principles:
+      - "Defense in Depth"
+      - "Network Segmentation"
+      - "Zero Trust"
+      - "Least Privilege"
+    common_vulnerabilities:
+      - "장비 기본 자격 증명"
+      - "암호화되지 않은 관리 프로토콜"
+      - "부적절한 세그멘테이션"
+      - "오래된 펌웨어"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Network Device Benchmarks"
+      - "NIST Network Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Infrastructure(네트워크 인프라)는 시스템 간 통신을 가능하게 하는
+      인프라다. 네트워크 세그멘테이션, Zero Trust가 핵심 보안 원칙이다.
+    search_keywords:
+      - "Network Infrastructure"
+      - "네트워크 인프라"
+      - "네트워크 보안"
+      - "Network Security"
+    related_queries:
+      - "네트워크 세그멘테이션"
+      - "Zero Trust 네트워크"
+      - "네트워크 하드닝"

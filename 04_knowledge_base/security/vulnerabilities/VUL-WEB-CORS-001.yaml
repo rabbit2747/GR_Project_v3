@@ -1,0 +1,113 @@
+# GR Atom: CORS Misconfiguration
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-CORS-001"
+  name: "CORS Misconfiguration"
+  normalization:
+    normalized_name: "cors misconfiguration cross origin resource sharing vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "CORS 설정 오류"
+    - "CORS Vulnerability"
+    - "교차 출처 리소스 공유 취약점"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["VUL", "WEB", "CORS"]
+
+definition:
+  what: |
+    CORS 설정 오류는 교차 출처 리소스 공유 정책이 잘못 구성되어
+    악의적인 사이트가 사용자 데이터에 접근할 수 있는 취약점이다.
+  why: |
+    SPA, 마이크로서비스에서 CORS는 필수지만 설정 오류가 빈번하다.
+    과도하게 허용적인 CORS는 CSRF와 유사한 공격을 가능하게 한다.
+  how: |
+    1. 피해자가 악성 사이트 방문
+    2. 악성 사이트가 취약한 API에 요청
+    3. CORS가 잘못 구성되어 응답 허용
+    4. 악성 사이트가 민감한 데이터 획득
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "DEF-PREVENT-CORS-001"
+      - "ATK-AUTH-CSRF-001"
+
+properties:
+  technical:
+    vulnerable_patterns:
+      - name: "Wildcard Origin"
+        pattern: "Access-Control-Allow-Origin: *"
+        risk: "모든 출처에서 접근 허용"
+      - name: "Origin Reflection"
+        pattern: "Origin 헤더를 그대로 반사"
+        risk: "모든 출처 허용과 동일"
+      - name: "Null Origin"
+        pattern: "Access-Control-Allow-Origin: null"
+        risk: "샌드박스, data: URL에서 악용"
+      - name: "Subdomain Wildcard"
+        pattern: "*.example.com 형태"
+        risk: "서브도메인 탈취 시 악용"
+      - name: "Credentials with Wildcard"
+        pattern: "* + Allow-Credentials: true"
+        risk: "브라우저가 차단하지만 오해 가능"
+    headers:
+      - "Access-Control-Allow-Origin"
+      - "Access-Control-Allow-Credentials"
+      - "Access-Control-Allow-Methods"
+      - "Access-Control-Allow-Headers"
+      - "Access-Control-Expose-Headers"
+    attack_scenario:
+      - "1. 공격자가 악성 웹사이트 생성"
+      - "2. 피해자가 로그인 상태에서 방문"
+      - "3. 악성 사이트가 취약한 API 호출"
+      - "4. 쿠키와 함께 요청 전송"
+      - "5. CORS 오류로 응답 읽기 가능"
+      - "6. 민감한 데이터 탈취"
+    prevention:
+      - "명시적인 Origin 화이트리스트"
+      - "Origin 반사 금지"
+      - "null Origin 허용 금지"
+      - "Credentials 필요 시 * 사용 금지"
+      - "프리플라이트 요청 활용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP CORS"
+      - "PortSwigger CORS Research"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CORS 설정 오류는 교차 출처 정책 오류로 인한 취약점이다. Origin 반사,
+      와일드카드가 주요 문제며 명시적 화이트리스트로 방어한다.
+    search_keywords:
+      - "CORS"
+      - "CORS 취약점"
+      - "교차 출처"
+      - "Origin"
+    related_queries:
+      - "CORS 설정"
+      - "CORS 보안"
+      - "SOP"

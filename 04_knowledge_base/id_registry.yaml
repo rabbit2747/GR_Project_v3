@@ -1,0 +1,1397 @@
+# GR Ontology ID Registry
+# 원자 ID 할당 관리 (Legacy + Current 체계)
+# Version: 2.0
+# Last Updated: 2025-01-29
+
+registry:
+  project: GR Ontology
+  version: "3.2"
+  last_updated: "2025-01-29"
+  total_atoms: 500
+
+# ============================================================
+# ID SCHEME DOCUMENTATION
+# ============================================================
+#
+# Legacy Scheme (Phase 0 - SQLi):
+#   GR-SEC-{TYPE}-{SEQUENCE}
+#   예: GR-SEC-TEC-00001, GR-SEC-CON-00001
+#
+# Current Scheme (Phase 1+):
+#   {CATEGORY}-{SUBCATEGORY}-{NAME}-{SEQUENCE}
+#   예: ATK-INJECT-SQL-001, INFRA-APP-WEBAPP-001
+#
+# Categories:
+#   TECH-     Technology (protocols, languages, formats, concepts)
+#   INFRA-    Infrastructure (app, data, network)
+#   ATK-      Attack techniques
+#   VUL-      Vulnerabilities
+#   DEF-      Defenses (prevent, detect, respond)
+#   TOOL-     Security tools
+# ============================================================
+
+sequences:
+  # Legacy sequences
+  legacy:
+    PRI: 1
+    CON: 2
+    TEC: 10
+    INS-P: 5
+    INS-F: 3
+
+  # Current sequences
+  current:
+    # Technology
+    TECH-PROTOCOL: 8      # +4 (DNS, SSH, FTP, SMTP, OAuth, OIDC, SAML)
+    TECH-LANG: 3
+    TECH-FORMAT: 3        # +1 (JWT)
+    TECH-CONCEPT: 28      # +3 (REST, GraphQL, MITRE ATT&CK)
+
+    # Infrastructure
+    INFRA-APP: 6
+    INFRA-APP-WAS: 4
+    INFRA-DATA: 4
+    INFRA-NET: 6
+    INFRA-RUNTIME: 3
+    INFRA-COMPUTE: 3
+    INFRA-IAM: 1
+    INFRA-CLOUD: 5        # +4 (Azure, Azure AD, GCP, GCP IAM, AWS IAM, AWS S3)
+    INFRA-SYS: 1
+
+    # Attacks
+    ATK-INJECT: 6
+    ATK-AUTH: 4
+    ATK-SESSION: 2
+    ATK-SERVER: 7
+    ATK-WEB: 2
+    ATK-NET: 7            # +3 (DDoS, ARP Spoofing, VLAN Hopping)
+    ATK-RECON: 1
+    ATK-CRYPTO: 2
+    ATK-CLOUD: 1          # NEW (Cloud Privilege Escalation)
+    ATK-API: 1            # NEW (Mass Assignment)
+    ATK-MITRE: 10         # NEW (MITRE ATT&CK Tactics)
+
+    # Vulnerabilities
+    VUL-INJECT: 3
+    VUL-AUTH: 2
+    VUL-ACCESS: 1
+    VUL-CONFIG: 1
+    VUL-CRYPTO: 1
+    VUL-DATA: 1
+    VUL-DESER: 1
+    VUL-COMPONENT: 1
+    VUL-LOG: 1
+    VUL-PATH: 1
+    VUL-SSRF: 1
+    VUL-XXE: 1
+    VUL-MONITORING: 1
+    VUL-RESPONSE: 1
+    VUL-CLOUD: 1          # NEW (Cloud Misconfiguration)
+    VUL-API: 3            # NEW (BOLA, BFLA, Excessive Data)
+
+    # Defenses
+    DEF-PREVENT: 16       # +4 (Segmentation, API-Auth, API-Gateway, Zero-Trust)
+    DEF-DETECT: 5
+    DEF-RESPOND: 3
+
+    # Tools
+    TOOL-OFFENSE: 5       # +1 (Cobalt Strike)
+    TOOL-DEFENSE: 3       # +2 (EDR, SIEM)
+    TOOL-AUDIT: 3
+
+# ============================================================
+# ALLOCATED IDS - LEGACY SCHEME (21 atoms)
+# ============================================================
+
+legacy_atoms:
+  # Level 4 - Principles (1)
+  principles:
+    - id: GR-SEC-PRI-00001
+      name: "Untrusted Input-Code Mixing Danger"
+      file: "concepts/principles/GR-SEC-PRI-00001.yaml"
+      level: 4
+
+  # Level 3 - Concepts (2)
+  concepts:
+    - id: GR-SEC-CON-00001
+      name: "Injection Vulnerability"
+      file: "concepts/GR-SEC-CON-00001.yaml"
+      level: 3
+
+    - id: GR-SEC-CON-00002
+      name: "SQL Injection"
+      file: "concepts/GR-SEC-CON-00002.yaml"
+      level: 3
+
+  # Level 2 - Techniques (10)
+  techniques:
+    - id: GR-SEC-TEC-00001
+      name: "UNION-based SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00001.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00002
+      name: "Blind Boolean-based SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00002.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00003
+      name: "Blind Time-based SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00003.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00004
+      name: "Error-based SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00004.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00005
+      name: "Stacked Queries SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00005.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00006
+      name: "Out-of-Band SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00006.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00007
+      name: "Second-Order SQL Injection"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00007.yaml"
+      level: 2
+      category: exploitation
+
+    - id: GR-SEC-TEC-00008
+      name: "Comment-based WAF Bypass"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00008.yaml"
+      level: 2
+      category: evasion
+
+    - id: GR-SEC-TEC-00009
+      name: "Encoding-based WAF Bypass"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00009.yaml"
+      level: 2
+      category: evasion
+
+    - id: GR-SEC-TEC-00010
+      name: "Case and Whitespace Manipulation Bypass"
+      file: "security/attacks/injection/sqli/techniques/GR-SEC-TEC-00010.yaml"
+      level: 2
+      category: evasion
+
+  # Level 1 - Instances: Payloads (5)
+  payloads:
+    - id: GR-SEC-INS-P0001
+      name: "Single Quote Error Payload"
+      file: "security/attacks/injection/sqli/payloads/GR-SEC-INS-P0001.yaml"
+      level: 1
+      category: detection
+
+    - id: GR-SEC-INS-P0002
+      name: "Boolean True/False Detection Payload"
+      file: "security/attacks/injection/sqli/payloads/GR-SEC-INS-P0002.yaml"
+      level: 1
+      category: detection
+
+    - id: GR-SEC-INS-P0003
+      name: "Time-based SLEEP Detection Payload"
+      file: "security/attacks/injection/sqli/payloads/GR-SEC-INS-P0003.yaml"
+      level: 1
+      category: detection
+
+    - id: GR-SEC-INS-P0004
+      name: "UNION Column Count Detection Payload"
+      file: "security/attacks/injection/sqli/payloads/GR-SEC-INS-P0004.yaml"
+      level: 1
+      category: exploitation
+
+    - id: GR-SEC-INS-P0005
+      name: "UNION Data Extraction Payload"
+      file: "security/attacks/injection/sqli/payloads/GR-SEC-INS-P0005.yaml"
+      level: 1
+      category: exploitation
+
+  # Level 1 - Instances: Fingerprints (3)
+  fingerprints:
+    - id: GR-SEC-INS-F0001
+      name: "MySQL DBMS Fingerprint"
+      file: "security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0001.yaml"
+      level: 1
+      category: reconnaissance
+
+    - id: GR-SEC-INS-F0002
+      name: "MSSQL DBMS Fingerprint"
+      file: "security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0002.yaml"
+      level: 1
+      category: reconnaissance
+
+    - id: GR-SEC-INS-F0003
+      name: "PostgreSQL DBMS Fingerprint"
+      file: "security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0003.yaml"
+      level: 1
+      category: reconnaissance
+
+# ============================================================
+# ALLOCATED IDS - CURRENT SCHEME (82 atoms)
+# ============================================================
+
+current_atoms:
+  # TECHNOLOGY (12 atoms)
+  technology:
+    protocols:
+      - id: TECH-PROTOCOL-HTTP-001
+        name: "HTTP Protocol"
+        file: "technology/protocols/TECH-PROTOCOL-HTTP-001.yaml"
+
+      - id: TECH-PROTOCOL-HTTPS-001
+        name: "HTTPS (HTTP Secure)"
+        file: "technology/protocols/TECH-PROTOCOL-HTTPS-001.yaml"
+
+      - id: TECH-PROTOCOL-TCP-001
+        name: "TCP Protocol"
+        file: "technology/protocols/TECH-PROTOCOL-TCP-001.yaml"
+
+      # P1 - New protocol
+      - id: TECH-PROTOCOL-TLS-001
+        name: "TLS (Transport Layer Security)"
+        file: "technology/protocols/TECH-PROTOCOL-TLS-001.yaml"
+
+    languages:
+      - id: TECH-LANG-HTML-001
+        name: "HTML"
+        file: "technology/languages/TECH-LANG-HTML-001.yaml"
+
+      - id: TECH-LANG-JAVASCRIPT-001
+        name: "JavaScript"
+        file: "technology/languages/TECH-LANG-JAVASCRIPT-001.yaml"
+
+      - id: TECH-LANG-SQL-001
+        name: "SQL"
+        file: "technology/languages/TECH-LANG-SQL-001.yaml"
+
+    formats:
+      - id: TECH-FORMAT-JSON-001
+        name: "JSON"
+        file: "technology/formats/TECH-FORMAT-JSON-001.yaml"
+
+      - id: TECH-FORMAT-XML-001
+        name: "XML"
+        file: "technology/formats/TECH-FORMAT-XML-001.yaml"
+
+    concepts:
+      - id: TECH-CONCEPT-COOKIE-001
+        name: "Cookie"
+        file: "technology/concepts/TECH-CONCEPT-COOKIE-001.yaml"
+
+      - id: TECH-CONCEPT-DOM-001
+        name: "DOM"
+        file: "technology/concepts/TECH-CONCEPT-DOM-001.yaml"
+
+      - id: TECH-CONCEPT-SESSION-001
+        name: "Session"
+        file: "technology/concepts/TECH-CONCEPT-SESSION-001.yaml"
+
+      - id: TECH-CONCEPT-SHELL-001
+        name: "Shell"
+        file: "technology/concepts/TECH-CONCEPT-SHELL-001.yaml"
+
+      # P1 - Abstract Parent Concepts (20 atoms)
+      - id: TECH-CONCEPT-APPLICATION-001
+        name: "Application"
+        file: "technology/concepts/TECH-CONCEPT-APPLICATION-001.yaml"
+
+      - id: TECH-CONCEPT-AUTH-ATTACK-001
+        name: "Authentication Attack"
+        file: "technology/concepts/TECH-CONCEPT-AUTH-ATTACK-001.yaml"
+
+      - id: TECH-CONCEPT-BROWSER-001
+        name: "Browser"
+        file: "technology/concepts/TECH-CONCEPT-BROWSER-001.yaml"
+
+      - id: TECH-CONCEPT-CERTIFICATE-001
+        name: "Certificate"
+        file: "technology/concepts/TECH-CONCEPT-CERTIFICATE-001.yaml"
+
+      - id: TECH-CONCEPT-CLIENT-ATTACK-001
+        name: "Client-Side Attack"
+        file: "technology/concepts/TECH-CONCEPT-CLIENT-ATTACK-001.yaml"
+
+      - id: TECH-CONCEPT-DATA-FORMAT-001
+        name: "Data Format"
+        file: "technology/concepts/TECH-CONCEPT-DATA-FORMAT-001.yaml"
+
+      - id: TECH-CONCEPT-DATABASE-001
+        name: "Database"
+        file: "technology/concepts/TECH-CONCEPT-DATABASE-001.yaml"
+
+      - id: TECH-CONCEPT-DEFENSE-001
+        name: "Defense"
+        file: "technology/concepts/TECH-CONCEPT-DEFENSE-001.yaml"
+
+      - id: TECH-CONCEPT-FIREWALL-001
+        name: "Firewall"
+        file: "technology/concepts/TECH-CONCEPT-FIREWALL-001.yaml"
+
+      - id: TECH-CONCEPT-MARKUP-001
+        name: "Markup Language"
+        file: "technology/concepts/TECH-CONCEPT-MARKUP-001.yaml"
+
+      - id: TECH-CONCEPT-NETWORK-ATTACK-001
+        name: "Network Attack"
+        file: "technology/concepts/TECH-CONCEPT-NETWORK-ATTACK-001.yaml"
+
+      - id: TECH-CONCEPT-NETWORK-DEVICE-001
+        name: "Network Device"
+        file: "technology/concepts/TECH-CONCEPT-NETWORK-DEVICE-001.yaml"
+
+      - id: TECH-CONCEPT-OS-001
+        name: "Operating System"
+        file: "technology/concepts/TECH-CONCEPT-OS-001.yaml"
+
+      - id: TECH-CONCEPT-PROGRAMMING-LANG-001
+        name: "Programming Language"
+        file: "technology/concepts/TECH-CONCEPT-PROGRAMMING-LANG-001.yaml"
+
+      - id: TECH-CONCEPT-PROTOCOL-001
+        name: "Protocol"
+        file: "technology/concepts/TECH-CONCEPT-PROTOCOL-001.yaml"
+
+      - id: TECH-CONCEPT-QUERY-LANG-001
+        name: "Query Language"
+        file: "technology/concepts/TECH-CONCEPT-QUERY-LANG-001.yaml"
+
+      - id: TECH-CONCEPT-SERVER-001
+        name: "Server"
+        file: "technology/concepts/TECH-CONCEPT-SERVER-001.yaml"
+
+      - id: TECH-CONCEPT-SERVER-ATTACK-001
+        name: "Server-Side Attack"
+        file: "technology/concepts/TECH-CONCEPT-SERVER-ATTACK-001.yaml"
+
+      - id: TECH-CONCEPT-STATE-MGMT-001
+        name: "State Management"
+        file: "technology/concepts/TECH-CONCEPT-STATE-MGMT-001.yaml"
+
+      - id: TECH-CONCEPT-VULNERABILITY-001
+        name: "Vulnerability"
+        file: "technology/concepts/TECH-CONCEPT-VULNERABILITY-001.yaml"
+
+      - id: TECH-CONCEPT-MIDDLEWARE-001
+        name: "Middleware"
+        file: "technology/concepts/TECH-CONCEPT-MIDDLEWARE-001.yaml"
+
+  # INFRASTRUCTURE (21 atoms) - 11 original + 10 new in P1
+  infrastructure:
+    application:
+      - id: INFRA-APP-API-001
+        name: "REST API Server"
+        file: "infrastructure/INFRA-APP-API-001.yaml"
+
+      - id: INFRA-APP-WAS-001
+        name: "Web Application Server"
+        file: "infrastructure/INFRA-APP-WAS-001.yaml"
+
+      - id: INFRA-APP-WEBAPP-001
+        name: "Web Application"
+        file: "infrastructure/INFRA-APP-WEBAPP-001.yaml"
+
+      - id: INFRA-APP-WEBSERVER-001
+        name: "Web Server"
+        file: "infrastructure/INFRA-APP-WEBSERVER-001.yaml"
+
+    data:
+      - id: INFRA-DATA-CACHE-001
+        name: "Cache Server"
+        file: "infrastructure/INFRA-DATA-CACHE-001.yaml"
+
+      - id: INFRA-DATA-RDBMS-001
+        name: "Relational Database"
+        file: "infrastructure/INFRA-DATA-RDBMS-001.yaml"
+
+    network:
+      - id: INFRA-NET-CDN-001
+        name: "CDN"
+        file: "infrastructure/INFRA-NET-CDN-001.yaml"
+
+      - id: INFRA-NET-DNS-001
+        name: "DNS Server"
+        file: "infrastructure/INFRA-NET-DNS-001.yaml"
+
+      - id: INFRA-NET-FIREWALL-001
+        name: "Firewall"
+        file: "infrastructure/INFRA-NET-FIREWALL-001.yaml"
+
+      - id: INFRA-NET-LB-001
+        name: "Load Balancer"
+        file: "infrastructure/INFRA-NET-LB-001.yaml"
+
+      - id: INFRA-NET-WAF-001
+        name: "Web Application Firewall"
+        file: "infrastructure/INFRA-NET-WAF-001.yaml"
+
+    # P1 - New infrastructure categories
+    runtime:
+      - id: INFRA-RUNTIME-JVM-001
+        name: "JVM"
+        file: "infrastructure/INFRA-RUNTIME-JVM-001.yaml"
+
+      - id: INFRA-RUNTIME-CONTAINER-001
+        name: "Container Runtime"
+        file: "infrastructure/INFRA-RUNTIME-CONTAINER-001.yaml"
+
+      - id: INFRA-RUNTIME-K8S-001
+        name: "Kubernetes"
+        file: "infrastructure/INFRA-RUNTIME-K8S-001.yaml"
+
+    compute:
+      - id: INFRA-COMPUTE-VM-001
+        name: "Virtual Machine"
+        file: "infrastructure/INFRA-COMPUTE-VM-001.yaml"
+
+      - id: INFRA-COMPUTE-CONTAINER-001
+        name: "Container"
+        file: "infrastructure/INFRA-COMPUTE-CONTAINER-001.yaml"
+
+    data_extended:
+      - id: INFRA-DATA-MQ-001
+        name: "Message Queue"
+        file: "infrastructure/INFRA-DATA-MQ-001.yaml"
+
+      - id: INFRA-DATA-STORAGE-001
+        name: "Storage"
+        file: "infrastructure/INFRA-DATA-STORAGE-001.yaml"
+
+    identity:
+      - id: INFRA-IAM-LDAP-001
+        name: "LDAP/Active Directory"
+        file: "infrastructure/INFRA-IAM-LDAP-001.yaml"
+
+    cloud:
+      - id: INFRA-CLOUD-001
+        name: "Cloud Infrastructure"
+        file: "infrastructure/INFRA-CLOUD-001.yaml"
+
+    application_extended:
+      - id: INFRA-APP-SPA-001
+        name: "Single Page Application"
+        file: "infrastructure/INFRA-APP-SPA-001.yaml"
+
+      - id: INFRA-APP-MOBILE-API-001
+        name: "Mobile API Backend"
+        file: "infrastructure/INFRA-APP-MOBILE-API-001.yaml"
+
+    was_instances:
+      - id: INFRA-APP-WAS-TOMCAT-001
+        name: "Apache Tomcat"
+        file: "infrastructure/INFRA-APP-WAS-TOMCAT-001.yaml"
+
+      - id: INFRA-APP-WAS-JBOSS-001
+        name: "JBoss/WildFly"
+        file: "infrastructure/INFRA-APP-WAS-JBOSS-001.yaml"
+
+      - id: INFRA-APP-WAS-WEBLOGIC-001
+        name: "Oracle WebLogic"
+        file: "infrastructure/INFRA-APP-WAS-WEBLOGIC-001.yaml"
+
+      - id: INFRA-APP-WAS-WEBSPHERE-001
+        name: "IBM WebSphere"
+        file: "infrastructure/INFRA-APP-WAS-WEBSPHERE-001.yaml"
+
+    compute_extended:
+      - id: INFRA-COMPUTE-SERVER-001
+        name: "Server (Compute)"
+        file: "infrastructure/INFRA-COMPUTE-SERVER-001.yaml"
+
+    network_extended:
+      - id: INFRA-NET-NETWORK-001
+        name: "Network Infrastructure"
+        file: "infrastructure/INFRA-NET-NETWORK-001.yaml"
+
+    system:
+      - id: INFRA-SYS-SERVER-001
+        name: "System Server"
+        file: "infrastructure/INFRA-SYS-SERVER-001.yaml"
+
+  # ATTACKS (28 atoms) - 16 original + 12 new in P1
+  attacks:
+    injection:
+      - id: ATK-INJECT-CMD-001
+        name: "Command Injection"
+        file: "security/attacks/injection/ATK-INJECT-CMD-001.yaml"
+
+      - id: ATK-INJECT-SQL-001
+        name: "SQL Injection"
+        file: "security/attacks/injection/ATK-INJECT-SQL-001.yaml"
+
+      - id: ATK-INJECT-XML-001
+        name: "XML Injection (XXE)"
+        file: "security/attacks/injection/ATK-INJECT-XML-001.yaml"
+
+      - id: ATK-INJECT-XSS-001
+        name: "Cross-Site Scripting"
+        file: "security/attacks/injection/ATK-INJECT-XSS-001.yaml"
+
+      # P1 - New injection attacks
+      - id: ATK-INJECT-HEADER-001
+        name: "HTTP Header Injection"
+        file: "security/attacks/injection/ATK-INJECT-HEADER-001.yaml"
+
+      - id: ATK-INJECT-LDAP-001
+        name: "LDAP Injection"
+        file: "security/attacks/injection/ATK-INJECT-LDAP-001.yaml"
+
+    authentication:
+      - id: ATK-AUTH-BRUTEFORCE-001
+        name: "Brute Force"
+        file: "security/attacks/authentication/ATK-AUTH-BRUTEFORCE-001.yaml"
+
+      - id: ATK-AUTH-BYPASS-001
+        name: "Authentication Bypass"
+        file: "security/attacks/authentication/ATK-AUTH-BYPASS-001.yaml"
+
+      - id: ATK-AUTH-CREDSTUFF-001
+        name: "Credential Stuffing"
+        file: "security/attacks/authentication/ATK-AUTH-CREDSTUFF-001.yaml"
+
+      - id: ATK-AUTH-CSRF-001
+        name: "CSRF"
+        file: "security/attacks/authentication/ATK-AUTH-CSRF-001.yaml"
+
+    session:
+      - id: ATK-SESSION-HIJACK-001
+        name: "Session Hijacking"
+        file: "security/attacks/authentication/ATK-SESSION-HIJACK-001.yaml"
+
+      # P1 - New session attack
+      - id: ATK-SESSION-FIXATION-001
+        name: "Session Fixation"
+        file: "security/attacks/authentication/ATK-SESSION-FIXATION-001.yaml"
+
+    server_side:
+      - id: ATK-SERVER-DESER-001
+        name: "Insecure Deserialization"
+        file: "security/attacks/server-side/ATK-SERVER-DESER-001.yaml"
+
+      - id: ATK-SERVER-FILEUPLOAD-001
+        name: "Malicious File Upload"
+        file: "security/attacks/server-side/ATK-SERVER-FILEUPLOAD-001.yaml"
+
+      - id: ATK-SERVER-PATH-001
+        name: "Path Traversal"
+        file: "security/attacks/server-side/ATK-SERVER-PATH-001.yaml"
+
+      - id: ATK-SERVER-RFI-001
+        name: "Remote File Inclusion"
+        file: "security/attacks/server-side/ATK-SERVER-RFI-001.yaml"
+
+      - id: ATK-SERVER-SSRF-001
+        name: "SSRF"
+        file: "security/attacks/server-side/ATK-SERVER-SSRF-001.yaml"
+
+      # P1 - New server-side attacks
+      - id: ATK-SERVER-IDOR-001
+        name: "IDOR"
+        file: "security/attacks/server-side/ATK-SERVER-IDOR-001.yaml"
+
+      - id: ATK-SERVER-LFI-001
+        name: "Local File Inclusion"
+        file: "security/attacks/server-side/ATK-SERVER-LFI-001.yaml"
+
+    client_side:
+      - id: ATK-WEB-CLICKJACK-001
+        name: "Clickjacking"
+        file: "security/attacks/client-side/ATK-WEB-CLICKJACK-001.yaml"
+
+      # P1 - New client-side attack
+      - id: ATK-WEB-OPENREDIR-001
+        name: "Open Redirect"
+        file: "security/attacks/client-side/ATK-WEB-OPENREDIR-001.yaml"
+
+    network:
+      - id: ATK-NET-MITM-001
+        name: "Man-in-the-Middle"
+        file: "security/attacks/network/ATK-NET-MITM-001.yaml"
+
+      # P1 - New network attacks
+      - id: ATK-NET-SNIFF-001
+        name: "Network Sniffing"
+        file: "security/attacks/network/ATK-NET-SNIFF-001.yaml"
+
+      - id: ATK-NET-REPLAY-001
+        name: "Replay Attack"
+        file: "security/attacks/network/ATK-NET-REPLAY-001.yaml"
+
+      - id: ATK-NET-DNSSPOOF-001
+        name: "DNS Spoofing"
+        file: "security/attacks/network/ATK-NET-DNSSPOOF-001.yaml"
+
+    # P1 - New attack categories
+    reconnaissance:
+      - id: ATK-RECON-SCAN-001
+        name: "Port/Service Scanning"
+        file: "security/attacks/reconnaissance/ATK-RECON-SCAN-001.yaml"
+
+    crypto:
+      - id: ATK-CRYPTO-WEAK-001
+        name: "Weak Cryptography Exploitation"
+        file: "security/attacks/crypto/ATK-CRYPTO-WEAK-001.yaml"
+
+      - id: ATK-CRYPTO-DOWNGRADE-001
+        name: "Protocol Downgrade Attack"
+        file: "security/attacks/crypto/ATK-CRYPTO-DOWNGRADE-001.yaml"
+
+  # VULNERABILITIES (17 atoms) - 15 original + 2 new in P1
+  vulnerabilities:
+    - id: VUL-ACCESS-BROKEN-001
+      name: "Broken Access Control"
+      file: "security/vulnerabilities/VUL-ACCESS-BROKEN-001.yaml"
+
+    - id: VUL-AUTH-BROKEN-001
+      name: "Broken Authentication"
+      file: "security/vulnerabilities/VUL-AUTH-BROKEN-001.yaml"
+
+    - id: VUL-AUTH-SESSION-001
+      name: "Session Management Flaw"
+      file: "security/vulnerabilities/VUL-AUTH-SESSION-001.yaml"
+
+    - id: VUL-COMPONENT-VULN-001
+      name: "Vulnerable Components"
+      file: "security/vulnerabilities/VUL-COMPONENT-VULN-001.yaml"
+
+    - id: VUL-CONFIG-MISCONFIG-001
+      name: "Security Misconfiguration"
+      file: "security/vulnerabilities/VUL-CONFIG-MISCONFIG-001.yaml"
+
+    - id: VUL-CRYPTO-WEAK-001
+      name: "Weak Cryptography"
+      file: "security/vulnerabilities/VUL-CRYPTO-WEAK-001.yaml"
+
+    - id: VUL-DATA-EXPOSURE-001
+      name: "Sensitive Data Exposure"
+      file: "security/vulnerabilities/VUL-DATA-EXPOSURE-001.yaml"
+
+    - id: VUL-DESER-INSECURE-001
+      name: "Insecure Deserialization"
+      file: "security/vulnerabilities/VUL-DESER-INSECURE-001.yaml"
+
+    - id: VUL-INJECT-CMD-001
+      name: "Command Injection Vulnerability"
+      file: "security/vulnerabilities/VUL-INJECT-CMD-001.yaml"
+
+    - id: VUL-INJECT-SQL-001
+      name: "SQL Injection Vulnerability"
+      file: "security/vulnerabilities/VUL-INJECT-SQL-001.yaml"
+
+    - id: VUL-INJECT-XSS-001
+      name: "XSS Vulnerability"
+      file: "security/vulnerabilities/VUL-INJECT-XSS-001.yaml"
+
+    - id: VUL-LOG-INSUFFICIENT-001
+      name: "Insufficient Logging"
+      file: "security/vulnerabilities/VUL-LOG-INSUFFICIENT-001.yaml"
+
+    - id: VUL-PATH-TRAVERSAL-001
+      name: "Path Traversal"
+      file: "security/vulnerabilities/VUL-PATH-TRAVERSAL-001.yaml"
+
+    - id: VUL-SSRF-001
+      name: "SSRF Vulnerability"
+      file: "security/vulnerabilities/VUL-SSRF-001.yaml"
+
+    - id: VUL-XXE-001
+      name: "XXE Vulnerability"
+      file: "security/vulnerabilities/VUL-XXE-001.yaml"
+
+    # P1 - New vulnerabilities
+    - id: VUL-MONITORING-INSUFFICIENT-001
+      name: "Insufficient Monitoring"
+      file: "security/vulnerabilities/VUL-MONITORING-INSUFFICIENT-001.yaml"
+
+    - id: VUL-RESPONSE-INSUFFICIENT-001
+      name: "Insufficient Incident Response"
+      file: "security/vulnerabilities/VUL-RESPONSE-INSUFFICIENT-001.yaml"
+
+  # DEFENSES (20 atoms)
+  defenses:
+    prevention:
+      - id: DEF-PREVENT-CORS-001
+        name: "CORS Configuration"
+        file: "security/defenses/prevention/DEF-PREVENT-CORS-001.yaml"
+
+      - id: DEF-PREVENT-CSP-001
+        name: "Content Security Policy"
+        file: "security/defenses/prevention/DEF-PREVENT-CSP-001.yaml"
+
+      - id: DEF-PREVENT-CSRF-TOKEN-001
+        name: "CSRF Token"
+        file: "security/defenses/prevention/DEF-PREVENT-CSRF-TOKEN-001.yaml"
+
+      - id: DEF-PREVENT-ENCRYPT-001
+        name: "Data Encryption"
+        file: "security/defenses/prevention/DEF-PREVENT-ENCRYPT-001.yaml"
+
+      - id: DEF-PREVENT-HEADERS-001
+        name: "Security Headers"
+        file: "security/defenses/prevention/DEF-PREVENT-HEADERS-001.yaml"
+
+      - id: DEF-PREVENT-HTTPS-001
+        name: "HTTPS/TLS Enforcement"
+        file: "security/defenses/prevention/DEF-PREVENT-HTTPS-001.yaml"
+
+      - id: DEF-PREVENT-INPUTVAL-001
+        name: "Input Validation"
+        file: "security/defenses/prevention/DEF-PREVENT-INPUTVAL-001.yaml"
+
+      - id: DEF-PREVENT-MFA-001
+        name: "Multi-Factor Authentication"
+        file: "security/defenses/prevention/DEF-PREVENT-MFA-001.yaml"
+
+      - id: DEF-PREVENT-OUTPUTENC-001
+        name: "Output Encoding"
+        file: "security/defenses/prevention/DEF-PREVENT-OUTPUTENC-001.yaml"
+
+      - id: DEF-PREVENT-PARAMQUERY-001
+        name: "Parameterized Query"
+        file: "security/defenses/prevention/DEF-PREVENT-PARAMQUERY-001.yaml"
+
+      - id: DEF-PREVENT-RATELIMIT-001
+        name: "Rate Limiting"
+        file: "security/defenses/prevention/DEF-PREVENT-RATELIMIT-001.yaml"
+
+      - id: DEF-PREVENT-SANDBOX-001
+        name: "Sandboxing"
+        file: "security/defenses/prevention/DEF-PREVENT-SANDBOX-001.yaml"
+
+    detection:
+      - id: DEF-DETECT-ANOMALY-001
+        name: "Anomaly Detection"
+        file: "security/defenses/detection/DEF-DETECT-ANOMALY-001.yaml"
+
+      - id: DEF-DETECT-IDS-001
+        name: "Intrusion Detection System"
+        file: "security/defenses/detection/DEF-DETECT-IDS-001.yaml"
+
+      - id: DEF-DETECT-LOGGING-001
+        name: "Security Logging"
+        file: "security/defenses/detection/DEF-DETECT-LOGGING-001.yaml"
+
+      - id: DEF-DETECT-MONITORING-001
+        name: "Security Monitoring/SIEM"
+        file: "security/defenses/detection/DEF-DETECT-MONITORING-001.yaml"
+
+      - id: DEF-DETECT-WAF-001
+        name: "WAF Detection Rules"
+        file: "security/defenses/detection/DEF-DETECT-WAF-001.yaml"
+
+    response:
+      - id: DEF-RESPOND-BLOCK-001
+        name: "IP/Request Blocking"
+        file: "security/defenses/response/DEF-RESPOND-BLOCK-001.yaml"
+
+      - id: DEF-RESPOND-INCIDENT-001
+        name: "Incident Response"
+        file: "security/defenses/response/DEF-RESPOND-INCIDENT-001.yaml"
+
+      - id: DEF-RESPOND-QUARANTINE-001
+        name: "Account Quarantine"
+        file: "security/defenses/response/DEF-RESPOND-QUARANTINE-001.yaml"
+
+  # TOOLS (8 atoms)
+  tools:
+    offensive:
+      - id: TOOL-OFFENSE-BURP-001
+        name: "Burp Suite"
+        file: "security/tools/TOOL-OFFENSE-BURP-001.yaml"
+
+      - id: TOOL-OFFENSE-METASPLOIT-001
+        name: "Metasploit Framework"
+        file: "security/tools/TOOL-OFFENSE-METASPLOIT-001.yaml"
+
+      - id: TOOL-OFFENSE-SQLMAP-001
+        name: "SQLMap"
+        file: "security/tools/TOOL-OFFENSE-SQLMAP-001.yaml"
+
+      - id: TOOL-OFFENSE-ZAP-001
+        name: "OWASP ZAP"
+        file: "security/tools/TOOL-OFFENSE-ZAP-001.yaml"
+
+    defensive:
+      - id: TOOL-DEFENSE-MODSEC-001
+        name: "ModSecurity WAF"
+        file: "security/tools/TOOL-DEFENSE-MODSEC-001.yaml"
+
+    audit:
+      - id: TOOL-AUDIT-NIKTO-001
+        name: "Nikto"
+        file: "security/tools/TOOL-AUDIT-NIKTO-001.yaml"
+
+      - id: TOOL-AUDIT-NMAP-001
+        name: "Nmap"
+        file: "security/tools/TOOL-AUDIT-NMAP-001.yaml"
+
+      - id: TOOL-AUDIT-WIRESHARK-001
+        name: "Wireshark"
+        file: "security/tools/TOOL-AUDIT-WIRESHARK-001.yaml"
+
+# ============================================================
+# STATISTICS
+# ============================================================
+
+statistics:
+  total_atoms: 215
+  by_scheme:
+    legacy: 21
+    current: 194
+  by_category:
+    legacy:
+      principles: 1
+      concepts: 2
+      techniques: 10
+      payloads: 5
+      fingerprints: 3
+    current:
+      technology: 45      # P1: 34 + P2: 11 (protocols, concepts)
+      infrastructure: 35  # P1: 29 + P2: 6 (Azure, GCP, AWS expanded)
+      attacks: 49         # P1: 28 + P2: 21 (Network, Cloud, MITRE, API)
+      vulnerabilities: 21 # P1: 17 + P2: 4 (Cloud, API)
+      defenses: 24        # P1: 20 + P2: 4 (Segmentation, API, Zero Trust)
+      tools: 11           # P1: 8 + P2: 3 (Cobalt Strike, EDR, SIEM)
+
+# ============================================================
+# RESERVED ID RANGES (for future expansion)
+# ============================================================
+
+reserved:
+  technology:
+    - range: "TECH-PROTOCOL-*"
+      next_sequence: 4
+      purpose: "Additional protocols (FTP, SSH, DNS, etc.)"
+    - range: "TECH-CONCEPT-*"
+      next_sequence: 25
+      purpose: "Abstract concepts (20 parent atoms created in P1)"
+
+  infrastructure:
+    - range: "INFRA-RUNTIME-*"
+      next_sequence: 1
+      purpose: "Runtime environments (JVM, Container, K8s)"
+    - range: "INFRA-COMPUTE-*"
+      next_sequence: 1
+      purpose: "Compute resources (VM, Container, Server)"
+    - range: "INFRA-IAM-*"
+      next_sequence: 1
+      purpose: "Identity & Access (LDAP, AD)"
+    - range: "INFRA-CLOUD-*"
+      next_sequence: 1
+      purpose: "Cloud infrastructure"
+
+  attacks:
+    - range: "ATK-SESSION-FIXATION-001"
+      purpose: "Session Fixation (dangling reference)"
+    - range: "ATK-SERVER-IDOR-001"
+      purpose: "IDOR (dangling reference)"
+    - range: "ATK-POST-*"
+      purpose: "Post-exploitation attacks"
+    - range: "ATK-NET-SNIFF-001"
+      purpose: "Network sniffing (dangling reference)"
+
+  vulnerabilities:
+    - range: "VUL-MONITORING-INSUFFICIENT-001"
+      purpose: "Insufficient monitoring (dangling reference)"
+    - range: "VUL-RESPONSE-INSUFFICIENT-001"
+      purpose: "Insufficient response (dangling reference)"
+
+# ============================================================
+# PHASE 2 ATOMS (42 atoms - Network, Auth, Cloud, API, MITRE)
+# ============================================================
+
+p2_atoms:
+  # Network Security Protocols (4)
+  network_protocols:
+    - id: TECH-PROTOCOL-DNS-001
+      name: "DNS Protocol"
+      file: "technology/protocols/TECH-PROTOCOL-DNS-001.yaml"
+    - id: TECH-PROTOCOL-SSH-001
+      name: "SSH Protocol"
+      file: "technology/protocols/TECH-PROTOCOL-SSH-001.yaml"
+    - id: TECH-PROTOCOL-FTP-001
+      name: "FTP Protocol"
+      file: "technology/protocols/TECH-PROTOCOL-FTP-001.yaml"
+    - id: TECH-PROTOCOL-SMTP-001
+      name: "SMTP Protocol"
+      file: "technology/protocols/TECH-PROTOCOL-SMTP-001.yaml"
+
+  # Authentication Protocols (4)
+  auth_protocols:
+    - id: TECH-PROTOCOL-OAUTH-001
+      name: "OAuth 2.0"
+      file: "technology/protocols/TECH-PROTOCOL-OAUTH-001.yaml"
+    - id: TECH-PROTOCOL-OIDC-001
+      name: "OpenID Connect"
+      file: "technology/protocols/TECH-PROTOCOL-OIDC-001.yaml"
+    - id: TECH-PROTOCOL-SAML-001
+      name: "SAML 2.0"
+      file: "technology/protocols/TECH-PROTOCOL-SAML-001.yaml"
+    - id: TECH-FORMAT-JWT-001
+      name: "JWT"
+      file: "technology/formats/TECH-FORMAT-JWT-001.yaml"
+
+  # API Security Concepts (2)
+  api_concepts:
+    - id: TECH-CONCEPT-REST-001
+      name: "REST API"
+      file: "technology/concepts/TECH-CONCEPT-REST-001.yaml"
+    - id: TECH-CONCEPT-GRAPHQL-001
+      name: "GraphQL"
+      file: "technology/concepts/TECH-CONCEPT-GRAPHQL-001.yaml"
+
+  # MITRE ATT&CK Framework (1)
+  frameworks:
+    - id: TECH-CONCEPT-MITRE-ATTACK-001
+      name: "MITRE ATT&CK Framework"
+      file: "technology/concepts/TECH-CONCEPT-MITRE-ATTACK-001.yaml"
+
+  # Cloud Infrastructure (6)
+  cloud_infrastructure:
+    - id: INFRA-CLOUD-AWS-IAM-001
+      name: "AWS IAM"
+      file: "infrastructure/INFRA-CLOUD-AWS-IAM-001.yaml"
+    - id: INFRA-CLOUD-AWS-S3-001
+      name: "AWS S3"
+      file: "infrastructure/INFRA-CLOUD-AWS-S3-001.yaml"
+    - id: INFRA-CLOUD-AZURE-001
+      name: "Microsoft Azure"
+      file: "infrastructure/INFRA-CLOUD-AZURE-001.yaml"
+    - id: INFRA-CLOUD-AZURE-AD-001
+      name: "Azure Active Directory"
+      file: "infrastructure/INFRA-CLOUD-AZURE-AD-001.yaml"
+    - id: INFRA-CLOUD-GCP-001
+      name: "Google Cloud Platform"
+      file: "infrastructure/INFRA-CLOUD-GCP-001.yaml"
+    - id: INFRA-CLOUD-GCP-IAM-001
+      name: "GCP IAM"
+      file: "infrastructure/INFRA-CLOUD-GCP-IAM-001.yaml"
+
+  # Network Attacks (3)
+  network_attacks:
+    - id: ATK-NET-DDOS-001
+      name: "DDoS Attack"
+      file: "security/attacks/network/ATK-NET-DDOS-001.yaml"
+    - id: ATK-NET-ARPSPOOF-001
+      name: "ARP Spoofing"
+      file: "security/attacks/network/ATK-NET-ARPSPOOF-001.yaml"
+    - id: ATK-NET-VLANHOPPING-001
+      name: "VLAN Hopping"
+      file: "security/attacks/network/ATK-NET-VLANHOPPING-001.yaml"
+
+  # Cloud Attacks (1)
+  cloud_attacks:
+    - id: ATK-CLOUD-PRIVESC-001
+      name: "Cloud Privilege Escalation"
+      file: "security/attacks/cloud/ATK-CLOUD-PRIVESC-001.yaml"
+
+  # API Attacks (1)
+  api_attacks:
+    - id: ATK-API-MASS-ASSIGN-001
+      name: "Mass Assignment Attack"
+      file: "security/attacks/api/ATK-API-MASS-ASSIGN-001.yaml"
+
+  # MITRE ATT&CK Tactics (10)
+  mitre_attacks:
+    - id: ATK-MITRE-INIT-ACCESS-001
+      name: "Initial Access (TA0001)"
+      file: "security/attacks/mitre/ATK-MITRE-INIT-ACCESS-001.yaml"
+    - id: ATK-MITRE-EXECUTION-001
+      name: "Execution (TA0002)"
+      file: "security/attacks/mitre/ATK-MITRE-EXECUTION-001.yaml"
+    - id: ATK-MITRE-PERSISTENCE-001
+      name: "Persistence (TA0003)"
+      file: "security/attacks/mitre/ATK-MITRE-PERSISTENCE-001.yaml"
+    - id: ATK-MITRE-PRIV-ESC-001
+      name: "Privilege Escalation (TA0004)"
+      file: "security/attacks/mitre/ATK-MITRE-PRIV-ESC-001.yaml"
+    - id: ATK-MITRE-DEF-EVASION-001
+      name: "Defense Evasion (TA0005)"
+      file: "security/attacks/mitre/ATK-MITRE-DEF-EVASION-001.yaml"
+    - id: ATK-MITRE-CRED-ACCESS-001
+      name: "Credential Access (TA0006)"
+      file: "security/attacks/mitre/ATK-MITRE-CRED-ACCESS-001.yaml"
+    - id: ATK-MITRE-LATERAL-001
+      name: "Lateral Movement (TA0008)"
+      file: "security/attacks/mitre/ATK-MITRE-LATERAL-001.yaml"
+    - id: ATK-MITRE-EXFILTRATION-001
+      name: "Exfiltration (TA0010)"
+      file: "security/attacks/mitre/ATK-MITRE-EXFILTRATION-001.yaml"
+    - id: ATK-MITRE-C2-001
+      name: "Command and Control (TA0011)"
+      file: "security/attacks/mitre/ATK-MITRE-C2-001.yaml"
+
+  # Cloud Vulnerabilities (1)
+  cloud_vulnerabilities:
+    - id: VUL-CLOUD-MISCONFIG-001
+      name: "Cloud Misconfiguration"
+      file: "security/vulnerabilities/VUL-CLOUD-MISCONFIG-001.yaml"
+
+  # API Vulnerabilities (3)
+  api_vulnerabilities:
+    - id: VUL-API-BOLA-001
+      name: "Broken Object Level Authorization (BOLA)"
+      file: "security/vulnerabilities/VUL-API-BOLA-001.yaml"
+    - id: VUL-API-BFLA-001
+      name: "Broken Function Level Authorization (BFLA)"
+      file: "security/vulnerabilities/VUL-API-BFLA-001.yaml"
+    - id: VUL-API-EXCESSIVE-DATA-001
+      name: "Excessive Data Exposure"
+      file: "security/vulnerabilities/VUL-API-EXCESSIVE-DATA-001.yaml"
+
+  # Defenses (4)
+  defenses:
+    - id: DEF-PREVENT-SEGMENTATION-001
+      name: "Network Segmentation"
+      file: "security/defenses/prevention/DEF-PREVENT-SEGMENTATION-001.yaml"
+    - id: DEF-PREVENT-API-AUTH-001
+      name: "API Authentication"
+      file: "security/defenses/prevention/DEF-PREVENT-API-AUTH-001.yaml"
+    - id: DEF-PREVENT-API-GATEWAY-001
+      name: "API Gateway Security"
+      file: "security/defenses/prevention/DEF-PREVENT-API-GATEWAY-001.yaml"
+    - id: DEF-PREVENT-ZERO-TRUST-001
+      name: "Zero Trust Architecture"
+      file: "security/defenses/prevention/DEF-PREVENT-ZERO-TRUST-001.yaml"
+
+  # Tools (3)
+  tools:
+    - id: TOOL-OFFENSE-COBALT-001
+      name: "Cobalt Strike"
+      file: "security/tools/TOOL-OFFENSE-COBALT-001.yaml"
+    - id: TOOL-DEFENSE-EDR-001
+      name: "EDR"
+      file: "security/tools/TOOL-DEFENSE-EDR-001.yaml"
+    - id: TOOL-DEFENSE-SIEM-001
+      name: "SIEM"
+      file: "security/tools/TOOL-DEFENSE-SIEM-001.yaml"
+
+# ============================================================
+# PHASE 2 CONTINUED - Session 2025-01-29 (62 additional atoms)
+# ============================================================
+
+p2_atoms_continued:
+  # Web Vulnerabilities (6)
+  web_vulnerabilities:
+    - id: VUL-WEB-CORS-001
+      name: "CORS Misconfiguration"
+      file: "security/vulnerabilities/VUL-WEB-CORS-001.yaml"
+    - id: VUL-WEB-CACHE-001
+      name: "Web Cache Poisoning"
+      file: "security/vulnerabilities/VUL-WEB-CACHE-001.yaml"
+    - id: VUL-WEB-SSRF-001
+      name: "SSRF"
+      file: "security/vulnerabilities/VUL-WEB-SSRF-001.yaml"
+    - id: VUL-WEB-RACE-001
+      name: "Race Condition"
+      file: "security/vulnerabilities/VUL-WEB-RACE-001.yaml"
+    - id: VUL-WEB-BUSINESS-LOGIC-001
+      name: "Business Logic Vulnerability"
+      file: "security/vulnerabilities/VUL-WEB-BUSINESS-LOGIC-001.yaml"
+    - id: VUL-AUTH-PASSWORD-001
+      name: "Password Security"
+      file: "security/vulnerabilities/VUL-AUTH-PASSWORD-001.yaml"
+
+  # Mobile/IoT Vulnerabilities (2)
+  mobile_iot_vulnerabilities:
+    - id: VUL-MOBILE-STORAGE-001
+      name: "Mobile Insecure Storage"
+      file: "security/vulnerabilities/VUL-MOBILE-STORAGE-001.yaml"
+    - id: VUL-IOT-HARDCODED-001
+      name: "IoT Hardcoded Credentials"
+      file: "security/vulnerabilities/VUL-IOT-HARDCODED-001.yaml"
+
+  # Web Attacks (8)
+  web_attacks:
+    - id: ATK-WEB-PROTOTYPE-POLLUTION-001
+      name: "Prototype Pollution"
+      file: "security/attacks/web/ATK-WEB-PROTOTYPE-POLLUTION-001.yaml"
+    - id: ATK-WEB-NOSQL-001
+      name: "NoSQL Injection"
+      file: "security/attacks/web/ATK-WEB-NOSQL-001.yaml"
+    - id: ATK-WEB-SSTI-001
+      name: "SSTI"
+      file: "security/attacks/web/ATK-WEB-SSTI-001.yaml"
+    - id: ATK-WEB-WEBSOCKET-001
+      name: "WebSocket Attacks"
+      file: "security/attacks/web/ATK-WEB-WEBSOCKET-001.yaml"
+    - id: ATK-WEB-CLICKJACKING-001
+      name: "Clickjacking"
+      file: "security/attacks/web/ATK-WEB-CLICKJACKING-001.yaml"
+    - id: ATK-WEB-OPEN-REDIRECT-001
+      name: "Open Redirect"
+      file: "security/attacks/web/ATK-WEB-OPEN-REDIRECT-001.yaml"
+    - id: ATK-WEB-SUBDOMAIN-TAKEOVER-001
+      name: "Subdomain Takeover"
+      file: "security/attacks/web/ATK-WEB-SUBDOMAIN-TAKEOVER-001.yaml"
+    - id: ATK-WEB-FILE-UPLOAD-001
+      name: "File Upload Vulnerability"
+      file: "security/attacks/web/ATK-WEB-FILE-UPLOAD-001.yaml"
+
+  # Network Attacks (3)
+  network_attacks_extended:
+    - id: ATK-NET-WIRELESS-001
+      name: "Wireless Attacks"
+      file: "security/attacks/network/ATK-NET-WIRELESS-001.yaml"
+    - id: ATK-NET-DNS-001
+      name: "DNS Attacks"
+      file: "security/attacks/network/ATK-NET-DNS-001.yaml"
+    - id: ATK-NET-ARP-001
+      name: "ARP Attacks"
+      file: "security/attacks/network/ATK-NET-ARP-001.yaml"
+
+  # Social/Supply Chain Attacks (3)
+  social_supply_attacks:
+    - id: ATK-SOCIAL-PRETEXTING-001
+      name: "Pretexting"
+      file: "security/attacks/social/ATK-SOCIAL-PRETEXTING-001.yaml"
+    - id: ATK-SUPPLY-DEPENDENCY-001
+      name: "Dependency Confusion"
+      file: "security/attacks/supply-chain/ATK-SUPPLY-DEPENDENCY-001.yaml"
+    - id: ATK-SUPPLY-TYPOSQUATTING-001
+      name: "Typosquatting"
+      file: "security/attacks/supply-chain/ATK-SUPPLY-TYPOSQUATTING-001.yaml"
+
+  # Mobile/IoT Attacks (3)
+  mobile_iot_attacks:
+    - id: ATK-MOBILE-ROOT-001
+      name: "Root Detection Bypass"
+      file: "security/attacks/mobile/ATK-MOBILE-ROOT-001.yaml"
+    - id: ATK-MOBILE-HOOKING-001
+      name: "Mobile Hooking"
+      file: "security/attacks/mobile/ATK-MOBILE-HOOKING-001.yaml"
+    - id: ATK-IOT-FIRMWARE-001
+      name: "Firmware Analysis"
+      file: "security/attacks/iot/ATK-IOT-FIRMWARE-001.yaml"
+
+  # Cloud Attacks (2)
+  cloud_attacks_extended:
+    - id: ATK-CLOUD-METADATA-001
+      name: "Cloud Metadata Attack"
+      file: "security/attacks/cloud/ATK-CLOUD-METADATA-001.yaml"
+    - id: ATK-CLOUD-STORAGE-001
+      name: "Cloud Storage Misconfiguration"
+      file: "security/attacks/cloud/ATK-CLOUD-STORAGE-001.yaml"
+
+  # Windows/AD Attacks (3)
+  windows_attacks:
+    - id: ATK-WIN-KERBEROASTING-001
+      name: "Kerberoasting"
+      file: "security/attacks/windows/ATK-WIN-KERBEROASTING-001.yaml"
+    - id: ATK-WIN-GOLDEN-TICKET-001
+      name: "Golden Ticket"
+      file: "security/attacks/windows/ATK-WIN-GOLDEN-TICKET-001.yaml"
+    - id: ATK-WIN-PASS-THE-HASH-001
+      name: "Pass-the-Hash"
+      file: "security/attacks/windows/ATK-WIN-PASS-THE-HASH-001.yaml"
+
+  # MITRE Sub-Techniques (8)
+  mitre_subtechniques:
+    - id: ATK-MITRE-T1059-001
+      name: "Command and Scripting Interpreter"
+      file: "security/attacks/mitre/ATK-MITRE-T1059-001.yaml"
+    - id: ATK-MITRE-T1078-001
+      name: "Valid Accounts"
+      file: "security/attacks/mitre/ATK-MITRE-T1078-001.yaml"
+    - id: ATK-MITRE-T1566-001
+      name: "Phishing"
+      file: "security/attacks/mitre/ATK-MITRE-T1566-001.yaml"
+    - id: ATK-MITRE-T1486-001
+      name: "Data Encrypted for Impact"
+      file: "security/attacks/mitre/ATK-MITRE-T1486-001.yaml"
+    - id: ATK-MITRE-T1110-001
+      name: "Brute Force"
+      file: "security/attacks/mitre/ATK-MITRE-T1110-001.yaml"
+    - id: ATK-MITRE-T1021-001
+      name: "Remote Services"
+      file: "security/attacks/mitre/ATK-MITRE-T1021-001.yaml"
+    - id: ATK-MITRE-T1003-001
+      name: "OS Credential Dumping"
+      file: "security/attacks/mitre/ATK-MITRE-T1003-001.yaml"
+    - id: ATK-MITRE-T1055-001
+      name: "Process Injection"
+      file: "security/attacks/mitre/ATK-MITRE-T1055-001.yaml"
+
+  # Infrastructure (5)
+  infrastructure_extended:
+    - id: INFRA-CONTAINER-K8S-001
+      name: "Kubernetes Security"
+      file: "infrastructure/INFRA-CONTAINER-K8S-001.yaml"
+    - id: INFRA-CONTAINER-DOCKER-001
+      name: "Docker Security"
+      file: "infrastructure/INFRA-CONTAINER-DOCKER-001.yaml"
+    - id: INFRA-SERVERLESS-001
+      name: "Serverless Security"
+      file: "infrastructure/INFRA-SERVERLESS-001.yaml"
+    - id: INFRA-SERVICE-MESH-001
+      name: "Service Mesh Security"
+      file: "infrastructure/INFRA-SERVICE-MESH-001.yaml"
+    - id: INFRA-CLOUD-IAM-001
+      name: "Cloud IAM Security"
+      file: "infrastructure/INFRA-CLOUD-IAM-001.yaml"
+    - id: INFRA-NETWORK-VPN-001
+      name: "VPN Security"
+      file: "infrastructure/INFRA-NETWORK-VPN-001.yaml"
+
+  # Defense (12)
+  defenses_extended:
+    - id: DEF-AUTH-API-AUTH-001
+      name: "API Authentication Patterns"
+      file: "security/defense/DEF-AUTH-API-AUTH-001.yaml"
+    - id: DEF-ARCH-ZERO-TRUST-001
+      name: "Zero Trust Architecture"
+      file: "security/defense/DEF-ARCH-ZERO-TRUST-001.yaml"
+    - id: DEF-PREVENT-WAF-RULES-001
+      name: "WAF Configuration"
+      file: "security/defense/DEF-PREVENT-WAF-RULES-001.yaml"
+    - id: DEF-PREVENT-SECRETS-001
+      name: "Secrets Management"
+      file: "security/defense/DEF-PREVENT-SECRETS-001.yaml"
+    - id: DEF-INTEL-THREAT-001
+      name: "Threat Intelligence"
+      file: "security/defense/DEF-INTEL-THREAT-001.yaml"
+    - id: DEF-FORENSIC-ANALYSIS-001
+      name: "Digital Forensics"
+      file: "security/defense/DEF-FORENSIC-ANALYSIS-001.yaml"
+    - id: DEF-MONITOR-LOGGING-001
+      name: "Security Logging"
+      file: "security/defense/DEF-MONITOR-LOGGING-001.yaml"
+    - id: DEF-NET-IDS-001
+      name: "IDS"
+      file: "security/defense/DEF-NET-IDS-001.yaml"
+    - id: DEF-NET-FIREWALL-001
+      name: "Firewall Security"
+      file: "security/defense/DEF-NET-FIREWALL-001.yaml"
+    - id: DEF-RESPOND-INCIDENT-001
+      name: "Incident Response"
+      file: "security/defense/DEF-RESPOND-INCIDENT-001.yaml"
+    - id: DEF-DETECT-XDR-001
+      name: "XDR"
+      file: "security/defense/DEF-DETECT-XDR-001.yaml"
+    - id: DEF-DETECT-SOAR-001
+      name: "SOAR"
+      file: "security/defense/DEF-DETECT-SOAR-001.yaml"
+    - id: DEF-PREVENT-DLP-001
+      name: "DLP"
+      file: "security/defense/DEF-PREVENT-DLP-001.yaml"
+    - id: DEF-PREVENT-CASB-001
+      name: "CASB"
+      file: "security/defense/DEF-PREVENT-CASB-001.yaml"
+    - id: DEF-FORENSIC-MEMORY-001
+      name: "Memory Forensics"
+      file: "security/defense/DEF-FORENSIC-MEMORY-001.yaml"
+    - id: DEF-FORENSIC-DISK-001
+      name: "Disk Forensics"
+      file: "security/defense/DEF-FORENSIC-DISK-001.yaml"
+    - id: DEF-FORENSIC-NETWORK-001
+      name: "Network Forensics"
+      file: "security/defense/DEF-FORENSIC-NETWORK-001.yaml"
+
+  # Technology Concepts (6)
+  tech_concepts_extended:
+    - id: TECH-PROTO-LDAP-001
+      name: "LDAP"
+      file: "technology/protocols/TECH-PROTO-LDAP-001.yaml"
+    - id: TECH-PROTO-KERBEROS-001
+      name: "Kerberos"
+      file: "technology/protocols/TECH-PROTO-KERBEROS-001.yaml"
+    - id: DEF-CRYPTO-ENCRYPTION-001
+      name: "Encryption"
+      file: "technology/concepts/DEF-CRYPTO-ENCRYPTION-001.yaml"
+    - id: DEF-CRYPTO-PKI-001
+      name: "PKI"
+      file: "technology/concepts/DEF-CRYPTO-PKI-001.yaml"
+    - id: TECH-CONCEPT-THREAT-MODEL-001
+      name: "Threat Modeling"
+      file: "technology/concepts/TECH-CONCEPT-THREAT-MODEL-001.yaml"
+    - id: TECH-CONCEPT-AD-SECURITY-001
+      name: "Active Directory Security"
+      file: "technology/concepts/TECH-CONCEPT-AD-SECURITY-001.yaml"
+    - id: TECH-CONCEPT-OSINT-001
+      name: "OSINT"
+      file: "technology/concepts/TECH-CONCEPT-OSINT-001.yaml"
+    - id: TECH-CONCEPT-PENTESTING-001
+      name: "Penetration Testing"
+      file: "technology/concepts/TECH-CONCEPT-PENTESTING-001.yaml"
+
+  # Tools (12)
+  tools_extended:
+    - id: TOOL-AUDIT-SAST-001
+      name: "SAST"
+      file: "tools/TOOL-AUDIT-SAST-001.yaml"
+    - id: TOOL-AUDIT-DAST-001
+      name: "DAST"
+      file: "tools/TOOL-AUDIT-DAST-001.yaml"
+    - id: TOOL-SCAN-NESSUS-001
+      name: "Nessus"
+      file: "tools/TOOL-SCAN-NESSUS-001.yaml"
+    - id: TOOL-SCAN-BURP-001
+      name: "Burp Suite"
+      file: "tools/TOOL-SCAN-BURP-001.yaml"
+    - id: TOOL-SCAN-METASPLOIT-001
+      name: "Metasploit"
+      file: "tools/TOOL-SCAN-METASPLOIT-001.yaml"
+    - id: TOOL-SCAN-WIRESHARK-001
+      name: "Wireshark"
+      file: "tools/TOOL-SCAN-WIRESHARK-001.yaml"
+    - id: TOOL-SCAN-NMAP-001
+      name: "Nmap"
+      file: "tools/TOOL-SCAN-NMAP-001.yaml"
+    - id: TOOL-SCAN-OPENVAS-001
+      name: "OpenVAS"
+      file: "tools/TOOL-SCAN-OPENVAS-001.yaml"
+    - id: TOOL-PENTEST-SQLMAP-001
+      name: "SQLMap"
+      file: "tools/TOOL-PENTEST-SQLMAP-001.yaml"
+    - id: TOOL-PENTEST-HASHCAT-001
+      name: "Hashcat"
+      file: "tools/TOOL-PENTEST-HASHCAT-001.yaml"
+    - id: TOOL-SCAN-OWASP-ZAP-001
+      name: "OWASP ZAP"
+      file: "tools/TOOL-SCAN-OWASP-ZAP-001.yaml"
+    - id: TOOL-SCAN-TRIVY-001
+      name: "Trivy"
+      file: "tools/TOOL-SCAN-TRIVY-001.yaml"
+    - id: TOOL-FORENSIC-AUTOPSY-001
+      name: "Autopsy"
+      file: "tools/TOOL-FORENSIC-AUTOPSY-001.yaml"
+
+  # Compliance (6)
+  compliance:
+    - id: COMP-FRAMEWORK-PCIDSS-001
+      name: "PCI DSS"
+      file: "compliance/COMP-FRAMEWORK-PCIDSS-001.yaml"
+    - id: COMP-FRAMEWORK-SOC2-001
+      name: "SOC 2"
+      file: "compliance/COMP-FRAMEWORK-SOC2-001.yaml"
+    - id: COMP-FRAMEWORK-ISO27001-001
+      name: "ISO 27001"
+      file: "compliance/COMP-FRAMEWORK-ISO27001-001.yaml"
+    - id: COMP-FRAMEWORK-GDPR-001
+      name: "GDPR"
+      file: "compliance/COMP-FRAMEWORK-GDPR-001.yaml"
+    - id: COMP-FRAMEWORK-NIST-001
+      name: "NIST CSF"
+      file: "compliance/COMP-FRAMEWORK-NIST-001.yaml"
+    - id: COMP-FRAMEWORK-HIPAA-001
+      name: "HIPAA"
+      file: "compliance/COMP-FRAMEWORK-HIPAA-001.yaml"
+
+  # Malware (2)
+  malware:
+    - id: ATK-MALWARE-RANSOMWARE-001
+      name: "Ransomware"
+      file: "security/attacks/malware/ATK-MALWARE-RANSOMWARE-001.yaml"
+    - id: ATK-MALWARE-TROJAN-001
+      name: "Trojan"
+      file: "security/attacks/malware/ATK-MALWARE-TROJAN-001.yaml"

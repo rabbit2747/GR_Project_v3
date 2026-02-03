@@ -1,0 +1,105 @@
+# GR Atom: Insecure Direct Object Reference
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-IDOR-001"
+  name: "Insecure Direct Object Reference"
+  normalization:
+    normalized_name: "idor insecure direct object reference access control"
+    normalization_version: "1.0"
+  aliases:
+    - "IDOR"
+    - "Broken Object Level Authorization"
+    - "직접 객체 참조 취약점"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "ACCESS"]
+
+definition:
+  what: |
+    사용자가 제공한 입력으로 객체를 직접 참조할 때
+    접근 통제가 없어 다른 사용자의 데이터에 접근 가능한 취약점이다.
+  why: |
+    다른 사용자의 데이터를 열람/수정할 수 있다.
+    수평적 권한 상승이 가능하다.
+  how: |
+    1. 객체 식별자 파악 (ID, UUID)
+    2. 값 변경 시도
+    3. 접근 통제 검증
+    4. 데이터 접근
+
+relations:
+  structural:
+    is_a:
+      - "VUL-ACCESS-CONTROL-001"
+    related_to:
+      - "ATK-API-BOLA-001"
+      - "VUL-WEB-BROKEN-AUTH-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-639"
+    owasp_rank: "OWASP API Security Top 10 #1"
+    examples:
+      url_parameter: "/api/users/123 → /api/users/124"
+      body_parameter: '{"user_id": 123} → {"user_id": 124}'
+      file_path: "/files/user123/doc.pdf → /files/user124/doc.pdf"
+    object_types:
+      - "사용자 ID"
+      - "문서 ID"
+      - "주문 번호"
+      - "계좌 번호"
+      - "파일 경로"
+    techniques:
+      - "Sequential ID 변경"
+      - "UUID Enumeration"
+      - "Encoded Value 디코딩"
+      - "Parameter Pollution"
+    impact:
+      - "개인정보 유출"
+      - "데이터 변조"
+      - "무단 삭제"
+      - "비즈니스 로직 우회"
+    prevention:
+      - "서버 측 접근 통제 검증"
+      - "간접 참조 맵 사용"
+      - "예측 불가능한 식별자 (UUID)"
+      - "객체 수준 권한 검사"
+    testing:
+      - "다른 사용자 ID로 요청"
+      - "자동화된 ID 열거"
+      - "Burp Suite Authorize"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP IDOR"
+      - "CWE-639"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IDOR은 객체 식별자를 변경하여 다른 사용자의 데이터에
+      무단 접근할 수 있는 접근 통제 취약점이다.
+    search_keywords:
+      - "IDOR"
+      - "Direct Object Reference"
+      - "BOLA"
+      - "접근 통제"

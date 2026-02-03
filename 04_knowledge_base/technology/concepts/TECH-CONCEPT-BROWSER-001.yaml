@@ -1,0 +1,102 @@
+# GR Atom: Browser (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-BROWSER-001"
+  name: "Web Browser"
+  normalization:
+    normalized_name: "web browser browser client user agent"
+    normalization_version: "1.0"
+  aliases:
+    - "웹 브라우저"
+    - "브라우저"
+    - "User Agent"
+    - "Web Client"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0A"
+    tags: ["WEB", "CLIENT"]
+
+definition:
+  what: |
+    웹 브라우저(Web Browser)는 웹 콘텐츠를 렌더링하고 사용자와
+    웹 서버 간 상호작용을 중개하는 클라이언트 소프트웨어다.
+    Chrome, Firefox, Safari, Edge 등이 있다.
+  why: |
+    XSS, CSRF 등 클라이언트 측 공격의 실행 환경이다.
+    Same-Origin Policy, CSP 등 보안 메커니즘을 구현하며,
+    쿠키, 세션 저장 등 민감 정보를 보관한다.
+  how: |
+    1. HTML 파싱 및 DOM 구성
+    2. CSS 적용 및 렌더링
+    3. JavaScript 실행
+    4. HTTP 요청/응답 처리
+    5. 보안 정책 적용 (SOP, CSP)
+
+relations:
+  structural:
+    has_part:
+      - "TECH-CONCEPT-DOM-001"
+  causal:
+    enables:
+      - "ATK-INJECT-XSS-001"
+      - "ATK-AUTH-CSRF-001"
+      - "ATK-WEB-CLICKJACK-001"
+
+properties:
+  technical:
+    major_browsers:
+      - "Chrome (Chromium)"
+      - "Firefox (Gecko)"
+      - "Safari (WebKit)"
+      - "Edge (Chromium)"
+    security_features:
+      - name: "Same-Origin Policy"
+        purpose: "Cross-origin 접근 제한"
+      - name: "CSP Support"
+        purpose: "Content Security Policy 적용"
+      - name: "Cookie Security"
+        purpose: "HttpOnly, Secure, SameSite"
+      - name: "Sandboxing"
+        purpose: "탭/프로세스 격리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MDN Web Docs"
+      - "W3C Web Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Browser(웹 브라우저)는 웹 콘텐츠를 렌더링하는 클라이언트 소프트웨어다.
+      Chrome, Firefox, Safari 등이 있으며 DOM, JavaScript를 처리한다.
+      XSS, CSRF 공격의 실행 환경이며 Same-Origin Policy, CSP 등
+      보안 메커니즘을 구현한다.
+    search_keywords:
+      - "Web Browser"
+      - "브라우저"
+      - "Same-Origin Policy"
+      - "CSP"
+      - "Client Security"
+    related_queries:
+      - "브라우저 보안 기능"
+      - "Same-Origin Policy란?"
+      - "브라우저 XSS 방어"
+      - "CSP 설정"

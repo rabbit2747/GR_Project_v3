@@ -1,0 +1,97 @@
+# GR Atom: Programming Language (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-PROGRAMMING-LANG-001"
+  name: "Programming Language"
+  normalization:
+    normalized_name: "programming language coding language scripting"
+    normalization_version: "1.0"
+  aliases:
+    - "프로그래밍 언어"
+    - "Coding Language"
+    - "코딩 언어"
+    - "Scripting Language"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["TECH", "DEV"]
+
+definition:
+  what: |
+    프로그래밍 언어(Programming Language)는 컴퓨터에 명령을 전달하기
+    위한 형식 언어다. 컴파일 언어(C, Java), 인터프리터 언어
+    (Python, JavaScript) 등이 있다.
+  why: |
+    애플리케이션 개발의 기본 도구다. 언어별 보안 특성이 다르며,
+    메모리 안전성(Rust), 타입 안전성(TypeScript) 등이
+    보안에 영향을 준다.
+  how: |
+    1. 컴파일: 소스 코드 → 바이너리
+    2. 인터프리터: 소스 코드 직접 실행
+    3. JIT: 런타임 컴파일
+    4. 트랜스파일: 언어 간 변환
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-LANG-JAVASCRIPT-001"
+
+properties:
+  technical:
+    language_types:
+      - name: "Compiled"
+        examples: ["C", "C++", "Rust", "Go"]
+        security: "Memory safety depends on language"
+      - name: "Interpreted"
+        examples: ["Python", "Ruby", "PHP"]
+        security: "Injection risks"
+      - name: "JIT"
+        examples: ["Java", "C#", "JavaScript"]
+        security: "Sandbox escapes"
+    security_languages:
+      - name: "Rust"
+        feature: "Memory safety by design"
+      - name: "TypeScript"
+        feature: "Type safety"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Secure Coding Practices"
+      - "CERT Secure Coding Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Programming Language(프로그래밍 언어)는 컴퓨터에 명령을 전달하는
+      형식 언어다. 컴파일, 인터프리터, JIT 방식이 있으며 언어별
+      보안 특성이 다르다. Rust는 메모리 안전성, TypeScript는
+      타입 안전성을 제공한다.
+    search_keywords:
+      - "Programming Language"
+      - "프로그래밍 언어"
+      - "JavaScript"
+      - "Python"
+      - "Secure Coding"
+    related_queries:
+      - "프로그래밍 언어 종류"
+      - "안전한 코딩"
+      - "언어별 보안 특성"
+      - "Rust 보안"

@@ -1,0 +1,118 @@
+# GR Atom: Kerberos Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-KERBEROS-001"
+  name: "Kerberos Protocol"
+  normalization:
+    normalized_name: "kerberos authentication protocol tgt tgs ticket"
+    normalization_version: "1.0"
+  aliases:
+    - "Kerberos"
+    - "커버로스"
+    - "Ticket-based Authentication"
+
+classification:
+  domain: infrastructure
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INFRA", "AUTH", "PROTOCOL"]
+
+definition:
+  what: |
+    티켓 기반 상호 인증 프로토콜로 네트워크 환경에서
+    안전한 인증을 제공한다.
+  why: |
+    비밀번호 전송 없이 인증한다.
+    상호 인증을 보장한다.
+  how: |
+    1. AS-REQ/REP (TGT 획득)
+    2. TGS-REQ/REP (서비스 티켓)
+    3. AP-REQ/REP (서비스 인증)
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-PROTOCOL-001"
+    related_to:
+      - "ATK-WIN-GOLDEN-TICKET-001"
+      - "ATK-WIN-KERBEROASTING-001"
+
+properties:
+  technical:
+    version: "5 (RFC 4120)"
+    default_port: 88
+    components:
+      - name: "KDC (Key Distribution Center)"
+        subcomponents:
+          - "AS (Authentication Server)"
+          - "TGS (Ticket Granting Server)"
+      - name: "Client"
+        description: "인증 요청자"
+      - name: "Service"
+        description: "접근 대상 서비스"
+    ticket_types:
+      TGT:
+        name: "Ticket Granting Ticket"
+        purpose: "서비스 티켓 요청용"
+        encrypted_with: "KRBTGT 키"
+      TGS:
+        name: "Ticket Granting Service Ticket"
+        purpose: "서비스 접근용"
+        encrypted_with: "서비스 계정 키"
+    authentication_flow:
+      step1:
+        name: "AS Exchange"
+        request: "AS-REQ (사용자 요청)"
+        response: "AS-REP (TGT + 세션 키)"
+      step2:
+        name: "TGS Exchange"
+        request: "TGS-REQ (TGT + 서비스 요청)"
+        response: "TGS-REP (서비스 티켓)"
+      step3:
+        name: "AP Exchange"
+        request: "AP-REQ (서비스 티켓)"
+        response: "AP-REP (옵션)"
+    known_attacks:
+      - "Kerberoasting"
+      - "AS-REP Roasting"
+      - "Golden Ticket"
+      - "Silver Ticket"
+      - "Pass-the-Ticket"
+      - "Overpass-the-Hash"
+    security_features:
+      - "상호 인증"
+      - "시간 기반 티켓 만료"
+      - "리플레이 공격 방지"
+      - "AES 암호화 지원"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 4120"
+      - "MIT Kerberos"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kerberos는 티켓 기반 상호 인증 프로토콜로
+      Windows Active Directory의 기본 인증 메커니즘이다.
+    search_keywords:
+      - "Kerberos"
+      - "TGT"
+      - "티켓 인증"
+      - "KDC"

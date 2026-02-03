@@ -1,0 +1,116 @@
+# GR Atom: Web Application Firewall
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-WAF-001"
+  name: "Web Application Firewall"
+  normalization:
+    normalized_name: "waf web application firewall owasp http protection"
+    normalization_version: "1.0"
+  aliases:
+    - "WAF"
+    - "웹 방화벽"
+    - "Application Firewall"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "WEB", "PREVENT"]
+
+definition:
+  what: |
+    웹 애플리케이션으로 향하는 HTTP 트래픽을 필터링하여
+    SQL 인젝션, XSS 등 웹 공격을 차단하는 보안 장치이다.
+  why: |
+    웹 애플리케이션을 보호한다.
+    OWASP Top 10 공격을 차단한다.
+  how: |
+    1. HTTP 요청 검사
+    2. 규칙/패턴 매칭
+    3. 악성 요청 차단
+    4. 로깅/모니터링
+
+relations:
+  structural:
+    is_a:
+      - "DEF-WEB-001"
+    related_to:
+      - "VUL-WEB-SQLI-001"
+      - "VUL-WEB-XSS-001"
+
+properties:
+  technical:
+    protection_types:
+      - "SQL Injection"
+      - "Cross-Site Scripting (XSS)"
+      - "Cross-Site Request Forgery (CSRF)"
+      - "File Inclusion (LFI/RFI)"
+      - "Command Injection"
+      - "HTTP Protocol Violations"
+      - "Bot Mitigation"
+      - "DDoS Protection"
+    deployment_modes:
+      reverse_proxy: "리버스 프록시 모드"
+      transparent: "투명 브릿지 모드"
+      out_of_band: "미러링/TAP 모드"
+    detection_methods:
+      signature: "알려진 공격 패턴"
+      anomaly: "정상 트래픽 기준선 이탈"
+      reputation: "IP/URL 평판"
+    rule_sets:
+      - name: "OWASP CRS"
+        description: "ModSecurity Core Rule Set"
+      - name: "벤더 규칙"
+        description: "상용 WAF 규칙"
+      - name: "커스텀 규칙"
+        description: "조직 맞춤 규칙"
+    popular_solutions:
+      on_premises:
+        - "F5 BIG-IP ASM"
+        - "Imperva WAF"
+        - "Fortinet FortiWeb"
+      cloud:
+        - "AWS WAF"
+        - "Azure WAF"
+        - "Cloudflare WAF"
+        - "Akamai Kona"
+      open_source:
+        - "ModSecurity"
+        - "NAXSI"
+    challenges:
+      - "오탐 관리"
+      - "규칙 튜닝"
+      - "성능 영향"
+      - "암호화 트래픽"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP WAF"
+      - "NIST SP 800-44"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WAF는 웹 애플리케이션으로 향하는 HTTP 트래픽을 검사하여
+      SQL 인젝션, XSS 등 웹 공격을 차단하는 보안 장치이다.
+    search_keywords:
+      - "WAF"
+      - "Web Application Firewall"
+      - "웹 방화벽"
+      - "OWASP"

@@ -1,0 +1,82 @@
+# GR Atom: Operating System Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-OS-001"
+  name: "Operating System Technology"
+  normalization:
+    normalized_name: "operating system technology windows linux"
+    normalization_version: "1.0"
+  aliases:
+    - "Operating System Technology"
+    - "운영 체제 기술"
+    - "OS Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "OS"]
+
+definition:
+  what: |
+    시스템 자원을 관리하는 운영 체제 기술 분류이다.
+  why: |
+    OS 보안을 이해한다.
+    시스템 하드닝을 수행한다.
+    플랫폼 특성을 파악한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-OS-WINDOWS-001"
+      - "TECH-OS-LINUX-001"
+      - "TECH-OS-MACOS-001"
+    related_to:
+      - "ATK-WIN-PRIV-ESC-001"
+      - "DEF-HARDENING-001"
+
+properties:
+  technical:
+    platforms:
+      - "Windows"
+      - "Linux"
+      - "macOS"
+      - "Unix"
+      - "BSD"
+    security_components:
+      - "Kernel Security"
+      - "Access Control"
+      - "Process Isolation"
+      - "Memory Protection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OS Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Operating System Technology는 운영 체제 기술 분류이다.
+    search_keywords:
+      - "Operating System"
+      - "운영 체제"
+      - "Windows"
+      - "Linux"

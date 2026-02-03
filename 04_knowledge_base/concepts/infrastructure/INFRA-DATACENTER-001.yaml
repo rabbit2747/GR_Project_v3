@@ -1,0 +1,82 @@
+# GR Atom: Data Center Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-DATACENTER-001"
+  name: "Data Center Infrastructure"
+  normalization:
+    normalized_name: "data center infrastructure physical facility"
+    normalization_version: "1.0"
+  aliases:
+    - "Data Center Infrastructure"
+    - "데이터센터 인프라"
+    - "DC Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "DATACENTER"]
+
+definition:
+  what: |
+    IT 시스템을 수용하는 물리적 시설 인프라 분류이다.
+  why: |
+    데이터센터 환경을 이해한다.
+    물리 보안을 평가한다.
+    가용성을 보장한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-DC-PHYSICAL-001"
+      - "INFRA-DC-POWER-001"
+      - "INFRA-DC-COOLING-001"
+    related_to:
+      - "DEF-PHYSICAL-001"
+      - "COMP-BCDR-001"
+
+properties:
+  technical:
+    tiers:
+      - "Tier I"
+      - "Tier II"
+      - "Tier III"
+      - "Tier IV"
+    components:
+      - "Physical Security"
+      - "Power Systems"
+      - "Cooling Systems"
+      - "Fire Suppression"
+      - "Environmental Monitoring"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Uptime Institute Tier Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Data Center Infrastructure는 물리적 데이터센터 인프라 분류이다.
+    search_keywords:
+      - "Data Center"
+      - "데이터센터"
+      - "Physical Security"
+      - "Facility"

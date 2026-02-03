@@ -1,0 +1,115 @@
+# GR Atom: Container Escape
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CONTAINER-ESCAPE-001"
+  name: "Container Escape"
+  normalization:
+    normalized_name: "container escape breakout docker kubernetes privilege escalation"
+    normalization_version: "1.0"
+  aliases:
+    - "컨테이너 탈출"
+    - "컨테이너 브레이크아웃"
+    - "Docker 탈출"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "CONTAINER", "PRIV-ESC"]
+
+definition:
+  what: |
+    컨테이너의 격리를 우회하여 호스트 시스템이나 다른 컨테이너에
+    접근하는 공격이다.
+  why: |
+    호스트 시스템 권한을 획득한다.
+    다른 컨테이너의 데이터에 접근한다.
+  how: |
+    1. 컨테이너 내부 접근
+    2. 탈출 벡터 식별
+    3. 격리 우회
+    4. 호스트 또는 다른 컨테이너 접근
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-PRIV-ESC-001"
+    related_to:
+      - "INFRA-CONTAINER-DOCKER-001"
+      - "INFRA-CONTAINER-K8S-001"
+
+properties:
+  technical:
+    escape_techniques:
+      - name: "Privileged Container"
+        description: "--privileged 플래그로 실행된 컨테이너"
+        risk: "직접 호스트 접근 가능"
+      - name: "Docker Socket Mount"
+        description: "/var/run/docker.sock 마운트"
+        risk: "호스트에서 컨테이너 생성 가능"
+      - name: "SYS_ADMIN Capability"
+        description: "관리자 권한 케이퍼빌리티"
+        risk: "cgroup 조작으로 탈출"
+      - name: "Kernel Vulnerabilities"
+        description: "커널 취약점 악용"
+        examples: ["CVE-2020-15257", "CVE-2019-5736"]
+      - name: "Host Path Mount"
+        description: "민감한 호스트 경로 마운트"
+        risk: "호스트 파일 시스템 접근"
+    vulnerable_configurations:
+      - "--privileged"
+      - "--pid=host"
+      - "--network=host"
+      - "-v /:/host"
+      - "--cap-add=SYS_ADMIN"
+    tools:
+      - "CDK (Container penetration toolkit)"
+      - "deepce"
+      - "PEIRATES"
+    detection:
+      - "비정상 프로세스 실행"
+      - "cgroup 조작 감지"
+      - "호스트 파일 접근"
+      - "네트워크 이상 활동"
+    mitigation:
+      - "최소 권한 원칙"
+      - "privileged 비활성화"
+      - "Seccomp 프로파일"
+      - "AppArmor/SELinux"
+      - "읽기 전용 루트 파일시스템"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Docker Security Best Practices"
+      - "CIS Docker Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      컨테이너 탈출은 Docker 격리를 우회하여 호스트 시스템에
+      접근하는 권한 상승 공격이다.
+    search_keywords:
+      - "Container Escape"
+      - "Docker 탈출"
+      - "privileged"
+      - "컨테이너 보안"
+    related_queries:
+      - "Docker 보안"
+      - "Kubernetes 보안"
+      - "컨테이너 격리"

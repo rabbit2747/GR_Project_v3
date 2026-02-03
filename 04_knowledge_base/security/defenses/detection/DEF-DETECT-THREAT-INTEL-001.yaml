@@ -1,0 +1,117 @@
+# GR Atom: Threat Intelligence
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-THREAT-INTEL-001"
+  name: "Threat Intelligence"
+  normalization:
+    normalized_name: "threat intelligence cti ioc ttp indicator compromise"
+    normalization_version: "1.0"
+  aliases:
+    - "위협 인텔리전스"
+    - "CTI"
+    - "Cyber Threat Intelligence"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["DEF", "DETECT", "INTEL"]
+
+definition:
+  what: |
+    위협 인텔리전스는 사이버 위협에 대한 정보를 수집, 분석, 공유하여
+    사전 예방적 방어를 가능하게 하는 활동이다.
+  why: |
+    알려진 위협을 빠르게 탐지하고 새로운 위협에 선제 대응할 수 있다.
+    단순 반응적 보안에서 능동적 보안으로 전환하는 핵심이다.
+  how: |
+    1. Collection: 위협 정보 수집
+    2. Processing: 정보 정규화 및 상관관계
+    3. Analysis: 컨텍스트 추가, 평가
+    4. Dissemination: 조직 내 공유 및 적용
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "TOOL-DEFENSE-SIEM-001"
+  causal:
+    supports:
+      - "DEF-DETECT-IDS-001"
+      - "DEF-DETECT-MONITORING-001"
+
+properties:
+  technical:
+    intelligence_types:
+      - name: "Strategic"
+        audience: "경영진"
+        content: "위협 트렌드, 리스크 평가"
+      - name: "Tactical"
+        audience: "보안 팀"
+        content: "TTP, 공격자 도구"
+      - name: "Operational"
+        audience: "IR 팀"
+        content: "특정 캠페인, 공격 세부사항"
+      - name: "Technical"
+        audience: "시스템"
+        content: "IoC, IP, Hash, Domain"
+    indicator_types:
+      - "IP 주소"
+      - "도메인/URL"
+      - "파일 해시 (MD5, SHA256)"
+      - "이메일 주소"
+      - "TTP (전술, 기법, 절차)"
+      - "YARA 규칙"
+    sharing_standards:
+      - "STIX (Structured Threat Information eXpression)"
+      - "TAXII (Trusted Automated eXchange)"
+      - "MISP (Malware Information Sharing Platform)"
+      - "OpenIOC"
+    sources:
+      - "상용 피드 (Recorded Future, Mandiant)"
+      - "오픈소스 (AlienVault OTX, Abuse.ch)"
+      - "정부 기관 (CISA, KISA)"
+      - "ISAC (업종별 공유 센터)"
+      - "다크웹 모니터링"
+    integration:
+      - "SIEM 연동"
+      - "방화벽/IDS 자동 차단"
+      - "EDR 강화"
+      - "SOC 워크플로우"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-150"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      위협 인텔리전스는 사이버 위협 정보를 수집/분석/공유하는 활동이다. IoC, TTP가
+      핵심이며 STIX/TAXII로 공유하고 SIEM, EDR과 연동한다.
+    search_keywords:
+      - "위협 인텔리전스"
+      - "CTI"
+      - "IoC"
+      - "STIX"
+    related_queries:
+      - "위협 정보"
+      - "인텔리전스 피드"
+      - "MISP"

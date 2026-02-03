@@ -1,0 +1,81 @@
+# GR Atom: Virtualization Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-VIRTUALIZATION-001"
+  name: "Virtualization Technology"
+  normalization:
+    normalized_name: "virtualization technology vm hypervisor"
+    normalization_version: "1.0"
+  aliases:
+    - "Virtualization Technology"
+    - "가상화 기술"
+    - "VM Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "VIRTUALIZATION"]
+
+definition:
+  what: |
+    하드웨어 자원의 추상화와 격리를 위한 가상화 기술 분류이다.
+  why: |
+    가상화 기술을 이해한다.
+    가상화 보안을 평가한다.
+    인프라 설계를 지원한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-VIRT-HYPERVISOR-001"
+      - "TECH-VIRT-VM-001"
+    related_to:
+      - "INFRA-CLOUD-001"
+      - "ATK-CLOUD-001"
+
+properties:
+  technical:
+    types:
+      - "Type 1 Hypervisor"
+      - "Type 2 Hypervisor"
+      - "Container Virtualization"
+      - "Network Virtualization"
+    platforms:
+      - "VMware"
+      - "Hyper-V"
+      - "KVM"
+      - "Xen"
+      - "VirtualBox"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Virtualization Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Virtualization Technology는 하드웨어 가상화 기술 분류이다.
+    search_keywords:
+      - "Virtualization Technology"
+      - "가상화 기술"
+      - "Hypervisor"
+      - "Virtual Machine"

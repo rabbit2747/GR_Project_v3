@@ -1,0 +1,83 @@
+# GR Atom: Network Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-001"
+  name: "Network Protocol"
+  normalization:
+    normalized_name: "network protocol tcp ip http"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Protocol"
+    - "네트워크 프로토콜"
+    - "Communication Protocol"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "PROTOCOL"]
+
+definition:
+  what: |
+    시스템 간 통신을 위한 규칙과 표준의 집합인 네트워크 프로토콜 분류이다.
+  why: |
+    통신 기술을 이해한다.
+    프로토콜 보안을 평가한다.
+    네트워크 아키텍처를 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-DNS-001"
+      - "TECH-PROTOCOL-TLS-001"
+    related_to:
+      - "GR-SEC-PROTOCOL-001"
+      - "ATK-NETWORK-001"
+
+properties:
+  technical:
+    layers:
+      - "Application Layer"
+      - "Transport Layer"
+      - "Network Layer"
+      - "Data Link Layer"
+    examples:
+      - "HTTP/HTTPS"
+      - "TCP/UDP"
+      - "DNS"
+      - "TLS/SSL"
+      - "SMTP"
+      - "FTP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "IETF RFC"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Protocol은 시스템 간 통신을 위한 프로토콜 기술 분류이다.
+    search_keywords:
+      - "Network Protocol"
+      - "네트워크 프로토콜"
+      - "TCP/IP"
+      - "HTTP"

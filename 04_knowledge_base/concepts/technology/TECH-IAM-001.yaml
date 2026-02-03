@@ -1,0 +1,84 @@
+# GR Atom: Identity and Access Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-IAM-001"
+  name: "Identity and Access Management"
+  normalization:
+    normalized_name: "identity access management iam rbac"
+    normalization_version: "1.0"
+  aliases:
+    - "Identity and Access Management"
+    - "계정 및 접근 관리"
+    - "IAM"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "IAM"]
+
+definition:
+  what: |
+    사용자 신원과 접근 권한을 관리하는 IAM 기술 분류이다.
+  why: |
+    계정 관리 체계를 이해한다.
+    접근 통제를 구현한다.
+    권한 관리를 최적화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-IAM-RBAC-001"
+      - "TECH-IAM-SSO-001"
+      - "TECH-IAM-PAM-001"
+    related_to:
+      - "TECH-AUTH-001"
+      - "VUL-ACCESS-CONTROL-001"
+      - "DEF-RBAC-001"
+
+properties:
+  technical:
+    components:
+      - "Identity Management"
+      - "Access Control"
+      - "Authentication"
+      - "Authorization"
+      - "Audit & Compliance"
+    models:
+      - "RBAC"
+      - "ABAC"
+      - "PBAC"
+      - "DAC"
+      - "MAC"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST IAM Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Identity and Access Management는 계정 및 접근 관리 기술 분류이다.
+    search_keywords:
+      - "IAM"
+      - "계정 관리"
+      - "RBAC"
+      - "Access Control"

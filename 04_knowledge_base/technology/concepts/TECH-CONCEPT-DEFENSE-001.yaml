@@ -1,0 +1,112 @@
+# GR Atom: Defense (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DEFENSE-001"
+  name: "Security Defense"
+  normalization:
+    normalized_name: "security defense control protection"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 방어"
+    - "Security Control"
+    - "보안 통제"
+    - "Protection Mechanism"
+    - "방어 기법"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["SEC", "D"]
+
+definition:
+  what: |
+    보안 방어(Security Defense)는 시스템과 데이터를 보호하기 위한
+    기술적, 관리적 통제 수단의 총칭이다. 예방(Prevention),
+    탐지(Detection), 대응(Response)의 세 가지 범주로 구분된다.
+  why: |
+    취약점과 공격에 대응하는 보안의 핵심 요소이다.
+    Defense in Depth(심층 방어) 원칙에 따라 여러 계층의 방어를
+    구축하여 단일 실패점을 방지한다.
+  how: |
+    1. Prevention: 공격 발생 전 차단 (Input Validation, Encryption)
+    2. Detection: 공격 시도 탐지 (WAF, IDS, Logging)
+    3. Response: 공격 발생 후 대응 (Incident Response, Blocking)
+
+relations:
+  structural:
+    abstracts:
+      - "DEF-PREVENT-PARAMQUERY-001"
+      - "DEF-PREVENT-INPUTVAL-001"
+      - "DEF-PREVENT-OUTPUTENC-001"
+      - "DEF-PREVENT-CSP-001"
+      - "DEF-PREVENT-CSRF-TOKEN-001"
+      - "DEF-PREVENT-HTTPS-001"
+      - "DEF-PREVENT-CORS-001"
+      - "DEF-PREVENT-HEADERS-001"
+      - "DEF-PREVENT-RATELIMIT-001"
+      - "DEF-PREVENT-MFA-001"
+      - "DEF-PREVENT-ENCRYPT-001"
+      - "DEF-PREVENT-SANDBOX-001"
+  causal:
+    prevents:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+
+properties:
+  technical:
+    categories:
+      - name: "Prevention"
+        description: "공격 발생 전 차단"
+        examples: ["Input Validation", "Parameterized Query", "Encryption"]
+      - name: "Detection"
+        description: "공격 시도 탐지"
+        examples: ["WAF", "IDS", "SIEM", "Logging"]
+      - name: "Response"
+        description: "공격 발생 후 대응"
+        examples: ["Incident Response", "Blocking", "Quarantine"]
+    frameworks:
+      - "MITRE D3FEND"
+      - "NIST Cybersecurity Framework"
+      - "ISO 27001"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE D3FEND - https://d3fend.mitre.org"
+      - "NIST Cybersecurity Framework"
+      - "OWASP Defense Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Defense(보안 방어)는 시스템 보호를 위한 통제 수단이다.
+      Prevention(예방), Detection(탐지), Response(대응)의 세 범주가 있으며,
+      Defense in Depth 원칙에 따라 여러 계층으로 구축한다.
+      MITRE D3FEND, NIST Framework가 이를 체계화한다.
+    search_keywords:
+      - "Security Defense"
+      - "보안 방어"
+      - "Security Control"
+      - "보안 통제"
+      - "Defense in Depth"
+      - "D3FEND"
+    related_queries:
+      - "보안 방어란?"
+      - "Defense in Depth 원칙"
+      - "예방 vs 탐지 vs 대응"
+      - "보안 통제 분류"

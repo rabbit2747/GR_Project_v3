@@ -1,0 +1,116 @@
+# GR Atom: API Gateway Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-API-GATEWAY-001"
+  name: "API Gateway Security"
+  normalization:
+    normalized_name: "api gateway security rate limiting throttling centralized"
+    normalization_version: "1.0"
+  aliases:
+    - "API 게이트웨이"
+    - "API Gateway"
+    - "API 관리"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["DEF", "API", "GATEWAY"]
+
+definition:
+  what: |
+    API 게이트웨이는 모든 API 요청의 단일 진입점으로 인증, 속도 제한,
+    로깅 등 보안 기능을 중앙에서 처리하는 인프라다.
+  why: |
+    마이크로서비스 환경에서 일관된 보안 정책 적용이 가능하다.
+    개별 서비스에서 보안 구현 부담을 줄이고 가시성을 확보한다.
+  how: |
+    1. 인증/인가: 토큰 검증, 권한 확인
+    2. Rate Limiting: 요청 속도 제한
+    3. Request Validation: 요청 스키마 검증
+    4. Logging/Monitoring: 중앙 집중 로깅
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-PREVENT-API-AUTH-001"
+      - "DEF-PREVENT-RATELIMIT-001"
+  causal:
+    mitigates:
+      - "VUL-API-BOLA-001"
+      - "ATK-NET-DDOS-001"
+
+properties:
+  technical:
+    core_functions:
+      - name: "Authentication"
+        description: "OAuth/JWT 토큰 검증"
+      - name: "Authorization"
+        description: "역할 기반 접근 제어"
+      - name: "Rate Limiting"
+        description: "초당/분당 요청 제한"
+      - name: "Request Validation"
+        description: "스키마 기반 요청 검증"
+      - name: "Response Transformation"
+        description: "응답 변환/필터링"
+      - name: "Logging & Monitoring"
+        description: "요청 로깅, 메트릭 수집"
+      - name: "SSL Termination"
+        description: "TLS 처리"
+    popular_solutions:
+      - "Kong"
+      - "AWS API Gateway"
+      - "Azure API Management"
+      - "Apigee (Google Cloud)"
+      - "NGINX Plus"
+      - "Tyk"
+    rate_limiting_strategies:
+      - "Fixed Window: 고정 시간 창"
+      - "Sliding Window: 슬라이딩 시간 창"
+      - "Token Bucket: 토큰 버킷"
+      - "Leaky Bucket: 리키 버킷"
+    best_practices:
+      - "모든 API를 게이트웨이 통과"
+      - "서비스별 Rate Limit 설정"
+      - "요청/응답 스키마 검증"
+      - "상세한 API 로깅"
+      - "Health Check 구현"
+      - "Circuit Breaker 패턴"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security"
+      - "API Gateway Patterns"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API 게이트웨이는 API 보안의 중앙 제어점이다. 인증, Rate Limiting, 로깅을
+      중앙에서 처리하며 Kong, AWS API Gateway 등이 대표 솔루션이다.
+    search_keywords:
+      - "API Gateway"
+      - "API 게이트웨이"
+      - "Rate Limiting"
+      - "Kong"
+    related_queries:
+      - "API 관리"
+      - "마이크로서비스 보안"
+      - "API 속도 제한"

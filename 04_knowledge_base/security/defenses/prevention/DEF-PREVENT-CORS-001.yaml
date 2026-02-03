@@ -1,0 +1,89 @@
+# GR Atom: CORS Configuration
+identity:
+  id: "DEF-PREVENT-CORS-001"
+  name: "CORS Configuration"
+  normalization:
+    normalized_name: "cors_configuration"
+    normalization_version: "1.0"
+  aliases:
+    - "Cross-Origin Resource Sharing Configuration"
+    - "CORS Policy"
+    - "CORS 설정"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P", "WEB"]
+
+definition:
+  what: |
+    Cross-Origin Resource Sharing(CORS) 정책을 올바르게 설정하여 무단 교차 출처 요청을
+    방지하는 방어 기법. 허용된 도메인, HTTP 메서드, 헤더만 교차 출처 접근이
+    가능하도록 제한한다.
+  why: |
+    잘못된 CORS 설정은 악의적인 웹사이트에서 사용자의 인증된 세션을 이용하여
+    API에 무단 접근할 수 있게 한다. 와일드카드(*) 사용이나 Origin 검증 미흡은
+    데이터 유출과 CSRF 유사 공격으로 이어질 수 있다.
+  how: |
+    1. Access-Control-Allow-Origin에 허용된 도메인을 명시적으로 지정한다.
+    2. 와일드카드(*) 사용을 지양하고, 특히 credentials 포함 요청에서는 절대 사용하지 않는다.
+    3. Access-Control-Allow-Methods에 필요한 HTTP 메서드만 허용한다.
+    4. Access-Control-Allow-Headers에 필요한 헤더만 허용한다.
+    5. Access-Control-Allow-Credentials 설정을 신중하게 관리한다.
+    6. Preflight 요청(OPTIONS)에 대한 적절한 응답을 구성한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-WEB-CORS-MISCONFIG-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    implementation:
+      - "Access-Control-Allow-Origin header"
+      - "Access-Control-Allow-Methods header"
+      - "Access-Control-Allow-Headers header"
+      - "Access-Control-Allow-Credentials header"
+      - "Framework CORS middleware (cors npm, django-cors-headers)"
+  security:
+    effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CORS Configuration은 Cross-Origin Resource Sharing 정책을 올바르게 설정하여
+      무단 교차 출처 요청을 방지하는 방어 기법이다. 허용된 도메인, 메서드, 헤더만
+      교차 출처 접근이 가능하도록 제한한다.
+    search_keywords:
+      - "CORS configuration"
+      - "cross-origin resource sharing"
+      - "Access-Control-Allow-Origin"
+      - "CORS policy"
+      - "CORS 설정"
+    related_queries:
+      - "CORS 정책을 안전하게 설정하는 방법"
+      - "CORS 와일드카드 사용의 위험성"
+      - "Preflight 요청 처리 방법"

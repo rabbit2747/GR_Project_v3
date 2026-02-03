@@ -1,0 +1,82 @@
+# GR Atom: Logging Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-LOGGING-001"
+  name: "Logging Technology"
+  normalization:
+    normalized_name: "logging technology siem elk monitoring"
+    normalization_version: "1.0"
+  aliases:
+    - "Logging Technology"
+    - "로깅 기술"
+    - "Log Management Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "LOGGING"]
+
+definition:
+  what: |
+    시스템 이벤트 수집, 저장, 분석을 위한 로깅 기술 분류이다.
+  why: |
+    보안 모니터링을 구현한다.
+    인시던트 대응을 지원한다.
+    컴플라이언스를 충족한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-LOG-SIEM-001"
+      - "TECH-LOG-ELK-001"
+    related_to:
+      - "DEF-DETECT-001"
+      - "DEF-SIEM-001"
+
+properties:
+  technical:
+    components:
+      - "Log Collection"
+      - "Log Aggregation"
+      - "Log Analysis"
+      - "Log Storage"
+      - "Alerting"
+    platforms:
+      - "SIEM"
+      - "ELK Stack"
+      - "Splunk"
+      - "Graylog"
+      - "Datadog"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Logging Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Logging Technology는 시스템 로깅 및 모니터링 기술 분류이다.
+    search_keywords:
+      - "Logging Technology"
+      - "로깅 기술"
+      - "SIEM"
+      - "ELK"

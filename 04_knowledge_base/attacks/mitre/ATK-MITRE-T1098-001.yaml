@@ -1,0 +1,109 @@
+# GR Atom: Account Manipulation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1098-001"
+  name: "Account Manipulation"
+  normalization:
+    normalized_name: "account manipulation persistence privilege ssh key"
+    normalization_version: "1.0"
+  aliases:
+    - "Account Modification"
+    - "계정 조작"
+    - "Credential Manipulation"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "PERSIST"]
+
+definition:
+  what: |
+    계정 자격 증명이나 권한을 수정하여 지속성을
+    확보하거나 권한을 상승시키는 기법이다.
+  why: |
+    추가 접근 방법을 확보한다.
+    권한을 유지/상승한다.
+  how: |
+    1. 타겟 계정 식별
+    2. 자격증명/권한 수정
+    3. 백도어 계정 생성
+    4. 지속적 접근
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0003-001"
+    related_to:
+      - "ATK-MITRE-T1136-001"
+      - "ATK-MITRE-T1078-001"
+
+properties:
+  technical:
+    mitre_id: "T1098"
+    tactic: "Persistence, Privilege Escalation"
+    sub_techniques:
+      - id: "T1098.001"
+        name: "Additional Cloud Credentials"
+        examples: ["AWS Access Key 추가", "Azure 서비스 주체"]
+      - id: "T1098.002"
+        name: "Additional Email Delegate Permissions"
+      - id: "T1098.003"
+        name: "Additional Cloud Roles"
+      - id: "T1098.004"
+        name: "SSH Authorized Keys"
+        location: "~/.ssh/authorized_keys"
+      - id: "T1098.005"
+        name: "Device Registration"
+    windows_techniques:
+      - "그룹 멤버십 수정"
+      - "비밀번호 변경"
+      - "SID History 추가"
+    linux_techniques:
+      - "SSH 키 추가"
+      - "sudoers 수정"
+      - "그룹 추가"
+    cloud_techniques:
+      - "IAM 정책 수정"
+      - "API 키 추가"
+      - "역할 부여"
+    detection:
+      - "Event ID 4738 (계정 변경)"
+      - "Event ID 4728, 4732 (그룹 멤버십)"
+      - "SSH authorized_keys 모니터링"
+      - "클라우드 감사 로그"
+    prevention:
+      - "변경 모니터링"
+      - "최소 권한"
+      - "정기 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1098"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Account Manipulation(T1098)은 계정 자격증명이나 권한을
+      수정하여 지속성을 확보하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "Account Manipulation"
+      - "T1098"
+      - "SSH Key"
+      - "계정 조작"

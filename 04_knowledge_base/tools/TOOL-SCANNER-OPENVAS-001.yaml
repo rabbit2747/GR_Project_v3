@@ -1,0 +1,111 @@
+# GR Atom: OpenVAS
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCANNER-OPENVAS-001"
+  name: "OpenVAS"
+  normalization:
+    normalized_name: "openvas open vulnerability assessment greenbone gvm"
+    normalization_version: "1.0"
+  aliases:
+    - "OpenVAS"
+    - "GVM"
+    - "Greenbone Vulnerability Management"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TOOL", "SCANNER", "OPENSOURCE"]
+
+definition:
+  what: |
+    네트워크 취약점을 스캔하는 오픈소스 취약점
+    평가 도구로 Greenbone에서 관리한다.
+  why: |
+    무료로 취약점 스캔을 수행한다.
+    상용 스캐너 대안을 제공한다.
+  how: |
+    1. GVM 설치/설정
+    2. NVT 피드 업데이트
+    3. 스캔 타겟 설정
+    4. 스캔 실행 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-SCANNER-001"
+    related_to:
+      - "TOOL-SCANNER-NESSUS-001"
+      - "TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001"
+
+properties:
+  technical:
+    developer: "Greenbone Networks"
+    license: "GPL"
+    components:
+      - name: "OpenVAS Scanner"
+        purpose: "스캔 엔진"
+      - name: "GVM Daemon (gvmd)"
+        purpose: "중앙 관리"
+      - name: "Greenbone Security Assistant"
+        purpose: "웹 인터페이스"
+      - name: "OSP Scanner"
+        purpose: "스캐너 프로토콜"
+    nvt_feed:
+      description: "Network Vulnerability Tests"
+      count: "50,000+ 테스트"
+      update: "커뮤니티/상용 피드"
+    scan_types:
+      - "Full and fast"
+      - "Full and deep"
+      - "Host discovery"
+      - "System discovery"
+    features:
+      - "자격 증명 스캔"
+      - "예약 스캔"
+      - "델타 보고서"
+      - "API 접근"
+    editions:
+      community: "무료, 커뮤니티 피드"
+      enterprise: "상용, 전용 피드 + 지원"
+    installation:
+      - "소스 빌드"
+      - "Docker (Greenbone Community)"
+      - "Kali Linux 패키지"
+    limitations:
+      - "Nessus 대비 느린 스캔"
+      - "설정 복잡성"
+      - "상용 피드 유료"
+    repository: "https://github.com/greenbone"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Greenbone OpenVAS"
+      - "GVM Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OpenVAS는 50,000개 이상의 NVT를 제공하는 오픈소스
+      취약점 스캐너로 Nessus의 무료 대안이다.
+    search_keywords:
+      - "OpenVAS"
+      - "GVM"
+      - "Open Source Scanner"
+      - "Greenbone"

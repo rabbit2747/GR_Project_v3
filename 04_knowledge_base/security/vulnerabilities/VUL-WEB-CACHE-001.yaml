@@ -1,0 +1,106 @@
+# GR Atom: Web Cache Poisoning
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-CACHE-001"
+  name: "Web Cache Poisoning"
+  normalization:
+    normalized_name: "web cache poisoning cdn cache vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "웹 캐시 포이즈닝"
+    - "Cache Poisoning"
+    - "CDN 캐시 오염"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["VUL", "WEB", "CACHE"]
+
+definition:
+  what: |
+    웹 캐시 포이즈닝은 공격자가 악의적인 응답을 캐시에 저장시켜
+    다른 사용자에게 악성 콘텐츠를 제공하는 취약점이다.
+  why: |
+    CDN, 프록시, 웹 서버 캐시가 보편화되면서 위험이 증가했다.
+    한 번의 포이즈닝으로 다수의 사용자에게 영향을 미친다.
+  how: |
+    1. 캐시 키에 포함되지 않는 입력값 식별
+    2. 해당 입력값이 응답에 반영되는지 확인
+    3. 악성 페이로드로 캐시 오염
+    4. 다른 사용자에게 오염된 응답 전달
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "INFRA-NET-CDN-001"
+      - "ATK-INJECT-XSS-001"
+
+properties:
+  technical:
+    cache_key_components:
+      typical: ["Host", "Path", "Query String"]
+      unkeyed: ["Headers", "Cookies (일부)", "Body"]
+    attack_vectors:
+      - name: "Unkeyed Headers"
+        examples: ["X-Forwarded-Host", "X-Original-URL"]
+        impact: "XSS, 리다이렉트"
+      - name: "HTTP Request Smuggling"
+        description: "프론트엔드/백엔드 파싱 차이 악용"
+      - name: "Fat GET Requests"
+        description: "GET 요청에 Body 포함"
+      - name: "Parameter Cloaking"
+        description: "파라미터 파싱 차이 악용"
+    exploitation_steps:
+      - "1. 캐시 키 분석 (Param Miner)"
+      - "2. Unkeyed 입력 식별"
+      - "3. 가젯 찾기 (응답에 반영)"
+      - "4. 익스플로잇 구성"
+      - "5. 캐시 오염"
+    tools:
+      - "Param Miner (Burp Extension)"
+      - "Cache Buster"
+    prevention:
+      - "캐시 키에 영향 주는 모든 입력 포함"
+      - "Vary 헤더 올바르게 설정"
+      - "Unkeyed 헤더 응답에 반영 금지"
+      - "캐시 규칙 정기 감사"
+      - "캐시 무효화 메커니즘"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PortSwigger Web Cache Poisoning"
+      - "Practical Web Cache Poisoning"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      웹 캐시 포이즈닝은 캐시에 악성 응답을 저장시키는 취약점이다. Unkeyed 헤더,
+      Request Smuggling이 주요 벡터며 캐시 키 설정, Vary 헤더로 방어한다.
+    search_keywords:
+      - "캐시 포이즈닝"
+      - "Cache Poisoning"
+      - "CDN 공격"
+      - "웹 캐시"
+    related_queries:
+      - "캐시 보안"
+      - "CDN 보안"
+      - "Request Smuggling"

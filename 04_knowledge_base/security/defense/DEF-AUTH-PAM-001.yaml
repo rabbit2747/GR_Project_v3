@@ -1,0 +1,117 @@
+# GR Atom: Privileged Access Management (PAM)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-AUTH-PAM-001"
+  name: "Privileged Access Management (PAM)"
+  normalization:
+    normalized_name: "pam privileged access management password vault"
+    normalization_version: "1.0"
+  aliases:
+    - "PAM"
+    - "특권 접근 관리"
+    - "권한 있는 계정 관리"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "AUTH", "IDENTITY"]
+
+definition:
+  what: |
+    특권 계정의 자격 증명을 안전하게 저장, 관리하고
+    접근을 제어하는 보안 솔루션이다.
+  why: |
+    특권 계정 남용을 방지한다.
+    자격 증명 도용 위험을 줄인다.
+  how: |
+    1. 특권 계정 발견 및 온보딩
+    2. 자격 증명 안전 저장 (볼트)
+    3. 세션 관리 및 모니터링
+    4. 자동 패스워드 회전
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "ATK-MITRE-T1078-001"
+      - "DEF-PREVENT-ZERO-TRUST-001"
+
+properties:
+  technical:
+    core_capabilities:
+      - name: "Password Vault"
+        description: "자격 증명 암호화 저장"
+      - name: "Session Management"
+        description: "세션 녹화 및 모니터링"
+      - name: "Just-in-Time Access"
+        description: "필요시에만 권한 부여"
+      - name: "Password Rotation"
+        description: "자동 패스워드 변경"
+      - name: "Access Workflow"
+        description: "승인 기반 접근"
+    protected_accounts:
+      - "도메인 관리자"
+      - "로컬 관리자"
+      - "서비스 계정"
+      - "클라우드 루트 계정"
+      - "데이터베이스 관리자"
+      - "네트워크 장비 관리자"
+    pam_solutions:
+      - "CyberArk"
+      - "BeyondTrust"
+      - "Thycotic/Delinea"
+      - "HashiCorp Vault"
+      - "AWS Secrets Manager"
+    features:
+      - "중앙화된 자격 증명 관리"
+      - "감사 및 컴플라이언스"
+      - "MFA 통합"
+      - "API 기반 자격 증명 주입"
+      - "제로 스탠딩 권한"
+    deployment_models:
+      - "On-Premises"
+      - "SaaS"
+      - "Hybrid"
+    integration:
+      - "SIEM"
+      - "Identity Provider"
+      - "Ticketing System"
+      - "SOAR"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner PAM"
+      - "NIST Special Publication"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PAM은 특권 계정의 자격 증명을 안전하게 관리하고
+      접근을 제어하여 권한 남용을 방지하는 솔루션이다.
+    search_keywords:
+      - "PAM"
+      - "특권 접근"
+      - "Password Vault"
+      - "권한 관리"
+    related_queries:
+      - "특권 계정 보안"
+      - "자격 증명 관리"
+      - "Zero Standing Privilege"

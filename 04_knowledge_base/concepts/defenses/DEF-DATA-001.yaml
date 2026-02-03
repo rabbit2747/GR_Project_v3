@@ -1,0 +1,94 @@
+# GR Atom: Data Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DATA-001"
+  name: "Data Defense"
+  normalization:
+    normalized_name: "data defense protection encryption dlp"
+    normalization_version: "1.0"
+  aliases:
+    - "Data Defense"
+    - "데이터 방어"
+    - "Data Security"
+    - "Data Protection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "DATA"]
+
+definition:
+  what: |
+    데이터의 기밀성, 무결성, 가용성을 보호하는
+    보안 통제 분류이다.
+  why: |
+    데이터 유출을 방지한다.
+    데이터 무결성을 보장한다.
+    규정 준수를 달성한다.
+  how: |
+    1. 데이터 분류
+    2. 암호화 적용
+    3. 접근 통제
+    4. 모니터링
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-DLP-001"
+      - "DEF-CRYPTO-TLS-001"
+    related_to:
+      - "GR-SEC-CRYPTO-001"
+      - "COMP-GDPR-001"
+
+properties:
+  technical:
+    technologies:
+      dlp: "Data Loss Prevention"
+      encryption: "암호화"
+      tokenization: "토큰화"
+      masking: "데이터 마스킹"
+    states:
+      at_rest: "저장 시"
+      in_transit: "전송 시"
+      in_use: "사용 시"
+    controls:
+      - "암호화 (AES, RSA)"
+      - "접근 제어"
+      - "DLP 정책"
+      - "백업"
+      - "키 관리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Data Security"
+      - "PCI DSS"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Data Defense는 데이터의 기밀성과 무결성을 보호하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "Data Security"
+      - "데이터 보안"
+      - "Encryption"
+      - "DLP"

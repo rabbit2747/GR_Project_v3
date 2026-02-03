@@ -1,0 +1,106 @@
+# GR Atom: WinPEAS
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-WINDOWS-WINPEAS-001"
+  name: "WinPEAS"
+  normalization:
+    normalized_name: "winpeas windows privilege escalation enumeration"
+    normalization_version: "1.0"
+  aliases:
+    - "WinPEAS"
+    - "Windows Privilege Escalation"
+    - "윈도우 열거 도구"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "WINDOWS", "ENUM"]
+
+definition:
+  what: |
+    Windows 시스템에서 권한 상승 벡터를 자동으로 탐색하는
+    열거 도구이다.
+  why: |
+    Windows 권한 상승 경로를 식별한다.
+    포스트 익스플로잇 열거를 자동화한다.
+  how: |
+    1. 실행파일 전송
+    2. WinPEAS 실행
+    3. 결과 분석
+    4. 벡터 악용
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-ENUM-001"
+    related_to:
+      - "ATK-WIN-PRIV-ESC-001"
+      - "TOOL-LINUX-LINPEAS-001"
+
+properties:
+  technical:
+    developer: "PEASS-ng (carlospolop)"
+    license: "GPL v3"
+    versions:
+      - "winPEAS.exe (C#)"
+      - "winPEAS.bat (Batch)"
+      - "winPEASx64.exe / winPEASx86.exe"
+    checks:
+      - "시스템 정보"
+      - "사용자/그룹"
+      - "서비스 (Unquoted, 권한)"
+      - "예약된 작업"
+      - "AutoRun"
+      - "네트워크"
+      - "자격 증명 (SAM, LSASS)"
+      - "흥미로운 파일"
+      - "CVE 취약점"
+    output_colors:
+      red: "95% PE 벡터"
+      yellow: "중요 정보"
+      green: "일반 정보"
+    usage:
+      basic: "winPEASx64.exe"
+      quiet: "winPEASx64.exe quiet"
+      cmd: "winPEASx64.exe cmd"
+      log: "winPEASx64.exe log=output.txt"
+    common_findings:
+      - "Unquoted Service Path"
+      - "Weak Service Permissions"
+      - "AlwaysInstallElevated"
+      - "Stored Credentials"
+      - "AutoLogon"
+    repository: "https://github.com/carlospolop/PEASS-ng"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PEASS-ng GitHub"
+      - "HackTricks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WinPEAS는 Windows 권한 상승 벡터를 자동으로 탐색하는
+      PEASS-ng 프로젝트의 열거 도구이다.
+    search_keywords:
+      - "WinPEAS"
+      - "Windows Enumeration"
+      - "Privilege Escalation"
+      - "PEASS"

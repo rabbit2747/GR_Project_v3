@@ -1,0 +1,110 @@
+# GR Atom: Mass Assignment Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-API-MASS-ASSIGN-001"
+  name: "Mass Assignment Attack"
+  normalization:
+    normalized_name: "mass assignment attack api autobinding parameter binding"
+    normalization_version: "1.0"
+  aliases:
+    - "대량 할당 공격"
+    - "Auto-binding Attack"
+    - "Object Injection"
+    - "API6:2019"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone1"
+    tags: ["ATK", "API", "INJECTION"]
+
+definition:
+  what: |
+    Mass Assignment는 API가 클라이언트 요청 데이터를 객체에 자동으로 바인딩할 때
+    의도하지 않은 필드까지 수정할 수 있는 공격이다.
+  why: |
+    사용자 역할, 권한, 가격 등 민감한 필드를 무단 수정할 수 있다.
+    프레임워크의 자동 바인딩 기능이 이 취약점의 원인이다.
+  how: |
+    1. API 요청/응답 분석으로 객체 구조 파악
+    2. 숨겨진 필드 추측 (role, isAdmin, price)
+    3. 해당 필드를 요청에 추가
+    4. 권한 상승 또는 데이터 조작 성공
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+    related_to:
+      - "VUL-API-BOLA-001"
+  causal:
+    exploits:
+      - "TECH-CONCEPT-REST-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    attack_scenarios:
+      - name: "권한 상승"
+        request: 'POST /api/users {"name":"test", "role":"admin"}'
+        impact: "일반 사용자가 관리자 권한 획득"
+      - name: "가격 조작"
+        request: 'PUT /api/cart {"product_id":1, "price":0}'
+        impact: "무료로 제품 구매"
+      - name: "계정 상태 변경"
+        request: 'PATCH /api/profile {"isVerified":true}'
+        impact: "미인증 계정을 인증 상태로 변경"
+    vulnerable_frameworks:
+      - "Spring Boot (ModelAttribute)"
+      - "Ruby on Rails (Strong Parameters 미사용)"
+      - "Django (form.save() 잘못 사용)"
+      - "Express.js (자동 바인딩)"
+    prevention:
+      - name: "Allowlist 사용"
+        description: "허용된 필드만 명시적으로 바인딩"
+      - name: "DTO 패턴"
+        description: "입력용 DTO와 내부 모델 분리"
+      - name: "ReadOnly 속성"
+        description: "민감한 필드에 읽기 전용 설정"
+      - name: "블랙리스트 검증"
+        description: "민감 필드 제외 (권장하지 않음)"
+    detection:
+      - "요청에 예상치 않은 필드 포함 여부 로깅"
+      - "필드별 수정 권한 검사"
+      - "객체 변경 감사 로그"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "CWE-915: Improperly Controlled Modification"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Mass Assignment는 API 자동 바인딩으로 의도하지 않은 필드가 수정되는 공격이다.
+      권한 상승, 가격 조작이 가능하며 Allowlist, DTO 패턴으로 방어한다.
+    search_keywords:
+      - "Mass Assignment"
+      - "대량 할당"
+      - "Auto-binding"
+      - "API 파라미터 조작"
+    related_queries:
+      - "Mass Assignment 방어"
+      - "DTO 패턴"
+      - "Spring Security"

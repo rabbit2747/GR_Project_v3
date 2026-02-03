@@ -1,0 +1,110 @@
+# GR Atom: Cobalt Strike
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OFFENSE-COBALT-001"
+  name: "Cobalt Strike"
+  normalization:
+    normalized_name: "cobalt strike c2 beacon adversary simulation red team"
+    normalization_version: "1.0"
+  aliases:
+    - "코발트 스트라이크"
+    - "CS"
+    - "CobaltStrike"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["TOOL", "OFFENSE", "C2"]
+
+definition:
+  what: |
+    Cobalt Strike는 상용 적대적 시뮬레이션 및 레드팀 도구다.
+    C2 인프라, Beacon 에이전트, 다양한 공격 기능을 제공한다.
+  why: |
+    레드팀 연습, 침투 테스트의 사실상 표준 도구다. 하지만 실제 APT 그룹이
+    크랙된 버전을 악용하여 가장 많이 탐지되는 위협 중 하나가 되었다.
+  how: |
+    1. Listener: C2 서버 구성
+    2. Beacon: 대상 시스템 에이전트
+    3. Malleable C2: 트래픽 프로파일 커스터마이징
+    4. Post-Exploitation: 정보 수집, 횡적 이동
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE-METASPLOIT-001"
+    used_for:
+      - "ATK-MITRE-C2-001"
+      - "ATK-MITRE-LATERAL-001"
+
+properties:
+  technical:
+    components:
+      - name: "Team Server"
+        description: "C2 서버 (Java 기반)"
+      - name: "Beacon"
+        description: "대상 시스템의 에이전트"
+      - name: "Malleable C2 Profiles"
+        description: "C2 트래픽 커스터마이징"
+      - name: "Aggressor Scripts"
+        description: "자동화 스크립트"
+    capabilities:
+      - "HTTP/HTTPS/DNS Beacon"
+      - "Staged/Stageless Payloads"
+      - "Process Injection"
+      - "Credential Harvesting"
+      - "Lateral Movement"
+      - "Pivoting"
+      - "SOCKS Proxy"
+    detection_methods:
+      - "Named Pipe 패턴"
+      - "Default Malleable C2 프로파일"
+      - "JA3/JA3S 핑거프린팅"
+      - "Sleep Time 분석"
+      - "메모리 시그니처"
+    iocs:
+      - "기본 Named Pipe: \\.\\pipe\\msagent_*"
+      - "기본 User-Agent"
+      - "Beacon 메모리 패턴"
+    legitimate_use:
+      - "레드팀 연습"
+      - "침투 테스트"
+      - "보안 평가"
+      - "방어 역량 테스트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Cobalt Strike Official Documentation"
+      - "Cobalt Strike Detection Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cobalt Strike는 상용 레드팀/C2 도구다. Beacon, Malleable C2가 핵심이며
+      APT 그룹도 악용하여 Named Pipe, JA3 핑거프린팅으로 탐지한다.
+    search_keywords:
+      - "Cobalt Strike"
+      - "코발트 스트라이크"
+      - "Beacon"
+      - "레드팀"
+    related_queries:
+      - "Cobalt Strike 탐지"
+      - "C2 프레임워크"
+      - "레드팀 도구"

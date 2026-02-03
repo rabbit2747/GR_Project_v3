@@ -1,0 +1,196 @@
+# GR Atom: DNS Server
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-DNS-001"
+  name: "DNS Server"
+  normalization:
+    normalized_name: "dns server domain name system resolution"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS 서버"
+    - "도메인 네임 서버"
+    - "Domain Name System"
+    - "Name Server"
+    - "DNS Resolver"
+
+classification:
+  domain: network
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0B"
+    tags: ["NET"]
+
+definition:
+  what: |
+    DNS(Domain Name System) 서버는 사람이 읽을 수 있는 도메인 이름(예:
+    www.example.com)을 컴퓨터가 통신에 사용하는 IP 주소(예: 93.184.216.34)로
+    변환하는 분산 네임 시스템 인프라다. 인터넷의 전화번호부 역할을 한다.
+  why: |
+    인터넷 통신의 근본 인프라다. DNS 없이는 도메인 기반 웹 접근이 불가능하다.
+    DNS 장애는 전체 서비스 중단으로 이어지며, DNS 보안 취약점은 피싱, 트래픽
+    가로채기, 데이터 유출의 핵심 경로가 된다. DNSSEC, DoH, DoT 등의 보안
+    확장이 중요해지고 있다.
+  how: |
+    1. 사용자가 브라우저에 도메인 입력
+    2. 로컬 DNS 캐시 확인 (OS, 브라우저)
+    3. Recursive Resolver에 질의
+    4. Root DNS -> TLD DNS -> Authoritative DNS 순차 질의
+    5. IP 주소 응답 수신
+    6. 결과를 TTL에 따라 캐시
+    7. 클라이언트가 획득한 IP로 접속
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-NETWORK-DEVICE-001"]
+  causal:
+    enables:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-WEBSERVER-001"
+      - "INFRA-NET-CDN-001"
+      - "INFRA-NET-LB-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TCP-001"
+
+properties:
+  technical:
+    types:
+      - name: "Recursive Resolver"
+        description: "클라이언트 대신 DNS 질의를 재귀적으로 수행"
+        example: "ISP DNS, Google 8.8.8.8, Cloudflare 1.1.1.1"
+      - name: "Authoritative Server"
+        description: "특정 도메인의 공식 DNS 레코드 보유"
+        example: "Route 53, Cloudflare DNS, BIND"
+      - name: "Root Server"
+        description: "DNS 계층 최상위, TLD 서버 위치 안내"
+        example: "13개 Root Server 클러스터"
+      - name: "TLD Server"
+        description: ".com, .net, .kr 등 최상위 도메인 관리"
+        example: "Verisign (.com), KISA (.kr)"
+      - name: "Forwarding Server"
+        description: "다른 DNS 서버로 질의를 전달"
+        example: "기업 내부 DNS"
+    record_types:
+      - name: "A"
+        description: "도메인 -> IPv4 매핑"
+      - name: "AAAA"
+        description: "도메인 -> IPv6 매핑"
+      - name: "CNAME"
+        description: "도메인 별칭(Canonical Name)"
+      - name: "MX"
+        description: "메일 서버 지정"
+      - name: "NS"
+        description: "네임 서버 지정"
+      - name: "TXT"
+        description: "텍스트 정보 (SPF, DKIM, DMARC 등)"
+      - name: "SOA"
+        description: "도메인 권한 시작점"
+      - name: "PTR"
+        description: "IP -> 도메인 역방향 조회"
+      - name: "SRV"
+        description: "서비스 위치 지정"
+      - name: "CAA"
+        description: "인증서 발급 허용 CA 지정"
+    security_extensions:
+      - name: "DNSSEC"
+        description: "DNS 응답의 무결성을 암호학적으로 검증"
+      - name: "DNS-over-HTTPS (DoH)"
+        description: "DNS 질의를 HTTPS로 암호화 (RFC 8484)"
+      - name: "DNS-over-TLS (DoT)"
+        description: "DNS 질의를 TLS로 암호화 (RFC 7858)"
+      - name: "DNS-over-QUIC (DoQ)"
+        description: "QUIC 프로토콜 기반 암호화 DNS"
+    common_products:
+      authoritative:
+        - "AWS Route 53"
+        - "Cloudflare DNS"
+        - "Google Cloud DNS"
+        - "BIND"
+        - "PowerDNS"
+      resolver:
+        - "Cloudflare 1.1.1.1"
+        - "Google 8.8.8.8"
+        - "Quad9 9.9.9.9"
+        - "Unbound"
+        - "dnsmasq"
+  security:
+    threats:
+      - name: "DNS Spoofing / Cache Poisoning"
+        description: "DNS 캐시에 위조된 레코드를 삽입하여 트래픽 우회"
+        severity: "HIGH"
+        cwe: "CWE-350"
+      - name: "DNS Amplification Attack"
+        description: "DNS 서버를 이용한 DDoS 증폭 공격"
+        severity: "HIGH"
+      - name: "DNS Tunneling"
+        description: "DNS 프로토콜을 이용한 데이터 유출/C2 통신"
+        severity: "MEDIUM"
+      - name: "DNS Hijacking"
+        description: "DNS 설정/레코드를 변조하여 트래픽 탈취"
+        severity: "CRITICAL"
+      - name: "NXDOMAIN Attack"
+        description: "존재하지 않는 도메인 대량 질의로 서버 부하"
+        severity: "MEDIUM"
+      - name: "Subdomain Takeover"
+        description: "미사용 DNS 레코드를 악용한 서브도메인 탈취"
+        severity: "HIGH"
+    impact:
+      confidentiality: "HIGH - DNS 질의 내역으로 사용자 행동 추적"
+      integrity: "CRITICAL - DNS 변조로 피싱/악성사이트 유도"
+      availability: "CRITICAL - DNS 장애 시 전체 서비스 중단"
+    best_practices:
+      - "DNSSEC 활성화"
+      - "DoH/DoT 적용"
+      - "DNS 질의 로깅 및 모니터링"
+      - "Response Rate Limiting (RRL)"
+      - "DNS 이중화 (다중 네임서버)"
+      - "CAA 레코드 설정"
+      - "정기적 DNS 레코드 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 1035 (DNS)"
+      - "RFC 4033-4035 (DNSSEC)"
+      - "RFC 8484 (DNS-over-HTTPS)"
+      - "NIST SP 800-81 Rev.2 (Secure DNS Deployment)"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS 서버는 도메인 이름을 IP 주소로 변환하는 인터넷 핵심 인프라다.
+      Recursive Resolver, Authoritative Server 등 유형이 있으며, A, AAAA,
+      CNAME, MX 등의 레코드를 관리한다. DNSSEC, DoH(DNS-over-HTTPS),
+      DoT(DNS-over-TLS)로 보안을 강화한다. DNS Spoofing, DNS Amplification,
+      DNS Tunneling 등의 위협이 존재하며, Route 53, Cloudflare DNS, BIND가
+      대표적인 서버/서비스다.
+    search_keywords:
+      - "DNS"
+      - "DNS 서버"
+      - "도메인 네임"
+      - "DNSSEC"
+      - "DNS-over-HTTPS"
+      - "DNS Spoofing"
+      - "네임 서버"
+      - "도메인 분석"
+    related_queries:
+      - "DNS란?"
+      - "DNS 동작 원리"
+      - "DNSSEC이란?"
+      - "DNS Spoofing 방어"
+      - "DNS-over-HTTPS란?"
+      - "DNS 서버 종류"

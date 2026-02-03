@@ -1,0 +1,102 @@
+# GR Atom: Scheduled Task/Job
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1053-001"
+  name: "Scheduled Task/Job"
+  normalization:
+    normalized_name: "scheduled task job cron persistence execution"
+    normalization_version: "1.0"
+  aliases:
+    - "스케줄된 작업"
+    - "예약 작업"
+    - "Cron Job 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "PERSISTENCE"]
+
+definition:
+  what: |
+    운영 체제의 예약 작업 기능을 악용하여 악성 코드를 실행하거나
+    지속성을 유지하는 기법이다.
+  why: |
+    시스템 재부팅 후에도 악성 코드 실행을 보장한다.
+    특정 시간에 자동으로 악성 행위를 수행한다.
+  how: |
+    1. 예약 작업 생성 또는 수정
+    2. 악성 페이로드 등록
+    3. 트리거 조건 설정
+    4. 자동 실행 대기
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-PERSISTENCE-001"
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1053"
+    tactic: "Execution, Persistence, Privilege Escalation"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1053.002"
+        name: "At"
+        description: "at 명령어 사용"
+      - id: "T1053.003"
+        name: "Cron"
+        description: "Cron job 생성"
+      - id: "T1053.005"
+        name: "Scheduled Task"
+        description: "Windows 예약 작업"
+      - id: "T1053.006"
+        name: "Systemd Timers"
+        description: "Systemd 타이머 사용"
+    detection:
+      - "예약 작업 변경 모니터링"
+      - "crontab 변경 감시"
+      - "Task Scheduler 이벤트 로그"
+      - "새로운 예약 작업 알림"
+    mitigation:
+      - "예약 작업 권한 제한"
+      - "예약 작업 감사"
+      - "화이트리스트 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1053"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Scheduled Task/Job은 예약 작업을 통해 악성 코드를 실행하고
+      지속성을 유지하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "Scheduled Task"
+      - "Cron"
+      - "예약 작업"
+      - "지속성"
+    related_queries:
+      - "스케줄러 악용"
+      - "Cron 백도어"
+      - "작업 스케줄러 공격"

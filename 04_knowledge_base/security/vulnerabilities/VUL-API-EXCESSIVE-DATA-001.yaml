@@ -1,0 +1,111 @@
+# GR Atom: Excessive Data Exposure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-API-EXCESSIVE-DATA-001"
+  name: "Excessive Data Exposure"
+  normalization:
+    normalized_name: "excessive data exposure api over-fetching sensitive data leakage"
+    normalization_version: "1.0"
+  aliases:
+    - "과도한 데이터 노출"
+    - "API 데이터 누출"
+    - "API3:2019"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["VUL", "API", "DATA"]
+
+definition:
+  what: |
+    Excessive Data Exposure는 API가 클라이언트에 필요 이상의 데이터를 반환하여
+    민감한 정보가 노출되는 취약점이다. 클라이언트 측 필터링에 의존하는 문제다.
+  why: |
+    API 응답에 비밀번호, 토큰, 내부 ID 등이 포함되어 유출된다.
+    GraphQL, REST 모두에서 발생하며 프론트엔드 필터링으로는 방어 불가능하다.
+  how: |
+    1. API 응답 분석 (브라우저 개발자 도구)
+    2. 표시되지 않는 숨겨진 필드 발견
+    3. 민감한 정보 추출 (내부 ID, 이메일, 권한 등)
+    4. 수집된 정보로 추가 공격 수행
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-DATA-EXPOSURE-001"
+  causal:
+    affects:
+      - "TECH-CONCEPT-REST-001"
+      - "TECH-CONCEPT-GRAPHQL-001"
+
+properties:
+  technical:
+    common_patterns:
+      - name: "전체 객체 반환"
+        example: "User 객체에 password, ssn 포함"
+      - name: "관계 객체 포함"
+        example: "Order에 모든 Customer 정보 포함"
+      - name: "디버그 정보"
+        example: "스택 트레이스, 내부 경로 노출"
+      - name: "숨겨진 필드"
+        example: "is_admin, internal_id"
+    exposed_data_types:
+      - "비밀번호 해시"
+      - "API 키, 토큰"
+      - "개인정보 (SSN, 신용카드)"
+      - "내부 시스템 정보"
+      - "다른 사용자 정보"
+    detection:
+      - "API 응답과 UI 표시 데이터 비교"
+      - "불필요한 필드 포함 여부 검사"
+      - "민감 정보 패턴 스캔"
+    prevention:
+      - "DTO/View Model 사용"
+      - "응답 스키마 정의 및 검증"
+      - "필드별 접근 제어"
+      - "GraphQL: 필드 수준 권한 설정"
+      - "민감 정보 마스킹"
+  security:
+    severity: medium
+    cvss_base: 6.5
+    cwe_id: "CWE-213"
+    owasp_category: "API3:2019 - Excessive Data Exposure"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "CWE-213: Exposure of Sensitive Information"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Excessive Data Exposure는 API가 필요 이상의 데이터를 반환하는 취약점이다.
+      민감 정보 유출로 이어지며 DTO 사용, 응답 스키마 정의로 방어한다.
+    search_keywords:
+      - "Excessive Data Exposure"
+      - "과도한 데이터 노출"
+      - "API 데이터 누출"
+      - "Over-fetching"
+    related_queries:
+      - "API 데이터 보호"
+      - "DTO 패턴"
+      - "응답 필터링"

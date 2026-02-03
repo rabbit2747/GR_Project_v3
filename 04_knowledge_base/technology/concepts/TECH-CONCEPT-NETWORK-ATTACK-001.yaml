@@ -1,0 +1,100 @@
+# GR Atom: Network Attack (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-NETWORK-ATTACK-001"
+  name: "Network Attack"
+  normalization:
+    normalized_name: "network attack network layer attack"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 공격"
+    - "Network Layer Attack"
+    - "네트워크 계층 공격"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L2"
+    zone: "Cross"
+    tags: ["ATK", "N"]
+
+definition:
+  what: |
+    네트워크 공격(Network Attack)은 네트워크 인프라나 프로토콜의
+    취약점을 악용하는 공격의 총칭이다. MITM, 스니핑, DDoS,
+    ARP 스푸핑 등이 포함된다.
+  why: |
+    네트워크는 모든 통신의 기반이다. 네트워크 공격은 데이터
+    도청, 변조, 서비스 거부로 이어질 수 있으며, 암호화와
+    네트워크 분리가 주요 방어 수단이다.
+  how: |
+    1. MITM: 통신 중간에 개입하여 도청/변조
+    2. Sniffing: 패킷 캡처로 정보 탈취
+    3. DDoS: 대량 트래픽으로 서비스 마비
+    4. Spoofing: 출처 위장 (ARP, IP, DNS)
+
+relations:
+  structural:
+    abstracts:
+      - "ATK-NET-MITM-001"
+  causal:
+    targets:
+      - "TECH-CONCEPT-PROTOCOL-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "MITM"
+        layer: "L2-L7"
+        impact: "Data Interception, Modification"
+      - name: "Sniffing"
+        layer: "L2"
+        impact: "Data Theft"
+      - name: "DDoS"
+        layer: "L3-L7"
+        impact: "Service Disruption"
+      - name: "Spoofing"
+        layer: "L2-L3"
+        impact: "Identity Impersonation"
+    defenses:
+      - "TLS/HTTPS 암호화"
+      - "네트워크 세그먼테이션"
+      - "DDoS 완화 서비스"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Network"
+      - "NIST Network Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Attack(네트워크 공격)은 네트워크 인프라를 대상으로 하는 공격이다.
+      MITM, Sniffing, DDoS, Spoofing 등이 있으며 데이터 도청, 변조,
+      서비스 마비가 발생할 수 있다. TLS 암호화와 네트워크 분리로 방어한다.
+    search_keywords:
+      - "Network Attack"
+      - "네트워크 공격"
+      - "MITM"
+      - "DDoS"
+      - "Sniffing"
+    related_queries:
+      - "네트워크 공격 종류"
+      - "MITM 공격이란?"
+      - "DDoS 방어 방법"
+      - "네트워크 보안"

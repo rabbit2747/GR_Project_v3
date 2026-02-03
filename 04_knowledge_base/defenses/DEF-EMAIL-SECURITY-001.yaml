@@ -1,0 +1,114 @@
+# GR Atom: Email Security Gateway
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-EMAIL-SECURITY-001"
+  name: "Email Security Gateway"
+  normalization:
+    normalized_name: "email security gateway spam phishing malware dmarc"
+    normalization_version: "1.0"
+  aliases:
+    - "Email Security"
+    - "이메일 보안 게이트웨이"
+    - "Secure Email Gateway"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "EMAIL", "PREVENT"]
+
+definition:
+  what: |
+    인바운드/아웃바운드 이메일을 검사하여 스팸, 피싱,
+    악성코드를 차단하는 이메일 보안 솔루션이다.
+  why: |
+    피싱 공격을 차단한다.
+    이메일 기반 위협을 방지한다.
+  how: |
+    1. 이메일 수신/발신 검사
+    2. 스팸/피싱 필터링
+    3. 악성 첨부파일 분석
+    4. 정책 기반 차단
+
+relations:
+  structural:
+    is_a:
+      - "DEF-PREVENT-001"
+    related_to:
+      - "ATK-SOCIAL-PHISHING-001"
+      - "ATK-MITRE-T1566-001"
+
+properties:
+  technical:
+    capabilities:
+      inbound:
+        - "스팸 필터링"
+        - "피싱 탐지"
+        - "악성 첨부파일 분석"
+        - "URL 리라이팅/샌드박싱"
+        - "BEC 탐지"
+      outbound:
+        - "DLP"
+        - "암호화"
+        - "브랜드 보호"
+    email_authentication:
+      - name: "SPF"
+        purpose: "발신 서버 검증"
+        record: "TXT record"
+      - name: "DKIM"
+        purpose: "메시지 무결성 서명"
+        record: "TXT record"
+      - name: "DMARC"
+        purpose: "SPF/DKIM 정책 적용"
+        actions: ["none", "quarantine", "reject"]
+    advanced_features:
+      - "Sandboxing"
+      - "URL Defense"
+      - "Impersonation Protection"
+      - "Account Takeover Detection"
+    popular_solutions:
+      cloud:
+        - "Microsoft Defender for Office 365"
+        - "Proofpoint"
+        - "Mimecast"
+        - "Abnormal Security"
+      on_premises:
+        - "Cisco Email Security"
+        - "Barracuda"
+    metrics:
+      - "스팸 탐지율"
+      - "피싱 차단율"
+      - "오탐률"
+      - "처리 지연"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner Email Security"
+      - "DMARC.org"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Email Security Gateway는 스팸, 피싱, 악성코드를 필터링하고
+      SPF/DKIM/DMARC로 이메일을 인증하는 보안 솔루션이다.
+    search_keywords:
+      - "Email Security"
+      - "Phishing Protection"
+      - "DMARC"
+      - "이메일 보안"

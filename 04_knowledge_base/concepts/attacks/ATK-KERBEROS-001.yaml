@@ -1,0 +1,99 @@
+# GR Atom: Kerberos Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-KERBEROS-001"
+  name: "Kerberos Attack"
+  normalization:
+    normalized_name: "kerberos attack ad ticket tgt tgs"
+    normalization_version: "1.0"
+  aliases:
+    - "Kerberos Attack"
+    - "Kerberos 공격"
+    - "AD Kerberos Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "KERBEROS"]
+
+definition:
+  what: |
+    Kerberos 인증 프로토콜의 취약점이나 설정 오류를
+    악용하는 공격 기법 분류이다.
+  why: |
+    도메인 자격 증명을 획득한다.
+    측면 이동을 수행한다.
+    도메인 장악을 달성한다.
+  how: |
+    1. 도메인 정보 수집
+    2. 취약 계정/SPN 식별
+    3. 티켓 요청/추출
+    4. 크래킹/사용
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-WIN-KERBEROASTING-001"
+      - "ATK-WIN-ASREP-001"
+      - "ATK-WIN-GOLDEN-TICKET-001"
+    related_to:
+      - "INFRA-KERBEROS-001"
+      - "ATK-MITRE-CREDENTIAL-001"
+
+properties:
+  technical:
+    attacks:
+      kerberoasting:
+        description: "SPN 서비스 티켓 크래킹"
+        target: "서비스 계정"
+      asrep_roasting:
+        description: "Pre-Auth 비활성 계정 공격"
+        target: "취약 설정 계정"
+      golden_ticket:
+        description: "TGT 위조"
+        target: "도메인 전체"
+      silver_ticket:
+        description: "TGS 위조"
+        target: "특정 서비스"
+      pass_the_ticket:
+        description: "티켓 재사용"
+        target: "세션"
+    tools:
+      - "Rubeus"
+      - "Mimikatz"
+      - "Impacket"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "ADSecurity.org"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kerberos Attack은 Kerberos 인증 프로토콜을 악용하는
+      AD 공격 기법 분류이다.
+    search_keywords:
+      - "Kerberos"
+      - "Kerberoasting"
+      - "Golden Ticket"
+      - "AD Attack"

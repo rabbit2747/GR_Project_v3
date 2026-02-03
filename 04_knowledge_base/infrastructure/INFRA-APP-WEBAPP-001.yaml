@@ -1,0 +1,126 @@
+# GR Atom: Web Application
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-WEBAPP-001"
+  name: "Web Application"
+  normalization:
+    normalized_name: "web application webapp web app"
+    normalization_version: "1.0"
+  aliases:
+    - "웹 애플리케이션"
+    - "WebApp"
+    - "Web App"
+    - "웹앱"
+
+classification:
+  domain: application
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["A", "WEB"]
+
+definition:
+  what: |
+    웹 애플리케이션은 웹 브라우저를 통해 사용자와 상호작용하는
+    소프트웨어 애플리케이션이다. 클라이언트 측(프론트엔드)과
+    서버 측(백엔드)으로 구성되며, HTTP를 통해 통신한다.
+  why: |
+    설치 없이 브라우저만으로 접근 가능하여 배포와 업데이트가 용이하다.
+    대부분의 비즈니스 서비스가 웹 애플리케이션 형태로 제공되며,
+    OWASP Top 10 취약점의 주요 대상이다.
+  how: |
+    1. 사용자가 브라우저로 URL 접속
+    2. 서버가 HTML/CSS/JS 응답
+    3. 브라우저가 렌더링 및 JavaScript 실행
+    4. 사용자 입력을 서버로 전송 (Form, AJAX)
+    5. 서버가 처리 후 응답
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-APPLICATION-001"]
+    part_of: []
+  conditional:
+    requires:
+      - "INFRA-APP-WEBSERVER-001"
+      - "INFRA-APP-WAS-001"
+      - "TECH-LANG-HTML-001"
+      - "TECH-LANG-JAVASCRIPT-001"
+  applicability:
+    applies_to: []
+
+properties:
+  technical:
+    architecture_types:
+      - name: "Monolithic"
+        description: "단일 애플리케이션"
+      - name: "Microservices"
+        description: "분산 서비스"
+      - name: "Serverless"
+        description: "서버리스 함수 기반"
+    rendering:
+      - name: "SSR (Server-Side Rendering)"
+        description: "서버에서 HTML 생성"
+      - name: "CSR (Client-Side Rendering)"
+        description: "브라우저에서 JS로 렌더링"
+      - name: "SSG (Static Site Generation)"
+        description: "빌드 시 HTML 생성"
+    common_stacks:
+      - "LAMP (Linux, Apache, MySQL, PHP)"
+      - "MEAN (MongoDB, Express, Angular, Node)"
+      - "MERN (MongoDB, Express, React, Node)"
+      - "Java Spring + React/Vue"
+  security:
+    owasp_top10_2021:
+      - "A01: Broken Access Control"
+      - "A02: Cryptographic Failures"
+      - "A03: Injection"
+      - "A04: Insecure Design"
+      - "A05: Security Misconfiguration"
+      - "A06: Vulnerable Components"
+      - "A07: Authentication Failures"
+      - "A08: Software and Data Integrity Failures"
+      - "A09: Security Logging Failures"
+      - "A10: Server-Side Request Forgery"
+    common_vulnerabilities:
+      - "SQL Injection"
+      - "XSS"
+      - "CSRF"
+      - "인증/인가 취약점"
+      - "세션 관리 취약점"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Web Security Testing Guide"
+      - "OWASP Top 10 2021"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Application은 브라우저로 접근하는 소프트웨어 애플리케이션이다.
+      프론트엔드(HTML, JS)와 백엔드(서버)로 구성되며, OWASP Top 10이
+      주요 보안 기준이다. SQL Injection, XSS, CSRF, 인증 취약점 등이
+      대표적인 공격 대상이다.
+    search_keywords:
+      - "웹 애플리케이션"
+      - "Web App"
+      - "OWASP"
+      - "웹 보안"
+    related_queries:
+      - "웹 애플리케이션이란?"
+      - "OWASP Top 10"
+      - "웹앱 취약점 종류"

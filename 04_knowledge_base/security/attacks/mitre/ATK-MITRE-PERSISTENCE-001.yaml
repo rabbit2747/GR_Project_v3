@@ -1,0 +1,117 @@
+# GR Atom: Persistence (MITRE ATT&CK TA0003)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-PERSISTENCE-001"
+  name: "Persistence (TA0003)"
+  normalization:
+    normalized_name: "persistence mitre attack ta0003 backdoor maintain access"
+    normalization_version: "1.0"
+  aliases:
+    - "지속성"
+    - "Persistence"
+    - "TA0003"
+    - "백도어"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Persistence는 공격자가 시스템 재부팅, 자격 증명 변경 등에도
+    접근을 유지하기 위해 사용하는 전술이다.
+  why: |
+    최초 침투 후 장기간 접근을 유지해야 목표를 달성할 수 있다.
+    레지스트리, 서비스, 예약 작업 등에 백도어를 설치한다.
+  how: |
+    1. Registry Run Keys (T1547.001): 시작프로그램 등록
+    2. Scheduled Task (T1053): 예약 작업 생성
+    3. Create Account (T1136): 백도어 계정 생성
+    4. Web Shell (T1505.003): 웹 서버에 셸 설치
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    preceded_by:
+      - "ATK-MITRE-EXECUTION-001"
+    followed_by:
+      - "ATK-MITRE-PRIV-ESC-001"
+
+properties:
+  technical:
+    mitre_id: "TA0003"
+    techniques:
+      - id: "T1547"
+        name: "Boot or Logon Autostart Execution"
+        sub_techniques:
+          - "T1547.001: Registry Run Keys / Startup Folder"
+          - "T1547.004: Winlogon Helper DLL"
+          - "T1547.009: Shortcut Modification"
+      - id: "T1053"
+        name: "Scheduled Task/Job"
+        description: "예약 작업으로 지속성 확보"
+      - id: "T1136"
+        name: "Create Account"
+        sub_techniques:
+          - "T1136.001: Local Account"
+          - "T1136.002: Domain Account"
+      - id: "T1505"
+        name: "Server Software Component"
+        sub_techniques:
+          - "T1505.003: Web Shell"
+      - id: "T1543"
+        name: "Create or Modify System Process"
+        sub_techniques:
+          - "T1543.003: Windows Service"
+      - id: "T1078"
+        name: "Valid Accounts"
+        description: "탈취한 계정으로 지속적 접근"
+    detection:
+      - "레지스트리 변경 모니터링"
+      - "예약 작업 생성 감시"
+      - "계정 생성 로그"
+      - "웹 셸 파일 탐지"
+      - "서비스 등록 모니터링"
+    prevention:
+      - "파일 무결성 모니터링"
+      - "권한 최소화"
+      - "레지스트리 보호"
+      - "정기적인 계정 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Persistence"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Persistence(TA0003)는 접근 유지 전술이다. 레지스트리, 예약 작업, 웹 셸 등으로
+      백도어를 설치하며 파일 무결성 모니터링, 계정 감사로 탐지한다.
+    search_keywords:
+      - "Persistence"
+      - "TA0003"
+      - "지속성"
+      - "백도어"
+    related_queries:
+      - "백도어 탐지"
+      - "레지스트리 공격"
+      - "웹 셸"

@@ -1,0 +1,92 @@
+# GR Atom: Security Headers
+identity:
+  id: "DEF-PREVENT-HEADERS-001"
+  name: "Security Headers"
+  normalization:
+    normalized_name: "security_headers"
+    normalization_version: "1.0"
+  aliases:
+    - "HTTP Security Headers"
+    - "Secure Response Headers"
+    - "보안 헤더"
+    - "HTTP 보안 헤더"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["P", "WEB"]
+
+definition:
+  what: |
+    X-Frame-Options, X-Content-Type-Options, Strict-Transport-Security(HSTS) 등
+    HTTP 보안 헤더를 설정하여 클릭재킹, MIME 스니핑, 프로토콜 다운그레이드 등
+    다양한 브라우저 기반 공격을 방지하는 방어 기법.
+  why: |
+    브라우저는 HTTP 응답 헤더의 보안 지시를 따라 다양한 보호 기능을 활성화한다.
+    보안 헤더가 없으면 클릭재킹, MIME 타입 혼동, 프로토콜 다운그레이드 등
+    여러 공격에 노출될 수 있다.
+  how: |
+    1. X-Frame-Options: DENY 또는 SAMEORIGIN으로 설정하여 클릭재킹을 방지한다.
+    2. X-Content-Type-Options: nosniff로 설정하여 MIME 스니핑을 차단한다.
+    3. Strict-Transport-Security: max-age와 includeSubDomains를 설정한다.
+    4. X-XSS-Protection: 레거시 브라우저를 위해 1; mode=block을 설정한다.
+    5. Referrer-Policy: strict-origin-when-cross-origin 등 적절한 정책을 설정한다.
+    6. Permissions-Policy: 카메라, 마이크 등 브라우저 기능 접근을 제한한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-WEB-CLICKJACK-001"
+      - "ATK-WEB-MIME-SNIFF-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    implementation:
+      - "X-Frame-Options: DENY | SAMEORIGIN"
+      - "X-Content-Type-Options: nosniff"
+      - "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+      - "Referrer-Policy: strict-origin-when-cross-origin"
+      - "Permissions-Policy: camera=(), microphone=()"
+      - "Framework security header middleware (Helmet.js, django-secure)"
+  security:
+    effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Headers는 X-Frame-Options, X-Content-Type-Options, HSTS 등 HTTP 보안
+      헤더를 설정하여 클릭재킹, MIME 스니핑, 프로토콜 다운그레이드 등 브라우저 기반
+      공격을 방지하는 방어 기법이다.
+    search_keywords:
+      - "security headers"
+      - "HTTP security headers"
+      - "X-Frame-Options"
+      - "X-Content-Type-Options"
+      - "HSTS"
+      - "보안 헤더"
+    related_queries:
+      - "필수 HTTP 보안 헤더 목록"
+      - "보안 헤더 설정 방법"
+      - "Helmet.js를 이용한 보안 헤더 적용"

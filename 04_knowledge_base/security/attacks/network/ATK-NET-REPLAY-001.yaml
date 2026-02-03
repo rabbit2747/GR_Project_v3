@@ -1,0 +1,116 @@
+# GR Atom: Replay Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-REPLAY-001"
+  name: "Replay Attack"
+  normalization:
+    normalized_name: "replay attack playback attack request replay"
+    normalization_version: "1.0"
+  aliases:
+    - "리플레이 공격"
+    - "재전송 공격"
+    - "Playback Attack"
+    - "Request Replay"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "NET", "AUTH"]
+
+definition:
+  what: |
+    리플레이 공격(Replay Attack)은 이전에 캡처한 유효한 요청이나 인증
+    데이터를 재전송하여 시스템을 속이는 공격이다. 타임스탬프나 논스
+    검증이 없는 시스템에서 효과적이다.
+  why: |
+    암호화된 통신에서도 데이터 내용을 알 필요 없이 그대로 재사용할 수 있다.
+    일회성 토큰이나 타임스탬프 검증 없이는 방어가 어렵다.
+  how: |
+    1. 네트워크 스니핑으로 유효한 요청/토큰 캡처
+    2. 캡처된 데이터를 저장
+    3. 나중에 동일한 요청을 서버에 재전송
+    4. 서버가 요청을 유효한 것으로 처리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-SNIFF-001"
+      - "ATK-NET-MITM-001"
+  causal:
+    exploits:
+      - "VUL-AUTH-SESSION-001"
+    targets:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "INFRA-APP-API-001"
+    mitigated_by:
+      - "DEF-PREVENT-NONCE-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "Authentication Replay"
+        method: "인증 토큰/세션 재사용"
+        target: "로그인 세션"
+      - name: "Transaction Replay"
+        method: "금융 거래 요청 재전송"
+        target: "결제 시스템"
+      - name: "API Request Replay"
+        method: "API 요청 재전송"
+        target: "REST API"
+    defense_mechanisms:
+      - name: "Timestamp"
+        method: "요청에 타임스탬프 포함 및 유효 시간 검증"
+      - name: "Nonce"
+        method: "일회성 토큰 사용"
+      - name: "Sequence Number"
+        method: "요청 순서 번호 검증"
+      - name: "Challenge-Response"
+        method: "서버 챌린지에 대한 응답 검증"
+    impact:
+      - "인증 우회"
+      - "트랜잭션 중복 실행"
+      - "자원 남용"
+  security:
+    severity: medium
+    cvss_base: 5.9
+    cwe_id: "CWE-294"
+    attack_category: "Authentication Bypass"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-294: Authentication Bypass by Capture-replay"
+      - "OWASP Session Management"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Replay Attack(리플레이 공격)은 캡처한 유효한 요청을 재전송하여
+      시스템을 속이는 공격이다. 타임스탬프, 논스(nonce), 시퀀스 번호로 방어한다.
+    search_keywords:
+      - "Replay Attack"
+      - "리플레이 공격"
+      - "재전송 공격"
+      - "Nonce"
+    related_queries:
+      - "리플레이 공격이란?"
+      - "리플레이 공격 방어"
+      - "Nonce란?"

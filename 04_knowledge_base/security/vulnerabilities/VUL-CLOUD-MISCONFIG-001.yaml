@@ -1,0 +1,118 @@
+# GR Atom: Cloud Misconfiguration Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CLOUD-MISCONFIG-001"
+  name: "Cloud Misconfiguration"
+  normalization:
+    normalized_name: "cloud misconfiguration security misconfiguration public exposure"
+    normalization_version: "1.0"
+  aliases:
+    - "클라우드 설정 오류"
+    - "Cloud Security Misconfiguration"
+    - "퍼블릭 클라우드 노출"
+
+classification:
+  domain: infrastructure
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "CLOUD", "CONFIG"]
+
+definition:
+  what: |
+    클라우드 설정 오류(Cloud Misconfiguration)는 클라우드 서비스의 보안 설정이
+    부적절하여 데이터 노출이나 무단 접근을 허용하는 취약점이다.
+  why: |
+    클라우드 침해의 가장 흔한 원인이다. 자동화된 스캐너로 쉽게 발견되며
+    대규모 데이터 유출로 이어진다.
+  how: |
+    1. 기본 설정 미변경
+    2. 과도한 권한 부여
+    3. 퍼블릭 접근 허용
+    4. 암호화/로깅 미설정
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    specializes:
+      - "VUL-CONFIG-MISCONFIG-001"
+  causal:
+    affects:
+      - "INFRA-CLOUD-001"
+      - "INFRA-CLOUD-AWS-S3-001"
+
+properties:
+  technical:
+    common_misconfigurations:
+      - category: "Storage"
+        examples:
+          - "퍼블릭 S3 버킷"
+          - "퍼블릭 Azure Blob"
+          - "퍼블릭 GCS 버킷"
+      - category: "IAM"
+        examples:
+          - "과도한 권한"
+          - "장기 자격 증명"
+          - "MFA 미설정"
+      - category: "Network"
+        examples:
+          - "개방된 Security Group"
+          - "퍼블릭 IP 노출"
+          - "네트워크 ACL 오류"
+      - category: "Compute"
+        examples:
+          - "퍼블릭 AMI"
+          - "기본 자격 증명"
+          - "IMDSv1 사용"
+    detection_tools:
+      - "AWS Config"
+      - "AWS Security Hub"
+      - "Azure Security Center"
+      - "GCP Security Command Center"
+      - "Prowler, ScoutSuite, CloudSploit"
+    prevention:
+      - "Infrastructure as Code (IaC)"
+      - "Policy as Code"
+      - "CSPM (Cloud Security Posture Management)"
+      - "자동화된 규정 준수 검사"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-16"
+    owasp_category: "A05:2021 - Security Misconfiguration"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Cloud Benchmarks"
+      - "OWASP Cloud Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Misconfiguration은 클라우드 보안 설정 오류로 인한 취약점이다.
+      퍼블릭 버킷, 과도한 권한이 주요 사례이며 CSPM, IaC로 예방한다.
+    search_keywords:
+      - "Cloud Misconfiguration"
+      - "클라우드 설정 오류"
+      - "퍼블릭 버킷"
+      - "CSPM"
+    related_queries:
+      - "클라우드 보안"
+      - "S3 버킷 노출"
+      - "클라우드 규정 준수"

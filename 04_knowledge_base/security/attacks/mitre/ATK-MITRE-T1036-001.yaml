@@ -1,0 +1,110 @@
+# GR Atom: Masquerading
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1036-001"
+  name: "Masquerading"
+  normalization:
+    normalized_name: "masquerading file name disguise defense evasion"
+    normalization_version: "1.0"
+  aliases:
+    - "위장"
+    - "파일명 위장"
+    - "정상 파일 위장"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "DEF-EVASION"]
+
+definition:
+  what: |
+    악성 파일이나 프로세스를 정상적인 것처럼 위장하여
+    탐지를 회피하는 기법이다.
+  why: |
+    보안 솔루션과 분석가의 탐지를 회피한다.
+    정상 시스템 활동으로 위장한다.
+  how: |
+    1. 정상 파일/프로세스 식별
+    2. 이름, 위치, 아이콘 복제
+    3. 위장된 파일 배포
+    4. 의심 없이 실행 유도
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-DEF-EVASION-001"
+    related_to:
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1036"
+    tactic: "Defense Evasion"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1036.001"
+        name: "Invalid Code Signature"
+        description: "유효하지 않은 코드 서명"
+      - id: "T1036.003"
+        name: "Rename System Utilities"
+        description: "시스템 유틸리티 이름 변경"
+      - id: "T1036.004"
+        name: "Masquerade Task or Service"
+        description: "작업/서비스 위장"
+      - id: "T1036.005"
+        name: "Match Legitimate Name or Location"
+        description: "정상 이름/위치 일치"
+      - id: "T1036.007"
+        name: "Double File Extension"
+        description: "이중 확장자 사용"
+    techniques:
+      - "정상 시스템 파일명 사용 (svchost.exe)"
+      - "시스템 폴더 위치 사용"
+      - "정상 아이콘 복제"
+      - "이중 확장자 (document.pdf.exe)"
+      - "유니코드 문자로 확장자 숨김"
+    detection:
+      - "서명 검증"
+      - "파일 해시 검증"
+      - "경로 기반 탐지"
+      - "프로세스 계보 분석"
+    mitigation:
+      - "코드 서명 검증"
+      - "애플리케이션 화이트리스트"
+      - "경로 기반 차단"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1036"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Masquerading은 악성 파일을 정상 파일로 위장하여
+      탐지를 회피하는 MITRE ATT&CK Defense Evasion 기법이다.
+    search_keywords:
+      - "위장"
+      - "Masquerading"
+      - "파일명 위장"
+      - "Defense Evasion"
+    related_queries:
+      - "악성 파일 위장"
+      - "정상 프로세스 위장"
+      - "탐지 회피 기법"

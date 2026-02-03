@@ -1,0 +1,118 @@
+# GR Atom: Identity and Access Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-IAM-001"
+  name: "Identity and Access Management"
+  normalization:
+    normalized_name: "iam identity access management authentication authorization"
+    normalization_version: "1.0"
+  aliases:
+    - "IAM"
+    - "신원 및 접근 관리"
+    - "Identity Management"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "AUTH", "ACCESS"]
+
+definition:
+  what: |
+    사용자 신원을 관리하고 시스템/데이터에 대한
+    접근 권한을 제어하는 보안 프레임워크이다.
+  why: |
+    적절한 사용자만 적절한 접근을 보장한다.
+    컴플라이언스를 지원한다.
+  how: |
+    1. 신원 수명주기 관리
+    2. 인증 (Authentication)
+    3. 권한 부여 (Authorization)
+    4. 감사 및 거버넌스
+
+relations:
+  structural:
+    is_a:
+      - "DEF-ACCESS-CONTROL-001"
+    related_to:
+      - "DEF-AUTH-MFA-001"
+      - "DEF-AUTH-SSO-001"
+
+properties:
+  technical:
+    core_functions:
+      identity_lifecycle:
+        - "Provisioning (생성)"
+        - "Modification (변경)"
+        - "De-provisioning (삭제)"
+      authentication:
+        description: "신원 확인 (Who are you?)"
+        methods: ["Password", "MFA", "Biometric", "Certificate"]
+      authorization:
+        description: "접근 권한 확인 (What can you do?)"
+        models: ["RBAC", "ABAC", "PBAC"]
+      governance:
+        - "접근 검토 (Access Review)"
+        - "권한 분리 (SoD)"
+        - "감사 로깅"
+    access_models:
+      rbac:
+        name: "Role-Based Access Control"
+        principle: "역할 기반 권한 부여"
+      abac:
+        name: "Attribute-Based Access Control"
+        principle: "속성 기반 동적 접근"
+      pbac:
+        name: "Policy-Based Access Control"
+        principle: "정책 기반 세밀한 제어"
+    popular_solutions:
+      enterprise:
+        - "Microsoft Entra ID (Azure AD)"
+        - "Okta"
+        - "Ping Identity"
+        - "SailPoint"
+      cloud_native:
+        - "AWS IAM"
+        - "Google Cloud IAM"
+        - "Azure RBAC"
+      open_source:
+        - "Keycloak"
+        - "FreeIPA"
+        - "OpenIAM"
+    key_principles:
+      - "최소 권한 (Least Privilege)"
+      - "직무 분리 (Separation of Duties)"
+      - "정기 검토"
+      - "자동화된 프로비저닝"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-63"
+      - "Gartner IAM"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IAM은 사용자 신원을 관리하고 시스템에 대한
+      접근 권한을 제어하는 보안 프레임워크이다.
+    search_keywords:
+      - "IAM"
+      - "Identity Management"
+      - "Access Control"
+      - "신원 관리"

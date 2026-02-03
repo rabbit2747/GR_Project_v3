@@ -1,0 +1,120 @@
+# GR Atom: MITRE ATT&CK T1021 - Remote Services
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1021-001"
+  name: "Remote Services (MITRE T1021)"
+  normalization:
+    normalized_name: "mitre t1021 remote services rdp ssh smb lateral movement"
+    normalization_version: "1.0"
+  aliases:
+    - "원격 서비스 악용"
+    - "T1021"
+    - "횡적 이동 도구"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "LATERAL"]
+
+definition:
+  what: |
+    Remote Services는 유효한 계정을 사용하여 원격 서비스에 접근하고
+    내부 네트워크에서 횡적 이동을 수행하는 기법이다. MITRE ATT&CK T1021.
+  why: |
+    정당한 원격 접속 도구를 사용하므로 탐지가 어렵다.
+    네트워크 전체로 침해 범위를 확장할 수 있다.
+  how: |
+    1. 유효한 자격 증명 획득
+    2. 원격 서비스 식별
+    3. 연결 수립
+    4. 추가 시스템으로 이동
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-LATERAL-001"
+    requires:
+      - "ATK-MITRE-T1078-001"
+
+properties:
+  technical:
+    mitre_id: "T1021"
+    tactic: "Lateral Movement"
+    sub_techniques:
+      - id: "T1021.001"
+        name: "Remote Desktop Protocol"
+        port: "3389"
+        tool: "mstsc.exe"
+        detection: "RDP 로그인 이벤트 (4624)"
+      - id: "T1021.002"
+        name: "SMB/Windows Admin Shares"
+        ports: ["445", "139"]
+        shares: ["C$", "ADMIN$", "IPC$"]
+        tools: ["PsExec", "WMI"]
+      - id: "T1021.004"
+        name: "SSH"
+        port: "22"
+        detection: "SSH 로그"
+      - id: "T1021.005"
+        name: "VNC"
+        ports: ["5900-5903"]
+      - id: "T1021.006"
+        name: "Windows Remote Management"
+        port: "5985/5986"
+        tool: "WinRM, PowerShell Remoting"
+    living_off_the_land:
+      - "PsExec"
+      - "PowerShell Remoting"
+      - "WMI"
+      - "DCOM"
+      - "SSH"
+      - "RDP"
+    detection:
+      - "원격 로그인 이벤트"
+      - "네트워크 연결 모니터링"
+      - "비정상 시간/계정"
+      - "SMB 공유 접근"
+      - "프로세스 생성 (4688)"
+    prevention:
+      - "네트워크 세그멘테이션"
+      - "최소 권한 원칙"
+      - "MFA for 원격 접근"
+      - "점프 호스트 사용"
+      - "원격 서비스 제한"
+      - "PAM 솔루션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1021"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1021은 원격 서비스를 통한 횡적 이동 기법이다. RDP, SMB, SSH, WinRM이
+      주요 대상이며 세그멘테이션, MFA, 점프 호스트로 방어한다.
+    search_keywords:
+      - "T1021"
+      - "원격 서비스"
+      - "횡적 이동"
+      - "RDP"
+    related_queries:
+      - "Lateral Movement"
+      - "PsExec"
+      - "원격 접근 보안"

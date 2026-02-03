@@ -1,0 +1,112 @@
+# GR Atom: Network Detection and Response
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NDR-001"
+  name: "Network Detection and Response"
+  normalization:
+    normalized_name: "ndr network detection response traffic analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "NDR"
+    - "NTA"
+    - "네트워크 탐지 대응"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["DEF", "DETECT", "NETWORK"]
+
+definition:
+  what: |
+    네트워크 트래픽을 분석하여 위협을 탐지하고
+    대응 기능을 제공하는 보안 솔루션이다.
+  why: |
+    네트워크 기반 위협을 탐지한다.
+    측면 이동을 식별한다.
+  how: |
+    1. 트래픽 수집 (미러링/TAP)
+    2. 행위 분석/ML
+    3. 이상 탐지
+    4. 조사/대응
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    related_to:
+      - "DEF-NET-IDS-001"
+      - "DEF-XDR-001"
+
+properties:
+  technical:
+    vs_ids:
+      ids: "시그니처 기반, 경보 중심"
+      ndr: "행위 기반, ML, 대응 포함"
+    data_sources:
+      - "네트워크 TAP/SPAN"
+      - "Flow 데이터 (NetFlow, IPFIX)"
+      - "패킷 캡처 (PCAP)"
+      - "메타데이터"
+    detection_methods:
+      - name: "Machine Learning"
+        use: "이상 행위 탐지"
+      - name: "Behavioral Analysis"
+        use: "정상 기준선 이탈"
+      - name: "Threat Intelligence"
+        use: "알려진 IOC 매칭"
+      - name: "Protocol Analysis"
+        use: "프로토콜 이상"
+    use_cases:
+      - "C2 통신 탐지"
+      - "측면 이동 탐지"
+      - "데이터 유출 탐지"
+      - "내부자 위협"
+      - "암호화 트래픽 분석"
+    popular_solutions:
+      - "Darktrace"
+      - "Vectra AI"
+      - "ExtraHop"
+      - "Cisco Secure Network Analytics"
+      - "Corelight"
+    deployment:
+      - "데이터센터"
+      - "클라우드 (vTAP)"
+      - "OT/ICS 환경"
+    capabilities:
+      - "전체 패킷 캡처"
+      - "암호화 트래픽 메타데이터 분석"
+      - "자동 대응"
+      - "포렌식 증거"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner NDR"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      NDR은 네트워크 트래픽을 ML/행위 분석하여
+      위협을 탐지하고 대응하는 네트워크 보안 솔루션이다.
+    search_keywords:
+      - "NDR"
+      - "Network Detection"
+      - "NTA"
+      - "트래픽 분석"

@@ -1,0 +1,119 @@
+# GR Atom: Falco
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-CONTAINER-FALCO-001"
+  name: "Falco"
+  normalization:
+    normalized_name: "falco container runtime security threat detection kubernetes"
+    normalization_version: "1.0"
+  aliases:
+    - "Falco"
+    - "런타임 보안 도구"
+    - "컨테이너 위협 탐지"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "CONTAINER", "DETECT"]
+
+definition:
+  what: |
+    Linux 시스템 콜을 모니터링하여 컨테이너 및 호스트에서
+    비정상 행위를 실시간으로 탐지하는 오픈소스 런타임 보안 도구이다.
+  why: |
+    컨테이너 런타임 위협을 탐지한다.
+    의심스러운 활동을 실시간으로 알린다.
+  how: |
+    1. eBPF/커널 모듈로 시스템 콜 캡처
+    2. 규칙 기반 이상 행위 탐지
+    3. 알림 생성
+    4. 대응 조치 실행
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-IDS-001"
+    related_to:
+      - "ATK-CONTAINER-ESCAPE-001"
+      - "DEF-CONTAINER-RUNTIME-001"
+
+properties:
+  technical:
+    architecture:
+      - "eBPF 기반 (권장)"
+      - "커널 모듈 기반"
+      - "사용자 공간 계측"
+    detection_capabilities:
+      - "쉘 실행 탐지"
+      - "민감 파일 접근"
+      - "권한 상승 시도"
+      - "네트워크 이상 활동"
+      - "컨테이너 탈출 시도"
+      - "암호화폐 채굴"
+    default_rules:
+      - "Container Drift (이미지 외 실행파일)"
+      - "Terminal Shell in Container"
+      - "Sensitive File Access"
+      - "Network Tool in Container"
+      - "Privileged Container Started"
+    rule_example: |
+      - rule: Shell Spawned in Container
+        desc: A shell was spawned in a container
+        condition: >
+          container and proc.name in (bash, sh, zsh)
+        output: >
+          Shell spawned (user=%user.name container=%container.name)
+        priority: WARNING
+    integrations:
+      - "Kubernetes"
+      - "Prometheus/Grafana"
+      - "Slack/PagerDuty"
+      - "Elasticsearch"
+      - "AWS Security Hub"
+    installation:
+      helm: "helm install falco falcosecurity/falco"
+      daemon: "falco -c /etc/falco/falco.yaml"
+    features:
+      - "실시간 탐지"
+      - "커스텀 규칙"
+      - "다양한 출력 채널"
+      - "Kubernetes 통합"
+    project: "CNCF Incubating Project"
+    license: "Apache 2.0"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Falco Documentation"
+      - "CNCF Falco"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Falco는 eBPF로 시스템 콜을 모니터링하여 컨테이너와
+      호스트의 런타임 위협을 탐지하는 오픈소스 보안 도구이다.
+    search_keywords:
+      - "Falco"
+      - "런타임 보안"
+      - "컨테이너 탐지"
+      - "eBPF"
+    related_queries:
+      - "Kubernetes 보안"
+      - "컨테이너 모니터링"
+      - "위협 탐지"

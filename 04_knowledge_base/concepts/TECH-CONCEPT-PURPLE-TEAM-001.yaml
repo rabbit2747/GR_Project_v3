@@ -1,0 +1,110 @@
+# GR Atom: Purple Team
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-PURPLE-TEAM-001"
+  name: "Purple Team"
+  normalization:
+    normalized_name: "purple team red blue collaboration security exercise"
+    normalization_version: "1.0"
+  aliases:
+    - "Purple Team"
+    - "퍼플 팀"
+    - "Red-Blue Collaboration"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["CONCEPT", "TEAM", "ASSESSMENT"]
+
+definition:
+  what: |
+    Red Team과 Blue Team이 협력하여 보안 역량을
+    강화하는 협업 기반 보안 접근 방식이다.
+  why: |
+    공격과 방어 간 사일로를 해소한다.
+    실질적인 보안 개선을 달성한다.
+  how: |
+    1. 공동 목표 설정
+    2. 공격 시나리오 실행
+    3. 실시간 피드백
+    4. 방어 개선
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-TEAM-001"
+    related_to:
+      - "TECH-CONCEPT-RED-TEAM-001"
+      - "TECH-CONCEPT-BLUE-TEAM-001"
+
+properties:
+  technical:
+    approach:
+      traditional: "Red vs Blue (대립)"
+      purple: "Red + Blue (협력)"
+    benefits:
+      - "실시간 학습"
+      - "빠른 개선 주기"
+      - "지식 공유"
+      - "탐지 갭 즉시 해결"
+    exercise_types:
+      - name: "Tabletop Exercise"
+        description: "토론 기반 시나리오"
+      - name: "Purple Team Assessment"
+        description: "실제 기술 테스트"
+      - name: "Atomic Testing"
+        description: "개별 기법 테스트"
+    frameworks:
+      - "MITRE ATT&CK"
+      - "Atomic Red Team"
+      - "PTES"
+    process:
+      - "시나리오 선택"
+      - "공격 실행"
+      - "탐지 확인"
+      - "갭 분석"
+      - "개선 구현"
+      - "재테스트"
+    tools:
+      - "Atomic Red Team"
+      - "Caldera"
+      - "AttackIQ"
+      - "SafeBreach"
+    metrics:
+      - "탐지율"
+      - "대응 시간"
+      - "커버리지 개선"
+      - "MITRE ATT&CK 매핑"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Purple Team Field Manual"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Purple Team은 Red Team과 Blue Team이 협력하여
+      탐지와 대응 역량을 함께 강화하는 보안 접근 방식이다.
+    search_keywords:
+      - "Purple Team"
+      - "퍼플 팀"
+      - "Red Blue Collaboration"
+      - "Security Exercise"

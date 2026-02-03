@@ -1,0 +1,106 @@
+# GR Atom: LDAP/Active Directory
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-IAM-LDAP-001"
+  name: "LDAP / Active Directory"
+  normalization:
+    normalized_name: "ldap active directory directory service identity management"
+    normalization_version: "1.0"
+  aliases:
+    - "LDAP"
+    - "Active Directory"
+    - "AD"
+    - "디렉토리 서비스"
+    - "IAM"
+
+classification:
+  domain: infrastructure
+  type: identity
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "IAM", "AUTH"]
+
+definition:
+  what: |
+    LDAP(Lightweight Directory Access Protocol)과 Active Directory는
+    사용자, 그룹, 리소스 정보를 저장하고 인증/권한 부여를 제공하는
+    디렉토리 서비스다.
+  why: |
+    엔터프라이즈 인증의 핵심이다. LDAP Injection, Pass-the-Hash,
+    Kerberoasting, 권한 상승이 주요 공격 대상이다.
+  how: |
+    1. Directory: 계층적 데이터 구조 (DN, CN, OU)
+    2. Authentication: Bind 작업으로 인증
+    3. Authorization: 그룹 멤버십 기반 권한
+    4. Protocols: LDAP, LDAPS, Kerberos
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-AUTH-ATTACK-001"
+  causal:
+    supports:
+      - "INFRA-APP-WAS-001"
+      - "INFRA-APP-WEBAPP-001"
+    exploited_by:
+      - "ATK-INJECT-LDAP-001"
+
+properties:
+  technical:
+    implementations:
+      - name: "Microsoft Active Directory"
+        protocol: "LDAP, Kerberos"
+        feature: "Windows ecosystem integration"
+      - name: "OpenLDAP"
+        protocol: "LDAP"
+        feature: "Open source"
+      - name: "FreeIPA"
+        protocol: "LDAP, Kerberos"
+        feature: "Linux identity management"
+    security_features:
+      - "LDAPS (LDAP over SSL)"
+      - "Kerberos authentication"
+      - "Group Policy"
+      - "Fine-grained access control"
+    common_attacks:
+      - "LDAP Injection"
+      - "Pass-the-Hash"
+      - "Pass-the-Ticket"
+      - "Kerberoasting"
+      - "Golden Ticket"
+      - "DCSync"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Active Directory"
+      - "CIS Active Directory Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LDAP/Active Directory는 엔터프라이즈 인증의 핵심 디렉토리 서비스다.
+      LDAP Injection, Kerberoasting, Pass-the-Hash가 주요 공격 기법이다.
+    search_keywords:
+      - "LDAP"
+      - "Active Directory"
+      - "Kerberos"
+      - "디렉토리 서비스"
+    related_queries:
+      - "Active Directory 공격"
+      - "LDAP Injection"
+      - "Kerberoasting"

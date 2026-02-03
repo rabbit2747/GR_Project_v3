@@ -1,0 +1,119 @@
+# GR-SEC-TEC-00002: Blind Boolean-based SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00002
+  name: "Blind Boolean-based SQL Injection"
+  normalization:
+    normalized_name: "blind boolean based sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "Boolean Blind SQLi"
+    - "Boolean-based Blind"
+    - "Inferential SQLi"
+    - "블라인드 불리언 SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-BLIND"
+
+definition:
+  what: |
+    쿼리 결과가 직접 표시되지 않을 때, 참/거짓 조건에 따른
+    응답 차이(페이지 내용, 상태 코드 등)를 관찰하여
+    한 비트씩 정보를 추론하는 SQL Injection 기법이다.
+  why: |
+    결과가 화면에 표시되지 않는 환경에서도 데이터 추출이
+    가능하다. UNION 기반보다 느리지만 더 은밀하고
+    탐지가 어렵다.
+  how: |
+    1. 참/거짓에 따른 응답 차이 식별
+    2. 추출할 데이터를 조건문으로 구성
+    3. SUBSTRING, ASCII 등으로 한 글자씩 추출
+    4. 이진 탐색으로 문자 값 범위 좁히기
+    예: AND SUBSTRING(password,1,1)='a'
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00021  # Observable Response Difference (TODO)
+    alternative_to:
+      - GR-SEC-TEC-00001  # UNION-based (결과 미표시 시)
+      - GR-SEC-TEC-00003  # Time-based (응답 차이 없을 시)
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.85
+    conditions:
+      - when:
+          context_type: configuration
+          condition: "response_difference_observable == false"
+        then:
+          value: 0.0
+          reason: "참/거짓 응답 차이가 없으면 사용 불가"
+
+properties:
+  security:
+    severity: high
+    attack_phase: exploitation
+    data_exfiltration: true
+    speed: slow
+    stealth: high
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Blind Boolean 기반 SQL Injection은 쿼리 결과가 직접
+      표시되지 않을 때 사용하는 기법이다. 참/거짓 조건에 따른
+      응답 차이를 관찰하여 한 비트씩 정보를 추론한다.
+      SUBSTRING, ASCII 함수로 문자를 추출하고 이진 탐색으로
+      효율을 높인다. UNION 기반보다 느리지만 더 은밀하다.
+    search_keywords:
+      - "Blind SQL Injection"
+      - "Boolean-based"
+      - "Inferential SQLi"
+      - "SUBSTRING"
+      - "ASCII"
+      - "블라인드 SQLi"
+      - "이진 탐색"
+    related_queries:
+      - "Blind SQLi는 어떻게 하는가?"
+      - "응답 차이로 어떻게 데이터를 추출하는가?"
+      - "SUBSTRING을 이용한 데이터 추출 방법은?"

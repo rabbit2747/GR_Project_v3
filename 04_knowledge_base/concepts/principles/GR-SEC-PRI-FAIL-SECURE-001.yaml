@@ -1,0 +1,97 @@
+# GR Atom: Fail Secure Principle
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-PRI-FAIL-SECURE-001"
+  name: "Fail Secure Principle"
+  normalization:
+    normalized_name: "fail secure fail safe secure default"
+    normalization_version: "1.0"
+  aliases:
+    - "Fail Secure"
+    - "Fail Safe"
+    - "안전 실패 원칙"
+    - "Secure by Default"
+
+classification:
+  domain: security
+  type: principle
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["PRINCIPLE", "RESILIENCE", "SECURITY"]
+
+definition:
+  what: |
+    시스템 오류나 실패 발생 시 보안이 유지되는 안전한
+    상태로 전환되어야 한다는 원칙이다.
+  why: |
+    장애 시 보안 노출을 방지한다.
+    예외 상황에서의 취약점을 제거한다.
+    기본 상태를 안전하게 유지한다.
+  how: |
+    1. 기본 거부 정책
+    2. 오류 시 접근 차단
+    3. 안전한 기본값 설정
+    4. 예외 처리 보안
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-PRI-00001"
+    related_to:
+      - "GR-SEC-PRI-DEFENSE-DEPTH-001"
+      - "DEF-PREVENT-001"
+
+properties:
+  technical:
+    concepts:
+      fail_secure:
+        description: "실패 시 모든 접근 차단"
+        example: "방화벽 장애 시 모든 트래픽 차단"
+      fail_open:
+        description: "실패 시 모든 접근 허용 (비권장)"
+        example: "방화벽 장애 시 모든 트래픽 허용"
+    implementation:
+      - "Default Deny 정책"
+      - "예외 시 접근 거부"
+      - "오류 메시지 최소화"
+      - "안전한 기본 설정"
+    examples:
+      - "인증 실패 → 접근 거부"
+      - "WAF 오류 → 요청 차단"
+      - "세션 만료 → 로그아웃"
+      - "권한 확인 실패 → 거부"
+    anti_patterns:
+      - "오류 시 관리자 권한 부여"
+      - "예외 발생 시 검증 생략"
+      - "기본 허용 정책"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Secure Design"
+      - "NIST SP 800-160"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      안전 실패 원칙은 시스템 오류 발생 시 보안이 유지되는
+      안전한 상태로 전환되어야 한다는 보안 원칙이다.
+    search_keywords:
+      - "Fail Secure"
+      - "Fail Safe"
+      - "Default Deny"
+      - "안전 실패"

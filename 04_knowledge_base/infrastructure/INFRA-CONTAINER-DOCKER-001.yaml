@@ -1,0 +1,115 @@
+# GR Atom: Docker Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CONTAINER-DOCKER-001"
+  name: "Docker Security"
+  normalization:
+    normalized_name: "docker security container image daemon"
+    normalization_version: "1.0"
+  aliases:
+    - "도커 보안"
+    - "Docker Container Security"
+
+classification:
+  domain: infrastructure
+  type: platform
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["INFRA", "CONTAINER", "DOCKER"]
+
+definition:
+  what: |
+    Docker 보안은 컨테이너 런타임, 이미지, 데몬의 보안 설정과
+    취약점 관리를 다룬다.
+  why: |
+    컨테이너 기술의 사실상 표준이다. 호스트와 격리되어 있지만
+    컨테이너 탈출, 이미지 취약점, 권한 문제 등 보안 위협이 존재한다.
+  how: |
+    1. Image Security: 베이스 이미지 선택, 취약점 스캔
+    2. Runtime Security: 권한 제한, 네트워크 격리
+    3. Daemon Security: Docker 데몬 하드닝
+    4. Registry Security: 이미지 레지스트리 보안
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-RUNTIME-CONTAINER-001"
+    related_to:
+      - "INFRA-CONTAINER-K8S-001"
+
+properties:
+  technical:
+    security_layers:
+      - name: "Image Security"
+        controls:
+          - "공식/신뢰할 수 있는 베이스 이미지"
+          - "최소 베이스 이미지 (Alpine, Distroless)"
+          - "취약점 스캔 (Trivy, Snyk)"
+          - "이미지 서명 (Notary, Cosign)"
+      - name: "Build Security"
+        controls:
+          - "다단계 빌드 사용"
+          - "민감 정보 빌드 시 제외"
+          - "USER 지시어로 비루트 실행"
+          - ".dockerignore 활용"
+      - name: "Runtime Security"
+        controls:
+          - "--privileged 사용 금지"
+          - "--cap-drop ALL + 필요한 권한만 추가"
+          - "--read-only 옵션"
+          - "--security-opt=no-new-privileges"
+      - name: "Daemon Security"
+        controls:
+          - "TLS 인증 활성화"
+          - "userns-remap 사용"
+          - "rootless Docker"
+    common_misconfigurations:
+      - "privileged 모드 실행"
+      - "호스트 네트워크/PID/IPC 공유"
+      - "민감 디렉토리 마운트 (/etc, /var/run)"
+      - "root로 실행"
+      - "취약한 베이스 이미지"
+    container_escape:
+      - "Privileged 컨테이너 탈출"
+      - "커널 취약점 악용"
+      - "Docker Socket 접근"
+    scanning_tools:
+      - "Trivy"
+      - "Clair"
+      - "Anchore"
+      - "Snyk Container"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Docker Benchmark"
+      - "Docker Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Docker 보안은 컨테이너 이미지, 런타임, 데몬의 보안이다. 최소 권한, 이미지 스캔,
+      비루트 실행이 핵심이며 privileged 모드, 컨테이너 탈출이 주요 위험이다.
+    search_keywords:
+      - "Docker 보안"
+      - "컨테이너 보안"
+      - "Docker 하드닝"
+      - "이미지 스캔"
+    related_queries:
+      - "Docker 취약점"
+      - "컨테이너 탈출"
+      - "Dockerfile 보안"

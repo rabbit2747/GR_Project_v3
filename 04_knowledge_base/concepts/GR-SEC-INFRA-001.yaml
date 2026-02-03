@@ -1,0 +1,98 @@
+# GR Atom: Security Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-INFRA-001"
+  name: "Security Infrastructure"
+  normalization:
+    normalized_name: "security infrastructure platform environment"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Infrastructure"
+    - "보안 인프라"
+    - "IT Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "ROOT"]
+
+definition:
+  what: |
+    정보 시스템이 운영되는 하드웨어, 소프트웨어, 네트워크
+    기반 환경의 최상위 분류이다.
+  why: |
+    보안 통제가 적용되는 기반이 된다.
+    공격 표면을 구성한다.
+    보안 아키텍처의 토대가 된다.
+  how: |
+    1. 인프라 식별
+    2. 보안 요구사항 정의
+    3. 통제 구현
+    4. 지속적 모니터링
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "INFRA-CLOUD-001"
+      - "INFRA-NETWORK-001"
+      - "INFRA-CONTAINER-001"
+      - "INFRA-IDENTITY-001"
+      - "INFRA-SERVER-001"
+    related_to:
+      - "GR-SEC-DEF-001"
+      - "GR-SEC-VULN-001"
+
+properties:
+  technical:
+    categories:
+      cloud: "클라우드 인프라 (AWS, Azure, GCP)"
+      network: "네트워크 인프라 (방화벽, 스위치, 라우터)"
+      compute: "컴퓨팅 인프라 (서버, VM, 컨테이너)"
+      storage: "스토리지 인프라"
+      identity: "ID 인프라 (AD, LDAP, IAM)"
+    environments:
+      - "On-Premises"
+      - "Public Cloud"
+      - "Private Cloud"
+      - "Hybrid Cloud"
+      - "Multi-Cloud"
+    security_considerations:
+      - "네트워크 분리"
+      - "접근 제어"
+      - "암호화"
+      - "모니터링"
+      - "패치 관리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-53"
+      - "CIS Benchmarks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Infrastructure는 정보 시스템이 운영되는
+      하드웨어, 네트워크 기반 환경의 최상위 분류이다.
+    search_keywords:
+      - "Infrastructure"
+      - "인프라"
+      - "Cloud"
+      - "Network"

@@ -1,0 +1,116 @@
+# GR Atom: HTTP Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-HTTP-001"
+  name: "HTTP (HyperText Transfer Protocol)"
+  normalization:
+    normalized_name: "http hypertext transfer protocol"
+    normalization_version: "1.0"
+  aliases:
+    - "HTTP"
+    - "HTTP/1.1"
+    - "HTTP/2"
+    - "HTTP/3"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 3  # 개념 수준
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["N", "WEB"]
+
+definition:
+  what: |
+    HTTP는 웹에서 클라이언트와 서버 간 데이터를 주고받기 위한
+    애플리케이션 계층 프로토콜이다. 요청-응답(Request-Response)
+    모델을 기반으로 동작한다.
+  why: |
+    웹 애플리케이션의 기본 통신 수단이며, 모든 웹 보안 공격과 방어의
+    기반이 되는 프로토콜이다. HTTP를 이해하지 않으면 웹 보안을
+    이해할 수 없다.
+  how: |
+    1. 클라이언트가 HTTP Request를 서버에 전송
+    2. Request는 Method, URL, Headers, Body로 구성
+    3. 서버가 Request를 처리하고 HTTP Response 반환
+    4. Response는 Status Code, Headers, Body로 구성
+    5. 기본적으로 무상태(Stateless) 프로토콜
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-PROTOCOL-001"]  # Protocol의 하위
+  causal:
+    enables:
+      - "TECH-PROTOCOL-HTTPS-001"  # HTTPS의 기반
+      - "INFRA-APP-WEBSERVER-001"  # 웹서버 통신
+      - "INFRA-APP-API-001"  # API 통신
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TCP-001"  # TCP 위에서 동작
+
+properties:
+  technical:
+    default_port: 80
+    versions:
+      - "HTTP/1.0"
+      - "HTTP/1.1"
+      - "HTTP/2"
+      - "HTTP/3"
+    methods:
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "PATCH"
+      - "HEAD"
+      - "OPTIONS"
+      - "TRACE"
+      - "CONNECT"
+    stateless: true
+  security:
+    encryption: false
+    vulnerabilities:
+      - "평문 전송으로 인한 도청 가능"
+      - "중간자 공격(MITM) 취약"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 2616 - HTTP/1.1"
+      - "RFC 7540 - HTTP/2"
+      - "RFC 9114 - HTTP/3"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HTTP HyperText Transfer Protocol은 웹 통신의 기본 프로토콜이다.
+      클라이언트와 서버 간 요청-응답 모델로 동작하며, GET POST PUT DELETE
+      등의 메소드를 사용한다. 무상태 프로토콜이며 기본 포트는 80이다.
+      HTTP/1.1, HTTP/2, HTTP/3 버전이 있다. 암호화되지 않아 보안에 취약하며,
+      HTTPS로 보안을 강화한다.
+    search_keywords:
+      - "HTTP"
+      - "웹 프로토콜"
+      - "요청 응답"
+      - "GET POST"
+      - "HTTP 메소드"
+      - "웹 통신"
+      - "REST"
+    related_queries:
+      - "HTTP란 무엇인가?"
+      - "HTTP와 HTTPS의 차이점은?"
+      - "HTTP 메소드 종류"
+      - "HTTP 상태 코드"

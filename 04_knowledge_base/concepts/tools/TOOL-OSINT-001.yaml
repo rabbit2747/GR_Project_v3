@@ -1,0 +1,97 @@
+# GR Atom: OSINT Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OSINT-001"
+  name: "OSINT Tool"
+  normalization:
+    normalized_name: "osint tool open source intelligence gathering"
+    normalization_version: "1.0"
+  aliases:
+    - "OSINT Tool"
+    - "OSINT 도구"
+    - "Open Source Intelligence Tool"
+    - "정보 수집 도구"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "OSINT"]
+
+definition:
+  what: |
+    공개 소스에서 정보를 수집하고 분석하는
+    오픈소스 인텔리전스 도구 분류이다.
+  why: |
+    표적에 대한 정보를 수집한다.
+    공격 표면을 파악한다.
+    위협 인텔리전스를 생성한다.
+  how: |
+    1. 정보 소스 식별
+    2. 데이터 수집
+    3. 상관관계 분석
+    4. 인텔리전스 생성
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    has_children:
+      - "TOOL-OSINT-MALTEGO-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "DEF-THREAT-INTEL-001"
+
+properties:
+  technical:
+    sources:
+      - "소셜 미디어"
+      - "도메인/DNS"
+      - "WHOIS"
+      - "검색 엔진"
+      - "데이터 브리치"
+      - "다크웹"
+    examples:
+      - "Maltego"
+      - "Shodan"
+      - "theHarvester"
+      - "SpiderFoot"
+      - "Recon-ng"
+    data_types:
+      - "이메일 주소"
+      - "도메인/서브도메인"
+      - "IP 주소"
+      - "소셜 프로필"
+      - "조직 정보"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OSINT Framework"
+      - "IntelTechniques"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OSINT Tool은 공개 소스에서 정보를 수집하는
+      오픈소스 인텔리전스 도구 분류이다.
+    search_keywords:
+      - "OSINT"
+      - "Intelligence"
+      - "Maltego"
+      - "정보 수집"

@@ -1,0 +1,103 @@
+# GR Atom: BEAST Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-BEAST-001"
+  name: "BEAST Attack"
+  normalization:
+    normalized_name: "beast attack browser exploit ssl tls cbc"
+    normalization_version: "1.0"
+  aliases:
+    - "BEAST 공격"
+    - "Browser Exploit Against SSL/TLS"
+    - "TLS 1.0 CBC 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone4"
+    tags: ["ATK", "CRYPTO", "TLS"]
+
+definition:
+  what: |
+    TLS 1.0의 CBC 모드 구현 취약점을 악용하여 HTTPS 세션의
+    쿠키와 같은 민감한 데이터를 복호화하는 공격이다.
+  why: |
+    세션 쿠키를 탈취하여 세션 하이재킹한다.
+    암호화된 트래픽에서 민감 정보를 추출한다.
+  how: |
+    1. 동일 출처 정책 우회 (Java 애플릿 등)
+    2. 선택 평문 삽입
+    3. IV 예측을 통한 복호화
+    4. 바이트 단위 비밀 추출
+
+relations:
+  structural:
+    is_a:
+      - "ATK-CRYPTO-WEAK-001"
+    related_to:
+      - "TECH-PROTOCOL-TLS-001"
+      - "VUL-CRYPTO-WEAK-001"
+
+properties:
+  technical:
+    cve: "CVE-2011-3389"
+    affected_protocols:
+      - "TLS 1.0"
+      - "SSL 3.0"
+    vulnerability:
+      - "예측 가능한 IV"
+      - "CBC 모드 블록 체이닝"
+    prerequisites:
+      - "TLS 1.0 사용"
+      - "동일 출처 정책 우회"
+      - "선택 평문 삽입 능력"
+      - "네트워크 스니핑"
+    tools:
+      - "BEAST exploit"
+    impact:
+      - "세션 쿠키 탈취"
+      - "인증 토큰 노출"
+    detection:
+      - "TLS 버전 모니터링"
+      - "취약한 암호 스위트 탐지"
+    mitigation:
+      - "TLS 1.2 이상 사용"
+      - "RC4 사용 (비권장)"
+      - "1/n-1 레코드 분할"
+      - "AES-GCM 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Duong & Rizzo BEAST"
+      - "CVE-2011-3389"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BEAST는 TLS 1.0 CBC 모드의 IV 예측 가능성을 악용하여
+      암호화된 세션 쿠키를 복호화하는 공격이다.
+    search_keywords:
+      - "BEAST"
+      - "TLS 공격"
+      - "CBC 취약점"
+      - "세션 쿠키"
+    related_queries:
+      - "TLS 보안"
+      - "CBC 공격"
+      - "프로토콜 다운그레이드"

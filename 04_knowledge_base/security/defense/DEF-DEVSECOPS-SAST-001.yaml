@@ -1,0 +1,122 @@
+# GR Atom: SAST (Static Application Security Testing)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DEVSECOPS-SAST-001"
+  name: "SAST (Static Application Security Testing)"
+  normalization:
+    normalized_name: "sast static application security testing source code analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "SAST"
+    - "정적 분석"
+    - "소스 코드 보안 분석"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "DEVSECOPS", "ANALYSIS"]
+
+definition:
+  what: |
+    소스 코드, 바이트코드, 바이너리를 분석하여
+    보안 취약점을 식별하는 정적 분석 기법이다.
+  why: |
+    개발 초기에 취약점을 발견한다.
+    수정 비용을 줄인다.
+  how: |
+    1. 코드베이스 스캔
+    2. 취약점 패턴 매칭
+    3. 데이터 흐름 분석
+    4. 보고서 생성
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT-001"
+    related_to:
+      - "VUL-INJECT-SQL-001"
+      - "VUL-INJECT-XSS-001"
+
+properties:
+  technical:
+    analysis_types:
+      - "패턴 매칭"
+      - "데이터 흐름 분석"
+      - "제어 흐름 분석"
+      - "오염 분석 (Taint Analysis)"
+    detectable_vulnerabilities:
+      - "SQL Injection"
+      - "XSS"
+      - "Buffer Overflow"
+      - "Hardcoded Credentials"
+      - "Insecure Crypto"
+      - "Path Traversal"
+    sast_tools:
+      commercial:
+        - "Checkmarx"
+        - "Veracode"
+        - "Fortify"
+        - "Snyk Code"
+      open_source:
+        - "SonarQube"
+        - "Semgrep"
+        - "Bandit (Python)"
+        - "ESLint Security"
+        - "FindSecBugs"
+    integration_points:
+      - "IDE 플러그인"
+      - "CI/CD 파이프라인"
+      - "Pull Request 검사"
+      - "코드 리뷰"
+    advantages:
+      - "개발 초기 발견"
+      - "100% 코드 커버리지"
+      - "자동화 가능"
+      - "규칙 커스터마이징"
+    limitations:
+      - "오탐 (False Positive)"
+      - "런타임 취약점 미탐지"
+      - "구성 오류 미탐지"
+      - "비즈니스 로직 취약점 제한"
+    best_practices:
+      - "점진적 도입"
+      - "오탐 관리"
+      - "개발자 교육"
+      - "CI/CD 통합"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SAST"
+      - "NIST Secure Development"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SAST는 소스 코드를 정적 분석하여 보안 취약점을
+      개발 초기에 식별하는 DevSecOps 기법이다.
+    search_keywords:
+      - "SAST"
+      - "정적 분석"
+      - "코드 보안"
+      - "DevSecOps"
+    related_queries:
+      - "소스 코드 검사"
+      - "SonarQube"
+      - "취약점 탐지"

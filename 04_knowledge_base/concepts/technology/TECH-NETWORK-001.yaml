@@ -1,0 +1,84 @@
+# GR Atom: Network Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-NETWORK-001"
+  name: "Network Technology"
+  normalization:
+    normalized_name: "network technology routing switching firewall"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Technology"
+    - "네트워크 기술"
+    - "Networking Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "NETWORK"]
+
+definition:
+  what: |
+    네트워크 인프라 구축과 운영을 위한 기술 분류이다.
+  why: |
+    네트워크 아키텍처를 이해한다.
+    네트워크 보안을 설계한다.
+    통신 인프라를 구축한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-NET-ROUTING-001"
+      - "TECH-NET-SWITCHING-001"
+      - "TECH-NET-SDN-001"
+    related_to:
+      - "TECH-PROTOCOL-001"
+      - "ATK-NETWORK-001"
+      - "DEF-NET-001"
+
+properties:
+  technical:
+    components:
+      - "Routing"
+      - "Switching"
+      - "Load Balancing"
+      - "SDN"
+      - "Network Segmentation"
+    devices:
+      - "Router"
+      - "Switch"
+      - "Firewall"
+      - "Load Balancer"
+      - "WAF"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Network Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Technology는 네트워크 인프라 기술 분류이다.
+    search_keywords:
+      - "Network Technology"
+      - "네트워크 기술"
+      - "Routing"
+      - "Switching"

@@ -1,0 +1,107 @@
+# GR Atom: System Information Discovery
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1082-001"
+  name: "System Information Discovery"
+  normalization:
+    normalized_name: "system information discovery reconnaissance enumeration"
+    normalization_version: "1.0"
+  aliases:
+    - "시스템 정보 수집"
+    - "시스템 열거"
+    - "환경 정보 수집"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "DISCOVERY"]
+
+definition:
+  what: |
+    운영 체제, 하드웨어, 소프트웨어 등 시스템 정보를 수집하는 기법이다.
+    후속 공격을 위한 정보 수집 단계이다.
+  why: |
+    타겟 환경을 파악하여 공격 전략을 수립한다.
+    취약점 및 공격 가능 지점을 식별한다.
+  how: |
+    1. 시스템 명령어 실행
+    2. 운영 체제 정보 수집
+    3. 하드웨어/소프트웨어 정보 수집
+    4. 환경 변수 및 설정 수집
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DISCOVERY-001"
+    related_to:
+      - "ATK-RECON-SCAN-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1082"
+    tactic: "Discovery"
+    platforms: ["Windows", "Linux", "macOS"]
+    windows_commands:
+      - "systeminfo"
+      - "hostname"
+      - "ver"
+      - "wmic os get *"
+      - "wmic computersystem get *"
+    linux_commands:
+      - "uname -a"
+      - "cat /etc/os-release"
+      - "lsb_release -a"
+      - "hostnamectl"
+      - "dmidecode"
+    information_collected:
+      - "운영 체제 버전"
+      - "호스트명"
+      - "도메인 정보"
+      - "패치 수준"
+      - "하드웨어 사양"
+      - "설치된 소프트웨어"
+    detection:
+      - "명령어 실행 로깅"
+      - "프로세스 모니터링"
+      - "PowerShell 스크립트 블록 로깅"
+    mitigation:
+      - "최소 권한 원칙"
+      - "명령어 실행 모니터링"
+      - "EDR 솔루션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1082"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      System Information Discovery는 운영 체제와 시스템 정보를
+      수집하는 MITRE ATT&CK Discovery 기법이다.
+    search_keywords:
+      - "시스템 정보"
+      - "Discovery"
+      - "열거"
+      - "정보 수집"
+    related_queries:
+      - "시스템 열거 공격"
+      - "정보 수집 기법"
+      - "환경 파악"

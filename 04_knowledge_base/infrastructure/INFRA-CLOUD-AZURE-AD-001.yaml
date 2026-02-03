@@ -1,0 +1,115 @@
+# GR Atom: Azure Active Directory
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-AZURE-AD-001"
+  name: "Azure Active Directory (Entra ID)"
+  normalization:
+    normalized_name: "azure active directory entra id identity iam sso"
+    normalization_version: "1.0"
+  aliases:
+    - "Azure AD"
+    - "Entra ID"
+    - "AAD"
+    - "애저 AD"
+
+classification:
+  domain: infrastructure
+  type: cloud_service
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "CLOUD", "AZURE", "IAM"]
+
+definition:
+  what: |
+    Azure Active Directory(현 Microsoft Entra ID)는 마이크로소프트의 클라우드 기반
+    ID 및 액세스 관리 서비스다. SSO, MFA, 조건부 액세스를 제공한다.
+  why: |
+    Microsoft 365, Azure, 수천 개 SaaS 앱의 중앙 인증 시스템이다.
+    하이브리드 ID, 제로 트러스트 구현의 핵심이며 설정 오류 시 대규모 침해로 이어진다.
+  how: |
+    1. Users & Groups: 사용자 및 그룹 관리
+    2. Applications: 앱 등록 및 SSO 구성
+    3. Conditional Access: 조건부 접근 정책
+    4. Privileged Identity: 권한 있는 ID 관리 (PIM)
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-AZURE-001"
+    part_of:
+      - "INFRA-IAM-LDAP-001"
+  causal:
+    targeted_by:
+      - "ATK-CLOUD-PRIVESC-001"
+      - "ATK-AUTH-CREDSTUFF-001"
+
+properties:
+  technical:
+    core_components:
+      - name: "Users"
+        description: "클라우드 및 동기화된 사용자 계정"
+      - name: "Groups"
+        description: "보안 그룹, Microsoft 365 그룹"
+      - name: "App Registrations"
+        description: "애플리케이션 ID 및 인증 설정"
+      - name: "Enterprise Applications"
+        description: "SSO 통합 앱"
+      - name: "Conditional Access"
+        description: "조건부 접근 정책"
+      - name: "PIM (Privileged Identity Management)"
+        description: "권한 있는 역할 JIT 액세스"
+    security_features:
+      - "Multi-Factor Authentication (MFA)"
+      - "Conditional Access Policies"
+      - "Identity Protection"
+      - "Privileged Identity Management (PIM)"
+      - "Access Reviews"
+      - "Sign-in Risk Policies"
+    common_misconfigurations:
+      - "MFA 미적용"
+      - "게스트 사용자 과도한 권한"
+      - "앱 동의 정책 미흡"
+      - "조건부 액세스 정책 부재"
+      - "전역 관리자 계정 다수"
+      - "레거시 인증 허용"
+    attack_vectors:
+      - "Password Spray"
+      - "Credential Stuffing"
+      - "OAuth Consent Phishing"
+      - "Application Impersonation"
+      - "PIM Abuse"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft Entra ID Documentation"
+      - "CIS Microsoft 365 Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Azure AD(Entra ID)는 Microsoft 클라우드 IAM 서비스다. SSO, MFA, 조건부 액세스를
+      제공하며 MFA 미적용, 레거시 인증 허용이 주요 보안 위험이다.
+    search_keywords:
+      - "Azure AD"
+      - "Entra ID"
+      - "Azure Active Directory"
+      - "Microsoft IAM"
+    related_queries:
+      - "Azure AD 보안"
+      - "조건부 액세스"
+      - "Azure MFA"

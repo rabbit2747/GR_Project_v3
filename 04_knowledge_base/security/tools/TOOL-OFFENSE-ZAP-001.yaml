@@ -1,0 +1,124 @@
+# GR Atom: OWASP ZAP
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OFFENSE-ZAP-001"
+  name: "OWASP ZAP"
+  normalization:
+    normalized_name: "owasp zap zed attack proxy"
+    normalization_version: "1.0"
+  aliases:
+    - "ZAP"
+    - "Zed Attack Proxy"
+    - "OWASP Zed Attack Proxy"
+    - "ZAP Proxy"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0A"
+    tags: ["WEB"]
+
+definition:
+  what: |
+    OWASP에서 제공하는 오픈소스 웹 취약점 스캐너.
+    자동 스캔(Active/Passive Scan), 프록시 인터셉트, 퍼저(Fuzzer),
+    스파이더(Spider/Ajax Spider), API 스캔 등을 지원하며,
+    CI/CD 파이프라인에 통합하여 DevSecOps에 활용할 수 있다.
+  why: |
+    무료 오픈소스로 제공되어 비용 부담 없이 웹 보안 테스트를 수행할 수 있다.
+    OWASP 커뮤니티가 지속적으로 관리하며, OWASP Top 10 취약점을
+    체계적으로 탐지한다. CI/CD 연동으로 개발 단계에서부터
+    보안 취약점을 자동으로 발견할 수 있어 DevSecOps에 적합하다.
+  how: |
+    1. Automated Scan: 대상 URL을 입력하여 자동 취약점 스캔
+    2. Spider: 웹사이트를 크롤링하여 페이지/엔드포인트 발견
+    3. Active Scan: 발견된 엔드포인트에 공격 페이로드 전송
+    4. Passive Scan: 프록시를 통과하는 트래픽을 수동적으로 분석
+    5. API Scan: OpenAPI/Swagger 정의를 이용한 API 취약점 스캔
+    6. CI/CD: Docker/CLI로 자동화된 파이프라인 보안 테스트
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE"  # 공격 도구의 하위
+    used_for:
+      - "ATK-INJECT-SQL-001"    # SQL Injection 스캔
+      - "ATK-INJECT-XSS-001"    # XSS 스캔
+      - "ATK-INJECT-CMD-001"    # Command Injection 스캔
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    vendor: "OWASP (Open Source)"
+    license: "Apache License 2.0"
+    language: "Java"
+    key_features:
+      - name: "Automated Scanner"
+        description: "자동 웹 취약점 스캔 (Active + Passive)"
+      - name: "Spider/Ajax Spider"
+        description: "전통적 크롤링 및 JavaScript 렌더링 크롤링"
+      - name: "Proxy"
+        description: "HTTP/HTTPS 인터셉트 프록시"
+      - name: "Fuzzer"
+        description: "파라미터 퍼징을 통한 취약점 탐지"
+      - name: "API Scan"
+        description: "OpenAPI/GraphQL/SOAP API 스캔"
+      - name: "Authentication"
+        description: "로그인 상태 유지하며 스캔"
+      - name: "Add-ons"
+        description: "마켓플레이스를 통한 확장 기능"
+    ci_cd_integration:
+      - "Docker 이미지 (owasp/zap2docker-stable)"
+      - "GitHub Actions"
+      - "Jenkins Plugin"
+      - "GitLab CI/CD"
+    scan_policies:
+      - "Default Policy"
+      - "API-Minimal"
+      - "Custom Policy"
+    platform: ["Windows", "macOS", "Linux", "Docker"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ZAP Official Documentation"
+      - "OWASP ZAP GitHub Repository"
+      - "OWASP Testing Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      OWASP ZAP(Zed Attack Proxy)은 OWASP에서 제공하는 오픈소스 웹 취약점 스캐너이다.
+      자동 스캔, 프록시, 퍼저, 스파이더, API 스캔을 지원하며,
+      CI/CD 파이프라인에 통합하여 DevSecOps에 활용할 수 있다. 무료 오픈소스.
+    search_keywords:
+      - "OWASP ZAP"
+      - "ZAP"
+      - "Zed Attack Proxy"
+      - "웹 취약점 스캐너"
+      - "오픈소스 스캐너"
+      - "DevSecOps"
+    related_queries:
+      - "OWASP ZAP 사용법"
+      - "ZAP vs Burp Suite 비교"
+      - "ZAP CI/CD 통합 방법"
+      - "ZAP API 스캔 방법"

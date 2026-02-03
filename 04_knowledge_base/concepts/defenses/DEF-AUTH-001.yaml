@@ -1,0 +1,96 @@
+# GR Atom: Authentication Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-AUTH-001"
+  name: "Authentication Defense"
+  normalization:
+    normalized_name: "authentication defense identity access mfa"
+    normalization_version: "1.0"
+  aliases:
+    - "Authentication Defense"
+    - "인증 방어"
+    - "Identity Protection"
+    - "Access Control"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "AUTH"]
+
+definition:
+  what: |
+    사용자 인증, ID 관리, 접근 제어를 통한
+    보안 통제 분류이다.
+  why: |
+    무단 접근을 방지한다.
+    자격 증명을 보호한다.
+    신원을 확인한다.
+  how: |
+    1. 인증 요소 구현
+    2. 접근 정책 설정
+    3. 세션 관리
+    4. 모니터링
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-AUTH-MFA-001"
+      - "DEF-AUTH-SSO-001"
+    related_to:
+      - "DEF-IAM-001"
+      - "TECH-PROTOCOL-OAUTH-001"
+
+properties:
+  technical:
+    factors:
+      something_you_know: "비밀번호, PIN"
+      something_you_have: "토큰, 스마트카드"
+      something_you_are: "생체인식"
+    technologies:
+      - "MFA"
+      - "SSO"
+      - "OAuth/OIDC"
+      - "SAML"
+      - "Passwordless"
+      - "FIDO2/WebAuthn"
+    best_practices:
+      - "강력한 비밀번호 정책"
+      - "MFA 필수화"
+      - "세션 타임아웃"
+      - "계정 잠금"
+      - "자격 증명 순환"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-63"
+      - "OWASP Authentication"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Authentication Defense는 사용자 인증과 접근 제어를 통한
+      보안 통제 분류이다.
+    search_keywords:
+      - "Authentication"
+      - "인증"
+      - "MFA"
+      - "Access Control"

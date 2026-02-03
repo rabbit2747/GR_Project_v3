@@ -1,0 +1,83 @@
+# GR Atom: Authentication Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-AUTH-001"
+  name: "Authentication Technology"
+  normalization:
+    normalized_name: "authentication technology oauth kerberos saml"
+    normalization_version: "1.0"
+  aliases:
+    - "Authentication Technology"
+    - "인증 기술"
+    - "Auth Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "AUTH"]
+
+definition:
+  what: |
+    사용자와 시스템의 신원을 확인하는 인증 기술 분류이다.
+  why: |
+    인증 메커니즘을 이해한다.
+    적절한 인증 방식을 선택한다.
+    인증 보안을 강화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-AUTH-KERBEROS-001"
+      - "TECH-AUTH-OAUTH-001"
+      - "TECH-AUTH-SAML-001"
+    related_to:
+      - "VUL-AUTH-001"
+      - "DEF-MFA-001"
+
+properties:
+  technical:
+    methods:
+      - "Password-based"
+      - "Token-based"
+      - "Certificate-based"
+      - "Biometric"
+      - "Multi-factor"
+    protocols:
+      - "Kerberos"
+      - "OAuth 2.0"
+      - "SAML"
+      - "OpenID Connect"
+      - "LDAP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Digital Identity Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Authentication Technology는 신원 확인을 위한 인증 기술 분류이다.
+    search_keywords:
+      - "Authentication Technology"
+      - "인증 기술"
+      - "OAuth"
+      - "Kerberos"

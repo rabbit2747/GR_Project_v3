@@ -1,0 +1,104 @@
+# GR Atom: AWS IAM
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-AWS-IAM-001"
+  name: "AWS IAM (Identity and Access Management)"
+  normalization:
+    normalized_name: "aws iam identity access management policies roles"
+    normalization_version: "1.0"
+  aliases:
+    - "AWS IAM"
+    - "IAM"
+    - "AWS 권한 관리"
+
+classification:
+  domain: infrastructure
+  type: cloud_service
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "CLOUD", "AWS", "IAM"]
+
+definition:
+  what: |
+    AWS IAM(Identity and Access Management)은 AWS 리소스에 대한 접근을
+    안전하게 제어하는 서비스다. 사용자, 그룹, 역할, 정책을 관리한다.
+  why: |
+    AWS 보안의 핵심이다. 과도한 권한, 장기 자격 증명, 잘못된 정책이
+    클라우드 침해의 가장 흔한 원인이다.
+  how: |
+    1. Users: 개별 사용자 계정
+    2. Groups: 사용자 그룹
+    3. Roles: 서비스/애플리케이션용 역할
+    4. Policies: JSON 기반 권한 정책
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-001"
+    part_of:
+      - "INFRA-IAM-LDAP-001"
+  causal:
+    targeted_by:
+      - "ATK-CLOUD-PRIVESC-001"
+
+properties:
+  technical:
+    components:
+      - name: "IAM Users"
+        description: "장기 자격 증명 (Access Key)"
+        best_practice: "최소화, MFA 필수"
+      - name: "IAM Roles"
+        description: "임시 자격 증명 (STS)"
+        best_practice: "EC2, Lambda에 사용"
+      - name: "IAM Policies"
+        types: ["Identity-based", "Resource-based", "Permission boundaries"]
+      - name: "IAM Groups"
+        description: "사용자 그룹화"
+    security_best_practices:
+      - "Root 계정 사용 금지, MFA 설정"
+      - "최소 권한 원칙"
+      - "Access Key 대신 Role 사용"
+      - "정기적인 자격 증명 순환"
+      - "CloudTrail로 감사"
+      - "IAM Access Analyzer 사용"
+    common_misconfigurations:
+      - "Administrator 정책 과다 부여"
+      - "Access Key 코드에 하드코딩"
+      - "MFA 미설정"
+      - "사용하지 않는 자격 증명"
+      - "과도하게 허용적인 정책 (*:*)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AWS IAM Best Practices"
+      - "CIS AWS Foundations Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      AWS IAM은 AWS 리소스 접근을 제어하는 서비스다. Users, Roles, Policies로
+      구성되며 최소 권한, MFA, Access Key 최소화가 핵심 보안 원칙이다.
+    search_keywords:
+      - "AWS IAM"
+      - "IAM Policy"
+      - "IAM Role"
+      - "AWS 권한"
+    related_queries:
+      - "AWS IAM 보안"
+      - "IAM 최소 권한"
+      - "IAM Policy 작성"

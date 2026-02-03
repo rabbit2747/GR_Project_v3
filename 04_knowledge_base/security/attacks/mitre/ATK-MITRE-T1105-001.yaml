@@ -1,0 +1,111 @@
+# GR Atom: Ingress Tool Transfer
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1105-001"
+  name: "Ingress Tool Transfer"
+  normalization:
+    normalized_name: "ingress tool transfer download malware c2"
+    normalization_version: "1.0"
+  aliases:
+    - "도구 전송"
+    - "악성 도구 다운로드"
+    - "페이로드 전달"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "C2"]
+
+definition:
+  what: |
+    외부 시스템에서 악성 도구나 파일을 타겟 시스템으로
+    전송하는 기법이다.
+  why: |
+    초기 액세스 후 추가 도구를 배포한다.
+    후속 공격에 필요한 도구를 확보한다.
+  how: |
+    1. C2 서버에서 도구 호스팅
+    2. 다운로드 메커니즘 선택
+    3. 타겟 시스템으로 전송
+    4. 도구 실행 준비
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-C2-001"
+    related_to:
+      - "ATK-MITRE-T1071-001"
+      - "DEF-NET-FIREWALL-001"
+
+properties:
+  technical:
+    mitre_id: "T1105"
+    tactic: "Command and Control"
+    platforms: ["Windows", "Linux", "macOS"]
+    transfer_methods:
+      - name: "HTTP/HTTPS"
+        tools: ["curl", "wget", "Invoke-WebRequest"]
+      - name: "FTP"
+        tools: ["ftp", "sftp"]
+      - name: "SCP/SFTP"
+        tools: ["scp", "sftp", "pscp"]
+      - name: "SMB"
+        tools: ["copy", "xcopy", "robocopy"]
+      - name: "BITSAdmin"
+        tools: ["bitsadmin"]
+    windows_methods:
+      - "certutil -urlcache"
+      - "Invoke-WebRequest"
+      - "Start-BitsTransfer"
+      - "bitsadmin /transfer"
+    linux_methods:
+      - "wget"
+      - "curl"
+      - "nc (netcat)"
+      - "scp"
+    detection:
+      - "네트워크 트래픽 모니터링"
+      - "프로세스 명령줄 로깅"
+      - "파일 생성 모니터링"
+      - "이상 다운로드 패턴"
+    mitigation:
+      - "네트워크 세분화"
+      - "프록시 필터링"
+      - "애플리케이션 화이트리스트"
+      - "다운로드 제한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1105"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Ingress Tool Transfer는 C2에서 악성 도구를 타겟으로
+      전송하는 MITRE ATT&CK C2 기법이다.
+    search_keywords:
+      - "도구 전송"
+      - "다운로드"
+      - "C2"
+      - "페이로드"
+    related_queries:
+      - "악성 도구 전달"
+      - "파일 다운로드 공격"
+      - "C2 통신"

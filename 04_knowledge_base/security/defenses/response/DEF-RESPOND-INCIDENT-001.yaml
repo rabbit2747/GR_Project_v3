@@ -1,0 +1,122 @@
+# GR Atom: Incident Response
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-RESPOND-INCIDENT-001"
+  name: "Incident Response"
+  normalization:
+    normalized_name: "incident response"
+    normalization_version: "1.0"
+  aliases:
+    - "침해 사고 대응"
+    - "IR"
+    - "보안 사고 대응"
+    - "Security Incident Response"
+    - "사고 대응 절차"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["R"]
+
+definition:
+  what: |
+    보안 사고 발생 시 탐지, 분석, 차단, 복구하는 체계적 대응 절차.
+    사전 준비(Preparation), 탐지/분석(Detection & Analysis),
+    차단/근절(Containment, Eradication), 복구(Recovery),
+    사후 학습(Post-Incident Activity)의 단계로 구성된다.
+  why: |
+    보안 사고는 불가피하게 발생하며, 체계적 대응 절차 없이는 피해가
+    확산되고 복구 시간이 길어진다. 사전에 정의된 IR 프로세스는
+    사고 발생 시 혼란을 최소화하고, 피해를 신속히 차단하며,
+    정상 운영으로의 빠른 복귀를 보장한다. 규제 준수(GDPR 72시간 보고 등)에도 필수적이다.
+  how: |
+    1. Preparation: IR 팀 구성, 플레이북 작성, 도구 준비, 훈련
+    2. Detection & Analysis: 경보 확인, 사고 분류/우선순위 지정, 영향 범위 분석
+    3. Containment: 단기 차단(네트워크 격리, 계정 잠금), 장기 차단(패치 적용)
+    4. Eradication: 악성코드 제거, 백도어 제거, 근본 원인 제거
+    5. Recovery: 시스템 복원, 정상 운영 확인, 모니터링 강화
+    6. Post-Incident: 사고 보고서 작성, 교훈 도출, 프로세스 개선
+
+relations:
+  structural:
+    is_a:
+      - "DEF-RESPOND"  # 대응 방어의 하위 개념
+    depends_on:
+      - "DEF-DETECT-MONITORING-001"  # 모니터링을 통한 사고 탐지
+      - "DEF-DETECT-LOGGING-001"     # 로그를 통한 분석
+  causal:
+    prevents:
+      - "VUL-RESPONSE-INSUFFICIENT-001"  # 불충분한 대응 취약점 방어
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-SYS-SERVER-001"
+      - "INFRA-NET-NETWORK-001"
+
+properties:
+  technical:
+    ir_phases:
+      - name: "Preparation"
+        activities: ["IR 팀 구성", "플레이북 작성", "도구 준비", "훈련/연습"]
+      - name: "Detection & Analysis"
+        activities: ["경보 확인", "사고 분류", "영향 범위 분석", "증거 수집"]
+      - name: "Containment"
+        activities: ["네트워크 격리", "계정 잠금", "서비스 차단", "패치 적용"]
+      - name: "Eradication"
+        activities: ["악성코드 제거", "백도어 제거", "취약점 패치"]
+      - name: "Recovery"
+        activities: ["시스템 복원", "서비스 재개", "모니터링 강화"]
+      - name: "Post-Incident"
+        activities: ["사고 보고서", "교훈 도출", "프로세스 개선"]
+    ir_frameworks:
+      - "NIST SP 800-61 Incident Handling Guide"
+      - "SANS Incident Handler's Handbook"
+      - "ISO 27035 Incident Management"
+    key_metrics:
+      - "MTTD (Mean Time to Detect)"
+      - "MTTR (Mean Time to Respond)"
+      - "MTTC (Mean Time to Contain)"
+      - "사고 재발률"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-61 Rev. 2"
+      - "SANS Incident Handling Process"
+      - "ISO/IEC 27035"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Incident Response는 보안 사고 발생 시 탐지, 분석, 차단, 복구하는 체계적 대응
+      절차이다. 준비, 탐지/분석, 차단/근절, 복구, 사후 학습의 단계로 구성되며,
+      NIST SP 800-61, SANS 프레임워크를 따른다. MTTD/MTTR 단축이 핵심 목표이다.
+    search_keywords:
+      - "Incident Response"
+      - "침해 사고 대응"
+      - "IR"
+      - "사고 대응"
+      - "NIST 800-61"
+      - "보안 사고"
+    related_queries:
+      - "침해 사고 대응 절차란?"
+      - "IR 프로세스 단계"
+      - "사고 대응 플레이북 작성법"
+      - "NIST IR 프레임워크"

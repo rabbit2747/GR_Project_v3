@@ -1,0 +1,114 @@
+# GR Atom: XXE Vulnerability
+identity:
+  id: "VUL-XXE-001"
+  name: "XXE Vulnerability"
+  normalization:
+    normalized_name: "xxe vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "XML External Entity Injection"
+    - "XXE Injection"
+    - "XML Entity Expansion Attack"
+    - "CWE-611"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INJECT", "XML"]
+
+definition:
+  what: |
+    XXE(XML External Entity) 취약점(CWE-611)은 XML 파서가 외부 엔티티 참조를 처리할 때
+    발생하는 보안 결함이다. 공격자가 악의적으로 조작된 XML 문서를 전송하여 서버 측 파일 읽기,
+    SSRF(Server-Side Request Forgery), 서비스 거부(DoS, Billion Laughs 공격),
+    원격 코드 실행 등을 수행할 수 있다. XML DTD(Document Type Definition)의 외부
+    엔티티 선언 기능을 악용하며, 내부 네트워크 스캔이나 민감 파일 유출에도 활용된다.
+  why: |
+    XML은 엔터프라이즈 환경에서 데이터 교환, 설정 파일, 웹 서비스(SOAP), 문서 형식
+    (DOCX, SVG, RSS) 등 광범위하게 사용된다. 많은 XML 파서가 기본 설정으로 외부 엔티티
+    처리를 허용하며, 이는 서버 측 리소스에 대한 무단 접근을 가능하게 한다.
+    특히 내부 파일 시스템 접근(/etc/passwd, 설정 파일 등)과 내부 네트워크 서비스 접근이
+    가능하여 심각한 정보 유출 및 추가 공격의 발판이 된다.
+  how: |
+    - 발생 조건: XML 입력을 받는 API 엔드포인트, SOAP 웹 서비스,
+      XML 파일 업로드 기능(SVG, DOCX, XLSX 등), RSS/Atom 피드 파서,
+      SAML 기반 인증 시스템, XML 기반 설정 파일 처리,
+      XML 파서의 외부 엔티티 처리 비활성화 미실시
+    - 탐지 방법: XML 입력 포인트 식별, DTD 선언 포함 XML 전송 테스트,
+      외부 엔티티를 통한 외부 서버 연결 시도(OOB 기법),
+      에러 메시지 기반 탐지, Blind XXE 기법을 통한 데이터 추출 테스트
+    - 도구: Burp Suite XXE 스캐너, OWASP ZAP, XXExploiter,
+      xxeftp, 커스텀 페이로드 생성 스크립트
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  associative:
+    related_to:
+      - id: "ATK-INJECT-XML-001"
+        type: "exploited_by"
+        description: "XML 인젝션 공격에 의해 악용됨"
+      - id: "TECH-FORMAT-XML-001"
+        type: "targets"
+        description: "XML 데이터 형식의 처리를 대상으로 함"
+  applicability:
+    applies_to:
+      - "XML 파서를 사용하는 애플리케이션"
+      - "SOAP 웹 서비스"
+      - "SAML 기반 인증 시스템"
+      - "XML 파일 업로드 처리"
+      - "RSS/Atom 피드 처리기"
+      - "SVG 이미지 처리기"
+
+properties:
+  security:
+    cwe_id: "CWE-611"
+    owasp: "A05:2021"
+    cvss_base: 9.1
+    severity: "Critical"
+    impact:
+      confidentiality: "High"
+      integrity: "Low"
+      availability: "High"
+    attack_vector: "Network"
+    attack_complexity: "Low"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XXE Vulnerability (CWE-611)는 XML 파서가 외부 엔티티 참조를 처리할 때
+      발생하는 인젝션 취약점이다. 서버 측 파일 읽기, SSRF, DoS 등의 공격이
+      가능하며, XML 파서의 외부 엔티티 처리 비활성화로 방어한다.
+    search_keywords:
+      - "XXE"
+      - "XML External Entity"
+      - "CWE-611"
+      - "XML injection"
+      - "DTD attack"
+      - "Billion Laughs"
+      - "SSRF via XXE"
+      - "blind XXE"
+      - "XML 외부 엔티티"
+      - "XXE 공격"
+    related_queries:
+      - "XXE 취약점이란 무엇인가?"
+      - "XML 파서에서 외부 엔티티를 비활성화하는 방법은?"
+      - "Blind XXE 공격은 어떻게 수행되는가?"
+      - "XXE를 통한 SSRF 공격이란?"

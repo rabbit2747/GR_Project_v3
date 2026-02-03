@@ -1,0 +1,105 @@
+# GR Atom: Open Redirect
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-OPEN-REDIRECT-001"
+  name: "Open Redirect"
+  normalization:
+    normalized_name: "open redirect unvalidated redirect forward phishing"
+    normalization_version: "1.0"
+  aliases:
+    - "Open Redirect"
+    - "URL Redirection"
+    - "오픈 리다이렉트"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "PHISHING"]
+
+definition:
+  what: |
+    웹 애플리케이션이 외부 URL로 리다이렉트할 때
+    검증 없이 악성 사이트로 이동시킬 수 있는 취약점이다.
+  why: |
+    피싱 공격에 악용된다.
+    신뢰할 수 있는 도메인을 이용한 공격이 가능하다.
+  how: |
+    1. 리다이렉트 파라미터 식별
+    2. 외부 URL 주입
+    3. 피해자에게 링크 전달
+    4. 악성 사이트로 이동
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "ATK-SOCIAL-PHISHING-001"
+      - "VUL-WEB-SSRF-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-601"
+    examples:
+      basic: "https://trusted.com/redirect?url=https://evil.com"
+      encoded: "https://trusted.com/redirect?url=https%3A%2F%2Fevil.com"
+      double_encoded: "https://trusted.com/redirect?url=https%253A%252F%252Fevil.com"
+    bypass_techniques:
+      - name: "Protocol Bypass"
+        payload: "//evil.com"
+      - name: "Domain Confusion"
+        payload: "https://trusted.com@evil.com"
+      - name: "Subdomain"
+        payload: "https://trusted.com.evil.com"
+      - name: "Backslash"
+        payload: "https://trusted.com\\@evil.com"
+      - name: "CRLF"
+        payload: "https://trusted.com%0d%0aLocation: https://evil.com"
+    impact:
+      - "피싱 공격"
+      - "자격 증명 탈취"
+      - "악성코드 배포"
+      - "OAuth 토큰 탈취"
+    use_cases:
+      - "로그인 후 리다이렉트"
+      - "로그아웃 후 리다이렉트"
+      - "OAuth 콜백"
+      - "이메일 링크 추적"
+    prevention:
+      - "화이트리스트 기반 검증"
+      - "상대 경로만 허용"
+      - "URL 파싱 및 검증"
+      - "리다이렉트 사용 최소화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Open Redirect"
+      - "CWE-601"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Open Redirect는 리다이렉트 파라미터에 악성 URL을 주입하여
+      신뢰할 수 있는 도메인을 통해 피싱 공격에 악용되는 취약점이다.
+    search_keywords:
+      - "Open Redirect"
+      - "URL Redirection"
+      - "리다이렉트"
+      - "피싱"

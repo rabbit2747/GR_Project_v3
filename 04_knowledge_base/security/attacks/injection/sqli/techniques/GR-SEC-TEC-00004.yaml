@@ -1,0 +1,134 @@
+# GR-SEC-TEC-00004: Error-based SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00004
+  name: "Error-based SQL Injection"
+  normalization:
+    normalized_name: "error based sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "Error SQLi"
+    - "에러 기반 SQLi"
+    - "Verbose Error SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-EXFIL"
+
+definition:
+  what: |
+    의도적으로 SQL 구문 오류나 타입 변환 오류를 유발하여,
+    데이터베이스가 반환하는 에러 메시지에 원하는 데이터를
+    포함시켜 추출하는 SQL Injection 기법이다.
+  why: |
+    UNION 기반처럼 빠르면서도, 결과가 직접 표시되지 않는
+    환경에서도 사용 가능하다. 에러 메시지가 상세할수록
+    더 많은 데이터를 한 번에 추출할 수 있다.
+  how: |
+    1. 에러 메시지 출력 여부 확인
+    2. DBMS별 에러 유발 함수 선택
+       - MySQL: EXTRACTVALUE(), UPDATEXML()
+       - MSSQL: CONVERT(), CAST()
+       - Oracle: CTXSYS.DRITHSX.SN(), UTL_INADDR
+       - PostgreSQL: CAST()
+    3. 서브쿼리로 추출할 데이터 구성
+    4. 에러 메시지에서 데이터 파싱
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00022  # Verbose Error Messages (TODO)
+    alternative_to:
+      - GR-SEC-TEC-00001  # UNION-based
+      - GR-SEC-TEC-00002  # Boolean-based
+      - GR-SEC-TEC-00003  # Time-based
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.85
+    conditions:
+      - when:
+          context_type: configuration
+          condition: "error_messages_suppressed == true"
+        then:
+          value: 0.0
+          reason: "에러 메시지가 숨겨지면 사용 불가"
+      - when:
+          context_type: configuration
+          condition: "generic_error_only == true"
+        then:
+          value: 0.1
+          reason: "일반적인 에러만 표시되면 데이터 추출 불가"
+
+properties:
+  security:
+    severity: high
+    attack_phase: exploitation
+    data_exfiltration: true
+    speed: fast
+    stealth: low
+    dbms_functions:
+      mysql: "EXTRACTVALUE(), UPDATEXML(), EXP()"
+      postgresql: "CAST(), ::int"
+      mssql: "CONVERT(), CAST(), @@version"
+      oracle: "CTXSYS.DRITHSX.SN(), UTL_INADDR.GET_HOST_ADDRESS()"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Error-based SQL Injection은 데이터베이스 에러 메시지를
+      이용하여 데이터를 추출하는 기법이다. EXTRACTVALUE(),
+      UPDATEXML(), CONVERT() 등의 함수로 의도적 오류를 유발하고
+      에러 메시지에 쿼리 결과를 포함시킨다. UNION 기반만큼
+      빠르면서 결과 미표시 환경에서도 동작한다. 단, 에러 메시지가
+      상세하게 출력되어야 하며, 프로덕션에서는 보통 비활성화된다.
+    search_keywords:
+      - "Error-based SQLi"
+      - "에러 기반 SQLi"
+      - "EXTRACTVALUE"
+      - "UPDATEXML"
+      - "CONVERT error"
+      - "verbose error"
+      - "에러 메시지 추출"
+    related_queries:
+      - "Error-based SQLi는 어떻게 하는가?"
+      - "EXTRACTVALUE를 이용한 데이터 추출 방법은?"
+      - "에러 메시지가 안 보이면 어떻게 하는가?"

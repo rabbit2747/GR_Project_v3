@@ -1,0 +1,112 @@
+# GR Atom: Discovery (MITRE ATT&CK TA0007)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-DISCOVERY-001"
+  name: "Discovery (TA0007)"
+  normalization:
+    normalized_name: "discovery mitre attack ta0007 reconnaissance enumeration"
+    normalization_version: "1.0"
+  aliases:
+    - "탐색"
+    - "Discovery"
+    - "TA0007"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Discovery는 공격자가 침해된 환경에 대한 정보를 수집하는 전술이다.
+    시스템, 네트워크, 사용자, 보안 소프트웨어 등을 파악한다.
+  why: |
+    효과적인 횡적 이동, 권한 상승, 데이터 수집을 위해 필수적이다.
+    환경을 이해하지 못하면 공격 목표 달성이 어렵다.
+  how: |
+    1. System Information Discovery (T1082): 시스템 정보 수집
+    2. Account Discovery (T1087): 계정 정보 열거
+    3. Network Service Discovery (T1046): 네트워크 서비스 탐색
+    4. File and Directory Discovery (T1083): 파일/디렉토리 탐색
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    preceded_by:
+      - "ATK-MITRE-CRED-ACCESS-001"
+    followed_by:
+      - "ATK-MITRE-LATERAL-001"
+
+properties:
+  technical:
+    mitre_id: "TA0007"
+    techniques:
+      - id: "T1082"
+        name: "System Information Discovery"
+        commands: ["systeminfo", "uname -a", "cat /etc/os-release"]
+      - id: "T1087"
+        name: "Account Discovery"
+        sub_techniques:
+          - "T1087.001: Local Account"
+          - "T1087.002: Domain Account"
+        commands: ["net user", "net group", "cat /etc/passwd"]
+      - id: "T1046"
+        name: "Network Service Discovery"
+        description: "포트 스캔, 서비스 열거"
+      - id: "T1083"
+        name: "File and Directory Discovery"
+        commands: ["dir", "ls", "find"]
+      - id: "T1069"
+        name: "Permission Groups Discovery"
+        description: "그룹 권한 열거"
+      - id: "T1518"
+        name: "Software Discovery"
+        sub_techniques:
+          - "T1518.001: Security Software Discovery"
+    detection:
+      - "대량 명령어 실행 모니터링"
+      - "열거 도구 실행 탐지"
+      - "비정상 네트워크 스캔"
+      - "WMI/PowerShell 사용 패턴"
+    prevention:
+      - "최소 권한 접근"
+      - "네트워크 세그먼테이션"
+      - "명령어 실행 제한"
+      - "정보 노출 최소화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Discovery"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Discovery(TA0007)는 침해된 환경 정보 수집 전술이다. 시스템, 계정, 네트워크
+      서비스를 열거하며 명령어 모니터링, 권한 제한으로 탐지/방어한다.
+    search_keywords:
+      - "Discovery"
+      - "TA0007"
+      - "탐색"
+      - "정보 수집"
+    related_queries:
+      - "내부 정찰"
+      - "계정 열거"
+      - "네트워크 스캔"

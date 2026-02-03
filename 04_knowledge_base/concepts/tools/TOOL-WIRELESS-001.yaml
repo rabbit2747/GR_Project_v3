@@ -1,0 +1,97 @@
+# GR Atom: Wireless Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-WIRELESS-001"
+  name: "Wireless Security Tool"
+  normalization:
+    normalized_name: "wireless security tool wifi bluetooth"
+    normalization_version: "1.0"
+  aliases:
+    - "Wireless Security Tool"
+    - "무선 보안 도구"
+    - "WiFi Hacking Tool"
+    - "Wireless Audit Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "WIRELESS"]
+
+definition:
+  what: |
+    무선 네트워크(WiFi, Bluetooth) 보안 테스트에
+    사용되는 도구 분류이다.
+  why: |
+    무선 네트워크 취약점을 테스트한다.
+    암호화 강도를 평가한다.
+    불법 AP를 탐지한다.
+  how: |
+    1. 무선 어댑터 설정
+    2. 네트워크 스캔
+    3. 패킷 캡처
+    4. 공격/분석 수행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE-001"
+    has_children:
+      - "TOOL-WIRELESS-AIRCRACK-001"
+      - "TOOL-WIRELESS-WIFITE-001"
+    related_to:
+      - "ATK-NET-WIRELESS-001"
+
+properties:
+  technical:
+    attacks:
+      - "WPA/WPA2 크래킹"
+      - "Evil Twin"
+      - "Deauthentication"
+      - "PMKID 공격"
+      - "Rogue AP"
+    examples:
+      - "Aircrack-ng"
+      - "Wifite"
+      - "Kismet"
+      - "Bettercap"
+      - "Fluxion"
+    requirements:
+      - "모니터 모드 지원 어댑터"
+      - "패킷 인젝션 지원"
+    protocols:
+      - "802.11 (WiFi)"
+      - "Bluetooth"
+      - "ZigBee"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Aircrack-ng"
+      - "WiFi Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Wireless Security Tool은 WiFi 등 무선 네트워크
+      보안 테스트에 사용되는 도구 분류이다.
+    search_keywords:
+      - "Wireless"
+      - "WiFi"
+      - "Aircrack"
+      - "무선"

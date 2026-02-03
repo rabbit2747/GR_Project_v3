@@ -1,0 +1,114 @@
+# GR Atom: SIEM (Security Information and Event Management)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-DEFENSE-SIEM-001"
+  name: "SIEM (Security Information and Event Management)"
+  normalization:
+    normalized_name: "siem security information event management log analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "SIEM"
+    - "보안 정보 이벤트 관리"
+    - "통합 보안 관제"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["TOOL", "DEFENSE", "MONITORING"]
+
+definition:
+  what: |
+    SIEM은 다양한 소스의 보안 이벤트를 수집, 분석, 상관관계 분석하여
+    위협을 탐지하고 대응하는 플랫폼이다.
+  why: |
+    분산된 로그를 중앙에서 분석하여 복잡한 공격을 탐지할 수 있다.
+    규정 준수 요구사항 충족, 포렌식 조사 지원에도 필수적이다.
+  how: |
+    1. Collection: 로그 및 이벤트 수집
+    2. Normalization: 데이터 정규화
+    3. Correlation: 상관관계 분석
+    4. Alerting: 경고 생성 및 대응
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-DETECT-MONITORING-001"
+      - "DEF-DETECT-LOGGING-001"
+  causal:
+    supports:
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    core_functions:
+      - name: "Log Collection"
+        description: "다양한 소스에서 로그 수집"
+        sources: ["서버", "네트워크 장비", "애플리케이션", "클라우드"]
+      - name: "Parsing & Normalization"
+        description: "다양한 형식의 로그 정규화"
+      - name: "Correlation"
+        description: "여러 이벤트 간 상관관계 분석"
+      - name: "Alerting"
+        description: "규칙 기반 경고 생성"
+      - name: "Reporting"
+        description: "대시보드 및 보고서 생성"
+      - name: "Retention"
+        description: "규정 준수를 위한 로그 보관"
+    key_vendors:
+      - "Splunk"
+      - "Microsoft Sentinel"
+      - "IBM QRadar"
+      - "Elastic Security"
+      - "LogRhythm"
+      - "Sumo Logic"
+    detection_rules:
+      - "Sigma: 오픈소스 탐지 규칙 형식"
+      - "MITRE ATT&CK 매핑"
+      - "상관관계 규칙"
+      - "임계값 기반 경고"
+      - "ML 기반 이상 탐지"
+    soar_integration:
+      description: "SOAR와 연동하여 대응 자동화"
+      capabilities:
+        - "Playbook 실행"
+        - "자동 티켓 생성"
+        - "대응 조치 자동화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner SIEM Magic Quadrant"
+      - "SANS SIEM Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SIEM은 보안 로그 중앙 수집 및 상관관계 분석 플랫폼이다. Splunk, Sentinel,
+      QRadar가 대표 제품이며 Sigma 규칙, MITRE 매핑으로 위협을 탐지한다.
+    search_keywords:
+      - "SIEM"
+      - "보안 관제"
+      - "Splunk"
+      - "로그 분석"
+    related_queries:
+      - "SIEM 솔루션"
+      - "보안 모니터링"
+      - "Sigma 규칙"

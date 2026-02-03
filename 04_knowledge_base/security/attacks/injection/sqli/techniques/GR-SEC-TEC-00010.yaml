@@ -1,0 +1,148 @@
+# GR-SEC-TEC-00010: Case and Whitespace Manipulation Bypass
+
+identity:
+  id: GR-SEC-TEC-00010
+  name: "Case and Whitespace Manipulation Bypass"
+  normalization:
+    normalized_name: "case whitespace manipulation bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "Case Variation Bypass"
+    - "Whitespace Bypass"
+    - "대소문자 우회"
+    - "공백 우회"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-EVA-BYPASS"
+
+definition:
+  what: |
+    SQL 키워드의 대소문자를 변형하거나, 공백 대신
+    다른 화이트스페이스 문자(탭, 개행, 주석 등)를
+    사용하여 WAF의 패턴 매칭을 우회하는 기법이다.
+  why: |
+    SQL은 대소문자를 구분하지 않고, 다양한 화이트스페이스를
+    동일하게 처리한다. 그러나 많은 WAF가 정확한 패턴
+    매칭에 의존하여 변형을 탐지하지 못한다.
+  how: |
+    1. 대소문자 변형:
+       - UNION → uNiOn, UnIoN, union
+       - SELECT → sElEcT, SeLeCt
+    2. 공백 대체:
+       - 탭: %09
+       - 개행: %0a, %0d
+       - 수직탭: %0b
+       - 폼피드: %0c
+       - 주석: /**/
+    3. 무작위 조합으로 패턴 다양화
+    4. 예: uNiOn%09SeLeCt, UNION%0aSELECT
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00003  # WAF Bypass Technique (TODO)
+  conditional:
+    mitigates:
+      - GR-SEC-CTL-00010  # WAF Keyword Filter (TODO)
+    used_with:
+      - GR-SEC-TEC-00001  # UNION-based
+      - GR-SEC-TEC-00002  # Boolean-based
+      - GR-SEC-TEC-00008  # Comment-based Bypass
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.5
+    conditions:
+      - when:
+          context_type: security
+          condition: "waf_case_insensitive == true"
+        then:
+          value: 0.2
+          reason: "대소문자 정규화 시 case 우회 무효화"
+      - when:
+          context_type: security
+          condition: "waf_whitespace_normalize == true"
+        then:
+          value: 0.2
+          reason: "화이트스페이스 정규화 시 공백 우회 무효화"
+
+properties:
+  security:
+    severity: low
+    attack_phase: evasion
+    stealth: medium
+    complexity: low
+    case_variations:
+      union: ["UNION", "union", "Union", "uNiOn", "UnIoN"]
+      select: ["SELECT", "select", "Select", "sElEcT", "SeLeCt"]
+    whitespace_alternatives:
+      tab: "%09"
+      newline: "%0a"
+      carriage_return: "%0d"
+      vertical_tab: "%0b"
+      form_feed: "%0c"
+      comment: "/**/"
+      parenthesis: "()"
+    examples:
+      case_union: "uNiOn SeLeCt"
+      whitespace_union: "UNION%09SELECT"
+      combined: "uNiOn%0aSeLeCt"
+      nested_parenthesis: "((UNION(SELECT)))"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/02_SQLi_Bypass_Techniques.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Case and Whitespace Manipulation은 SQL 키워드의
+      대소문자를 변형하거나 공백을 탭, 개행 등으로 대체하여
+      WAF를 우회하는 기법이다. SQL은 대소문자 구분이 없고
+      다양한 화이트스페이스를 동일 처리하지만, 단순한 WAF는
+      정확한 패턴에만 반응한다. 가장 기본적인 우회 기법으로
+      다른 기법과 조합하여 사용한다.
+    search_keywords:
+      - "Case bypass"
+      - "대소문자 우회"
+      - "Whitespace bypass"
+      - "공백 우회"
+      - "%09"
+      - "%0a"
+      - "uNiOn"
+    related_queries:
+      - "대소문자로 WAF를 우회하는 방법은?"
+      - "공백 대신 사용할 수 있는 문자는?"
+      - "가장 기본적인 WAF 우회 방법은?"

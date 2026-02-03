@@ -1,0 +1,111 @@
+# GR Atom: Padding Oracle Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-PADDING-ORACLE-001"
+  name: "Padding Oracle Attack"
+  normalization:
+    normalized_name: "padding oracle attack cbc decryption cryptographic"
+    normalization_version: "1.0"
+  aliases:
+    - "패딩 오라클 공격"
+    - "CBC 패딩 공격"
+    - "암호화 오라클 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["ATK", "CRYPTO", "ORACLE"]
+
+definition:
+  what: |
+    CBC 모드 암호화에서 패딩 유효성 검사 응답을 악용하여
+    암호문을 복호화하거나 유효한 암호문을 생성하는 공격이다.
+  why: |
+    키 없이 암호화된 데이터를 복호화한다.
+    세션 토큰, 인증 데이터 등을 조작한다.
+  how: |
+    1. 패딩 오류 응답 식별
+    2. 바이트 단위 추측 시작
+    3. XOR 연산으로 평문 도출
+    4. 전체 블록 복호화
+
+relations:
+  structural:
+    is_a:
+      - "ATK-CRYPTO-WEAK-001"
+    related_to:
+      - "VUL-CRYPTO-WEAK-001"
+      - "DEF-CRYPTO-ENCRYPTION-001"
+
+properties:
+  technical:
+    vulnerability:
+      - "패딩 유효성 정보 노출"
+      - "타이밍 차이"
+      - "에러 메시지 차이"
+    affected_modes:
+      - "CBC (Cipher Block Chaining)"
+    padding_schemes:
+      - "PKCS#5"
+      - "PKCS#7"
+    attack_variants:
+      - name: "Decrypt Attack"
+        description: "암호문에서 평문 복원"
+      - name: "Encrypt Attack"
+        description: "유효한 암호문 생성"
+    notable_vulnerabilities:
+      - "ASP.NET Padding Oracle (CVE-2010-3332)"
+      - "Java Server Faces ViewState"
+      - "Ruby on Rails Cookie"
+    tools:
+      - "PadBuster"
+      - "Padding Oracle Attacker"
+    complexity:
+      blocks_per_byte: 256
+      max_requests: "256 × 블록크기 × 블록수"
+    detection:
+      - "반복적 요청 패턴"
+      - "에러 응답 분석"
+      - "타이밍 이상"
+    mitigation:
+      - "AEAD 암호화 (AES-GCM)"
+      - "일관된 에러 응답"
+      - "MAC-then-Encrypt"
+      - "Encrypt-then-MAC"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Vaudenay Padding Oracle"
+      - "OWASP Cryptographic Failures"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      패딩 오라클 공격은 CBC 암호화의 패딩 검증 응답을 악용하여
+      키 없이 암호문을 복호화하는 암호학적 공격이다.
+    search_keywords:
+      - "패딩 오라클"
+      - "CBC 공격"
+      - "암호화 취약점"
+      - "PadBuster"
+    related_queries:
+      - "암호학적 공격"
+      - "AEAD"
+      - "블록 암호 공격"

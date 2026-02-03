@@ -1,0 +1,118 @@
+# GR Atom: JWT Format
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-FORMAT-JWT-001"
+  name: "JWT (JSON Web Token)"
+  normalization:
+    normalized_name: "jwt json web token bearer token stateless"
+    normalization_version: "1.0"
+  aliases:
+    - "JWT"
+    - "JSON Web Token"
+    - "Bearer Token"
+
+classification:
+  domain: application
+  type: format
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "FORMAT", "AUTH"]
+
+definition:
+  what: |
+    JWT(JSON Web Token)는 당사자 간에 JSON 객체로 정보를 안전하게
+    전송하기 위한 컴팩트하고 자체 포함된 방식이다. 서명 또는 암호화할 수 있다.
+  why: |
+    Stateless 인증의 핵심이다. 서명 검증 부재, 알고리즘 혼동,
+    민감 정보 노출이 주요 보안 위협이다.
+  how: |
+    1. Header: 알고리즘과 토큰 타입
+    2. Payload: Claims (데이터)
+    3. Signature: 무결성 검증
+    4. 형식: xxxxx.yyyyy.zzzzz (Base64URL 인코딩)
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DATA-FORMAT-001"
+  causal:
+    used_by:
+      - "TECH-PROTOCOL-OAUTH-001"
+      - "TECH-PROTOCOL-OIDC-001"
+    targeted_by:
+      - "ATK-AUTH-JWTATTACK-001"
+
+properties:
+  technical:
+    structure:
+      header:
+        - "alg: 서명 알고리즘 (HS256, RS256, ES256)"
+        - "typ: 토큰 타입 (JWT)"
+      payload_claims:
+        registered:
+          - "iss (Issuer)"
+          - "sub (Subject)"
+          - "aud (Audience)"
+          - "exp (Expiration)"
+          - "iat (Issued At)"
+          - "nbf (Not Before)"
+          - "jti (JWT ID)"
+        custom: "애플리케이션별 커스텀 클레임"
+      signature: "HMAC 또는 RSA/ECDSA 서명"
+    algorithms:
+      symmetric:
+        - "HS256, HS384, HS512"
+      asymmetric:
+        - "RS256, RS384, RS512"
+        - "ES256, ES384, ES512"
+        - "PS256, PS384, PS512"
+      dangerous:
+        - "none (서명 없음)"
+    security_issues:
+      - name: "Algorithm Confusion"
+        description: "alg: none 또는 RS→HS 혼동"
+        prevention: "알고리즘 화이트리스트"
+      - name: "Sensitive Data in Payload"
+        description: "Payload는 Base64일 뿐 암호화 아님"
+        prevention: "민감 정보 제외 또는 JWE 사용"
+      - name: "Long-lived Tokens"
+        description: "만료 없는 토큰"
+        prevention: "짧은 exp, Refresh Token 사용"
+      - name: "Weak Secret"
+        description: "추측 가능한 HMAC 키"
+        prevention: "강력한 랜덤 키"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 7519 - JWT"
+      - "OWASP JWT Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      JWT(JSON Web Token)는 서명된 JSON 토큰으로 Stateless 인증에 사용된다.
+      알고리즘 혼동, 민감 정보 노출이 주요 위협이며 알고리즘 검증, 짧은 만료가 중요하다.
+    search_keywords:
+      - "JWT"
+      - "JSON Web Token"
+      - "Bearer Token"
+      - "토큰 인증"
+    related_queries:
+      - "JWT 보안"
+      - "JWT vs Session"
+      - "JWT 검증"

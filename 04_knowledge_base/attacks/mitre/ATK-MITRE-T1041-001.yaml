@@ -1,0 +1,105 @@
+# GR Atom: Exfiltration Over C2 Channel
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1041-001"
+  name: "Exfiltration Over C2 Channel"
+  normalization:
+    normalized_name: "exfiltration c2 channel data theft covert channel"
+    normalization_version: "1.0"
+  aliases:
+    - "Data Exfiltration"
+    - "C2 유출"
+    - "데이터 유출"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "EXFIL"]
+
+definition:
+  what: |
+    기존 C2 채널을 통해 탈취한 데이터를 외부로
+    유출하는 기법이다.
+  why: |
+    추가 인프라 없이 데이터를 유출한다.
+    기존 통신에 숨겨 탐지를 회피한다.
+  how: |
+    1. 데이터 수집
+    2. 압축/암호화
+    3. C2 채널로 전송
+    4. 외부 수신
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0010-001"
+    related_to:
+      - "ATK-MITRE-T1071-001"
+      - "ATK-MITRE-T1560-001"
+
+properties:
+  technical:
+    mitre_id: "T1041"
+    tactic: "Exfiltration"
+    characteristics:
+      - "기존 C2 인프라 재사용"
+      - "별도 유출 채널 불필요"
+      - "암호화된 통신"
+    protocols:
+      - "HTTP/HTTPS"
+      - "DNS"
+      - "ICMP"
+      - "Custom Protocol"
+    data_types:
+      - "자격 증명"
+      - "문서/파일"
+      - "데이터베이스"
+      - "이메일"
+      - "소스코드"
+    preparation:
+      - "데이터 수집 (T1005, T1039)"
+      - "압축 (T1560)"
+      - "암호화"
+      - "청크 분할"
+    detection:
+      - "네트워크 이상 트래픽"
+      - "대용량 아웃바운드"
+      - "비정상 시간대 전송"
+      - "DLP 경보"
+    prevention:
+      - "이그레스 필터링"
+      - "DLP 솔루션"
+      - "네트워크 모니터링"
+      - "데이터 분류/암호화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1041"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Exfiltration Over C2(T1041)는 기존 C2 채널을 통해
+      탈취 데이터를 유출하는 MITRE ATT&CK Exfiltration 기법이다.
+    search_keywords:
+      - "Exfiltration"
+      - "T1041"
+      - "C2 Channel"
+      - "데이터 유출"

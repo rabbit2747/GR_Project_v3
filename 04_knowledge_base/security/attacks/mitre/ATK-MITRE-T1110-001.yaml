@@ -1,0 +1,119 @@
+# GR Atom: MITRE ATT&CK T1110 - Brute Force
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1110-001"
+  name: "Brute Force (MITRE T1110)"
+  normalization:
+    normalized_name: "mitre t1110 brute force password spray credential stuffing"
+    normalization_version: "1.0"
+  aliases:
+    - "브루트 포스"
+    - "T1110"
+    - "무차별 대입"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "CREDENTIAL"]
+
+definition:
+  what: |
+    Brute Force는 비밀번호나 암호화 키를 추측하거나 체계적으로
+    시도하여 접근 권한을 획득하는 공격 기법이다. MITRE ATT&CK T1110.
+  why: |
+    사용자들이 약한 비밀번호를 사용하는 경우가 많다.
+    자동화 도구로 대량의 시도가 가능하다.
+  how: |
+    1. 대상 계정/서비스 식별
+    2. 비밀번호 목록 또는 패턴 준비
+    3. 자동화된 시도
+    4. 성공한 자격 증명으로 접근
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-CREDENTIAL-001"
+    enables:
+      - "ATK-MITRE-T1078-001"
+
+properties:
+  technical:
+    mitre_id: "T1110"
+    tactic: "Credential Access"
+    sub_techniques:
+      - id: "T1110.001"
+        name: "Password Guessing"
+        description: "일반적인 비밀번호 추측"
+        examples: ["password123", "company2024"]
+      - id: "T1110.002"
+        name: "Password Cracking"
+        description: "해시 오프라인 크래킹"
+        tools: ["Hashcat", "John the Ripper"]
+      - id: "T1110.003"
+        name: "Password Spraying"
+        description: "하나의 비밀번호로 다수 계정"
+        advantage: "계정 잠금 우회"
+      - id: "T1110.004"
+        name: "Credential Stuffing"
+        description: "유출된 자격 증명 재사용"
+        source: "데이터 유출 목록"
+    attack_targets:
+      - "웹 로그인"
+      - "SSH/RDP"
+      - "이메일 (IMAP, OWA)"
+      - "VPN"
+      - "API 엔드포인트"
+    tools:
+      - "Hydra"
+      - "Medusa"
+      - "Burp Intruder"
+      - "CrackMapExec"
+      - "Spray"
+    detection:
+      - "로그인 실패 모니터링"
+      - "계정 잠금 알림"
+      - "비정상 로그인 시간/위치"
+      - "동일 IP 다중 계정 시도"
+    prevention:
+      - "계정 잠금 정책"
+      - "MFA"
+      - "CAPTCHA"
+      - "비밀번호 정책"
+      - "비율 제한"
+      - "유출 비밀번호 검사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1110"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1110은 브루트 포스 공격으로 비밀번호 추측, 스프레이, 스터핑을 포함한다.
+      계정 잠금, MFA, 비율 제한으로 방어한다.
+    search_keywords:
+      - "T1110"
+      - "브루트 포스"
+      - "패스워드 스프레이"
+      - "크리덴셜 스터핑"
+    related_queries:
+      - "비밀번호 공격"
+      - "계정 탈취"
+      - "인증 보안"

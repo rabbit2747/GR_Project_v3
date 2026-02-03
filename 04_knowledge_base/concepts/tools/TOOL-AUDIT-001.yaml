@@ -1,0 +1,103 @@
+# GR Atom: Security Audit Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AUDIT-001"
+  name: "Security Audit Tool"
+  normalization:
+    normalized_name: "security audit tool scanner assessment"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Audit Tool"
+    - "보안 감사 도구"
+    - "Vulnerability Scanner"
+    - "Assessment Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "AUDIT"]
+
+definition:
+  what: |
+    보안 감사, 취약점 스캔, 컴플라이언스 평가에 사용되는
+    보안 도구 분류이다.
+  why: |
+    보안 상태를 체계적으로 평가한다.
+    취약점을 자동으로 탐지한다.
+    규정 준수 여부를 확인한다.
+  how: |
+    1. 스캔 대상 정의
+    2. 스캔 실행
+    3. 결과 분석
+    4. 보고서 생성
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    has_children:
+      - "TOOL-SCANNER-001"
+      - "DEF-DEVSECOPS-SAST-001"
+      - "DEF-DEVSECOPS-DAST-001"
+    related_to:
+      - "GR-SEC-VULN-001"
+      - "GR-SEC-COMP-001"
+
+properties:
+  technical:
+    subcategories:
+      vulnerability_scanner:
+        description: "취약점 스캐너"
+        examples: ["Nessus", "OpenVAS", "Qualys"]
+      sast:
+        description: "정적 분석"
+        examples: ["SonarQube", "Checkmarx", "Fortify"]
+      dast:
+        description: "동적 분석"
+        examples: ["OWASP ZAP", "Burp Suite"]
+      compliance:
+        description: "컴플라이언스 스캐너"
+        examples: ["Prowler", "ScoutSuite"]
+    examples:
+      - "Nessus"
+      - "OpenVAS"
+      - "Nikto"
+      - "OWASP ZAP"
+    outputs:
+      - "취약점 목록"
+      - "위험도 평가"
+      - "개선 권고사항"
+      - "컴플라이언스 보고서"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-115"
+      - "OWASP Testing Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Audit Tool은 보안 감사와 취약점 스캔에
+      사용되는 보안 도구 분류이다.
+    search_keywords:
+      - "Audit"
+      - "Scanner"
+      - "Assessment"
+      - "감사"

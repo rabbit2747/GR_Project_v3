@@ -1,0 +1,117 @@
+# GR Atom: DNS Attacks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-DNS-001"
+  name: "DNS Attacks"
+  normalization:
+    normalized_name: "dns attack spoofing poisoning hijacking tunneling"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS 공격"
+    - "DNS 스푸핑"
+    - "DNS 하이재킹"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone1"
+    tags: ["ATK", "NET", "DNS"]
+
+definition:
+  what: |
+    DNS 공격은 도메인 이름 시스템의 취약점을 악용하여 트래픽을
+    가로채거나 악성 사이트로 리다이렉트하는 공격이다.
+  why: |
+    DNS는 인터넷의 핵심 인프라로 모든 통신의 시작점이다.
+    DNS 침해 시 대규모 피싱, MITM 공격이 가능하다.
+  how: |
+    1. 대상 DNS 환경 분석
+    2. 취약점 식별 (캐시, 레코드, 프로토콜)
+    3. 공격 실행
+    4. 트래픽 리다이렉트 또는 데이터 탈취
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "DNS Spoofing"
+        description: "위조된 DNS 응답 주입"
+        method: "MITM 또는 캐시 포이즈닝"
+      - name: "DNS Cache Poisoning"
+        description: "DNS 캐시에 악성 레코드 삽입"
+        famous: "Kaminsky Attack"
+      - name: "DNS Hijacking"
+        description: "DNS 설정 변경"
+        targets: ["라우터", "도메인 레지스트라"]
+      - name: "DNS Tunneling"
+        description: "DNS 프로토콜로 데이터 유출"
+        use: "방화벽 우회, C2 통신"
+      - name: "DNS Amplification"
+        description: "DDoS 증폭 공격"
+        amplification: "28-54x"
+      - name: "NXDOMAIN Attack"
+        description: "존재하지 않는 도메인 쿼리 폭주"
+    dns_tunneling:
+      tools:
+        - "iodine"
+        - "dnscat2"
+        - "DNSExfiltrator"
+      indicators:
+        - "긴 서브도메인"
+        - "TXT 레코드 과다"
+        - "높은 쿼리 볼륨"
+        - "비정상 엔트로피"
+    prevention:
+      - "DNSSEC 구현"
+      - "DNS over HTTPS (DoH)"
+      - "DNS over TLS (DoT)"
+      - "응답 속도 제한"
+      - "DNS 쿼리 모니터링"
+      - "Split-horizon DNS"
+    detection:
+      - "DNS 트래픽 분석"
+      - "이상 쿼리 패턴"
+      - "TTL 이상"
+      - "NXDOMAIN 비율"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP DNS Security"
+      - "NIST DNS Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS 공격은 스푸핑, 캐시 포이즈닝, 터널링을 포함한다. DNSSEC, DoH/DoT,
+      쿼리 모니터링으로 방어한다.
+    search_keywords:
+      - "DNS 공격"
+      - "DNS 스푸핑"
+      - "캐시 포이즈닝"
+      - "DNS 터널링"
+    related_queries:
+      - "DNSSEC"
+      - "DNS 보안"
+      - "DoH"

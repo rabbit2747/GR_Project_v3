@@ -1,0 +1,91 @@
+# GR Atom: Data Encryption
+identity:
+  id: "DEF-PREVENT-ENCRYPT-001"
+  name: "Data Encryption"
+  normalization:
+    normalized_name: "data_encryption"
+    normalization_version: "1.0"
+  aliases:
+    - "Encryption at Rest and in Transit"
+    - "Data Protection via Encryption"
+    - "데이터 암호화"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["P", "E"]
+
+definition:
+  what: |
+    저장 시(at-rest)와 전송 시(in-transit) 데이터를 암호화하여 무단 접근 시에도
+    데이터의 기밀성을 보장하는 방어 기법. 대칭/비대칭 암호화 알고리즘을 사용하여
+    데이터를 읽을 수 없는 형태로 변환한다.
+  why: |
+    데이터가 유출되더라도 암호화되어 있으면 공격자가 내용을 읽을 수 없다.
+    규제 준수(GDPR, PCI DSS 등)에서도 민감 데이터 암호화를 필수로 요구하며,
+    데이터 유출 사고의 피해를 최소화하는 마지막 방어선이다.
+  how: |
+    1. 전송 시 암호화: TLS 1.2/1.3을 사용하여 네트워크 통신을 암호화한다.
+    2. 저장 시 암호화: AES-256 등 강력한 대칭 암호화 알고리즘을 사용한다.
+    3. 키 관리: HSM(Hardware Security Module) 또는 KMS(Key Management Service)를 활용한다.
+    4. 비밀번호: bcrypt, Argon2 등 단방향 해시 함수를 사용한다(암호화가 아닌 해싱).
+    5. 데이터베이스: 컬럼 수준 암호화 또는 TDE(Transparent Data Encryption)를 적용한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-DATA-LEAK-001"
+      - "ATK-NET-SNIFF-001"
+  applicability:
+    applies_to:
+      - "INFRA-DATA-RDBMS-001"
+      - "INFRA-DATA-STORAGE-001"
+      - "INFRA-NET-001"
+
+properties:
+  technical:
+    implementation:
+      - "AES-256 encryption (at rest)"
+      - "TLS 1.2/1.3 (in transit)"
+      - "RSA/ECDSA (asymmetric)"
+      - "KMS (AWS KMS, Azure Key Vault, GCP KMS)"
+      - "TDE (Transparent Data Encryption)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Data Encryption은 저장 시(at-rest)와 전송 시(in-transit) 데이터를 암호화하여
+      무단 접근 시에도 기밀성을 보장하는 방어 기법이다. AES-256, TLS 등 강력한
+      암호화 알고리즘과 적절한 키 관리를 통해 데이터를 보호한다.
+    search_keywords:
+      - "data encryption"
+      - "encryption at rest"
+      - "encryption in transit"
+      - "AES-256"
+      - "key management"
+      - "데이터 암호화"
+    related_queries:
+      - "데이터 암호화 모범 사례"
+      - "저장 데이터와 전송 데이터 암호화의 차이"
+      - "암호화 키 관리 방법"

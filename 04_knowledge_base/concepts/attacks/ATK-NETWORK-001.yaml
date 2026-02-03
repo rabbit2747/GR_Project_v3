@@ -1,0 +1,76 @@
+# GR Atom: Network Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NETWORK-001"
+  name: "Network Attack"
+  normalization:
+    normalized_name: "network attack mitm ddos sniffing"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Attack"
+    - "네트워크 공격"
+    - "Network Layer Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "NETWORK"]
+
+definition:
+  what: |
+    네트워크 계층의 취약점을 악용하는 공격 기법 분류이다.
+  why: |
+    통신을 가로챈다.
+    서비스를 방해한다.
+    네트워크 접근을 획득한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-NET-MITM-001"
+      - "ATK-NET-DDOS-001"
+      - "ATK-NET-DNS-TUNNELING-001"
+    related_to:
+      - "DEF-NET-001"
+
+properties:
+  technical:
+    techniques:
+      - "Man-in-the-Middle"
+      - "DDoS"
+      - "ARP Spoofing"
+      - "DNS Spoofing"
+      - "Network Sniffing"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Attack은 네트워크 계층을 대상으로 하는 공격 기법 분류이다.
+    search_keywords:
+      - "Network Attack"
+      - "네트워크 공격"
+      - "MitM"
+      - "DDoS"

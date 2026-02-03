@@ -1,0 +1,112 @@
+# GR Atom: theHarvester
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-THEHARVESTER-001"
+  name: "theHarvester"
+  normalization:
+    normalized_name: "theharvester osint email subdomain reconnaissance"
+    normalization_version: "1.0"
+  aliases:
+    - "theHarvester"
+    - "Email Harvester"
+    - "이메일 수집 도구"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "RECON", "OSINT"]
+
+definition:
+  what: |
+    공개 소스에서 이메일, 서브도메인, 호스트, 이름 등을
+    수집하는 정찰 및 OSINT 도구이다.
+  why: |
+    타겟 조직 정보를 수집한다.
+    공격 표면을 파악한다.
+  how: |
+    1. 도메인 지정
+    2. 데이터 소스 선택
+    3. 정보 수집
+    4. 결과 분석
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "TOOL-RECON-AMASS-001"
+
+properties:
+  technical:
+    developer: "Edge-Security"
+    license: "GPL"
+    language: "Python"
+    data_sources:
+      search_engines:
+        - "baidu"
+        - "bing"
+        - "duckduckgo"
+        - "google"
+        - "yahoo"
+      apis:
+        - "shodan"
+        - "virustotal"
+        - "securitytrails"
+        - "hunter.io"
+        - "censys"
+      dns:
+        - "dnsdumpster"
+        - "threatcrowd"
+    collected_data:
+      - "이메일 주소"
+      - "서브도메인"
+      - "호스트/IP"
+      - "이름"
+      - "URL"
+    usage_examples:
+      basic: "theHarvester -d domain.com -b all"
+      specific: "theHarvester -d domain.com -b google,bing"
+      save: "theHarvester -d domain.com -b all -f output"
+    output_formats:
+      - "HTML"
+      - "XML"
+      - "JSON"
+    use_cases:
+      - "침투 테스트 정찰"
+      - "소셜 엔지니어링 정보"
+      - "공격 표면 분석"
+    repository: "https://github.com/laramies/theHarvester"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "theHarvester GitHub"
+      - "Kali Linux Tools"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      theHarvester는 공개 소스에서 이메일, 서브도메인 등을
+      수집하는 정찰 및 OSINT 도구이다.
+    search_keywords:
+      - "theHarvester"
+      - "Email Harvester"
+      - "OSINT"
+      - "Reconnaissance"

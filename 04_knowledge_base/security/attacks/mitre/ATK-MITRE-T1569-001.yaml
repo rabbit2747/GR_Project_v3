@@ -1,0 +1,109 @@
+# GR Atom: System Services
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1569-001"
+  name: "System Services"
+  normalization:
+    normalized_name: "system services execution service control manager"
+    normalization_version: "1.0"
+  aliases:
+    - "시스템 서비스"
+    - "서비스 실행"
+    - "SCM 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    운영 체제의 서비스 관리 메커니즘을 악용하여
+    악성 코드를 실행하는 기법이다.
+  why: |
+    SYSTEM 권한으로 코드를 실행한다.
+    지속성 메커니즘으로 활용한다.
+  how: |
+    1. 서비스 생성 또는 수정
+    2. 악성 실행 파일 등록
+    3. 서비스 시작
+    4. SYSTEM 권한으로 실행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "ATK-MITRE-PERSISTENCE-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1569"
+    tactic: "Execution"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1569.001"
+        name: "Launchctl"
+        description: "macOS 서비스 관리"
+      - id: "T1569.002"
+        name: "Service Execution"
+        description: "Windows 서비스 실행"
+    windows_methods:
+      - "sc.exe create/start"
+      - "PsExec -s"
+      - "CreateService API"
+      - "서비스 바이너리 교체"
+    linux_methods:
+      - "systemctl"
+      - "service"
+      - "init.d 스크립트"
+    tools:
+      - "sc.exe"
+      - "PsExec"
+      - "Metasploit (psexec module)"
+    detection:
+      - "서비스 생성 이벤트 (Event ID 7045)"
+      - "서비스 시작 이벤트 (Event ID 7036)"
+      - "프로세스 생성 모니터링"
+      - "서비스 변경 감사"
+    mitigation:
+      - "서비스 생성 권한 제한"
+      - "AppLocker/WDAC"
+      - "서비스 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1569"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      System Services는 운영 체제 서비스를 악용하여 악성 코드를
+      실행하는 MITRE ATT&CK Execution 기법이다.
+    search_keywords:
+      - "서비스 실행"
+      - "SCM"
+      - "SYSTEM 권한"
+      - "서비스 생성"
+    related_queries:
+      - "서비스 악용"
+      - "PsExec"
+      - "권한 상승"

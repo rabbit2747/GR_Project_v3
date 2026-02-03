@@ -1,0 +1,128 @@
+# GR Atom: Secure SDLC
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-SECURE-SDLC-001"
+  name: "Secure SDLC"
+  normalization:
+    normalized_name: "secure sdlc software development lifecycle devsecops"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 SDLC"
+    - "Secure Software Development Lifecycle"
+    - "SDL"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "DEVSECOPS", "PROCESS"]
+
+definition:
+  what: |
+    소프트웨어 개발 수명 주기의 각 단계에 보안 활동을
+    통합하여 안전한 소프트웨어를 개발하는 프로세스이다.
+  why: |
+    개발 초기에 취약점을 예방한다.
+    수정 비용을 줄이고 출시 시간을 단축한다.
+  how: |
+    1. 보안 요구사항 정의
+    2. 위협 모델링
+    3. 보안 코딩
+    4. 보안 테스트
+    5. 보안 검토 및 릴리스
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-DEVSECOPS-SAST-001"
+      - "TECH-CONCEPT-THREAT-MODEL-001"
+
+properties:
+  technical:
+    phases:
+      - phase: "Requirements"
+        activities:
+          - "보안 요구사항 수집"
+          - "컴플라이언스 요구사항"
+          - "위험 평가"
+      - phase: "Design"
+        activities:
+          - "위협 모델링"
+          - "보안 아키텍처 설계"
+          - "공격 표면 분석"
+      - phase: "Development"
+        activities:
+          - "보안 코딩 표준"
+          - "코드 리뷰"
+          - "SAST"
+      - phase: "Testing"
+        activities:
+          - "DAST"
+          - "펜테스트"
+          - "보안 QA"
+      - phase: "Deployment"
+        activities:
+          - "보안 구성 검증"
+          - "최종 보안 검토"
+      - phase: "Maintenance"
+        activities:
+          - "취약점 관리"
+          - "패치 관리"
+          - "모니터링"
+    frameworks:
+      - "Microsoft SDL"
+      - "OWASP SAMM"
+      - "BSIMM"
+      - "NIST SSDF"
+    security_gates:
+      - "디자인 리뷰"
+      - "코드 리뷰"
+      - "보안 테스트 통과"
+      - "릴리스 승인"
+    tools_by_phase:
+      design: ["Microsoft Threat Modeling Tool", "OWASP Threat Dragon"]
+      development: ["SonarQube", "Checkmarx", "Semgrep"]
+      testing: ["OWASP ZAP", "Burp Suite"]
+      deployment: ["Trivy", "Checkov"]
+    maturity_models:
+      - "OWASP SAMM"
+      - "BSIMM"
+      - "OpenSAMM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft SDL"
+      - "OWASP SAMM"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Secure SDLC는 소프트웨어 개발 각 단계에 보안을 통합하여
+      안전한 소프트웨어를 만드는 프로세스이다.
+    search_keywords:
+      - "Secure SDLC"
+      - "SDL"
+      - "DevSecOps"
+      - "보안 개발"
+    related_queries:
+      - "보안 요구사항"
+      - "위협 모델링"
+      - "OWASP SAMM"

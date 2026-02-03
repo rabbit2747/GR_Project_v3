@@ -1,0 +1,117 @@
+# GR Atom: Kubernetes Network Policy
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-K8S-NETWORK-POLICY-001"
+  name: "Kubernetes Network Policy"
+  normalization:
+    normalized_name: "kubernetes network policy segmentation pod traffic control"
+    normalization_version: "1.0"
+  aliases:
+    - "K8s 네트워크 정책"
+    - "Pod 네트워크 세분화"
+    - "쿠버네티스 네트워크 보안"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["DEF", "K8S", "NET"]
+
+definition:
+  what: |
+    Kubernetes에서 Pod 간 네트워크 트래픽을 제어하는
+    네임스페이스 수준의 방화벽 규칙이다.
+  why: |
+    횡적 이동을 방지한다.
+    마이크로서비스 간 통신을 제한한다.
+  how: |
+    1. NetworkPolicy 리소스 정의
+    2. 인그레스/이그레스 규칙 설정
+    3. Pod 셀렉터로 대상 지정
+    4. CNI 플러그인에서 적용
+
+relations:
+  structural:
+    is_a:
+      - "DEF-PREVENT-SEGMENTATION-001"
+    related_to:
+      - "INFRA-CONTAINER-K8S-001"
+      - "ATK-MITRE-LATERAL-001"
+
+properties:
+  technical:
+    policy_types:
+      - "Ingress: 들어오는 트래픽 제어"
+      - "Egress: 나가는 트래픽 제어"
+    selectors:
+      podSelector: "대상 Pod 선택"
+      namespaceSelector: "네임스페이스 기반 선택"
+      ipBlock: "IP 대역 기반 선택"
+    example_policy: |
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      metadata:
+        name: default-deny-ingress
+      spec:
+        podSelector: {}
+        policyTypes:
+        - Ingress
+    common_patterns:
+      - name: "Default Deny"
+        description: "기본적으로 모든 트래픽 거부"
+      - name: "Allow Same Namespace"
+        description: "동일 네임스페이스 내 통신 허용"
+      - name: "Allow Specific Ports"
+        description: "특정 포트만 허용"
+      - name: "Allow Specific Sources"
+        description: "특정 소스에서만 허용"
+    cni_plugins:
+      - "Calico"
+      - "Cilium"
+      - "Weave Net"
+      - "Flannel (제한적 지원)"
+    limitations:
+      - "CNI 플러그인 지원 필요"
+      - "호스트 네트워크 Pod 미지원"
+      - "기본적으로 Allow-All"
+    best_practices:
+      - "Default Deny 정책부터 시작"
+      - "필요한 통신만 명시적 허용"
+      - "네임스페이스 격리"
+      - "정기적인 정책 검토"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Kubernetes Network Policies"
+      - "CIS Kubernetes Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kubernetes Network Policy는 Pod 간 네트워크 트래픽을
+      제어하여 횡적 이동을 방지하는 네트워크 보안 메커니즘이다.
+    search_keywords:
+      - "Network Policy"
+      - "K8s 네트워크"
+      - "Pod 격리"
+      - "마이크로서비스"
+    related_queries:
+      - "Kubernetes 보안"
+      - "네트워크 세분화"
+      - "Calico"

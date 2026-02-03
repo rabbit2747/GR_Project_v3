@@ -1,0 +1,139 @@
+# GR-SEC-TEC-00008: Comment-based WAF Bypass
+
+identity:
+  id: GR-SEC-TEC-00008
+  name: "Comment-based WAF Bypass"
+  normalization:
+    normalized_name: "comment based waf bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "Inline Comment Bypass"
+    - "주석 우회"
+    - "Comment Obfuscation"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-EVA-BYPASS"
+
+definition:
+  what: |
+    SQL 주석(/**/, --, #)을 키워드 사이에 삽입하여
+    WAF의 패턴 매칭을 우회하는 기법이다. WAF는
+    "UNION SELECT"를 탐지하지만 "UN/**/ION/**/SELECT"는
+    통과시키는 경우가 많다.
+  why: |
+    대부분의 WAF가 시그니처 기반 탐지를 사용하므로,
+    키워드를 분리하면 패턴 매칭을 회피할 수 있다.
+    DBMS는 주석을 무시하므로 쿼리는 정상 실행된다.
+  how: |
+    1. WAF가 차단하는 키워드 패턴 식별
+    2. 키워드 사이에 인라인 주석 삽입
+       - MySQL: /**/,  /*!*/, /*!50000*/
+       - MSSQL: /**/
+       - Oracle: /**/
+       - PostgreSQL: /**/
+    3. MySQL 버전 주석 활용: /*!50000UNION*/
+    4. 주석 내 쓰레기 값으로 변형: /*garbage*/
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00003  # WAF Bypass Technique (TODO)
+  conditional:
+    mitigates:
+      - GR-SEC-CTL-00010  # WAF UNION Filter (TODO)
+    used_with:
+      - GR-SEC-TEC-00001  # UNION-based
+      - GR-SEC-TEC-00002  # Boolean-based
+      - GR-SEC-TEC-00003  # Time-based
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL (best - version comments)
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.7
+    conditions:
+      - when:
+          context_type: security
+          condition: "waf_type == 'advanced'"
+        then:
+          value: 0.3
+          reason: "고급 WAF는 주석 정규화 후 검사"
+      - when:
+          context_type: security
+          condition: "waf_normalizes_comments == true"
+        then:
+          value: 0.1
+          reason: "주석 제거 후 검사하면 우회 불가"
+
+properties:
+  security:
+    severity: medium
+    attack_phase: evasion
+    stealth: high
+    complexity: low
+    comment_types:
+      standard: "/**/"
+      mysql_version: "/*!50000*/"
+      mysql_optimizer: "/*+ */"
+      line_comment: "--"
+      hash_comment: "#"
+    examples:
+      union_bypass: "UN/**/ION/**/SEL/**/ECT"
+      mysql_version: "/*!50000UNION*//*!50000SELECT*/"
+      mixed: "UNI/*garbage*/ON/*more*/SELECT"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/02_SQLi_Bypass_Techniques.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Comment-based WAF Bypass는 SQL 주석을 키워드 사이에
+      삽입하여 WAF 패턴 매칭을 우회하는 기법이다.
+      "UNION SELECT"를 "UN/**/ION/**/SELECT"로 변형한다.
+      MySQL은 버전 주석 /*!50000UNION*/도 지원하여 더
+      다양한 우회가 가능하다. 고급 WAF는 주석 정규화를
+      수행하므로 효과가 제한적일 수 있다.
+    search_keywords:
+      - "Comment bypass"
+      - "주석 우회"
+      - "/**/"
+      - "Inline comment"
+      - "MySQL version comment"
+      - "/*!50000"
+      - "WAF bypass"
+    related_queries:
+      - "주석으로 WAF를 우회하는 방법은?"
+      - "MySQL 버전 주석은 어떻게 사용하는가?"
+      - "UNION이 차단될 때 어떻게 우회하는가?"

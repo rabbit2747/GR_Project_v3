@@ -1,0 +1,238 @@
+# GR Relation Types Definition
+# Version: 1.2
+# Last Updated: 2025-01-26
+#
+# 헌법: ../constitution/GR_KNOWLEDGE_ATOMIZATION_CONSTITUTION.md
+# 원자 스키마: ./atom_schema.yaml
+#
+# Canonical 관계만 원자 파일에 저장되며, Inverse는 쿼리 시 파생됩니다.
+
+version: "1.2"
+
+# ═══════════════════════════════════════════════════════════════
+# Inverse 정의
+# ═══════════════════════════════════════════════════════════════
+inverse_definition:
+  what: |
+    inverse는 canonical 관계의 "논리적 역방향 이름"이다.
+    저장되는 관계 타입이 아니라, 그래프 조회 시 역방향
+    탐색을 표현하기 위한 alias다.
+
+  purpose:
+    - "양방향 그래프 탐색 지원"
+    - "자연스러운 쿼리 표현"
+    - "AI 추론 시 역방향 관계 질의"
+
+  storage_rule: |
+    inverse는 원자 파일에 저장되지 않는다.
+    쿼리 엔진/인덱스가 canonical → inverse 매핑을 처리한다.
+
+# ═══════════════════════════════════════════════════════════════
+# 관계 타입 분류
+# ═══════════════════════════════════════════════════════════════
+relation_types:
+
+  structural:
+    description: "구조적 관계"
+    relations:
+      is_a:
+        meaning: "상위 개념이다"
+        example: "SQLi is_a Injection"
+        inverse: has_subtype
+        canonical: true
+
+      part_of:
+        meaning: "구성 요소다"
+        example: "Payload part_of Attack"
+        inverse: has_part
+        canonical: true
+
+      instance_of:
+        meaning: "구체적 사례다"
+        example: "' OR 1=1 instance_of SQLi"
+        inverse: has_instance
+        canonical: true
+
+      abstracts:
+        meaning: "추상화한다 (더 일반적인 원리로 표현)"
+        example: "InputCodeMixingDanger abstracts Injection"
+        inverse: abstracted_by
+        canonical: true
+        note: "Level 4 원리가 Level 3 개념을 추상화할 때 사용"
+
+  causal:
+    description: "인과적 관계"
+    relations:
+      causes:
+        meaning: "야기한다"
+        example: "SQLi causes DataBreach"
+        inverse: caused_by
+        canonical: true
+
+      enables:
+        meaning: "가능하게 한다"
+        example: "FileRead enables CodeExecution"
+        inverse: enabled_by
+        canonical: true
+
+      prevents:
+        meaning: "방지한다"
+        example: "PreparedStatement prevents SQLi"
+        inverse: prevented_by
+        canonical: true
+
+  conditional:
+    description: "조건적 관계"
+    relations:
+      requires:
+        meaning: "필요로 한다"
+        example: "xp_cmdshell requires sysadmin"
+        inverse: required_by
+        canonical: true
+
+      conflicts_with:
+        meaning: "상충한다"
+        example: "Technique1 conflicts_with WAF_Rule1"
+        inverse: conflicts_with
+        canonical: true
+        symmetric: true
+
+      alternative_to:
+        meaning: "대체 가능하다"
+        example: "pg_sleep alternative_to SLEEP"
+        inverse: alternative_to
+        canonical: true
+        symmetric: true
+
+  temporal:
+    description: "시간적 관계"
+    relations:
+      precedes:
+        meaning: "선행한다"
+        example: "Reconnaissance precedes Exploitation"
+        inverse: follows
+        canonical: true
+
+      supersedes:
+        meaning: "대체한다 (신규 버전)"
+        example: "NewMethod supersedes DeprecatedMethod"
+        inverse: superseded_by
+        canonical: true
+
+  applicability:
+    description: "적용 관계"
+    relations:
+      applies_to:
+        meaning: "적용 대상이다"
+        example: "Technique applies_to MySQL"
+        inverse: applicable_from
+        canonical: true
+
+      effective_against:
+        meaning: "효과적이다"
+        example: "Bypass effective_against WAF"
+        inverse: vulnerable_to
+        canonical: true
+
+  epistemic:
+    description: "인식론적 관계 (지식 충돌)"
+    relations:
+      contradicts:
+        meaning: "모순된다 (상호 배타적 주장)"
+        example: "Source A claims X contradicts Source B claims Y"
+        inverse: contradicts
+        canonical: true
+        symmetric: true
+        resolution_required: true
+
+      disputes:
+        meaning: "이견이 있다 (논쟁 중)"
+        example: "Community disputes effectiveness of Technique X"
+        inverse: disputes
+        canonical: true
+        symmetric: true
+        properties:
+          - dispute_context
+          - resolution_status
+
+      refines:
+        meaning: "정제한다 (더 정확한 정보)"
+        example: "NewResearch refines OldClaim"
+        inverse: refined_by
+        canonical: true
+
+# ═══════════════════════════════════════════════════════════════
+# Canonical vs Derived 규칙
+# ═══════════════════════════════════════════════════════════════
+storage_rules:
+  canonical_storage:
+    rule: "방향성이 있는 관계는 한 방향(canonical)만 저장"
+    examples:
+      - "is_a 저장 → has_subtype는 쿼리 시 역추적"
+      - "causes 저장 → caused_by는 쿼리 시 역추적"
+
+  symmetric_relations:
+    rule: "대칭 관계는 한 번만 저장 (min(id_a, id_b) 기준)"
+    relations:
+      - conflicts_with
+      - alternative_to
+      - contradicts
+      - disputes
+
+  prohibited:
+    - "원자 파일에 inverse 관계명 사용 금지"
+    - "has_subtype, has_instance, prevented_by, follows 등 저장 금지"
+    - "동일 관계의 양방향 중복 저장 금지"
+
+# ═══════════════════════════════════════════════════════════════
+# 관계 무결성 규칙
+# ═══════════════════════════════════════════════════════════════
+integrity_rules:
+  cardinality:
+    is_a:
+      type: "N:M"
+      constraint: "다중 상속 허용"
+    instance_of:
+      type: "N:1"
+      constraint: "인스턴스는 하나의 타입에만 속함"
+    part_of:
+      type: "N:M"
+      constraint: "여러 부모 허용, 순환 금지"
+    supersedes:
+      type: "1:1"
+      constraint: "하나의 원자는 하나의 후속 버전만 가짐"
+
+  cycle_prevention:
+    prohibited:
+      - "is_a: A is_a B is_a A (금지)"
+      - "part_of: 순환 구성 금지"
+      - "requires: 순환 의존성 금지"
+    allowed:
+      - "alternative_to: 대칭 관계이므로 허용"
+      - "conflicts_with: 대칭 관계이므로 허용"
+
+  level_requirements:
+    level_1_instance:
+      required:
+        - "instance_of: 반드시 상위 기법(Level 2) 참조"
+      recommended:
+        - "applies_to: 적용 대상"
+
+    level_2_technique:
+      required:
+        - "is_a: 반드시 상위 개념(Level 3) 참조"
+      recommended:
+        - "requires: 필요 조건"
+        - "alternative_to: 대안 기법"
+
+    level_3_concept:
+      required:
+        - "is_a OR part_of: 상위 개념/원리 연결"
+      recommended:
+        - "causes OR prevents: 인과 관계"
+
+    level_4_principle:
+      required: []
+      recommended:
+        - "abstracts: 이 원리가 추상화하는 개념들"
+        - "is_a: 더 상위 원리가 있다면 연결"

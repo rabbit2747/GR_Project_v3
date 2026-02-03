@@ -1,0 +1,102 @@
+# GR Atom: JBoss/WildFly
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-WAS-JBOSS-001"
+  name: "JBoss / WildFly"
+  normalization:
+    normalized_name: "jboss wildfly red hat jboss eap"
+    normalization_version: "1.0"
+  aliases:
+    - "JBoss"
+    - "WildFly"
+    - "JBoss EAP"
+    - "Red Hat JBoss"
+
+classification:
+  domain: infrastructure
+  type: application_server
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "APP", "WAS", "JAVA"]
+
+definition:
+  what: |
+    JBoss(현 WildFly)는 Red Hat이 개발한 Java EE 애플리케이션 서버다.
+    엔터프라이즈 기능(클러스터링, 메시징, 트랜잭션)을 제공한다.
+  why: |
+    엔터프라이즈 환경에서 널리 사용된다. JMX 콘솔 노출, 역직렬화 취약점이
+    역사적으로 많은 침해 사고의 원인이었다.
+  how: |
+    1. Undertow: 웹 서버/서블릿 컨테이너
+    2. Infinispan: 분산 캐시
+    3. HornetQ/ActiveMQ: 메시징
+    4. Narayana: 트랜잭션 관리
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-APP-WAS-001"
+    requires:
+      - "INFRA-RUNTIME-JVM-001"
+  causal:
+    vulnerable_to:
+      - "ATK-SERVER-DESER-001"
+
+properties:
+  technical:
+    default_ports:
+      - port: 8080
+        service: "HTTP"
+      - port: 9990
+        service: "Management Console"
+      - port: 9999
+        service: "Native Management"
+    security_issues:
+      - name: "JMX Console Exposure"
+        risk: "원격 코드 실행"
+        note: "오래된 버전에서 인증 없이 노출"
+      - name: "Deserialization RCE"
+        risk: "원격 코드 실행"
+        cve_example: "CVE-2017-12149"
+      - name: "Management Console"
+        risk: "관리자 접근"
+    hardening:
+      - "관리 콘솔 외부 접근 차단"
+      - "강력한 관리자 자격 증명 설정"
+      - "불필요한 서브시스템 비활성화"
+      - "최신 패치 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Red Hat JBoss Security Guide"
+      - "WildFly Security Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      JBoss/WildFly는 Red Hat의 Java EE 애플리케이션 서버다.
+      JMX 콘솔 노출, 역직렬화 취약점이 주요 보안 위협이다.
+    search_keywords:
+      - "JBoss"
+      - "WildFly"
+      - "JBoss EAP"
+      - "Red Hat"
+    related_queries:
+      - "JBoss 보안"
+      - "JBoss 역직렬화"
+      - "WildFly 하드닝"

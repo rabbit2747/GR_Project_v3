@@ -1,0 +1,146 @@
+# GR Atom: SQL Injection Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECT-SQL-001"
+  name: "SQL Injection"
+  normalization:
+    normalized_name: "sql injection sqli"
+    normalization_version: "1.0"
+  aliases:
+    - "SQLi"
+    - "SQL 인젝션"
+    - "SQL 삽입"
+    - "Database Injection"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3  # 개념 수준 (하위에 Union, Blind 등 기법 존재)
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INJ", "EXPLOIT", "WEB", "API"]
+
+definition:
+  what: |
+    SQL Injection은 사용자 입력이 SQL 쿼리에 검증 없이 삽입되어,
+    공격자가 의도하지 않은 SQL 명령을 실행하는 웹 보안 취약점이다.
+    데이터 유출, 수정, 삭제, 인증 우회, 시스템 명령 실행까지 가능하다.
+  why: |
+    OWASP Top 10에서 꾸준히 상위권을 차지하는 가장 치명적인 웹 취약점 중
+    하나다. 단 한 줄의 악성 입력으로 전체 데이터베이스를 탈취할 수 있으며,
+    많은 대규모 데이터 유출 사고의 원인이다.
+  how: |
+    1. 공격자가 입력 필드(로그인, 검색 등)에 SQL 구문 삽입
+    2. 애플리케이션이 입력을 그대로 SQL 쿼리에 결합
+    3. 조작된 쿼리가 데이터베이스에서 실행
+    4. 공격자가 의도한 결과 반환 (데이터 유출, 인증 우회 등)
+
+relations:
+  structural:
+    is_a: ["GR-SEC-CON-00001"]  # Injection의 하위 개념
+  causal:
+    causes:
+      - "VUL-DATA-EXPOSURE-001"  # 데이터 유출
+    enables:
+      - "ATK-AUTH-BYPASS-001"    # 인증 우회
+  conditional:
+    requires:
+      - "TECH-LANG-SQL-001"      # SQL 지식
+      - "INFRA-DATA-RDBMS-001"   # 대상 RDBMS
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+    effective_against:
+      - "INFRA-DATA-RDBMS-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "In-band SQLi"
+        subtypes:
+          - "Error-based"
+          - "UNION-based"
+        description: "결과가 같은 채널로 반환"
+      - name: "Blind SQLi"
+        subtypes:
+          - "Boolean-based"
+          - "Time-based"
+        description: "결과를 직접 볼 수 없음"
+      - name: "Out-of-band SQLi"
+        description: "DNS, HTTP 등 외부 채널로 데이터 추출"
+    common_payloads:
+      - "' OR '1'='1"
+      - "' OR 1=1--"
+      - "admin'--"
+      - "1' UNION SELECT NULL,NULL--"
+      - "1'; WAITFOR DELAY '0:0:5'--"
+    vulnerable_inputs:
+      - "로그인 폼"
+      - "검색 필드"
+      - "URL 파라미터"
+      - "쿠키"
+      - "HTTP 헤더 (User-Agent, Referer)"
+  security:
+    impact:
+      confidentiality: "HIGH - 전체 DB 유출 가능"
+      integrity: "HIGH - 데이터 수정/삭제 가능"
+      availability: "MEDIUM - DB 장애 유발 가능"
+    cvss_base: 9.8
+    mitre_attack:
+      technique_id: "T1190"
+      tactic: "Initial Access"
+    cwe_id: "CWE-89"
+    owasp: "A03:2021 - Injection"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-PARAMQUERY-001"
+        name: "Parameterized Query"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-INPUTVAL-001"
+        name: "Input Validation"
+        effectiveness: "MEDIUM"
+    secondary:
+      - id: "INFRA-NET-WAF-001"
+        name: "WAF"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SQL Injection"
+      - "CWE-89"
+      - "MITRE ATT&CK T1190"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      SQL Injection SQLi는 사용자 입력이 SQL 쿼리에 삽입되어 악성 명령을
+      실행하는 웹 취약점이다. ' OR 1=1, UNION SELECT 등의 페이로드를 사용하며,
+      데이터 유출, 인증 우회, 시스템 명령 실행이 가능하다. OWASP Top 10,
+      CWE-89에 해당하며, Parameterized Query로 방어한다.
+    search_keywords:
+      - "SQL Injection"
+      - "SQLi"
+      - "SQL 인젝션"
+      - "UNION SELECT"
+      - "Blind SQL"
+    related_queries:
+      - "SQL Injection이란?"
+      - "SQL Injection 공격 방법"
+      - "SQL Injection 방어"
+      - "UNION based SQLi"

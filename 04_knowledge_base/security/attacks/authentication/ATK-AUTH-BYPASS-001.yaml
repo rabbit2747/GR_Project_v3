@@ -1,0 +1,121 @@
+# GR Atom: Authentication Bypass
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-AUTH-BYPASS-001"
+  name: "Authentication Bypass"
+  normalization:
+    normalized_name: "authentication bypass auth bypass login bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "인증 우회"
+    - "Auth Bypass"
+    - "Login Bypass"
+    - "인증 취약점"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTH", "EXPLOIT"]
+
+definition:
+  what: |
+    Authentication Bypass는 정상적인 인증 절차를 우회하여
+    인증 없이 시스템에 접근하는 공격의 총칭이다.
+    SQL Injection, 기본 계정, 토큰 조작 등 다양한 방법이 존재한다.
+  why: |
+    인증은 보안의 첫 번째 관문이다. 인증이 우회되면 인가, 데이터 보호 등
+    모든 후속 보안 메커니즘이 무력화된다. OWASP Top 10 A07.
+  how: |
+    1. 인증 메커니즘 분석 (토큰, 세션, JWT 등)
+    2. 취약점 식별 (SQLi, 기본 계정, 토큰 위조 등)
+    3. 인증 절차 우회
+    4. 미인증/타 사용자 권한으로 접근
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-AUTH-ATTACK-001"]
+  conditional:
+    requires: []
+  causal:
+    enables:
+      - "ATK-SERVER-IDOR-001"  # 인가 취약점 연계
+
+properties:
+  technical:
+    bypass_methods:
+      - name: "SQL Injection"
+        payload: "admin'--"
+        description: "인증 쿼리 조작"
+      - name: "Default Credentials"
+        description: "기본 계정/비밀번호 사용"
+        examples: ["admin:admin", "root:root", "admin:password"]
+      - name: "JWT Manipulation"
+        description: "JWT 토큰 서명 우회 (alg:none 등)"
+      - name: "Forced Browsing"
+        description: "인증이 필요한 URL 직접 접근"
+      - name: "Parameter Tampering"
+        description: "인증 파라미터 조작 (isAdmin=true)"
+      - name: "Password Reset Flaw"
+        description: "비밀번호 재설정 로직 취약점"
+  security:
+    impact:
+      confidentiality: "HIGH"
+      integrity: "HIGH"
+      availability: "MEDIUM"
+    cvss_base: 9.1
+    mitre_attack:
+      technique_id: "T1078"
+      tactic: "Initial Access"
+    cwe_id: "CWE-287"
+    owasp: "A07:2021 - Identification and Authentication Failures"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-MFA-001"
+        name: "Multi-Factor Authentication"
+        effectiveness: "HIGH"
+      - name: "강력한 인증 프레임워크 사용"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "기본 계정 비활성화"
+        effectiveness: "HIGH"
+      - name: "JWT 서명 검증 강화"
+        effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Authentication Cheat Sheet"
+      - "CWE-287"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Authentication Bypass는 인증 절차를 우회하여 미인증 접근하는 공격이다.
+      SQL Injection, 기본 계정, JWT 조작, Forced Browsing 등의 방법이 있다.
+      MFA, 강력한 인증 프레임워크, 기본 계정 비활성화로 방어한다.
+    search_keywords:
+      - "Authentication Bypass"
+      - "인증 우회"
+      - "Login Bypass"
+      - "기본 계정"
+    related_queries:
+      - "인증 우회란?"
+      - "인증 우회 방법"
+      - "JWT 인증 우회"

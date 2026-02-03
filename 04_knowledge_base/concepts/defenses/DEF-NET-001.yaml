@@ -1,0 +1,96 @@
+# GR Atom: Network Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-001"
+  name: "Network Defense"
+  normalization:
+    normalized_name: "network defense firewall segmentation ids"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Defense"
+    - "네트워크 방어"
+    - "Network Security"
+    - "Perimeter Defense"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "NETWORK"]
+
+definition:
+  what: |
+    네트워크 계층에서 위협을 차단하고 탐지하는
+    보안 통제 분류이다.
+  why: |
+    네트워크 기반 공격을 차단한다.
+    트래픽을 모니터링한다.
+    세그멘테이션을 적용한다.
+  how: |
+    1. 경계 방어 구축
+    2. 트래픽 필터링
+    3. 이상 탐지
+    4. 분리/격리
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-NET-IDS-001"
+      - "DEF-NET-FIREWALL-001"
+      - "DEF-NET-SEGMENTATION-001"
+    related_to:
+      - "ATK-NETWORK-001"
+      - "INFRA-NETWORK-001"
+
+properties:
+  technical:
+    technologies:
+      - "방화벽"
+      - "IDS/IPS"
+      - "NDR"
+      - "VPN"
+      - "NAC"
+      - "DDoS 방어"
+    strategies:
+      perimeter: "경계 방어"
+      segmentation: "네트워크 분리"
+      zero_trust: "제로 트러스트"
+      microsegmentation: "마이크로 세그멘테이션"
+    layers:
+      - "L3/L4 필터링"
+      - "L7 검사"
+      - "SSL/TLS 검사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Network Security"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Defense는 네트워크 계층에서 위협을 차단하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "Network Defense"
+      - "네트워크 보안"
+      - "Firewall"
+      - "IDS"

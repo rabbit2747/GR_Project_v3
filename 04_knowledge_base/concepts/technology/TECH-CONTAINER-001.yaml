@@ -1,0 +1,80 @@
+# GR Atom: Container Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONTAINER-001"
+  name: "Container Technology"
+  normalization:
+    normalized_name: "container technology docker kubernetes"
+    normalization_version: "1.0"
+  aliases:
+    - "Container Technology"
+    - "컨테이너 기술"
+    - "Containerization"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "CONTAINER"]
+
+definition:
+  what: |
+    애플리케이션 격리와 배포를 위한 컨테이너 기술 분류이다.
+  why: |
+    컨테이너 기술을 이해한다.
+    컨테이너 보안을 평가한다.
+    클라우드 네이티브 환경을 구축한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-CONTAINER-DOCKER-001"
+      - "TECH-CONTAINER-K8S-001"
+    related_to:
+      - "INFRA-CLOUD-001"
+      - "DEF-CONTAINER-SEC-001"
+
+properties:
+  technical:
+    platforms:
+      - "Docker"
+      - "Kubernetes"
+      - "Podman"
+      - "containerd"
+    security_considerations:
+      - "Image Security"
+      - "Runtime Security"
+      - "Network Isolation"
+      - "Secrets Management"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Container Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Container Technology는 애플리케이션 컨테이너화 기술 분류이다.
+    search_keywords:
+      - "Container Technology"
+      - "컨테이너 기술"
+      - "Docker"
+      - "Kubernetes"

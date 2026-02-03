@@ -1,0 +1,77 @@
+# GR Atom: Business Logic Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-LOGIC-001"
+  name: "Business Logic Vulnerability"
+  normalization:
+    normalized_name: "business logic vulnerability workflow bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "Business Logic Vulnerability"
+    - "비즈니스 로직 취약점"
+    - "Logic Flaw"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "LOGIC"]
+
+definition:
+  what: |
+    애플리케이션의 비즈니스 로직 결함으로 인한 취약점 분류이다.
+  why: |
+    로직 결함을 식별한다.
+    비즈니스 프로세스 보안을 강화한다.
+    예상치 못한 동작을 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-LOGIC-RACE-001"
+      - "VUL-LOGIC-WORKFLOW-001"
+    related_to:
+      - "DEF-INPUT-VALIDATION-001"
+      - "VUL-WEB-001"
+
+properties:
+  technical:
+    types:
+      - "Race Condition"
+      - "Workflow Bypass"
+      - "Price Manipulation"
+      - "Insufficient Process Validation"
+      - "Time-of-Check Time-of-Use"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Business Logic"
+      - "CWE-840"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Business Logic Vulnerability는 비즈니스 로직 결함으로 인한 취약점 분류이다.
+    search_keywords:
+      - "Business Logic Vulnerability"
+      - "비즈니스 로직 취약점"
+      - "Logic Flaw"
+      - "Race Condition"

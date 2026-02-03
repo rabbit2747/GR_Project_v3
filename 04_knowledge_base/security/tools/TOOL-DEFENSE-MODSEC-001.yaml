@@ -1,0 +1,136 @@
+# GR Atom: ModSecurity
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-DEFENSE-MODSEC-001"
+  name: "ModSecurity"
+  normalization:
+    normalized_name: "modsecurity"
+    normalization_version: "1.0"
+  aliases:
+    - "ModSec"
+    - "mod_security"
+    - "libmodsecurity"
+    - "ModSecurity WAF"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["D", "P"]
+
+definition:
+  what: |
+    Apache/Nginx용 오픈소스 WAF(Web Application Firewall) 엔진.
+    OWASP Core Rule Set(CRS)를 기본 규칙으로 사용하여
+    SQL Injection, XSS, RFI/LFI, Command Injection 등 웹 공격을 탐지/차단한다.
+    ModSecurity v3(libmodsecurity)은 웹 서버 독립적인 라이브러리로 동작한다.
+  why: |
+    오픈소스로 제공되어 비용 없이 웹 애플리케이션 방화벽을 구축할 수 있다.
+    OWASP CRS와 결합하면 OWASP Top 10 공격에 대한 포괄적인 방어가 가능하며,
+    상용 WAF를 도입하기 어려운 환경에서도 L7 수준의 보안을 제공한다.
+    커스텀 규칙 작성이 가능하여 애플리케이션별 맞춤 방어가 가능하다.
+  how: |
+    1. 웹 서버(Apache/Nginx)에 ModSecurity 모듈 설치
+    2. OWASP CRS 규칙셋 다운로드 및 설정
+    3. 탐지 모드(DetectionOnly) 또는 차단 모드(On) 설정
+    4. HTTP 요청/응답을 규칙에 따라 분석
+    5. 규칙 매칭 시 로그 기록, 차단, 리다이렉트 등 액션 수행
+    6. 오탐 발생 시 규칙 예외(Exclusion) 처리
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-DEFENSE"  # 방어 도구의 하위
+    implements:
+      - "DEF-DETECT-WAF-001"    # WAF 탐지 규칙 구현
+      - "INFRA-NET-WAF-001"     # WAF 인프라 구현
+  causal:
+    prevents:
+      - "ATK-INJECT-SQL-001"    # SQL Injection 차단
+      - "ATK-INJECT-XSS-001"    # XSS 차단
+      - "ATK-INJECT-CMD-001"    # Command Injection 차단
+      - "ATK-SERVER-PATH-001"   # Path Traversal 차단
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    vendor: "Trustwave SpiderLabs (Open Source)"
+    license: "Apache License 2.0"
+    language: "C/C++"
+    versions:
+      - name: "ModSecurity v2"
+        description: "Apache 모듈로 동작"
+        status: "Legacy"
+      - name: "ModSecurity v3 (libmodsecurity)"
+        description: "서버 독립 라이브러리, Nginx/Apache 커넥터"
+        status: "Current"
+    supported_servers:
+      - "Apache HTTP Server"
+      - "Nginx"
+      - "IIS (v2)"
+    owasp_crs:
+      description: "OWASP Core Rule Set - 포괄적 WAF 규칙셋"
+      paranoia_levels:
+        - level: 1
+          description: "기본 - 오탐 최소"
+        - level: 2
+          description: "중간 - 일부 오탐 가능"
+        - level: 3
+          description: "높음 - 오탐 증가"
+        - level: 4
+          description: "최대 - 많은 오탐, 최대 보안"
+    rule_actions:
+      - "deny (차단)"
+      - "log (로그 기록)"
+      - "pass (통과)"
+      - "redirect (리다이렉트)"
+      - "drop (연결 종료)"
+    configuration_directives:
+      - "SecRuleEngine On|DetectionOnly|Off"
+      - "SecRule ARGS|REQUEST_URI|REQUEST_HEADERS"
+      - "SecAuditLog"
+      - "SecRuleRemoveById (예외 처리)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ModSecurity Reference Manual"
+      - "OWASP ModSecurity CRS Documentation"
+      - "Trustwave SpiderLabs"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ModSecurity는 Apache/Nginx용 오픈소스 WAF 엔진이다. OWASP CRS 규칙을 사용하여
+      SQL Injection, XSS 등 웹 공격을 탐지/차단한다. v3는 libmodsecurity로 서버 독립적이며,
+      Paranoia Level 1~4로 보안 강도를 조절한다. 커스텀 규칙 작성 가능.
+    search_keywords:
+      - "ModSecurity"
+      - "ModSec"
+      - "오픈소스 WAF"
+      - "OWASP CRS"
+      - "웹 방화벽"
+      - "libmodsecurity"
+    related_queries:
+      - "ModSecurity 설치 방법"
+      - "OWASP CRS 설정 방법"
+      - "ModSecurity 규칙 작성법"
+      - "ModSecurity vs 상용 WAF"

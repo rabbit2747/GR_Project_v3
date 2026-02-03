@@ -1,0 +1,122 @@
+# GR Atom: Autopsy Digital Forensics Platform
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-FORENSIC-AUTOPSY-001"
+  name: "Autopsy Digital Forensics Platform"
+  normalization:
+    normalized_name: "autopsy digital forensics sleuth kit disk analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "Autopsy"
+    - "오토프시"
+    - "디지털 포렌식 플랫폼"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "FORENSIC", "DISK"]
+
+definition:
+  what: |
+    Autopsy는 Sleuth Kit 기반의 오픈소스 디지털 포렌식 플랫폼으로,
+    디스크 이미지 분석과 증거 추출을 지원한다.
+  why: |
+    무료이면서 강력한 포렌식 기능을 제공한다.
+    GUI 기반으로 접근성이 좋고 확장 가능하다.
+  how: |
+    1. 케이스 생성
+    2. 데이터 소스 추가 (이미지, 디스크)
+    3. 인제스트 모듈 실행
+    4. 분석 및 보고서 생성
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "DEF-FORENSIC-DISK-001"
+
+properties:
+  technical:
+    platform: "Windows, Linux, macOS"
+    basis: "Sleuth Kit"
+    data_sources:
+      - "디스크 이미지 (E01, RAW)"
+      - "로컬 디스크"
+      - "VHD/VMDK"
+      - "논리 파일"
+    ingest_modules:
+      - "Recent Activity: 브라우저, 레지스트리"
+      - "Hash Lookup: 알려진 파일"
+      - "Keyword Search: 텍스트 검색"
+      - "Email Parser: 이메일"
+      - "Extension Mismatch: 확장자 불일치"
+      - "Exif Parser: 이미지 메타데이터"
+      - "Encryption Detection: 암호화 탐지"
+    features:
+      - "타임라인 분석"
+      - "키워드 검색"
+      - "해시 필터링"
+      - "파일 복구"
+      - "태깅 및 코멘트"
+      - "보고서 생성"
+      - "팀 협업 (Autopsy 4)"
+    artifacts_parsed:
+      - "웹 브라우저 히스토리"
+      - "이메일"
+      - "USB 장치"
+      - "레지스트리"
+      - "EXIF 데이터"
+      - "통화/문자 (모바일)"
+    integration:
+      - "VirusTotal"
+      - "NSRL (알려진 파일)"
+      - "커스텀 해시셋"
+    workflow:
+      - step: "1. 케이스 생성"
+        action: "New Case"
+      - step: "2. 데이터 추가"
+        action: "Add Data Source"
+      - step: "3. 인제스트"
+        action: "모듈 자동 실행"
+      - step: "4. 분석"
+        action: "트리 탐색, 검색"
+      - step: "5. 보고"
+        action: "Generate Report"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Autopsy Digital Forensics"
+      - "Sleuth Kit"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Autopsy는 Sleuth Kit 기반 오픈소스 포렌식 플랫폼이다. 디스크 이미지
+      분석, 타임라인, 키워드 검색, 보고서 생성을 지원한다.
+    search_keywords:
+      - "Autopsy"
+      - "디지털 포렌식"
+      - "Sleuth Kit"
+      - "디스크 분석"
+    related_queries:
+      - "포렌식 도구"
+      - "이미지 분석"
+      - "증거 분석"

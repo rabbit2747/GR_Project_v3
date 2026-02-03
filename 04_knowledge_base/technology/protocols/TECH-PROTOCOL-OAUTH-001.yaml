@@ -1,0 +1,115 @@
+# GR Atom: OAuth 2.0 Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-OAUTH-001"
+  name: "OAuth 2.0"
+  normalization:
+    normalized_name: "oauth oauth2 authorization delegation token"
+    normalization_version: "1.0"
+  aliases:
+    - "OAuth"
+    - "OAuth 2.0"
+    - "Open Authorization"
+
+classification:
+  domain: application
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "AUTH"]
+
+definition:
+  what: |
+    OAuth 2.0은 리소스 소유자를 대신하여 제3자 애플리케이션에 제한된
+    접근 권한을 부여하는 인가 프레임워크다. 비밀번호 공유 없이 API 접근을 허용한다.
+  why: |
+    현대 API 인가의 표준이다. 토큰 탈취, 리다이렉트 URI 조작,
+    CSRF, 부적절한 구현이 주요 보안 위협이다.
+  how: |
+    1. Authorization Request: 클라이언트가 권한 요청
+    2. User Consent: 사용자가 권한 승인
+    3. Authorization Code/Token: 코드 또는 토큰 발급
+    4. Access Token: API 접근에 사용
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+    extends:
+      - "TECH-PROTOCOL-OIDC-001"
+  causal:
+    targeted_by:
+      - "ATK-AUTH-OAUTH-001"
+
+properties:
+  technical:
+    grant_types:
+      - name: "Authorization Code"
+        use_case: "서버 측 앱 (권장)"
+        security: "가장 안전"
+      - name: "Authorization Code + PKCE"
+        use_case: "모바일/SPA (권장)"
+        security: "코드 가로채기 방지"
+      - name: "Client Credentials"
+        use_case: "서버 간 통신"
+        security: "사용자 없음"
+      - name: "Implicit (Deprecated)"
+        use_case: "레거시 SPA"
+        security: "취약 (토큰 노출)"
+      - name: "Resource Owner Password (Deprecated)"
+        use_case: "레거시/마이그레이션"
+        security: "취약 (비밀번호 공유)"
+    tokens:
+      - name: "Access Token"
+        purpose: "API 접근"
+        lifetime: "짧음 (분~시간)"
+      - name: "Refresh Token"
+        purpose: "Access Token 갱신"
+        lifetime: "길음 (일~주)"
+    security_best_practices:
+      - "Authorization Code + PKCE 사용"
+      - "State 파라미터로 CSRF 방지"
+      - "Redirect URI 정확히 검증"
+      - "토큰 안전 저장"
+      - "짧은 Access Token 수명"
+  security:
+    severity: high
+    cwe_id: "CWE-287"
+    owasp_category: "A07:2021 - Identification and Authentication Failures"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 6749 - OAuth 2.0"
+      - "RFC 7636 - PKCE"
+      - "OWASP OAuth Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OAuth 2.0은 제3자 앱에 제한된 API 접근 권한을 부여하는 인가 프레임워크다.
+      Authorization Code + PKCE가 권장되며 토큰 탈취, CSRF가 주요 위협이다.
+    search_keywords:
+      - "OAuth"
+      - "OAuth 2.0"
+      - "Access Token"
+      - "PKCE"
+      - "인가"
+    related_queries:
+      - "OAuth 2.0 보안"
+      - "OAuth vs JWT"
+      - "PKCE란?"

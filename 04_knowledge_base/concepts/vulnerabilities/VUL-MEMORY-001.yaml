@@ -1,0 +1,80 @@
+# GR Atom: Memory Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-MEMORY-001"
+  name: "Memory Vulnerability"
+  normalization:
+    normalized_name: "memory vulnerability buffer overflow corruption"
+    normalization_version: "1.0"
+  aliases:
+    - "Memory Vulnerability"
+    - "메모리 취약점"
+    - "Memory Corruption Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "MEMORY"]
+
+definition:
+  what: |
+    메모리 관리 결함으로 인해 발생하는 취약점 분류이다.
+  why: |
+    코드 실행 취약점을 식별한다.
+    메모리 안전성을 평가한다.
+    시스템 침해를 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-BUFFER-OVERFLOW-001"
+      - "VUL-USE-AFTER-FREE-001"
+      - "VUL-HEAP-OVERFLOW-001"
+    related_to:
+      - "ATK-EXECUTION-001"
+      - "DEF-ASLR-001"
+
+properties:
+  technical:
+    types:
+      - "Buffer Overflow"
+      - "Heap Overflow"
+      - "Stack Overflow"
+      - "Use-After-Free"
+      - "Double Free"
+      - "Integer Overflow"
+      - "Format String"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-119"
+      - "MITRE CWE"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Memory Vulnerability는 메모리 관리 결함으로 인한 취약점 분류이다.
+    search_keywords:
+      - "Memory Vulnerability"
+      - "메모리 취약점"
+      - "Buffer Overflow"
+      - "Use-After-Free"

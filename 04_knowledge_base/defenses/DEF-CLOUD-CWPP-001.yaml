@@ -1,0 +1,108 @@
+# GR Atom: Cloud Workload Protection Platform
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CLOUD-CWPP-001"
+  name: "Cloud Workload Protection Platform"
+  normalization:
+    normalized_name: "cwpp cloud workload protection container serverless vm"
+    normalization_version: "1.0"
+  aliases:
+    - "CWPP"
+    - "클라우드 워크로드 보호"
+    - "Cloud Workload Security"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "CLOUD", "WORKLOAD"]
+
+definition:
+  what: |
+    클라우드 환경의 워크로드(VM, 컨테이너, 서버리스)를
+    보호하는 통합 보안 플랫폼이다.
+  why: |
+    클라우드 워크로드를 보호한다.
+    멀티 클라우드 가시성을 제공한다.
+  how: |
+    1. 워크로드 발견
+    2. 취약점 스캔
+    3. 런타임 보호
+    4. 컴플라이언스 검사
+
+relations:
+  structural:
+    is_a:
+      - "DEF-CLOUD-001"
+    related_to:
+      - "DEF-CONTAINER-RUNTIME-001"
+      - "DEF-CLOUD-POSTURE-001"
+
+properties:
+  technical:
+    workload_types:
+      - "Virtual Machines"
+      - "Containers (Docker, K8s)"
+      - "Serverless (Lambda, Functions)"
+      - "Physical Servers"
+    capabilities:
+      - name: "Vulnerability Management"
+        description: "이미지/VM 취약점 스캔"
+      - name: "Runtime Protection"
+        description: "실행 중 위협 탐지"
+      - name: "Compliance"
+        description: "CIS 벤치마크, 규정 준수"
+      - name: "Network Segmentation"
+        description: "마이크로세그멘테이션"
+      - name: "Integrity Monitoring"
+        description: "파일 무결성 모니터링"
+    container_security:
+      - "이미지 스캔"
+      - "레지스트리 보안"
+      - "런타임 탐지"
+      - "네트워크 정책"
+    popular_solutions:
+      - "Palo Alto Prisma Cloud"
+      - "CrowdStrike Cloud Security"
+      - "Aqua Security"
+      - "Sysdig Secure"
+      - "Lacework"
+    deployment:
+      agent_based: "워크로드에 에이전트 설치"
+      agentless: "API 기반 스캔"
+      hybrid: "혼합 방식"
+    cnapp_integration:
+      description: "CNAPP (Cloud Native Application Protection)"
+      components: ["CWPP", "CSPM", "CIEM"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner CWPP"
+      - "Cloud Security Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CWPP는 클라우드 VM, 컨테이너, 서버리스 워크로드를
+      보호하는 통합 클라우드 워크로드 보안 플랫폼이다.
+    search_keywords:
+      - "CWPP"
+      - "Cloud Workload"
+      - "Container Security"
+      - "워크로드 보호"

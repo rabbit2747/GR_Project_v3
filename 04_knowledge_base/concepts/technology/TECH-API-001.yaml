@@ -1,0 +1,82 @@
+# GR Atom: API Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-API-001"
+  name: "API Technology"
+  normalization:
+    normalized_name: "api technology rest graphql soap"
+    normalization_version: "1.0"
+  aliases:
+    - "API Technology"
+    - "API 기술"
+    - "Application Programming Interface"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "API"]
+
+definition:
+  what: |
+    시스템 간 통신을 위한 API 기술 분류이다.
+  why: |
+    API 아키텍처를 이해한다.
+    API 보안을 평가한다.
+    서비스 통합을 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-API-REST-001"
+      - "TECH-API-GRAPHQL-001"
+      - "TECH-API-GRPC-001"
+    related_to:
+      - "VUL-API-001"
+      - "DEF-API-GATEWAY-001"
+
+properties:
+  technical:
+    types:
+      - "REST"
+      - "GraphQL"
+      - "gRPC"
+      - "SOAP"
+      - "WebSocket"
+    security_considerations:
+      - "Authentication"
+      - "Authorization"
+      - "Rate Limiting"
+      - "Input Validation"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API Technology는 시스템 간 통신 인터페이스 기술 분류이다.
+    search_keywords:
+      - "API Technology"
+      - "API 기술"
+      - "REST"
+      - "GraphQL"

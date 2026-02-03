@@ -1,0 +1,94 @@
+# GR Atom: Exfiltration
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-EXFIL-001"
+  name: "Exfiltration"
+  normalization:
+    normalized_name: "exfiltration data theft extraction"
+    normalization_version: "1.0"
+  aliases:
+    - "Exfiltration"
+    - "데이터 유출"
+    - "Data Exfiltration"
+    - "Data Theft"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "EXFIL"]
+
+definition:
+  what: |
+    침해된 환경에서 데이터를 외부로 유출하는
+    공격 기법 분류이다.
+  why: |
+    민감 데이터를 탈취한다.
+    지적 재산을 훔친다.
+    협박에 활용한다.
+  how: |
+    1. 데이터 식별/수집
+    2. 압축/암호화
+    3. 유출 채널 선택
+    4. 데이터 전송
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1041-001"
+      - "ATK-MITRE-T1048-001"
+    related_to:
+      - "ATK-MITRE-EXFILTRATION-001"
+      - "DEF-DLP-001"
+
+properties:
+  technical:
+    channels:
+      - "C2 Channel"
+      - "HTTP/HTTPS"
+      - "DNS Tunneling"
+      - "Cloud Storage"
+      - "Email"
+      - "Physical Media"
+    mitre_tactic: "TA0010"
+    techniques:
+      - "압축 후 전송"
+      - "암호화 후 전송"
+      - "스테가노그래피"
+      - "분할 전송"
+    detection:
+      - "DLP"
+      - "Network Monitoring"
+      - "Anomaly Detection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0010"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Exfiltration은 데이터를 외부로 유출하는 공격 기법 분류이다.
+    search_keywords:
+      - "Exfiltration"
+      - "유출"
+      - "Data Theft"
+      - "탈취"

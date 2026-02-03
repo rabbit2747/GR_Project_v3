@@ -1,0 +1,83 @@
+# GR Atom: Privacy Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-PRIVACY-001"
+  name: "Privacy Compliance"
+  normalization:
+    normalized_name: "privacy compliance gdpr ccpa pii"
+    normalization_version: "1.0"
+  aliases:
+    - "Privacy Compliance"
+    - "개인정보 컴플라이언스"
+    - "Data Privacy Compliance"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["CONCEPT", "COMPLIANCE", "PRIVACY"]
+
+definition:
+  what: |
+    개인정보 보호 관련 법률 및 규정 준수 분류이다.
+  why: |
+    개인정보 보호 의무를 이해한다.
+    규정 준수 상태를 평가한다.
+    법적 리스크를 관리한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMP-001"
+    has_children:
+      - "COMP-PRIVACY-GDPR-001"
+      - "COMP-PRIVACY-CCPA-001"
+      - "COMP-PRIVACY-PIPA-001"
+    related_to:
+      - "DEF-DLP-001"
+      - "VUL-CONFIG-001"
+
+properties:
+  technical:
+    regulations:
+      - "GDPR"
+      - "CCPA/CPRA"
+      - "PIPA (Korea)"
+      - "LGPD (Brazil)"
+      - "PDPA"
+    requirements:
+      - "Consent Management"
+      - "Data Subject Rights"
+      - "Data Minimization"
+      - "Breach Notification"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "GDPR"
+      - "CCPA"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Privacy Compliance는 개인정보 보호 규정 준수 분류이다.
+    search_keywords:
+      - "Privacy Compliance"
+      - "개인정보 컴플라이언스"
+      - "GDPR"
+      - "CCPA"

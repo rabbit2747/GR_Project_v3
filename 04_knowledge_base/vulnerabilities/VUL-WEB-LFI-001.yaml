@@ -1,0 +1,100 @@
+# GR Atom: Local File Inclusion
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-LFI-001"
+  name: "Local File Inclusion"
+  normalization:
+    normalized_name: "lfi local file inclusion path traversal directory traversal"
+    normalization_version: "1.0"
+  aliases:
+    - "LFI"
+    - "Path Traversal"
+    - "로컬 파일 포함"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "FILE"]
+
+definition:
+  what: |
+    웹 애플리케이션이 파일 경로를 동적으로 처리할 때
+    서버의 임의 파일을 읽을 수 있는 취약점이다.
+  why: |
+    민감한 설정 파일을 읽을 수 있다.
+    소스 코드를 유출할 수 있다.
+  how: |
+    1. 파일 포함 파라미터 식별
+    2. 경로 조작 (../)
+    3. 필터 우회
+    4. 민감 파일 접근
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "VUL-WEB-RFI-001"
+      - "ATK-WEB-FILE-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-98"
+    attack_patterns:
+      basic: "?page=../../../etc/passwd"
+      null_byte: "?page=../../../etc/passwd%00"
+      double_encoding: "?page=..%252f..%252fetc/passwd"
+      wrapper: "?page=php://filter/convert.base64-encode/resource=config.php"
+    target_files:
+      linux:
+        - "/etc/passwd"
+        - "/etc/shadow"
+        - "/var/log/apache2/access.log"
+        - "~/.ssh/id_rsa"
+      windows:
+        - "C:\\Windows\\System32\\config\\SAM"
+        - "C:\\Windows\\win.ini"
+        - "C:\\inetpub\\logs\\LogFiles"
+    escalation_to_rce:
+      - "Log Poisoning"
+      - "PHP Wrapper (expect://)"
+      - "Session File Inclusion"
+      - "/proc/self/environ"
+    prevention:
+      - "화이트리스트 파일명"
+      - "경로 정규화"
+      - "chroot 환경"
+      - "입력 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Path Traversal"
+      - "CWE-98"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LFI는 경로 조작으로 서버의 임의 파일을 읽을 수 있는
+      웹 취약점으로 RCE로 연계될 수 있다.
+    search_keywords:
+      - "LFI"
+      - "Local File Inclusion"
+      - "Path Traversal"
+      - "Directory Traversal"

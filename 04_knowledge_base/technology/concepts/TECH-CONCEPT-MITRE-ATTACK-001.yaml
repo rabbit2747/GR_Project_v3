@@ -1,0 +1,133 @@
+# GR Atom: MITRE ATT&CK Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-MITRE-ATTACK-001"
+  name: "MITRE ATT&CK Framework"
+  normalization:
+    normalized_name: "mitre att&ck framework adversarial tactics techniques ttp"
+    normalization_version: "1.0"
+  aliases:
+    - "MITRE ATT&CK"
+    - "ATT&CK"
+    - "마이터 어택"
+    - "ATT&CK Matrix"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["TECH", "FRAMEWORK", "TTP"]
+
+definition:
+  what: |
+    MITRE ATT&CK(Adversarial Tactics, Techniques, and Common Knowledge)은
+    실제 공격 관찰을 기반으로 한 적대적 전술과 기법의 지식 기반이다.
+  why: |
+    사이버 위협 인텔리전스, 탐지 개발, 레드팀/퍼플팀의 표준 프레임워크다.
+    공격 행위를 공통 언어로 설명하고 방어 역량을 평가하는 데 사용된다.
+  how: |
+    1. Tactics: 공격 목표 (WHY) - 14개 전술
+    2. Techniques: 목표 달성 방법 (HOW) - 200+ 기법
+    3. Sub-techniques: 세부 구현 방법
+    4. Procedures: 실제 공격 사례
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    provides_classification_for:
+      - "ATK-*"
+  causal:
+    enables:
+      - "DEF-DETECT-IDS-001"
+      - "DEF-DETECT-MONITORING-001"
+
+properties:
+  technical:
+    matrices:
+      - name: "Enterprise"
+        platforms: ["Windows", "macOS", "Linux", "Cloud", "Network"]
+        tactics_count: 14
+      - name: "Mobile"
+        platforms: ["Android", "iOS"]
+      - name: "ICS"
+        platforms: ["Industrial Control Systems"]
+    tactics:
+      - id: "TA0001"
+        name: "Initial Access"
+        description: "네트워크 진입 방법"
+      - id: "TA0002"
+        name: "Execution"
+        description: "악성 코드 실행"
+      - id: "TA0003"
+        name: "Persistence"
+        description: "접근 유지"
+      - id: "TA0004"
+        name: "Privilege Escalation"
+        description: "권한 상승"
+      - id: "TA0005"
+        name: "Defense Evasion"
+        description: "탐지 회피"
+      - id: "TA0006"
+        name: "Credential Access"
+        description: "자격 증명 획득"
+      - id: "TA0007"
+        name: "Discovery"
+        description: "환경 정찰"
+      - id: "TA0008"
+        name: "Lateral Movement"
+        description: "횡적 이동"
+      - id: "TA0009"
+        name: "Collection"
+        description: "데이터 수집"
+      - id: "TA0010"
+        name: "Exfiltration"
+        description: "데이터 유출"
+      - id: "TA0011"
+        name: "Command and Control"
+        description: "C2 통신"
+      - id: "TA0040"
+        name: "Impact"
+        description: "시스템/데이터 조작"
+    use_cases:
+      - "위협 인텔리전스 분석"
+      - "탐지 규칙 개발"
+      - "레드팀/퍼플팀 연습"
+      - "보안 역량 평가"
+      - "인시던트 분석"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK Official Site"
+      - "MITRE ATT&CK Enterprise Matrix"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      MITRE ATT&CK은 적대적 전술/기법의 지식 기반이다. 14개 전술, 200+ 기법으로
+      위협 인텔리전스, 탐지 개발, 레드팀 연습의 표준 프레임워크다.
+    search_keywords:
+      - "MITRE ATT&CK"
+      - "마이터 어택"
+      - "TTP"
+      - "ATT&CK Matrix"
+    related_queries:
+      - "ATT&CK 기법"
+      - "위협 인텔리전스"
+      - "ATT&CK 매핑"

@@ -1,0 +1,80 @@
+# GR Atom: Backup Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-BACKUP-001"
+  name: "Backup Technology"
+  normalization:
+    normalized_name: "backup technology recovery disaster"
+    normalization_version: "1.0"
+  aliases:
+    - "Backup Technology"
+    - "백업 기술"
+    - "Data Backup Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "BACKUP"]
+
+definition:
+  what: |
+    데이터 백업과 복구를 위한 기술 분류이다.
+  why: |
+    데이터 가용성을 보장한다.
+    재해 복구를 지원한다.
+    랜섬웨어 대응을 강화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-BACKUP-FULL-001"
+      - "TECH-BACKUP-INCREMENTAL-001"
+    related_to:
+      - "DEF-RECOVERY-001"
+      - "COMP-BCDR-001"
+
+properties:
+  technical:
+    types:
+      - "Full Backup"
+      - "Incremental Backup"
+      - "Differential Backup"
+      - "Snapshot"
+    strategies:
+      - "3-2-1 Rule"
+      - "Air-gapped Backup"
+      - "Immutable Backup"
+      - "Cloud Backup"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Data Protection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Backup Technology는 데이터 백업 및 복구 기술 분류이다.
+    search_keywords:
+      - "Backup Technology"
+      - "백업 기술"
+      - "Disaster Recovery"
+      - "Data Protection"

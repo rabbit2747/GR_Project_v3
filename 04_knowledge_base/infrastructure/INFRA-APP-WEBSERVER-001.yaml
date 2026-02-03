@@ -1,0 +1,126 @@
+# GR Atom: Web Server
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-WEBSERVER-001"
+  name: "Web Server"
+  normalization:
+    normalized_name: "web server http server"
+    normalization_version: "1.0"
+  aliases:
+    - "웹 서버"
+    - "HTTP Server"
+    - "Nginx"
+    - "Apache"
+    - "IIS"
+
+classification:
+  domain: infrastructure
+  type: component
+  abstraction_level: 2  # Type
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"  # DMZ/Edge
+    tags: ["N", "WEB"]
+
+definition:
+  what: |
+    웹 서버는 HTTP 프로토콜을 통해 클라이언트(브라우저)의 요청을 받아
+    정적 콘텐츠(HTML, CSS, JS, 이미지)를 제공하거나, 동적 요청을
+    WAS에 전달하는 소프트웨어다.
+  why: |
+    웹 서비스의 최전방에서 클라이언트 요청을 처리한다.
+    리버스 프록시, 로드밸런싱, SSL 종료, 캐싱 등의 역할을 수행하며,
+    보안 관점에서 첫 번째 방어선이다.
+  how: |
+    1. 클라이언트로부터 HTTP/HTTPS 요청 수신
+    2. 정적 콘텐츠: 파일 시스템에서 직접 응답
+    3. 동적 콘텐츠: WAS로 프록시하여 처리 위임
+    4. 응답에 보안 헤더 추가, 압축, 캐싱 적용
+    5. 클라이언트에 HTTP 응답 반환
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-SERVER-001"]
+  causal:
+    enables:
+      - "INFRA-APP-WAS-001"  # WAS로 요청 전달
+      - "INFRA-APP-API-001"  # API 서버 프록시
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-HTTPS-001"
+  applicability:
+    applies_to: []
+
+properties:
+  technical:
+    common_products:
+      - name: "Nginx"
+        type: "Event-driven"
+        market_share: "~34%"
+      - name: "Apache HTTP Server"
+        type: "Process/Thread-based"
+        market_share: "~30%"
+      - name: "Microsoft IIS"
+        type: "Windows-native"
+        market_share: "~10%"
+    default_ports:
+      http: 80
+      https: 443
+    functions:
+      - "정적 콘텐츠 서빙"
+      - "리버스 프록시"
+      - "SSL/TLS 종료"
+      - "로드 밸런싱"
+      - "요청 라우팅"
+      - "캐싱"
+      - "압축 (gzip, brotli)"
+      - "접근 제어"
+  security:
+    attack_surface:
+      - "설정 오류 (디렉토리 리스팅)"
+      - "버전 정보 노출"
+      - "기본 페이지 노출"
+      - "SSL/TLS 취약 설정"
+    hardening:
+      - "서버 버전 숨김"
+      - "디렉토리 리스팅 비활성화"
+      - "보안 헤더 설정"
+      - "최신 TLS 버전 사용"
+      - "불필요한 모듈 제거"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "https://nginx.org/en/docs/"
+      - "https://httpd.apache.org/docs/"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Server는 HTTP 요청을 처리하여 정적 콘텐츠를 제공하거나 WAS로
+      프록시하는 소프트웨어다. Nginx, Apache, IIS가 대표적이며,
+      SSL 종료, 로드밸런싱, 캐싱 기능을 수행한다. DMZ에 위치하여
+      외부 공격의 첫 번째 대상이 되므로 보안 설정이 중요하다.
+    search_keywords:
+      - "Web Server"
+      - "웹 서버"
+      - "Nginx"
+      - "Apache"
+      - "리버스 프록시"
+    related_queries:
+      - "웹 서버란?"
+      - "Nginx와 Apache 차이"
+      - "웹 서버 보안 설정"

@@ -1,0 +1,113 @@
+# GR Atom: DOM Concept
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DOM-001"
+  name: "DOM (Document Object Model)"
+  normalization:
+    normalized_name: "dom document object model"
+    normalization_version: "1.0"
+  aliases:
+    - "DOM"
+    - "DOM 트리"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["WEB"]
+
+definition:
+  what: |
+    DOM은 HTML/XML 문서를 트리 구조의 객체 모델로 표현한 것이다.
+    프로그래밍 언어(주로 JavaScript)가 문서의 구조, 스타일, 내용을
+    동적으로 접근하고 수정할 수 있게 한다.
+  why: |
+    동적 웹 페이지의 핵심이다. XSS 공격은 DOM을 조작하여 악성 스크립트를
+    삽입하거나, DOM에서 민감 정보를 추출하는 것이 목표다.
+  how: |
+    1. 브라우저가 HTML을 파싱
+    2. DOM 트리 생성 (노드 계층 구조)
+    3. JavaScript가 DOM API로 노드 접근/수정
+    4. 변경 사항이 화면에 반영 (렌더링)
+
+relations:
+  structural:
+    part_of: ["TECH-CONCEPT-BROWSER-001"]
+  conditional:
+    requires:
+      - "TECH-LANG-HTML-001"  # HTML 필요
+  causal:
+    enables:
+      - "ATK-INJECT-XSS-001"  # DOM 기반 XSS
+
+properties:
+  technical:
+    type: "Programming Interface"
+    structure: "Tree"
+    node_types:
+      - "Document"
+      - "Element"
+      - "Attribute"
+      - "Text"
+      - "Comment"
+    key_apis:
+      query:
+        - "getElementById()"
+        - "querySelector()"
+        - "getElementsByClassName()"
+      manipulation:
+        - "createElement()"
+        - "appendChild()"
+        - "innerHTML"
+        - "textContent"
+      events:
+        - "addEventListener()"
+        - "onclick"
+    security_sensitive:
+      - name: "innerHTML"
+        risk: "XSS - HTML 삽입"
+      - name: "document.write()"
+        risk: "XSS - 동적 코드 삽입"
+      - name: "eval()"
+        risk: "코드 실행"
+      - name: "location"
+        risk: "URL 조작, Open Redirect"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "W3C DOM Standard"
+      - "WHATWG DOM Living Standard"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DOM Document Object Model은 HTML 문서를 트리 구조 객체로 표현한 것이다.
+      JavaScript가 DOM API를 통해 웹 페이지를 동적으로 조작한다.
+      innerHTML, document.write 등은 XSS 취약점의 원인이 된다.
+      DOM 기반 XSS는 클라이언트 측에서 DOM 조작으로 발생한다.
+    search_keywords:
+      - "DOM"
+      - "Document Object Model"
+      - "DOM 조작"
+      - "innerHTML"
+      - "DOM XSS"
+    related_queries:
+      - "DOM이란?"
+      - "DOM과 XSS 관계"
+      - "DOM 조작 방법"

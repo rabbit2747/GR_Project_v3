@@ -1,0 +1,119 @@
+# GR Atom: Security Logging
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-LOGGING-001"
+  name: "Security Logging"
+  normalization:
+    normalized_name: "security logging"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 로깅"
+    - "Security Event Logging"
+    - "Audit Logging"
+    - "감사 로깅"
+    - "보안 이벤트 기록"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["D", "M"]
+
+definition:
+  what: |
+    보안 이벤트(로그인, 접근, 에러 등)를 체계적으로 기록하는 활동.
+    인증 시도, 권한 변경, 데이터 접근, 시스템 에러, 관리자 작업 등
+    보안 관련 이벤트를 타임스탬프와 함께 구조화된 형식으로 저장한다.
+    사고 조사, 컴플라이언스 감사, 포렌식 분석의 기초 데이터를 제공한다.
+  why: |
+    보안 사고 발생 시 원인 분석과 사고 타임라인 재구성의 유일한 근거이다.
+    로그 없이는 침해 여부 판단, 피해 범위 산정, 공격 경로 추적이 불가능하다.
+    PCI-DSS, GDPR, ISMS 등 규제 준수를 위해서도 필수적이며,
+    실시간 모니터링과 이상 탐지의 입력 데이터를 제공한다.
+  how: |
+    1. 보안 이벤트 발생 시점에 구조화된 로그 생성
+    2. 타임스탬프, 소스 IP, 사용자, 이벤트 유형, 결과 등 기록
+    3. 중앙 로그 서버로 전송 (Syslog, Filebeat 등)
+    4. 로그 무결성 보장 (해시, 변조 방지 저장소)
+    5. 보존 기간 정책에 따른 아카이빙
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT"  # 탐지 방어의 하위 개념
+  causal:
+    prevents:
+      - "VUL-LOG-INSUFFICIENT-001"  # 불충분한 로깅 취약점 방어
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-SYS-SERVER-001"
+      - "INFRA-NET-NETWORK-001"
+
+properties:
+  technical:
+    log_categories:
+      - name: "Authentication Logs"
+        events: ["로그인 성공/실패", "로그아웃", "MFA 인증"]
+      - name: "Authorization Logs"
+        events: ["권한 변경", "접근 거부", "역할 할당"]
+      - name: "Data Access Logs"
+        events: ["데이터 조회", "수정", "삭제", "다운로드"]
+      - name: "System Logs"
+        events: ["서비스 시작/중지", "설정 변경", "에러"]
+      - name: "Admin Activity Logs"
+        events: ["관리자 작업", "정책 변경", "계정 관리"]
+    log_formats:
+      - "JSON structured logging"
+      - "Common Event Format (CEF)"
+      - "Syslog (RFC 5424)"
+    log_management:
+      collection: ["Filebeat", "Fluentd", "rsyslog"]
+      storage: ["Elasticsearch", "Splunk", "CloudWatch Logs"]
+      retention: "최소 6개월 ~ 규제별 상이"
+    compliance:
+      - "PCI-DSS Requirement 10"
+      - "GDPR Article 30"
+      - "ISMS-P"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Logging Cheat Sheet"
+      - "NIST SP 800-92 Log Management"
+      - "PCI-DSS Requirement 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Logging은 로그인, 접근, 에러 등 보안 이벤트를 체계적으로 기록하는
+      활동이다. 사고 조사, 포렌식, 컴플라이언스 감사의 기초 데이터를 제공하며,
+      JSON, CEF, Syslog 형식으로 중앙 서버에 수집한다. PCI-DSS, GDPR 등 규제 필수.
+    search_keywords:
+      - "Security Logging"
+      - "보안 로깅"
+      - "Audit Log"
+      - "감사 로그"
+      - "이벤트 로깅"
+      - "로그 관리"
+    related_queries:
+      - "보안 로깅이란?"
+      - "어떤 이벤트를 로깅해야 하나?"
+      - "로그 보존 기간은?"
+      - "중앙 로그 관리 방법"

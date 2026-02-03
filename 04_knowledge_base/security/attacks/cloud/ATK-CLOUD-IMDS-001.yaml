@@ -1,0 +1,110 @@
+# GR Atom: Cloud IMDS Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CLOUD-IMDS-001"
+  name: "Cloud IMDS Attack"
+  normalization:
+    normalized_name: "cloud imds instance metadata service attack ssrf"
+    normalization_version: "1.0"
+  aliases:
+    - "클라우드 메타데이터 공격"
+    - "IMDS 악용"
+    - "169.254.169.254 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "CLOUD", "SSRF"]
+
+definition:
+  what: |
+    클라우드 인스턴스 메타데이터 서비스(IMDS)에 접근하여
+    자격 증명, 설정 정보를 탈취하는 공격이다.
+  why: |
+    IAM 역할 자격 증명을 획득한다.
+    클라우드 리소스에 대한 권한을 확보한다.
+  how: |
+    1. SSRF 또는 로컬 접근 획득
+    2. IMDS 엔드포인트 접근
+    3. 자격 증명 추출
+    4. 클라우드 API 호출
+
+relations:
+  structural:
+    is_a:
+      - "ATK-SERVER-SSRF-001"
+    related_to:
+      - "ATK-CLOUD-PRIVESC-001"
+      - "INFRA-CLOUD-AWS-IAM-001"
+
+properties:
+  technical:
+    imds_endpoints:
+      - provider: "AWS"
+        url: "http://169.254.169.254/latest/meta-data/"
+        credentials: "/iam/security-credentials/<role-name>"
+      - provider: "Azure"
+        url: "http://169.254.169.254/metadata/instance"
+        header: "Metadata: true"
+      - provider: "GCP"
+        url: "http://metadata.google.internal/computeMetadata/v1/"
+        header: "Metadata-Flavor: Google"
+    attack_vectors:
+      - "SSRF 취약점"
+      - "XXE 취약점"
+      - "웹 쉘 접근"
+      - "컨테이너 탈출"
+    extractable_data:
+      - "IAM 임시 자격 증명"
+      - "호스트명, IP 주소"
+      - "보안 그룹 정보"
+      - "사용자 데이터 스크립트"
+      - "인스턴스 태그"
+    notable_incidents:
+      - "2019 Capital One 침해 (SSRF → IMDS)"
+    detection:
+      - "169.254.169.254 접근 로깅"
+      - "비정상 메타데이터 API 호출"
+      - "SSRF 패턴 탐지"
+    mitigation:
+      - "IMDSv2 (토큰 기반) 사용"
+      - "메타데이터 서비스 비활성화"
+      - "네트워크 ACL 제한"
+      - "최소 권한 IAM 역할"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AWS IMDS Documentation"
+      - "OWASP Cloud Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      클라우드 IMDS 공격은 메타데이터 서비스에서 IAM 자격 증명을
+      탈취하여 클라우드 권한을 획득하는 공격이다.
+    search_keywords:
+      - "IMDS"
+      - "메타데이터"
+      - "169.254.169.254"
+      - "클라우드 자격 증명"
+    related_queries:
+      - "SSRF 클라우드"
+      - "AWS 자격 증명 탈취"
+      - "IMDSv2"

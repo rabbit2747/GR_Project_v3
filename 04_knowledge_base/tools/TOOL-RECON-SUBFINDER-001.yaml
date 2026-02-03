@@ -1,0 +1,105 @@
+# GR Atom: Subfinder
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-SUBFINDER-001"
+  name: "Subfinder"
+  normalization:
+    normalized_name: "subfinder subdomain discovery enumeration passive"
+    normalization_version: "1.0"
+  aliases:
+    - "Subfinder"
+    - "서브도메인 파인더"
+    - "Passive Subdomain Discovery"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "RECON", "SUBDOMAIN"]
+
+definition:
+  what: |
+    패시브 방식으로 서브도메인을 발견하는 빠르고 효율적인
+    서브도메인 열거 도구이다.
+  why: |
+    공격 표면을 파악한다.
+    숨겨진 자산을 발견한다.
+  how: |
+    1. 도메인 지정
+    2. 다중 소스 쿼리
+    3. 결과 집계
+    4. 출력/파이프라인
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "TOOL-RECON-AMASS-001"
+      - "TECH-CONCEPT-ATTACK-SURFACE-001"
+
+properties:
+  technical:
+    developer: "ProjectDiscovery"
+    license: "MIT"
+    language: "Go"
+    features:
+      - "패시브 열거만 (노이즈 없음)"
+      - "40+ 데이터 소스"
+      - "빠른 스캔"
+      - "파이프라인 친화적"
+    data_sources:
+      free:
+        - "Censys"
+        - "Chaos"
+        - "VirusTotal"
+        - "AlienVault"
+        - "URLScan"
+      api_required:
+        - "Shodan"
+        - "SecurityTrails"
+        - "PassiveTotal"
+        - "Binaryedge"
+    usage_examples:
+      basic: "subfinder -d domain.com"
+      silent: "subfinder -d domain.com -silent"
+      output: "subfinder -d domain.com -o subs.txt"
+      recursive: "subfinder -d domain.com -recursive"
+      pipeline: "subfinder -d domain.com | httpx"
+    integration:
+      - "httpx (응답 확인)"
+      - "nuclei (취약점 스캔)"
+      - "dnsx (DNS 해석)"
+    config: "$HOME/.config/subfinder/provider-config.yaml"
+    repository: "https://github.com/projectdiscovery/subfinder"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ProjectDiscovery Subfinder"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Subfinder는 40개 이상의 소스에서 패시브 방식으로
+      서브도메인을 빠르게 발견하는 정찰 도구이다.
+    search_keywords:
+      - "Subfinder"
+      - "Subdomain"
+      - "Discovery"
+      - "ProjectDiscovery"

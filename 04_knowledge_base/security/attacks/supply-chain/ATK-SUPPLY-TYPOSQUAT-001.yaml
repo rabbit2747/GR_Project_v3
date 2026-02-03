@@ -1,0 +1,114 @@
+# GR Atom: Typosquatting Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SUPPLY-TYPOSQUAT-001"
+  name: "Typosquatting Attack"
+  normalization:
+    normalized_name: "typosquatting package squatting combosquatting npm pypi"
+    normalization_version: "1.0"
+  aliases:
+    - "타이포스쿼팅"
+    - "Package Squatting"
+    - "이름 유사 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "SUPPLY-CHAIN", "TYPO"]
+
+definition:
+  what: |
+    타이포스쿼팅은 인기 있는 패키지와 유사한 이름의 악성 패키지를
+    등록하여 오타로 설치되게 하는 공격이다.
+  why: |
+    개발자의 실수를 악용하는 간단하지만 효과적인 공격이다.
+    npm, PyPI에서 수백 개의 타이포스쿼팅 패키지가 발견되었다.
+  how: |
+    1. 인기 패키지 식별 (lodash, requests)
+    2. 유사 이름 변형 생성 (lodassh, requets)
+    3. 악성 코드 포함하여 등록
+    4. 개발자 오타 시 악성 패키지 설치
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+    related_to:
+      - "ATK-SUPPLY-DEPENDENCY-001"
+
+properties:
+  technical:
+    naming_techniques:
+      - name: "Character Swap"
+        example: "lodash → lodasg"
+      - name: "Missing Character"
+        example: "requests → request"
+      - name: "Extra Character"
+        example: "numpy → numpyy"
+      - name: "Homoglyph"
+        example: "tensorflow → tensorf1ow (l→1)"
+      - name: "Combosquatting"
+        example: "lodash-utils, react-native-dev"
+    affected_registries:
+      - "npm (Node.js)"
+      - "PyPI (Python)"
+      - "RubyGems"
+      - "crates.io (Rust)"
+    real_examples:
+      - "crossenv (cross-env 타겟)"
+      - "colourama (colorama 타겟)"
+      - "python3-dateutil (python-dateutil 타겟)"
+    malicious_actions:
+      - "환경 변수 탈취"
+      - "백도어 설치"
+      - "암호화폐 채굴"
+      - "C2 연결"
+    prevention:
+      - "패키지 이름 복사/붙여넣기"
+      - "Lock 파일 사용"
+      - "패키지 인기도/다운로드 수 확인"
+      - "보안 스캐너 사용"
+      - "CI/CD에서 패키지 검증"
+    detection_tools:
+      - "npm audit"
+      - "Snyk"
+      - "Socket.dev"
+      - "pip-audit"
+      - "GuardDog"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "npm Security Advisories"
+      - "PyPI Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      타이포스쿼팅은 인기 패키지와 유사한 이름의 악성 패키지를 등록하는 공격이다.
+      오타를 악용하며 패키지명 복사, Lock 파일, 보안 스캐너로 방어한다.
+    search_keywords:
+      - "타이포스쿼팅"
+      - "Typosquatting"
+      - "패키지 공격"
+      - "npm 악성 패키지"
+    related_queries:
+      - "npm 보안"
+      - "PyPI 보안"
+      - "공급망 공격"

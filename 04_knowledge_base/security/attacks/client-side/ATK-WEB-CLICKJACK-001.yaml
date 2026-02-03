@@ -1,0 +1,150 @@
+# GR Atom: Clickjacking (UI Redressing)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-CLICKJACK-001"
+  name: "Clickjacking (UI Redressing)"
+  normalization:
+    normalized_name: "clickjacking ui redressing iframe overlay"
+    normalization_version: "1.0"
+  aliases:
+    - "클릭재킹"
+    - "UI 리드레싱"
+    - "UI Redress Attack"
+    - "iframe Overlay Attack"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["EXPLOIT", "WEB"]
+
+definition:
+  what: |
+    Clickjacking은 투명하거나 불투명한 iframe을 사용하여 사용자가 의도하지 않은
+    버튼이나 링크를 클릭하도록 유도하는 클라이언트 측 공격이다.
+    정상적인 웹 페이지 위에 악성 페이지를 겹쳐 놓아 사용자의 클릭을 가로챈다.
+  why: |
+    사용자 모르게 권한 변경, 데이터 삭제, 결제 승인, SNS 좋아요/팔로우 등의
+    행위를 수행시킬 수 있다. 소셜 미디어, 금융 서비스, 관리자 패널 등에서
+    심각한 피해를 유발한다. 사용자가 직접 클릭하므로 CSRF 방어를 우회할 수 있다.
+  how: |
+    1. 공격자가 악성 웹 페이지 생성
+    2. 대상 웹 사이트를 투명 iframe(opacity: 0)으로 삽입
+    3. 사용자가 클릭할 버튼 위에 iframe의 민감한 버튼을 정렬
+    4. 사용자가 보이는 버튼을 클릭하면 실제로는 iframe 내 버튼 클릭
+    5. 대상 사이트에서 의도하지 않은 동작 수행
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-CLIENT-ATTACK-001"]
+  causal:
+    enables:
+      - "VUL-ACCESS-BROKEN-001"
+  conditional:
+    requires:
+      - "TECH-CONCEPT-DOM-001"
+      - "TECH-LANG-HTML-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    variants:
+      - name: "Classic Clickjacking"
+        description: "투명 iframe으로 클릭 가로채기"
+      - name: "Likejacking"
+        description: "SNS 좋아요/공유 버튼 클릭 유도"
+      - name: "Cursorjacking"
+        description: "커서 위치를 속여 다른 곳 클릭 유도"
+      - name: "Cookiejacking"
+        description: "드래그&드롭으로 쿠키 탈취"
+      - name: "Filejacking"
+        description: "파일 업로드 대화상자 조작"
+      - name: "Scrolljacking"
+        description: "iframe 위치를 스크롤로 조작"
+    attack_elements:
+      html: |
+        <iframe src="https://target.com/sensitive-action"
+                style="opacity:0; position:absolute; top:0; left:0;
+                       width:100%; height:100%; z-index:2;">
+        </iframe>
+      css_techniques:
+        - "opacity: 0 (완전 투명)"
+        - "position: absolute (절대 위치)"
+        - "z-index 조작 (레이어 순서)"
+        - "negative margin (프레임 이동)"
+    affected_actions:
+      - "비밀번호 변경"
+      - "결제 승인"
+      - "권한 부여"
+      - "데이터 삭제"
+      - "SNS 좋아요/팔로우"
+      - "카메라/마이크 활성화"
+  security:
+    impact:
+      confidentiality: "MEDIUM - 간접적 정보 유출"
+      integrity: "HIGH - 의도하지 않은 동작 수행"
+      availability: "LOW"
+    cvss_base: 6.1
+    cwe_id: "CWE-1021"
+    mitre_attack:
+      technique_id: "T1185"
+      tactic: "Collection"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-HEADERS-001"
+        name: "X-Frame-Options / CSP frame-ancestors"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "Frame-busting JavaScript"
+        effectiveness: "MEDIUM"
+        note: "sandbox 속성으로 우회 가능"
+      - name: "SameSite Cookie"
+        effectiveness: "MEDIUM"
+      - name: "사용자 확인 대화상자"
+        effectiveness: "LOW"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Clickjacking"
+      - "CWE-1021: Improper Restriction of Rendered UI Layers or Frames"
+      - "RFC 7034 (X-Frame-Options)"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Clickjacking은 투명 iframe을 사용하여 사용자 클릭을 가로채는 공격이다.
+      UI Redressing이라고도 하며, 사용자가 의도하지 않은 버튼 클릭, 결제 승인,
+      권한 변경 등을 수행시킨다. X-Frame-Options 헤더 또는 CSP frame-ancestors
+      디렉티브로 방어한다. CWE-1021에 해당하며, Likejacking, Cursorjacking 등의
+      변형이 존재한다.
+    search_keywords:
+      - "Clickjacking"
+      - "클릭재킹"
+      - "UI Redressing"
+      - "iframe 공격"
+      - "X-Frame-Options"
+      - "frame-ancestors"
+    related_queries:
+      - "Clickjacking이란?"
+      - "Clickjacking 방어 방법"
+      - "X-Frame-Options 설정"
+      - "Clickjacking vs CSRF 차이"

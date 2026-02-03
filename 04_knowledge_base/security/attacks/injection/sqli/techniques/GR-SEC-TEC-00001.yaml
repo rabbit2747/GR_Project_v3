@@ -1,0 +1,120 @@
+# GR-SEC-TEC-00001: UNION-based SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00001
+  name: "UNION-based SQL Injection"
+  normalization:
+    normalized_name: "union based sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "UNION SQLi"
+    - "UNION 기반 SQLi"
+    - "In-band UNION SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-EXFIL"
+
+definition:
+  what: |
+    UNION SQL 연산자를 이용하여 원래 쿼리에 추가적인
+    SELECT 문을 결합하고, 그 결과를 원래 응답에 함께
+    출력시켜 데이터를 추출하는 SQL Injection 기법이다.
+  why: |
+    In-band 기법으로 결과가 직접 화면에 표시되어
+    빠르고 효율적인 데이터 추출이 가능하다.
+    대량의 데이터를 한 번에 추출할 수 있다.
+  how: |
+    1. 원래 쿼리의 컬럼 수 파악 (ORDER BY / NULL 기법)
+    2. 출력되는 컬럼 위치 확인
+    3. UNION SELECT로 원하는 데이터 추출
+    4. 필요시 문자열 연결로 여러 컬럼 합침
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00020  # Query Result Display (TODO)
+    conflicts_with:
+      - GR-SEC-CTL-00010  # WAF UNION Filter (TODO)
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.9
+    conditions:
+      - when:
+          context_type: configuration
+          condition: "query_result_visible == false"
+        then:
+          value: 0.0
+          reason: "결과가 화면에 표시되지 않으면 사용 불가"
+      - when:
+          context_type: configuration
+          condition: "waf_union_filter == true"
+        then:
+          value: 0.3
+          reason: "WAF가 UNION 키워드 필터링"
+
+properties:
+  security:
+    severity: high
+    attack_phase: exploitation
+    data_exfiltration: true
+    speed: fast
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      UNION 기반 SQL Injection은 UNION SELECT 문을 이용해
+      원래 쿼리에 추가 쿼리를 결합하여 데이터를 추출하는 기법이다.
+      결과가 화면에 직접 표시되어 빠른 데이터 추출이 가능하다.
+      컬럼 수 일치가 필요하며, ORDER BY나 NULL을 이용해 컬럼 수를
+      파악한다. WAF가 UNION 키워드를 필터링하면 우회 기법이 필요하다.
+    search_keywords:
+      - "UNION SQL Injection"
+      - "UNION SQLi"
+      - "UNION SELECT"
+      - "In-band SQLi"
+      - "컬럼 수 파악"
+      - "ORDER BY"
+    related_queries:
+      - "UNION SQLi는 어떻게 하는가?"
+      - "컬럼 수를 어떻게 알아내는가?"
+      - "UNION이 필터링되면 어떻게 하는가?"

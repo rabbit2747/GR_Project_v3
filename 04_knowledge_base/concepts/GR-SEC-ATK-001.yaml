@@ -1,0 +1,111 @@
+# GR Atom: Security Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-ATK-001"
+  name: "Security Attack"
+  normalization:
+    normalized_name: "security attack threat exploit"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Attack"
+    - "보안 공격"
+    - "Cyber Attack"
+    - "Attack Technique"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "ATTACK", "ROOT"]
+
+definition:
+  what: |
+    시스템의 기밀성, 무결성, 가용성을 침해하려는
+    의도적인 행위와 기법의 최상위 분류이다.
+  why: |
+    취약점을 악용하여 자산에 접근한다.
+    정보를 탈취하거나 시스템을 손상시킨다.
+    서비스를 방해하거나 권한을 획득한다.
+  how: |
+    1. 정찰 및 표적 선정
+    2. 취약점 식별
+    3. 익스플로잇 실행
+    4. 목표 달성 및 지속
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "ATK-INJECTION-001"
+      - "ATK-PRIVILEGE-ESCALATION-001"
+      - "ATK-LATERAL-001"
+      - "ATK-KERBEROS-001"
+      - "ATK-NETWORK-001"
+    related_to:
+      - "GR-SEC-VULN-001"
+      - "GR-SEC-DEF-001"
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+
+properties:
+  technical:
+    categories:
+      injection: "코드/데이터 삽입 공격"
+      authentication: "인증 우회/탈취"
+      privilege_escalation: "권한 상승"
+      lateral_movement: "측면 이동"
+      exfiltration: "데이터 유출"
+      denial_of_service: "서비스 거부"
+    mitre_tactics:
+      - "Initial Access (TA0001)"
+      - "Execution (TA0002)"
+      - "Persistence (TA0003)"
+      - "Privilege Escalation (TA0004)"
+      - "Defense Evasion (TA0005)"
+      - "Credential Access (TA0006)"
+      - "Lateral Movement (TA0008)"
+      - "Exfiltration (TA0010)"
+    threat_actors:
+      - "Nation-State"
+      - "Cybercriminal"
+      - "Hacktivist"
+      - "Insider"
+      - "Script Kiddie"
+    attack_vectors:
+      - "Network"
+      - "Web Application"
+      - "Email/Phishing"
+      - "Physical"
+      - "Supply Chain"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "OWASP"
+      - "NIST"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Attack은 시스템 보안을 침해하려는 모든
+      의도적 행위와 공격 기법의 최상위 분류 개념이다.
+    search_keywords:
+      - "Security Attack"
+      - "보안 공격"
+      - "Cyber Attack"
+      - "Attack Technique"

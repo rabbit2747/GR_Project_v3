@@ -1,0 +1,123 @@
+# GR Atom: Command and Control (MITRE ATT&CK TA0011)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-C2-001"
+  name: "Command and Control (TA0011)"
+  normalization:
+    normalized_name: "command control c2 mitre attack ta0011 beacon callback"
+    normalization_version: "1.0"
+  aliases:
+    - "C2"
+    - "C&C"
+    - "명령 및 제어"
+    - "TA0011"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Command and Control(C2)은 공격자가 침해된 시스템과 통신하고
+    원격으로 제어하는 전술이다.
+  why: |
+    원격 명령 실행, 추가 페이로드 다운로드, 데이터 유출에 필수적이다.
+    탐지를 피하기 위해 정상 트래픽으로 위장하는 것이 특징이다.
+  how: |
+    1. Application Layer Protocol (T1071): HTTP, HTTPS, DNS 등
+    2. Encrypted Channel (T1573): 암호화된 통신
+    3. Protocol Tunneling (T1572): 프로토콜 터널링
+    4. Multi-Stage Channels (T1104): 다단계 채널
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    supports:
+      - "ATK-MITRE-EXFILTRATION-001"
+      - "ATK-MITRE-EXECUTION-001"
+
+properties:
+  technical:
+    mitre_id: "TA0011"
+    techniques:
+      - id: "T1071"
+        name: "Application Layer Protocol"
+        sub_techniques:
+          - "T1071.001: Web Protocols (HTTP/HTTPS)"
+          - "T1071.002: File Transfer Protocols"
+          - "T1071.003: Mail Protocols"
+          - "T1071.004: DNS"
+      - id: "T1573"
+        name: "Encrypted Channel"
+        sub_techniques:
+          - "T1573.001: Symmetric Cryptography"
+          - "T1573.002: Asymmetric Cryptography"
+      - id: "T1572"
+        name: "Protocol Tunneling"
+        description: "정상 프로토콜 내에 C2 통신 은닉"
+      - id: "T1090"
+        name: "Proxy"
+        sub_techniques:
+          - "T1090.001: Internal Proxy"
+          - "T1090.002: External Proxy"
+          - "T1090.003: Multi-hop Proxy"
+      - id: "T1095"
+        name: "Non-Application Layer Protocol"
+        description: "ICMP 등 비표준 프로토콜 사용"
+      - id: "T1568"
+        name: "Dynamic Resolution"
+        sub_techniques:
+          - "T1568.002: Domain Generation Algorithms"
+    common_tools:
+      - "Cobalt Strike"
+      - "Metasploit Meterpreter"
+      - "Empire"
+      - "PoshC2"
+    detection:
+      - "비콘 패턴 분석"
+      - "DNS 이상 쿼리 탐지"
+      - "JA3/JA3S 핑거프린팅"
+      - "네트워크 행위 분석"
+    prevention:
+      - "SSL/TLS 검사"
+      - "DNS 필터링"
+      - "이그레스 필터링"
+      - "프록시 강제 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Command and Control"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      C2(TA0011)는 원격 제어 전술이다. HTTP, DNS, 암호화 채널 등이 사용되며
+      비콘 분석, SSL 검사, DNS 필터링으로 탐지/차단한다.
+    search_keywords:
+      - "C2"
+      - "Command and Control"
+      - "TA0011"
+      - "비콘"
+    related_queries:
+      - "C2 탐지"
+      - "Cobalt Strike"
+      - "DNS C2"

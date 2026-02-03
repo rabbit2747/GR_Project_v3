@@ -1,0 +1,106 @@
+# GR Atom: Sensitive Data Exposure Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-DATA-EXPOSURE-001"
+  name: "Sensitive Data Exposure"
+  normalization:
+    normalized_name: "sensitive data exposure cryptographic failure"
+    normalization_version: "1.0"
+  aliases:
+    - "민감 데이터 노출"
+    - "Cryptographic Failures"
+    - "암호화 결함"
+    - "데이터 유출 취약점"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["CRYPTO"]
+
+definition:
+  what: |
+    Sensitive Data Exposure 취약점은 애플리케이션이 민감한 데이터(비밀번호,
+    금융정보, 개인정보 등)를 적절히 보호하지 않아 노출되는 보안 결함이다.
+    CWE-200에 해당하며, 암호화 미적용, 약한 암호 알고리즘, 키 관리 부재를 포함한다.
+  why: |
+    OWASP Top 10 2021에서 A02(2위)인 Cryptographic Failures에 해당한다.
+    개인정보보호법, GDPR 등 규정 위반의 주요 원인이며, 유출된 데이터는
+    계정 탈취, 금융 사기, 신원 도용 등 2차 피해를 유발한다.
+  how: |
+    1. 전송 중 암호화 미적용 (HTTP 사용, TLS 미설정)
+    2. 저장 데이터 암호화 부재 (평문 비밀번호, 민감정보)
+    3. 약한 암호 알고리즘 사용 (MD5, SHA1, DES)
+    4. 하드코딩된 암호화 키, 부적절한 키 관리
+    5. 에러 메시지, 로그, 백업에 민감정보 포함
+    6. 네트워크 스니핑, 스토리지 분석, 코드 리뷰로 탐지
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-DATA-RDBMS-001"
+
+properties:
+  security:
+    cwe_id: "CWE-200"
+    owasp: "A02:2021"
+    cvss_base: 7.5
+    impact:
+      confidentiality: "CRITICAL - 민감 데이터 유출"
+      integrity: "LOW - 데이터 자체 변조는 간접적"
+      availability: "LOW"
+  countermeasures:
+    primary:
+      - name: "전송 암호화 (TLS 1.2+)"
+        effectiveness: "HIGH"
+      - name: "저장 데이터 암호화 (AES-256)"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "안전한 키 관리 (HSM, KMS)"
+        effectiveness: "HIGH"
+      - name: "비밀번호 해시 (bcrypt, Argon2)"
+        effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor"
+      - "OWASP A02:2021 - Cryptographic Failures"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Sensitive Data Exposure(CWE-200)은 민감 데이터가 적절히 보호되지 않아
+      노출되는 취약점이다. 암호화 미적용, 약한 알고리즘, 키 관리 부재가 원인이다.
+      TLS 전송 암호화, AES-256 저장 암호화, 안전한 키 관리로 방어한다.
+      OWASP A02:2021, CVSS 7.5.
+    search_keywords:
+      - "Sensitive Data Exposure"
+      - "민감 데이터 노출"
+      - "CWE-200"
+      - "Cryptographic Failures"
+      - "암호화 결함"
+    related_queries:
+      - "민감 데이터 노출 취약점이란?"
+      - "Cryptographic Failures 대응"
+      - "OWASP A02:2021 방어 방법"
+      - "데이터 암호화 방법"

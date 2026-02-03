@@ -1,0 +1,146 @@
+# GR Atom: Nikto
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AUDIT-NIKTO-001"
+  name: "Nikto"
+  normalization:
+    normalized_name: "nikto"
+    normalization_version: "1.0"
+  aliases:
+    - "Nikto2"
+    - "nikto"
+    - "니크토"
+    - "Nikto Web Scanner"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0A"
+    tags: ["WEB", "RECON"]
+
+definition:
+  what: |
+    웹 서버의 알려진 취약점, 위험 파일, 잘못된 설정을 자동으로 검사하는 오픈소스 스캐너.
+    6700개 이상의 위험 파일/CGI 패턴 검사, 서버/프레임워크 버전 탐지,
+    SSL/TLS 인증서 및 암호화 설정 분석, 보안 헤더 누락 확인 등을 수행한다.
+    CIRT에서 개발하며 Perl로 작성되었다.
+  why: |
+    웹 서버 보안 감사의 기본 도구로, 빠르게 알려진 취약점과 잘못된 설정을
+    탐지할 수 있다. 기본 설정으로도 광범위한 검사를 수행하여 웹 서버의 공격
+    표면을 신속하게 파악할 수 있다. 보안 감사 초기 단계에서 저수준 취약점과
+    설정 오류를 발견하는 데 효과적이며, 컴플라이언스 점검에도 활용된다.
+    실행이 간단하여 보안 초보자도 쉽게 사용할 수 있다.
+  how: |
+    1. 대상 웹 서버 URL 또는 IP 지정 (-h 옵션)
+    2. SSL/TLS 사이트의 경우 -ssl 옵션 추가
+    3. Tuning 옵션으로 검사 유형 선택 (-Tuning)
+    4. 스캔 실행 후 결과 리포트 분석
+    5. 발견된 취약점/설정 오류에 대한 조치 수행
+    6. 출력 형식 지정 가능 (HTML, CSV, XML 등)
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT"  # 감사 도구의 하위
+    used_for:
+      - "VUL-CONFIG-MISCONFIG-001"  # 웹 서버 설정 오류 탐지
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBSERVER-001"
+
+properties:
+  technical:
+    vendor: "CIRT (Open Source)"
+    license: "GPLv2"
+    language: "Perl"
+    key_features:
+      - name: "Web Server Scan"
+        description: "6700개 이상의 위험 파일/CGI 패턴 검사"
+      - name: "Version Detection"
+        description: "웹 서버 및 프레임워크 버전 탐지"
+      - name: "SSL/TLS Analysis"
+        description: "인증서 유효성 및 암호화 설정 검사"
+      - name: "Header Analysis"
+        description: "보안 헤더(X-Frame-Options, CSP 등) 누락 확인"
+      - name: "Plugin Support"
+        description: "사용자 정의 검사 플러그인 추가 지원"
+    common_usage:
+      - "nikto -h http://target"
+      - "nikto -h https://target -ssl"
+      - "nikto -h target -Tuning x 6"
+      - "nikto -h target -o report.html -Format html"
+      - "nikto -h target -Plugins outdated"
+    tuning_options:
+      - code: "0"
+        description: "File Upload"
+      - code: "1"
+        description: "Interesting File / Logs"
+      - code: "2"
+        description: "Misconfiguration / Default File"
+      - code: "3"
+        description: "Information Disclosure"
+      - code: "4"
+        description: "Injection (XSS/Script/HTML)"
+      - code: "6"
+        description: "Denial of Service"
+      - code: "9"
+        description: "SQL Injection"
+      - code: "x"
+        description: "Reverse Tuning (제외할 항목 지정)"
+    output_formats:
+      - "CSV"
+      - "HTML"
+      - "XML"
+      - "JSON"
+      - "Text"
+    related_tools:
+      - name: "OWASP ZAP"
+        description: "웹 애플리케이션 보안 프록시/스캐너"
+      - name: "Nmap HTTP Scripts"
+        description: "Nmap NSE 웹 서버 스크립트"
+    platform: ["Windows", "macOS", "Linux"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Nikto Official Documentation (cirt.net)"
+      - "OWASP Testing Guide - Web Server Scanning"
+      - "Kali Linux Tools - Nikto"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Nikto는 CIRT에서 개발한 오픈소스 웹 서버 취약점 스캐너이다.
+      6700개 이상의 위험 파일/CGI 패턴 검사, 서버 버전 탐지, SSL/TLS 분석,
+      보안 헤더 누락 확인 기능을 제공한다. Perl로 작성되었으며 GPLv2 라이선스이다.
+      웹 서버 보안 감사의 기본 도구로, 설정 오류와 알려진 취약점을 빠르게 탐지한다.
+    search_keywords:
+      - "Nikto"
+      - "니크토"
+      - "웹 서버 스캐너"
+      - "웹 취약점 스캐너"
+      - "CGI 스캐너"
+      - "웹 서버 보안 감사"
+      - "CIRT"
+    related_queries:
+      - "Nikto 사용법"
+      - "Nikto 웹 서버 스캔 방법"
+      - "Nikto vs OWASP ZAP 비교"
+      - "Nikto SSL 스캔 방법"
+      - "Nikto Tuning 옵션 설명"

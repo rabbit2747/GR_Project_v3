@@ -1,0 +1,113 @@
+# GR Atom: Payment Card Industry Data Security Standard
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-PCIDSS-001"
+  name: "Payment Card Industry Data Security Standard"
+  normalization:
+    normalized_name: "pci dss payment card security cardholder data"
+    normalization_version: "1.0"
+  aliases:
+    - "PCI DSS"
+    - "PCI"
+    - "카드 보안 표준"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["COMP", "PAYMENT", "STANDARD"]
+
+definition:
+  what: |
+    카드 결제 정보를 저장, 처리, 전송하는 조직을 위한
+    보안 표준으로 12가지 요구사항을 정의한다.
+  why: |
+    카드 데이터 유출을 방지한다.
+    결제 생태계 신뢰를 유지한다.
+  how: |
+    1. 범위 정의 (CDE)
+    2. 12개 요구사항 구현
+    3. 취약점 스캔/테스트
+    4. 평가 및 인증
+
+relations:
+  structural:
+    is_a:
+      - "COMP-STANDARD-001"
+    related_to:
+      - "DEF-CRYPTO-TLS-001"
+      - "TECH-CONCEPT-NETWORK-SECURITY-001"
+
+properties:
+  technical:
+    current_version: "4.0"
+    applicability: "카드 데이터 저장/처리/전송 조직"
+    requirements:
+      goal1_build_secure_network:
+        - "Req 1: 방화벽 설치 및 유지"
+        - "Req 2: 기본 비밀번호 사용 금지"
+      goal2_protect_cardholder_data:
+        - "Req 3: 저장된 카드 데이터 보호"
+        - "Req 4: 공개 네트워크에서 암호화"
+      goal3_vuln_management:
+        - "Req 5: 악성코드 방어"
+        - "Req 6: 보안 시스템/앱 개발"
+      goal4_access_control:
+        - "Req 7: 업무 필요 기반 접근"
+        - "Req 8: 사용자 식별 및 인증"
+        - "Req 9: 물리적 접근 제한"
+      goal5_monitoring:
+        - "Req 10: 네트워크 리소스 추적 및 모니터링"
+        - "Req 11: 정기적 보안 테스트"
+      goal6_policy:
+        - "Req 12: 정보 보안 정책 유지"
+    cardholder_data:
+      - "PAN (Primary Account Number)"
+      - "카드 소유자 이름"
+      - "만료일"
+      - "서비스 코드"
+    sensitive_auth_data:
+      - "Full track data"
+      - "CAV2/CVC2/CVV2/CID"
+      - "PIN/PIN Block"
+    compliance_levels:
+      level1: "연간 >6M 트랜잭션"
+      level2: "연간 1-6M 트랜잭션"
+      level3: "연간 20K-1M 트랜잭션"
+      level4: "연간 <20K 트랜잭션"
+    assessments:
+      - "QSA (Qualified Security Assessor)"
+      - "SAQ (Self-Assessment Questionnaire)"
+      - "ASV (Approved Scanning Vendor)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PCI Security Standards Council"
+      - "PCI DSS v4.0"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PCI DSS는 카드 결제 데이터를 보호하기 위한 12개
+      요구사항의 보안 표준이다.
+    search_keywords:
+      - "PCI DSS"
+      - "Payment Card"
+      - "카드 보안"
+      - "Cardholder Data"

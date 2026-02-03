@@ -1,0 +1,100 @@
+# GR Atom: Client-Side Attack (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-CLIENT-ATTACK-001"
+  name: "Client-Side Attack"
+  normalization:
+    normalized_name: "client side attack browser attack frontend attack"
+    normalization_version: "1.0"
+  aliases:
+    - "클라이언트측 공격"
+    - "Browser Attack"
+    - "브라우저 공격"
+    - "Frontend Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0A"
+    tags: ["ATK", "WEB", "CLIENT"]
+
+definition:
+  what: |
+    클라이언트측 공격(Client-Side Attack)은 사용자의 브라우저나
+    클라이언트 환경에서 실행되는 공격의 총칭이다. XSS, Clickjacking,
+    CSRF 등이 이에 해당한다.
+  why: |
+    서버 보안이 강화되면서 상대적으로 취약한 클라이언트를 대상으로
+    하는 공격이 증가했다. 사용자의 세션, 쿠키, 개인정보 탈취가
+    주요 목표다.
+  how: |
+    1. XSS: 악성 스크립트 주입 및 실행
+    2. Clickjacking: 투명 프레임으로 클릭 유도
+    3. CSRF: 인증된 세션으로 위조 요청 전송
+    4. DOM-based 공격: 클라이언트 측 로직 악용
+
+relations:
+  structural:
+    abstracts:
+      - "ATK-WEB-CLICKJACK-001"
+      - "ATK-INJECT-XSS-001"
+  causal:
+    targets:
+      - "TECH-CONCEPT-BROWSER-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "XSS (Cross-Site Scripting)"
+        target: "Browser DOM"
+        impact: "Session Hijacking, Data Theft"
+      - name: "Clickjacking"
+        target: "User Interface"
+        impact: "Unauthorized Actions"
+      - name: "CSRF"
+        target: "Authenticated Session"
+        impact: "Action on Behalf of User"
+    defense_mechanisms:
+      - "Content Security Policy (CSP)"
+      - "X-Frame-Options"
+      - "SameSite Cookies"
+      - "CSRF Tokens"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Client-Side Security"
+      - "Browser Security Handbook"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Client-Side Attack(클라이언트측 공격)은 브라우저에서 실행되는 공격이다.
+      XSS, Clickjacking, CSRF 등이 있으며 세션 탈취, 개인정보 유출이 목표다.
+      CSP, X-Frame-Options, SameSite 쿠키 등으로 방어한다.
+    search_keywords:
+      - "Client-Side Attack"
+      - "클라이언트측 공격"
+      - "XSS"
+      - "Clickjacking"
+      - "Browser Attack"
+    related_queries:
+      - "클라이언트측 공격 종류"
+      - "XSS 방어 방법"
+      - "Clickjacking이란?"
+      - "브라우저 보안"

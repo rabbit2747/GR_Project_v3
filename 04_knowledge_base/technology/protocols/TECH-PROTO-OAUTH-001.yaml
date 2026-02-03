@@ -1,0 +1,117 @@
+# GR Atom: OAuth 2.0 Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTO-OAUTH-001"
+  name: "OAuth 2.0 Protocol"
+  normalization:
+    normalized_name: "oauth 2.0 authorization delegation token access"
+    normalization_version: "1.0"
+  aliases:
+    - "OAuth"
+    - "OAuth2"
+    - "권한 위임"
+
+classification:
+  domain: security
+  type: technology
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTO", "AUTH"]
+
+definition:
+  what: |
+    OAuth 2.0은 리소스 소유자가 클라이언트에게 보호된 리소스에 대한
+    제한된 접근 권한을 위임할 수 있게 하는 권한 부여 프레임워크다.
+  why: |
+    사용자 자격 증명 공유 없이 제3자 앱에 권한 부여가 가능하다.
+    현대 웹/모바일 앱의 표준 인증 메커니즘이다.
+  how: |
+    1. 클라이언트가 권한 부여 요청
+    2. 리소스 소유자 동의
+    3. 권한 부여 코드/토큰 발급
+    4. 액세스 토큰으로 리소스 접근
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-AUTH-001"
+    related_to:
+      - "TECH-PROTO-OIDC-001"
+      - "DEF-AUTH-JWT-001"
+
+properties:
+  technical:
+    grant_types:
+      - name: "Authorization Code"
+        use_case: "서버 사이드 앱"
+        security: "가장 안전"
+        flow: "code → token"
+      - name: "Authorization Code + PKCE"
+        use_case: "SPA, 모바일"
+        security: "권장"
+        flow: "code + verifier → token"
+      - name: "Client Credentials"
+        use_case: "서버 간 통신"
+        security: "클라이언트만 인증"
+      - name: "Device Code"
+        use_case: "입력 제한 장치"
+        security: "폴링 기반"
+      - name: "Implicit (Deprecated)"
+        use_case: "레거시 SPA"
+        security: "취약, 사용 금지"
+    tokens:
+      - name: "Access Token"
+        purpose: "리소스 접근"
+        lifetime: "짧음 (분~시간)"
+      - name: "Refresh Token"
+        purpose: "새 액세스 토큰 발급"
+        lifetime: "길음 (일~월)"
+      - name: "ID Token (OIDC)"
+        purpose: "사용자 신원"
+        format: "JWT"
+    security_considerations:
+      - "PKCE 필수 (public 클라이언트)"
+      - "상태 파라미터 검증"
+      - "리다이렉트 URI 화이트리스트"
+      - "토큰 저장 보안"
+      - "스코프 최소화"
+    common_vulnerabilities:
+      - "리다이렉트 URI 조작"
+      - "CSRF (상태 미검증)"
+      - "토큰 탈취"
+      - "스코프 과다 요청"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 6749"
+      - "OAuth 2.0 Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OAuth 2.0은 권한 위임 프레임워크다. Authorization Code+PKCE가 권장되며
+      액세스/리프레시 토큰으로 리소스에 접근한다.
+    search_keywords:
+      - "OAuth"
+      - "권한 부여"
+      - "액세스 토큰"
+      - "PKCE"
+    related_queries:
+      - "OAuth 구현"
+      - "토큰 보안"
+      - "권한 위임"

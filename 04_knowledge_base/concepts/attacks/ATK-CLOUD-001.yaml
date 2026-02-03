@@ -1,0 +1,77 @@
+# GR Atom: Cloud Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CLOUD-001"
+  name: "Cloud Attack"
+  normalization:
+    normalized_name: "cloud attack aws azure gcp"
+    normalization_version: "1.0"
+  aliases:
+    - "Cloud Attack"
+    - "클라우드 공격"
+    - "Cloud Security Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "CLOUD"]
+
+definition:
+  what: |
+    클라우드 환경의 설정 오류, 취약점을 악용하는 공격 기법 분류이다.
+  why: |
+    클라우드 자산에 접근한다.
+    데이터를 탈취한다.
+    클라우드 인프라를 장악한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-CLOUD-METADATA-001"
+      - "ATK-CLOUD-STORAGE-001"
+      - "ATK-CLOUD-PRIVESC-001"
+    related_to:
+      - "DEF-CLOUD-001"
+      - "INFRA-CLOUD-001"
+
+properties:
+  technical:
+    vectors:
+      - "Metadata Service Abuse"
+      - "Misconfigured Storage"
+      - "IAM Privilege Escalation"
+      - "Serverless Injection"
+    platforms: ["AWS", "Azure", "GCP"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK Cloud"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Attack은 클라우드 환경을 대상으로 하는 공격 기법 분류이다.
+    search_keywords:
+      - "Cloud Attack"
+      - "클라우드 공격"
+      - "AWS"
+      - "Azure"

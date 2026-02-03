@@ -1,0 +1,125 @@
+# GR Atom: Security Monitoring
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-MONITORING-001"
+  name: "Security Monitoring"
+  normalization:
+    normalized_name: "security monitoring siem"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 모니터링"
+    - "Security Operations Monitoring"
+    - "SIEM"
+    - "Security Information and Event Management"
+    - "보안 관제"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["D", "M"]
+
+definition:
+  what: |
+    실시간으로 보안 이벤트를 감시하고 이상 행위를 탐지하는 활동.
+    SIEM(Security Information and Event Management)을 포함하며,
+    다양한 소스(방화벽, IDS, WAF, 서버, 애플리케이션)의 로그를 수집/상관분석하여
+    보안 위협을 식별하고 경보를 발생시킨다.
+  why: |
+    보안 사고는 탐지가 빠를수록 피해가 줄어든다. 평균 침해 탐지 시간(MTTD)을
+    단축하는 것이 핵심이며, 실시간 모니터링 없이는 공격이 수개월간
+    탐지되지 않을 수 있다. 다수의 로그 소스를 상관분석하여
+    단일 소스로는 발견할 수 없는 복합 공격을 탐지한다.
+  how: |
+    1. 다양한 보안 장비/시스템에서 로그 수집
+    2. 로그 정규화 및 중앙 저장소에 인덱싱
+    3. 상관분석 규칙(Correlation Rule)으로 위협 패턴 탐지
+    4. 경보 발생 및 우선순위 지정 (Triage)
+    5. SOC 분석가가 경보 조사 및 대응 수행
+    6. 대시보드/보고서를 통한 보안 상태 가시화
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT"  # 탐지 방어의 하위 개념
+    depends_on:
+      - "DEF-DETECT-LOGGING-001"  # 로깅 데이터에 의존
+  causal:
+    prevents:
+      - "VUL-MONITORING-INSUFFICIENT-001"  # 불충분한 모니터링 취약점 방어
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-SYS-SERVER-001"
+      - "INFRA-NET-NETWORK-001"
+
+properties:
+  technical:
+    siem_capabilities:
+      - name: "Log Collection"
+        description: "다양한 소스에서 로그 수집 및 정규화"
+      - name: "Correlation"
+        description: "다수 이벤트 간 상관관계 분석"
+      - name: "Alerting"
+        description: "위협 탐지 시 실시간 경보 발생"
+      - name: "Dashboard"
+        description: "보안 상태 시각화 및 리포팅"
+      - name: "Forensic Search"
+        description: "과거 이벤트 검색 및 조사"
+    siem_solutions:
+      - "Splunk"
+      - "Elastic SIEM"
+      - "IBM QRadar"
+      - "Microsoft Sentinel"
+      - "Wazuh"
+    monitoring_metrics:
+      - "MTTD (Mean Time to Detect)"
+      - "MTTR (Mean Time to Respond)"
+      - "경보 처리율"
+      - "오탐률 (False Positive Rate)"
+    correlation_examples:
+      - "동일 IP에서 다수 실패 후 성공 로그인"
+      - "비정상 시간대 관리자 접속"
+      - "대량 데이터 다운로드 후 외부 전송"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-137 ISCM"
+      - "OWASP Insufficient Logging & Monitoring"
+      - "MITRE ATT&CK for SOC"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Monitoring은 실시간으로 보안 이벤트를 감시하고 이상 행위를 탐지하는
+      활동이다. SIEM을 통해 다양한 소스의 로그를 수집/상관분석하여 위협을 식별한다.
+      Splunk, Elastic SIEM 등을 사용하며, MTTD 단축이 핵심 목표이다.
+    search_keywords:
+      - "Security Monitoring"
+      - "보안 모니터링"
+      - "SIEM"
+      - "보안 관제"
+      - "SOC"
+      - "상관분석"
+    related_queries:
+      - "SIEM이란?"
+      - "보안 모니터링 방법"
+      - "SOC 운영 방법"
+      - "상관분석 규칙 작성법"

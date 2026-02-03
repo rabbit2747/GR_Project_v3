@@ -1,0 +1,101 @@
+# GR Atom: Container Runtime
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-RUNTIME-CONTAINER-001"
+  name: "Container Runtime"
+  normalization:
+    normalized_name: "container runtime docker containerd cri-o"
+    normalization_version: "1.0"
+  aliases:
+    - "컨테이너 런타임"
+    - "Docker"
+    - "containerd"
+    - "CRI-O"
+
+classification:
+  domain: infrastructure
+  type: runtime
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["INFRA", "RUNTIME", "CONTAINER"]
+
+definition:
+  what: |
+    컨테이너 런타임(Container Runtime)은 컨테이너 이미지를 실행하는 엔진이다.
+    Docker, containerd, CRI-O 등이 있으며 격리된 환경에서 애플리케이션을 실행한다.
+  why: |
+    마이크로서비스와 클라우드 네이티브 환경의 핵심 기술이다.
+    컨테이너 탈출, 이미지 취약점, 권한 상승이 주요 공격 대상이다.
+  how: |
+    1. 이미지 풀: 레지스트리에서 컨테이너 이미지 다운로드
+    2. 레이어 언팩: 이미지 레이어 추출
+    3. 네임스페이스 생성: 프로세스, 네트워크, 파일시스템 격리
+    4. 컨테이너 실행: 격리된 환경에서 프로세스 시작
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    supports:
+      - "INFRA-RUNTIME-K8S-001"
+  causal:
+    mitigated_by:
+      - "DEF-PREVENT-SANDBOX-001"
+
+properties:
+  technical:
+    implementations:
+      - name: "Docker"
+        status: "Most popular"
+      - name: "containerd"
+        status: "Kubernetes default"
+      - name: "CRI-O"
+        status: "Kubernetes-native"
+      - name: "Podman"
+        status: "Rootless container"
+    security_features:
+      - "Namespace isolation"
+      - "cgroups resource limits"
+      - "seccomp profiles"
+      - "AppArmor/SELinux"
+    common_vulnerabilities:
+      - "Container escape"
+      - "Privileged container abuse"
+      - "Image vulnerabilities"
+      - "Volume mount attacks"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Docker Security Best Practices"
+      - "CIS Docker Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Container Runtime(컨테이너 런타임)은 Docker, containerd 등
+      컨테이너 이미지를 실행하는 엔진이다. 컨테이너 탈출, 권한 상승이
+      주요 보안 위협이다.
+    search_keywords:
+      - "Container Runtime"
+      - "Docker"
+      - "containerd"
+      - "컨테이너"
+    related_queries:
+      - "컨테이너 보안"
+      - "Docker 탈출"
+      - "컨테이너 격리"

@@ -1,0 +1,132 @@
+# GR Atom: Load Balancer
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-LB-001"
+  name: "Load Balancer"
+  normalization:
+    normalized_name: "load balancer lb reverse proxy"
+    normalization_version: "1.0"
+  aliases:
+    - "로드 밸런서"
+    - "LB"
+    - "부하 분산기"
+    - "L4 LB"
+    - "L7 LB"
+
+classification:
+  domain: network
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["N"]
+
+definition:
+  what: |
+    로드 밸런서는 들어오는 네트워크 트래픽을 여러 백엔드 서버에
+    분산시켜 가용성과 성능을 향상시키는 네트워크 장비 또는 소프트웨어다.
+    L4(전송 계층) 또는 L7(애플리케이션 계층)에서 동작한다.
+  why: |
+    고가용성(HA)과 확장성의 핵심 인프라다. 단일 장애점(SPOF)을 제거하고,
+    트래픽 급증에 대응한다. 보안 관점에서 DDoS 방어, SSL 종료,
+    접근 제어 기능도 수행한다.
+  how: |
+    1. 클라이언트 요청이 LB에 도착
+    2. 헬스 체크로 정상 서버 확인
+    3. 알고리즘에 따라 서버 선택 (RR, LC, IP Hash 등)
+    4. 요청을 선택된 서버로 전달
+    5. 응답을 클라이언트에 반환
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-NETWORK-DEVICE-001"]
+  causal:
+    enables:
+      - "INFRA-APP-WEBSERVER-001"
+      - "INFRA-APP-API-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TCP-001"
+      - "TECH-PROTOCOL-HTTP-001"
+
+properties:
+  technical:
+    types:
+      - name: "L4 Load Balancer"
+        layer: "Transport"
+        basis: "IP, Port"
+        example: "AWS NLB, HAProxy TCP mode"
+      - name: "L7 Load Balancer"
+        layer: "Application"
+        basis: "HTTP headers, URL, Cookie"
+        example: "AWS ALB, Nginx, HAProxy HTTP mode"
+    algorithms:
+      - name: "Round Robin"
+        description: "순차 분배"
+      - name: "Least Connections"
+        description: "연결 수 최소 서버 선택"
+      - name: "IP Hash"
+        description: "클라이언트 IP 기반 고정"
+      - name: "Weighted"
+        description: "가중치 기반"
+    common_products:
+      hardware:
+        - "F5 BIG-IP"
+        - "Citrix ADC"
+        - "A10 Networks"
+      software:
+        - "HAProxy"
+        - "Nginx"
+        - "Envoy"
+      cloud:
+        - "AWS ELB/ALB/NLB"
+        - "Azure Load Balancer"
+        - "GCP Load Balancing"
+  security:
+    features:
+      - "SSL/TLS Termination"
+      - "DDoS 방어"
+      - "IP 화이트리스트/블랙리스트"
+      - "Rate Limiting"
+      - "요청 필터링"
+    attack_surface:
+      - "설정 오류로 인한 백엔드 노출"
+      - "SSL 설정 취약"
+      - "관리 인터페이스 노출"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "https://www.haproxy.org/"
+      - "AWS Load Balancing Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Load Balancer는 트래픽을 여러 서버에 분산하여 가용성과 성능을 높인다.
+      L4(TCP/UDP)와 L7(HTTP) 방식이 있으며, Round Robin, Least Connections
+      등의 알고리즘을 사용한다. HAProxy, Nginx, AWS ALB가 대표적이다.
+      SSL 종료, DDoS 방어, Rate Limiting 등 보안 기능도 수행한다.
+    search_keywords:
+      - "Load Balancer"
+      - "로드 밸런서"
+      - "HAProxy"
+      - "L7 LB"
+      - "부하 분산"
+    related_queries:
+      - "로드 밸런서란?"
+      - "L4 vs L7 로드 밸런서"
+      - "로드 밸런싱 알고리즘"

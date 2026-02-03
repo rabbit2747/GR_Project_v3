@@ -1,0 +1,113 @@
+# GR Atom: Postman
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-API-POSTMAN-001"
+  name: "Postman"
+  normalization:
+    normalized_name: "postman api testing development collaboration"
+    normalization_version: "1.0"
+  aliases:
+    - "Postman"
+    - "API 테스트 도구"
+    - "API 개발 플랫폼"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "API", "TEST"]
+
+definition:
+  what: |
+    API 개발, 테스트, 문서화, 협업을 위한 통합 플랫폼으로
+    보안 테스트에도 활용되는 도구이다.
+  why: |
+    API 요청을 쉽게 구성하고 테스트한다.
+    보안 취약점 테스트를 자동화한다.
+  how: |
+    1. API 요청 생성
+    2. 파라미터, 헤더 설정
+    3. 요청 전송 및 응답 분석
+    4. 테스트 스크립트 실행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT-001"
+    related_to:
+      - "TECH-CONCEPT-REST-001"
+      - "TOOL-OFFENSE-BURP-001"
+
+properties:
+  technical:
+    platform: "Desktop, Web"
+    features:
+      api_testing:
+        - "HTTP 요청 빌더"
+        - "환경 변수 관리"
+        - "컬렉션 기반 조직"
+        - "자동화 테스트"
+      security_features:
+        - "인증 테스트 (OAuth, JWT, Basic)"
+        - "요청 변조"
+        - "환경별 자격 증명"
+        - "Pre/Post 스크립트"
+      collaboration:
+        - "팀 워크스페이스"
+        - "API 문서 공유"
+        - "버전 관리"
+    security_testing_use:
+      - "인증 우회 테스트"
+      - "권한 상승 테스트"
+      - "입력 검증 테스트"
+      - "Rate Limiting 테스트"
+      - "BOLA/BFLA 테스트"
+    scripting:
+      pre_request: "요청 전 변수 설정, 토큰 갱신"
+      test: "응답 검증, 자동화 테스트"
+      language: "JavaScript"
+    integrations:
+      - "Newman (CLI 실행)"
+      - "CI/CD 파이프라인"
+      - "OpenAPI/Swagger"
+      - "GitHub"
+    limitations:
+      - "복잡한 공격 시나리오에 제한"
+      - "Burp Suite 대비 기능 제한"
+    license: "Freemium"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Postman Documentation"
+      - "API Testing Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Postman은 API 개발 및 테스트 플랫폼으로
+      보안 테스트와 자동화에도 활용되는 도구이다.
+    search_keywords:
+      - "Postman"
+      - "API 테스트"
+      - "REST"
+      - "HTTP 클라이언트"
+    related_queries:
+      - "API 보안 테스트"
+      - "HTTP 요청"
+      - "API 개발"

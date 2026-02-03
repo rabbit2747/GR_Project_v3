@@ -1,0 +1,125 @@
+# GR Atom: Patch Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PATCH-MANAGEMENT-001"
+  name: "Patch Management"
+  normalization:
+    normalized_name: "patch management update vulnerability remediation wsus"
+    normalization_version: "1.0"
+  aliases:
+    - "Patch Management"
+    - "패치 관리"
+    - "Update Management"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "VULN", "OPERATIONS"]
+
+definition:
+  what: |
+    소프트웨어 취약점을 해결하는 패치를 식별, 테스트,
+    배포하는 체계적인 프로세스이다.
+  why: |
+    알려진 취약점을 제거한다.
+    공격 표면을 줄인다.
+  how: |
+    1. 패치 식별
+    2. 우선순위 결정
+    3. 테스트
+    4. 배포
+    5. 검증
+
+relations:
+  structural:
+    is_a:
+      - "DEF-OPERATIONS-001"
+    related_to:
+      - "TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001"
+      - "ATK-MITRE-T1190-001"
+
+properties:
+  technical:
+    process:
+      - name: "Discovery"
+        description: "패치 필요 시스템 식별"
+      - name: "Assessment"
+        description: "취약점 심각도 평가"
+      - name: "Prioritization"
+        description: "CVSS, EPSS 기반 우선순위"
+      - name: "Testing"
+        description: "테스트 환경에서 검증"
+      - name: "Deployment"
+        description: "프로덕션 배포"
+      - name: "Verification"
+        description: "적용 확인"
+    prioritization_factors:
+      - "CVSS 점수"
+      - "EPSS 악용 확률"
+      - "자산 중요도"
+      - "노출 범위"
+      - "가용 익스플로잇"
+    tools:
+      microsoft:
+        - "WSUS"
+        - "SCCM/MECM"
+        - "Intune"
+      third_party:
+        - "Ivanti"
+        - "ManageEngine"
+        - "Qualys Patch"
+        - "Automox"
+      linux:
+        - "yum/dnf"
+        - "apt"
+        - "Satellite"
+        - "Landscape"
+    challenges:
+      - "서비스 중단"
+      - "테스트 시간"
+      - "레거시 시스템"
+      - "우선순위 결정"
+    best_practices:
+      - "자동화된 배포"
+      - "정기 패치 주기"
+      - "긴급 패치 프로세스"
+      - "롤백 계획"
+      - "패치 검증"
+    sla_example:
+      critical: "24-72시간"
+      high: "7일"
+      medium: "30일"
+      low: "90일"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-40"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Patch Management는 소프트웨어 취약점을 해결하는 패치를
+      식별, 테스트, 배포하는 체계적인 보안 프로세스이다.
+    search_keywords:
+      - "Patch Management"
+      - "패치 관리"
+      - "WSUS"
+      - "Vulnerability Remediation"

@@ -1,0 +1,91 @@
+# GR Atom: Multi-Factor Authentication
+identity:
+  id: "DEF-PREVENT-MFA-001"
+  name: "Multi-Factor Authentication"
+  normalization:
+    normalized_name: "multi_factor_authentication"
+    normalization_version: "1.0"
+  aliases:
+    - "MFA"
+    - "Two-Factor Authentication"
+    - "2FA"
+    - "다중 인증"
+    - "다요소 인증"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P", "AUTH"]
+
+definition:
+  what: |
+    2개 이상의 인증 요소(지식, 소유, 생체)를 요구하여 인증 보안을 강화하는 방어 기법.
+    비밀번호만으로는 충분하지 않은 보안 수준을 보완하여 계정 탈취를 방지한다.
+  why: |
+    비밀번호 단일 인증은 브루트포스, 피싱, 크리덴셜 스터핑, 데이터 유출 등
+    다양한 공격에 취약하다. MFA는 하나의 인증 요소가 유출되더라도
+    추가 요소가 없으면 접근이 불가능하게 하여 계정 보안을 크게 강화한다.
+  how: |
+    1. 지식 요소(비밀번호) + 소유 요소(OTP, 보안 키) 조합을 구현한다.
+    2. TOTP(Time-based One-Time Password) 앱(Google Authenticator 등)을 지원한다.
+    3. FIDO2/WebAuthn 기반 하드웨어 보안 키를 지원한다.
+    4. SMS OTP는 SIM 스와핑 위험이 있으므로 가능하면 앱 기반 OTP를 우선한다.
+    5. 복구 코드를 안전하게 생성하고 관리할 수 있도록 한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-AUTH-BRUTEFORCE-001"
+      - "ATK-AUTH-BYPASS-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    implementation:
+      - "TOTP (Time-based One-Time Password)"
+      - "FIDO2/WebAuthn"
+      - "SMS OTP (less secure)"
+      - "Push notification authentication"
+      - "Hardware security keys (YubiKey)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Multi-Factor Authentication(MFA)은 2개 이상의 인증 요소(지식, 소유, 생체)를
+      요구하여 인증 보안을 강화하는 방어 기법이다. 브루트포스, 인증 우회 등
+      인증 관련 공격을 효과적으로 방지한다.
+    search_keywords:
+      - "multi-factor authentication"
+      - "MFA"
+      - "two-factor authentication"
+      - "2FA"
+      - "TOTP"
+      - "다중 인증"
+    related_queries:
+      - "MFA를 구현하는 방법"
+      - "TOTP와 FIDO2의 차이점"
+      - "가장 안전한 인증 방식"

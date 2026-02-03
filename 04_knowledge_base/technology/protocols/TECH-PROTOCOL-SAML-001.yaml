@@ -1,0 +1,108 @@
+# GR Atom: SAML Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-SAML-001"
+  name: "SAML (Security Assertion Markup Language)"
+  normalization:
+    normalized_name: "saml security assertion markup language sso federation"
+    normalization_version: "1.0"
+  aliases:
+    - "SAML"
+    - "SAML 2.0"
+    - "Security Assertion Markup Language"
+
+classification:
+  domain: application
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "AUTH", "SSO"]
+
+definition:
+  what: |
+    SAML(Security Assertion Markup Language)은 인증 및 인가 데이터를
+    교환하기 위한 XML 기반 표준이다. 엔터프라이즈 SSO에 널리 사용된다.
+  why: |
+    엔터프라이즈 SSO의 사실상 표준이다. XML 서명 검증 오류,
+    XXE, Assertion 조작이 주요 보안 위협이다.
+  how: |
+    1. SP(Service Provider): 서비스 제공자
+    2. IdP(Identity Provider): 인증 제공자
+    3. Assertion: 인증/인가 정보 XML
+    4. Binding: HTTP POST, Redirect, Artifact
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+  causal:
+    targeted_by:
+      - "ATK-AUTH-SAMLATTACK-001"
+    uses:
+      - "TECH-FORMAT-XML-001"
+
+properties:
+  technical:
+    components:
+      - name: "Identity Provider (IdP)"
+        role: "사용자 인증, Assertion 발급"
+      - name: "Service Provider (SP)"
+        role: "서비스 제공, Assertion 검증"
+      - name: "Assertion"
+        content: ["Authentication", "Attribute", "Authorization Decision"]
+    flows:
+      - name: "SP-Initiated"
+        description: "SP에서 시작, IdP로 리다이렉트"
+      - name: "IdP-Initiated"
+        description: "IdP 포털에서 시작"
+    bindings:
+      - "HTTP Redirect"
+      - "HTTP POST"
+      - "HTTP Artifact"
+      - "SOAP"
+    security_issues:
+      - name: "XML Signature Wrapping"
+        description: "서명된 부분과 처리되는 부분 불일치"
+        cve_example: "CVE-2012-4818"
+      - name: "XXE"
+        description: "XML 파싱 시 외부 엔티티 처리"
+      - name: "Assertion Replay"
+        description: "동일 Assertion 재사용"
+      - name: "Certificate Validation"
+        description: "IdP 인증서 검증 부재"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OASIS SAML 2.0"
+      - "OWASP SAML Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SAML은 XML 기반 SSO 프로토콜로 엔터프라이즈에서 널리 사용된다.
+      XML Signature Wrapping, XXE가 주요 위협이며 OIDC가 현대적 대안이다.
+    search_keywords:
+      - "SAML"
+      - "SAML 2.0"
+      - "SSO"
+      - "Federation"
+      - "IdP"
+    related_queries:
+      - "SAML vs OIDC"
+      - "SAML 보안"
+      - "SSO 구현"

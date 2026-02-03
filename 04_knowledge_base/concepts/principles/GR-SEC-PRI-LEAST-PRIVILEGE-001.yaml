@@ -1,0 +1,95 @@
+# GR Atom: Principle of Least Privilege
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-PRI-LEAST-PRIVILEGE-001"
+  name: "Principle of Least Privilege"
+  normalization:
+    normalized_name: "least privilege minimal access security principle"
+    normalization_version: "1.0"
+  aliases:
+    - "Principle of Least Privilege"
+    - "PoLP"
+    - "최소 권한 원칙"
+    - "Minimal Privilege"
+
+classification:
+  domain: security
+  type: principle
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["PRINCIPLE", "ACCESS", "SECURITY"]
+
+definition:
+  what: |
+    주체(사용자, 프로세스, 시스템)에게 작업 수행에 필요한
+    최소한의 권한만 부여해야 한다는 보안 원칙이다.
+  why: |
+    공격 표면을 최소화한다.
+    침해 발생 시 피해 범위를 제한한다.
+    실수로 인한 손상을 방지한다.
+  how: |
+    1. 필요한 권한만 부여
+    2. 기본 거부 정책
+    3. 정기적 권한 검토
+    4. 권한 에스컬레이션 제한
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-PRI-00001"
+    related_to:
+      - "GR-SEC-PRI-SEPARATION-DUTIES-001"
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+      - "DEF-IAM-001"
+
+properties:
+  technical:
+    applications:
+      - "사용자 계정 권한"
+      - "서비스 계정"
+      - "API 접근 권한"
+      - "파일 시스템 권한"
+      - "네트워크 접근"
+      - "데이터베이스 권한"
+    implementation:
+      - "Role-Based Access Control (RBAC)"
+      - "Attribute-Based Access Control (ABAC)"
+      - "Just-In-Time Access"
+      - "Privileged Access Management (PAM)"
+    violations:
+      - "과도한 관리자 권한"
+      - "공유 계정 사용"
+      - "권한 누적"
+      - "기본 권한 미변경"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-53"
+      - "CIS Controls"
+      - "OWASP"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      최소 권한 원칙은 주체에게 필요한 최소한의 권한만
+      부여하여 보안 위험을 최소화하는 근본 보안 원칙이다.
+    search_keywords:
+      - "Least Privilege"
+      - "Minimal Access"
+      - "PoLP"
+      - "권한 최소화"

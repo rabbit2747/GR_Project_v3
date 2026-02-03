@@ -1,0 +1,117 @@
+# GR Atom: ARP Attacks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-ARP-001"
+  name: "ARP Attacks"
+  normalization:
+    normalized_name: "arp attack spoofing poisoning cache man in the middle"
+    normalization_version: "1.0"
+  aliases:
+    - "ARP 공격"
+    - "ARP 스푸핑"
+    - "ARP 포이즈닝"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["ATK", "NET", "ARP"]
+
+definition:
+  what: |
+    ARP 공격은 주소 결정 프로토콜(ARP)의 취약점을 악용하여
+    로컬 네트워크에서 트래픽을 가로채는 Layer 2 공격이다.
+  why: |
+    ARP는 인증 없이 동작하여 스푸핑이 용이하다.
+    같은 LAN 내 모든 트래픽 감청/조작이 가능하다.
+  how: |
+    1. 대상 네트워크 스캔
+    2. 게이트웨이/피해자 MAC 주소 확인
+    3. 위조된 ARP 응답 전송
+    4. 트래픽 가로채기 (MITM)
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    enables:
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    attack_mechanism:
+      - step: "1. ARP Cache 조작"
+        description: "위조된 ARP 응답으로 캐시 변경"
+      - step: "2. MITM 위치 확보"
+        description: "게이트웨이와 피해자 사이"
+      - step: "3. 트래픽 전달"
+        description: "IP 포워딩으로 연결 유지"
+      - step: "4. 데이터 캡처/조작"
+        description: "패킷 분석 또는 수정"
+    attack_types:
+      - name: "ARP Spoofing"
+        description: "위조된 MAC 주소 광고"
+      - name: "ARP Cache Poisoning"
+        description: "ARP 캐시 테이블 조작"
+      - name: "ARP Flooding"
+        description: "ARP 요청/응답 폭주"
+    tools:
+      - "arpspoof"
+      - "Ettercap"
+      - "Bettercap"
+      - "Cain & Abel"
+      - "dsniff"
+    detection:
+      - "ARP 테이블 모니터링"
+      - "중복 MAC 주소"
+      - "ARP 트래픽 이상"
+      - "게이트웨이 MAC 변경"
+    prevention:
+      - name: "Static ARP Entries"
+        description: "중요 호스트에 정적 ARP"
+        limitation: "관리 어려움"
+      - name: "Dynamic ARP Inspection (DAI)"
+        description: "스위치 레벨 ARP 검증"
+        requirement: "DHCP Snooping"
+      - name: "802.1X"
+        description: "포트 기반 인증"
+      - name: "VLAN Segmentation"
+        description: "네트워크 분리"
+      - name: "VPN/암호화"
+        description: "MITM 무력화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 826"
+      - "Network Security Fundamentals"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ARP 공격은 Layer 2에서 MAC 주소를 위조하여 MITM을 수행한다. DAI,
+      정적 ARP, VLAN 분리로 방어한다.
+    search_keywords:
+      - "ARP 스푸핑"
+      - "ARP 공격"
+      - "Layer 2"
+      - "MAC 스푸핑"
+    related_queries:
+      - "LAN 보안"
+      - "MITM 방어"
+      - "스위치 보안"

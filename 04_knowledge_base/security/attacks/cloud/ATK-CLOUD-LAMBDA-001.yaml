@@ -1,0 +1,115 @@
+# GR Atom: Serverless Function Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CLOUD-LAMBDA-001"
+  name: "Serverless Function Attack"
+  normalization:
+    normalized_name: "serverless function attack lambda azure functions injection"
+    normalization_version: "1.0"
+  aliases:
+    - "서버리스 함수 공격"
+    - "Lambda 공격"
+    - "FaaS 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "CLOUD", "SERVERLESS"]
+
+definition:
+  what: |
+    서버리스 함수(AWS Lambda, Azure Functions 등)의 취약점을 악용하여
+    데이터 탈취, 권한 상승, 리소스 남용을 수행하는 공격이다.
+  why: |
+    클라우드 리소스에 대한 접근을 획득한다.
+    비용 발생 공격(Denial of Wallet)을 수행한다.
+  how: |
+    1. 함수 입력 벡터 식별
+    2. 인젝션 또는 취약점 악용
+    3. 환경 변수/자격 증명 탈취
+    4. 권한 남용 또는 피벗
+
+relations:
+  structural:
+    is_a:
+      - "ATK-CLOUD-PRIVESC-001"
+    related_to:
+      - "INFRA-SERVERLESS-001"
+      - "ATK-INJECT-CMD-001"
+
+properties:
+  technical:
+    platforms:
+      - "AWS Lambda"
+      - "Azure Functions"
+      - "Google Cloud Functions"
+      - "Cloudflare Workers"
+    attack_vectors:
+      - name: "Event Injection"
+        description: "입력 이벤트에 악성 페이로드 삽입"
+      - name: "Environment Variable Exposure"
+        description: "환경 변수에서 자격 증명 탈취"
+      - name: "Dependency Confusion"
+        description: "악성 패키지 삽입"
+      - name: "Code Injection"
+        description: "동적 코드 실행 악용"
+      - name: "SSRF"
+        description: "내부 서비스 접근"
+    exploitation_targets:
+      - "환경 변수 (AWS_ACCESS_KEY_ID 등)"
+      - "임시 자격 증명"
+      - "/tmp 디렉토리 (데이터 유출)"
+      - "다른 클라우드 서비스 접근"
+    denial_of_wallet:
+      description: "과도한 함수 호출로 비용 발생"
+      impact: "예산 고갈"
+    cold_start_abuse:
+      description: "콜드 스타트 시간을 이용한 타이밍 공격"
+    detection:
+      - "비정상 호출 패턴"
+      - "에러율 증가"
+      - "실행 시간 이상"
+      - "비용 급증"
+    mitigation:
+      - "입력 검증"
+      - "최소 권한 IAM 역할"
+      - "환경 변수 암호화"
+      - "VPC 내 실행"
+      - "비용 알림 설정"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Serverless Top 10"
+      - "AWS Lambda Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      서버리스 함수 공격은 Lambda 등 FaaS의 취약점을 악용하여
+      자격 증명 탈취, 권한 상승, 비용 공격을 수행한다.
+    search_keywords:
+      - "Lambda"
+      - "서버리스"
+      - "FaaS"
+      - "클라우드 함수"
+    related_queries:
+      - "AWS Lambda 보안"
+      - "서버리스 보안"
+      - "Denial of Wallet"

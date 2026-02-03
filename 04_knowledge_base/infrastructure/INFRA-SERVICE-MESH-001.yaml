@@ -1,0 +1,118 @@
+# GR Atom: Service Mesh Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-SERVICE-MESH-001"
+  name: "Service Mesh Security"
+  normalization:
+    normalized_name: "service mesh istio envoy sidecar mtls zero trust"
+    normalization_version: "1.0"
+  aliases:
+    - "서비스 메시 보안"
+    - "Istio 보안"
+    - "마이크로서비스 네트워크"
+
+classification:
+  domain: security
+  type: infrastructure
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["INFRA", "CLOUD", "MESH"]
+
+definition:
+  what: |
+    Service Mesh는 마이크로서비스 간 통신을 관리하는 인프라 레이어로,
+    mTLS, 정책 기반 접근 제어, 관찰 가능성을 제공한다.
+  why: |
+    마이크로서비스 환경의 복잡한 네트워크 보안을 단순화한다.
+    제로 트러스트 아키텍처 구현의 핵심 요소다.
+  how: |
+    1. 사이드카 프록시 주입
+    2. mTLS 자동 적용
+    3. 정책 기반 접근 제어
+    4. 트래픽 암호화 및 관찰
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-001"
+    related_to:
+      - "INFRA-CONTAINER-K8S-001"
+      - "DEF-ARCH-ZERO-TRUST-001"
+
+properties:
+  technical:
+    platforms:
+      - name: "Istio"
+        features: ["Envoy 기반", "강력한 정책", "복잡한 설정"]
+      - name: "Linkerd"
+        features: ["경량화", "Rust 기반", "단순한 운영"]
+      - name: "Consul Connect"
+        features: ["HashiCorp 통합", "다중 플랫폼"]
+      - name: "AWS App Mesh"
+        features: ["AWS 네이티브", "Envoy 기반"]
+    security_features:
+      - name: "mTLS"
+        description: "서비스 간 상호 TLS 인증"
+        benefit: "전송 암호화 및 신원 확인"
+      - name: "Authorization Policy"
+        description: "세밀한 접근 제어"
+        benefit: "최소 권한 원칙 적용"
+      - name: "Request Authentication"
+        description: "JWT 검증"
+        benefit: "엔드유저 인증"
+      - name: "Traffic Encryption"
+        description: "모든 트래픽 암호화"
+        benefit: "도청 방지"
+    istio_security:
+      components:
+        - name: "PeerAuthentication"
+          purpose: "mTLS 정책"
+        - name: "AuthorizationPolicy"
+          purpose: "접근 제어"
+        - name: "RequestAuthentication"
+          purpose: "JWT 검증"
+    best_practices:
+      - "STRICT mTLS 모드 사용"
+      - "기본 거부 정책"
+      - "네임스페이스 격리"
+      - "Egress 트래픽 제어"
+      - "정기적 인증서 갱신"
+    challenges:
+      - "성능 오버헤드"
+      - "복잡한 디버깅"
+      - "학습 곡선"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Istio Security"
+      - "CNCF Service Mesh"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Service Mesh는 마이크로서비스 간 보안 통신을 제공한다. mTLS, 정책 기반 접근 제어가
+      핵심이며 Istio, Linkerd가 대표적 구현이다.
+    search_keywords:
+      - "서비스 메시"
+      - "Istio"
+      - "mTLS"
+      - "사이드카"
+    related_queries:
+      - "마이크로서비스 보안"
+      - "Envoy 프록시"
+      - "제로 트러스트 네트워크"

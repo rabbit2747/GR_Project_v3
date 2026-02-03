@@ -1,0 +1,111 @@
+# GR Atom: Cryptography
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-CRYPTO-001"
+  name: "Cryptography"
+  normalization:
+    normalized_name: "cryptography encryption cipher algorithm"
+    normalization_version: "1.0"
+  aliases:
+    - "Cryptography"
+    - "암호학"
+    - "Encryption"
+    - "Cryptographic Security"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "CRYPTO", "ROOT"]
+
+definition:
+  what: |
+    정보를 보호하기 위한 암호화 기술, 알고리즘, 기법의
+    최상위 분류이다.
+  why: |
+    데이터 기밀성을 보장한다.
+    무결성을 검증한다.
+    인증과 부인방지를 제공한다.
+  how: |
+    1. 요구사항 분석
+    2. 적절한 알고리즘 선택
+    3. 안전한 구현
+    4. 키 관리
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "TECH-ENCRYPTION-001"
+      - "DEF-CRYPTO-TLS-001"
+      - "DEF-CRYPTO-PKI-001"
+    related_to:
+      - "GR-SEC-PROTOCOL-001"
+      - "GR-SEC-DEF-001"
+
+properties:
+  technical:
+    categories:
+      symmetric:
+        description: "대칭키 암호화"
+        algorithms: ["AES", "ChaCha20", "3DES"]
+      asymmetric:
+        description: "비대칭키 암호화"
+        algorithms: ["RSA", "ECC", "Ed25519"]
+      hashing:
+        description: "해시 함수"
+        algorithms: ["SHA-256", "SHA-3", "BLAKE2"]
+      mac:
+        description: "메시지 인증 코드"
+        algorithms: ["HMAC", "CMAC", "Poly1305"]
+      digital_signature:
+        description: "전자 서명"
+        algorithms: ["RSA-PSS", "ECDSA", "EdDSA"]
+    key_management:
+      - "Key Generation"
+      - "Key Storage"
+      - "Key Distribution"
+      - "Key Rotation"
+      - "Key Destruction"
+    best_practices:
+      - "검증된 알고리즘 사용"
+      - "충분한 키 길이"
+      - "안전한 난수 생성"
+      - "정기적 키 교체"
+    deprecated:
+      - "DES"
+      - "MD5"
+      - "SHA-1"
+      - "RC4"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST FIPS"
+      - "IETF CFRG"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cryptography는 정보 보호를 위한 암호화 기술과
+      알고리즘의 최상위 분류 개념이다.
+    search_keywords:
+      - "Cryptography"
+      - "암호화"
+      - "Encryption"
+      - "AES"

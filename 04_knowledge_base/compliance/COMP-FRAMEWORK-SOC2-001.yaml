@@ -1,0 +1,133 @@
+# GR Atom: SOC 2 Compliance Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-SOC2-001"
+  name: "SOC 2 Compliance Framework"
+  normalization:
+    normalized_name: "soc2 service organization control trust services criteria"
+    normalization_version: "1.0"
+  aliases:
+    - "SOC 2"
+    - "SOC2"
+    - "Service Organization Control"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["COMP", "FRAMEWORK", "AUDIT"]
+
+definition:
+  what: |
+    SOC 2는 서비스 조직의 보안 통제에 대한 감사 표준으로,
+    5가지 신뢰 서비스 원칙을 기반으로 한다.
+  why: |
+    고객 데이터를 처리하는 서비스 제공자의 신뢰를 입증한다.
+    B2B SaaS, 클라우드 서비스 제공자에게 필수적이다.
+  how: |
+    1. 적용 신뢰 원칙 결정
+    2. 통제 환경 구축
+    3. 증거 수집 및 문서화
+    4. CPA 감사 수행
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMPLIANCE-001"
+    related_to:
+      - "COMP-FRAMEWORK-ISO27001-001"
+      - "COMP-FRAMEWORK-PCIDSS-001"
+
+properties:
+  technical:
+    trust_service_criteria:
+      - name: "Security"
+        description: "무단 접근 방지"
+        required: true
+        common_controls:
+          - "접근 제어"
+          - "방화벽"
+          - "암호화"
+          - "모니터링"
+      - name: "Availability"
+        description: "시스템 가용성 보장"
+        required: false
+        common_controls:
+          - "SLA"
+          - "재해 복구"
+          - "백업"
+      - name: "Processing Integrity"
+        description: "처리 정확성 보장"
+        required: false
+        common_controls:
+          - "데이터 검증"
+          - "오류 처리"
+      - name: "Confidentiality"
+        description: "기밀 정보 보호"
+        required: false
+        common_controls:
+          - "데이터 분류"
+          - "암호화"
+      - name: "Privacy"
+        description: "개인정보 보호"
+        required: false
+        common_controls:
+          - "개인정보 정책"
+          - "동의 관리"
+    report_types:
+      - name: "Type I"
+        description: "특정 시점 설계 평가"
+        duration: "시점 기준"
+      - name: "Type II"
+        description: "기간 운영 효과 평가"
+        duration: "최소 6개월"
+    common_controls:
+      - "접근 관리"
+      - "변경 관리"
+      - "위험 평가"
+      - "보안 인식"
+      - "사고 대응"
+      - "공급업체 관리"
+    preparation_steps:
+      - "범위 정의"
+      - "갭 분석"
+      - "통제 구현"
+      - "증거 수집"
+      - "사전 평가"
+      - "정식 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AICPA"
+      - "Trust Services Criteria"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SOC 2는 서비스 조직 보안 감사 표준이다. 5가지 신뢰 원칙 기반으로
+      Type I/II 보고서를 통해 보안 통제를 검증한다.
+    search_keywords:
+      - "SOC 2"
+      - "감사"
+      - "신뢰 원칙"
+      - "서비스 보안"
+    related_queries:
+      - "SOC 2 인증"
+      - "클라우드 컴플라이언스"
+      - "보안 감사"

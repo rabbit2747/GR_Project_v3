@@ -1,0 +1,122 @@
+# GR Atom: Burp Suite
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-BURP-001"
+  name: "Burp Suite"
+  normalization:
+    normalized_name: "burp suite web proxy pentesting portswigger"
+    normalization_version: "1.0"
+  aliases:
+    - "Burp"
+    - "버프 스위트"
+    - "PortSwigger Burp"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "WEB", "PENTEST"]
+
+definition:
+  what: |
+    Burp Suite는 PortSwigger에서 개발한 웹 애플리케이션 보안 테스팅 플랫폼으로,
+    프록시, 스캐너, 침투 테스트 도구를 통합 제공한다.
+  why: |
+    웹 보안 테스트의 사실상 표준 도구다. 수동 테스트와 자동 스캔을
+    모두 지원하며 확장 가능한 플러그인 생태계를 갖추고 있다.
+  how: |
+    1. 프록시 설정 및 트래픽 캡처
+    2. 요청 분석 및 수정
+    3. 취약점 자동 스캔
+    4. 수동 테스트 및 익스플로잇
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "TOOL-SCAN-OWASP-ZAP-001"
+      - "ATK-WEB-XSS-001"
+
+properties:
+  technical:
+    versions:
+      - name: "Community Edition"
+        description: "무료, 기본 기능"
+      - name: "Professional"
+        description: "유료, 자동 스캐너 포함"
+      - name: "Enterprise"
+        description: "CI/CD 통합, 대규모 스캔"
+    core_tools:
+      - name: "Proxy"
+        description: "HTTP/S 트래픽 가로채기"
+      - name: "Scanner"
+        description: "자동 취약점 스캔 (Pro)"
+      - name: "Intruder"
+        description: "자동화된 공격"
+      - name: "Repeater"
+        description: "요청 수정 및 재전송"
+      - name: "Sequencer"
+        description: "토큰 무작위성 분석"
+      - name: "Decoder"
+        description: "인코딩/디코딩"
+      - name: "Comparer"
+        description: "응답 비교"
+    features:
+      - "OWASP Top 10 탐지"
+      - "수동/자동 테스트 통합"
+      - "BApp Store 확장"
+      - "Collaborator 서버"
+      - "REST API"
+      - "CI/CD 통합"
+    extensions:
+      - name: "Logger++"
+        purpose: "고급 로깅"
+      - name: "Turbo Intruder"
+        purpose: "고속 공격"
+      - name: "Autorize"
+        purpose: "권한 테스트"
+      - name: "JWT Editor"
+        purpose: "JWT 분석"
+    best_practices:
+      - "스코프 정의"
+      - "수동 테스트 선행"
+      - "스캔 결과 검증"
+      - "확장 활용"
+      - "세션 관리 주의"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PortSwigger Burp Suite"
+      - "Burp Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Burp Suite는 PortSwigger의 웹 보안 테스팅 플랫폼이다. 프록시, 스캐너,
+      Intruder 등 통합 도구를 제공하며 웹 펜테스트의 업계 표준이다.
+    search_keywords:
+      - "Burp Suite"
+      - "웹 프록시"
+      - "침투 테스트"
+      - "PortSwigger"
+    related_queries:
+      - "웹 취약점 테스트"
+      - "프록시 도구"
+      - "웹 보안 스캐너"

@@ -1,0 +1,99 @@
+# GR Atom: Session Concept
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-SESSION-001"
+  name: "Web Session"
+  normalization:
+    normalized_name: "web session http session"
+    normalization_version: "1.0"
+  aliases:
+    - "Session"
+    - "세션"
+    - "HTTP Session"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["WEB", "A"]
+
+definition:
+  what: |
+    세션은 서버가 클라이언트의 상태를 유지하기 위해 서버 측에 저장하는
+    데이터 구조다. 세션 ID를 통해 클라이언트를 식별한다.
+  why: |
+    HTTP의 무상태성을 보완하여 로그인 상태, 장바구니 등을 유지한다.
+    세션 관리 취약점은 인증 우회, 세션 탈취의 원인이 된다.
+  how: |
+    1. 사용자 로그인 시 서버가 세션 생성
+    2. 세션 ID를 쿠키 또는 URL로 클라이언트에 전달
+    3. 클라이언트가 요청 시 세션 ID 포함
+    4. 서버가 세션 ID로 사용자 상태 조회
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-STATE-MGMT-001"]
+  conditional:
+    requires:
+      - "TECH-CONCEPT-COOKIE-001"  # 쿠키로 세션 ID 전달
+  causal:
+    enables:
+      - "ATK-SESSION-HIJACK-001"    # 세션 하이재킹
+      - "ATK-SESSION-FIXATION-001"  # 세션 고정
+
+properties:
+  technical:
+    storage_location: "Server-side"
+    identifier: "Session ID"
+    delivery_methods:
+      - "Cookie (권장)"
+      - "URL Parameter (취약)"
+      - "Hidden Form Field"
+    lifecycle:
+      - "생성 (Login)"
+      - "유지 (Requests)"
+      - "갱신 (Renewal)"
+      - "파기 (Logout/Timeout)"
+    security_requirements:
+      - "충분한 엔트로피의 세션 ID"
+      - "HTTPS 전송"
+      - "로그인 시 세션 ID 재생성"
+      - "적절한 타임아웃"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Session Management Cheat Sheet"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Session은 서버 측에서 사용자 상태를 유지하는 메커니즘이다.
+      세션 ID를 쿠키로 전달하며, 로그인 상태 유지에 사용된다.
+      세션 하이재킹, 세션 고정 공격의 대상이 되며, 안전한 세션 관리를
+      위해 강력한 세션 ID, HTTPS, 타임아웃이 필요하다.
+    search_keywords:
+      - "Session"
+      - "세션"
+      - "세션 ID"
+      - "세션 관리"
+      - "로그인 상태"
+    related_queries:
+      - "세션이란?"
+      - "세션과 쿠키 차이"
+      - "세션 하이재킹 방지"

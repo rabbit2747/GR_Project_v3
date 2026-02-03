@@ -1,0 +1,104 @@
+# GR Atom: POODLE Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-POODLE-001"
+  name: "POODLE Attack"
+  normalization:
+    normalized_name: "poodle attack ssl3 padding oracle downgrade legacy"
+    normalization_version: "1.0"
+  aliases:
+    - "POODLE 공격"
+    - "Padding Oracle On Downgraded Legacy Encryption"
+    - "SSL 3.0 패딩 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone4"
+    tags: ["ATK", "CRYPTO", "SSL"]
+
+definition:
+  what: |
+    SSL 3.0의 CBC 모드 패딩 취약점을 악용하여
+    암호화된 데이터를 복호화하는 공격이다.
+  why: |
+    레거시 프로토콜 다운그레이드를 통해 공격한다.
+    세션 쿠키 등 민감 데이터를 탈취한다.
+  how: |
+    1. TLS 연결을 SSL 3.0으로 다운그레이드
+    2. CBC 패딩 오라클 활용
+    3. 바이트 단위 복호화
+    4. 세션 데이터 추출
+
+relations:
+  structural:
+    is_a:
+      - "ATK-CRYPTO-PADDING-ORACLE-001"
+      - "ATK-CRYPTO-DOWNGRADE-001"
+    related_to:
+      - "TECH-PROTOCOL-TLS-001"
+
+properties:
+  technical:
+    cve: "CVE-2014-3566"
+    affected_protocols:
+      - "SSL 3.0"
+      - "TLS (POODLE TLS variant)"
+    vulnerability:
+      - "SSL 3.0 비결정적 패딩"
+      - "패딩 검증 부재"
+    attack_complexity:
+      requests_per_byte: 256
+      total_requests: "256 × 쿠키길이"
+    prerequisites:
+      - "MITM 위치"
+      - "SSL 3.0 지원"
+      - "JavaScript 실행 (AJAX 요청)"
+    variants:
+      - name: "Original POODLE"
+        target: "SSL 3.0"
+      - name: "POODLE TLS"
+        target: "TLS 구현 오류"
+    detection:
+      - "SSL 3.0 사용 모니터링"
+      - "다운그레이드 시도 탐지"
+    mitigation:
+      - "SSL 3.0 비활성화"
+      - "TLS_FALLBACK_SCSV"
+      - "TLS 1.2+ 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Google Security POODLE"
+      - "CVE-2014-3566"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      POODLE은 SSL 3.0 CBC 패딩 취약점을 악용하여 암호화된
+      데이터를 복호화하는 다운그레이드 공격이다.
+    search_keywords:
+      - "POODLE"
+      - "SSL 3.0"
+      - "패딩 오라클"
+      - "다운그레이드"
+    related_queries:
+      - "SSL 취약점"
+      - "TLS 보안"
+      - "프로토콜 공격"

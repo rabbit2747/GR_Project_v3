@@ -1,0 +1,84 @@
+# GR Atom: Security Framework Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-001"
+  name: "Security Framework Compliance"
+  normalization:
+    normalized_name: "security framework compliance nist iso cis"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Framework Compliance"
+    - "보안 프레임워크 컴플라이언스"
+    - "Framework Compliance"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["CONCEPT", "COMPLIANCE", "FRAMEWORK"]
+
+definition:
+  what: |
+    보안 프레임워크 및 표준 준수 분류이다.
+  why: |
+    보안 프레임워크를 이해한다.
+    표준 기반 보안을 구현한다.
+    보안 성숙도를 평가한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMP-001"
+    has_children:
+      - "COMP-FRAMEWORK-NIST-001"
+      - "COMP-FRAMEWORK-ISO27001-001"
+      - "COMP-FRAMEWORK-CIS-001"
+    related_to:
+      - "DEF-GOVERNANCE-001"
+      - "GR-SEC-PRI-001"
+
+properties:
+  technical:
+    frameworks:
+      - "NIST CSF"
+      - "ISO 27001"
+      - "CIS Controls"
+      - "COBIT"
+      - "SOC 2"
+    functions:
+      - "Identify"
+      - "Protect"
+      - "Detect"
+      - "Respond"
+      - "Recover"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cybersecurity Framework"
+      - "ISO 27001"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Framework Compliance는 보안 프레임워크 준수 분류이다.
+    search_keywords:
+      - "Security Framework"
+      - "보안 프레임워크"
+      - "NIST"
+      - "ISO 27001"

@@ -1,0 +1,83 @@
+# GR Atom: Industry Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-INDUSTRY-001"
+  name: "Industry Compliance"
+  normalization:
+    normalized_name: "industry compliance pci hipaa sox"
+    normalization_version: "1.0"
+  aliases:
+    - "Industry Compliance"
+    - "산업별 컴플라이언스"
+    - "Sector-Specific Compliance"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["CONCEPT", "COMPLIANCE", "INDUSTRY"]
+
+definition:
+  what: |
+    산업별 특수 규정 및 표준 준수 분류이다.
+  why: |
+    산업별 규정을 이해한다.
+    업종별 준수 요건을 파악한다.
+    규제 대응을 체계화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMP-001"
+    has_children:
+      - "COMP-INDUSTRY-PCI-001"
+      - "COMP-INDUSTRY-HIPAA-001"
+      - "COMP-INDUSTRY-SOX-001"
+    related_to:
+      - "DEF-AUDIT-001"
+      - "COMP-PRIVACY-001"
+
+properties:
+  technical:
+    standards:
+      - "PCI DSS"
+      - "HIPAA"
+      - "SOX"
+      - "FISMA"
+      - "GLBA"
+    industries:
+      - "Financial Services"
+      - "Healthcare"
+      - "Government"
+      - "Retail"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PCI DSS"
+      - "HIPAA"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Industry Compliance는 산업별 규정 준수 분류이다.
+    search_keywords:
+      - "Industry Compliance"
+      - "산업별 컴플라이언스"
+      - "PCI DSS"
+      - "HIPAA"

@@ -1,0 +1,104 @@
+# GR Atom: Exploit Public-Facing Application
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1190-001"
+  name: "Exploit Public-Facing Application"
+  normalization:
+    normalized_name: "exploit public facing application web vulnerability initial access"
+    normalization_version: "1.0"
+  aliases:
+    - "Web Exploitation"
+    - "공개 애플리케이션 익스플로잇"
+    - "External Exploitation"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "INITIAL"]
+
+definition:
+  what: |
+    인터넷에 노출된 웹 서버, 데이터베이스, 서비스의
+    취약점을 악용하여 초기 접근을 획득하는 기법이다.
+  why: |
+    외부에서 초기 침투한다.
+    내부 네트워크 진입점을 확보한다.
+  how: |
+    1. 노출된 서비스 식별
+    2. 취약점 탐색
+    3. 익스플로잇 실행
+    4. 초기 접근 획득
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0001-001"
+    related_to:
+      - "VUL-WEB-SQLI-001"
+      - "VUL-WEB-RCE-001"
+
+properties:
+  technical:
+    mitre_id: "T1190"
+    tactic: "Initial Access"
+    target_applications:
+      - "웹 서버 (Apache, Nginx, IIS)"
+      - "웹 애플리케이션 (WordPress, Drupal)"
+      - "데이터베이스 (MySQL, MSSQL)"
+      - "원격 관리 (VPN, RDP)"
+      - "이메일 서버 (Exchange, Zimbra)"
+      - "파일 전송 (FTP, SFTP)"
+    vulnerability_types:
+      - "SQL Injection"
+      - "Remote Code Execution"
+      - "Path Traversal"
+      - "Authentication Bypass"
+      - "Deserialization"
+    notable_examples:
+      - "Log4Shell (CVE-2021-44228)"
+      - "ProxyLogon (CVE-2021-26855)"
+      - "Fortinet SSL VPN (CVE-2018-13379)"
+      - "Pulse Secure (CVE-2019-11510)"
+    detection:
+      - "WAF 로그 분석"
+      - "IDS/IPS 경보"
+      - "이상 HTTP 트래픽"
+      - "애플리케이션 로그"
+    prevention:
+      - "패치 관리"
+      - "WAF 적용"
+      - "취약점 스캔"
+      - "입력 검증"
+      - "최소 노출 원칙"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1190"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1190은 인터넷 노출 애플리케이션의 취약점을 악용하여
+      초기 접근을 획득하는 MITRE ATT&CK Initial Access 기법이다.
+    search_keywords:
+      - "Exploit Public-Facing"
+      - "T1190"
+      - "Web Exploitation"
+      - "Initial Access"

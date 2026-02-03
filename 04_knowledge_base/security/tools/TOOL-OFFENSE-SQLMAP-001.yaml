@@ -1,0 +1,132 @@
+# GR Atom: SQLMap
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OFFENSE-SQLMAP-001"
+  name: "SQLMap"
+  normalization:
+    normalized_name: "sqlmap"
+    normalization_version: "1.0"
+  aliases:
+    - "sqlmap"
+    - "SQL Map"
+    - "SQL Injection Tool"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0A"
+    tags: ["INJ"]
+
+definition:
+  what: |
+    SQL Injection 자동 탐지 및 익스플로잇 도구.
+    다양한 DBMS(MySQL, PostgreSQL, MSSQL, Oracle, SQLite 등)를 지원하며,
+    Boolean-based, Time-based, Error-based, UNION-based, Stacked queries,
+    Out-of-band 등 모든 SQL Injection 기법을 자동으로 탐지하고 활용한다.
+  why: |
+    SQL Injection 테스트를 자동화하여 효율적으로 취약점을 발견하고
+    영향도를 평가할 수 있다. 수동 테스트로는 발견하기 어려운
+    Blind SQL Injection까지 자동으로 탐지하며,
+    데이터베이스 열거, 데이터 추출, 파일 시스템 접근, OS 명령 실행 등
+    익스플로잇의 전 범위를 지원한다.
+  how: |
+    1. 대상 URL과 테스트할 파라미터 지정
+    2. sqlmap이 자동으로 다양한 SQL Injection 기법 시도
+    3. 취약점 발견 시 DBMS 종류 및 버전 식별
+    4. 데이터베이스, 테이블, 컬럼 열거
+    5. 데이터 추출 (dump)
+    6. 고급 기능: 파일 읽기/쓰기, OS 셸 획득
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE"  # 공격 도구의 하위
+    used_for:
+      - "ATK-INJECT-SQL-001"  # SQL Injection 공격/테스트
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-DATA-RDBMS-001"
+
+properties:
+  technical:
+    vendor: "Open Source (sqlmapproject)"
+    license: "GPLv2"
+    language: "Python"
+    supported_dbms:
+      - "MySQL"
+      - "PostgreSQL"
+      - "Microsoft SQL Server"
+      - "Oracle"
+      - "SQLite"
+      - "IBM DB2"
+      - "SAP MaxDB"
+      - "MariaDB"
+    injection_techniques:
+      - "Boolean-based blind"
+      - "Time-based blind"
+      - "Error-based"
+      - "UNION query-based"
+      - "Stacked queries"
+      - "Out-of-band"
+    key_features:
+      - name: "Auto Detection"
+        description: "파라미터별 자동 SQL Injection 탐지"
+      - name: "Database Enumeration"
+        description: "DB, 테이블, 컬럼, 데이터 열거"
+      - name: "Data Dump"
+        description: "데이터베이스 내용 추출"
+      - name: "File Access"
+        description: "서버 파일 시스템 읽기/쓰기"
+      - name: "OS Shell"
+        description: "운영체제 명령 실행"
+      - name: "WAF Bypass"
+        description: "tamper 스크립트를 통한 WAF 우회"
+    common_usage:
+      - "sqlmap -u 'http://target/page?id=1' --dbs"
+      - "sqlmap -u 'http://target/page?id=1' -D dbname --tables"
+      - "sqlmap -u 'http://target/page?id=1' --dump"
+      - "sqlmap -r request.txt --tamper=space2comment"
+    platform: ["Windows", "macOS", "Linux"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "sqlmap Official Documentation"
+      - "OWASP Testing Guide - SQL Injection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: high
+  ai:
+    embedding_text: |
+      SQLMap은 SQL Injection 자동 탐지 및 익스플로잇 오픈소스 도구이다.
+      MySQL, PostgreSQL, MSSQL, Oracle 등 다양한 DBMS를 지원하며,
+      Boolean-based, Time-based, UNION-based 등 모든 SQLi 기법을 자동 탐지한다.
+      데이터 추출, 파일 접근, OS 셸 획득까지 가능하다.
+    search_keywords:
+      - "sqlmap"
+      - "SQLMap"
+      - "SQL Injection 도구"
+      - "SQLi 자동화"
+      - "데이터베이스 해킹"
+    related_queries:
+      - "sqlmap 사용법"
+      - "sqlmap으로 SQL Injection 테스트"
+      - "sqlmap tamper 스크립트"
+      - "sqlmap WAF 우회"

@@ -1,0 +1,120 @@
+# GR Atom: Digital Forensics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-FORENSICS-001"
+  name: "Digital Forensics"
+  normalization:
+    normalized_name: "digital forensics investigation evidence acquisition analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "Digital Forensics"
+    - "디지털 포렌식"
+    - "Computer Forensics"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["CONCEPT", "FORENSICS", "INVESTIGATION"]
+
+definition:
+  what: |
+    디지털 증거를 수집, 보존, 분석하여 사이버 범죄나
+    보안 침해를 조사하는 과학적 방법론이다.
+  why: |
+    사건의 진실을 규명한다.
+    법적 증거를 확보한다.
+  how: |
+    1. 증거 수집/획득
+    2. 보존/무결성 유지
+    3. 분석/해석
+    4. 문서화/보고
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-OPERATIONS-001"
+    related_to:
+      - "TECH-CONCEPT-INCIDENT-RESPONSE-001"
+      - "TOOL-FORENSIC-VOLATILITY-001"
+
+properties:
+  technical:
+    types:
+      - name: "Disk Forensics"
+        target: "하드디스크, SSD"
+        artifacts: ["파일 시스템", "삭제 파일", "타임스탬프"]
+      - name: "Memory Forensics"
+        target: "RAM"
+        artifacts: ["프로세스", "네트워크 연결", "암호화 키"]
+      - name: "Network Forensics"
+        target: "네트워크 트래픽"
+        artifacts: ["패킷 캡처", "로그", "통신 패턴"]
+      - name: "Mobile Forensics"
+        target: "모바일 기기"
+        artifacts: ["통화 기록", "메시지", "앱 데이터"]
+      - name: "Cloud Forensics"
+        target: "클라우드 환경"
+        artifacts: ["API 로그", "스토리지", "메타데이터"]
+    process:
+      - name: "Identification"
+        description: "증거 식별"
+      - name: "Collection"
+        description: "증거 수집"
+      - name: "Preservation"
+        description: "무결성 보존 (Chain of Custody)"
+      - name: "Analysis"
+        description: "증거 분석"
+      - name: "Reporting"
+        description: "결과 문서화"
+    tools:
+      disk:
+        - "EnCase"
+        - "FTK (Forensic Toolkit)"
+        - "Autopsy"
+        - "X-Ways"
+      memory:
+        - "Volatility"
+        - "Rekall"
+        - "MAGNET RAM Capture"
+      network:
+        - "Wireshark"
+        - "NetworkMiner"
+        - "Zeek"
+    key_principles:
+      - "무결성 유지"
+      - "연속성 문서화 (Chain of Custody)"
+      - "재현 가능성"
+      - "법적 증거 능력"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-86"
+      - "SANS DFIR"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Digital Forensics는 디지털 증거를 수집, 분석하여
+      사이버 범죄를 조사하는 과학적 방법론이다.
+    search_keywords:
+      - "Digital Forensics"
+      - "포렌식"
+      - "Evidence"
+      - "Investigation"

@@ -1,0 +1,113 @@
+# GR Atom: Application Layer Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1071-001"
+  name: "Application Layer Protocol"
+  normalization:
+    normalized_name: "application layer protocol c2 communication http dns"
+    normalization_version: "1.0"
+  aliases:
+    - "응용 계층 프로토콜"
+    - "C2 통신 프로토콜"
+    - "프로토콜 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "C2"]
+
+definition:
+  what: |
+    HTTP, HTTPS, DNS 등 응용 계층 프로토콜을 사용하여
+    C2 서버와 통신하는 기법이다.
+  why: |
+    정상 트래픽으로 위장하여 탐지를 회피한다.
+    방화벽 규칙을 우회한다.
+  how: |
+    1. C2 서버 설정
+    2. 응용 계층 프로토콜 선택
+    3. 정상 트래픽으로 위장
+    4. 명령 및 데이터 전송
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-C2-001"
+    related_to:
+      - "DEF-NET-IDS-001"
+      - "DEF-FORENSIC-NETWORK-001"
+
+properties:
+  technical:
+    mitre_id: "T1071"
+    tactic: "Command and Control"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1071.001"
+        name: "Web Protocols"
+        description: "HTTP/HTTPS 사용"
+      - id: "T1071.002"
+        name: "File Transfer Protocols"
+        description: "FTP/SFTP 사용"
+      - id: "T1071.003"
+        name: "Mail Protocols"
+        description: "SMTP/IMAP/POP3 사용"
+      - id: "T1071.004"
+        name: "DNS"
+        description: "DNS 터널링"
+    common_protocols:
+      - name: "HTTP/HTTPS"
+        port: "80/443"
+        evasion: "정상 웹 트래픽 위장"
+      - name: "DNS"
+        port: "53"
+        evasion: "DNS 쿼리에 데이터 숨김"
+      - name: "SMTP"
+        port: "25/587"
+        evasion: "이메일로 데이터 전송"
+    detection:
+      - "네트워크 트래픽 분석"
+      - "DNS 쿼리 패턴 분석"
+      - "비콘 패턴 탐지"
+      - "비정상 페이로드 크기"
+    mitigation:
+      - "프록시 사용"
+      - "SSL 검사"
+      - "DNS 필터링"
+      - "네트워크 세분화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1071"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Application Layer Protocol은 HTTP, DNS 등 정상 프로토콜을 사용하여
+      C2 통신을 수행하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "C2 통신"
+      - "DNS 터널링"
+      - "HTTP C2"
+      - "프로토콜 악용"
+    related_queries:
+      - "Command and Control"
+      - "비콘 통신"
+      - "네트워크 기반 탐지"

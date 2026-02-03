@@ -1,0 +1,119 @@
+# GR Atom: Domain Name System
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-DNS-001"
+  name: "Domain Name System"
+  normalization:
+    normalized_name: "dns domain name system resolution nameserver"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS"
+    - "도메인 네임 시스템"
+    - "Name Resolution"
+
+classification:
+  domain: infrastructure
+  type: service
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INFRA", "NETWORK", "SERVICE"]
+
+definition:
+  what: |
+    도메인 이름을 IP 주소로 변환하는 분산 계층형
+    인터넷 네이밍 시스템이다.
+  why: |
+    사람이 읽을 수 있는 주소를 제공한다.
+    인터넷 서비스 접근을 가능하게 한다.
+  how: |
+    1. 클라이언트 쿼리
+    2. 재귀/반복 조회
+    3. 캐싱
+    4. 응답 반환
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-NETWORK-001"
+    related_to:
+      - "ATK-NET-DNS-SPOOFING-001"
+      - "DEF-NET-DNSSEC-001"
+
+properties:
+  technical:
+    record_types:
+      - name: "A"
+        purpose: "IPv4 주소"
+      - name: "AAAA"
+        purpose: "IPv6 주소"
+      - name: "CNAME"
+        purpose: "별칭"
+      - name: "MX"
+        purpose: "메일 서버"
+      - name: "TXT"
+        purpose: "텍스트 (SPF, DKIM)"
+      - name: "NS"
+        purpose: "네임서버"
+      - name: "PTR"
+        purpose: "역방향 조회"
+      - name: "SOA"
+        purpose: "권한 시작"
+    hierarchy:
+      - "Root Servers (.)"
+      - "TLD Servers (.com, .org)"
+      - "Authoritative NS"
+      - "Recursive Resolver"
+    query_types:
+      recursive: "전체 조회 수행"
+      iterative: "참조 반환"
+    dns_servers:
+      public:
+        - "8.8.8.8 (Google)"
+        - "1.1.1.1 (Cloudflare)"
+        - "9.9.9.9 (Quad9)"
+      software:
+        - "BIND"
+        - "Unbound"
+        - "PowerDNS"
+        - "Windows DNS"
+    security_issues:
+      - "DNS Spoofing/Cache Poisoning"
+      - "DNS Amplification DDoS"
+      - "DNS Tunneling"
+      - "Domain Hijacking"
+    security_features:
+      - "DNSSEC"
+      - "DNS over HTTPS (DoH)"
+      - "DNS over TLS (DoT)"
+      - "Response Policy Zone (RPZ)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 1035"
+      - "ICANN"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS는 도메인 이름을 IP 주소로 변환하는 인터넷
+      핵심 인프라로 보안이 중요한 서비스이다.
+    search_keywords:
+      - "DNS"
+      - "Domain Name"
+      - "Name Resolution"
+      - "DNSSEC"

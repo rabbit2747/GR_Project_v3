@@ -1,0 +1,118 @@
+# GR Atom: WAF Rules and Configuration
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-WAF-RULES-001"
+  name: "WAF Rules and Configuration"
+  normalization:
+    normalized_name: "waf rules configuration modsecurity owasp crs"
+    normalization_version: "1.0"
+  aliases:
+    - "WAF 규칙"
+    - "웹 방화벽 설정"
+    - "ModSecurity Rules"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["DEF", "PREVENT", "WAF"]
+
+definition:
+  what: |
+    WAF 규칙은 웹 애플리케이션 방화벽이 악의적인 요청을 탐지하고
+    차단하는 데 사용하는 패턴 및 로직이다.
+  why: |
+    SQLi, XSS, 파일 업로드 등 일반적인 웹 공격을 자동으로 차단한다.
+    애플리케이션 코드 수정 없이 빠른 보호가 가능하다.
+  how: |
+    1. 기본 규칙 세트 적용 (OWASP CRS)
+    2. 애플리케이션별 커스텀 규칙 추가
+    3. 오탐 모니터링 및 튜닝
+    4. 차단 모드 전환
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "INFRA-NET-WAF-001"
+      - "TOOL-DEFENSE-MODSEC-001"
+
+properties:
+  technical:
+    rule_categories:
+      - name: "SQL Injection"
+        owasp_crs: "942xxx"
+      - name: "XSS"
+        owasp_crs: "941xxx"
+      - name: "Remote File Inclusion"
+        owasp_crs: "931xxx"
+      - name: "Local File Inclusion"
+        owasp_crs: "930xxx"
+      - name: "Remote Code Execution"
+        owasp_crs: "932xxx"
+      - name: "Protocol Violations"
+        owasp_crs: "920xxx"
+    owasp_crs:
+      description: "OWASP Core Rule Set"
+      paranoia_levels:
+        - level: 1
+          description: "기본 (오탐 최소)"
+        - level: 2
+          description: "표준"
+        - level: 3
+          description: "엄격"
+        - level: 4
+          description: "최대 (오탐 많음)"
+    deployment_modes:
+      - name: "Detection Only"
+        description: "탐지만, 로깅"
+      - name: "Prevention"
+        description: "탐지 및 차단"
+    best_practices:
+      - "Detection 모드로 시작"
+      - "오탐 분석 및 예외 규칙 추가"
+      - "점진적 Paranoia Level 상향"
+      - "정기적인 규칙 업데이트"
+      - "애플리케이션 변경 시 테스트"
+    cloud_waf:
+      - "AWS WAF"
+      - "Cloudflare WAF"
+      - "Azure WAF"
+      - "Akamai Kona"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ModSecurity Core Rule Set"
+      - "ModSecurity Handbook"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WAF 규칙은 웹 공격을 탐지/차단하는 패턴이다. OWASP CRS가 표준이며
+      Detection 모드로 시작, 오탐 튜닝 후 Prevention으로 전환한다.
+    search_keywords:
+      - "WAF 규칙"
+      - "ModSecurity"
+      - "OWASP CRS"
+      - "웹 방화벽"
+    related_queries:
+      - "WAF 설정"
+      - "ModSecurity 튜닝"
+      - "오탐 처리"

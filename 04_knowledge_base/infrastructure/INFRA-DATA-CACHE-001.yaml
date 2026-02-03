@@ -1,0 +1,129 @@
+# GR Atom: Cache Server (Redis/Memcached)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-DATA-CACHE-001"
+  name: "Cache Server"
+  normalization:
+    normalized_name: "cache server redis memcached in-memory"
+    normalization_version: "1.0"
+  aliases:
+    - "캐시 서버"
+    - "Redis"
+    - "Memcached"
+    - "In-Memory Cache"
+    - "분산 캐시"
+
+classification:
+  domain: data
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["D", "S"]
+
+definition:
+  what: |
+    캐시 서버는 자주 접근하는 데이터를 메모리에 저장하여 빠른 읽기를
+    제공하는 인메모리 데이터 저장소다. 데이터베이스 부하를 줄이고
+    응답 시간을 단축한다.
+  why: |
+    애플리케이션 성능 향상의 핵심 요소다. 세션 저장소로도 많이 사용되며,
+    보안 설정이 미흡할 경우 인증 우회, 데이터 유출의 원인이 된다.
+  how: |
+    1. 애플리케이션이 데이터 요청
+    2. 캐시 확인 (Cache Hit/Miss)
+    3. Hit: 캐시에서 즉시 반환
+    4. Miss: DB 조회 후 캐시에 저장, 반환
+    5. TTL(Time To Live) 만료 시 자동 삭제
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DATABASE-001"]
+  causal:
+    enables:
+      - "TECH-CONCEPT-SESSION-001"  # 세션 저장소로 사용
+  conditional:
+    requires: []
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    common_products:
+      - name: "Redis"
+        features: ["데이터 구조 지원", "Pub/Sub", "Lua 스크립팅", "클러스터링"]
+        default_port: 6379
+      - name: "Memcached"
+        features: ["단순 Key-Value", "멀티스레드", "경량"]
+        default_port: 11211
+    data_structures:
+      redis:
+        - "String"
+        - "List"
+        - "Set"
+        - "Hash"
+        - "Sorted Set"
+        - "Stream"
+      memcached:
+        - "Key-Value (String only)"
+    use_cases:
+      - "데이터베이스 캐싱"
+      - "세션 저장소"
+      - "Rate Limiting"
+      - "실시간 리더보드"
+      - "메시지 큐 (Redis)"
+  security:
+    attack_surface:
+      - "인증 미설정"
+      - "네트워크 노출"
+      - "명령어 주입 (EVAL Lua)"
+      - "민감 데이터 평문 저장"
+    common_misconfigurations:
+      - "비밀번호 미설정"
+      - "외부 인터페이스 바인딩 (0.0.0.0)"
+      - "위험 명령어 미차단 (FLUSHALL, CONFIG)"
+    hardening:
+      - "인증 설정 (requirepass)"
+      - "네트워크 격리 (bind 127.0.0.1)"
+      - "위험 명령어 차단 (rename-command)"
+      - "TLS 암호화"
+      - "최소 권한 ACL"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "https://redis.io/docs/management/security/"
+      - "CIS Benchmark for Redis"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cache Server는 Redis, Memcached 같은 인메모리 데이터 저장소다.
+      데이터베이스 부하를 줄이고 응답 시간을 단축하며, 세션 저장소로도
+      사용된다. 인증 미설정, 네트워크 노출이 주요 보안 위협이며,
+      requirepass, bind 설정, TLS가 필수 보안 조치다.
+    search_keywords:
+      - "Cache"
+      - "Redis"
+      - "Memcached"
+      - "캐시"
+      - "인메모리"
+    related_queries:
+      - "Redis란?"
+      - "캐시 서버 보안"
+      - "Redis vs Memcached"

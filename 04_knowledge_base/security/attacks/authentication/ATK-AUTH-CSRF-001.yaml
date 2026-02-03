@@ -1,0 +1,124 @@
+# GR Atom: Cross-Site Request Forgery (CSRF)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-AUTH-CSRF-001"
+  name: "Cross-Site Request Forgery (CSRF)"
+  normalization:
+    normalized_name: "csrf cross site request forgery xsrf"
+    normalization_version: "1.0"
+  aliases:
+    - "CSRF"
+    - "XSRF"
+    - "크로스 사이트 요청 위조"
+    - "사이트 간 요청 위조"
+    - "Session Riding"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTH", "EXPLOIT", "WEB"]
+
+definition:
+  what: |
+    CSRF는 인증된 사용자의 브라우저를 통해 의도하지 않은 요청을
+    웹 애플리케이션에 전송하게 만드는 공격이다. 사용자의 인증 상태
+    (쿠키)를 악용하여 비밀번호 변경, 송금 등을 수행시킨다.
+  why: |
+    사용자가 모르는 사이에 중요한 작업이 실행될 수 있다.
+    금융 거래, 계정 설정 변경, 관리자 작업 등이 공격 대상이 된다.
+  how: |
+    1. 공격자가 악성 HTML 페이지 제작 (자동 제출 폼 등)
+    2. 피해자가 인증된 상태에서 악성 페이지 방문
+    3. 브라우저가 자동으로 대상 사이트에 요청 전송 (쿠키 포함)
+    4. 서버가 정상 요청으로 처리
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-AUTH-ATTACK-001"]
+  conditional:
+    requires:
+      - "TECH-CONCEPT-COOKIE-001"
+      - "TECH-CONCEPT-SESSION-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "GET-based CSRF"
+        description: "img 태그, link 등으로 GET 요청 유발"
+        example: "<img src='https://bank.com/transfer?to=attacker&amount=10000'>"
+      - name: "POST-based CSRF"
+        description: "자동 제출 폼으로 POST 요청 유발"
+        example: |
+          <form action="https://bank.com/transfer" method="POST">
+            <input type="hidden" name="to" value="attacker">
+            <input type="hidden" name="amount" value="10000">
+          </form>
+          <script>document.forms[0].submit()</script>
+    conditions:
+      - "피해자가 대상 사이트에 로그인 상태"
+      - "대상 사이트가 CSRF 방어 미구현"
+      - "예측 가능한 요청 파라미터"
+  security:
+    impact:
+      confidentiality: "LOW"
+      integrity: "HIGH - 사용자 의도 없는 작업 실행"
+      availability: "LOW"
+    cvss_base: 6.5
+    mitre_attack:
+      technique_id: "T1185"
+      tactic: "Collection"
+    cwe_id: "CWE-352"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-CSRF-TOKEN-001"
+        name: "CSRF Token"
+        effectiveness: "HIGH"
+      - name: "SameSite Cookie"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "Referer/Origin 헤더 검증"
+        effectiveness: "MEDIUM"
+      - name: "Double Submit Cookie"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP CSRF Prevention Cheat Sheet"
+      - "CWE-352"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      CSRF Cross-Site Request Forgery는 인증된 사용자의 브라우저로 의도하지
+      않은 요청을 전송하는 공격이다. 쿠키를 자동 전송하는 브라우저 특성을
+      악용하며, CSRF Token, SameSite Cookie로 방어한다.
+    search_keywords:
+      - "CSRF"
+      - "XSRF"
+      - "크로스 사이트 요청 위조"
+      - "CSRF Token"
+    related_queries:
+      - "CSRF란?"
+      - "CSRF vs XSS 차이"
+      - "CSRF Token 구현"

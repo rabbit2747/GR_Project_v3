@@ -1,0 +1,118 @@
+# GR Atom: Shodan
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-SHODAN-001"
+  name: "Shodan"
+  normalization:
+    normalized_name: "shodan internet scanner iot search engine"
+    normalization_version: "1.0"
+  aliases:
+    - "Shodan"
+    - "인터넷 검색 엔진"
+    - "IoT 검색 엔진"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "RECON", "OSINT"]
+
+definition:
+  what: |
+    인터넷에 연결된 장치와 서비스를 검색하는 검색 엔진으로
+    포트, 배너, 취약점 정보를 제공한다.
+  why: |
+    인터넷 노출 자산을 발견한다.
+    취약한 시스템을 식별한다.
+  how: |
+    1. 검색 쿼리 작성
+    2. 필터 적용
+    3. 결과 분석
+    4. 자산 위험 평가
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "ATK-RECON-SCAN-001"
+
+properties:
+  technical:
+    type: "인터넷 검색 엔진"
+    data_collected:
+      - "IP 주소"
+      - "포트 정보"
+      - "서비스 배너"
+      - "SSL 인증서"
+      - "취약점 (CVE)"
+      - "지리 정보"
+      - "ISP/조직"
+    search_filters:
+      - "port: 특정 포트"
+      - "country: 국가"
+      - "city: 도시"
+      - "org: 조직"
+      - "product: 제품"
+      - "version: 버전"
+      - "vuln: CVE"
+      - "ssl: SSL 정보"
+    search_examples:
+      webcam: 'product:"webcam"'
+      default_password: '"default password"'
+      vulnerable: 'vuln:CVE-2021-44228'
+      specific_org: 'org:"Company Name"'
+      mongodb: 'port:27017 product:MongoDB'
+    features:
+      - "실시간 검색"
+      - "알림 (모니터링)"
+      - "API 접근"
+      - "보고서 생성"
+      - "통합 (Nmap, Metasploit)"
+    cli:
+      install: "pip install shodan"
+      search: "shodan search apache"
+      host: "shodan host 1.1.1.1"
+    ethical_considerations:
+      - "정보 수집 목적만 사용"
+      - "무단 접근 금지"
+      - "책임감 있는 공개"
+    pricing: "무료 (제한) / 유료 (API 접근)"
+    website: "https://www.shodan.io"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Shodan Documentation"
+      - "OSINT Techniques"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Shodan은 인터넷에 연결된 장치를 검색하는 엔진으로
+      포트, 배너, CVE 취약점 정보를 제공한다.
+    search_keywords:
+      - "Shodan"
+      - "인터넷 스캔"
+      - "IoT"
+      - "OSINT"
+    related_queries:
+      - "자산 발견"
+      - "노출된 서비스"
+      - "취약점 검색"

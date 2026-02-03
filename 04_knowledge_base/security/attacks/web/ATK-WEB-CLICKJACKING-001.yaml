@@ -1,0 +1,114 @@
+# GR Atom: Clickjacking Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-CLICKJACKING-001"
+  name: "Clickjacking Attack"
+  normalization:
+    normalized_name: "clickjacking ui redressing iframe overlay"
+    normalization_version: "1.0"
+  aliases:
+    - "클릭재킹"
+    - "UI Redressing"
+    - "아이프레임 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "CLIENT"]
+
+definition:
+  what: |
+    클릭재킹은 투명한 iframe으로 합법적 페이지를 덮어
+    사용자가 의도하지 않은 클릭을 하도록 유도하는 공격이다.
+  why: |
+    사용자 동의 없이 민감한 작업을 수행하게 한다.
+    권한 변경, 금융 거래, 계정 설정 변경이 가능하다.
+  how: |
+    1. 대상 사이트를 iframe으로 로드
+    2. 투명하게 설정
+    3. 미끼 요소 배치
+    4. 사용자 클릭 유도
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    related_to:
+      - "ATK-AUTH-CSRF-001"
+
+properties:
+  technical:
+    attack_mechanism:
+      - "투명 iframe 오버레이"
+      - "불투명도(opacity) 0 설정"
+      - "z-index로 레이어링"
+      - "정확한 위치 지정"
+    attack_variations:
+      - name: "Likejacking"
+        target: "소셜 미디어 좋아요"
+      - name: "Cursorjacking"
+        method: "커서 위치 조작"
+      - name: "Filejacking"
+        target: "파일 업로드 대화상자"
+      - name: "Strokejacking"
+        method: "키보드 입력 가로채기"
+    vulnerable_actions:
+      - "소셜 미디어 좋아요/팔로우"
+      - "권한 부여 버튼"
+      - "계정 설정 변경"
+      - "금융 거래 확인"
+      - "카메라/마이크 권한"
+    prevention:
+      - name: "X-Frame-Options"
+        values:
+          - "DENY: 모든 프레이밍 차단"
+          - "SAMEORIGIN: 같은 출처만"
+      - name: "CSP frame-ancestors"
+        example: "Content-Security-Policy: frame-ancestors 'self'"
+        note: "더 유연하고 권장됨"
+      - name: "JavaScript Frame Busting"
+        limitation: "완전하지 않음"
+    detection:
+      - "브라우저 개발자 도구"
+      - "iframe 감지 스크립트"
+    testing:
+      - "PoC 페이지 생성"
+      - "X-Frame-Options 확인"
+      - "CSP 헤더 확인"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Clickjacking"
+      - "PortSwigger Clickjacking"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      클릭재킹은 투명 iframe으로 사용자 클릭을 가로챈다. X-Frame-Options,
+      CSP frame-ancestors로 방어한다.
+    search_keywords:
+      - "클릭재킹"
+      - "Clickjacking"
+      - "UI Redressing"
+      - "iframe"
+    related_queries:
+      - "X-Frame-Options"
+      - "프레임 버스팅"
+      - "CSP"

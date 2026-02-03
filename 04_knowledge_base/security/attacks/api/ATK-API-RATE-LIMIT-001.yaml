@@ -1,0 +1,118 @@
+# GR Atom: API Rate Limiting Bypass
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-API-RATE-LIMIT-001"
+  name: "API Rate Limiting Bypass"
+  normalization:
+    normalized_name: "api rate limiting bypass throttling evasion"
+    normalization_version: "1.0"
+  aliases:
+    - "Rate Limit 우회"
+    - "API 스로틀링 회피"
+    - "요청 제한 우회"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "API", "BYPASS"]
+
+definition:
+  what: |
+    API의 요청 횟수 제한(Rate Limiting)을 우회하여
+    무제한 요청을 수행하는 공격이다. OWASP API Top 10 #4.
+  why: |
+    Brute Force 공격을 수행한다.
+    자원 고갈, DoS 공격을 수행한다.
+  how: |
+    1. Rate Limit 메커니즘 분석
+    2. 우회 기법 선택
+    3. 제한 회피하며 요청
+    4. 대량 요청 수행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-AUTH-BRUTEFORCE-001"
+    related_to:
+      - "DEF-PREVENT-RATELIMIT-001"
+      - "ATK-NET-DDOS-001"
+
+properties:
+  technical:
+    owasp_api_rank: 4
+    bypass_techniques:
+      - name: "IP Rotation"
+        description: "여러 IP 주소 사용"
+        tools: ["프록시 풀", "VPN", "Tor"]
+      - name: "Header Manipulation"
+        headers:
+          - "X-Forwarded-For"
+          - "X-Real-IP"
+          - "X-Originating-IP"
+          - "Client-IP"
+      - name: "User-Agent Rotation"
+        description: "다양한 User-Agent 사용"
+      - name: "Account Rotation"
+        description: "여러 계정으로 분산"
+      - name: "Endpoint Variation"
+        description: "대소문자, 인코딩 변형"
+        examples: ["/API/users", "/api/USERS", "/api/users/"]
+      - name: "Method Switching"
+        description: "GET → POST, HTTP → HTTPS"
+    common_weaknesses:
+      - "클라이언트 IP만으로 식별"
+      - "세션별 제한 없음"
+      - "엔드포인트별 제한 없음"
+      - "일관되지 않은 제한"
+    impact:
+      - "무차별 대입 공격"
+      - "계정 열거"
+      - "리소스 고갈"
+      - "비용 증가"
+    detection:
+      - "비정상 요청 패턴"
+      - "다양한 IP에서 동일 패턴"
+      - "헤더 스푸핑 시도"
+    mitigation:
+      - "복합 식별자 사용 (IP + 세션 + 계정)"
+      - "프록시 헤더 신뢰하지 않음"
+      - "슬라이딩 윈도우 방식"
+      - "CAPTCHA"
+      - "계정별 글로벌 제한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "API Rate Limiting Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API Rate Limit 우회는 IP 로테이션, 헤더 조작 등으로
+      요청 제한을 회피하는 OWASP API Top 10 #4 공격이다.
+    search_keywords:
+      - "Rate Limit"
+      - "API 우회"
+      - "스로틀링"
+      - "Brute Force"
+    related_queries:
+      - "API 보호"
+      - "요청 제한"
+      - "DoS 방지"

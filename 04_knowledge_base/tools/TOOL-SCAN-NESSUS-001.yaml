@@ -1,0 +1,112 @@
+# GR Atom: Nessus Vulnerability Scanner
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-NESSUS-001"
+  name: "Nessus Vulnerability Scanner"
+  normalization:
+    normalized_name: "nessus vulnerability scanner tenable network scan"
+    normalization_version: "1.0"
+  aliases:
+    - "Nessus"
+    - "네서스"
+    - "Tenable Nessus"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "SCAN", "VULN"]
+
+definition:
+  what: |
+    Nessus는 Tenable에서 개발한 네트워크 취약점 스캐너로,
+    시스템, 네트워크 장비, 웹 애플리케이션의 취약점을 탐지한다.
+  why: |
+    자동화된 취약점 발견으로 보안 상태 파악이 가능하다.
+    광범위한 플러그인 데이터베이스와 정확한 탐지로 업계 표준이다.
+  how: |
+    1. 대상 시스템 정의
+    2. 스캔 정책 설정
+    3. 취약점 스캔 실행
+    4. 결과 분석 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "TOOL-SCAN-QUALYS-001"
+      - "TOOL-SCAN-OPENVAS-001"
+
+properties:
+  technical:
+    versions:
+      - name: "Nessus Essentials"
+        description: "무료, 16 IP 제한"
+      - name: "Nessus Professional"
+        description: "유료, 무제한 IP"
+      - name: "Tenable.io"
+        description: "클라우드 기반"
+      - name: "Tenable.sc"
+        description: "엔터프라이즈, 온프레미스"
+    scan_types:
+      - "호스트 검색"
+      - "취약점 스캔"
+      - "인증 스캔"
+      - "컴플라이언스 감사"
+      - "웹 애플리케이션 스캔"
+      - "악성코드 탐지"
+    features:
+      - "180,000+ 플러그인"
+      - "자동 플러그인 업데이트"
+      - "CVSS 스코어링"
+      - "에이전트 기반 스캔"
+      - "API 통합"
+      - "스케줄 스캔"
+    best_practices:
+      - "인증 스캔 권장"
+      - "스캔 시간 조절"
+      - "네트워크 대역폭 고려"
+      - "결과 우선순위화"
+      - "정기적 스캔 스케줄"
+    integrations:
+      - "SIEM 시스템"
+      - "티켓팅 시스템"
+      - "CI/CD 파이프라인"
+      - "클라우드 플랫폼"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Tenable Nessus"
+      - "Nessus Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Nessus는 Tenable의 취약점 스캐너로 네트워크, 시스템, 웹 취약점을 탐지한다.
+      180,000+ 플러그인, CVSS 스코어링, 인증 스캔을 지원한다.
+    search_keywords:
+      - "Nessus"
+      - "취약점 스캐너"
+      - "Tenable"
+      - "네트워크 스캔"
+    related_queries:
+      - "취약점 스캔"
+      - "보안 스캐너"
+      - "자동 취약점 탐지"

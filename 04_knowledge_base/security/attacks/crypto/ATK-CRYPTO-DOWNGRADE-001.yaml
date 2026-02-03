@@ -1,0 +1,122 @@
+# GR Atom: Protocol Downgrade Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-DOWNGRADE-001"
+  name: "Protocol Downgrade Attack"
+  normalization:
+    normalized_name: "protocol downgrade attack ssl stripping version rollback"
+    normalization_version: "1.0"
+  aliases:
+    - "프로토콜 다운그레이드 공격"
+    - "SSL Stripping"
+    - "Version Rollback Attack"
+    - "버전 롤백 공격"
+    - "POODLE"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["ATK", "CRYPTO", "NET"]
+
+definition:
+  what: |
+    프로토콜 다운그레이드 공격은 통신 당사자가 더 취약한 버전의 프로토콜이나
+    암호화 스위트를 사용하도록 강제하는 공격이다. HTTPS를 HTTP로, TLS 1.3을
+    TLS 1.0으로 다운그레이드한다.
+  why: |
+    호환성을 위해 오래된 프로토콜을 지원하는 시스템이 많다. 공격자는
+    이를 악용하여 더 취약한 암호화를 강제하고 트래픽을 해독한다.
+  how: |
+    1. MITM 위치 확보
+    2. 클라이언트-서버 간 협상 가로채기
+    3. 지원 프로토콜/암호 목록 조작
+    4. 취약한 버전으로 연결 유도
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+      - "ATK-CRYPTO-WEAK-001"
+  causal:
+    exploits:
+      - "VUL-CRYPTO-WEAK-001"
+      - "VUL-CONFIG-MISCONFIG-001"
+    targets:
+      - "TECH-PROTOCOL-HTTPS-001"
+    mitigated_by:
+      - "DEF-PREVENT-HTTPS-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "SSL Stripping"
+        method: "HTTPS를 HTTP로 다운그레이드"
+        tool: "sslstrip"
+        defense: "HSTS"
+      - name: "POODLE"
+        method: "TLS를 SSL 3.0으로 다운그레이드"
+        cve: "CVE-2014-3566"
+        defense: "SSL 3.0 비활성화"
+      - name: "FREAK"
+        method: "약한 수출용 암호로 다운그레이드"
+        cve: "CVE-2015-0204"
+        defense: "수출용 암호 비활성화"
+      - name: "Logjam"
+        method: "약한 DH 파라미터로 다운그레이드"
+        cve: "CVE-2015-4000"
+        defense: "강력한 DH 그룹 사용"
+    prevention:
+      - "오래된 프로토콜 버전 비활성화"
+      - "HSTS 헤더 적용"
+      - "TLS 1.2/1.3만 허용"
+      - "약한 암호 스위트 제거"
+    impact:
+      - "트래픽 암호화 무력화"
+      - "데이터 도청"
+      - "세션 탈취"
+  security:
+    severity: high
+    cvss_base: 7.4
+    cwe_id: "CWE-757"
+    attack_category: "Cryptographic Attack"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-757: Selection of Less-Secure Algorithm During Negotiation"
+      - "OWASP Transport Layer Protection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Protocol Downgrade Attack(다운그레이드 공격)은 취약한 프로토콜 버전을
+      강제하는 공격이다. SSL Stripping, POODLE 등이 있으며 HSTS,
+      최신 TLS로 방어한다.
+    search_keywords:
+      - "Protocol Downgrade"
+      - "다운그레이드 공격"
+      - "SSL Stripping"
+      - "POODLE"
+      - "HSTS"
+    related_queries:
+      - "다운그레이드 공격이란?"
+      - "SSL Stripping 방어"
+      - "HSTS란?"

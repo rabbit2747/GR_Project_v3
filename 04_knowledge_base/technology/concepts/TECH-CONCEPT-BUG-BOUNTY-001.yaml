@@ -1,0 +1,122 @@
+# GR Atom: Bug Bounty Program
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-BUG-BOUNTY-001"
+  name: "Bug Bounty Program"
+  normalization:
+    normalized_name: "bug bounty program vulnerability disclosure reward"
+    normalization_version: "1.0"
+  aliases:
+    - "버그 바운티 프로그램"
+    - "취약점 포상 프로그램"
+    - "VDP (Vulnerability Disclosure Program)"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULN", "PROGRAM"]
+
+definition:
+  what: |
+    외부 보안 연구자가 취약점을 발견하고 보고하면
+    금전적 보상을 제공하는 프로그램이다.
+  why: |
+    다양한 관점에서 취약점을 발견한다.
+    보안 테스트 범위를 확대한다.
+  how: |
+    1. 프로그램 범위 및 규칙 정의
+    2. 플랫폼 또는 자체 운영
+    3. 취약점 보고 접수
+    4. 검증 및 보상 지급
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "TECH-CONCEPT-PENTESTING-001"
+      - "VUL-INJECT-SQL-001"
+
+properties:
+  technical:
+    program_types:
+      - name: "Public"
+        description: "모든 연구자 참여 가능"
+      - name: "Private"
+        description: "초대된 연구자만 참여"
+      - name: "VDP (Vulnerability Disclosure Program)"
+        description: "보상 없이 신고 채널만 제공"
+    platforms:
+      - "HackerOne"
+      - "Bugcrowd"
+      - "Intigriti"
+      - "YesWeHack"
+      - "자체 운영"
+    typical_scope:
+      in_scope:
+        - "웹 애플리케이션"
+        - "모바일 앱"
+        - "API"
+        - "특정 도메인"
+      out_of_scope:
+        - "DoS 공격"
+        - "사회공학"
+        - "물리적 공격"
+        - "서드파티 시스템"
+    reward_factors:
+      - "취약점 심각도 (CVSS)"
+      - "영향 범위"
+      - "보고 품질"
+      - "악용 가능성"
+    severity_rewards:
+      critical: "$10,000 - $100,000+"
+      high: "$2,000 - $15,000"
+      medium: "$500 - $2,000"
+      low: "$50 - $500"
+    benefits:
+      - "지속적인 보안 테스트"
+      - "다양한 공격 관점"
+      - "비용 효율성"
+      - "보안 문화 개선"
+    challenges:
+      - "노이즈/중복 보고"
+      - "범위 외 테스트"
+      - "보고 품질 관리"
+      - "내부 처리 부하"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "HackerOne"
+      - "Bugcrowd University"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Bug Bounty Program은 외부 연구자가 취약점을 보고하면
+      보상을 제공하는 크라우드소싱 보안 테스트 프로그램이다.
+    search_keywords:
+      - "버그 바운티"
+      - "취약점 포상"
+      - "HackerOne"
+      - "VDP"
+    related_queries:
+      - "취약점 보고"
+      - "보안 연구"
+      - "책임 있는 공개"

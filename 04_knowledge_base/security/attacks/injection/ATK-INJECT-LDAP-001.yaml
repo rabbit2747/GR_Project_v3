@@ -1,0 +1,122 @@
+# GR Atom: LDAP Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECT-LDAP-001"
+  name: "LDAP Injection"
+  normalization:
+    normalized_name: "ldap injection directory injection ldap query manipulation"
+    normalization_version: "1.0"
+  aliases:
+    - "LDAP 인젝션"
+    - "Directory Injection"
+    - "LDAP Query Injection"
+    - "디렉토리 서비스 인젝션"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "INJECT", "AUTH"]
+
+definition:
+  what: |
+    LDAP 인젝션은 사용자 입력이 LDAP 쿼리에 포함될 때 특수 문자를 삽입하여
+    쿼리를 조작하는 공격이다. SQL 인젝션과 유사하지만 LDAP 디렉토리
+    서비스(Active Directory 등)를 대상으로 한다.
+  why: |
+    많은 기업이 LDAP 기반 인증(Active Directory)을 사용한다. 인증 우회,
+    민감 정보 노출, 권한 상승으로 이어질 수 있다.
+  how: |
+    1. LDAP 쿼리를 사용하는 로그인 또는 검색 기능 식별
+    2. LDAP 메타 문자 (*, (, ), \, NUL) 삽입
+    3. 필터 조건 조작 또는 우회
+    4. 인증 우회 또는 데이터 추출
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CON-00001"  # Injection Vulnerability concept
+    related_to:
+      - "ATK-INJECT-SQL-001"
+  causal:
+    exploits:
+      - "VUL-INJECT-SQL-001"  # Similar pattern
+    targets:
+      - "INFRA-APP-WEBAPP-001"
+    enables:
+      - "ATK-AUTH-BYPASS-001"
+    mitigated_by:
+      - "DEF-PREVENT-INPUTVAL-001"
+
+properties:
+  technical:
+    injection_payloads:
+      - name: "Authentication Bypass"
+        payload: "*)(uid=*))(|(uid=*"
+        context: "(&(uid=USER)(password=PASS))"
+        result: "항상 참인 조건으로 인증 우회"
+      - name: "Wildcard Abuse"
+        payload: "*"
+        context: "(uid=INPUT)"
+        result: "모든 사용자 매칭"
+      - name: "Boolean Condition"
+        payload: "admin)(|(password=*)"
+        result: "비밀번호 검증 우회"
+    ldap_special_chars:
+      - "*" : "와일드카드"
+      - "(" : "필터 그룹 시작"
+      - ")" : "필터 그룹 종료"
+      - "\\" : "이스케이프"
+      - "NUL (\\00)" : "문자열 종료"
+    prevention:
+      - "LDAP 특수 문자 이스케이프"
+      - "입력 화이트리스트 검증"
+      - "파라미터화된 LDAP 쿼리 사용"
+      - "최소 권한 LDAP 계정 사용"
+    impact:
+      - "인증 우회"
+      - "사용자 정보 노출"
+      - "디렉토리 데이터 추출"
+      - "권한 상승"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-90"
+    owasp_category: "A03:2021 - Injection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query"
+      - "OWASP LDAP Injection Prevention"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LDAP Injection(LDAP 인젝션)은 LDAP 쿼리에 특수 문자를 삽입하여
+      디렉토리 서비스를 조작하는 공격이다. Active Directory 인증 우회에 악용된다.
+      입력 검증과 이스케이프로 방어한다.
+    search_keywords:
+      - "LDAP Injection"
+      - "LDAP 인젝션"
+      - "Active Directory 공격"
+      - "디렉토리 서비스"
+    related_queries:
+      - "LDAP Injection이란?"
+      - "LDAP vs SQL Injection"
+      - "Active Directory 보안"

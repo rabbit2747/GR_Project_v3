@@ -1,0 +1,115 @@
+# GR Atom: DevSecOps
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DEVSECOPS-001"
+  name: "DevSecOps"
+  normalization:
+    normalized_name: "devsecops security devops cicd shift left"
+    normalization_version: "1.0"
+  aliases:
+    - "데브섹옵스"
+    - "Security DevOps"
+    - "Shift Left Security"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["TECH", "PROCESS", "DEVSECOPS"]
+
+definition:
+  what: |
+    DevSecOps는 개발(Dev), 보안(Sec), 운영(Ops)을 통합하여
+    소프트웨어 개발 수명주기 전반에 보안을 내장하는 접근 방식이다.
+  why: |
+    개발 초기에 보안 문제를 발견하면 수정 비용이 최대 100배 절감된다.
+    빠른 배포와 보안을 모두 달성하려면 자동화된 보안 통합이 필수다.
+  how: |
+    1. Shift Left: 개발 초기 단계에서 보안 시작
+    2. Automation: CI/CD 파이프라인에 보안 자동화
+    3. Collaboration: 개발-보안-운영 팀 협력
+    4. Continuous: 지속적인 보안 피드백
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "TECH-CONCEPT-COMPLIANCE-001"
+
+properties:
+  technical:
+    key_principles:
+      - name: "Shift Left"
+        description: "개발 초기 단계에서 보안 시작"
+      - name: "Automate Everything"
+        description: "보안 검사 자동화"
+      - name: "Security as Code"
+        description: "보안 정책을 코드로 관리"
+      - name: "Collaboration"
+        description: "팀 간 협력과 공유 책임"
+    pipeline_stages:
+      - stage: "Plan"
+        tools: ["Threat Modeling", "Security Requirements"]
+      - stage: "Code"
+        tools: ["IDE Security Plugins", "Pre-commit Hooks"]
+      - stage: "Build"
+        tools: ["SAST", "Dependency Scanning"]
+      - stage: "Test"
+        tools: ["DAST", "Fuzzing", "Penetration Testing"]
+      - stage: "Release"
+        tools: ["Image Scanning", "Signing"]
+      - stage: "Deploy"
+        tools: ["IaC Scanning", "Compliance Checks"]
+      - stage: "Operate"
+        tools: ["RASP", "WAF", "Monitoring"]
+      - stage: "Monitor"
+        tools: ["SIEM", "Vulnerability Management"]
+    tools_by_category:
+      sast: ["SonarQube", "Checkmarx", "Semgrep"]
+      dast: ["OWASP ZAP", "Burp Suite"]
+      sca: ["Snyk", "Dependabot", "OWASP Dependency-Check"]
+      container: ["Trivy", "Clair", "Anchore"]
+      iac: ["Checkov", "tfsec", "Terrascan"]
+      secrets: ["GitLeaks", "TruffleHog", "HashiCorp Vault"]
+    metrics:
+      - "MTTR (Mean Time to Remediate)"
+      - "취약점 밀도"
+      - "코드 커버리지"
+      - "보안 부채"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP DevSecOps Guideline"
+      - "DevSecOps Reference Architecture"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DevSecOps는 개발-보안-운영을 통합하는 접근 방식이다. Shift Left, 자동화가 핵심이며
+      SAST, DAST, SCA 등을 CI/CD 파이프라인에 통합한다.
+    search_keywords:
+      - "DevSecOps"
+      - "데브섹옵스"
+      - "Shift Left"
+      - "CI/CD 보안"
+    related_queries:
+      - "파이프라인 보안"
+      - "SAST vs DAST"
+      - "보안 자동화"

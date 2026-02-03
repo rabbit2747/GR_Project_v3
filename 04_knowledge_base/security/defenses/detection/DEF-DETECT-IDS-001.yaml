@@ -1,0 +1,113 @@
+# GR Atom: Intrusion Detection System
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-IDS-001"
+  name: "Intrusion Detection System"
+  normalization:
+    normalized_name: "intrusion detection system ids"
+    normalization_version: "1.0"
+  aliases:
+    - "IDS"
+    - "침입 탐지 시스템"
+    - "NIDS"
+    - "HIDS"
+    - "Network Intrusion Detection"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["D"]
+
+definition:
+  what: |
+    네트워크 또는 호스트 트래픽을 모니터링하여 침입을 탐지하는 시스템.
+    네트워크 기반 IDS(NIDS)는 네트워크 트래픽을 분석하고,
+    호스트 기반 IDS(HIDS)는 개별 시스템의 로그/파일 변경을 감시한다.
+    시그니처 기반, 이상 탐지 기반, 정책 기반 탐지를 수행한다.
+  why: |
+    방화벽을 우회하거나 내부에서 발생하는 침입 시도를 탐지하는 핵심 보안 체계이다.
+    네트워크 레벨에서 악성 트래픽 패턴, 포트 스캔, 익스플로잇 시도 등을
+    실시간으로 감지하여 보안팀에 경보를 제공한다.
+    방어 심층(Defense in Depth) 전략의 필수 구성 요소이다.
+  how: |
+    1. 네트워크 트래픽 또는 호스트 이벤트를 실시간 캡처
+    2. 시그니처 DB 또는 이상 탐지 엔진으로 분석
+    3. 악성 패턴 매칭 시 경보(Alert) 생성
+    4. 경보를 SIEM 등 통합 관리 시스템으로 전송
+    5. 보안 분석가가 경보를 조사하고 대응
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT"  # 탐지 방어의 하위 개념
+  causal:
+    prevents:
+      - "ATK-SERVER-SSRF-001"   # 서버 사이드 공격 탐지
+      - "ATK-AUTH-BRUTEFORCE-001"  # 브루트포스 탐지
+  applicability:
+    applies_to:
+      - "INFRA-NET-NETWORK-001"
+      - "INFRA-SYS-SERVER-001"
+
+properties:
+  technical:
+    ids_types:
+      - name: "NIDS (Network-based)"
+        description: "네트워크 세그먼트의 트래픽 모니터링"
+        examples: ["Snort", "Suricata", "Zeek"]
+      - name: "HIDS (Host-based)"
+        description: "개별 호스트의 로그/파일/프로세스 모니터링"
+        examples: ["OSSEC", "Wazuh", "Tripwire"]
+    detection_methods:
+      - "시그니처 기반 탐지 (Signature-based)"
+      - "이상 탐지 (Anomaly-based)"
+      - "상태 기반 프로토콜 분석 (Stateful Protocol Analysis)"
+    alert_severity_levels:
+      - "Critical"
+      - "High"
+      - "Medium"
+      - "Low"
+      - "Informational"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-94 Guide to IDPS"
+      - "Snort Official Documentation"
+      - "Suricata Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IDS(Intrusion Detection System)는 네트워크 또는 호스트 트래픽을 모니터링하여
+      침입을 탐지하는 시스템이다. NIDS는 네트워크 트래픽을, HIDS는 호스트 이벤트를
+      분석한다. Snort, Suricata, OSSEC 등이 대표적이며, 시그니처 및 이상 탐지를 수행한다.
+    search_keywords:
+      - "IDS"
+      - "침입 탐지"
+      - "Intrusion Detection"
+      - "NIDS"
+      - "HIDS"
+      - "Snort"
+      - "Suricata"
+    related_queries:
+      - "IDS란 무엇인가?"
+      - "NIDS vs HIDS 차이점"
+      - "IDS vs IPS 차이"
+      - "침입 탐지 시스템 구성 방법"

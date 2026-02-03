@@ -1,0 +1,97 @@
+# GR Atom: Persistence
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-PERSISTENCE-001"
+  name: "Persistence"
+  normalization:
+    normalized_name: "persistence backdoor maintain access"
+    normalization_version: "1.0"
+  aliases:
+    - "Persistence"
+    - "지속성"
+    - "Maintain Access"
+    - "Backdoor"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "PERSISTENCE"]
+
+definition:
+  what: |
+    시스템 재부팅이나 자격 증명 변경 후에도 접근을
+    유지하기 위한 공격 기법 분류이다.
+  why: |
+    장기적 접근을 유지한다.
+    재침투 필요성을 제거한다.
+    은밀한 활동을 지속한다.
+  how: |
+    1. 지속성 메커니즘 선택
+    2. 백도어 설치
+    3. 은닉
+    4. 검증
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1547-001"
+    related_to:
+      - "ATK-MITRE-PERSISTENCE-001"
+      - "GR-SEC-MALWARE-001"
+
+properties:
+  technical:
+    techniques:
+      windows:
+        - "Registry Run Keys"
+        - "Scheduled Tasks"
+        - "Services"
+        - "DLL Hijacking"
+        - "WMI Subscription"
+      linux:
+        - "Cron Jobs"
+        - "SSH Keys"
+        - "Systemd Services"
+        - "Bashrc/Profile"
+      web:
+        - "Web Shell"
+        - "Backdoor Account"
+    mitre_tactic: "TA0003"
+    detection:
+      - "Autoruns 분석"
+      - "레지스트리 모니터링"
+      - "파일 무결성 검사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0003"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Persistence는 시스템 접근을 장기적으로 유지하기 위한
+      공격 기법 분류이다.
+    search_keywords:
+      - "Persistence"
+      - "지속성"
+      - "Backdoor"
+      - "Maintain Access"

@@ -1,0 +1,80 @@
+# GR Atom: Supply Chain Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SUPPLY-001"
+  name: "Supply Chain Attack"
+  normalization:
+    normalized_name: "supply chain attack dependency compromise"
+    normalization_version: "1.0"
+  aliases:
+    - "Supply Chain Attack"
+    - "공급망 공격"
+    - "Third-Party Compromise"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "SUPPLY"]
+
+definition:
+  what: |
+    소프트웨어 공급망이나 서드파티를 통해 대상을 침해하는
+    공격 기법 분류이다.
+  why: |
+    신뢰 관계를 악용한다.
+    대규모 표적에 접근한다.
+    탐지를 회피한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-SUPPLY-DEPENDENCY-001"
+      - "ATK-SUPPLY-TYPOSQUATTING-001"
+    related_to:
+      - "TECH-CONCEPT-SUPPLY-CHAIN-SECURITY-001"
+      - "DEF-DEVSECOPS-001"
+
+properties:
+  technical:
+    vectors:
+      - "Dependency Confusion"
+      - "Typosquatting"
+      - "Compromised Updates"
+      - "Malicious Packages"
+    examples:
+      - "SolarWinds"
+      - "Codecov"
+      - "Log4Shell"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Supply Chain Attack은 공급망을 통해 침해하는 공격 기법 분류이다.
+    search_keywords:
+      - "Supply Chain"
+      - "공급망"
+      - "Dependency"
+      - "Third-Party"

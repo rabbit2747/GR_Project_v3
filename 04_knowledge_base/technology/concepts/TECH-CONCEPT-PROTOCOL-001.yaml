@@ -1,0 +1,98 @@
+# GR Atom: Protocol (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-PROTOCOL-001"
+  name: "Network Protocol"
+  normalization:
+    normalized_name: "network protocol communication protocol"
+    normalization_version: "1.0"
+  aliases:
+    - "프로토콜"
+    - "통신 프로토콜"
+    - "네트워크 프로토콜"
+    - "Communication Protocol"
+
+classification:
+  domain: network
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["N", "TECH"]
+
+definition:
+  what: |
+    프로토콜(Protocol)은 네트워크 통신에서 데이터 교환을 위한
+    규칙과 규약의 집합이다. OSI 7계층 또는 TCP/IP 모델에 따라
+    다양한 프로토콜이 정의되어 있다.
+  why: |
+    모든 네트워크 통신의 기반이다. 프로토콜의 보안 취약점은
+    중간자 공격, 스니핑, 스푸핑 등으로 이어질 수 있다.
+    암호화 프로토콜(TLS)은 통신 보안의 핵심이다.
+  how: |
+    1. Application Layer: HTTP, HTTPS, DNS, FTP
+    2. Transport Layer: TCP, UDP
+    3. Network Layer: IP, ICMP
+    4. Data Link Layer: Ethernet, ARP
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-HTTPS-001"
+      - "TECH-PROTOCOL-TCP-001"
+
+properties:
+  technical:
+    osi_layers:
+      - layer: 7
+        name: "Application"
+        protocols: ["HTTP", "HTTPS", "DNS", "FTP", "SSH"]
+      - layer: 4
+        name: "Transport"
+        protocols: ["TCP", "UDP"]
+      - layer: 3
+        name: "Network"
+        protocols: ["IP", "ICMP"]
+    security_considerations:
+      - "암호화: TLS/SSL 사용"
+      - "인증: 상호 인증"
+      - "무결성: 메시지 인증 코드"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC Standards"
+      - "OSI Reference Model"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Protocol(프로토콜)은 네트워크 통신을 위한 규칙의 집합이다.
+      HTTP, HTTPS, TCP, UDP 등이 있으며 OSI 7계층 모델에 따라
+      분류된다. 프로토콜 취약점은 MITM, 스니핑 공격으로 이어지며,
+      TLS 암호화가 통신 보안의 핵심이다.
+    search_keywords:
+      - "Protocol"
+      - "프로토콜"
+      - "Network Protocol"
+      - "OSI Model"
+      - "TCP/IP"
+    related_queries:
+      - "프로토콜이란?"
+      - "OSI 7계층"
+      - "HTTP와 HTTPS 차이"
+      - "TCP와 UDP 차이"

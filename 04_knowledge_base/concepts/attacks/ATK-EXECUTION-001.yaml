@@ -1,0 +1,91 @@
+# GR Atom: Execution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-EXECUTION-001"
+  name: "Execution"
+  normalization:
+    normalized_name: "execution code run malware"
+    normalization_version: "1.0"
+  aliases:
+    - "Execution"
+    - "실행"
+    - "Code Execution"
+    - "Malware Execution"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "EXECUTION"]
+
+definition:
+  what: |
+    악성 코드나 명령을 대상 시스템에서 실행하는
+    공격 기법 분류이다.
+  why: |
+    악성 페이로드를 활성화한다.
+    시스템 제어를 획득한다.
+    공격 목표를 달성한다.
+  how: |
+    1. 실행 방법 선택
+    2. 페이로드 전달
+    3. 실행 트리거
+    4. 결과 확인
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1059-001"
+    related_to:
+      - "ATK-MITRE-EXECUTION-001"
+      - "GR-SEC-MALWARE-001"
+
+properties:
+  technical:
+    techniques:
+      - "PowerShell"
+      - "Command Line"
+      - "Scripting (Python, VBS)"
+      - "WMI"
+      - "Scheduled Task"
+      - "User Execution"
+    mitre_tactic: "TA0002"
+    interpreters:
+      - "cmd.exe"
+      - "powershell.exe"
+      - "bash"
+      - "python"
+      - "wscript/cscript"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0002"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Execution은 악성 코드를 대상 시스템에서 실행하는
+      공격 기법 분류이다.
+    search_keywords:
+      - "Execution"
+      - "실행"
+      - "Code Execution"
+      - "PowerShell"

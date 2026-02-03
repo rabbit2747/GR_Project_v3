@@ -1,0 +1,78 @@
+# GR Atom: Access Control Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-ACCESS-CONTROL-001"
+  name: "Access Control Vulnerability"
+  normalization:
+    normalized_name: "access control vulnerability authorization bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "Access Control Vulnerability"
+    - "접근 통제 취약점"
+    - "Authorization Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "ACCESS"]
+
+definition:
+  what: |
+    접근 통제 메커니즘의 결함으로 인해 발생하는 취약점 분류이다.
+  why: |
+    권한 관리 취약점을 식별한다.
+    접근 통제 정책을 강화한다.
+    무단 접근을 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-IDOR-001"
+      - "VUL-PRIVILEGE-ESCALATION-001"
+    related_to:
+      - "ATK-PRIVILEGE-ESCALATION-001"
+      - "DEF-RBAC-001"
+
+properties:
+  technical:
+    types:
+      - "IDOR"
+      - "Privilege Escalation"
+      - "Missing Function Level Access Control"
+      - "Path Traversal"
+      - "Forced Browsing"
+      - "Insecure Direct Object Reference"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Broken Access Control"
+      - "CWE-284"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Access Control Vulnerability는 접근 통제 결함으로 인한 취약점 분류이다.
+    search_keywords:
+      - "Access Control Vulnerability"
+      - "접근 통제 취약점"
+      - "Authorization"
+      - "IDOR"

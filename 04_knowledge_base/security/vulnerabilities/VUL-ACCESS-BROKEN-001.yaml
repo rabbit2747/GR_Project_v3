@@ -1,0 +1,106 @@
+# GR Atom: Broken Access Control Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-ACCESS-BROKEN-001"
+  name: "Broken Access Control"
+  normalization:
+    normalized_name: "broken access control authorization failure"
+    normalization_version: "1.0"
+  aliases:
+    - "접근 제어 결함"
+    - "권한 부여 취약점"
+    - "Authorization Failure"
+    - "IDOR"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTHZ"]
+
+definition:
+  what: |
+    Broken Access Control 취약점은 접근 제어 정책이 적절히 적용되지 않아
+    사용자가 허가되지 않은 리소스에 접근하거나 권한 밖의 행위를 수행할 수
+    있는 보안 결함이다. CWE-284에 해당하며 IDOR, 수직/수평 권한 상승을 포함한다.
+  why: |
+    OWASP Top 10 2021에서 A01(1위)로 가장 심각한 웹 취약점이다.
+    인증을 통과한 사용자도 다른 사용자의 데이터에 접근하거나 관리자 기능을
+    사용할 수 있게 되어, 전체 시스템의 데이터 무결성과 기밀성이 훼손된다.
+  how: |
+    1. URL/파라미터 변조로 다른 사용자 리소스 접근 (IDOR)
+    2. 일반 사용자가 관리자 API 직접 호출 (수직 권한 상승)
+    3. 메타데이터 조작 (JWT 토큰 role 변경)
+    4. CORS 정책 오설정으로 크로스 오리진 접근 허용
+    5. 서버 측 접근 제어 검증 누락 (클라이언트 측만 제어)
+    6. 자동화 도구로 파라미터 열거, 수동 권한 테스트로 탐지
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  security:
+    cwe_id: "CWE-284"
+    owasp: "A01:2021"
+    cvss_base: 8.6
+    impact:
+      confidentiality: "HIGH - 타 사용자 데이터 접근"
+      integrity: "HIGH - 비인가 데이터 수정/삭제"
+      availability: "MEDIUM - 리소스 파괴 가능"
+  countermeasures:
+    primary:
+      - name: "서버 측 접근 제어 강제"
+        description: "모든 요청에 대해 서버에서 권한 검증"
+        effectiveness: "HIGH"
+      - name: "최소 권한 원칙 (Deny by Default)"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "접근 제어 로깅 및 모니터링"
+        effectiveness: "MEDIUM"
+      - name: "Rate Limiting"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-284: Improper Access Control"
+      - "OWASP A01:2021 - Broken Access Control"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Broken Access Control(CWE-284)은 접근 제어 정책 미적용으로 비인가 접근이
+      가능한 취약점이다. IDOR, 수직/수평 권한 상승을 포함하며, OWASP Top 10
+      2021 A01(1위)이다. 서버 측 접근 제어 강제와 최소 권한 원칙으로 방어한다.
+      CVSS 8.6.
+    search_keywords:
+      - "Broken Access Control"
+      - "접근 제어 결함"
+      - "CWE-284"
+      - "IDOR"
+      - "권한 상승"
+    related_queries:
+      - "Broken Access Control이란?"
+      - "IDOR 취약점이란?"
+      - "OWASP A01:2021 대응 방안"
+      - "접근 제어 취약점 방어"

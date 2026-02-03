@@ -1,0 +1,103 @@
+# GR Atom: VLAN Hopping
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-VLAN-HOPPING-001"
+  name: "VLAN Hopping"
+  normalization:
+    normalized_name: "vlan hopping switch spoofing double tagging network"
+    normalization_version: "1.0"
+  aliases:
+    - "VLAN Hopping"
+    - "VLAN 호핑"
+    - "Switch Spoofing"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["ATK", "NETWORK", "LATERAL"]
+
+definition:
+  what: |
+    한 VLAN에서 다른 VLAN으로 무단 접근하여
+    네트워크 세그멘테이션을 우회하는 공격이다.
+  why: |
+    VLAN 격리를 우회한다.
+    다른 세그먼트에 접근한다.
+  how: |
+    1. 스위치 취약점 식별
+    2. Switch Spoofing 또는 Double Tagging
+    3. 다른 VLAN 트래픽 접근
+    4. 공격 수행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-NETWORK-001"
+    related_to:
+      - "ATK-NET-ARP-SPOOFING-001"
+      - "TECH-CONCEPT-NETWORK-SEGMENTATION-001"
+
+properties:
+  technical:
+    methods:
+      switch_spoofing:
+        description: "DTP를 악용하여 트렁크 포트처럼 동작"
+        requirement: "DTP 활성화"
+        tools: ["Yersinia", "frogger"]
+      double_tagging:
+        description: "이중 802.1Q 태그로 타겟 VLAN 도달"
+        requirement: "Native VLAN 설정 취약"
+        limitation: "단방향 통신만 가능"
+    802_1q:
+      description: "VLAN 태깅 프로토콜"
+      tag_size: "4 bytes"
+    dtp:
+      description: "Dynamic Trunking Protocol"
+      modes: ["Auto", "Desirable", "On", "Off", "Nonegotiate"]
+    tools:
+      - "Yersinia"
+      - "frogger"
+      - "Scapy"
+    detection:
+      - "비정상 DTP 패킷"
+      - "이중 태그 프레임"
+      - "예상 외 VLAN 트래픽"
+    prevention:
+      - "DTP 비활성화 (switchport nonegotiate)"
+      - "미사용 포트 Access 모드"
+      - "Native VLAN 변경"
+      - "Private VLAN"
+      - "포트 보안"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Cisco VLAN Security"
+      - "Network Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      VLAN Hopping은 Switch Spoofing이나 Double Tagging으로
+      VLAN 격리를 우회하는 Layer 2 공격이다.
+    search_keywords:
+      - "VLAN Hopping"
+      - "Switch Spoofing"
+      - "Double Tagging"
+      - "DTP"

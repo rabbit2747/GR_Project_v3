@@ -1,0 +1,113 @@
+# GR Atom: Mobile Root/Jailbreak Detection Bypass
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MOBILE-ROOT-001"
+  name: "Root/Jailbreak Detection Bypass"
+  normalization:
+    normalized_name: "mobile root jailbreak detection bypass android ios"
+    normalization_version: "1.0"
+  aliases:
+    - "루팅 탐지 우회"
+    - "Jailbreak Bypass"
+    - "Root Detection Bypass"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MOBILE", "BYPASS"]
+
+definition:
+  what: |
+    루팅/탈옥 탐지 우회는 모바일 앱의 보안 검사를 우회하여
+    루팅된/탈옥된 기기에서 앱을 실행하는 공격이다.
+  why: |
+    루팅/탈옥된 기기는 앱 분석, 데이터 추출, 트래픽 가로채기가 가능하다.
+    금융, 게임 앱에서 치팅, 사기에 악용된다.
+  how: |
+    1. 앱의 루팅 탐지 로직 분석
+    2. 탐지 함수 후킹 또는 패치
+    3. 탐지 결과 조작
+    4. 루팅 기기에서 앱 정상 실행
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-CLIENT-ATTACK-001"
+    related_to:
+      - "ATK-MOBILE-HOOK-001"
+
+properties:
+  technical:
+    detection_methods:
+      android:
+        - "su 바이너리 존재 확인"
+        - "Superuser.apk 확인"
+        - "빌드 태그 (test-keys)"
+        - "시스템 파티션 쓰기 가능 여부"
+        - "Magisk 탐지"
+      ios:
+        - "Cydia 앱 존재 확인"
+        - "/Applications/Cydia.app"
+        - "sandbox 무결성 검사"
+        - "fork() 시스템 콜"
+        - "동적 라이브러리 검사"
+    bypass_techniques:
+      - name: "Frida"
+        description: "런타임 후킹으로 탐지 함수 우회"
+      - name: "Magisk Hide"
+        description: "루팅 흔적 숨김"
+      - name: "Liberty Lite (iOS)"
+        description: "탈옥 탐지 우회 트윅"
+      - name: "앱 패칭"
+        description: "APK/IPA 직접 수정"
+      - name: "Objection"
+        description: "Frida 기반 자동화 도구"
+    tools:
+      - "Frida"
+      - "Objection"
+      - "Magisk"
+      - "Xposed Framework"
+      - "Substrate (iOS)"
+    countermeasures:
+      - "다중 탐지 기법 사용"
+      - "네이티브 코드로 탐지 구현"
+      - "무결성 검증 (SafetyNet, DeviceCheck)"
+      - "서버 사이드 검증"
+      - "안티 후킹 기법"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Mobile Security"
+      - "MASTG (Mobile Application Security Testing Guide)"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      루팅/탈옥 탐지 우회는 모바일 앱 보안 검사를 우회하는 공격이다. Frida, Magisk가
+      주요 도구며 다중 탐지, 네이티브 구현, SafetyNet으로 방어한다.
+    search_keywords:
+      - "루팅 탐지"
+      - "Jailbreak"
+      - "Frida"
+      - "모바일 보안"
+    related_queries:
+      - "모바일 앱 보안"
+      - "루팅 우회"
+      - "SafetyNet"

@@ -1,0 +1,103 @@
+# GR Atom: SSL Stripping
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-SSL-STRIP-001"
+  name: "SSL Stripping"
+  normalization:
+    normalized_name: "ssl stripping https downgrade tls attack"
+    normalization_version: "1.0"
+  aliases:
+    - "SSL 스트리핑"
+    - "HTTPS 다운그레이드"
+    - "TLS 스트리핑"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone4"
+    tags: ["ATK", "NET", "CRYPTO"]
+
+definition:
+  what: |
+    중간자 위치에서 HTTPS 연결을 HTTP로 다운그레이드하여
+    암호화되지 않은 트래픽을 가로채는 공격이다.
+  why: |
+    암호화된 통신을 평문으로 노출시킨다.
+    자격 증명 및 민감 데이터를 탈취한다.
+  how: |
+    1. MITM 위치 확보
+    2. HTTPS 요청 가로채기
+    3. HTTP로 다운그레이드
+    4. 서버와 HTTPS로 통신
+
+relations:
+  structural:
+    is_a:
+      - "ATK-NET-MITM-001"
+      - "ATK-CRYPTO-DOWNGRADE-001"
+    related_to:
+      - "DEF-PREVENT-HTTPS-001"
+      - "DEF-PREVENT-HSTS-001"
+
+properties:
+  technical:
+    attack_mechanism:
+      - "HTTP 요청 가로채기"
+      - "302 리다이렉트 수정"
+      - "HTTPS 링크 제거"
+      - "쿠키 secure 플래그 제거"
+    tools:
+      - "sslstrip"
+      - "mitmproxy"
+      - "Bettercap"
+    prerequisites:
+      - "MITM 위치"
+      - "ARP 스푸핑 또는 DNS 스푸핑"
+    limitations:
+      - "HSTS 프리로드 우회 불가"
+      - "HSTS 활성화 사이트에 무효"
+    detection:
+      - "혼합 콘텐츠 경고"
+      - "URL 확인 습관"
+      - "HTTPS 미적용 알림"
+    mitigation:
+      - "HSTS 구현"
+      - "HSTS 프리로드"
+      - "HTTPS 전용 모드"
+      - "인증서 피닝"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Moxie Marlinspike sslstrip"
+      - "OWASP Transport Layer Protection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSL 스트리핑은 HTTPS를 HTTP로 다운그레이드하여 암호화된
+      트래픽을 평문으로 가로채는 중간자 공격이다.
+    search_keywords:
+      - "SSL 스트리핑"
+      - "HTTPS 다운그레이드"
+      - "MITM"
+      - "TLS 공격"
+    related_queries:
+      - "HSTS"
+      - "중간자 공격"
+      - "암호화 우회"

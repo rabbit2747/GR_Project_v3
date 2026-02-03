@@ -1,0 +1,102 @@
+# GR Atom: Reconnaissance Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-001"
+  name: "Reconnaissance Tool"
+  normalization:
+    normalized_name: "reconnaissance tool information gathering osint"
+    normalization_version: "1.0"
+  aliases:
+    - "Reconnaissance Tool"
+    - "정찰 도구"
+    - "Information Gathering Tool"
+    - "OSINT Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "RECON"]
+
+definition:
+  what: |
+    표적에 대한 정보 수집, 열거, 정찰 활동에 사용되는
+    보안 도구 분류이다.
+  why: |
+    공격 표면을 파악한다.
+    취약한 진입점을 식별한다.
+    표적 환경을 이해한다.
+  how: |
+    1. 수동적 정보 수집
+    2. 능동적 스캔
+    3. 결과 분석
+    4. 표적 목록 작성
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    has_children:
+      - "TOOL-RECON-SUBFINDER-001"
+      - "TOOL-RECON-AMASS-001"
+      - "TOOL-RECON-THEHARVESTER-001"
+      - "TOOL-OSINT-001"
+      - "TOOL-ENUM-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "ATK-RECON-SCAN-001"
+
+properties:
+  technical:
+    subcategories:
+      passive:
+        description: "수동적 정보 수집"
+        examples: ["OSINT", "DNS 조회", "WHOIS"]
+      active:
+        description: "능동적 스캔"
+        examples: ["포트 스캔", "서비스 탐지"]
+      subdomain:
+        description: "서브도메인 열거"
+        examples: ["Subfinder", "Amass"]
+    examples:
+      - "Nmap"
+      - "Shodan"
+      - "theHarvester"
+      - "Maltego"
+      - "Recon-ng"
+    phases:
+      - "Footprinting"
+      - "Scanning"
+      - "Enumeration"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PTES Reconnaissance"
+      - "OWASP Testing Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Reconnaissance Tool은 표적에 대한 정보 수집과
+      정찰 활동에 사용되는 보안 도구 분류이다.
+    search_keywords:
+      - "Reconnaissance"
+      - "정찰"
+      - "OSINT"
+      - "Enumeration"

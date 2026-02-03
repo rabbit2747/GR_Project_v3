@@ -1,0 +1,120 @@
+# GR Atom: Cloud IAM Misconfiguration
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CLOUD-IAM-001"
+  name: "Cloud IAM Misconfiguration"
+  normalization:
+    normalized_name: "cloud iam misconfiguration privilege overly permissive"
+    normalization_version: "1.0"
+  aliases:
+    - "클라우드 IAM 설정 오류"
+    - "과도한 권한"
+    - "IAM 취약점"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "CLOUD", "IAM"]
+
+definition:
+  what: |
+    클라우드 IAM(Identity and Access Management) 설정 오류로 인해
+    과도한 권한이 부여되거나 접근 제어가 미흡한 취약점이다.
+  why: |
+    권한 상승 공격의 기반이 된다.
+    데이터 유출 및 리소스 남용을 초래한다.
+  how: |
+    1. IAM 정책 검토
+    2. 과도한 권한 식별
+    3. 최소 권한 원칙 위반 확인
+    4. 공격 경로 분석
+
+relations:
+  structural:
+    is_a:
+      - "VUL-CONFIG-MISCONFIG-001"
+    related_to:
+      - "ATK-CLOUD-PRIVESC-001"
+      - "INFRA-CLOUD-AWS-IAM-001"
+
+properties:
+  technical:
+    common_misconfigurations:
+      - name: "Overly Permissive Policies"
+        example: '"Action": "*", "Resource": "*"'
+        risk: "전체 리소스 접근"
+      - name: "Public S3 Buckets"
+        example: '"Principal": "*"'
+        risk: "데이터 유출"
+      - name: "Unused IAM Roles"
+        risk: "공격 표면 확대"
+      - name: "Long-lived Access Keys"
+        risk: "자격 증명 탈취 시 장기 노출"
+      - name: "Cross-Account Trust"
+        risk: "외부 계정에서 접근 가능"
+    aws_specific:
+      - "AdministratorAccess 남용"
+      - "IAM PassRole 권한"
+      - "AssumeRole 설정 오류"
+      - "S3 Bucket Policy"
+    azure_specific:
+      - "Contributor 역할 남용"
+      - "Storage Account 공개"
+      - "Service Principal 권한"
+    gcp_specific:
+      - "Owner 역할 남용"
+      - "Service Account 키 노출"
+      - "allUsers/allAuthenticatedUsers"
+    detection_tools:
+      - "AWS IAM Access Analyzer"
+      - "Prowler"
+      - "ScoutSuite"
+      - "CloudSploit"
+    impact:
+      - "권한 상승"
+      - "데이터 유출"
+      - "리소스 삭제"
+      - "비용 발생"
+    mitigation:
+      - "최소 권한 원칙"
+      - "정기적인 IAM 감사"
+      - "사용하지 않는 권한 제거"
+      - "조건부 정책 사용"
+      - "MFA 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AWS IAM Best Practices"
+      - "CIS Cloud Benchmarks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      클라우드 IAM 설정 오류는 과도한 권한 부여로 인해
+      권한 상승과 데이터 유출을 초래하는 취약점이다.
+    search_keywords:
+      - "IAM"
+      - "클라우드 권한"
+      - "설정 오류"
+      - "최소 권한"
+    related_queries:
+      - "AWS IAM 보안"
+      - "클라우드 접근 제어"
+      - "권한 상승"

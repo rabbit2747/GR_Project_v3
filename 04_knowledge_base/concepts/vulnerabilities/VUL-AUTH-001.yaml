@@ -1,0 +1,77 @@
+# GR Atom: Authentication Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-AUTH-001"
+  name: "Authentication Vulnerability"
+  normalization:
+    normalized_name: "authentication vulnerability bypass weak"
+    normalization_version: "1.0"
+  aliases:
+    - "Authentication Vulnerability"
+    - "인증 취약점"
+    - "Auth Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "AUTH"]
+
+definition:
+  what: |
+    인증 메커니즘의 설계나 구현 결함으로 인한 취약점 분류이다.
+  why: |
+    인증 우회 가능성을 평가한다.
+    인증 시스템을 강화한다.
+    계정 보안을 개선한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-AUTH-BYPASS-001"
+      - "VUL-AUTH-WEAK-PASSWORD-001"
+    related_to:
+      - "TECH-AUTH-001"
+      - "DEF-MFA-001"
+
+properties:
+  technical:
+    types:
+      - "Weak Password Policy"
+      - "Credential Stuffing"
+      - "Session Fixation"
+      - "Brute Force"
+      - "Authentication Bypass"
+      - "Insecure Password Recovery"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Authentication Cheat Sheet"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Authentication Vulnerability는 인증 메커니즘의 취약점 분류이다.
+    search_keywords:
+      - "Authentication Vulnerability"
+      - "인증 취약점"
+      - "Auth Bypass"
+      - "Weak Password"

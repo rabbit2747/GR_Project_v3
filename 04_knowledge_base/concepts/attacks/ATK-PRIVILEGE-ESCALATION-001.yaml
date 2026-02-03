@@ -1,0 +1,94 @@
+# GR Atom: Privilege Escalation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-PRIVILEGE-ESCALATION-001"
+  name: "Privilege Escalation"
+  normalization:
+    normalized_name: "privilege escalation privesc root admin"
+    normalization_version: "1.0"
+  aliases:
+    - "Privilege Escalation"
+    - "권한 상승"
+    - "PrivEsc"
+    - "Elevation of Privilege"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "PRIVESC"]
+
+definition:
+  what: |
+    더 높은 권한(root, admin 등)을 획득하기 위한
+    공격 기법 분류이다.
+  why: |
+    시스템 전체 접근을 획득한다.
+    보안 통제를 우회한다.
+    지속성을 확보한다.
+  how: |
+    1. 현재 권한 확인
+    2. 상승 벡터 열거
+    3. 익스플로잇 실행
+    4. 권한 확인
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-WIN-PRIV-ESC-001"
+      - "ATK-LINUX-PRIV-ESC-001"
+    related_to:
+      - "ATK-MITRE-PRIV-ESC-001"
+      - "TOOL-ENUM-001"
+
+properties:
+  technical:
+    types:
+      vertical: "낮은 권한 → 높은 권한"
+      horizontal: "동일 레벨 다른 사용자"
+    vectors:
+      linux:
+        - "SUID/SGID"
+        - "Sudo 설정"
+        - "Kernel Exploits"
+        - "Capabilities"
+      windows:
+        - "Unquoted Service Path"
+        - "Weak Service Permissions"
+        - "Token Impersonation"
+        - "UAC Bypass"
+    mitre_tactic: "TA0004"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0004"
+      - "GTFOBins"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Privilege Escalation은 더 높은 권한을 획득하기 위한
+      공격 기법 분류이다.
+    search_keywords:
+      - "Privilege Escalation"
+      - "권한 상승"
+      - "PrivEsc"
+      - "Root"

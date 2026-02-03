@@ -1,0 +1,103 @@
+# GR Atom: Oracle WebLogic
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-WAS-WEBLOGIC-001"
+  name: "Oracle WebLogic Server"
+  normalization:
+    normalized_name: "weblogic oracle weblogic server java ee"
+    normalization_version: "1.0"
+  aliases:
+    - "WebLogic"
+    - "Oracle WebLogic"
+    - "WLS"
+    - "웹로직"
+
+classification:
+  domain: infrastructure
+  type: application_server
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "APP", "WAS", "JAVA", "ENTERPRISE"]
+
+definition:
+  what: |
+    Oracle WebLogic Server는 Oracle의 상용 Java EE 애플리케이션 서버다.
+    대규모 엔터프라이즈 환경에서 미션 크리티컬 애플리케이션에 사용된다.
+  why: |
+    금융, 통신 등 대기업에서 광범위하게 사용된다. T3/IIOP 프로토콜 역직렬화,
+    관리 콘솔 취약점이 지속적으로 발견되고 공격받는다.
+  how: |
+    1. WebLogic Server: 핵심 런타임
+    2. Admin Server: 도메인 관리
+    3. Managed Server: 애플리케이션 실행
+    4. Coherence: 인메모리 데이터 그리드
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-APP-WAS-001"
+    requires:
+      - "INFRA-RUNTIME-JVM-001"
+  causal:
+    vulnerable_to:
+      - "ATK-SERVER-DESER-001"
+
+properties:
+  technical:
+    default_ports:
+      - port: 7001
+        service: "HTTP/T3"
+      - port: 7002
+        service: "HTTPS/T3S"
+      - port: 9002
+        service: "Admin Console (HTTPS)"
+    security_issues:
+      - name: "T3 Deserialization"
+        risk: "원격 코드 실행"
+        cve_example: "CVE-2020-14882"
+      - name: "IIOP Deserialization"
+        risk: "원격 코드 실행"
+        cve_example: "CVE-2020-2551"
+      - name: "Admin Console RCE"
+        risk: "인증 우회 + RCE"
+        cve_example: "CVE-2020-14750"
+    hardening:
+      - "T3/IIOP 프로토콜 필터링 또는 비활성화"
+      - "관리 콘솔 외부 접근 차단"
+      - "최신 Critical Patch Update(CPU) 적용"
+      - "네트워크 세그멘테이션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Oracle WebLogic Server Security"
+      - "Oracle Critical Patch Updates"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Oracle WebLogic은 엔터프라이즈 Java EE 서버다. T3/IIOP 역직렬화,
+      관리 콘솔 취약점이 지속적으로 발견되어 공격 대상이 된다.
+    search_keywords:
+      - "WebLogic"
+      - "Oracle WebLogic"
+      - "웹로직"
+      - "T3 프로토콜"
+    related_queries:
+      - "WebLogic 취약점"
+      - "WebLogic 역직렬화"
+      - "WebLogic 하드닝"

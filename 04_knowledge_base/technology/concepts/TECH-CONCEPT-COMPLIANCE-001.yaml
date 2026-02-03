@@ -1,0 +1,123 @@
+# GR Atom: Security Compliance Frameworks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-COMPLIANCE-001"
+  name: "Security Compliance Frameworks"
+  normalization:
+    normalized_name: "compliance framework regulation gdpr pci iso soc"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 컴플라이언스"
+    - "규정 준수"
+    - "Regulatory Compliance"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["TECH", "COMPLIANCE", "FRAMEWORK"]
+
+definition:
+  what: |
+    보안 컴플라이언스는 법적 규정, 산업 표준, 모범 사례를 준수하여
+    정보 보안을 체계적으로 관리하는 것이다.
+  why: |
+    법적 의무 준수, 고객 신뢰 확보, 벌금/제재 회피에 필수적이다.
+    체계적인 보안 관리의 기반이 되며 비즈니스 필수 요건이다.
+  how: |
+    1. 적용 가능한 규정 식별
+    2. 현재 상태 평가 (Gap Analysis)
+    3. 통제 구현
+    4. 지속적 모니터링 및 감사
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    provides_guidance_for:
+      - "DEF-*"
+
+properties:
+  technical:
+    major_frameworks:
+      - name: "ISO 27001"
+        type: "International Standard"
+        focus: "Information Security Management System"
+        scope: "글로벌"
+      - name: "SOC 2"
+        type: "Audit Report"
+        focus: "Trust Service Criteria"
+        scope: "서비스 제공자"
+      - name: "PCI DSS"
+        type: "Industry Standard"
+        focus: "Payment Card Data"
+        scope: "카드 결제 처리"
+      - name: "GDPR"
+        type: "Regulation"
+        focus: "Personal Data Protection"
+        scope: "EU 시민 데이터"
+      - name: "HIPAA"
+        type: "Regulation"
+        focus: "Healthcare Information"
+        scope: "미국 의료"
+      - name: "NIST CSF"
+        type: "Framework"
+        focus: "Cybersecurity"
+        scope: "미국 (자발적)"
+    key_requirements:
+      - "접근 통제"
+      - "암호화"
+      - "로깅 및 모니터링"
+      - "취약점 관리"
+      - "인시던트 대응"
+      - "보안 인식 교육"
+    compliance_process:
+      - "범위 정의"
+      - "현황 평가"
+      - "Gap 분석"
+      - "개선 계획"
+      - "통제 구현"
+      - "내부 감사"
+      - "외부 인증/감사"
+      - "지속적 개선"
+    tools:
+      - "GRC 플랫폼 (ServiceNow, RSA Archer)"
+      - "규정 준수 자동화 (Vanta, Drata)"
+      - "취약점 스캐너"
+      - "SIEM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ISO/IEC 27001"
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      보안 컴플라이언스는 법적 규정과 표준을 준수하는 것이다. ISO 27001, SOC 2,
+      PCI DSS, GDPR이 주요 프레임워크며 Gap 분석, 통제 구현, 감사가 핵심 프로세스다.
+    search_keywords:
+      - "컴플라이언스"
+      - "ISO 27001"
+      - "SOC 2"
+      - "GDPR"
+    related_queries:
+      - "보안 인증"
+      - "규정 준수"
+      - "정보보호 관리체계"

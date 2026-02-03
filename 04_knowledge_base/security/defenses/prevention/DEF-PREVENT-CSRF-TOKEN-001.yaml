@@ -1,0 +1,86 @@
+# GR Atom: CSRF Token
+identity:
+  id: "DEF-PREVENT-CSRF-TOKEN-001"
+  name: "CSRF Token"
+  normalization:
+    normalized_name: "csrf_token"
+    normalization_version: "1.0"
+  aliases:
+    - "Anti-CSRF Token"
+    - "Synchronizer Token"
+    - "XSRF Token"
+    - "CSRF 토큰"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P", "AUTH"]
+
+definition:
+  what: |
+    예측 불가능한 토큰을 요청에 포함시켜 Cross-Site Request Forgery(CSRF) 공격을
+    방어하는 기법. 서버가 생성한 고유 토큰을 폼이나 헤더에 포함하여,
+    정당한 출처의 요청만 처리되도록 보장한다.
+  why: |
+    CSRF 공격은 인증된 사용자의 세션을 악용하여 의도하지 않은 요청을 전송하게 한다.
+    비밀번호 변경, 자금 이체 등 중요한 상태 변경 요청이 위조될 수 있으므로,
+    CSRF 토큰으로 요청의 정당성을 검증해야 한다.
+  how: |
+    1. 서버에서 세션별 고유한 CSRF 토큰을 생성한다.
+    2. 폼의 hidden 필드 또는 커스텀 HTTP 헤더에 토큰을 포함시킨다.
+    3. 서버에서 요청 수신 시 토큰의 유효성을 검증한다.
+    4. SameSite 쿠키 속성과 함께 사용하여 방어를 강화한다.
+    5. Double Submit Cookie 패턴을 대안으로 활용할 수 있다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents: ["ATK-AUTH-CSRF-001"]
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    implementation:
+      - "Synchronizer Token Pattern"
+      - "Double Submit Cookie Pattern"
+      - "SameSite cookie attribute"
+      - "Framework CSRF middleware (Django, Spring Security, Express csurf)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CSRF Token은 예측 불가능한 토큰을 요청에 포함시켜 Cross-Site Request Forgery
+      공격을 방어하는 기법이다. 서버에서 생성한 고유 토큰을 통해 요청의 정당성을
+      검증하여 위조된 요청을 차단한다.
+    search_keywords:
+      - "CSRF token"
+      - "anti-CSRF"
+      - "synchronizer token"
+      - "cross-site request forgery prevention"
+      - "CSRF 토큰"
+    related_queries:
+      - "CSRF 공격을 방어하는 방법"
+      - "CSRF 토큰 구현 패턴"
+      - "SameSite 쿠키와 CSRF 방어"

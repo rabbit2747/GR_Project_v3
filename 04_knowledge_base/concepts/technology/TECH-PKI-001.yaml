@@ -1,0 +1,80 @@
+# GR Atom: PKI Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PKI-001"
+  name: "PKI Technology"
+  normalization:
+    normalized_name: "pki public key infrastructure certificate"
+    normalization_version: "1.0"
+  aliases:
+    - "PKI Technology"
+    - "PKI 기술"
+    - "Public Key Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "PKI"]
+
+definition:
+  what: |
+    디지털 인증서 기반의 신뢰 체계를 구현하는 PKI 기술 분류이다.
+  why: |
+    신뢰 체계를 구축한다.
+    인증서 관리를 수행한다.
+    안전한 통신을 보장한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CRYPTO-001"
+    has_children:
+      - "TECH-PKI-CA-001"
+      - "TECH-PKI-CERT-001"
+    related_to:
+      - "TECH-ENCRYPTION-001"
+      - "TECH-AUTH-001"
+
+properties:
+  technical:
+    components:
+      - "Certificate Authority"
+      - "Registration Authority"
+      - "Certificate Revocation"
+      - "Key Management"
+    standards:
+      - "X.509"
+      - "PKCS"
+      - "OCSP"
+      - "CRL"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST PKI Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PKI Technology는 공개키 기반 인프라 기술 분류이다.
+    search_keywords:
+      - "PKI"
+      - "인증서"
+      - "Certificate"
+      - "Public Key"

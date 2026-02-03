@@ -1,0 +1,107 @@
+# GR Atom: Create Account
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1136-001"
+  name: "Create Account"
+  normalization:
+    normalized_name: "create account persistence backdoor local domain"
+    normalization_version: "1.0"
+  aliases:
+    - "계정 생성"
+    - "백도어 계정"
+    - "지속성 계정"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "PERSISTENCE"]
+
+definition:
+  what: |
+    로컬, 도메인 또는 클라우드 환경에서 새 계정을 생성하여
+    지속적인 접근 권한을 확보하는 기법이다.
+  why: |
+    초기 접근 자격 증명과 별도의 백도어를 확보한다.
+    탐지를 회피하며 지속성을 유지한다.
+  how: |
+    1. 계정 생성 권한 획득
+    2. 새 사용자 계정 생성
+    3. 권한 부여
+    4. 은닉 (이름 위장 등)
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-PERSISTENCE-001"
+    related_to:
+      - "ATK-MITRE-T1078-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1136"
+    tactic: "Persistence"
+    platforms: ["Windows", "Linux", "macOS", "Azure AD", "AWS", "GCP"]
+    sub_techniques:
+      - id: "T1136.001"
+        name: "Local Account"
+        description: "로컬 사용자 계정 생성"
+        windows: "net user backdoor P@ssw0rd /add"
+        linux: "useradd -m backdoor"
+      - id: "T1136.002"
+        name: "Domain Account"
+        description: "도메인 계정 생성"
+        command: "net user backdoor P@ssw0rd /add /domain"
+      - id: "T1136.003"
+        name: "Cloud Account"
+        description: "클라우드 IAM 계정 생성"
+    common_patterns:
+      - "관리자 그룹에 추가"
+      - "시스템 계정처럼 위장"
+      - "숨김 계정 ($로 끝나는 이름)"
+    detection:
+      - "Event ID 4720 (계정 생성)"
+      - "Event ID 4728/4732 (그룹 추가)"
+      - "계정 열거 정기 감사"
+      - "비정상 계정명 패턴"
+    mitigation:
+      - "계정 생성 권한 제한"
+      - "정기적 계정 감사"
+      - "계정 생성 알림"
+      - "PAM 솔루션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1136"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Create Account는 로컬/도메인/클라우드에서 계정을 생성하여
+      지속적 접근을 확보하는 MITRE ATT&CK Persistence 기법이다.
+    search_keywords:
+      - "Create Account"
+      - "백도어 계정"
+      - "지속성"
+      - "계정 생성"
+    related_queries:
+      - "계정 관리"
+      - "AD 보안"
+      - "권한 상승"

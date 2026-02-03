@@ -1,0 +1,114 @@
+# GR Atom: LDAP Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-LDAP-001"
+  name: "LDAP (Lightweight Directory Access Protocol)"
+  normalization:
+    normalized_name: "ldap lightweight directory access protocol active directory"
+    normalization_version: "1.0"
+  aliases:
+    - "LDAP"
+    - "디렉토리 서비스 프로토콜"
+    - "LDAPS"
+
+classification:
+  domain: technology
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "IAM"]
+
+definition:
+  what: |
+    LDAP(Lightweight Directory Access Protocol)는 디렉토리 서비스에 접근하기 위한
+    프로토콜이다. 사용자, 그룹, 컴퓨터 정보를 저장하고 조회한다.
+  why: |
+    Active Directory, OpenLDAP 등 엔터프라이즈 인증 시스템의 기반이다.
+    LDAP Injection, 무단 바인딩 등 보안 위협이 존재한다.
+  how: |
+    1. Bind: 서버에 인증
+    2. Search: 디렉토리 조회
+    3. Modify: 항목 수정
+    4. Unbind: 연결 종료
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+    related_to:
+      - "INFRA-IAM-LDAP-001"
+  causal:
+    vulnerable_to:
+      - "ATK-INJECT-LDAP-001"
+
+properties:
+  technical:
+    default_ports:
+      - "389 (LDAP)"
+      - "636 (LDAPS - TLS)"
+      - "3268 (Global Catalog)"
+      - "3269 (Global Catalog over SSL)"
+    operations:
+      - "Bind: 인증"
+      - "Search: 조회"
+      - "Add: 추가"
+      - "Delete: 삭제"
+      - "Modify: 수정"
+      - "Compare: 비교"
+      - "Abandon: 중단"
+    security_concerns:
+      - "Anonymous bind 허용"
+      - "평문 통신 (LDAP)"
+      - "LDAP Injection"
+      - "Null bind"
+      - "Credential brute force"
+    security_controls:
+      - name: "LDAPS"
+        description: "TLS 암호화 사용"
+      - name: "Anonymous bind 비활성화"
+        description: "익명 접근 차단"
+      - name: "LDAP Signing"
+        description: "서명된 LDAP 바인딩"
+      - name: "Channel Binding"
+        description: "LDAP 채널 바인딩"
+      - name: "Input Validation"
+        description: "LDAP Injection 방지"
+    ad_specific:
+      - "NTLM 인증"
+      - "Kerberos 인증"
+      - "LDAP 서명 요구 정책"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 4511 - LDAP Protocol"
+      - "Microsoft Active Directory"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LDAP는 디렉토리 서비스 프로토콜로 AD의 기반이다. LDAPS, 서명된 바인딩이
+      핵심 보안이며 LDAP Injection, Anonymous bind가 주요 위험이다.
+    search_keywords:
+      - "LDAP"
+      - "Active Directory"
+      - "LDAPS"
+      - "디렉토리 서비스"
+    related_queries:
+      - "LDAP 보안"
+      - "LDAP Injection"
+      - "AD 하드닝"

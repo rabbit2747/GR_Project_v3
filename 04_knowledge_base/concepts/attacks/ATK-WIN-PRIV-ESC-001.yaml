@@ -1,0 +1,79 @@
+# GR Atom: Windows Privilege Escalation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WIN-PRIV-ESC-001"
+  name: "Windows Privilege Escalation"
+  normalization:
+    normalized_name: "windows privilege escalation local admin system"
+    normalization_version: "1.0"
+  aliases:
+    - "Windows Privilege Escalation"
+    - "윈도우 권한 상승"
+    - "Windows PrivEsc"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "WINDOWS", "PRIVESC"]
+
+definition:
+  what: |
+    Windows 환경에서 낮은 권한에서 높은 권한으로 상승하는
+    공격 기법 분류이다.
+  why: |
+    관리자 권한을 획득한다.
+    SYSTEM 권한을 획득한다.
+    보안 통제를 우회한다.
+
+relations:
+  structural:
+    is_a:
+      - "ATK-PRIVILEGE-ESCALATION-001"
+    has_children:
+      - "ATK-WIN-TOKEN-MANIP-001"
+      - "ATK-WIN-UAC-BYPASS-001"
+      - "ATK-WIN-SERVICE-ABUSE-001"
+    related_to:
+      - "ATK-MITRE-T1134-001"
+      - "VUL-WIN-001"
+
+properties:
+  technical:
+    techniques:
+      - "Token Manipulation"
+      - "UAC Bypass"
+      - "Service Exploitation"
+      - "DLL Hijacking"
+      - "Unquoted Service Path"
+      - "AlwaysInstallElevated"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Windows Privilege Escalation은 Windows 환경의 권한 상승 공격 기법 분류이다.
+    search_keywords:
+      - "Windows PrivEsc"
+      - "윈도우 권한 상승"
+      - "UAC Bypass"
+      - "Token Manipulation"

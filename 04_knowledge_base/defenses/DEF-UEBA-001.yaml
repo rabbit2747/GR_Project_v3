@@ -1,0 +1,115 @@
+# GR Atom: User and Entity Behavior Analytics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-UEBA-001"
+  name: "User and Entity Behavior Analytics"
+  normalization:
+    normalized_name: "ueba user entity behavior analytics anomaly insider"
+    normalization_version: "1.0"
+  aliases:
+    - "UEBA"
+    - "사용자 행위 분석"
+    - "Behavior Analytics"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "DETECT", "BEHAVIOR"]
+
+definition:
+  what: |
+    사용자와 엔티티의 정상 행위 기준선을 학습하여
+    이상 행위를 탐지하는 분석 기술이다.
+  why: |
+    내부자 위협을 탐지한다.
+    계정 침해를 식별한다.
+  how: |
+    1. 행위 데이터 수집
+    2. 기준선 학습 (ML)
+    3. 이상 탐지
+    4. 리스크 스코어링
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    related_to:
+      - "DEF-SIEM-001"
+      - "DEF-IAM-001"
+
+properties:
+  technical:
+    entities:
+      users: "직원, 계약자, 서비스 계정"
+      devices: "서버, 워크스테이션, IoT"
+      applications: "앱, 서비스, 프로세스"
+    data_sources:
+      - "인증 로그"
+      - "네트워크 활동"
+      - "파일 접근"
+      - "이메일 활동"
+      - "애플리케이션 로그"
+      - "물리 접근"
+    detection_scenarios:
+      - name: "계정 침해"
+        indicators: ["비정상 로그인 위치", "시간대 이상"]
+      - name: "내부자 위협"
+        indicators: ["대량 데이터 접근", "퇴직 전 활동"]
+      - name: "권한 오용"
+        indicators: ["역할 외 접근", "비인가 데이터"]
+      - name: "측면 이동"
+        indicators: ["비정상 시스템 접근 패턴"]
+    analytics_approach:
+      - name: "Peer Group Analysis"
+        description: "유사 사용자 그룹 비교"
+      - name: "Timeline Analysis"
+        description: "시계열 행위 분석"
+      - name: "Risk Scoring"
+        description: "누적 리스크 점수화"
+    popular_solutions:
+      standalone:
+        - "Exabeam"
+        - "Securonix"
+        - "Gurucul"
+      integrated:
+        - "Microsoft Sentinel UEBA"
+        - "Splunk UBA"
+        - "IBM QRadar UBA"
+    challenges:
+      - "긴 학습 기간"
+      - "오탐 관리"
+      - "데이터 품질"
+      - "프라이버시 고려"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner UEBA"
+      - "MITRE Insider Threat"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      UEBA는 사용자/엔티티의 정상 행위를 학습하여
+      이상 행위와 내부자 위협을 탐지하는 분석 기술이다.
+    search_keywords:
+      - "UEBA"
+      - "Behavior Analytics"
+      - "내부자 위협"
+      - "이상 탐지"

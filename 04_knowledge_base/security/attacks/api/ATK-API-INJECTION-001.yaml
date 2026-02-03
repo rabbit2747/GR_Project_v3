@@ -1,0 +1,111 @@
+# GR Atom: API Injection Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-API-INJECTION-001"
+  name: "API Injection Attack"
+  normalization:
+    normalized_name: "api injection attack graphql nosql json"
+    normalization_version: "1.0"
+  aliases:
+    - "API 인젝션 공격"
+    - "GraphQL 인젝션"
+    - "NoSQL API 인젝션"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "API", "INJECT"]
+
+definition:
+  what: |
+    API 엔드포인트에 악성 페이로드를 삽입하여 백엔드 시스템을
+    조작하거나 데이터를 탈취하는 공격이다. OWASP API Top 10 #8.
+  why: |
+    백엔드 데이터베이스나 시스템을 공격한다.
+    인증 우회, 데이터 유출을 수행한다.
+  how: |
+    1. API 입력 파라미터 분석
+    2. 인젝션 페이로드 생성
+    3. API 요청에 삽입
+    4. 백엔드 시스템 조작
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CON-00001"
+    related_to:
+      - "ATK-INJECT-SQL-001"
+      - "ATK-WEB-NOSQL-001"
+
+properties:
+  technical:
+    owasp_api_rank: 8
+    injection_types:
+      - name: "NoSQL Injection"
+        target: "MongoDB, CouchDB"
+        example: '{"$gt": ""}'
+      - name: "GraphQL Injection"
+        target: "GraphQL 쿼리"
+        example: "과도한 쿼리 깊이, 배치 쿼리"
+      - name: "JSON Injection"
+        target: "JSON 파서"
+        example: "특수 문자로 구조 변경"
+      - name: "XML Injection"
+        target: "XML 파서 (XXE 포함)"
+    graphql_specific:
+      - "Introspection Query 악용"
+      - "Batching 공격"
+      - "Depth Limit 우회"
+      - "Field Suggestion 악용"
+    examples:
+      nosql: |
+        {"username": {"$gt": ""}, "password": {"$gt": ""}}
+      graphql: |
+        query { users { id, password } }
+    detection:
+      - "입력값 이상 패턴"
+      - "쿼리 복잡도 모니터링"
+      - "에러 메시지 분석"
+    mitigation:
+      - "입력 검증 및 새니타이징"
+      - "파라미터화된 쿼리"
+      - "GraphQL 쿼리 깊이 제한"
+      - "Rate Limiting"
+      - "WAF 규칙"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "GraphQL Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API 인젝션은 NoSQL, GraphQL 등 API에 악성 페이로드를
+      삽입하여 백엔드를 공격하는 OWASP API Top 10 #8 취약점이다.
+    search_keywords:
+      - "API 인젝션"
+      - "GraphQL"
+      - "NoSQL 인젝션"
+      - "JSON 인젝션"
+    related_queries:
+      - "GraphQL 보안"
+      - "NoSQL 보안"
+      - "API 입력 검증"

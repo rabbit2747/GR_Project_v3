@@ -1,0 +1,80 @@
+# GR Atom: Security Governance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-GOVERNANCE-001"
+  name: "Security Governance"
+  normalization:
+    normalized_name: "security governance policy risk management"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Governance"
+    - "보안 거버넌스"
+    - "Information Security Governance"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["CONCEPT", "COMPLIANCE", "GOVERNANCE"]
+
+definition:
+  what: |
+    조직의 보안 정책, 절차, 위험 관리 체계 분류이다.
+  why: |
+    보안 거버넌스를 이해한다.
+    정책 체계를 수립한다.
+    위험을 체계적으로 관리한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMP-001"
+    has_children:
+      - "COMP-GOV-POLICY-001"
+      - "COMP-GOV-RISK-001"
+    related_to:
+      - "GR-SEC-PRI-001"
+      - "COMP-FRAMEWORK-001"
+
+properties:
+  technical:
+    components:
+      - "Security Policies"
+      - "Risk Management"
+      - "Security Organization"
+      - "Metrics & Reporting"
+    processes:
+      - "Policy Development"
+      - "Risk Assessment"
+      - "Compliance Monitoring"
+      - "Security Awareness"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ISO 27001 Governance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Governance는 보안 거버넌스 및 정책 체계 분류이다.
+    search_keywords:
+      - "Security Governance"
+      - "보안 거버넌스"
+      - "Policy"
+      - "Risk Management"

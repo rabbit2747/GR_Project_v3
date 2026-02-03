@@ -1,0 +1,118 @@
+# GR Atom: Red Team Operations
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-RED-TEAM-001"
+  name: "Red Team Operations"
+  normalization:
+    normalized_name: "red team operations adversary emulation security assessment"
+    normalization_version: "1.0"
+  aliases:
+    - "레드팀 운영"
+    - "적대적 시뮬레이션"
+    - "공격 시뮬레이션"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "OFFENSE", "ASSESSMENT"]
+
+definition:
+  what: |
+    실제 공격자의 전술, 기법, 절차(TTP)를 시뮬레이션하여
+    조직의 보안 태세를 종합적으로 평가하는 활동이다.
+  why: |
+    실제 공격에 대한 방어 능력을 검증한다.
+    탐지 및 대응 능력을 테스트한다.
+  how: |
+    1. 목표 및 범위 정의
+    2. 정찰 및 무기화
+    3. 초기 접근 및 실행
+    4. 지속성 및 권한 상승
+    5. 목표 달성 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PENTESTING-001"
+    related_to:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    versus_pentest:
+      pentest: "특정 취약점 발견 중심"
+      red_team: "목표 달성 중심, TTP 시뮬레이션"
+    engagement_types:
+      - name: "Full Scope"
+        description: "물리, 소셜, 기술 모두 포함"
+      - name: "Assumed Breach"
+        description: "초기 접근 후 시나리오"
+      - name: "Purple Team"
+        description: "레드/블루 협력"
+    kill_chain:
+      - "정찰 (Reconnaissance)"
+      - "무기화 (Weaponization)"
+      - "전달 (Delivery)"
+      - "익스플로잇 (Exploitation)"
+      - "설치 (Installation)"
+      - "C2 (Command & Control)"
+      - "목표 달성 (Actions on Objectives)"
+    common_objectives:
+      - "도메인 관리자 획득"
+      - "데이터 유출"
+      - "비즈니스 프로세스 침해"
+      - "물리적 접근"
+    tools:
+      - "Cobalt Strike"
+      - "Metasploit"
+      - "Covenant"
+      - "Impacket"
+      - "BloodHound"
+    rules_of_engagement:
+      - "범위 정의"
+      - "금지 사항"
+      - "에스컬레이션 절차"
+      - "증거 처리"
+    deliverables:
+      - "공격 경로 문서"
+      - "탐지 평가"
+      - "권고 사항"
+      - "경영진 보고서"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "Red Team Field Manual"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Red Team Operations는 실제 공격자 TTP를 시뮬레이션하여
+      조직의 보안 태세를 종합 평가하는 활동이다.
+    search_keywords:
+      - "Red Team"
+      - "적대적 시뮬레이션"
+      - "공격 시뮬레이션"
+      - "보안 평가"
+    related_queries:
+      - "모의 해킹"
+      - "Purple Team"
+      - "Cobalt Strike"

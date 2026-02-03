@@ -1,0 +1,111 @@
+# GR Atom: Mobile App Hooking
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MOBILE-HOOK-001"
+  name: "Mobile App Hooking"
+  normalization:
+    normalized_name: "mobile hooking frida xposed runtime manipulation"
+    normalization_version: "1.0"
+  aliases:
+    - "모바일 후킹"
+    - "Runtime Hooking"
+    - "Function Hooking"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MOBILE", "HOOK"]
+
+definition:
+  what: |
+    모바일 앱 후킹은 런타임에 앱의 함수를 가로채어 동작을 수정하거나
+    데이터를 추출하는 공격 기법이다.
+  why: |
+    암호화 키 추출, 보안 검사 우회, 앱 분석에 사용된다.
+    앱의 비즈니스 로직을 조작하여 치팅, 사기가 가능하다.
+  how: |
+    1. 대상 앱 분석 (정적/동적)
+    2. 후킹 대상 함수 식별
+    3. Frida/Xposed로 함수 후킹
+    4. 파라미터/반환값 조작 또는 로깅
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-CLIENT-ATTACK-001"
+    enables:
+      - "ATK-MOBILE-ROOT-001"
+
+properties:
+  technical:
+    hooking_frameworks:
+      - name: "Frida"
+        platforms: ["Android", "iOS"]
+        features: ["JavaScript API", "동적 계측", "크로스 플랫폼"]
+      - name: "Xposed Framework"
+        platforms: ["Android"]
+        features: ["Java 메서드 후킹", "시스템 수준"]
+      - name: "Substrate/Cydia"
+        platforms: ["iOS"]
+        features: ["Objective-C 후킹"]
+      - name: "LSPosed"
+        platforms: ["Android"]
+        features: ["Xposed 후속", "Magisk 모듈"]
+    use_cases:
+      - "SSL Pinning 우회"
+      - "루팅/탈옥 탐지 우회"
+      - "암호화 함수 후킹 (키 추출)"
+      - "인앱 결제 우회"
+      - "게임 치팅"
+      - "앱 동적 분석"
+    frida_example:
+      description: "SSL Pinning 우회 예시"
+      code: |
+        Java.perform(function() {
+          var TrustManager = Java.use('X509TrustManager');
+          TrustManager.checkClientTrusted.implementation = function() {};
+          TrustManager.checkServerTrusted.implementation = function() {};
+        });
+    countermeasures:
+      - "안티 후킹 (Frida 탐지)"
+      - "코드 난독화"
+      - "무결성 검증"
+      - "네이티브 코드 사용"
+      - "서버 사이드 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Frida Documentation"
+      - "OWASP MASTG"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      모바일 앱 후킹은 런타임에 함수를 가로채는 기법이다. Frida, Xposed가 주요 도구며
+      SSL Pinning 우회, 암호화 키 추출에 사용된다. 안티 후킹, 난독화로 방어한다.
+    search_keywords:
+      - "모바일 후킹"
+      - "Frida"
+      - "Xposed"
+      - "런타임 조작"
+    related_queries:
+      - "앱 후킹"
+      - "SSL Pinning 우회"
+      - "Frida 스크립트"

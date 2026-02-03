@@ -1,0 +1,102 @@
+# GR Atom: SQL Language
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-LANG-SQL-001"
+  name: "SQL (Structured Query Language)"
+  normalization:
+    normalized_name: "sql structured query language"
+    normalization_version: "1.0"
+  aliases:
+    - "SQL"
+    - "에스큐엘"
+    - "시퀄"
+
+classification:
+  domain: data
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Cross"
+    tags: ["D"]
+
+definition:
+  what: |
+    SQL은 관계형 데이터베이스(RDBMS)에서 데이터를 정의, 조작, 제어하기
+    위한 표준화된 질의 언어다. DDL, DML, DCL로 구성된다.
+  why: |
+    거의 모든 웹 애플리케이션이 데이터베이스와 통신할 때 SQL을 사용한다.
+    SQL을 이해해야 SQL Injection 공격과 방어를 이해할 수 있다.
+  how: |
+    1. DDL (Data Definition): CREATE, ALTER, DROP
+    2. DML (Data Manipulation): SELECT, INSERT, UPDATE, DELETE
+    3. DCL (Data Control): GRANT, REVOKE
+    4. 쿼리는 파서 → 옵티마이저 → 실행 엔진 순으로 처리
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-QUERY-LANG-001"]
+  applicability:
+    applies_to:
+      - "INFRA-DATA-RDBMS-001"
+  causal:
+    enables:
+      - "ATK-INJECT-SQL-001"  # SQL Injection 가능하게 함
+
+properties:
+  technical:
+    type: "Declarative Language"
+    standards:
+      - "SQL-92"
+      - "SQL:1999"
+      - "SQL:2003"
+      - "SQL:2011"
+      - "SQL:2016"
+    dialects:
+      - name: "MySQL"
+        features: ["LIMIT", "AUTO_INCREMENT"]
+      - name: "PostgreSQL"
+        features: ["LIMIT", "SERIAL", "RETURNING"]
+      - name: "MS SQL Server"
+        features: ["TOP", "IDENTITY"]
+      - name: "Oracle"
+        features: ["ROWNUM", "SEQUENCE"]
+    statements:
+      ddl: ["CREATE", "ALTER", "DROP", "TRUNCATE"]
+      dml: ["SELECT", "INSERT", "UPDATE", "DELETE"]
+      dcl: ["GRANT", "REVOKE"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ISO/IEC 9075 SQL Standard"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SQL Structured Query Language는 관계형 데이터베이스 질의 언어다.
+      SELECT INSERT UPDATE DELETE로 데이터를 조작하고, CREATE ALTER DROP으로
+      스키마를 정의한다. MySQL, PostgreSQL, MSSQL, Oracle 등의 방언이 있다.
+      SQL Injection 공격의 대상이 되는 핵심 기술이다.
+    search_keywords:
+      - "SQL"
+      - "데이터베이스 쿼리"
+      - "SELECT"
+      - "관계형 데이터베이스"
+      - "RDBMS"
+    related_queries:
+      - "SQL이란?"
+      - "SQL 기본 문법"
+      - "SQL Injection이 가능한 이유"

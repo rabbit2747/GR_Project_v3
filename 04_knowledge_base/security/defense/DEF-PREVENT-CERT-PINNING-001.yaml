@@ -1,0 +1,111 @@
+# GR Atom: Certificate Pinning
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-CERT-PINNING-001"
+  name: "Certificate Pinning"
+  normalization:
+    normalized_name: "certificate pinning ssl tls public key pinning"
+    normalization_version: "1.0"
+  aliases:
+    - "인증서 피닝"
+    - "공개키 피닝"
+    - "SSL Pinning"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone3"
+    tags: ["DEF", "CRYPTO", "TLS"]
+
+definition:
+  what: |
+    애플리케이션이 특정 인증서 또는 공개키만 신뢰하도록 하여
+    인증서 위조 및 MITM 공격을 방지하는 기법이다.
+  why: |
+    악성 CA가 발급한 인증서를 거부한다.
+    중간자 공격의 인증서 가로채기를 방지한다.
+  how: |
+    1. 신뢰할 인증서/키 해시 저장
+    2. TLS 연결 시 인증서 검증
+    3. 핀과 비교
+    4. 불일치 시 연결 거부
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-CERTIFICATE-001"
+    related_to:
+      - "TECH-PROTOCOL-TLS-001"
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    pinning_types:
+      - name: "Certificate Pinning"
+        description: "전체 인증서 해시 저장"
+        flexibility: "낮음 (인증서 교체 시 업데이트 필요)"
+      - name: "Public Key Pinning"
+        description: "공개키 해시만 저장"
+        flexibility: "높음 (인증서 갱신에 유연)"
+      - name: "SPKI Hash Pinning"
+        description: "Subject Public Key Info 해시"
+        flexibility: "권장 방식"
+    implementation:
+      mobile:
+        ios: "NSAppTransportSecurity / TrustKit"
+        android: "Network Security Config / OkHttp"
+      web:
+        deprecated: "HTTP Public Key Pinning (HPKP) - 브라우저 지원 중단"
+        alternative: "Certificate Transparency"
+    backup_pins:
+      description: "백업 핀 포함 필수"
+      reason: "키 교체 또는 사고 시 서비스 중단 방지"
+    challenges:
+      - "키 교체 복잡성"
+      - "잘못된 핀으로 서비스 중단"
+      - "모바일 앱 업데이트 필요"
+    detection_bypass:
+      - "Frida를 통한 우회"
+      - "SSL Kill Switch"
+      - "objection"
+    best_practices:
+      - "SPKI 핀 사용"
+      - "백업 핀 포함"
+      - "핀 만료 정책"
+      - "원격 업데이트 메커니즘"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Certificate Pinning"
+      - "RFC 7469 HPKP (deprecated)"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Certificate Pinning은 특정 인증서/키만 신뢰하여
+      MITM 공격과 인증서 위조를 방지하는 보안 기법이다.
+    search_keywords:
+      - "Certificate Pinning"
+      - "SSL Pinning"
+      - "공개키 피닝"
+      - "HPKP"
+    related_queries:
+      - "모바일 보안"
+      - "TLS 보안"
+      - "MITM 방지"

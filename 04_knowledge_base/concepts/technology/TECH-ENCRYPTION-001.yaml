@@ -1,0 +1,83 @@
+# GR Atom: Encryption Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-ENCRYPTION-001"
+  name: "Encryption Technology"
+  normalization:
+    normalized_name: "encryption technology aes rsa symmetric asymmetric"
+    normalization_version: "1.0"
+  aliases:
+    - "Encryption Technology"
+    - "암호화 기술"
+    - "Cryptographic Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "CRYPTO"]
+
+definition:
+  what: |
+    데이터 기밀성과 무결성을 보장하는 암호화 기술 분류이다.
+  why: |
+    암호화 기술을 이해한다.
+    적절한 암호화 방식을 선택한다.
+    데이터 보호를 구현한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CRYPTO-001"
+    has_children:
+      - "TECH-CRYPTO-AES-001"
+      - "TECH-CRYPTO-RSA-001"
+      - "TECH-CRYPTO-HASH-001"
+    related_to:
+      - "VUL-CRYPTO-001"
+      - "ATK-CRYPTO-001"
+
+properties:
+  technical:
+    types:
+      - "Symmetric Encryption"
+      - "Asymmetric Encryption"
+      - "Hash Functions"
+      - "Digital Signatures"
+      - "Key Exchange"
+    algorithms:
+      - "AES"
+      - "RSA"
+      - "SHA-256"
+      - "ECDSA"
+      - "Diffie-Hellman"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cryptographic Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Encryption Technology는 데이터 보호를 위한 암호화 기술 분류이다.
+    search_keywords:
+      - "Encryption Technology"
+      - "암호화 기술"
+      - "AES"
+      - "RSA"

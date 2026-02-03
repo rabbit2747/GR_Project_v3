@@ -1,0 +1,108 @@
+# GR Atom: Session Management Flaw
+identity:
+  id: "VUL-AUTH-SESSION-001"
+  name: "Session Management Flaw"
+  normalization:
+    normalized_name: "session management flaw"
+    normalization_version: "1.0"
+  aliases:
+    - "Session Fixation"
+    - "Session Management Vulnerability"
+    - "Session Handling Weakness"
+    - "CWE-384"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTH"]
+
+definition:
+  what: |
+    세션 관리 취약점(CWE-384)은 웹 애플리케이션이 사용자 인증 전후로 세션 식별자를
+    적절히 관리하지 못하는 보안 결함이다. 공격자가 기존 세션 식별자를 강제로 설정하거나
+    예측하여, 인증된 사용자의 세션을 탈취할 수 있는 상태를 의미한다.
+    세션 고정(Session Fixation), 세션 예측(Session Prediction), 세션 노출(Session Exposure) 등
+    다양한 세부 유형을 포함한다.
+  why: |
+    세션은 HTTP의 무상태(stateless) 특성을 보완하여 사용자 인증 상태를 유지하는 핵심 메커니즘이다.
+    세션 관리가 취약하면 공격자가 정당한 사용자로 위장하여 무단 접근, 권한 상승, 데이터 탈취 등
+    심각한 보안 침해를 수행할 수 있다. 특히 인증 후 세션 ID를 갱신하지 않거나, 세션 ID가
+    URL에 노출되거나, 적절한 만료 정책이 없는 경우 공격 표면이 크게 확대된다.
+  how: |
+    - 발생 조건: 인증 전후 동일 세션 ID 유지, 예측 가능한 세션 ID 생성, 세션 ID의 URL 파라미터 전달,
+      부적절한 세션 만료 정책, 안전하지 않은 쿠키 속성(Secure, HttpOnly, SameSite 미설정)
+    - 탐지 방법: 인증 전후 세션 ID 변경 여부 확인, 세션 ID 엔트로피 분석,
+      쿠키 속성 검사, 세션 타임아웃 정책 검증, 동시 세션 제한 확인
+    - 도구: Burp Suite 세션 분석, OWASP ZAP 세션 관리 테스트,
+      커스텀 스크립트를 통한 세션 ID 패턴 분석
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  associative:
+    related_to:
+      - id: "ATK-SESSION-HIJACK-001"
+        type: "exploited_by"
+        description: "세션 하이재킹 공격에 의해 악용됨"
+      - id: "TECH-CONCEPT-SESSION-001"
+        type: "targets"
+        description: "세션 관리 기술 개념을 대상으로 함"
+  applicability:
+    applies_to:
+      - "웹 애플리케이션"
+      - "인증 시스템"
+      - "세션 기반 상태 관리"
+      - "쿠키 기반 인증"
+
+properties:
+  security:
+    cwe_id: "CWE-384"
+    owasp: "A07:2021"
+    cvss_base: 7.5
+    severity: "High"
+    impact:
+      confidentiality: "High"
+      integrity: "High"
+      availability: "Low"
+    attack_vector: "Network"
+    attack_complexity: "Low"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Session Management Flaw (CWE-384)는 웹 애플리케이션에서 세션 식별자를
+      적절히 관리하지 못하여 발생하는 인증 관련 보안 취약점이다.
+      세션 고정, 세션 예측, 세션 노출 등을 통해 공격자가 인증된 사용자의
+      세션을 탈취할 수 있다.
+    search_keywords:
+      - "session management"
+      - "session fixation"
+      - "CWE-384"
+      - "session hijacking"
+      - "session ID"
+      - "cookie security"
+      - "authentication bypass"
+      - "세션 관리"
+      - "세션 고정"
+    related_queries:
+      - "세션 고정 공격이란 무엇인가?"
+      - "세션 관리 취약점을 어떻게 방어하는가?"
+      - "인증 후 세션 ID 갱신 방법은?"
+      - "안전한 세션 쿠키 설정 방법은?"

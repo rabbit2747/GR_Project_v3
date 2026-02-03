@@ -1,0 +1,111 @@
+# GR Atom: Cloud Privilege Escalation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CLOUD-PRIVESC-001"
+  name: "Cloud Privilege Escalation"
+  normalization:
+    normalized_name: "cloud privilege escalation iam abuse role chaining"
+    normalization_version: "1.0"
+  aliases:
+    - "클라우드 권한 상승"
+    - "IAM Privilege Escalation"
+    - "Cloud PrivEsc"
+
+classification:
+  domain: infrastructure
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "CLOUD", "PRIVESC"]
+
+definition:
+  what: |
+    클라우드 권한 상승(Cloud Privilege Escalation)은 제한된 클라우드 권한에서
+    더 높은 권한을 획득하는 공격이다. IAM 정책 취약점, 역할 체이닝을 악용한다.
+  why: |
+    초기 접근 후 클라우드 환경 전체 장악에 사용된다. IAM 복잡성으로 인해
+    권한 상승 경로가 숨겨져 있는 경우가 많다.
+  how: |
+    1. 현재 권한 열거
+    2. 권한 상승 경로 식별 (예: iam:PassRole, lambda:CreateFunction)
+    3. 취약한 권한 조합 악용
+    4. 관리자 권한 획득
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-AUTH-ATTACK-001"
+  causal:
+    exploits:
+      - "VUL-ACCESS-BROKEN-001"
+      - "VUL-CLOUD-MISCONFIG-001"
+    targets:
+      - "INFRA-CLOUD-AWS-IAM-001"
+
+properties:
+  technical:
+    aws_techniques:
+      - name: "iam:CreatePolicyVersion"
+        description: "새 정책 버전으로 권한 확대"
+      - name: "iam:PassRole + lambda:CreateFunction"
+        description: "Lambda로 다른 역할 실행"
+      - name: "iam:PassRole + ec2:RunInstances"
+        description: "EC2에 역할 부여"
+      - name: "sts:AssumeRole"
+        description: "신뢰 관계 악용"
+      - name: "ssm:SendCommand"
+        description: "SSM으로 EC2에서 명령 실행"
+    detection_methods:
+      - "CloudTrail 이상 API 호출 모니터링"
+      - "IAM Access Analyzer"
+      - "GuardDuty"
+    prevention:
+      - "최소 권한 원칙"
+      - "권한 경계 (Permission Boundaries)"
+      - "SCP (Service Control Policies)"
+      - "정기적인 IAM 감사"
+    tools:
+      - "Pacu (AWS exploitation framework)"
+      - "Cloudsplaining"
+      - "PMapper"
+      - "IAM Vulnerable (practice)"
+  security:
+    severity: high
+    cvss_base: 8.0
+    mitre_attack_id: "T1078.004"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Rhino Security Labs - AWS IAM Privilege Escalation"
+      - "MITRE ATT&CK Cloud Matrix"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Privilege Escalation은 제한된 클라우드 권한에서 관리자 권한을
+      획득하는 공격이다. IAM 정책 취약점, PassRole 악용이 주요 기법이며
+      Permission Boundaries, SCP로 방어한다.
+    search_keywords:
+      - "Cloud Privilege Escalation"
+      - "클라우드 권한 상승"
+      - "IAM PrivEsc"
+      - "AWS 권한 상승"
+    related_queries:
+      - "AWS 권한 상승 공격"
+      - "IAM 보안"
+      - "클라우드 공격"

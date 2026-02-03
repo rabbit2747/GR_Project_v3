@@ -1,0 +1,95 @@
+# GR Atom: Remote Services
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1021-001"
+  name: "Remote Services"
+  normalization:
+    normalized_name: "remote services rdp ssh smb winrm lateral movement"
+    normalization_version: "1.0"
+  aliases:
+    - "Lateral Movement via Remote Services"
+    - "원격 서비스 악용"
+    - "측면 이동"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "LATERAL"]
+
+definition:
+  what: |
+    RDP, SSH, SMB, WinRM 등 원격 서비스를 이용하여
+    네트워크 내 다른 시스템으로 측면 이동하는 기법이다.
+  why: |
+    네트워크 내 다른 시스템에 접근한다.
+    공격 범위를 확장한다.
+  how: |
+    1. 자격 증명 획득
+    2. 원격 서비스 연결
+    3. 원격 명령 실행
+    4. 지속성 확보
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0008-001"
+    related_to:
+      - "ATK-MITRE-T1003-001"
+      - "ATK-WIN-PASS-THE-HASH-001"
+
+properties:
+  technical:
+    mitre_id: "T1021"
+    tactic: "Lateral Movement"
+    sub_techniques:
+      - id: "T1021.001"
+        name: "Remote Desktop Protocol"
+      - id: "T1021.002"
+        name: "SMB/Windows Admin Shares"
+      - id: "T1021.003"
+        name: "Distributed Component Object Model"
+      - id: "T1021.004"
+        name: "SSH"
+      - id: "T1021.006"
+        name: "Windows Remote Management"
+    default_ports:
+      rdp: 3389
+      ssh: 22
+      smb: 445
+      winrm: 5985
+    detection:
+      - "비정상 원격 연결"
+      - "로그온 이벤트 4624"
+      - "네트워크 트래픽 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1021"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Remote Services는 RDP, SSH, SMB 등 원격 서비스를
+      이용한 MITRE ATT&CK 측면 이동 기법이다.
+    search_keywords:
+      - "Remote Services"
+      - "Lateral Movement"
+      - "RDP"
+      - "T1021"

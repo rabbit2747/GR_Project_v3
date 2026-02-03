@@ -1,0 +1,113 @@
+# GR Atom: Security Misconfiguration
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CONFIG-MISCONFIGURATION-001"
+  name: "Security Misconfiguration"
+  normalization:
+    normalized_name: "security misconfiguration default credentials debug mode hardening"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Misconfiguration"
+    - "보안 설정 오류"
+    - "Configuration Vulnerability"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "CONFIG", "OWASP"]
+
+definition:
+  what: |
+    보안 설정이 적절히 구성되지 않아 발생하는 취약점으로
+    기본 설정, 불필요한 기능, 노출된 정보 등을 포함한다.
+  why: |
+    불필요한 공격 표면을 제공한다.
+    민감한 정보가 노출된다.
+  how: |
+    1. 기본 설정 스캔
+    2. 디버그 모드 확인
+    3. 불필요한 서비스 탐색
+    4. 정보 수집/악용
+
+relations:
+  structural:
+    is_a:
+      - "VUL-001"
+    related_to:
+      - "VUL-AUTH-DEFAULT-CREDS-001"
+      - "TECH-CONCEPT-HARDENING-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-16"
+    owasp_rank: "OWASP Top 10 2021 - A05"
+    common_issues:
+      application:
+        - "디버그 모드 활성화"
+        - "상세 오류 메시지"
+        - "기본 자격 증명"
+        - "디렉토리 리스팅"
+      server:
+        - "불필요한 포트 오픈"
+        - "안전하지 않은 프로토콜"
+        - "기본 페이지"
+        - "버전 정보 노출"
+      cloud:
+        - "공개 S3 버킷"
+        - "과도한 IAM 권한"
+        - "암호화 미적용"
+      database:
+        - "원격 접근 허용"
+        - "약한 인증"
+        - "백업 노출"
+    examples:
+      - "Django DEBUG=True in production"
+      - "Apache ServerSignature On"
+      - "MySQL root without password"
+      - "S3 bucket with public access"
+    prevention:
+      - name: "Hardening"
+        description: "보안 가이드라인 적용"
+      - name: "Configuration Management"
+        description: "IaC, 버전 관리"
+      - name: "Scanning"
+        description: "정기적인 설정 검사"
+      - name: "Automation"
+        description: "배포 파이프라인 통합"
+    references:
+      - "CIS Benchmarks"
+      - "DISA STIGs"
+      - "벤더 보안 가이드"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Security Misconfiguration"
+      - "CWE-16"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Misconfiguration은 기본 설정, 디버그 모드,
+      불필요한 기능 등 부적절한 보안 설정으로 인한 취약점이다.
+    search_keywords:
+      - "Misconfiguration"
+      - "Security Configuration"
+      - "설정 오류"
+      - "Hardening"

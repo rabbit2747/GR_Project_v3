@@ -1,0 +1,130 @@
+# GR Atom: Brute Force Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-AUTH-BRUTEFORCE-001"
+  name: "Brute Force Attack"
+  normalization:
+    normalized_name: "brute force attack password cracking"
+    normalization_version: "1.0"
+  aliases:
+    - "무차별 대입 공격"
+    - "Brute Force"
+    - "Password Brute Force"
+    - "Dictionary Attack"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["AUTH", "EXPLOIT"]
+
+definition:
+  what: |
+    Brute Force Attack은 가능한 모든 비밀번호/인증 정보 조합을
+    자동으로 시도하여 인증을 돌파하는 공격이다.
+    사전 공격(Dictionary Attack), 크리덴셜 스터핑을 포함한다.
+  why: |
+    약한 비밀번호, Rate Limiting 미설정, 계정 잠금 미구현 시
+    높은 성공률을 보인다. 자동화 도구로 초당 수천 회 시도가 가능하다.
+  how: |
+    1. 대상 로그인 엔드포인트 식별
+    2. 사전 파일 또는 조합 생성
+    3. 자동화 도구로 반복 시도
+    4. 성공 응답(상태코드, 응답 크기 등) 탐지
+    5. 유효 자격증명 확보
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-AUTH-ATTACK-001"]
+  causal:
+    enables:
+      - "ATK-AUTH-BYPASS-001"
+  conditional:
+    requires:
+      - "TECH-CONCEPT-SESSION-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    subtypes:
+      - name: "Simple Brute Force"
+        description: "모든 조합 시도"
+      - name: "Dictionary Attack"
+        description: "자주 쓰이는 비밀번호 목록 사용"
+      - name: "Credential Stuffing"
+        description: "유출된 자격증명 재사용"
+      - name: "Password Spraying"
+        description: "하나의 비밀번호로 다수 계정 시도"
+      - name: "Reverse Brute Force"
+        description: "하나의 비밀번호에 다수 사용자명 시도"
+    tools:
+      - "Hydra"
+      - "Burp Suite Intruder"
+      - "Medusa"
+      - "John the Ripper"
+  security:
+    impact:
+      confidentiality: "HIGH - 계정 탈취"
+      integrity: "MEDIUM - 계정 변조"
+      availability: "LOW - 계정 잠금 유발"
+    cvss_base: 7.5
+    mitre_attack:
+      technique_id: "T1110"
+      tactic: "Credential Access"
+    cwe_id: "CWE-307"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-RATELIMIT-001"
+        name: "Rate Limiting"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-MFA-001"
+        name: "Multi-Factor Authentication"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "Account Lockout"
+        effectiveness: "MEDIUM"
+      - name: "CAPTCHA"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Brute Force Attack"
+      - "MITRE ATT&CK T1110"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Brute Force Attack은 비밀번호 조합을 자동으로 시도하여 인증을
+      돌파하는 공격이다. Dictionary Attack, Credential Stuffing, Password
+      Spraying이 포함된다. Hydra, Burp Intruder로 수행하며,
+      Rate Limiting, MFA, Account Lockout으로 방어한다.
+    search_keywords:
+      - "Brute Force"
+      - "무차별 대입"
+      - "Dictionary Attack"
+      - "Credential Stuffing"
+      - "비밀번호 공격"
+    related_queries:
+      - "Brute Force란?"
+      - "Brute Force 방어 방법"
+      - "Credential Stuffing vs Brute Force"

@@ -1,0 +1,114 @@
+# GR Atom: Data Loss Prevention
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DLP-001"
+  name: "Data Loss Prevention"
+  normalization:
+    normalized_name: "dlp data loss prevention data protection classification"
+    normalization_version: "1.0"
+  aliases:
+    - "DLP"
+    - "데이터 유출 방지"
+    - "Data Leak Prevention"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "DATA", "PREVENT"]
+
+definition:
+  what: |
+    민감한 데이터의 무단 전송, 공유, 유출을 탐지하고
+    방지하는 데이터 보호 기술이다.
+  why: |
+    데이터 유출을 방지한다.
+    규정 준수를 지원한다.
+  how: |
+    1. 데이터 식별/분류
+    2. 정책 정의
+    3. 모니터링
+    4. 차단/경보
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DATA-PROTECTION-001"
+    related_to:
+      - "COMP-GDPR-001"
+      - "DEF-ENCRYPTION-001"
+
+properties:
+  technical:
+    types:
+      network_dlp:
+        description: "네트워크 트래픽 모니터링"
+        locations: ["이메일 게이트웨이", "웹 프록시"]
+      endpoint_dlp:
+        description: "엔드포인트 활동 모니터링"
+        activities: ["USB", "프린트", "클립보드"]
+      cloud_dlp:
+        description: "클라우드 서비스 모니터링"
+        services: ["SaaS", "IaaS", "이메일"]
+    detection_methods:
+      - name: "정규표현식"
+        examples: ["신용카드 번호", "주민번호"]
+      - name: "키워드"
+        examples: ["기밀", "대외비"]
+      - name: "지문 (Fingerprinting)"
+        examples: ["문서 해시", "DB 레코드"]
+      - name: "ML/AI"
+        examples: ["문맥 분석", "이상 탐지"]
+    data_states:
+      at_rest: "저장된 데이터"
+      in_motion: "전송 중 데이터"
+      in_use: "사용 중 데이터"
+    policy_actions:
+      - "모니터링/로깅"
+      - "경고/알림"
+      - "차단"
+      - "격리"
+      - "암호화 강제"
+    popular_solutions:
+      - "Microsoft Purview DLP"
+      - "Symantec DLP"
+      - "Forcepoint DLP"
+      - "Digital Guardian"
+      - "Google Cloud DLP"
+    challenges:
+      - "오탐/미탐 균형"
+      - "사용자 생산성 영향"
+      - "암호화된 데이터"
+      - "BYOD 환경"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner DLP"
+      - "NIST Data Protection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DLP는 민감한 데이터의 무단 유출을 탐지, 방지하는
+      데이터 보호 기술로 규정 준수를 지원한다.
+    search_keywords:
+      - "DLP"
+      - "Data Loss Prevention"
+      - "데이터 유출"
+      - "정보 보호"

@@ -1,0 +1,118 @@
+# GR Atom: HTTP Header Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECT-HEADER-001"
+  name: "HTTP Header Injection"
+  normalization:
+    normalized_name: "http header injection crlf injection response splitting"
+    normalization_version: "1.0"
+  aliases:
+    - "HTTP 헤더 인젝션"
+    - "CRLF Injection"
+    - "HTTP Response Splitting"
+    - "응답 분할 공격"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "INJECT", "WEB"]
+
+definition:
+  what: |
+    HTTP 헤더 인젝션(CRLF Injection)은 사용자 입력에 캐리지 리턴(CR)과
+    라인 피드(LF) 문자를 삽입하여 HTTP 응답 헤더를 조작하거나 새로운
+    응답을 주입하는 공격이다.
+  why: |
+    XSS, 세션 고정, 캐시 포이즈닝 등 다양한 공격으로 연계된다. HTTP 응답
+    구조 자체를 조작할 수 있어 매우 위험하다.
+  how: |
+    1. 사용자 입력이 HTTP 헤더에 반영되는 지점 식별
+    2. CRLF (%0d%0a) 시퀀스 삽입
+    3. 추가 헤더 또는 응답 본문 주입
+    4. XSS, 쿠키 설정, 리다이렉트 등 수행
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CON-00001"  # Injection Vulnerability concept
+    related_to:
+      - "ATK-INJECT-XSS-001"
+  causal:
+    targets:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "INFRA-APP-WEBAPP-001"
+    enables:
+      - "ATK-INJECT-XSS-001"
+      - "ATK-SESSION-FIXATION-001"
+    mitigated_by:
+      - "DEF-PREVENT-INPUTVAL-001"
+      - "DEF-PREVENT-OUTPUTENC-001"
+
+properties:
+  technical:
+    injection_techniques:
+      - name: "Header Injection"
+        payload: "value%0d%0aSet-Cookie:%20malicious=true"
+        result: "추가 쿠키 설정"
+      - name: "Response Splitting"
+        payload: "value%0d%0a%0d%0a<html>Injected</html>"
+        result: "새로운 응답 본문 주입"
+      - name: "XSS via Header"
+        payload: "value%0d%0aContent-Type:%20text/html%0d%0a%0d%0a<script>alert(1)</script>"
+        result: "XSS 실행"
+    vulnerable_points:
+      - "리다이렉트 URL (Location 헤더)"
+      - "쿠키 값 설정"
+      - "사용자 입력이 헤더에 반영되는 모든 곳"
+    prevention:
+      - "CR/LF 문자 제거 또는 인코딩"
+      - "헤더 값 화이트리스트 검증"
+      - "프레임워크의 안전한 헤더 설정 함수 사용"
+    impact:
+      - "XSS 공격"
+      - "세션 고정"
+      - "캐시 포이즈닝"
+      - "웹 캐시 기만"
+  security:
+    severity: high
+    cvss_base: 6.1
+    cwe_id: "CWE-113"
+    owasp_category: "A03:2021 - Injection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-113: Improper Neutralization of CRLF Sequences in HTTP Headers"
+      - "OWASP HTTP Response Splitting"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HTTP Header Injection(CRLF Injection)은 CR/LF 문자를 삽입하여
+      HTTP 응답 헤더를 조작하는 공격이다. XSS, 세션 고정으로 연계된다.
+      입력 검증과 CRLF 제거로 방어한다.
+    search_keywords:
+      - "HTTP Header Injection"
+      - "CRLF Injection"
+      - "Response Splitting"
+      - "헤더 인젝션"
+    related_queries:
+      - "CRLF Injection이란?"
+      - "HTTP Response Splitting"
+      - "헤더 인젝션 방어"

@@ -1,0 +1,114 @@
+# GR Atom: Business Logic Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-BUSINESS-LOGIC-001"
+  name: "Business Logic Vulnerability"
+  normalization:
+    normalized_name: "business logic flaw workflow bypass application logic"
+    normalization_version: "1.0"
+  aliases:
+    - "비즈니스 로직 취약점"
+    - "워크플로우 우회"
+    - "로직 결함"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["VUL", "WEB", "LOGIC"]
+
+definition:
+  what: |
+    Business Logic Vulnerability는 애플리케이션의 비즈니스 규칙이나
+    워크플로우 검증이 미흡하여 발생하는 논리적 취약점이다.
+  why: |
+    기술적 취약점이 아닌 설계 결함이므로 자동 스캐너로 탐지 불가.
+    금융 손실, 권한 우회, 서비스 악용으로 이어진다.
+  how: |
+    1. 비즈니스 프로세스 분석
+    2. 가정 및 규칙 식별
+    3. 규칙 우회 시도
+    4. 의도치 않은 동작 유도
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    related_to:
+      - "VUL-WEB-RACE-001"
+      - "ATK-AUTH-BYPASS-001"
+
+properties:
+  technical:
+    vulnerability_types:
+      - name: "가격 조작"
+        description: "음수 가격, 할인 중첩, 쿠폰 악용"
+      - name: "워크플로우 우회"
+        description: "단계 건너뛰기, 순서 변경"
+      - name: "권한 우회"
+        description: "역할 기반 검증 우회"
+      - name: "기능 악용"
+        description: "의도치 않은 기능 조합"
+      - name: "비율 제한 우회"
+        description: "제한 로직의 허점 악용"
+    examples:
+      - scenario: "쿠폰 중복 적용"
+        description: "여러 쿠폰을 조합하여 무료 구매"
+      - scenario: "결제 단계 우회"
+        description: "결제 없이 주문 완료"
+      - scenario: "음수 수량 주문"
+        description: "환불 금액 조작"
+      - scenario: "비밀번호 재설정 악용"
+        description: "다른 사용자 계정 탈취"
+    testing_approach:
+      - "비즈니스 프로세스 매핑"
+      - "가정 식별 및 테스트"
+      - "경계값 테스트"
+      - "워크플로우 순서 변경"
+      - "역할별 접근 테스트"
+    prevention:
+      - "서버 측 검증 철저"
+      - "트랜잭션 무결성 보장"
+      - "비즈니스 규칙 문서화"
+      - "보안 리뷰 프로세스"
+      - "침투 테스트 포함"
+    detection:
+      - "이상 거래 모니터링"
+      - "워크플로우 감사 로그"
+      - "비정상 패턴 탐지"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Business Logic"
+      - "PortSwigger Business Logic"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Business Logic 취약점은 비즈니스 규칙 검증 미흡으로 발생한다. 가격 조작, 워크플로우
+      우회가 주요 공격이며 서버 검증, 트랜잭션 무결성으로 방어한다.
+    search_keywords:
+      - "비즈니스 로직"
+      - "워크플로우 우회"
+      - "로직 취약점"
+      - "가격 조작"
+    related_queries:
+      - "로직 결함 테스트"
+      - "비즈니스 규칙 보안"
+      - "워크플로우 보안"

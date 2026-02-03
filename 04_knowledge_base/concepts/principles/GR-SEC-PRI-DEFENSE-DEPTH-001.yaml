@@ -1,0 +1,100 @@
+# GR Atom: Defense in Depth
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-PRI-DEFENSE-DEPTH-001"
+  name: "Defense in Depth"
+  normalization:
+    normalized_name: "defense in depth layered security multiple controls"
+    normalization_version: "1.0"
+  aliases:
+    - "Defense in Depth"
+    - "DiD"
+    - "심층 방어"
+    - "Layered Security"
+    - "다계층 방어"
+
+classification:
+  domain: security
+  type: principle
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["PRINCIPLE", "DEFENSE", "ARCHITECTURE"]
+
+definition:
+  what: |
+    여러 계층의 보안 통제를 중첩하여 단일 실패 지점을
+    방지하고 전체 보안을 강화하는 전략적 원칙이다.
+  why: |
+    단일 통제 실패 시에도 보호를 유지한다.
+    공격자의 진행을 지연시킨다.
+    탐지 기회를 증가시킨다.
+  how: |
+    1. 다중 보안 계층 구현
+    2. 상호 보완적 통제 배치
+    3. 이종 기술 조합
+    4. 각 계층 독립적 동작
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-PRI-00001"
+    related_to:
+      - "GR-SEC-PRI-FAIL-SECURE-001"
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+      - "GR-SEC-DEF-001"
+
+properties:
+  technical:
+    layers:
+      - name: "Physical"
+        controls: ["물리적 접근 통제", "CCTV", "잠금장치"]
+      - name: "Network"
+        controls: ["방화벽", "IDS/IPS", "네트워크 분리"]
+      - name: "Host"
+        controls: ["EDR", "안티바이러스", "호스트 방화벽"]
+      - name: "Application"
+        controls: ["WAF", "입력 검증", "인증"]
+      - name: "Data"
+        controls: ["암호화", "DLP", "접근 제어"]
+    implementation:
+      - "경계 보안 (Perimeter)"
+      - "네트워크 세그멘테이션"
+      - "엔드포인트 보호"
+      - "애플리케이션 보안"
+      - "데이터 보호"
+    benefits:
+      - "단일 실패 지점 제거"
+      - "공격 비용 증가"
+      - "탐지 시간 확보"
+      - "복원력 향상"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NSA Defense in Depth"
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      심층 방어는 다중 보안 계층을 중첩하여 단일 실패 지점을
+      방지하고 전체 시스템 보안을 강화하는 원칙이다.
+    search_keywords:
+      - "Defense in Depth"
+      - "Layered Security"
+      - "다계층 방어"
+      - "DiD"

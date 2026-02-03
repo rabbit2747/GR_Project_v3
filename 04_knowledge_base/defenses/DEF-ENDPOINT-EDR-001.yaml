@@ -1,0 +1,116 @@
+# GR Atom: Endpoint Detection and Response
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-ENDPOINT-EDR-001"
+  name: "Endpoint Detection and Response"
+  normalization:
+    normalized_name: "edr endpoint detection response threat hunting"
+    normalization_version: "1.0"
+  aliases:
+    - "EDR"
+    - "엔드포인트 탐지 및 대응"
+    - "Endpoint Threat Detection"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "DETECT", "ENDPOINT"]
+
+definition:
+  what: |
+    엔드포인트에서 위협을 지속적으로 모니터링, 탐지, 분석하고
+    자동화된 대응을 제공하는 보안 솔루션이다.
+  why: |
+    고급 위협을 탐지한다.
+    인시던트 대응을 자동화한다.
+  how: |
+    1. 에이전트 배포
+    2. 텔레메트리 수집
+    3. 행위 분석
+    4. 탐지 및 대응
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    related_to:
+      - "DEF-ENDPOINT-AV-001"
+      - "DEF-XDR-001"
+
+properties:
+  technical:
+    core_capabilities:
+      - name: "Detection"
+        methods:
+          - "행위 분석"
+          - "IOC 매칭"
+          - "ML/AI 탐지"
+          - "MITRE ATT&CK 매핑"
+      - name: "Investigation"
+        features:
+          - "타임라인 분석"
+          - "프로세스 트리"
+          - "네트워크 연결"
+          - "파일 활동"
+      - name: "Response"
+        actions:
+          - "프로세스 종료"
+          - "파일 격리"
+          - "네트워크 격리"
+          - "원격 쉘"
+    data_collected:
+      - "프로세스 생성/종료"
+      - "파일 생성/수정/삭제"
+      - "레지스트리 변경"
+      - "네트워크 연결"
+      - "로그인 이벤트"
+    popular_solutions:
+      - "CrowdStrike Falcon"
+      - "Microsoft Defender for Endpoint"
+      - "SentinelOne"
+      - "Carbon Black"
+      - "Cortex XDR"
+    vs_antivirus:
+      av: "시그니처 기반, 예방 중심"
+      edr: "행위 기반, 탐지/대응 중심"
+    integration:
+      - "SIEM"
+      - "SOAR"
+      - "Threat Intelligence"
+    deployment:
+      - "에이전트 기반"
+      - "클라우드 관리 콘솔"
+      - "실시간 텔레메트리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner EDR"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      EDR은 엔드포인트에서 행위 기반으로 위협을 탐지하고
+      자동화된 대응을 제공하는 차세대 엔드포인트 보안 솔루션이다.
+    search_keywords:
+      - "EDR"
+      - "Endpoint Detection"
+      - "위협 탐지"
+      - "인시던트 대응"

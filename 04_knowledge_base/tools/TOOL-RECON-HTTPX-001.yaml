@@ -1,0 +1,105 @@
+# GR Atom: httpx
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-HTTPX-001"
+  name: "httpx"
+  normalization:
+    normalized_name: "httpx http probe web discovery toolkit"
+    normalization_version: "1.0"
+  aliases:
+    - "httpx"
+    - "HTTP Probe"
+    - "웹 프로브"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "RECON", "WEB"]
+
+definition:
+  what: |
+    다수의 호스트를 빠르게 프로빙하여 HTTP 서비스 정보를
+    수집하는 다목적 HTTP 툴킷이다.
+  why: |
+    활성 웹 서비스를 식별한다.
+    웹 서버 정보를 수집한다.
+  how: |
+    1. 호스트 목록 입력
+    2. HTTP 요청 전송
+    3. 응답 분석
+    4. 결과 출력
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "TOOL-RECON-SUBFINDER-001"
+      - "TOOL-PENTEST-NUCLEI-001"
+
+properties:
+  technical:
+    developer: "ProjectDiscovery"
+    license: "MIT"
+    language: "Go"
+    features:
+      - "빠른 HTTP 프로빙"
+      - "다양한 출력 옵션"
+      - "TLS 정보 추출"
+      - "스크린샷 캡처"
+      - "기술 탐지"
+    output_options:
+      - "상태 코드"
+      - "Content-Length"
+      - "Title"
+      - "Server 헤더"
+      - "TLS/인증서 정보"
+      - "응답 시간"
+      - "해시"
+    usage_examples:
+      basic: "httpx -l hosts.txt"
+      status: "httpx -l hosts.txt -status-code"
+      title: "httpx -l hosts.txt -title"
+      tech: "httpx -l hosts.txt -tech-detect"
+      screenshot: "httpx -l hosts.txt -screenshot"
+      pipeline: "subfinder -d domain.com | httpx"
+    probes:
+      - "HTTP/HTTPS"
+      - "다중 포트"
+      - "경로 프로빙"
+    integration:
+      - "subfinder → httpx → nuclei"
+      - "다른 ProjectDiscovery 도구"
+    repository: "https://github.com/projectdiscovery/httpx"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ProjectDiscovery httpx"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      httpx는 다수의 호스트를 빠르게 프로빙하여
+      HTTP 서비스 정보를 수집하는 정찰 툴킷이다.
+    search_keywords:
+      - "httpx"
+      - "HTTP Probe"
+      - "Web Discovery"
+      - "ProjectDiscovery"

@@ -1,0 +1,122 @@
+# GR Atom: Memory Forensics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-FORENSIC-MEMORY-001"
+  name: "Memory Forensics"
+  normalization:
+    normalized_name: "memory forensics volatility ram analysis dump"
+    normalization_version: "1.0"
+  aliases:
+    - "메모리 포렌식"
+    - "RAM 분석"
+    - "휘발성 데이터 분석"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "FORENSIC", "MEMORY"]
+
+definition:
+  what: |
+    메모리 포렌식은 RAM의 휘발성 데이터를 수집하고 분석하여
+    악성코드, 침해 증거, 시스템 상태를 파악하는 기법이다.
+  why: |
+    디스크에 없는 증거(파일리스 악성코드, 암호화 키)를 발견한다.
+    실행 중인 프로세스와 네트워크 연결 상태를 파악한다.
+  how: |
+    1. 메모리 덤프 획득
+    2. 프로파일 식별
+    3. 플러그인으로 분석
+    4. 아티팩트 추출 및 해석
+
+relations:
+  structural:
+    is_a:
+      - "DEF-FORENSIC-ANALYSIS-001"
+    related_to:
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    acquisition_tools:
+      - name: "DumpIt"
+        platform: "Windows"
+      - name: "WinPmem"
+        platform: "Windows"
+      - name: "LiME"
+        platform: "Linux"
+      - name: "F-Response"
+        platform: "Enterprise"
+    analysis_tools:
+      - name: "Volatility 3"
+        features: ["크로스 플랫폼", "플러그인 확장"]
+      - name: "Rekall"
+        status: "유지보수 중단"
+      - name: "MemProcFS"
+        features: ["가상 파일시스템", "실시간 분석"]
+    volatility_plugins:
+      process:
+        - "windows.pslist: 프로세스 목록"
+        - "windows.pstree: 프로세스 트리"
+        - "windows.psscan: 숨겨진 프로세스"
+        - "windows.cmdline: 명령줄"
+      network:
+        - "windows.netscan: 네트워크 연결"
+        - "windows.netstat: 연결 상태"
+      malware:
+        - "windows.malfind: 악성 코드 영역"
+        - "windows.vadinfo: VAD 분석"
+        - "windows.hollowfind: 프로세스 홀로잉"
+      credentials:
+        - "windows.hashdump: SAM 해시"
+        - "windows.lsadump: LSA 비밀"
+    artifacts:
+      - "실행 중인 프로세스"
+      - "로드된 DLL"
+      - "네트워크 연결"
+      - "레지스트리 하이브"
+      - "암호화 키"
+      - "클립보드"
+      - "명령어 히스토리"
+    challenges:
+      - "대용량 메모리"
+      - "암호화된 메모리"
+      - "안티 포렌식 기법"
+      - "프로파일 불일치"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Volatility Foundation"
+      - "SANS Memory Forensics"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      메모리 포렌식은 RAM에서 휘발성 증거를 분석한다. Volatility가 표준 도구이며
+      프로세스, 네트워크, 악성코드를 분석한다.
+    search_keywords:
+      - "메모리 포렌식"
+      - "Volatility"
+      - "RAM 분석"
+      - "악성코드"
+    related_queries:
+      - "메모리 덤프"
+      - "파일리스 악성코드"
+      - "휘발성 데이터"

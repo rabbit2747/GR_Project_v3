@@ -1,0 +1,119 @@
+# GR Atom: Digital Forensics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-RESPOND-FORENSICS-001"
+  name: "Digital Forensics"
+  normalization:
+    normalized_name: "digital forensics investigation evidence incident response"
+    normalization_version: "1.0"
+  aliases:
+    - "디지털 포렌식"
+    - "Forensics"
+    - "컴퓨터 포렌식"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone5"
+    tags: ["DEF", "RESPOND", "FORENSICS"]
+
+definition:
+  what: |
+    디지털 포렌식은 보안 사고 발생 후 증거를 수집, 보존, 분석하여
+    사고의 원인, 범위, 영향을 파악하는 활동이다.
+  why: |
+    사고 후 무슨 일이 일어났는지 파악하고 법적 증거를 확보한다.
+    재발 방지를 위한 근본 원인 분석과 개선 조치에 필수적이다.
+  how: |
+    1. Identification: 증거 식별
+    2. Preservation: 무결성 보존 (Chain of Custody)
+    3. Collection: 증거 수집
+    4. Analysis: 증거 분석
+    5. Reporting: 보고서 작성
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    forensic_types:
+      - name: "Disk Forensics"
+        focus: "하드 드라이브, SSD 분석"
+        artifacts: ["파일 시스템", "삭제된 파일", "타임라인"]
+      - name: "Memory Forensics"
+        focus: "RAM 분석"
+        artifacts: ["프로세스", "네트워크 연결", "악성코드"]
+      - name: "Network Forensics"
+        focus: "네트워크 트래픽 분석"
+        artifacts: ["패킷 캡처", "로그", "C2 통신"]
+      - name: "Cloud Forensics"
+        focus: "클라우드 환경 조사"
+        artifacts: ["API 로그", "인스턴스 스냅샷"]
+      - name: "Mobile Forensics"
+        focus: "모바일 기기 분석"
+        artifacts: ["앱 데이터", "통화/문자", "위치"]
+    process_steps:
+      - "1. 현장 확보 및 문서화"
+      - "2. 휘발성 데이터 우선 수집"
+      - "3. 디스크 이미징 (비트 단위)"
+      - "4. 해시값 생성 (무결성)"
+      - "5. 증거 분석"
+      - "6. 타임라인 구성"
+      - "7. 보고서 작성"
+    tools:
+      - name: "EnCase"
+        type: "상용"
+      - name: "FTK (Forensic Toolkit)"
+        type: "상용"
+      - name: "Autopsy"
+        type: "오픈소스"
+      - name: "Volatility"
+        type: "메모리 포렌식"
+      - name: "Wireshark"
+        type: "네트워크 분석"
+    chain_of_custody:
+      - "증거 수집자 기록"
+      - "날짜/시간 기록"
+      - "보관 장소"
+      - "접근자 기록"
+      - "해시값 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-86"
+      - "SANS Digital Forensics"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      디지털 포렌식은 보안 사고 후 증거 수집/분석 활동이다. 디스크, 메모리, 네트워크
+      포렌식이 있으며 EnCase, Autopsy, Volatility가 주요 도구다.
+    search_keywords:
+      - "디지털 포렌식"
+      - "Forensics"
+      - "증거 수집"
+      - "사고 분석"
+    related_queries:
+      - "포렌식 도구"
+      - "사고 대응"
+      - "메모리 분석"

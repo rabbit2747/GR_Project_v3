@@ -1,0 +1,116 @@
+# GR Atom: Maltego
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OSINT-MALTEGO-001"
+  name: "Maltego"
+  normalization:
+    normalized_name: "maltego osint graph visualization intelligence"
+    normalization_version: "1.0"
+  aliases:
+    - "Maltego"
+    - "Link Analysis Tool"
+    - "OSINT 시각화"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TOOL", "OSINT", "RECON"]
+
+definition:
+  what: |
+    OSINT 데이터를 수집하고 엔티티 간 관계를 그래프로
+    시각화하는 인텔리전스 분석 플랫폼이다.
+  why: |
+    정보 간 관계를 시각화한다.
+    타겟 조직을 분석한다.
+  how: |
+    1. 시드 엔티티 입력
+    2. Transform 실행
+    3. 관계 발견
+    4. 그래프 분석
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OSINT-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "TOOL-RECON-THEHARVESTER-001"
+
+properties:
+  technical:
+    developer: "Paterva"
+    editions:
+      - name: "Maltego CE"
+        type: "무료 커뮤니티"
+      - name: "Maltego Classic"
+        type: "상용"
+      - name: "Maltego XL"
+        type: "엔터프라이즈"
+    entities:
+      - "Domain"
+      - "Email"
+      - "Person"
+      - "Phone"
+      - "IP Address"
+      - "Company"
+      - "Social Media"
+    transforms:
+      description: "데이터 수집/변환 모듈"
+      sources:
+        - "DNS 조회"
+        - "Whois"
+        - "소셜 미디어"
+        - "데이터 브리치"
+        - "Shodan"
+        - "VirusTotal"
+    transform_hub:
+      description: "Transform 마켓플레이스"
+      providers:
+        - "Paterva"
+        - "VirusTotal"
+        - "Shodan"
+        - "SecurityTrails"
+    use_cases:
+      - "침투 테스트 정찰"
+      - "위협 인텔리전스"
+      - "조사/포렌식"
+      - "프로드 분석"
+    output:
+      - "그래프 시각화"
+      - "보고서"
+      - "내보내기"
+    website: "https://www.maltego.com"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Maltego Documentation"
+      - "Paterva"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Maltego는 OSINT 데이터를 수집하고 엔티티 관계를
+      그래프로 시각화하는 인텔리전스 분석 플랫폼이다.
+    search_keywords:
+      - "Maltego"
+      - "OSINT"
+      - "Link Analysis"
+      - "Graph Visualization"

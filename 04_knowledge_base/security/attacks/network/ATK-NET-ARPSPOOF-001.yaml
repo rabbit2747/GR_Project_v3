@@ -1,0 +1,104 @@
+# GR Atom: ARP Spoofing Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-ARPSPOOF-001"
+  name: "ARP Spoofing"
+  normalization:
+    normalized_name: "arp spoofing arp poisoning arp cache poisoning"
+    normalization_version: "1.0"
+  aliases:
+    - "ARP 스푸핑"
+    - "ARP Poisoning"
+    - "ARP 캐시 포이즈닝"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["ATK", "NET", "SPOOF"]
+
+definition:
+  what: |
+    ARP 스푸핑(ARP Spoofing)은 위조된 ARP 메시지를 전송하여 공격자의
+    MAC 주소를 다른 호스트의 IP 주소와 연결시키는 공격이다.
+  why: |
+    로컬 네트워크에서 MITM 공격의 전제 조건이다. 트래픽 가로채기,
+    세션 하이재킹, 정보 탈취에 사용된다.
+  how: |
+    1. 공격자가 위조된 ARP Reply 브로드캐스트
+    2. 피해자 ARP 캐시에 공격자 MAC 매핑
+    3. 피해자 트래픽이 공격자를 경유
+    4. 공격자가 트래픽 가로채기/조작
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+  causal:
+    enables:
+      - "ATK-NET-MITM-001"
+      - "ATK-NET-SNIFF-001"
+    mitigated_by:
+      - "DEF-PREVENT-ARPINSPECT-001"
+
+properties:
+  technical:
+    attack_tools:
+      - "arpspoof"
+      - "Ettercap"
+      - "Bettercap"
+      - "Cain & Abel"
+    detection_methods:
+      - "ARP 테이블 모니터링"
+      - "중복 IP-MAC 매핑 탐지"
+      - "비정상적인 ARP 트래픽 양"
+    defense_mechanisms:
+      - name: "Dynamic ARP Inspection (DAI)"
+        description: "스위치에서 ARP 검증"
+      - name: "Static ARP Entries"
+        description: "중요 호스트 고정 ARP"
+      - name: "VPN/Encryption"
+        description: "스니핑 무력화"
+      - name: "802.1X"
+        description: "포트 기반 접근 제어"
+  security:
+    severity: medium
+    cvss_base: 6.5
+    cwe_id: "CWE-290"
+    mitre_attack_id: "T1557.002"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1557.002"
+      - "CWE-290: Authentication Bypass by Spoofing"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ARP Spoofing은 위조된 ARP 메시지로 트래픽을 가로채는 LAN 공격이다.
+      MITM 공격의 전제 조건이며 Dynamic ARP Inspection으로 방어한다.
+    search_keywords:
+      - "ARP Spoofing"
+      - "ARP Poisoning"
+      - "ARP 스푸핑"
+      - "LAN 공격"
+    related_queries:
+      - "ARP 스푸핑 방어"
+      - "ARP 스푸핑 탐지"
+      - "MITM 공격"

@@ -1,0 +1,98 @@
+# GR Atom: Cloud Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CLOUD-001"
+  name: "Cloud Defense"
+  normalization:
+    normalized_name: "cloud defense security protection aws azure"
+    normalization_version: "1.0"
+  aliases:
+    - "Cloud Defense"
+    - "클라우드 방어"
+    - "Cloud Security"
+    - "Cloud Protection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "CLOUD"]
+
+definition:
+  what: |
+    클라우드 환경(IaaS, PaaS, SaaS)을 보호하는
+    보안 통제 분류이다.
+  why: |
+    클라우드 자산을 보호한다.
+    설정 오류를 방지한다.
+    컴플라이언스를 달성한다.
+  how: |
+    1. 클라우드 자산 식별
+    2. 보안 설정 적용
+    3. 지속적 모니터링
+    4. 위협 대응
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-CLOUD-CWPP-001"
+      - "DEF-CLOUD-CIEM-001"
+      - "DEF-CASB-001"
+    related_to:
+      - "ATK-CLOUD-001"
+      - "INFRA-CLOUD-001"
+
+properties:
+  technical:
+    categories:
+      cwpp: "Cloud Workload Protection Platform"
+      cspm: "Cloud Security Posture Management"
+      ciem: "Cloud Infrastructure Entitlement Management"
+      casb: "Cloud Access Security Broker"
+      cnapp: "Cloud Native Application Protection"
+    shared_responsibility:
+      provider: "인프라, 물리적 보안"
+      customer: "데이터, 접근 제어, 설정"
+    platforms:
+      - "AWS"
+      - "Azure"
+      - "GCP"
+    best_practices:
+      - "IAM 최소 권한"
+      - "암호화 (저장/전송)"
+      - "로깅 활성화"
+      - "네트워크 분리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CSA Cloud Controls"
+      - "NIST SP 800-144"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Defense는 클라우드 환경을 보호하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "Cloud Defense"
+      - "클라우드 보안"
+      - "CSPM"
+      - "CWPP"

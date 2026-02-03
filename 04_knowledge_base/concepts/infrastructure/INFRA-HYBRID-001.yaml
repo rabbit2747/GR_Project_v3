@@ -1,0 +1,80 @@
+# GR Atom: Hybrid Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-HYBRID-001"
+  name: "Hybrid Infrastructure"
+  normalization:
+    normalized_name: "hybrid infrastructure multi cloud on premise"
+    normalization_version: "1.0"
+  aliases:
+    - "Hybrid Infrastructure"
+    - "하이브리드 인프라"
+    - "Hybrid Cloud Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "HYBRID"]
+
+definition:
+  what: |
+    온프레미스와 클라우드를 결합한 하이브리드 인프라 분류이다.
+  why: |
+    하이브리드 환경을 이해한다.
+    통합 보안을 설계한다.
+    워크로드를 최적 배치한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-HYBRID-CONNECTIVITY-001"
+      - "INFRA-HYBRID-MULTICLOUD-001"
+    related_to:
+      - "INFRA-CLOUD-001"
+      - "INFRA-DATACENTER-001"
+
+properties:
+  technical:
+    components:
+      - "VPN Connectivity"
+      - "Direct Connect"
+      - "Hybrid Identity"
+      - "Workload Portability"
+    challenges:
+      - "Consistent Security"
+      - "Data Governance"
+      - "Network Latency"
+      - "Compliance"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Hybrid Cloud Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Hybrid Infrastructure는 온프레미스와 클라우드 결합 인프라 분류이다.
+    search_keywords:
+      - "Hybrid Infrastructure"
+      - "하이브리드 인프라"
+      - "Multi Cloud"
+      - "Hybrid Cloud"

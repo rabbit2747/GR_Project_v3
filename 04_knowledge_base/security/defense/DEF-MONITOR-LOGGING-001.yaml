@@ -1,0 +1,122 @@
+# GR Atom: Security Logging and Monitoring
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-MONITOR-LOGGING-001"
+  name: "Security Logging and Monitoring"
+  normalization:
+    normalized_name: "security logging monitoring detection audit trail"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 로깅"
+    - "모니터링"
+    - "감사 로그"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "MONITOR", "LOG"]
+
+definition:
+  what: |
+    보안 로깅 및 모니터링은 시스템 활동을 기록하고 분석하여
+    보안 위협을 탐지하고 사고 대응을 지원하는 프로세스다.
+  why: |
+    공격 탐지와 포렌식의 기반이다. 평균 체류 시간(dwell time)
+    단축과 규정 준수에 필수적이다.
+  how: |
+    1. 로그 소스 식별 및 수집
+    2. 중앙 집중화 및 정규화
+    3. 상관관계 분석
+    4. 알림 및 대응
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "TOOL-DETECT-SIEM-001"
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    log_types:
+      - name: "Authentication Logs"
+        content: "로그인 성공/실패, MFA"
+        sources: ["AD", "LDAP", "App"]
+      - name: "Access Logs"
+        content: "리소스 접근, API 호출"
+        sources: ["Web", "DB", "Cloud"]
+      - name: "Application Logs"
+        content: "앱 이벤트, 오류"
+        sources: ["App", "Middleware"]
+      - name: "System Logs"
+        content: "OS 이벤트, 서비스"
+        sources: ["Windows Event", "Syslog"]
+      - name: "Network Logs"
+        content: "트래픽, 연결"
+        sources: ["Firewall", "IDS/IPS"]
+    essential_events:
+      - "로그인 성공/실패"
+      - "권한 변경"
+      - "관리자 활동"
+      - "데이터 접근"
+      - "설정 변경"
+      - "악성코드 탐지"
+    log_fields:
+      - "timestamp: 정확한 시간"
+      - "source: 이벤트 출처"
+      - "user: 수행자"
+      - "action: 수행 동작"
+      - "target: 대상 리소스"
+      - "outcome: 성공/실패"
+      - "context: IP, UA 등"
+    best_practices:
+      - "UTC 타임스탬프 사용"
+      - "충분한 보존 기간 (90일+)"
+      - "변조 방지 (WORM)"
+      - "암호화 전송/저장"
+      - "정규화 및 보강"
+      - "PII 마스킹"
+    monitoring_capabilities:
+      - "실시간 알림"
+      - "이상 행위 탐지"
+      - "패턴 기반 규칙"
+      - "대시보드"
+      - "보고서 생성"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Logging Cheat Sheet"
+      - "NIST 800-92"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      보안 로깅은 시스템 활동을 기록하여 위협을 탐지한다. 인증, 접근, 시스템
+      로그를 중앙 집중화하고 상관관계 분석으로 대응한다.
+    search_keywords:
+      - "보안 로깅"
+      - "모니터링"
+      - "감사 로그"
+      - "탐지"
+    related_queries:
+      - "SIEM"
+      - "로그 분석"
+      - "보안 모니터링"

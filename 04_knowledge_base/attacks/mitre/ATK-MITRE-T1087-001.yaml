@@ -1,0 +1,119 @@
+# GR Atom: Account Discovery
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1087-001"
+  name: "Account Discovery"
+  normalization:
+    normalized_name: "account discovery enumeration user list domain"
+    normalization_version: "1.0"
+  aliases:
+    - "User Enumeration"
+    - "계정 열거"
+    - "Account Enumeration"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "DISCOVERY"]
+
+definition:
+  what: |
+    시스템이나 도메인의 사용자 계정 목록을 열거하여
+    공격 타겟을 식별하는 정찰 기법이다.
+  why: |
+    공격 대상 계정을 식별한다.
+    권한 있는 계정을 찾는다.
+  how: |
+    1. 열거 명령 실행
+    2. 사용자 목록 수집
+    3. 권한 분석
+    4. 타겟 선정
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0007-001"
+    related_to:
+      - "ATK-MITRE-T1078-001"
+      - "ATK-MITRE-T1003-001"
+
+properties:
+  technical:
+    mitre_id: "T1087"
+    tactic: "Discovery"
+    sub_techniques:
+      - id: "T1087.001"
+        name: "Local Account"
+        commands:
+          - "net user"
+          - "cat /etc/passwd"
+          - "Get-LocalUser"
+      - id: "T1087.002"
+        name: "Domain Account"
+        commands:
+          - "net user /domain"
+          - "Get-ADUser"
+          - "ldapsearch"
+      - id: "T1087.003"
+        name: "Email Account"
+        commands:
+          - "Get-Mailbox"
+      - id: "T1087.004"
+        name: "Cloud Account"
+        commands:
+          - "aws iam list-users"
+          - "az ad user list"
+    windows_commands:
+      - "net user"
+      - "net user /domain"
+      - "wmic useraccount list"
+      - "Get-ADUser -Filter *"
+    linux_commands:
+      - "cat /etc/passwd"
+      - "getent passwd"
+      - "compgen -u"
+    tools:
+      - "BloodHound"
+      - "ldapsearch"
+      - "enum4linux"
+      - "CrackMapExec"
+    detection:
+      - "Event ID 4798, 4799"
+      - "LDAP 쿼리 모니터링"
+      - "비정상 열거 활동"
+    prevention:
+      - "LDAP 접근 제한"
+      - "계정 목록 노출 최소화"
+      - "모니터링 강화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1087"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Account Discovery(T1087)는 시스템/도메인의 사용자 계정을
+      열거하여 공격 타겟을 식별하는 MITRE ATT&CK Discovery 기법이다.
+    search_keywords:
+      - "Account Discovery"
+      - "T1087"
+      - "User Enumeration"
+      - "계정 열거"

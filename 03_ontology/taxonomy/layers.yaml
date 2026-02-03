@@ -1,0 +1,96 @@
+# GR Framework Layer Definition
+# Version: 1.0
+# Description: 수직적 계층 분류 체계
+
+version: "1.0"
+
+layers:
+  L1:
+    name: "Physical"
+    description: "물리적 인프라 계층"
+    examples:
+      - "하드웨어"
+      - "케이블"
+      - "데이터센터"
+    security_concerns:
+      - "물리적 접근 통제"
+      - "환경적 위협"
+
+  L2:
+    name: "Network"
+    description: "네트워크 계층"
+    examples:
+      - "라우터"
+      - "스위치"
+      - "방화벽"
+    security_concerns:
+      - "네트워크 스니핑"
+      - "DDoS"
+      - "중간자 공격"
+
+  L3:
+    name: "Operating System"
+    description: "운영체제 계층"
+    examples:
+      - "Linux"
+      - "Windows Server"
+      - "컨테이너 런타임"
+    security_concerns:
+      - "권한 상승"
+      - "커널 취약점"
+      - "설정 오류"
+
+  L4:
+    name: "Middleware"
+    description: "미들웨어 계층"
+    examples:
+      - "웹 서버"
+      - "WAS"
+      - "메시지 큐"
+    security_concerns:
+      - "서비스 설정 오류"
+      - "알려진 취약점"
+
+  L5:
+    name: "Database"
+    description: "데이터베이스 계층"
+    examples:
+      - "RDBMS"
+      - "NoSQL"
+      - "캐시 서버"
+    security_concerns:
+      - "SQL Injection"
+      - "접근 통제"
+      - "데이터 유출"
+
+  L6:
+    name: "Application"
+    description: "애플리케이션 계층"
+    examples:
+      - "웹 애플리케이션"
+      - "API"
+      - "마이크로서비스"
+    security_concerns:
+      - "OWASP Top 10"
+      - "비즈니스 로직 취약점"
+
+  L7:
+    name: "Data"
+    description: "데이터 계층"
+    examples:
+      - "사용자 데이터"
+      - "인증 정보"
+      - "로그"
+    security_concerns:
+      - "데이터 암호화"
+      - "개인정보 보호"
+      - "무결성"
+
+  Cross:
+    name: "Cross-Layer"
+    description: "여러 계층에 걸친 요소"
+    examples:
+      - "인증/인가 시스템"
+      - "로깅 시스템"
+      - "모니터링"
+    note: "특정 계층에 국한되지 않는 원자에 사용"

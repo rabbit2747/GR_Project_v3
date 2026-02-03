@@ -1,0 +1,119 @@
+# GR Atom: OpenID Connect (OIDC)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTO-OIDC-001"
+  name: "OpenID Connect (OIDC)"
+  normalization:
+    normalized_name: "openid connect oidc identity authentication sso"
+    normalization_version: "1.0"
+  aliases:
+    - "OIDC"
+    - "OpenID Connect"
+    - "오픈아이디 커넥트"
+
+classification:
+  domain: security
+  type: technology
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTO", "IDENTITY"]
+
+definition:
+  what: |
+    OpenID Connect는 OAuth 2.0 위에 구축된 인증 레이어로,
+    사용자 신원을 검증하고 기본 프로필 정보를 제공한다.
+  why: |
+    OAuth 2.0의 권한 부여에 인증을 추가한다.
+    표준화된 SSO 및 연합 인증을 가능하게 한다.
+  how: |
+    1. Authorization Code 흐름 수행
+    2. ID Token (JWT) 수신
+    3. 토큰 검증
+    4. UserInfo 엔드포인트로 추가 정보 획득
+
+relations:
+  structural:
+    is_a:
+      - "TECH-PROTO-OAUTH-001"
+    related_to:
+      - "DEF-AUTH-JWT-001"
+      - "TECH-PROTO-SAML-001"
+
+properties:
+  technical:
+    components:
+      - name: "ID Token"
+        format: "JWT"
+        claims:
+          - "iss: 발급자"
+          - "sub: 주체 식별자"
+          - "aud: 대상자"
+          - "exp: 만료 시간"
+          - "iat: 발급 시간"
+          - "nonce: 재생 공격 방지"
+      - name: "UserInfo Endpoint"
+        purpose: "추가 사용자 정보"
+      - name: "Discovery"
+        endpoint: "/.well-known/openid-configuration"
+    flows:
+      - name: "Authorization Code Flow"
+        use_case: "서버 앱"
+        recommended: true
+      - name: "Implicit Flow"
+        use_case: "레거시"
+        deprecated: true
+      - name: "Hybrid Flow"
+        use_case: "토큰 즉시 필요"
+    scopes:
+      - "openid: 필수, OIDC 활성화"
+      - "profile: 이름, 사진 등"
+      - "email: 이메일 주소"
+      - "address: 주소"
+      - "phone: 전화번호"
+    providers:
+      - "Google"
+      - "Microsoft Azure AD"
+      - "Okta"
+      - "Auth0"
+      - "Keycloak"
+    security_best_practices:
+      - "ID Token 서명 검증"
+      - "nonce 파라미터 사용"
+      - "at_hash 검증"
+      - "발급자/대상자 검증"
+      - "만료 시간 확인"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OpenID Foundation"
+      - "OIDC Core Specification"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OIDC는 OAuth 2.0 기반 인증 프로토콜이다. ID Token(JWT)으로 사용자 신원을
+      검증하며 Google, Azure AD 등이 지원한다.
+    search_keywords:
+      - "OIDC"
+      - "OpenID Connect"
+      - "ID Token"
+      - "SSO"
+    related_queries:
+      - "SSO 구현"
+      - "연합 인증"
+      - "ID 토큰"

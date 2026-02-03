@@ -1,0 +1,119 @@
+# GR Atom: Public Key Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CRYPTO-PKI-001"
+  name: "Public Key Infrastructure"
+  normalization:
+    normalized_name: "pki public key infrastructure certificate ca x509"
+    normalization_version: "1.0"
+  aliases:
+    - "PKI"
+    - "공개키 기반 구조"
+    - "인증서 인프라"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "CRYPTO", "AUTH"]
+
+definition:
+  what: |
+    디지털 인증서와 공개키 암호화를 관리하는 시스템으로
+    신원 검증과 암호화 통신을 지원한다.
+  why: |
+    신뢰할 수 있는 신원 확인을 제공한다.
+    보안 통신을 가능하게 한다.
+  how: |
+    1. 키 쌍 생성
+    2. 인증서 요청 (CSR)
+    3. CA 서명/발급
+    4. 인증서 사용/검증
+
+relations:
+  structural:
+    is_a:
+      - "DEF-CRYPTO-001"
+    related_to:
+      - "DEF-CRYPTO-TLS-001"
+      - "TECH-CONCEPT-CRYPTO-001"
+
+properties:
+  technical:
+    components:
+      - name: "Certificate Authority (CA)"
+        role: "인증서 발급/서명"
+        types: ["Root CA", "Intermediate CA"]
+      - name: "Registration Authority (RA)"
+        role: "신원 검증"
+      - name: "Certificate"
+        format: "X.509 v3"
+        contents: ["Subject", "Issuer", "Public Key", "Validity", "Extensions"]
+      - name: "CRL / OCSP"
+        role: "인증서 폐기 확인"
+    certificate_types:
+      - name: "DV (Domain Validated)"
+        validation: "도메인 소유권만"
+      - name: "OV (Organization Validated)"
+        validation: "조직 검증 포함"
+      - name: "EV (Extended Validation)"
+        validation: "엄격한 조직 검증"
+    public_cas:
+      - "DigiCert"
+      - "Let's Encrypt"
+      - "Sectigo"
+      - "GlobalSign"
+    internal_pki:
+      - "Microsoft AD CS"
+      - "HashiCorp Vault"
+      - "EJBCA"
+      - "step-ca"
+    certificate_lifecycle:
+      - "생성 (Key Generation)"
+      - "등록 (Enrollment)"
+      - "배포 (Distribution)"
+      - "사용 (Usage)"
+      - "갱신 (Renewal)"
+      - "폐기 (Revocation)"
+    attacks:
+      - "CA 침해"
+      - "인증서 위조"
+      - "중간자 공격"
+      - "인증서 오발급"
+    best_practices:
+      - "개인키 안전 보관"
+      - "짧은 인증서 수명"
+      - "자동화된 갱신"
+      - "Certificate Transparency"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 5280 (X.509)"
+      - "CA/Browser Forum"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PKI는 디지털 인증서를 통해 신원 확인과
+      암호화 통신을 지원하는 공개키 기반 보안 인프라이다.
+    search_keywords:
+      - "PKI"
+      - "Certificate"
+      - "인증서"
+      - "CA"

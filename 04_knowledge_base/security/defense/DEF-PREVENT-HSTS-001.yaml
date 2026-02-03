@@ -1,0 +1,108 @@
+# GR Atom: HSTS (HTTP Strict Transport Security)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-HSTS-001"
+  name: "HSTS (HTTP Strict Transport Security)"
+  normalization:
+    normalized_name: "hsts http strict transport security https enforcement"
+    normalization_version: "1.0"
+  aliases:
+    - "HSTS"
+    - "HTTP 엄격한 전송 보안"
+    - "HTTPS 강제"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "WEB", "TRANSPORT"]
+
+definition:
+  what: |
+    웹 브라우저가 특정 도메인에 대해 HTTPS 연결만 사용하도록
+    강제하는 웹 보안 정책 메커니즘이다.
+  why: |
+    SSL 스트리핑 공격을 방지한다.
+    프로토콜 다운그레이드를 차단한다.
+  how: |
+    1. 서버에서 HSTS 헤더 전송
+    2. 브라우저가 정책 저장
+    3. 이후 HTTPS만 사용
+    4. HTTP 요청 자동 업그레이드
+
+relations:
+  structural:
+    is_a:
+      - "DEF-PREVENT-HEADERS-001"
+    related_to:
+      - "ATK-NET-SSL-STRIP-001"
+      - "DEF-PREVENT-HTTPS-001"
+
+properties:
+  technical:
+    header: "Strict-Transport-Security"
+    directives:
+      - name: "max-age"
+        description: "HSTS 정책 유효 기간 (초)"
+        recommended: "31536000 (1년)"
+      - name: "includeSubDomains"
+        description: "하위 도메인 포함"
+      - name: "preload"
+        description: "HSTS 프리로드 목록 등록"
+    example_header: "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload"
+    hsts_preload:
+      description: "브라우저에 내장된 HSTS 목록"
+      requirements:
+        - "유효한 인증서"
+        - "HTTP에서 HTTPS 리다이렉트"
+        - "모든 하위 도메인 HTTPS"
+        - "max-age ≥ 1년"
+        - "includeSubDomains 포함"
+        - "preload 지시어 포함"
+    benefits:
+      - "SSL 스트리핑 방지"
+      - "자동 HTTPS 업그레이드"
+      - "혼합 콘텐츠 방지"
+    considerations:
+      - "인증서 만료 시 접속 불가"
+      - "정책 제거 어려움"
+      - "초기 연결 취약점"
+    server_configuration:
+      nginx: 'add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"'
+      apache: 'Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"'
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 6797 HSTS"
+      - "OWASP Secure Headers"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HSTS는 브라우저가 HTTPS만 사용하도록 강제하여
+      SSL 스트리핑과 다운그레이드 공격을 방지하는 보안 헤더이다.
+    search_keywords:
+      - "HSTS"
+      - "HTTPS 강제"
+      - "보안 헤더"
+      - "SSL 스트리핑"
+    related_queries:
+      - "HSTS 프리로드"
+      - "전송 보안"
+      - "웹 보안 헤더"

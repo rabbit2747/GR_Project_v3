@@ -1,0 +1,114 @@
+# GR Atom: Open Redirect Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-OPEN-REDIRECT-001"
+  name: "Open Redirect Vulnerability"
+  normalization:
+    normalized_name: "open redirect url redirect unvalidated forward"
+    normalization_version: "1.0"
+  aliases:
+    - "오픈 리다이렉트"
+    - "URL 리다이렉션"
+    - "Unvalidated Redirect"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "REDIRECT"]
+
+definition:
+  what: |
+    오픈 리다이렉트는 애플리케이션이 사용자 입력 URL로 리다이렉트할 때
+    유효성 검증 없이 악성 사이트로 이동시킬 수 있는 취약점이다.
+  why: |
+    신뢰할 수 있는 도메인을 경유하므로 피싱에 효과적이다.
+    OAuth 콜백 등에서 토큰 탈취에 악용된다.
+  how: |
+    1. 리다이렉트 파라미터 발견
+    2. 외부 URL 삽입 테스트
+    3. 피싱 또는 OAuth 공격
+    4. 자격 증명/토큰 탈취
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    related_to:
+      - "ATK-NET-PHISHING-001"
+      - "TECH-PROTO-OAUTH-001"
+
+properties:
+  technical:
+    vulnerable_patterns:
+      - "?url="
+      - "?redirect="
+      - "?next="
+      - "?return="
+      - "?returnUrl="
+      - "?goto="
+      - "?dest="
+    bypass_techniques:
+      - pattern: "//evil.com"
+        description: "프로토콜 상대 URL"
+      - pattern: "https://trusted.com@evil.com"
+        description: "URL 인증 구문 악용"
+      - pattern: "https://evil.com/trusted.com"
+        description: "경로로 위장"
+      - pattern: "https://trusted.com.evil.com"
+        description: "서브도메인 위장"
+      - pattern: "//evil.com%2F%2Ftrusted.com"
+        description: "URL 인코딩"
+    attack_scenarios:
+      - name: "피싱"
+        flow: "합법 URL 클릭 → 악성 사이트 → 자격 증명 입력"
+      - name: "OAuth 토큰 탈취"
+        flow: "조작된 redirect_uri → 토큰이 공격자에게"
+      - name: "XSS 체인"
+        flow: "javascript: URL로 리다이렉트"
+    prevention:
+      - "화이트리스트 기반 검증"
+      - "상대 URL만 허용"
+      - "호스트 검증"
+      - "리다이렉트 맵핑 사용"
+      - "사용자 확인 페이지"
+    testing:
+      - "파라미터 값 변경"
+      - "다양한 우회 기법 시도"
+      - "자동화 스캐너"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Unvalidated Redirects"
+      - "CWE-601"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      오픈 리다이렉트는 검증 없는 URL 리다이렉션 취약점이다. 피싱, OAuth
+      토큰 탈취에 악용되며 화이트리스트 검증으로 방어한다.
+    search_keywords:
+      - "오픈 리다이렉트"
+      - "URL 리다이렉션"
+      - "피싱"
+      - "OAuth"
+    related_queries:
+      - "리다이렉트 검증"
+      - "피싱 공격"
+      - "OAuth 보안"

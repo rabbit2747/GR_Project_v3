@@ -1,0 +1,118 @@
+# GR Atom: MITRE ATT&CK T1078 - Valid Accounts
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1078-001"
+  name: "Valid Accounts"
+  normalization:
+    normalized_name: "mitre t1078 valid accounts credential abuse legitimate"
+    normalization_version: "1.0"
+  aliases:
+    - "유효 계정 악용"
+    - "T1078"
+    - "자격 증명 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "INITIAL-ACCESS"]
+
+definition:
+  what: |
+    공격자가 탈취하거나 획득한 유효한 계정 자격 증명을 사용하여
+    시스템에 접근하는 기법이다. MITRE ATT&CK T1078.
+  why: |
+    합법적인 자격 증명 사용으로 탐지가 어렵다.
+    초기 접근, 지속성, 권한 상승 등 다양한 전술에 활용된다.
+  how: |
+    1. 자격 증명 획득 (피싱, 유출, 구매)
+    2. 유효성 검증
+    3. 대상 시스템 접근
+    4. 권한에 따른 활동 수행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-INITIAL-ACCESS-001"
+    enables:
+      - "ATK-MITRE-PERSISTENCE-001"
+      - "ATK-MITRE-PRIV-ESC-001"
+
+properties:
+  technical:
+    mitre_id: "T1078"
+    tactics:
+      - "Initial Access"
+      - "Persistence"
+      - "Privilege Escalation"
+      - "Defense Evasion"
+    sub_techniques:
+      - id: "T1078.001"
+        name: "Default Accounts"
+        description: "기본 계정 악용"
+        examples: ["admin/admin", "root/root"]
+      - id: "T1078.002"
+        name: "Domain Accounts"
+        description: "도메인 계정 악용"
+        risk: "lateral movement"
+      - id: "T1078.003"
+        name: "Local Accounts"
+        description: "로컬 계정 악용"
+      - id: "T1078.004"
+        name: "Cloud Accounts"
+        description: "클라우드 서비스 계정"
+        targets: ["AWS", "Azure", "GCP", "SaaS"]
+    acquisition_methods:
+      - "피싱"
+      - "자격 증명 덤핑"
+      - "브루트 포스"
+      - "다크웹 구매"
+      - "사회공학"
+      - "기본 비밀번호"
+    detection:
+      - "비정상 로그인 위치/시간"
+      - "불가능한 이동 (Impossible Travel)"
+      - "다중 실패 후 성공"
+      - "휴면 계정 활성화"
+      - "MFA 우회 시도"
+    prevention:
+      - "MFA 필수"
+      - "비밀번호 정책"
+      - "계정 모니터링"
+      - "UEBA"
+      - "PAM 솔루션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1078"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1078은 유효 계정 악용 기법이다. 탈취된 자격 증명으로 합법적 접근하며
+      MFA, UEBA, 계정 모니터링으로 탐지/방어한다.
+    search_keywords:
+      - "T1078"
+      - "계정 악용"
+      - "자격 증명"
+      - "로그인 공격"
+    related_queries:
+      - "계정 탈취"
+      - "MFA 우회"
+      - "자격 증명 보안"

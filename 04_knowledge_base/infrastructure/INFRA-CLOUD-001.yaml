@@ -1,0 +1,109 @@
+# GR Atom: Cloud Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-001"
+  name: "Cloud Infrastructure"
+  normalization:
+    normalized_name: "cloud infrastructure cloud computing iaas paas saas"
+    normalization_version: "1.0"
+  aliases:
+    - "클라우드 인프라"
+    - "Cloud Computing"
+    - "클라우드 컴퓨팅"
+    - "Public Cloud"
+
+classification:
+  domain: infrastructure
+  type: platform
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["INFRA", "CLOUD", "PLATFORM"]
+
+definition:
+  what: |
+    클라우드 인프라(Cloud Infrastructure)는 인터넷을 통해 제공되는
+    컴퓨팅 리소스(IaaS, PaaS, SaaS)다. AWS, Azure, GCP가 대표적이다.
+  why: |
+    현대 IT 인프라의 기반이다. 설정 오류, IAM 취약점, 노출된 리소스가
+    가장 흔한 클라우드 보안 위협이다.
+  how: |
+    1. IaaS: VM, 네트워크, 스토리지 제공
+    2. PaaS: 런타임 환경, 데이터베이스 제공
+    3. SaaS: 완전한 애플리케이션 제공
+    4. Serverless: 함수 단위 실행
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    has_part:
+      - "INFRA-COMPUTE-VM-001"
+      - "INFRA-DATA-STORAGE-001"
+      - "INFRA-NET-FIREWALL-001"
+  causal:
+    vulnerable_to:
+      - "VUL-CONFIG-MISCONFIG-001"
+
+properties:
+  technical:
+    providers:
+      - name: "Amazon Web Services (AWS)"
+        services: ["EC2", "S3", "RDS", "Lambda"]
+      - name: "Microsoft Azure"
+        services: ["VMs", "Blob Storage", "SQL Database", "Functions"]
+      - name: "Google Cloud Platform (GCP)"
+        services: ["Compute Engine", "Cloud Storage", "Cloud SQL", "Cloud Functions"]
+    service_models:
+      - name: "IaaS"
+        description: "Infrastructure as a Service"
+        examples: ["EC2", "Azure VMs"]
+      - name: "PaaS"
+        description: "Platform as a Service"
+        examples: ["Elastic Beanstalk", "App Service"]
+      - name: "SaaS"
+        description: "Software as a Service"
+        examples: ["Office 365", "Salesforce"]
+    common_vulnerabilities:
+      - "Misconfigured IAM policies"
+      - "Public S3 buckets"
+      - "Exposed management consoles"
+      - "Overly permissive security groups"
+      - "Unencrypted data"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Cloud Benchmarks"
+      - "NIST Cloud Security"
+      - "CSA Cloud Controls Matrix"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Infrastructure(클라우드 인프라)는 AWS, Azure, GCP 등
+      인터넷 기반 컴퓨팅 리소스다. IAM 설정 오류, 퍼블릭 버킷이
+      주요 보안 위협이다.
+    search_keywords:
+      - "Cloud Infrastructure"
+      - "클라우드"
+      - "AWS"
+      - "Azure"
+      - "GCP"
+    related_queries:
+      - "클라우드 보안"
+      - "AWS 보안"
+      - "클라우드 설정 오류"

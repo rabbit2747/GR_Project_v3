@@ -1,0 +1,120 @@
+# GR Atom: Kubernetes RBAC Exploitation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-K8S-RBAC-001"
+  name: "Kubernetes RBAC Exploitation"
+  normalization:
+    normalized_name: "kubernetes rbac exploitation privilege escalation k8s"
+    normalization_version: "1.0"
+  aliases:
+    - "K8s RBAC 악용"
+    - "쿠버네티스 권한 상승"
+    - "ServiceAccount 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "K8S", "PRIV-ESC"]
+
+definition:
+  what: |
+    Kubernetes RBAC(Role-Based Access Control) 설정 오류를 악용하여
+    클러스터 권한을 상승시키는 공격이다.
+  why: |
+    클러스터 관리자 권한을 획득한다.
+    다른 네임스페이스의 리소스에 접근한다.
+  how: |
+    1. 현재 ServiceAccount 권한 확인
+    2. 과도한 권한 식별
+    3. 권한 상승 경로 탐색
+    4. 클러스터 권한 획득
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-PRIV-ESC-001"
+    related_to:
+      - "INFRA-CONTAINER-K8S-001"
+      - "DEF-PREVENT-ZERO-TRUST-001"
+
+properties:
+  technical:
+    dangerous_permissions:
+      - verb: "create"
+        resource: "pods"
+        risk: "악성 Pod 생성"
+      - verb: "get"
+        resource: "secrets"
+        risk: "시크릿 탈취"
+      - verb: "create"
+        resource: "clusterrolebindings"
+        risk: "권한 상승"
+      - verb: "*"
+        resource: "*"
+        risk: "전체 접근"
+    attack_techniques:
+      - name: "ServiceAccount Token 탈취"
+        path: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+      - name: "Pod 생성으로 호스트 접근"
+        method: "hostPID, hostNetwork, privileged Pod"
+      - name: "Secrets 읽기"
+        command: "kubectl get secrets"
+      - name: "ClusterRoleBinding 생성"
+        result: "cluster-admin 권한 획득"
+    enumeration_commands:
+      - "kubectl auth can-i --list"
+      - "kubectl get clusterroles"
+      - "kubectl get rolebindings"
+    tools:
+      - "kubectl"
+      - "kubeletctl"
+      - "PEIRATES"
+      - "kube-hunter"
+    detection:
+      - "RBAC 감사 로그"
+      - "비정상 API 호출"
+      - "새로운 ClusterRoleBinding"
+      - "Secrets 대량 접근"
+    mitigation:
+      - "최소 권한 RBAC"
+      - "Pod Security Standards"
+      - "Namespace 격리"
+      - "Network Policies"
+      - "정기적인 RBAC 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Kubernetes RBAC Documentation"
+      - "CIS Kubernetes Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kubernetes RBAC 악용은 과도한 권한 설정을 이용하여
+      클러스터 권한을 상승시키는 공격이다.
+    search_keywords:
+      - "K8s RBAC"
+      - "권한 상승"
+      - "ServiceAccount"
+      - "Kubernetes 보안"
+    related_queries:
+      - "RBAC 설정"
+      - "Pod 보안"
+      - "클러스터 보안"

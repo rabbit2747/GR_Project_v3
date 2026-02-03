@@ -1,0 +1,78 @@
+# GR Atom: Social Engineering
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SOCIAL-001"
+  name: "Social Engineering"
+  normalization:
+    normalized_name: "social engineering phishing pretexting"
+    normalization_version: "1.0"
+  aliases:
+    - "Social Engineering"
+    - "사회공학 공격"
+    - "Human Hacking"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "SOCIAL"]
+
+definition:
+  what: |
+    인간 심리를 악용하여 정보를 획득하거나 행동을 유도하는
+    공격 기법 분류이다.
+  why: |
+    자격 증명을 획득한다.
+    내부 접근을 얻는다.
+    기술적 통제를 우회한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-PHISHING-001"
+      - "ATK-SOCIAL-PRETEXTING-001"
+    related_to:
+      - "ATK-MITRE-T1566-001"
+      - "DEF-AWARENESS-001"
+
+properties:
+  technical:
+    techniques:
+      - "Phishing"
+      - "Spear Phishing"
+      - "Pretexting"
+      - "Baiting"
+      - "Tailgating"
+      - "Vishing"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Social Engineering은 인간 심리를 악용하는 공격 기법 분류이다.
+    search_keywords:
+      - "Social Engineering"
+      - "사회공학"
+      - "Phishing"
+      - "피싱"

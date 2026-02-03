@@ -1,0 +1,100 @@
+# GR Atom: Command and Control Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-C2-001"
+  name: "Command and Control Tool"
+  normalization:
+    normalized_name: "c2 command control framework beacon"
+    normalization_version: "1.0"
+  aliases:
+    - "C2 Tool"
+    - "C2 도구"
+    - "Command and Control Framework"
+    - "Post-Exploitation Framework"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "C2"]
+
+definition:
+  what: |
+    침해된 시스템을 원격으로 제어하고 관리하는
+    명령 및 제어 프레임워크 분류이다.
+  why: |
+    침투 테스트에서 지속적 접근을 시뮬레이션한다.
+    레드팀 작전을 수행한다.
+    공격자 TTPs를 에뮬레이션한다.
+  how: |
+    1. 에이전트/비콘 배포
+    2. C2 서버 연결
+    3. 명령 실행
+    4. 데이터 수집/유출
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE-001"
+    has_children:
+      - "TOOL-C2-COBALTSTRIKE-001"
+      - "TOOL-C2-SLIVER-001"
+    related_to:
+      - "ATK-MITRE-C2-001"
+      - "TECH-CONCEPT-PENTESTING-001"
+
+properties:
+  technical:
+    features:
+      - "원격 명령 실행"
+      - "파일 전송"
+      - "키로깅"
+      - "스크린샷"
+      - "지속성 유지"
+      - "측면 이동"
+    examples:
+      commercial:
+        - "Cobalt Strike"
+        - "Nighthawk"
+      open_source:
+        - "Sliver"
+        - "Mythic"
+        - "Havoc"
+        - "Covenant"
+    protocols:
+      - "HTTP/HTTPS"
+      - "DNS"
+      - "SMB"
+      - "TCP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK C2"
+      - "C2 Matrix"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      C2 Tool은 침해된 시스템을 원격 제어하는
+      명령 및 제어 프레임워크 분류이다.
+    search_keywords:
+      - "C2"
+      - "Command Control"
+      - "Cobalt Strike"
+      - "Beacon"

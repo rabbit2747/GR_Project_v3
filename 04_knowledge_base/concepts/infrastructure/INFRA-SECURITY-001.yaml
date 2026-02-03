@@ -1,0 +1,84 @@
+# GR Atom: Security Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-SECURITY-001"
+  name: "Security Infrastructure"
+  normalization:
+    normalized_name: "security infrastructure firewall ids ips"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Infrastructure"
+    - "보안 인프라"
+    - "Security Operations Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "SECURITY"]
+
+definition:
+  what: |
+    조직의 보안 운영을 지원하는 인프라 분류이다.
+  why: |
+    보안 아키텍처를 이해한다.
+    보안 솔루션을 통합한다.
+    보안 운영을 효율화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-SEC-FIREWALL-001"
+      - "INFRA-SEC-IDS-001"
+      - "INFRA-SEC-SIEM-001"
+    related_to:
+      - "DEF-DETECT-001"
+      - "DEF-PREVENT-001"
+      - "TOOL-DEFENSE-001"
+
+properties:
+  technical:
+    components:
+      - "Firewall"
+      - "IDS/IPS"
+      - "SIEM"
+      - "SOAR"
+      - "WAF"
+      - "EDR"
+    functions:
+      - "Prevention"
+      - "Detection"
+      - "Response"
+      - "Recovery"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Infrastructure는 보안 운영 인프라 분류이다.
+    search_keywords:
+      - "Security Infrastructure"
+      - "보안 인프라"
+      - "SIEM"
+      - "Firewall"

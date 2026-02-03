@@ -1,0 +1,80 @@
+# GR Atom: Storage Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-STORAGE-001"
+  name: "Storage Infrastructure"
+  normalization:
+    normalized_name: "storage infrastructure san nas object"
+    normalization_version: "1.0"
+  aliases:
+    - "Storage Infrastructure"
+    - "스토리지 인프라"
+    - "Data Storage Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "STORAGE"]
+
+definition:
+  what: |
+    데이터 저장을 위한 스토리지 인프라 분류이다.
+  why: |
+    스토리지 아키텍처를 이해한다.
+    데이터 보호를 구현한다.
+    용량 계획을 수립한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-STORAGE-SAN-001"
+      - "INFRA-STORAGE-NAS-001"
+      - "INFRA-STORAGE-OBJECT-001"
+    related_to:
+      - "TECH-BACKUP-001"
+      - "VUL-CLOUD-001"
+
+properties:
+  technical:
+    types:
+      - "Block Storage"
+      - "File Storage"
+      - "Object Storage"
+    technologies:
+      - "SAN"
+      - "NAS"
+      - "S3-compatible"
+      - "Distributed Storage"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Storage Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Storage Infrastructure는 데이터 스토리지 인프라 분류이다.
+    search_keywords:
+      - "Storage Infrastructure"
+      - "스토리지 인프라"
+      - "SAN"
+      - "NAS"

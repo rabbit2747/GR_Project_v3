@@ -1,0 +1,112 @@
+# GR Atom: Public Key Infrastructure (PKI)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-PKI-001"
+  name: "Public Key Infrastructure (PKI)"
+  normalization:
+    normalized_name: "pki public key infrastructure certificate authority x509"
+    normalization_version: "1.0"
+  aliases:
+    - "PKI"
+    - "공개키 기반구조"
+    - "인증서 인프라"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone2"
+    tags: ["TECH", "CRYPTO", "PKI"]
+
+definition:
+  what: |
+    PKI는 디지털 인증서를 발급, 관리, 폐기하는 시스템이다.
+    공개키 암호화를 기반으로 신원 확인과 신뢰를 제공한다.
+  why: |
+    TLS/HTTPS, 코드 서명, 이메일 암호화의 기반이다.
+    인증서 오류, 만료, 폐기 실패가 보안 사고로 이어진다.
+  how: |
+    1. CA (Certificate Authority): 인증서 발급
+    2. RA (Registration Authority): 신원 확인
+    3. Certificate: 공개키 + 신원 정보
+    4. CRL/OCSP: 폐기된 인증서 확인
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-ENCRYPTION-001"
+    related_to:
+      - "TECH-PROTOCOL-TLS-001"
+      - "TECH-CONCEPT-CERTIFICATE-001"
+
+properties:
+  technical:
+    components:
+      - name: "Certificate Authority (CA)"
+        description: "인증서 발급 기관"
+        types: ["Root CA", "Intermediate CA"]
+      - name: "Registration Authority (RA)"
+        description: "신원 확인 및 등록"
+      - name: "Certificate"
+        standard: "X.509 v3"
+        contents: ["Subject", "Public Key", "Issuer", "Validity", "Extensions"]
+      - name: "CRL/OCSP"
+        description: "인증서 폐기 확인"
+    certificate_types:
+      - "DV (Domain Validated): 도메인 소유권만 확인"
+      - "OV (Organization Validated): 조직 확인"
+      - "EV (Extended Validation): 확장 검증"
+      - "Wildcard: *.example.com"
+      - "Multi-domain (SAN): 여러 도메인"
+    security_concerns:
+      - "개인키 유출"
+      - "인증서 만료 미관리"
+      - "약한 키 크기 (RSA < 2048)"
+      - "폐기 확인 실패"
+      - "CA 침해"
+    best_practices:
+      - "2048비트 이상 RSA 또는 ECC"
+      - "자동화된 인증서 갱신 (Let's Encrypt, ACME)"
+      - "인증서 투명성 (CT) 모니터링"
+      - "개인키 보호 (HSM)"
+      - "짧은 인증서 유효 기간"
+    tools:
+      - "Let's Encrypt (무료 CA)"
+      - "OpenSSL"
+      - "certbot"
+      - "HashiCorp Vault PKI"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 5280 - X.509 PKI"
+      - "CA/Browser Forum Requirements"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PKI는 디지털 인증서 발급/관리 시스템이다. CA, X.509 인증서가 핵심이며
+      인증서 만료, 개인키 유출이 주요 위험이다. Let's Encrypt로 자동화한다.
+    search_keywords:
+      - "PKI"
+      - "공개키 기반구조"
+      - "인증서"
+      - "CA"
+    related_queries:
+      - "SSL 인증서"
+      - "Let's Encrypt"
+      - "인증서 관리"

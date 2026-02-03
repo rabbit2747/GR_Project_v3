@@ -1,0 +1,111 @@
+# GR Atom: Encryption
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-ENCRYPTION-001"
+  name: "Encryption"
+  normalization:
+    normalized_name: "encryption cryptography symmetric asymmetric aes rsa"
+    normalization_version: "1.0"
+  aliases:
+    - "암호화"
+    - "Cryptography"
+    - "데이터 암호화"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["TECH", "CRYPTO", "SECURITY"]
+
+definition:
+  what: |
+    암호화는 평문 데이터를 암호문으로 변환하여 기밀성을 보장하는 기술이다.
+    대칭키, 비대칭키, 해시 함수 등 다양한 방식이 있다.
+  why: |
+    데이터 기밀성의 핵심 기술이다. 저장 데이터, 전송 데이터 모두에 적용되며
+    규정 준수(GDPR, PCI-DSS 등)의 필수 요소다.
+  how: |
+    1. Symmetric: 동일한 키로 암호화/복호화 (AES)
+    2. Asymmetric: 공개키/개인키 쌍 사용 (RSA, ECC)
+    3. Hashing: 단방향 변환 (SHA-256)
+    4. Key Management: 키 생성, 저장, 순환
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-PREVENT-ENCRYPT-001"
+  causal:
+    mitigates:
+      - "VUL-DATA-EXPOSURE-001"
+
+properties:
+  technical:
+    types:
+      symmetric:
+        algorithms: ["AES-256", "ChaCha20"]
+        use_case: "대량 데이터 암호화"
+        key_management: "안전한 키 교환 필요"
+      asymmetric:
+        algorithms: ["RSA-2048+", "ECDSA", "Ed25519"]
+        use_case: "키 교환, 디지털 서명"
+        performance: "대칭키보다 느림"
+      hashing:
+        algorithms: ["SHA-256", "SHA-3", "BLAKE2"]
+        use_case: "무결성 검증, 비밀번호 저장"
+        properties: ["단방향", "충돌 저항성"]
+    encryption_contexts:
+      - name: "Data at Rest"
+        methods: ["Full disk encryption", "Database encryption", "File-level encryption"]
+      - name: "Data in Transit"
+        methods: ["TLS 1.3", "VPN", "End-to-end encryption"]
+      - name: "Data in Use"
+        methods: ["Homomorphic encryption", "Secure enclaves"]
+    deprecated_algorithms:
+      - "DES, 3DES"
+      - "MD5, SHA-1"
+      - "RC4"
+      - "RSA-1024"
+    best_practices:
+      - "AES-256 사용"
+      - "TLS 1.3 적용"
+      - "키 정기 순환"
+      - "HSM 사용 검토"
+      - "암호화 키와 데이터 분리 저장"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cryptographic Standards"
+      - "OWASP Cryptographic Storage"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      암호화는 데이터 기밀성 보장 기술이다. AES(대칭), RSA/ECC(비대칭), SHA-256(해시)이
+      주요 알고리즘이며 키 관리, 암호화 방식 선택이 핵심이다.
+    search_keywords:
+      - "암호화"
+      - "Encryption"
+      - "AES"
+      - "RSA"
+    related_queries:
+      - "데이터 암호화"
+      - "암호화 알고리즘"
+      - "키 관리"

@@ -1,0 +1,131 @@
+# GR-SEC-TEC-00007: Second-Order SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00007
+  name: "Second-Order SQL Injection"
+  normalization:
+    normalized_name: "second order sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "Stored SQL Injection"
+    - "Persistent SQLi"
+    - "2차 SQLi"
+    - "저장형 SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-PERSIST"
+
+definition:
+  what: |
+    악성 SQL 페이로드를 먼저 데이터베이스에 저장한 뒤,
+    나중에 해당 데이터가 다른 SQL 쿼리에서 사용될 때
+    인젝션이 발생하는 기법이다. 입력과 실행이 시간적,
+    공간적으로 분리되어 있다.
+  why: |
+    입력 시점에는 안전하게 저장되지만, 사용 시점에서
+    이스케이프 없이 쿼리에 포함되면 발생한다.
+    자동화 스캐너로 탐지가 매우 어렵다.
+  how: |
+    1. 악성 페이로드가 저장될 수 있는 입력점 식별
+       예: 사용자 이름, 프로필, 설정 값
+    2. 페이로드를 정상 데이터처럼 저장
+       예: username = "admin'--"
+    3. 저장된 데이터가 사용되는 기능 식별
+       예: 비밀번호 변경, 프로필 조회
+    4. 해당 기능 호출 시 인젝션 트리거
+       예: UPDATE users SET password='new' WHERE name='admin'--'
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00025  # Data Storage Capability (TODO)
+      - GR-SEC-CON-00026  # Unsafe Data Retrieval (TODO)
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00010  # MySQL
+      - GR-SEC-CMP-00011  # PostgreSQL
+      - GR-SEC-CMP-00012  # MSSQL
+      - GR-SEC-CMP-00013  # Oracle
+
+constraints:
+  - property: effectiveness
+    base_value: 0.7
+    conditions:
+      - when:
+          context_type: implementation
+          condition: "all_queries_parameterized == true"
+        then:
+          value: 0.0
+          reason: "모든 쿼리가 파라미터화되면 사용 불가"
+      - when:
+          context_type: implementation
+          condition: "stored_data_re_escaped == true"
+        then:
+          value: 0.0
+          reason: "저장된 데이터도 재이스케이프하면 무효화"
+
+properties:
+  security:
+    severity: high
+    attack_phase: exploitation
+    data_exfiltration: true
+    persistence: true
+    detection_difficulty: very_high
+    speed: slow
+    stealth: very_high
+    timing: delayed
+    requires_multiple_requests: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Second-Order SQL Injection은 악성 페이로드를 먼저
+      데이터베이스에 저장한 후, 나중에 해당 데이터가
+      다른 쿼리에서 사용될 때 인젝션이 발생하는 기법이다.
+      입력과 실행이 분리되어 자동화 스캐너로 탐지가
+      매우 어렵다. 사용자 이름, 프로필 등을 통해 페이로드를
+      저장하고 비밀번호 변경 등의 기능에서 트리거된다.
+    search_keywords:
+      - "Second-Order SQLi"
+      - "Stored SQLi"
+      - "Persistent SQLi"
+      - "2차 SQLi"
+      - "저장형 SQLi"
+      - "지연 실행"
+    related_queries:
+      - "Second-Order SQLi는 어떻게 하는가?"
+      - "저장된 데이터로 SQLi가 가능한가?"
+      - "스캐너로 탐지 안 되는 SQLi는?"

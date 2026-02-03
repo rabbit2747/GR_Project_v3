@@ -1,0 +1,123 @@
+# GR Atom: DAST (Dynamic Application Security Testing)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DEVSECOPS-DAST-001"
+  name: "DAST (Dynamic Application Security Testing)"
+  normalization:
+    normalized_name: "dast dynamic application security testing runtime"
+    normalization_version: "1.0"
+  aliases:
+    - "DAST"
+    - "동적 분석"
+    - "런타임 보안 테스트"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "DEVSECOPS", "TEST"]
+
+definition:
+  what: |
+    실행 중인 애플리케이션을 외부에서 테스트하여
+    보안 취약점을 식별하는 동적 분석 기법이다.
+  why: |
+    실제 환경에서의 취약점을 발견한다.
+    런타임 구성 오류를 탐지한다.
+  how: |
+    1. 애플리케이션 크롤링
+    2. 악성 페이로드 전송
+    3. 응답 분석
+    4. 취약점 보고
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT-001"
+    related_to:
+      - "TOOL-OFFENSE-BURP-001"
+      - "TOOL-OFFENSE-ZAP-001"
+
+properties:
+  technical:
+    testing_approach:
+      - "블랙박스 테스팅"
+      - "자동화된 스캐닝"
+      - "퍼징"
+    detectable_vulnerabilities:
+      - "SQL Injection"
+      - "XSS"
+      - "CSRF"
+      - "Security Misconfigurations"
+      - "Authentication Issues"
+      - "Session Management"
+    dast_tools:
+      commercial:
+        - "Burp Suite Enterprise"
+        - "Acunetix"
+        - "Invicti (Netsparker)"
+        - "Qualys WAS"
+      open_source:
+        - "OWASP ZAP"
+        - "Arachni"
+        - "w3af"
+        - "Nuclei"
+    integration_points:
+      - "CI/CD 파이프라인"
+      - "스테이징 환경"
+      - "정기 스캔"
+    testing_modes:
+      - "Passive Scanning: 트래픽 분석"
+      - "Active Scanning: 공격 페이로드 전송"
+      - "Authenticated Scanning: 로그인 후 스캔"
+    advantages:
+      - "실제 환경 테스트"
+      - "런타임 취약점 탐지"
+      - "기술 스택 독립적"
+      - "구성 오류 발견"
+    limitations:
+      - "코드 커버리지 제한"
+      - "스캔 시간"
+      - "인증 처리 복잡성"
+      - "비즈니스 로직 제한"
+    best_practices:
+      - "인증된 스캔 수행"
+      - "프로덕션 외 환경에서 테스트"
+      - "SAST와 병행"
+      - "정기적 스캔"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP DAST"
+      - "NIST Application Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DAST는 실행 중인 애플리케이션을 동적 분석하여
+      런타임 보안 취약점을 식별하는 DevSecOps 기법이다.
+    search_keywords:
+      - "DAST"
+      - "동적 분석"
+      - "웹 스캐닝"
+      - "DevSecOps"
+    related_queries:
+      - "자동화 스캔"
+      - "OWASP ZAP"
+      - "취약점 테스트"

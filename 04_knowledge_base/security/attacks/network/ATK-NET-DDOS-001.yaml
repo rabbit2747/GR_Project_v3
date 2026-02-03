@@ -1,0 +1,111 @@
+# GR Atom: DDoS Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-DDOS-001"
+  name: "DDoS (Distributed Denial of Service)"
+  normalization:
+    normalized_name: "ddos distributed denial of service dos attack"
+    normalization_version: "1.0"
+  aliases:
+    - "DDoS 공격"
+    - "분산 서비스 거부 공격"
+    - "Distributed DoS"
+    - "디도스"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["ATK", "NET", "DOS"]
+
+definition:
+  what: |
+    DDoS(Distributed Denial of Service)는 다수의 시스템에서 대상에
+    대량의 트래픽을 전송하여 서비스 가용성을 마비시키는 공격이다.
+  why: |
+    가장 흔하고 영향력 있는 공격 유형 중 하나다. 랜섬, 경쟁 방해,
+    핵티비즘, 연막 작전에 사용된다.
+  how: |
+    1. Botnet: 감염된 다수 시스템으로 공격
+    2. Amplification: DNS, NTP 등을 이용한 증폭
+    3. Application Layer: HTTP Flood, Slowloris
+    4. Protocol: SYN Flood, UDP Flood
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+  causal:
+    targets:
+      - "INFRA-NET-NETWORK-001"
+      - "INFRA-APP-WEBSERVER-001"
+    mitigated_by:
+      - "DEF-PREVENT-RATELIMIT-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Volumetric"
+        method: "대역폭 소진"
+        examples: ["UDP Flood", "DNS Amplification", "NTP Amplification"]
+      - name: "Protocol"
+        method: "상태 테이블 소진"
+        examples: ["SYN Flood", "Ping of Death", "Smurf"]
+      - name: "Application Layer"
+        method: "애플리케이션 리소스 소진"
+        examples: ["HTTP Flood", "Slowloris", "R.U.D.Y."]
+    amplification_factors:
+      - protocol: "DNS"
+        factor: "28-54x"
+      - protocol: "NTP"
+        factor: "556x"
+      - protocol: "Memcached"
+        factor: "51,000x"
+    defense_strategies:
+      - "CDN/DDoS Protection Service"
+      - "Rate Limiting"
+      - "Traffic Scrubbing"
+      - "BGP Blackholing"
+      - "Anycast"
+  security:
+    severity: high
+    cvss_base: 7.5
+    attack_category: "Availability"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST DDoS Mitigation"
+      - "OWASP DDoS"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DDoS는 다수 시스템에서 대량 트래픽으로 서비스를 마비시키는 공격이다.
+      Volumetric, Protocol, Application Layer 유형이 있으며
+      CDN, Rate Limiting, Traffic Scrubbing으로 방어한다.
+    search_keywords:
+      - "DDoS"
+      - "디도스"
+      - "서비스 거부"
+      - "SYN Flood"
+      - "Amplification"
+    related_queries:
+      - "DDoS 방어"
+      - "DDoS 유형"
+      - "DNS Amplification"

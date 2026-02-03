@@ -1,0 +1,114 @@
+# GR Atom: Kubernetes Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CONTAINER-K8S-001"
+  name: "Kubernetes Security"
+  normalization:
+    normalized_name: "kubernetes k8s security container orchestration pods"
+    normalization_version: "1.0"
+  aliases:
+    - "쿠버네티스 보안"
+    - "K8s Security"
+    - "Kubernetes"
+
+classification:
+  domain: infrastructure
+  type: platform
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["INFRA", "CONTAINER", "K8S"]
+
+definition:
+  what: |
+    Kubernetes 보안은 컨테이너 오케스트레이션 플랫폼인 Kubernetes의
+    보안 설정, 취약점, 모범 사례를 다룬다.
+  why: |
+    클라우드 네이티브 애플리케이션의 표준 플랫폼이다. 복잡한 구성으로 인해
+    설정 오류가 빈번하며 컨테이너 탈출, 권한 상승 등 고유한 위협이 존재한다.
+  how: |
+    1. API Server: 클러스터 관리 인터페이스
+    2. RBAC: 역할 기반 접근 제어
+    3. Network Policies: 네트워크 분리
+    4. Pod Security: 컨테이너 보안 설정
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-RUNTIME-K8S-001"
+    related_to:
+      - "INFRA-RUNTIME-CONTAINER-001"
+  causal:
+    vulnerable_to:
+      - "VUL-CLOUD-MISCONFIG-001"
+
+properties:
+  technical:
+    security_components:
+      - name: "API Server"
+        risks: ["인증 미흡", "익명 접근", "노출된 포트"]
+        hardening: ["OIDC 인증", "RBAC 활성화", "감사 로깅"]
+      - name: "etcd"
+        risks: ["암호화 미적용", "무단 접근"]
+        hardening: ["TLS 암호화", "접근 제한"]
+      - name: "Kubelet"
+        risks: ["익명 인증", "노출된 API"]
+        hardening: ["인증 활성화", "HTTPS 필수"]
+    rbac:
+      - "ClusterRole: 클러스터 수준 권한"
+      - "Role: 네임스페이스 수준 권한"
+      - "최소 권한 원칙 적용"
+    pod_security:
+      standards:
+        - "Privileged: 제한 없음 (위험)"
+        - "Baseline: 최소 제한"
+        - "Restricted: 엄격한 제한"
+      controls:
+        - "runAsNonRoot: 루트 실행 금지"
+        - "readOnlyRootFilesystem: 읽기 전용 파일시스템"
+        - "allowPrivilegeEscalation: 권한 상승 금지"
+        - "capabilities: 필요 최소 권한"
+    network_security:
+      - "Network Policies: 기본 deny 적용"
+      - "Ingress/Egress 제어"
+      - "서비스 메시 (Istio, Linkerd)"
+    common_vulnerabilities:
+      - "Privileged containers"
+      - "Host network/PID 사용"
+      - "민감 정보 평문 저장"
+      - "과도한 RBAC 권한"
+      - "취약한 베이스 이미지"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Kubernetes Benchmark"
+      - "NSA/CISA Kubernetes Hardening Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kubernetes 보안은 컨테이너 오케스트레이션 플랫폼의 보안이다. RBAC, Pod Security,
+      Network Policies가 핵심이며 Privileged 컨테이너, 과도한 권한이 주요 위험이다.
+    search_keywords:
+      - "Kubernetes 보안"
+      - "K8s Security"
+      - "RBAC"
+      - "Pod Security"
+    related_queries:
+      - "K8s 하드닝"
+      - "컨테이너 보안"
+      - "K8s 취약점"

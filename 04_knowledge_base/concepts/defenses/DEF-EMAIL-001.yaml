@@ -1,0 +1,95 @@
+# GR Atom: Email Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-EMAIL-001"
+  name: "Email Defense"
+  normalization:
+    normalized_name: "email defense security phishing spam"
+    normalization_version: "1.0"
+  aliases:
+    - "Email Defense"
+    - "이메일 방어"
+    - "Email Security"
+    - "Mail Protection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "EMAIL"]
+
+definition:
+  what: |
+    피싱, 스팸, 악성 첨부파일 등 이메일 기반 위협을 방어하는
+    보안 통제 분류이다.
+  why: |
+    피싱 공격을 차단한다.
+    악성코드 유입을 방지한다.
+    BEC를 탐지한다.
+  how: |
+    1. 이메일 필터링
+    2. 위협 분석
+    3. 샌드박스 검사
+    4. 사용자 교육
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-EMAIL-SECURITY-001"
+    related_to:
+      - "ATK-MITRE-T1566-001"
+      - "ATK-SOCIAL-001"
+
+properties:
+  technical:
+    threats:
+      - "피싱"
+      - "스피어피싱"
+      - "BEC (Business Email Compromise)"
+      - "악성 첨부파일"
+      - "스팸"
+    technologies:
+      - "Secure Email Gateway (SEG)"
+      - "SPF/DKIM/DMARC"
+      - "Sandboxing"
+      - "URL Rewriting"
+      - "AI 기반 탐지"
+    examples:
+      - "Proofpoint"
+      - "Mimecast"
+      - "Microsoft Defender for O365"
+      - "Barracuda"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner Email Security"
+      - "NIST Phishing"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Email Defense는 피싱 등 이메일 기반 위협을 방어하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "Email Security"
+      - "이메일 보안"
+      - "Phishing"
+      - "피싱"

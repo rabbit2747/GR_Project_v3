@@ -1,0 +1,117 @@
+# GR Atom: WAF Detection Rules
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-WAF-001"
+  name: "WAF Detection Rules"
+  normalization:
+    normalized_name: "waf detection rules"
+    normalization_version: "1.0"
+  aliases:
+    - "WAF 탐지 규칙"
+    - "WAF Rules"
+    - "Web Application Firewall Detection"
+    - "WAF Signatures"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["D", "WEB"]
+
+definition:
+  what: |
+    WAF에서 사용하는 공격 탐지 규칙. 시그니처 기반 탐지(알려진 공격 패턴 매칭)와
+    이상 탐지(정상 트래픽 기준선 대비 비정상 요청 식별)를 포함한다.
+    HTTP 요청의 URI, 파라미터, 헤더, 바디를 분석하여 SQL Injection, XSS,
+    Command Injection 등 웹 공격을 탐지한다.
+  why: |
+    웹 애플리케이션 계층(L7)에서 발생하는 공격을 실시간으로 탐지하고 차단하는
+    첫 번째 방어선이다. 알려진 공격 패턴은 시그니처로 즉시 차단하고,
+    신규/변형 공격은 이상 탐지를 통해 식별할 수 있다.
+    OWASP Top 10 공격 대부분을 WAF 규칙으로 완화할 수 있다.
+  how: |
+    1. 시그니처 기반: 정규식/패턴으로 알려진 공격 문자열 매칭
+    2. 이상 탐지: 정상 요청 프로파일 대비 비정상 요소 식별
+    3. 스코어링: 탐지된 규칙별 점수를 합산하여 임계값 초과 시 차단
+    4. 화이트리스트/블랙리스트: 허용/차단 목록 기반 필터링
+    5. 가상 패칭: 취약점 패치 전 WAF 규칙으로 임시 방어
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT"  # 탐지 방어의 하위 개념
+  causal:
+    prevents:
+      - "ATK-INJECT-SQL-001"    # SQL Injection 차단
+      - "ATK-INJECT-XSS-001"    # XSS 차단
+      - "ATK-INJECT-CMD-001"    # Command Injection 차단
+      - "ATK-INJECT-XML-001"    # XML Injection 차단
+  applicability:
+    applies_to:
+      - "INFRA-NET-WAF-001"     # WAF 인프라에서 동작
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    detection_methods:
+      - name: "Signature-based"
+        description: "알려진 공격 패턴을 정규식으로 매칭"
+        effectiveness: "HIGH (알려진 공격)"
+      - name: "Anomaly-based"
+        description: "정상 트래픽 기준선 대비 이상 탐지"
+        effectiveness: "MEDIUM (제로데이 대응 가능)"
+      - name: "Score-based"
+        description: "다수 규칙 스코어 합산으로 판단"
+        effectiveness: "HIGH (오탐 감소)"
+    rule_categories:
+      - "SQL Injection 탐지"
+      - "XSS 탐지"
+      - "Command Injection 탐지"
+      - "Directory Traversal 탐지"
+      - "File Inclusion 탐지"
+      - "Protocol Violation 탐지"
+    common_rulesets:
+      - "OWASP Core Rule Set (CRS)"
+      - "ModSecurity Rules"
+      - "Vendor-specific Rules"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ModSecurity Core Rule Set"
+      - "NIST SP 800-41 Firewall Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WAF Detection Rules는 웹 애플리케이션 방화벽에서 사용하는 공격 탐지 규칙이다.
+      시그니처 기반 탐지와 이상 탐지를 포함하며, SQL Injection, XSS 등 웹 공격을
+      HTTP 요청 분석을 통해 실시간 탐지한다. OWASP CRS 등의 규칙셋을 사용한다.
+    search_keywords:
+      - "WAF 규칙"
+      - "WAF Detection"
+      - "WAF Rules"
+      - "웹 방화벽 탐지"
+      - "시그니처 탐지"
+      - "OWASP CRS"
+    related_queries:
+      - "WAF 탐지 규칙이란?"
+      - "WAF에서 SQL Injection을 어떻게 탐지하나?"
+      - "OWASP CRS란?"
+      - "WAF 시그니처 vs 이상 탐지"

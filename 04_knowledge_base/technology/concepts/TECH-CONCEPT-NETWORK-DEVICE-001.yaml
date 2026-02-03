@@ -1,0 +1,104 @@
+# GR Atom: Network Device (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-NETWORK-DEVICE-001"
+  name: "Network Device"
+  normalization:
+    normalized_name: "network device network equipment infrastructure"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 장비"
+    - "Network Equipment"
+    - "네트워크 디바이스"
+    - "Network Infrastructure"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L2"
+    zone: "Cross"
+    tags: ["N", "INFRA"]
+
+definition:
+  what: |
+    네트워크 장비(Network Device)는 네트워크 트래픽을 제어, 전달,
+    보호하는 물리적 또는 가상 장비의 총칭이다. 라우터, 스위치,
+    방화벽, 로드밸런서, WAF 등을 포함한다.
+  why: |
+    네트워크 장비는 인프라 보안의 첫 번째 방어선이다. 네트워크
+    경계에서 악성 트래픽을 차단하고 트래픽 흐름을 제어한다.
+    잘못된 설정은 전체 네트워크 노출로 이어질 수 있다.
+  how: |
+    1. Firewall: 패킷 필터링, 상태 기반 검사
+    2. Load Balancer: 트래픽 분산, 가용성 확보
+    3. WAF: 웹 애플리케이션 공격 차단
+    4. CDN: 콘텐츠 캐싱, DDoS 완화
+    5. DNS: 도메인 네임 해석
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-NET-LB-001"
+      - "INFRA-NET-WAF-001"
+      - "INFRA-NET-FIREWALL-001"
+      - "INFRA-NET-CDN-001"
+      - "INFRA-NET-DNS-001"
+
+properties:
+  technical:
+    device_types:
+      - name: "Firewall"
+        layer: "L2-L4"
+        function: "Packet Filtering"
+      - name: "WAF"
+        layer: "L7"
+        function: "Web Attack Protection"
+      - name: "Load Balancer"
+        layer: "L4-L7"
+        function: "Traffic Distribution"
+      - name: "CDN"
+        layer: "L7"
+        function: "Content Caching"
+      - name: "DNS Server"
+        layer: "L7"
+        function: "Name Resolution"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Network Security Guidelines"
+      - "CIS Benchmarks for Network Devices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Device(네트워크 장비)는 트래픽을 제어하고 보호하는 장비이다.
+      Firewall은 패킷을 필터링하고, WAF는 웹 공격을 차단하며,
+      Load Balancer는 트래픽을 분산한다. 네트워크 경계 보안의 핵심이며
+      잘못된 설정은 전체 인프라 노출로 이어진다.
+    search_keywords:
+      - "Network Device"
+      - "네트워크 장비"
+      - "Firewall"
+      - "WAF"
+      - "Load Balancer"
+      - "CDN"
+    related_queries:
+      - "네트워크 장비 종류"
+      - "방화벽과 WAF 차이"
+      - "로드밸런서 역할"
+      - "네트워크 보안 구성"

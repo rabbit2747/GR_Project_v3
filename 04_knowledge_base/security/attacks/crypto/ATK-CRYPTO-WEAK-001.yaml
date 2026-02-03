@@ -1,0 +1,121 @@
+# GR Atom: Weak Cryptography Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-WEAK-001"
+  name: "Weak Cryptography Exploitation"
+  normalization:
+    normalized_name: "weak cryptography attack weak encryption cipher attack"
+    normalization_version: "1.0"
+  aliases:
+    - "취약한 암호화 공격"
+    - "Weak Encryption Attack"
+    - "암호 해독 공격"
+    - "Cryptographic Attack"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone2"
+    tags: ["ATK", "CRYPTO"]
+
+definition:
+  what: |
+    취약한 암호화 공격은 약한 암호화 알고리즘, 짧은 키 길이, 부적절한
+    암호화 모드를 악용하여 암호화된 데이터를 해독하거나 무력화하는 공격이다.
+  why: |
+    오래된 시스템이나 레거시 호환성으로 인해 취약한 암호화가 사용되는
+    경우가 많다. MD5, SHA1, DES, RC4 등은 이미 취약점이 알려져 있다.
+  how: |
+    1. 사용된 암호화 알고리즘/프로토콜 식별
+    2. 알려진 취약점 및 공격 기법 적용
+    3. 해시 충돌, 브루트포스, 패딩 오라클 등 공격
+    4. 평문 데이터 또는 키 복원
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+  causal:
+    exploits:
+      - "VUL-CRYPTO-WEAK-001"
+    targets:
+      - "TECH-PROTOCOL-HTTPS-001"
+      - "DEF-PREVENT-ENCRYPT-001"
+    mitigated_by:
+      - "DEF-PREVENT-CRYPTO-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Hash Collision"
+        target: "MD5, SHA1"
+        method: "동일 해시를 생성하는 다른 입력 생성"
+      - name: "Brute Force"
+        target: "DES, 짧은 키"
+        method: "모든 가능한 키 시도"
+      - name: "Padding Oracle"
+        target: "CBC 모드"
+        method: "패딩 오류 응답으로 평문 복원"
+      - name: "Birthday Attack"
+        target: "짧은 해시"
+        method: "확률적 충돌 발견"
+    weak_algorithms:
+      deprecated:
+        - "MD5 (해시)"
+        - "SHA1 (해시)"
+        - "DES (대칭키)"
+        - "RC4 (스트림 암호)"
+        - "3DES (대칭키)"
+      recommended:
+        - "SHA-256/SHA-3 (해시)"
+        - "AES-256 (대칭키)"
+        - "RSA-2048+ (비대칭키)"
+        - "ECDSA (서명)"
+    impact:
+      - "데이터 기밀성 침해"
+      - "무결성 검증 우회"
+      - "인증 우회"
+      - "세션 탈취"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-327"
+    owasp_category: "A02:2021 - Cryptographic Failures"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Cryptographic Failures"
+      - "CWE-327: Use of a Broken or Risky Cryptographic Algorithm"
+      - "NIST Cryptographic Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Weak Cryptography Attack(취약한 암호화 공격)은 MD5, DES 등
+      취약한 알고리즘을 악용하여 데이터를 해독하는 공격이다.
+      현대적이고 강력한 암호화 알고리즘 사용으로 방어한다.
+    search_keywords:
+      - "Weak Cryptography"
+      - "취약한 암호화"
+      - "MD5 취약점"
+      - "암호화 공격"
+    related_queries:
+      - "취약한 암호화 알고리즘"
+      - "MD5 vs SHA-256"
+      - "암호화 베스트 프랙티스"

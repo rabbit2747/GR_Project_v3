@@ -1,0 +1,101 @@
+# GR Atom: HTML Language
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-LANG-HTML-001"
+  name: "HTML (HyperText Markup Language)"
+  normalization:
+    normalized_name: "html hypertext markup language"
+    normalization_version: "1.0"
+  aliases:
+    - "HTML"
+    - "HTML5"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["WEB"]
+
+definition:
+  what: |
+    HTML은 웹 페이지의 구조와 콘텐츠를 정의하는 마크업 언어다.
+    태그(Tag)를 사용하여 문서의 요소를 표현한다.
+  why: |
+    모든 웹 페이지의 기본 구조를 정의한다. XSS 공격은 악성 HTML/JavaScript를
+    삽입하는 것이므로, HTML 이해는 웹 보안의 기초다.
+  how: |
+    1. 브라우저가 HTML 문서를 다운로드
+    2. HTML 파서가 문서를 파싱하여 DOM 트리 생성
+    3. CSS와 결합하여 렌더 트리 생성
+    4. 화면에 렌더링
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-MARKUP-001"]
+  causal:
+    enables:
+      - "TECH-CONCEPT-DOM-001"  # DOM 생성
+      - "ATK-INJECT-XSS-001"  # XSS 공격
+  conditional:
+    requires: []
+
+properties:
+  technical:
+    type: "Markup Language"
+    versions:
+      - "HTML 4.01"
+      - "XHTML 1.0"
+      - "HTML5"
+    key_elements:
+      structure: ["html", "head", "body", "div", "span"]
+      forms: ["form", "input", "button", "textarea"]
+      media: ["img", "video", "audio"]
+      semantic: ["header", "footer", "nav", "article", "section"]
+    security_relevant:
+      - name: "script"
+        risk: "JavaScript 실행"
+      - name: "iframe"
+        risk: "외부 콘텐츠 삽입"
+      - name: "form"
+        risk: "사용자 입력 처리"
+      - name: "a href"
+        risk: "javascript: URL 실행 가능"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "W3C HTML5 Specification"
+      - "WHATWG HTML Living Standard"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HTML HyperText Markup Language는 웹 페이지 구조를 정의하는 마크업 언어다.
+      태그를 사용하여 문서 요소를 표현하며, 브라우저가 파싱하여 DOM을 생성한다.
+      script, iframe, form 등의 요소는 보안과 관련되며, XSS 공격은 악성 HTML을
+      삽입하는 것이다.
+    search_keywords:
+      - "HTML"
+      - "HTML5"
+      - "웹 마크업"
+      - "DOM"
+      - "웹 페이지"
+    related_queries:
+      - "HTML이란?"
+      - "HTML과 DOM의 관계"
+      - "XSS와 HTML의 관계"

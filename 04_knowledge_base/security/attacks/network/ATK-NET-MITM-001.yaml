@@ -1,0 +1,165 @@
+# GR Atom: Man-in-the-Middle Attack (MITM)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-MITM-001"
+  name: "Man-in-the-Middle Attack (MITM)"
+  normalization:
+    normalized_name: "man in the middle mitm interception eavesdropping"
+    normalization_version: "1.0"
+  aliases:
+    - "중간자 공격"
+    - "MITM"
+    - "MitM Attack"
+    - "On-Path Attack"
+    - "Interception Attack"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["EXPLOIT", "NET"]
+
+definition:
+  what: |
+    Man-in-the-Middle(MITM) 공격은 두 통신 당사자 사이에 공격자가 몰래
+    끼어들어 통신 내용을 도청, 변조, 가로채는 네트워크 공격이다.
+    피해자들은 서로 직접 통신하고 있다고 믿지만, 실제로는 공격자를 경유한다.
+  why: |
+    암호화되지 않은 통신에서 자격증명, 세션 토큰, 개인정보를 탈취할 수 있다.
+    SSL/TLS가 적용된 통신에서도 인증서 위조 또는 SSL Stripping으로 공격이
+    가능하다. 금융 거래 변조, 악성코드 주입, DNS 응답 변조 등에 활용된다.
+  how: |
+    1. 네트워크 접근 확보 (동일 네트워크, ARP Spoofing, DNS Spoofing 등)
+    2. 트래픽 가로채기 (ARP 캐시 포이즈닝, DHCP Spoofing 등)
+    3. 통신 중계 및 도청 (패킷 캡처, SSL Stripping)
+    4. 필요 시 통신 내용 변조 (데이터 조작, 악성코드 주입)
+    5. 자격증명, 세션 토큰 등 민감 정보 탈취
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-NETWORK-ATTACK-001"]
+  causal:
+    enables:
+      - "VUL-DATA-EXPOSURE-001"
+      - "VUL-AUTH-SESSION-001"
+      - "VUL-CRYPTO-WEAK-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TCP-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-NET-LB-001"
+
+properties:
+  technical:
+    subtypes:
+      - name: "ARP Spoofing/Poisoning"
+        description: "ARP 캐시를 변조하여 트래픽을 공격자로 리다이렉트"
+        layer: "L2"
+      - name: "DNS Spoofing"
+        description: "DNS 응답을 위조하여 악성 서버로 유도"
+        layer: "L7"
+      - name: "SSL Stripping"
+        description: "HTTPS를 HTTP로 다운그레이드하여 암호화 제거"
+        layer: "L7"
+      - name: "HTTPS Spoofing"
+        description: "위조된 인증서로 HTTPS 통신 가로채기"
+        layer: "L7"
+      - name: "Wi-Fi Eavesdropping"
+        description: "공용 Wi-Fi에서 암호화되지 않은 트래픽 도청"
+        layer: "L2"
+      - name: "BGP Hijacking"
+        description: "BGP 라우팅을 조작하여 트래픽 우회"
+        layer: "L3"
+      - name: "DHCP Spoofing"
+        description: "악성 DHCP 서버로 네트워크 설정 변조"
+        layer: "L3"
+    tools:
+      - "Ettercap"
+      - "Bettercap"
+      - "mitmproxy"
+      - "sslstrip"
+      - "Wireshark"
+      - "arpspoof"
+    attack_scenarios:
+      - name: "공용 Wi-Fi 공격"
+        description: "카페, 공항 등 공용 네트워크에서 도청"
+      - name: "기업 내부 네트워크"
+        description: "ARP Spoofing으로 내부 트래픽 가로채기"
+      - name: "SSL/TLS 다운그레이드"
+        description: "sslstrip으로 HTTPS 통신 해제"
+  security:
+    impact:
+      confidentiality: "CRITICAL - 모든 통신 내용 도청"
+      integrity: "CRITICAL - 통신 내용 변조 가능"
+      availability: "MEDIUM - 통신 방해/차단 가능"
+    cvss_base: 8.1
+    cwe_id: "CWE-300"
+    mitre_attack:
+      technique_id: "T1557"
+      tactic: "Credential Access"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-HTTPS-001"
+        name: "HTTPS/TLS 암호화"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-HEADERS-001"
+        name: "HSTS (HTTP Strict Transport Security)"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "인증서 피닝 (Certificate Pinning)"
+        effectiveness: "HIGH"
+      - name: "VPN 사용"
+        effectiveness: "HIGH"
+      - name: "ARP 정적 엔트리"
+        effectiveness: "MEDIUM"
+      - name: "네트워크 모니터링 (ARP 이상 탐지)"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Man-in-the-Middle Attack"
+      - "CWE-300: Channel Accessible by Non-Endpoint"
+      - "MITRE ATT&CK T1557"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Man-in-the-Middle(MITM) 공격은 두 통신 당사자 사이에 끼어들어
+      통신을 도청하고 변조하는 네트워크 공격이다. ARP Spoofing, DNS Spoofing,
+      SSL Stripping 등의 기법을 사용한다. Ettercap, Bettercap, mitmproxy가
+      대표 도구이며, HTTPS/TLS 암호화, HSTS, 인증서 피닝으로 방어한다.
+      CWE-300에 해당하며 자격증명 탈취, 데이터 변조에 활용된다.
+    search_keywords:
+      - "MITM"
+      - "Man-in-the-Middle"
+      - "중간자 공격"
+      - "ARP Spoofing"
+      - "SSL Stripping"
+      - "도청"
+      - "패킷 가로채기"
+    related_queries:
+      - "MITM 공격이란?"
+      - "중간자 공격 방어 방법"
+      - "ARP Spoofing이란?"
+      - "SSL Stripping 원리"
+      - "공용 Wi-Fi 보안"

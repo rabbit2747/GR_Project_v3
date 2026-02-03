@@ -1,0 +1,109 @@
+# GR Atom: Insufficient Incident Response Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-RESPONSE-INSUFFICIENT-001"
+  name: "Insufficient Incident Response"
+  normalization:
+    normalized_name: "insufficient incident response lack of ir no playbooks"
+    normalization_version: "1.0"
+  aliases:
+    - "대응 부재"
+    - "Lack of Incident Response"
+    - "No IR Plan"
+    - "사고 대응 부재"
+
+classification:
+  domain: application
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["VUL", "RESPOND", "PROCESS"]
+
+definition:
+  what: |
+    대응 부재(Insufficient Incident Response)는 보안 사고 발생 시
+    대응 절차, 플레이북, 담당자, 연락 체계가 없거나 부족한 상태다.
+  why: |
+    사고가 탐지되어도 효과적으로 대응하지 못하면 피해가 확대된다.
+    복구 지연, 증거 훼손, 재발 방지 실패로 이어진다.
+  how: |
+    1. 플레이북 부재: 대응 절차 문서화 없음
+    2. 역할 미정의: 담당자, 에스컬레이션 경로 불명
+    3. 도구 부재: 포렌식, 격리 도구 미비
+    4. 훈련 부재: 모의 훈련, 테이블탑 미실시
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-MONITORING-INSUFFICIENT-001"
+      - "VUL-LOG-INSUFFICIENT-001"
+  causal:
+    addressed_by:
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    impact_factors:
+      - "Extended incident duration"
+      - "Increased damage and data loss"
+      - "Evidence destruction"
+      - "Regulatory penalties"
+      - "Reputational damage"
+    ir_gaps:
+      - name: "No IR plan"
+        risk: "Ad-hoc response, missed steps"
+      - name: "No playbooks"
+        risk: "Inconsistent response"
+      - name: "No training"
+        risk: "Slow, error-prone response"
+      - name: "No tools"
+        risk: "Can't contain or investigate"
+    remediation:
+      - "Develop IR plan and playbooks"
+      - "Define roles and escalation paths"
+      - "Implement forensic and containment tools"
+      - "Conduct regular tabletop exercises"
+      - "Establish communication procedures"
+  security:
+    severity: medium
+    cvss_base: 4.5
+    cwe_id: "CWE-778"
+    owasp_category: "A09:2021 - Security Logging and Monitoring Failures"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Incident Response Guide"
+      - "SANS Incident Response Handbook"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Insufficient Incident Response(대응 부재)는 보안 사고 발생 시
+      효과적으로 대응하지 못하는 취약점이다. IR 계획, 플레이북,
+      훈련으로 해결한다.
+    search_keywords:
+      - "Incident Response"
+      - "대응 부재"
+      - "IR Plan"
+      - "사고 대응"
+    related_queries:
+      - "사고 대응 계획"
+      - "IR 플레이북"
+      - "보안 사고 대응"

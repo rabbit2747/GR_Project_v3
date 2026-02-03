@@ -1,0 +1,82 @@
+# GR Atom: Identity Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-IDENTITY-001"
+  name: "Identity Infrastructure"
+  normalization:
+    normalized_name: "identity infrastructure idp directory sso"
+    normalization_version: "1.0"
+  aliases:
+    - "Identity Infrastructure"
+    - "계정 인프라"
+    - "Identity Provider Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "IDENTITY"]
+
+definition:
+  what: |
+    조직의 계정과 인증을 관리하는 인프라 분류이다.
+  why: |
+    계정 아키텍처를 이해한다.
+    인증 시스템을 통합한다.
+    접근 관리를 중앙화한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-IDENTITY-IDP-001"
+      - "INFRA-IDENTITY-DIRECTORY-001"
+    related_to:
+      - "TECH-IAM-001"
+      - "TECH-AUTH-001"
+      - "INFRA-AD-001"
+
+properties:
+  technical:
+    components:
+      - "Identity Provider"
+      - "Directory Service"
+      - "SSO Platform"
+      - "MFA Service"
+      - "PAM Solution"
+    protocols:
+      - "SAML"
+      - "OAuth"
+      - "OIDC"
+      - "LDAP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Identity Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Identity Infrastructure는 계정 및 인증 인프라 분류이다.
+    search_keywords:
+      - "Identity Infrastructure"
+      - "계정 인프라"
+      - "SSO"
+      - "Identity Provider"

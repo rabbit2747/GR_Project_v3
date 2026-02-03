@@ -1,0 +1,121 @@
+# GR Atom: Virtualization/Sandbox Evasion
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1497-001"
+  name: "Virtualization/Sandbox Evasion"
+  normalization:
+    normalized_name: "virtualization sandbox evasion detection anti analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "샌드박스 회피"
+    - "가상화 탐지"
+    - "분석 환경 회피"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "DEF-EVASION"]
+
+definition:
+  what: |
+    분석 환경(가상 머신, 샌드박스)을 탐지하여 악성 행위를
+    숨기거나 분석을 방해하는 기법이다.
+  why: |
+    보안 제품의 동적 분석을 우회한다.
+    악성코드 분석을 어렵게 만든다.
+  how: |
+    1. 환경 특성 확인
+    2. 가상화/샌드박스 여부 판단
+    3. 분석 환경이면 정상 동작
+    4. 실제 환경에서만 악성 행위
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-DEF-EVASION-001"
+    related_to:
+      - "ATK-MALWARE-TROJAN-001"
+
+properties:
+  technical:
+    mitre_id: "T1497"
+    tactic: "Defense Evasion, Discovery"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1497.001"
+        name: "System Checks"
+        description: "시스템 속성 확인"
+      - id: "T1497.002"
+        name: "User Activity Based Checks"
+        description: "사용자 활동 기반 확인"
+      - id: "T1497.003"
+        name: "Time Based Evasion"
+        description: "시간 기반 회피"
+    detection_techniques:
+      vm_artifacts:
+        - "VMware: vmware-vmx, vmtoolsd"
+        - "VirtualBox: VBoxService, VBoxTray"
+        - "레지스트리 키 확인"
+        - "MAC 주소 (00:0C:29, 08:00:27)"
+      sandbox_indicators:
+        - "분석 도구 프로세스"
+        - "적은 파일/프로그램"
+        - "낮은 메모리/CPU"
+        - "네트워크 제한"
+      timing_checks:
+        - "RDTSC 명령어"
+        - "GetTickCount"
+        - "Sleep 단축 탐지"
+      user_interaction:
+        - "마우스 이동 없음"
+        - "키보드 입력 없음"
+        - "브라우저 히스토리 없음"
+    evasion_actions:
+      - "실행 중단"
+      - "무해한 동작만 수행"
+      - "지연 실행"
+      - "자가 삭제"
+    detection:
+      - "환경 쿼리 패턴"
+      - "API 호출 모니터링"
+      - "타이밍 이상"
+    mitigation:
+      - "고급 샌드박스 사용"
+      - "베어메탈 분석"
+      - "환경 위장"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1497"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      샌드박스 회피는 가상 머신이나 분석 환경을 탐지하여
+      악성 행위를 숨기는 MITRE ATT&CK Defense Evasion 기법이다.
+    search_keywords:
+      - "샌드박스 회피"
+      - "가상화 탐지"
+      - "Anti-VM"
+      - "분석 회피"
+    related_queries:
+      - "악성코드 분석"
+      - "동적 분석"
+      - "탐지 회피"

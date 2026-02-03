@@ -1,0 +1,118 @@
+# GR Atom: LAPS (Local Administrator Password Solution)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-WIN-LAPS-001"
+  name: "LAPS (Local Administrator Password Solution)"
+  normalization:
+    normalized_name: "laps local administrator password solution windows"
+    normalization_version: "1.0"
+  aliases:
+    - "LAPS"
+    - "로컬 관리자 패스워드 솔루션"
+    - "Windows LAPS"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "WIN", "PASSWORD"]
+
+definition:
+  what: |
+    도메인 가입 컴퓨터의 로컬 관리자 패스워드를 자동으로
+    관리하고 Active Directory에 안전하게 저장하는 Microsoft 솔루션이다.
+  why: |
+    로컬 관리자 패스워드 재사용을 방지한다.
+    Pass-the-Hash 공격을 완화한다.
+  how: |
+    1. LAPS 클라이언트 설치
+    2. GPO로 정책 배포
+    3. 패스워드 자동 생성/변경
+    4. AD에 암호화 저장
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "ATK-WIN-PASS-THE-HASH-001"
+      - "TECH-CONCEPT-AD-SECURITY-001"
+
+properties:
+  technical:
+    versions:
+      - name: "Legacy LAPS"
+        storage: "ms-Mcs-AdmPwd (평문)"
+      - name: "Windows LAPS"
+        storage: "msLAPS-Password (암호화)"
+        introduced: "Windows Server 2019/2022"
+    components:
+      - "AdmPwd.dll (클라이언트)"
+      - "AD Schema 확장"
+      - "GPO 설정"
+      - "PowerShell 모듈"
+    gpo_settings:
+      - "패스워드 복잡도"
+      - "패스워드 길이"
+      - "패스워드 수명"
+      - "관리자 계정 이름"
+    ad_attributes:
+      legacy:
+        - "ms-Mcs-AdmPwd"
+        - "ms-Mcs-AdmPwdExpirationTime"
+      windows_laps:
+        - "msLAPS-Password"
+        - "msLAPS-PasswordExpirationTime"
+        - "msLAPS-EncryptedPassword"
+    access_control:
+      - "권한 있는 그룹만 패스워드 읽기"
+      - "Self 쓰기 권한 (컴퓨터 계정)"
+      - "세분화된 접근 제어"
+    usage:
+      powershell: "Get-LapsADPassword -Identity computer01"
+      gui: "LAPS UI 또는 Active Directory Users and Computers"
+    benefits:
+      - "패스워드 고유성"
+      - "자동 회전"
+      - "중앙 관리"
+      - "감사 추적"
+    security_considerations:
+      - "AD 권한 제한"
+      - "암호화된 버전 사용"
+      - "정기적 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft LAPS"
+      - "Windows LAPS Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LAPS는 로컬 관리자 패스워드를 자동 관리하여
+      패스워드 재사용과 Pass-the-Hash를 방지하는 솔루션이다.
+    search_keywords:
+      - "LAPS"
+      - "로컬 관리자"
+      - "패스워드 관리"
+      - "Windows"
+    related_queries:
+      - "AD 보안"
+      - "권한 관리"
+      - "Pass-the-Hash 방지"

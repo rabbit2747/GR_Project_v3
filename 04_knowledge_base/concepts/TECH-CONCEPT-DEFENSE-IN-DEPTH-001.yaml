@@ -1,0 +1,103 @@
+# GR Atom: Defense in Depth
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DEFENSE-IN-DEPTH-001"
+  name: "Defense in Depth"
+  normalization:
+    normalized_name: "defense in depth layered security multiple controls"
+    normalization_version: "1.0"
+  aliases:
+    - "Defense in Depth"
+    - "다층 방어"
+    - "Layered Security"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["CONCEPT", "PRINCIPLE", "ARCHITECTURE"]
+
+definition:
+  what: |
+    여러 겹의 보안 통제를 구현하여 한 계층이 실패해도
+    다른 계층이 보호하는 보안 전략이다.
+  why: |
+    단일 실패 지점을 제거한다.
+    공격자의 진입을 지연시킨다.
+  how: |
+    1. 보안 계층 식별
+    2. 각 계층에 통제 구현
+    3. 중첩된 보호 설계
+    4. 정기적 검증
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-PRINCIPLE-001"
+    related_to:
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+      - "DEF-NET-FIREWALL-001"
+
+properties:
+  technical:
+    layers:
+      - name: "물리적 계층"
+        controls: ["물리 보안", "환경 제어", "CCTV"]
+      - name: "네트워크 계층"
+        controls: ["방화벽", "IDS/IPS", "세그멘테이션"]
+      - name: "호스트 계층"
+        controls: ["EDR", "패치 관리", "설정 관리"]
+      - name: "애플리케이션 계층"
+        controls: ["WAF", "입력 검증", "SAST/DAST"]
+      - name: "데이터 계층"
+        controls: ["암호화", "DLP", "접근 통제"]
+      - name: "인적 계층"
+        controls: ["보안 교육", "정책", "프로세스"]
+    principles:
+      - "단일 통제에 의존하지 않음"
+      - "보완적 통제 조합"
+      - "중복 보호"
+      - "실패 시 안전 (Fail Secure)"
+    benefits:
+      - "복원력 향상"
+      - "공격 비용 증가"
+      - "탐지 기회 증가"
+      - "시간 확보"
+    implementation:
+      - "경계 보안"
+      - "내부 세그멘테이션"
+      - "엔드포인트 보호"
+      - "데이터 보호"
+      - "모니터링/대응"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cybersecurity"
+      - "DoD Defense in Depth"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Defense in Depth는 여러 계층의 보안 통제를 구현하여
+      단일 실패 지점을 제거하는 다층 방어 전략이다.
+    search_keywords:
+      - "Defense in Depth"
+      - "다층 방어"
+      - "Layered Security"
+      - "보안 아키텍처"

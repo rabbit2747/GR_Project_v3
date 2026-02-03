@@ -1,0 +1,77 @@
+# GR Atom: IoT Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-IOT-001"
+  name: "IoT Attack"
+  normalization:
+    normalized_name: "iot attack embedded device firmware"
+    normalization_version: "1.0"
+  aliases:
+    - "IoT Attack"
+    - "IoT 공격"
+    - "Embedded Device Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "IOT"]
+
+definition:
+  what: |
+    IoT 기기와 임베디드 시스템의 취약점을 악용하는 공격 기법 분류이다.
+  why: |
+    IoT 기기를 장악한다.
+    봇넷을 구성한다.
+    물리적 시스템에 영향을 준다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-IOT-FIRMWARE-001"
+      - "ATK-IOT-PROTOCOL-001"
+    related_to:
+      - "INFRA-IOT-001"
+      - "MALWARE-BOTNET-001"
+
+properties:
+  technical:
+    vectors:
+      - "Firmware Exploitation"
+      - "Default Credentials"
+      - "Protocol Attacks"
+      - "Physical Access"
+      - "Side-Channel Attacks"
+    targets: ["Smart Devices", "Industrial IoT", "Medical Devices"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP IoT Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IoT Attack은 IoT 기기와 임베디드 시스템을 대상으로 하는 공격 기법 분류이다.
+    search_keywords:
+      - "IoT Attack"
+      - "IoT 공격"
+      - "Embedded"
+      - "Firmware"

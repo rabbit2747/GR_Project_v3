@@ -1,0 +1,97 @@
+# GR Atom: Enumeration Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-ENUM-001"
+  name: "Enumeration Tool"
+  normalization:
+    normalized_name: "enumeration tool privilege escalation discovery"
+    normalization_version: "1.0"
+  aliases:
+    - "Enumeration Tool"
+    - "열거 도구"
+    - "Post-Exploitation Enumeration"
+    - "PrivEsc Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "ENUM"]
+
+definition:
+  what: |
+    시스템 정보 수집, 권한 상승 벡터 탐색, 포스트 익스플로잇
+    열거에 사용되는 도구 분류이다.
+  why: |
+    권한 상승 경로를 발견한다.
+    시스템 취약점을 식별한다.
+    추가 공격 벡터를 파악한다.
+  how: |
+    1. 시스템 접근 획득
+    2. 열거 스크립트 실행
+    3. 결과 분석
+    4. 공격 경로 선택
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    has_children:
+      - "TOOL-LINUX-LINPEAS-001"
+      - "TOOL-WINDOWS-WINPEAS-001"
+    related_to:
+      - "ATK-PRIVILEGE-ESCALATION-001"
+      - "ATK-LINUX-PRIV-ESC-001"
+
+properties:
+  technical:
+    platforms:
+      linux:
+        tools: ["LinPEAS", "LinEnum", "linux-exploit-suggester"]
+        checks: ["SUID", "Sudo", "Cron", "Capabilities"]
+      windows:
+        tools: ["WinPEAS", "PowerUp", "Seatbelt"]
+        checks: ["Services", "Registry", "Scheduled Tasks"]
+    examples:
+      - "LinPEAS"
+      - "WinPEAS"
+      - "JAWS"
+      - "Seatbelt"
+      - "BloodHound"
+    common_findings:
+      - "SUID/SGID 바이너리"
+      - "취약한 서비스 권한"
+      - "저장된 자격 증명"
+      - "설정 오류"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PEASS-ng"
+      - "GTFOBins"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Enumeration Tool은 시스템 정보 수집과 권한 상승
+      벡터 탐색에 사용되는 보안 도구 분류이다.
+    search_keywords:
+      - "Enumeration"
+      - "PrivEsc"
+      - "LinPEAS"
+      - "WinPEAS"

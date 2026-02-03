@@ -1,0 +1,93 @@
+# GR Atom: Lateral Movement
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-LATERAL-001"
+  name: "Lateral Movement"
+  normalization:
+    normalized_name: "lateral movement pivoting network spread"
+    normalization_version: "1.0"
+  aliases:
+    - "Lateral Movement"
+    - "측면 이동"
+    - "Pivoting"
+    - "Network Propagation"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "LATERAL"]
+
+definition:
+  what: |
+    네트워크 내 다른 시스템으로 이동하며 접근을 확장하는
+    공격 기법 분류이다.
+  why: |
+    고가치 자산에 접근한다.
+    공격 범위를 확장한다.
+    목표 시스템에 도달한다.
+  how: |
+    1. 자격 증명 수집
+    2. 대상 시스템 식별
+    3. 접근 시도
+    4. 지속성 확보
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1021-001"
+    related_to:
+      - "ATK-MITRE-LATERAL-001"
+      - "ATK-WIN-PASS-THE-HASH-001"
+
+properties:
+  technical:
+    techniques:
+      - "Pass-the-Hash"
+      - "Pass-the-Ticket"
+      - "Remote Services (RDP, SSH, SMB)"
+      - "WMI/WinRM"
+      - "PsExec"
+    mitre_tactic: "TA0008"
+    tools:
+      - "Mimikatz"
+      - "CrackMapExec"
+      - "Impacket"
+      - "PsExec"
+    prerequisites:
+      - "초기 침해"
+      - "자격 증명"
+      - "네트워크 접근"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0008"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Lateral Movement는 네트워크 내 다른 시스템으로
+      이동하는 공격 기법 분류이다.
+    search_keywords:
+      - "Lateral Movement"
+      - "측면 이동"
+      - "Pivoting"
+      - "Pass-the-Hash"

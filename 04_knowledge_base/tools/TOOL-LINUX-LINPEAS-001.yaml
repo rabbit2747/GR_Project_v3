@@ -1,0 +1,106 @@
+# GR Atom: LinPEAS
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-LINUX-LINPEAS-001"
+  name: "LinPEAS"
+  normalization:
+    normalized_name: "linpeas linux privilege escalation enumeration"
+    normalization_version: "1.0"
+  aliases:
+    - "LinPEAS"
+    - "Privilege Escalation Awesome Scripts"
+    - "리눅스 열거 스크립트"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "LINUX", "ENUM"]
+
+definition:
+  what: |
+    Linux 시스템에서 권한 상승 벡터를 자동으로 탐색하는
+    열거 스크립트이다.
+  why: |
+    권한 상승 경로를 빠르게 식별한다.
+    수동 열거 시간을 절약한다.
+  how: |
+    1. 스크립트 다운로드
+    2. 실행 권한 부여
+    3. 스크립트 실행
+    4. 결과 분석
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-ENUM-001"
+    related_to:
+      - "ATK-LINUX-PRIV-ESC-001"
+      - "TOOL-WINDOWS-WINPEAS-001"
+
+properties:
+  technical:
+    developer: "PEASS-ng (carlospolop)"
+    license: "GPL v3"
+    language: "Shell Script"
+    checks:
+      - "시스템 정보"
+      - "사용자/그룹"
+      - "sudo 권한"
+      - "SUID/SGID 파일"
+      - "Capabilities"
+      - "Cron jobs"
+      - "네트워크 정보"
+      - "프로세스"
+      - "흥미로운 파일"
+      - "CVE 취약점"
+    output_colors:
+      red: "95% PE 벡터"
+      yellow: "중요 정보"
+      green: "일반 정보"
+    usage:
+      basic: "./linpeas.sh"
+      save: "./linpeas.sh | tee linpeas.out"
+      quiet: "./linpeas.sh -q"
+      thorough: "./linpeas.sh -a"
+    execution_methods:
+      - "wget + sh"
+      - "curl + bash"
+      - "파일 전송 후 실행"
+    peass_family:
+      - "LinPEAS (Linux)"
+      - "WinPEAS (Windows)"
+      - "MacPEAS (macOS)"
+    repository: "https://github.com/carlospolop/PEASS-ng"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PEASS-ng GitHub"
+      - "HackTricks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LinPEAS는 Linux 권한 상승 벡터를 자동으로 탐색하는
+      PEASS-ng 프로젝트의 열거 스크립트이다.
+    search_keywords:
+      - "LinPEAS"
+      - "Linux Enumeration"
+      - "Privilege Escalation"
+      - "PEASS"

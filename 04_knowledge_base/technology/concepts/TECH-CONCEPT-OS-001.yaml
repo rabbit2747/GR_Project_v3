@@ -1,0 +1,97 @@
+# GR Atom: Operating System (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-OS-001"
+  name: "Operating System"
+  normalization:
+    normalized_name: "operating system os system software"
+    normalization_version: "1.0"
+  aliases:
+    - "운영체제"
+    - "OS"
+    - "System Software"
+    - "시스템 소프트웨어"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L3"
+    zone: "Cross"
+    tags: ["INFRA", "SYS"]
+
+definition:
+  what: |
+    운영체제(Operating System)는 하드웨어 자원을 관리하고 애플리케이션
+    실행 환경을 제공하는 시스템 소프트웨어다. Linux, Windows,
+    macOS 등이 대표적이다.
+  why: |
+    모든 애플리케이션의 실행 기반이다. OS 레벨 취약점은
+    권한 상승, 시스템 탈취로 이어진다. 커널 보안, 패치 관리,
+    접근 제어가 핵심이다.
+  how: |
+    1. 프로세스 관리: 프로세스 생성, 스케줄링
+    2. 메모리 관리: 가상 메모리, 페이징
+    3. 파일 시스템: 파일 저장, 권한 관리
+    4. 네트워크: 소켓, 프로토콜 스택
+
+relations:
+  structural:
+    has_part:
+      - "TECH-CONCEPT-SHELL-001"
+
+properties:
+  technical:
+    major_os:
+      - name: "Linux"
+        type: "Unix-like"
+        usage: "Server, Container"
+      - name: "Windows"
+        type: "NT-based"
+        usage: "Desktop, Server"
+      - name: "macOS"
+        type: "Unix-based"
+        usage: "Desktop"
+    security_features:
+      - "Access Control (DAC, MAC)"
+      - "User Privilege Separation"
+      - "Kernel Security (SELinux, AppArmor)"
+      - "Patch Management"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Benchmarks for OS"
+      - "NIST OS Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Operating System(운영체제)는 하드웨어를 관리하고 애플리케이션
+      실행 환경을 제공하는 시스템 소프트웨어다. Linux, Windows, macOS가
+      대표적이며 OS 취약점은 권한 상승으로 이어진다.
+      접근 제어, 커널 보안, 패치 관리가 핵심이다.
+    search_keywords:
+      - "Operating System"
+      - "운영체제"
+      - "Linux"
+      - "Windows"
+      - "OS Security"
+    related_queries:
+      - "운영체제 보안"
+      - "Linux vs Windows 보안"
+      - "OS 권한 상승 공격"
+      - "커널 보안"

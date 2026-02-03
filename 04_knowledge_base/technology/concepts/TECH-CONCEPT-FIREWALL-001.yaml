@@ -1,0 +1,103 @@
+# GR Atom: Firewall (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-FIREWALL-001"
+  name: "Firewall"
+  normalization:
+    normalized_name: "firewall network firewall security firewall"
+    normalization_version: "1.0"
+  aliases:
+    - "방화벽"
+    - "Network Firewall"
+    - "네트워크 방화벽"
+    - "Security Gateway"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["SEC", "N", "D"]
+
+definition:
+  what: |
+    방화벽(Firewall)은 네트워크 트래픽을 모니터링하고 보안 정책에
+    따라 허용/차단하는 네트워크 보안 장치다. 패킷 필터링,
+    상태 기반 검사, 애플리케이션 계층 검사 등의 기능이 있다.
+  why: |
+    네트워크 경계 보안의 1차 방어선이다. 외부 공격 차단,
+    내부 세그먼테이션, 정책 기반 접근 제어를 담당한다.
+    WAF는 웹 애플리케이션 특화 방화벽이다.
+  how: |
+    1. Packet Filtering: IP/Port 기반 필터링
+    2. Stateful Inspection: 연결 상태 추적
+    3. Application Layer: 프로토콜 검사
+    4. WAF: HTTP/HTTPS 트래픽 심층 분석
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-NET-WAF-001"
+      - "INFRA-NET-FIREWALL-001"
+  causal:
+    prevents:
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    firewall_types:
+      - name: "Packet Filtering"
+        layer: "L3-L4"
+        inspection: "IP, Port, Protocol"
+      - name: "Stateful"
+        layer: "L3-L4"
+        inspection: "Connection State"
+      - name: "Application"
+        layer: "L7"
+        inspection: "Protocol Content"
+      - name: "WAF"
+        layer: "L7"
+        inspection: "HTTP/HTTPS Attacks"
+    products:
+      - "iptables/nftables"
+      - "Palo Alto"
+      - "Fortinet"
+      - "AWS Security Groups"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Firewall Guidelines"
+      - "CIS Firewall Benchmarks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Firewall(방화벽)은 트래픽을 모니터링하고 차단하는 보안 장치다.
+      Packet Filtering, Stateful, Application Layer, WAF 유형이 있다.
+      네트워크 경계 보안의 1차 방어선이며 정책 기반 접근 제어를 담당한다.
+    search_keywords:
+      - "Firewall"
+      - "방화벽"
+      - "WAF"
+      - "Packet Filtering"
+      - "네트워크 보안"
+    related_queries:
+      - "방화벽 종류"
+      - "WAF와 방화벽 차이"
+      - "방화벽 설정 방법"
+      - "클라우드 방화벽"

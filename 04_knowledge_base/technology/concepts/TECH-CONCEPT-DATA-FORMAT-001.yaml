@@ -1,0 +1,94 @@
+# GR Atom: Data Format (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DATA-FORMAT-001"
+  name: "Data Format"
+  normalization:
+    normalized_name: "data format data serialization format"
+    normalization_version: "1.0"
+  aliases:
+    - "데이터 형식"
+    - "Data Serialization"
+    - "데이터 직렬화"
+    - "Interchange Format"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["TECH", "DATA"]
+
+definition:
+  what: |
+    데이터 형식(Data Format)은 데이터를 구조화하고 표현하는
+    표준 규격이다. JSON, XML, YAML 등이 대표적이며, 시스템 간
+    데이터 교환에 사용된다.
+  why: |
+    API 통신, 설정 파일, 데이터 저장 등에 필수적이다.
+    파싱 취약점은 XXE, Injection, DoS 공격으로 이어질 수 있다.
+    안전한 파서 사용과 입력 검증이 중요하다.
+  how: |
+    1. JSON: JavaScript Object Notation, 웹 API 표준
+    2. XML: Extensible Markup Language, 구조화된 문서
+    3. YAML: Human-readable 설정 형식
+    4. CSV: 표 형식 데이터
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-FORMAT-JSON-001"
+      - "TECH-FORMAT-XML-001"
+
+properties:
+  technical:
+    common_formats:
+      - name: "JSON"
+        usage: "Web API, Configuration"
+        security_risks: ["Injection", "DoS via deep nesting"]
+      - name: "XML"
+        usage: "SOAP, Configuration, Documents"
+        security_risks: ["XXE", "Billion Laughs", "XPath Injection"]
+      - name: "YAML"
+        usage: "Configuration (Kubernetes, Docker)"
+        security_risks: ["Code Execution via deserialization"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ECMA-404 JSON Standard"
+      - "W3C XML Specification"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Data Format(데이터 형식)은 데이터를 구조화하는 표준 규격이다.
+      JSON은 웹 API, XML은 SOAP과 설정에, YAML은 DevOps 설정에 쓰인다.
+      파싱 취약점으로 XXE, Injection, DoS 공격이 가능하며
+      안전한 파서와 입력 검증이 필요하다.
+    search_keywords:
+      - "Data Format"
+      - "데이터 형식"
+      - "JSON"
+      - "XML"
+      - "YAML"
+      - "직렬화"
+    related_queries:
+      - "JSON vs XML 비교"
+      - "데이터 형식 종류"
+      - "XML 보안 취약점"
+      - "JSON 파싱 주의사항"

@@ -1,0 +1,109 @@
+# GR Atom: IoT Hardcoded Credentials
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-IOT-HARDCODED-001"
+  name: "IoT Hardcoded Credentials"
+  normalization:
+    normalized_name: "iot hardcoded credentials default password backdoor"
+    normalization_version: "1.0"
+  aliases:
+    - "하드코딩된 자격 증명"
+    - "기본 비밀번호"
+    - "백도어 계정"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone3"
+    tags: ["VUL", "IOT", "CREDENTIAL"]
+
+definition:
+  what: |
+    IoT 하드코딩된 자격 증명은 기기 펌웨어에 비밀번호, API 키,
+    인증서 등이 고정되어 포함되어 있는 취약점이다.
+  why: |
+    OWASP IoT Top 10 1위 취약점이다. 모든 동일 모델 기기가
+    같은 자격 증명을 공유하여 대규모 침해로 이어진다 (Mirai 봇넷).
+  how: |
+    1. 펌웨어 추출 및 분석
+    2. 문자열 검색으로 자격 증명 찾기
+    3. 발견된 자격 증명으로 로그인
+    4. 기기 완전 제어
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-AUTH-BROKEN-001"
+  causal:
+    exploited_by:
+      - "ATK-IOT-FIRMWARE-001"
+
+properties:
+  technical:
+    common_types:
+      - "관리자 계정 기본 비밀번호"
+      - "SSH/Telnet 백도어 계정"
+      - "API 키"
+      - "SSL/TLS 개인키"
+      - "암호화 키"
+      - "클라우드 서비스 자격 증명"
+    discovery_methods:
+      - "펌웨어 문자열 검색"
+      - "바이너리 분석"
+      - "기본 자격 증명 데이터베이스"
+      - "Shodan 검색"
+    famous_incidents:
+      - name: "Mirai Botnet"
+        description: "61개 기본 자격 증명으로 IoT 봇넷 구축"
+      - name: "DVR/IP Camera 해킹"
+        description: "888888/admin 등 기본 비밀번호"
+    impact:
+      - "기기 완전 제어"
+      - "봇넷 편입 (DDoS)"
+      - "네트워크 피벗 포인트"
+      - "개인정보 유출"
+    prevention:
+      - "고유 비밀번호 생성 (제조 시)"
+      - "초기 설정 시 비밀번호 변경 강제"
+      - "비밀번호 복잡도 요구"
+      - "펌웨어 암호화"
+      - "자격 증명 안전한 저장 (HSM, TPM)"
+      - "정기적인 보안 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP IoT Top 10"
+      - "ICS-CERT Advisories"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IoT 하드코딩 자격 증명은 펌웨어에 비밀번호가 고정된 취약점이다. Mirai 봇넷의
+      주요 원인이며 고유 비밀번호 생성, 변경 강제, 펌웨어 암호화로 방어한다.
+    search_keywords:
+      - "하드코딩 비밀번호"
+      - "기본 자격 증명"
+      - "IoT 취약점"
+      - "Mirai"
+    related_queries:
+      - "IoT 보안"
+      - "기본 비밀번호"
+      - "펌웨어 보안"

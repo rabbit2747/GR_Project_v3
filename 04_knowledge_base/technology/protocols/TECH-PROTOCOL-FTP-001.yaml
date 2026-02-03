@@ -1,0 +1,107 @@
+# GR Atom: FTP Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-FTP-001"
+  name: "FTP (File Transfer Protocol)"
+  normalization:
+    normalized_name: "ftp file transfer protocol file upload download"
+    normalization_version: "1.0"
+  aliases:
+    - "FTP"
+    - "파일 전송 프로토콜"
+    - "FTPS"
+    - "FTP over SSL"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "FILE"]
+
+definition:
+  what: |
+    FTP(File Transfer Protocol)는 네트워크를 통해 파일을 전송하는 프로토콜이다.
+    평문 전송이 기본이며, FTPS(FTP over SSL)로 암호화할 수 있다.
+  why: |
+    레거시 시스템에서 여전히 사용된다. 평문 자격 증명 전송,
+    Anonymous 접근, 바운스 공격이 주요 보안 위협이다.
+  how: |
+    1. Control Connection: 포트 21, 명령 전송
+    2. Data Connection: 포트 20 또는 패시브 포트, 데이터 전송
+    3. Active/Passive Mode: 데이터 연결 방향
+    4. Authentication: 사용자명/비밀번호 (평문)
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+  causal:
+    vulnerable_to:
+      - "ATK-NET-SNIFF-001"
+    superseded_by:
+      - "TECH-PROTOCOL-SSH-001"
+
+properties:
+  technical:
+    ports:
+      - port: 21
+        service: "FTP Control"
+      - port: 20
+        service: "FTP Data (Active)"
+      - port: 990
+        service: "FTPS (Implicit)"
+    modes:
+      - name: "Active Mode"
+        description: "서버가 클라이언트에 연결"
+        firewall_issue: "클라이언트 방화벽 문제"
+      - name: "Passive Mode"
+        description: "클라이언트가 서버에 연결"
+        firewall_issue: "서버 포트 범위 개방 필요"
+    security_issues:
+      - "평문 자격 증명 전송"
+      - "Anonymous 로그인 허용"
+      - "FTP Bounce Attack"
+      - "디렉토리 리스팅 노출"
+    secure_alternatives:
+      - name: "SFTP"
+        description: "SSH 기반 파일 전송"
+      - name: "FTPS"
+        description: "FTP over SSL/TLS"
+      - name: "SCP"
+        description: "Secure Copy over SSH"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 959 - FTP"
+      - "RFC 4217 - FTP over TLS"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      FTP는 파일 전송 프로토콜로 평문 전송이 기본이다.
+      SFTP, FTPS 등 암호화 대안을 권장하며 Anonymous 접근, 스니핑이 주요 위협이다.
+    search_keywords:
+      - "FTP"
+      - "SFTP"
+      - "FTPS"
+      - "파일 전송"
+    related_queries:
+      - "FTP vs SFTP"
+      - "FTP 보안"
+      - "FTP 대안"

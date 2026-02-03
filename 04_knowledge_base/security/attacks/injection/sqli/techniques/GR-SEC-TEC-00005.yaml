@@ -1,0 +1,138 @@
+# GR-SEC-TEC-00005: Stacked Queries SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00005
+  name: "Stacked Queries SQL Injection"
+  normalization:
+    normalized_name: "stacked queries sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "Piggy-backed Queries"
+    - "Multiple Statements"
+    - "Batched Queries"
+    - "다중 쿼리 SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-MODIFY"
+
+definition:
+  what: |
+    세미콜론(;)으로 구분하여 원래 쿼리 뒤에 완전히 새로운
+    SQL 문을 추가 실행하는 기법이다. SELECT 뿐 아니라
+    INSERT, UPDATE, DELETE, DROP 등 모든 SQL 명령을
+    실행할 수 있다.
+  why: |
+    다른 SQLi 기법이 주로 데이터 읽기에 초점을 맞추는 반면,
+    Stacked Queries는 데이터 수정, 삭제, 심지어 DB 구조
+    변경까지 가능하여 가장 파괴적인 공격이 가능하다.
+  how: |
+    1. 다중 쿼리 실행 가능 여부 확인
+    2. 원래 쿼리를 정상 종료 (적절한 주석 처리)
+    3. 세미콜론 후 새 쿼리 추가
+    4. 예: '; DROP TABLE users;--
+    5. 또는 INSERT INTO admin VALUES('hacker','pass');--
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00023  # Multi-Statement Support (TODO)
+    conflicts_with:
+      - GR-SEC-CTL-00011  # Parameterized Queries (TODO)
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00012  # MSSQL (native support)
+      - GR-SEC-CMP-00011  # PostgreSQL (native support)
+    limited_support:
+      - GR-SEC-CMP-00010  # MySQL (mysqli_multi_query only)
+    not_applicable:
+      - GR-SEC-CMP-00013  # Oracle (not supported)
+
+constraints:
+  - property: effectiveness
+    base_value: 0.7
+    conditions:
+      - when:
+          context_type: configuration
+          condition: "multi_statement_disabled == true"
+        then:
+          value: 0.0
+          reason: "다중 쿼리 비활성화 시 사용 불가"
+      - when:
+          context_type: environment
+          condition: "dbms == 'mysql' AND driver != 'mysqli_multi_query'"
+        then:
+          value: 0.0
+          reason: "MySQL 기본 드라이버는 다중 쿼리 미지원"
+      - when:
+          context_type: environment
+          condition: "dbms == 'oracle'"
+        then:
+          value: 0.0
+          reason: "Oracle은 Stacked Queries 미지원"
+
+properties:
+  security:
+    severity: critical
+    attack_phase: exploitation
+    data_exfiltration: true
+    data_modification: true
+    data_deletion: true
+    privilege_escalation: true
+    speed: fast
+    stealth: low
+    destructive_potential: very_high
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: high
+  ai:
+    embedding_text: |
+      Stacked Queries SQL Injection은 세미콜론으로 구분하여
+      완전히 새로운 SQL 문을 실행하는 기법이다. SELECT 뿐
+      아니라 INSERT, UPDATE, DELETE, DROP 등 모든 명령이
+      가능하여 가장 파괴적이다. MSSQL, PostgreSQL은 기본
+      지원하지만, MySQL은 특정 API만 지원하고 Oracle은
+      미지원이다. 데이터 변조, 삭제, 권한 상승까지 가능하다.
+    search_keywords:
+      - "Stacked Queries"
+      - "다중 쿼리"
+      - "Piggy-backed"
+      - "Multiple Statements"
+      - "DROP TABLE"
+      - "INSERT INTO"
+      - "배치 쿼리"
+    related_queries:
+      - "Stacked Queries는 어떻게 하는가?"
+      - "MySQL에서 Stacked Queries가 되는가?"
+      - "데이터 삭제 공격은 어떻게 하는가?"

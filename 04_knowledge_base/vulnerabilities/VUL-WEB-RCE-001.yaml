@@ -1,0 +1,106 @@
+# GR Atom: Remote Code Execution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-RCE-001"
+  name: "Remote Code Execution"
+  normalization:
+    normalized_name: "rce remote code execution command injection shell"
+    normalization_version: "1.0"
+  aliases:
+    - "RCE"
+    - "Remote Code Execution"
+    - "원격 코드 실행"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "CRITICAL", "EXPLOIT"]
+
+definition:
+  what: |
+    공격자가 원격에서 타겟 시스템에 임의의 코드를
+    실행할 수 있는 가장 심각한 유형의 취약점이다.
+  why: |
+    시스템을 완전히 장악한다.
+    추가 공격의 발판이 된다.
+  how: |
+    1. 취약점 식별
+    2. 페이로드 구성
+    3. 코드 실행
+    4. 접근 유지
+
+relations:
+  structural:
+    is_a:
+      - "VUL-CRITICAL-001"
+    related_to:
+      - "VUL-WEB-COMMAND-INJECTION-001"
+      - "VUL-WEB-DESERIALIZATION-001"
+
+properties:
+  technical:
+    severity: "Critical (CVSS 9.0+)"
+    vectors:
+      - "Command Injection"
+      - "Deserialization"
+      - "File Upload"
+      - "Template Injection"
+      - "Memory Corruption"
+      - "Code Injection"
+    notable_examples:
+      - "Log4Shell (CVE-2021-44228)"
+      - "Spring4Shell (CVE-2022-22965)"
+      - "ProxyLogon (CVE-2021-26855)"
+      - "EternalBlue (CVE-2017-0144)"
+    command_injection:
+      example: "; cat /etc/passwd"
+      chains: ["&&", "||", "|", ";", "`", "$()"]
+    impact:
+      - "시스템 완전 장악"
+      - "데이터 탈취"
+      - "랜섬웨어 배포"
+      - "봇넷 편입"
+      - "측면 이동"
+    prevention:
+      - "입력 검증/필터링"
+      - "최소 권한 실행"
+      - "샌드박싱"
+      - "WAF"
+      - "패치 관리"
+    detection:
+      - "비정상 프로세스"
+      - "아웃바운드 연결"
+      - "명령줄 로깅"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-94"
+      - "OWASP Injection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      RCE는 원격에서 임의 코드를 실행할 수 있는 가장
+      심각한 취약점으로 시스템 완전 장악이 가능하다.
+    search_keywords:
+      - "RCE"
+      - "Remote Code Execution"
+      - "Command Injection"
+      - "원격 실행"

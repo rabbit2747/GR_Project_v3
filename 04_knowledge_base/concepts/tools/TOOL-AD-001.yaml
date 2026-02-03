@@ -1,0 +1,98 @@
+# GR Atom: Active Directory Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AD-001"
+  name: "Active Directory Tool"
+  normalization:
+    normalized_name: "active directory tool ad enumeration attack"
+    normalization_version: "1.0"
+  aliases:
+    - "AD Tool"
+    - "AD 도구"
+    - "Active Directory Security Tool"
+    - "Domain Attack Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "AD"]
+
+definition:
+  what: |
+    Active Directory 환경의 열거, 공격, 분석에
+    사용되는 보안 도구 분류이다.
+  why: |
+    AD 취약점을 식별한다.
+    도메인 공격 경로를 분석한다.
+    권한 상승 벡터를 발견한다.
+  how: |
+    1. 도메인 정보 수집
+    2. 관계/경로 분석
+    3. 취약점 익스플로잇
+    4. 권한 상승
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE-001"
+    has_children:
+      - "TOOL-AD-BLOODHOUND-001"
+      - "TOOL-AD-CERTIPY-001"
+    related_to:
+      - "ATK-KERBEROS-001"
+      - "INFRA-LDAP-001"
+
+properties:
+  technical:
+    categories:
+      enumeration:
+        tools: ["BloodHound", "ADRecon", "PowerView"]
+      attack:
+        tools: ["Rubeus", "Mimikatz", "Certipy"]
+      persistence:
+        tools: ["Golden Ticket", "Silver Ticket"]
+    examples:
+      - "BloodHound"
+      - "Rubeus"
+      - "Certipy"
+      - "PowerView"
+      - "Mimikatz"
+    attacks:
+      - "Kerberoasting"
+      - "AS-REP Roasting"
+      - "DCSync"
+      - "Golden Ticket"
+      - "AD CS Abuse"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "SpecterOps"
+      - "HarmJ0y Blog"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      AD Tool은 Active Directory 환경의 열거와 공격에
+      사용되는 보안 도구 분류이다.
+    search_keywords:
+      - "Active Directory"
+      - "AD"
+      - "BloodHound"
+      - "Kerberos"

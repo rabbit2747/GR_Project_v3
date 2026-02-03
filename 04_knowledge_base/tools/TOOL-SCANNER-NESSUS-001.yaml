@@ -1,0 +1,118 @@
+# GR Atom: Nessus
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCANNER-NESSUS-001"
+  name: "Nessus"
+  normalization:
+    normalized_name: "nessus vulnerability scanner tenable network assessment"
+    normalization_version: "1.0"
+  aliases:
+    - "Nessus"
+    - "Tenable Nessus"
+    - "네서스 스캐너"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TOOL", "SCANNER", "VULN"]
+
+definition:
+  what: |
+    네트워크 취약점을 자동으로 스캔하고 평가하는
+    업계 표준 상용 취약점 스캐너이다.
+  why: |
+    시스템 취약점을 발견한다.
+    컴플라이언스 검사를 수행한다.
+  how: |
+    1. 스캔 정책 설정
+    2. 타겟 지정
+    3. 스캔 실행
+    4. 결과 분석/보고
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-SCANNER-001"
+    related_to:
+      - "TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001"
+      - "TOOL-SCANNER-OPENVAS-001"
+
+properties:
+  technical:
+    developer: "Tenable"
+    editions:
+      - name: "Nessus Essentials"
+        type: "무료"
+        limit: "16 IP"
+      - name: "Nessus Professional"
+        type: "상용"
+        features: "무제한 스캔"
+      - name: "Tenable.io"
+        type: "클라우드"
+        features: "SaaS 취약점 관리"
+    scan_types:
+      - "네트워크 취약점"
+      - "웹 애플리케이션"
+      - "컴플라이언스 감사"
+      - "악성코드 탐지"
+      - "패치 누락"
+    plugin_families:
+      - "Windows"
+      - "Linux"
+      - "Databases"
+      - "Web Servers"
+      - "Firewalls"
+      - "SCADA"
+    features:
+      - "140,000+ 플러그인"
+      - "CVSS 스코어링"
+      - "컴플라이언스 템플릿"
+      - "자격 증명 스캔"
+      - "에이전트 기반 스캔"
+    compliance_templates:
+      - "PCI DSS"
+      - "HIPAA"
+      - "CIS Benchmarks"
+      - "DISA STIG"
+    output_formats:
+      - "HTML"
+      - "PDF"
+      - "CSV"
+      - "Nessus XML"
+    integration:
+      - "SIEM"
+      - "Ticketing Systems"
+      - "SOAR"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Tenable Nessus"
+      - "Nessus Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Nessus는 140,000개 이상의 플러그인으로 네트워크 취약점을
+      스캔하는 업계 표준 상용 취약점 스캐너이다.
+    search_keywords:
+      - "Nessus"
+      - "Vulnerability Scanner"
+      - "Tenable"
+      - "취약점 스캔"

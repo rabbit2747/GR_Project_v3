@@ -1,0 +1,104 @@
+# GR Atom: System Server (Generic)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-SYS-SERVER-001"
+  name: "System Server"
+  normalization:
+    normalized_name: "system server host machine endpoint"
+    normalization_version: "1.0"
+  aliases:
+    - "시스템 서버"
+    - "Host"
+    - "호스트"
+    - "Endpoint Server"
+
+classification:
+  domain: infrastructure
+  type: system
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["INFRA", "SYS", "SERVER"]
+
+definition:
+  what: |
+    시스템 서버(System Server)는 운영체제가 설치되어 서비스를 제공하는
+    범용 호스트 시스템이다. 다양한 애플리케이션과 서비스의 실행 환경이다.
+  why: |
+    보안 탐지, 대응, 감사의 대상이 되는 핵심 자산이다.
+    엔드포인트 보안, 로깅, 모니터링의 기본 단위다.
+  how: |
+    1. Operating System: 시스템 기반
+    2. Services: 실행 중인 서비스들
+    3. Applications: 설치된 애플리케이션
+    4. Agents: 보안/모니터링 에이전트
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    runs:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-WAS-001"
+  causal:
+    monitored_by:
+      - "DEF-DETECT-MONITORING-001"
+      - "DEF-DETECT-IDS-001"
+    responds_to:
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    security_components:
+      - name: "EDR Agent"
+        function: "엔드포인트 탐지 및 대응"
+      - name: "Log Agent"
+        function: "로그 수집 및 전송"
+      - name: "Vulnerability Scanner"
+        function: "취약점 스캔"
+      - name: "Configuration Management"
+        function: "설정 관리 및 규정 준수"
+    monitoring_aspects:
+      - "System metrics (CPU, Memory, Disk)"
+      - "Security events"
+      - "Application logs"
+      - "Network connections"
+    security_controls:
+      - "Endpoint protection"
+      - "Host-based firewall"
+      - "File integrity monitoring"
+      - "Privileged access management"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Controls"
+      - "NIST Endpoint Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      System Server(시스템 서버)는 서비스를 제공하는 범용 호스트다.
+      EDR, 로그 수집, 취약점 스캔의 대상이 되는 보안 관리 단위다.
+    search_keywords:
+      - "System Server"
+      - "시스템 서버"
+      - "Host"
+      - "Endpoint"
+    related_queries:
+      - "엔드포인트 보안"
+      - "서버 모니터링"
+      - "호스트 보안"

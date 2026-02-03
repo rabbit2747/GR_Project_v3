@@ -1,0 +1,112 @@
+# GR Atom: Transport Layer Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CRYPTO-TLS-001"
+  name: "Transport Layer Security"
+  normalization:
+    normalized_name: "tls ssl https encryption transport security"
+    normalization_version: "1.0"
+  aliases:
+    - "TLS"
+    - "SSL"
+    - "HTTPS"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["DEF", "CRYPTO", "NETWORK"]
+
+definition:
+  what: |
+    통신 채널을 암호화하여 기밀성, 무결성, 인증을
+    제공하는 암호화 프로토콜이다.
+  why: |
+    네트워크 도청을 방지한다.
+    데이터 변조를 탐지한다.
+  how: |
+    1. 핸드셰이크 (버전/암호 협상)
+    2. 인증서 검증
+    3. 키 교환
+    4. 암호화 통신
+
+relations:
+  structural:
+    is_a:
+      - "DEF-CRYPTO-001"
+    related_to:
+      - "DEF-PREVENT-CERT-PINNING-001"
+      - "ATK-NET-SSL-STRIP-001"
+
+properties:
+  technical:
+    versions:
+      - name: "TLS 1.3"
+        status: "현재 권장"
+        features: ["0-RTT", "개선된 핸드셰이크", "취약 암호 제거"]
+      - name: "TLS 1.2"
+        status: "허용 (제한적)"
+        notes: "안전한 설정 필요"
+      - name: "TLS 1.1/1.0"
+        status: "사용 중단"
+        vulnerabilities: ["BEAST", "POODLE"]
+      - name: "SSL 3.0/2.0"
+        status: "금지"
+        vulnerabilities: ["POODLE", "DROWN"]
+    handshake_tls13:
+      - "ClientHello (지원 암호/키 공유)"
+      - "ServerHello + Certificate + Finished"
+      - "Client Finished"
+      - "Application Data"
+    cipher_suites_recommended:
+      - "TLS_AES_256_GCM_SHA384"
+      - "TLS_CHACHA20_POLY1305_SHA256"
+      - "TLS_AES_128_GCM_SHA256"
+    key_exchange:
+      - "ECDHE (권장)"
+      - "DHE"
+      - "RSA (Forward Secrecy 없음)"
+    vulnerabilities:
+      - "Heartbleed (CVE-2014-0160)"
+      - "BEAST"
+      - "POODLE"
+      - "CRIME/BREACH"
+      - "Logjam"
+    best_practices:
+      - "TLS 1.3 또는 1.2만 사용"
+      - "강력한 암호 스위트만 활성화"
+      - "HSTS 적용"
+      - "인증서 정기 갱신"
+      - "OCSP Stapling"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 8446 (TLS 1.3)"
+      - "Mozilla SSL Configuration"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      TLS는 통신 채널을 암호화하여 기밀성과 무결성을 제공하는
+      핵심 네트워크 보안 프로토콜이다.
+    search_keywords:
+      - "TLS"
+      - "SSL"
+      - "HTTPS"
+      - "암호화 통신"

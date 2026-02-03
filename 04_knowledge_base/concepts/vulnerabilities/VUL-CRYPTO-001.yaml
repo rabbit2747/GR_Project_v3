@@ -1,0 +1,78 @@
+# GR Atom: Cryptographic Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CRYPTO-001"
+  name: "Cryptographic Vulnerability"
+  normalization:
+    normalized_name: "cryptographic vulnerability weak encryption"
+    normalization_version: "1.0"
+  aliases:
+    - "Cryptographic Vulnerability"
+    - "암호화 취약점"
+    - "Crypto Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "CRYPTO"]
+
+definition:
+  what: |
+    암호화 알고리즘, 프로토콜, 구현의 결함으로 인한 취약점 분류이다.
+  why: |
+    암호화 강도를 평가한다.
+    안전한 암호화 적용을 지원한다.
+    기밀성 침해를 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-CRYPTO-WEAK-CIPHER-001"
+      - "VUL-CRYPTO-KEY-MGMT-001"
+    related_to:
+      - "GR-SEC-CRYPTO-001"
+      - "ATK-CRYPTO-001"
+
+properties:
+  technical:
+    types:
+      - "Weak Cipher Suite"
+      - "Insecure Key Management"
+      - "Insufficient Key Length"
+      - "Weak Random Number Generation"
+      - "Hard-coded Credentials"
+      - "Missing Encryption"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cryptographic Standards"
+      - "CWE-310"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cryptographic Vulnerability는 암호화 관련 취약점 분류이다.
+    search_keywords:
+      - "Cryptographic Vulnerability"
+      - "암호화 취약점"
+      - "Weak Encryption"
+      - "Key Management"

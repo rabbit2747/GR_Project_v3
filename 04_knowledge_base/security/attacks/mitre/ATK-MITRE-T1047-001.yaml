@@ -1,0 +1,108 @@
+# GR Atom: Windows Management Instrumentation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1047-001"
+  name: "Windows Management Instrumentation"
+  normalization:
+    normalized_name: "wmi windows management instrumentation lateral movement execution"
+    normalization_version: "1.0"
+  aliases:
+    - "WMI 악용"
+    - "Windows 관리 도구"
+    - "WMIC"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    Windows Management Instrumentation(WMI)을 악용하여
+    원격 명령 실행, 정보 수집, 지속성 유지를 수행하는 기법이다.
+  why: |
+    관리 도구를 악용하여 의심을 줄인다.
+    원격 시스템에서 명령을 실행한다.
+  how: |
+    1. WMI 접근 권한 획득
+    2. WMI 쿼리 또는 메서드 실행
+    3. 프로세스 생성 또는 구독 설정
+    4. 결과 수집 또는 지속성 유지
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "ATK-MITRE-LATERAL-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1047"
+    tactic: "Execution"
+    platforms: ["Windows"]
+    wmi_usage:
+      - name: "프로세스 생성"
+        method: "Win32_Process.Create"
+        example: "wmic process call create 'cmd.exe'"
+      - name: "원격 실행"
+        method: "Win32_Process (Remote)"
+        example: "wmic /node:target process call create"
+      - name: "정보 수집"
+        method: "WQL 쿼리"
+        example: "wmic os get caption"
+      - name: "이벤트 구독"
+        method: "WMI Event Subscription"
+        example: "지속성 메커니즘"
+    tools:
+      - "wmic.exe"
+      - "PowerShell (Get-WmiObject)"
+      - "Invoke-WmiMethod"
+      - "Impacket wmiexec"
+    detection:
+      - "WMI 이벤트 로그 (Microsoft-Windows-WMI-Activity)"
+      - "프로세스 생성 모니터링"
+      - "네트워크 연결 (TCP 135)"
+      - "WMI 구독 모니터링"
+    mitigation:
+      - "WMI 접근 제한"
+      - "원격 WMI 비활성화"
+      - "Firewall 규칙 적용"
+      - "PowerShell 로깅"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1047"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WMI는 Windows 관리 도구를 악용하여 원격 명령 실행과
+      지속성을 유지하는 MITRE ATT&CK Execution 기법이다.
+    search_keywords:
+      - "WMI"
+      - "WMIC"
+      - "원격 실행"
+      - "Windows 관리"
+    related_queries:
+      - "WMI 공격"
+      - "원격 명령 실행"
+      - "Living off the Land"

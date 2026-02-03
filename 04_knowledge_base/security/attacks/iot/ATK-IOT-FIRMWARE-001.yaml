@@ -1,0 +1,113 @@
+# GR Atom: IoT Firmware Analysis Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-IOT-FIRMWARE-001"
+  name: "IoT Firmware Analysis Attack"
+  normalization:
+    normalized_name: "iot firmware analysis extraction reverse engineering"
+    normalization_version: "1.0"
+  aliases:
+    - "펌웨어 분석 공격"
+    - "Firmware Extraction"
+    - "Firmware Reverse Engineering"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone1"
+    tags: ["ATK", "IOT", "FIRMWARE"]
+
+definition:
+  what: |
+    펌웨어 분석 공격은 IoT 기기의 펌웨어를 추출하고 분석하여
+    취약점, 하드코딩된 자격 증명, 백도어를 찾는 공격이다.
+  why: |
+    IoT 기기는 종종 보안이 취약하고 펌웨어가 암호화되지 않는다.
+    한 기기의 취약점이 동일 모델 전체에 영향을 미친다.
+  how: |
+    1. 펌웨어 획득 (다운로드 또는 물리적 추출)
+    2. 펌웨어 언패킹 (binwalk)
+    3. 파일 시스템 분석
+    4. 바이너리 리버스 엔지니어링
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+    related_to:
+      - "VUL-IOT-HARDCODED-001"
+
+properties:
+  technical:
+    firmware_acquisition:
+      - name: "Online Download"
+        description: "제조사 웹사이트에서 업데이트 다운로드"
+      - name: "UART/JTAG"
+        description: "디버그 인터페이스로 추출"
+      - name: "SPI Flash"
+        description: "플래시 칩 직접 읽기"
+      - name: "Update Interception"
+        description: "업데이트 트래픽 가로채기"
+    analysis_steps:
+      - "1. 엔트로피 분석 (암호화 여부)"
+      - "2. binwalk로 파일 시스템 추출"
+      - "3. 문자열 검색 (비밀번호, 키)"
+      - "4. 웹 인터페이스 소스 분석"
+      - "5. 바이너리 리버스 엔지니어링"
+      - "6. 취약점 식별"
+    common_findings:
+      - "하드코딩된 자격 증명"
+      - "암호화 키"
+      - "백도어 계정"
+      - "취약한 웹 서버"
+      - "명령어 인젝션"
+      - "버퍼 오버플로우"
+    tools:
+      - "binwalk (펌웨어 분석)"
+      - "Ghidra (리버싱)"
+      - "IDA Pro (리버싱)"
+      - "firmware-mod-kit"
+      - "flashrom (SPI 읽기)"
+      - "OpenOCD (JTAG)"
+    countermeasures:
+      - "펌웨어 암호화"
+      - "Secure Boot"
+      - "디버그 인터페이스 비활성화"
+      - "코드 난독화"
+      - "하드코딩 자격 증명 제거"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP IoT Top 10"
+      - "IoT Security Foundation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      펌웨어 분석은 IoT 기기 펌웨어를 추출/분석하는 공격이다. binwalk, Ghidra가
+      주요 도구며 하드코딩 자격 증명, 백도어를 찾는다. 펌웨어 암호화, Secure Boot로 방어한다.
+    search_keywords:
+      - "펌웨어 분석"
+      - "Firmware"
+      - "binwalk"
+      - "IoT 보안"
+    related_queries:
+      - "IoT 해킹"
+      - "펌웨어 추출"
+      - "임베디드 보안"

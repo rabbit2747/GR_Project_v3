@@ -1,0 +1,109 @@
+# GR Atom: Session Fixation Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SESSION-FIXATION-001"
+  name: "Session Fixation"
+  normalization:
+    normalized_name: "session fixation attack session id injection"
+    normalization_version: "1.0"
+  aliases:
+    - "세션 고정 공격"
+    - "Session ID Injection"
+    - "세션 ID 고정"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "AUTH", "SESSION"]
+
+definition:
+  what: |
+    세션 고정(Session Fixation)은 공격자가 미리 알고 있는 세션 ID를
+    피해자가 사용하도록 유도하여 인증 후 세션을 탈취하는 공격이다.
+    공격자가 세션 ID를 "고정"시킨 후 피해자의 인증을 기다린다.
+  why: |
+    세션 하이재킹과 달리 세션 ID를 탈취할 필요 없이 미리 설정할 수 있어
+    네트워크 스니핑 없이도 공격 가능하다. 로그인 후 세션 재생성을
+    하지 않는 애플리케이션이 취약하다.
+  how: |
+    1. 공격자가 대상 사이트에서 유효한 세션 ID 획득
+    2. 피해자에게 해당 세션 ID가 포함된 링크 전송
+    3. 피해자가 링크 클릭 후 로그인
+    4. 공격자가 동일한 세션 ID로 인증된 세션 접근
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-AUTH-ATTACK-001"
+    related_to:
+      - "ATK-SESSION-HIJACK-001"
+      - "ATK-AUTH-CSRF-001"
+  causal:
+    exploits:
+      - "VUL-AUTH-SESSION-001"
+    targets:
+      - "TECH-CONCEPT-SESSION-001"
+    mitigated_by:
+      - "DEF-PREVENT-SESSION-REGEN-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "URL Parameter"
+        method: "세션 ID를 URL 파라미터로 전달"
+        example: "http://site.com/login?JSESSIONID=abc123"
+      - name: "Hidden Form Field"
+        method: "폼 hidden 필드로 세션 ID 전달"
+      - name: "Cookie Injection"
+        method: "XSS나 헤더 주입으로 쿠키 설정"
+    prerequisites:
+      - "애플리케이션이 로그인 후 세션 ID 재생성 안 함"
+      - "URL이나 쿠키로 세션 ID 수용"
+      - "피해자가 공격자 링크 클릭"
+    impact:
+      - "계정 탈취 (Account Takeover)"
+      - "권한 상승"
+      - "개인정보 노출"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-384"
+    owasp_category: "A07:2021 - Identification and Authentication Failures"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Session Fixation"
+      - "CWE-384: Session Fixation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Session Fixation(세션 고정)은 공격자가 미리 알고 있는 세션 ID를
+      피해자가 사용하도록 유도하여 인증된 세션을 탈취하는 공격이다.
+      로그인 후 세션 재생성으로 방어한다.
+    search_keywords:
+      - "Session Fixation"
+      - "세션 고정"
+      - "세션 ID 고정"
+      - "인증 공격"
+    related_queries:
+      - "세션 고정 공격이란?"
+      - "Session Fixation 방어"
+      - "세션 재생성"

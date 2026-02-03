@@ -1,0 +1,100 @@
+# GR Atom: API Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-API-001"
+  name: "API Security Tool"
+  normalization:
+    normalized_name: "api security tool rest graphql testing"
+    normalization_version: "1.0"
+  aliases:
+    - "API Security Tool"
+    - "API 보안 도구"
+    - "API Testing Tool"
+    - "API Pentesting Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "API"]
+
+definition:
+  what: |
+    REST, GraphQL 등 API의 보안 테스트에
+    사용되는 도구 분류이다.
+  why: |
+    API 취약점을 식별한다.
+    인증/인가 결함을 테스트한다.
+    OWASP API Top 10을 검증한다.
+  how: |
+    1. API 스펙 분석
+    2. 엔드포인트 열거
+    3. 취약점 테스트
+    4. 퍼징 수행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-WEB-001"
+    has_children:
+      - "TOOL-API-POSTMAN-001"
+    related_to:
+      - "VUL-API-001"
+      - "TECH-CONCEPT-REST-001"
+
+properties:
+  technical:
+    capabilities:
+      - "API 열거"
+      - "인증 테스트"
+      - "BOLA/BFLA 테스트"
+      - "Rate Limiting 테스트"
+      - "GraphQL Introspection"
+    examples:
+      - "Postman"
+      - "Insomnia"
+      - "Burp Suite"
+      - "OWASP ZAP"
+      - "Kiterunner"
+    api_types:
+      - "REST"
+      - "GraphQL"
+      - "SOAP"
+      - "gRPC"
+    vulnerabilities:
+      - "BOLA"
+      - "BFLA"
+      - "Excessive Data Exposure"
+      - "Mass Assignment"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security"
+      - "APIsec"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API Security Tool은 REST, GraphQL 등 API의
+      보안 테스트에 사용되는 도구 분류이다.
+    search_keywords:
+      - "API Security"
+      - "REST"
+      - "GraphQL"
+      - "API 테스트"

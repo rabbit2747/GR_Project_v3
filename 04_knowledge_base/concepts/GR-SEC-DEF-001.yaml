@@ -1,0 +1,103 @@
+# GR Atom: Security Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-DEF-001"
+  name: "Security Defense"
+  normalization:
+    normalized_name: "security defense control protection"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Defense"
+    - "보안 방어"
+    - "Security Control"
+    - "Protection Mechanism"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "ROOT"]
+
+definition:
+  what: |
+    위협으로부터 정보자산을 보호하기 위한 보안 통제,
+    메커니즘, 대책의 최상위 분류이다.
+  why: |
+    기밀성, 무결성, 가용성을 보호한다.
+    위험을 허용 가능한 수준으로 감소시킨다.
+    규정 준수를 달성한다.
+  how: |
+    1. 위험 기반 통제 선택
+    2. 통제 구현
+    3. 효과성 모니터링
+    4. 지속적 개선
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "DEF-PREVENT-001"
+      - "DEF-DETECT-001"
+      - "DEF-RESPOND-001"
+      - "DEF-CLOUD-001"
+      - "DEF-NET-001"
+    related_to:
+      - "GR-SEC-VULN-001"
+      - "GR-SEC-ATK-001"
+
+properties:
+  technical:
+    categories:
+      preventive: "위협 발생 전 차단"
+      detective: "위협 탐지 및 식별"
+      corrective: "피해 복구 및 대응"
+      deterrent: "위협 억제"
+      compensating: "대체 통제"
+    control_types:
+      technical: ["방화벽", "암호화", "IDS/IPS"]
+      administrative: ["정책", "절차", "교육"]
+      physical: ["출입통제", "CCTV", "잠금장치"]
+    frameworks:
+      - "NIST Cybersecurity Framework"
+      - "ISO 27001"
+      - "CIS Controls"
+      - "COBIT"
+    layers:
+      - "Network Defense"
+      - "Endpoint Defense"
+      - "Application Defense"
+      - "Data Defense"
+      - "Identity Defense"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-53"
+      - "ISO 27001"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Defense는 위협으로부터 정보자산을 보호하는
+      모든 보안 통제와 대책의 최상위 분류 개념이다.
+    search_keywords:
+      - "Security Defense"
+      - "보안 방어"
+      - "Security Control"
+      - "Protection"

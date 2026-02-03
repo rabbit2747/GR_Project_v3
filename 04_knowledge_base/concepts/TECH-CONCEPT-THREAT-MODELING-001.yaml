@@ -1,0 +1,133 @@
+# GR Atom: Threat Modeling
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-THREAT-MODELING-001"
+  name: "Threat Modeling"
+  normalization:
+    normalized_name: "threat modeling stride dread security design"
+    normalization_version: "1.0"
+  aliases:
+    - "Threat Modeling"
+    - "위협 모델링"
+    - "Security Design Analysis"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "SECURITY", "DESIGN"]
+
+definition:
+  what: |
+    시스템의 잠재적 보안 위협을 체계적으로 식별하고
+    분석하여 대응 전략을 수립하는 보안 설계 방법론이다.
+  why: |
+    설계 단계에서 보안 취약점을 발견한다.
+    보안 투자의 우선순위를 결정한다.
+  how: |
+    1. 시스템 모델링
+    2. 위협 식별
+    3. 위험 평가
+    4. 대응책 설계
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-001"
+    related_to:
+      - "TECH-CONCEPT-ATTACK-SURFACE-001"
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+      - "COMP-ISO27001-001"
+
+properties:
+  technical:
+    methodologies:
+      STRIDE:
+        developer: "Microsoft"
+        categories:
+          - name: "Spoofing"
+            description: "신원 위장"
+            mitigation: "인증"
+          - name: "Tampering"
+            description: "데이터 변조"
+            mitigation: "무결성 검증"
+          - name: "Repudiation"
+            description: "부인"
+            mitigation: "감사 로깅"
+          - name: "Information Disclosure"
+            description: "정보 노출"
+            mitigation: "암호화"
+          - name: "Denial of Service"
+            description: "서비스 거부"
+            mitigation: "가용성 보장"
+          - name: "Elevation of Privilege"
+            description: "권한 상승"
+            mitigation: "최소 권한"
+      DREAD:
+        categories:
+          - "Damage potential"
+          - "Reproducibility"
+          - "Exploitability"
+          - "Affected users"
+          - "Discoverability"
+      PASTA:
+        full_name: "Process for Attack Simulation and Threat Analysis"
+        stages: 7
+      VAST:
+        full_name: "Visual, Agile, and Simple Threat"
+        focus: "Agile/DevOps 통합"
+    process_steps:
+      - "1. 범위 정의 (자산, 데이터 흐름)"
+      - "2. 아키텍처 다이어그램 작성"
+      - "3. 위협 식별 (STRIDE 등)"
+      - "4. 취약점 매핑"
+      - "5. 위험 평가 및 우선순위"
+      - "6. 대응책 설계"
+      - "7. 문서화 및 검토"
+    tools:
+      - "Microsoft Threat Modeling Tool"
+      - "OWASP Threat Dragon"
+      - "IriusRisk"
+      - "ThreatModeler"
+    outputs:
+      - "Data Flow Diagram (DFD)"
+      - "위협 목록"
+      - "위험 평가 매트릭스"
+      - "대응책 권고사항"
+    best_practices:
+      - "개발 초기 단계에서 수행"
+      - "다학제팀 참여"
+      - "정기적 업데이트"
+      - "자동화 도구 활용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft SDL"
+      - "OWASP Threat Modeling"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Threat Modeling은 STRIDE, DREAD 등 방법론을 활용하여
+      시스템의 보안 위협을 체계적으로 분석하는 설계 방법론이다.
+    search_keywords:
+      - "Threat Modeling"
+      - "STRIDE"
+      - "DREAD"
+      - "Security Design"

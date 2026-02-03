@@ -1,0 +1,121 @@
+# GR Atom: OWASP ZAP
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-OWASP-ZAP-001"
+  name: "OWASP ZAP (Zed Attack Proxy)"
+  normalization:
+    normalized_name: "owasp zap zed attack proxy web scanner dast"
+    normalization_version: "1.0"
+  aliases:
+    - "OWASP ZAP"
+    - "ZAP"
+    - "Zed Attack Proxy"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "WEB", "DAST"]
+
+definition:
+  what: |
+    OWASP ZAP은 웹 애플리케이션 보안 테스팅을 위한 무료 오픈소스
+    DAST(동적 분석) 도구다.
+  why: |
+    가장 널리 사용되는 무료 웹 보안 스캐너다.
+    CI/CD 통합과 자동화 기능으로 DevSecOps에 적합하다.
+  how: |
+    1. 프록시 설정
+    2. 대상 스파이더링
+    3. 자동/수동 스캔
+    4. 결과 분석 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "TOOL-SCAN-BURP-001"
+      - "TOOL-AUDIT-DAST-001"
+
+properties:
+  technical:
+    features:
+      - "자동 스캐너"
+      - "수동 테스트 도구"
+      - "스파이더/크롤러"
+      - "퍼저"
+      - "API 스캐닝"
+      - "인증 세션 관리"
+      - "AJAX 스파이더"
+    modes:
+      - name: "프록시 모드"
+        description: "브라우저 트래픽 가로채기"
+      - name: "스캔 모드"
+        description: "자동 취약점 스캔"
+      - name: "API 모드"
+        description: "REST API로 제어"
+      - name: "CLI 모드"
+        description: "커맨드라인 실행"
+    automation:
+      - "Docker 이미지"
+      - "Jenkins 통합"
+      - "GitHub Actions"
+      - "GitLab CI"
+      - "ZAP API"
+    scan_types:
+      - "Passive Scan: 수동적 분석"
+      - "Active Scan: 공격적 테스트"
+      - "Spider: 사이트 크롤링"
+      - "AJAX Spider: JS 렌더링"
+    detected_vulnerabilities:
+      - "SQL Injection"
+      - "XSS (Reflected, Stored, DOM)"
+      - "CSRF"
+      - "Path Traversal"
+      - "Security Misconfigurations"
+      - "Insecure Headers"
+    add_ons:
+      - "FuzzDB"
+      - "OpenAPI Support"
+      - "GraphQL Support"
+      - "Report Generation"
+    ci_cd_example:
+      docker: |
+        docker run -t owasp/zap2docker-stable zap-baseline.py -t https://target
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ZAP"
+      - "ZAP Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OWASP ZAP은 무료 웹 보안 스캐너다. 자동/수동 테스트, CI/CD 통합,
+      API 스캐닝으로 DevSecOps 파이프라인에 적합하다.
+    search_keywords:
+      - "OWASP ZAP"
+      - "웹 스캐너"
+      - "DAST"
+      - "오픈소스"
+    related_queries:
+      - "웹 취약점 스캔"
+      - "동적 분석"
+      - "CI/CD 보안"

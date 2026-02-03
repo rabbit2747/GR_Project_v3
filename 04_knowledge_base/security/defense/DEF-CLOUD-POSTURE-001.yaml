@@ -1,0 +1,123 @@
+# GR Atom: Cloud Security Posture Management (CSPM)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CLOUD-POSTURE-001"
+  name: "Cloud Security Posture Management (CSPM)"
+  normalization:
+    normalized_name: "cspm cloud security posture management compliance"
+    normalization_version: "1.0"
+  aliases:
+    - "CSPM"
+    - "클라우드 보안 태세 관리"
+    - "클라우드 설정 관리"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "CLOUD", "COMPLIANCE"]
+
+definition:
+  what: |
+    클라우드 인프라의 설정 오류, 컴플라이언스 위반, 보안 위험을
+    자동으로 탐지하고 개선하는 보안 관리 솔루션이다.
+  why: |
+    클라우드 설정 오류를 자동 탐지한다.
+    컴플라이언스를 지속적으로 모니터링한다.
+  how: |
+    1. 클라우드 리소스 인벤토리 수집
+    2. 보안 정책/컴플라이언스 기준 적용
+    3. 설정 오류 탐지
+    4. 자동 또는 수동 개선
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "VUL-CLOUD-MISCONFIG-001"
+      - "COMP-FRAMEWORK-ISO27001-001"
+
+properties:
+  technical:
+    capabilities:
+      - "클라우드 리소스 가시성"
+      - "설정 오류 탐지"
+      - "컴플라이언스 모니터링"
+      - "자동 개선 (auto-remediation)"
+      - "위험 우선순위화"
+    detection_areas:
+      - "공개 S3 버킷"
+      - "과도한 IAM 권한"
+      - "암호화되지 않은 스토리지"
+      - "미사용 보안 그룹"
+      - "로깅 미활성화"
+      - "MFA 미적용"
+    compliance_frameworks:
+      - "CIS Benchmarks"
+      - "PCI DSS"
+      - "SOC 2"
+      - "HIPAA"
+      - "GDPR"
+      - "NIST"
+    cspm_solutions:
+      commercial:
+        - "Prisma Cloud"
+        - "Wiz"
+        - "Orca Security"
+        - "Lacework"
+        - "Aqua Security"
+      open_source:
+        - "Prowler"
+        - "ScoutSuite"
+        - "CloudSploit"
+        - "Checkov"
+    cloud_native:
+      - "AWS Security Hub"
+      - "Azure Security Center"
+      - "GCP Security Command Center"
+    benefits:
+      - "지속적인 모니터링"
+      - "자동화된 탐지"
+      - "멀티 클라우드 지원"
+      - "컴플라이언스 보고"
+    challenges:
+      - "알림 피로"
+      - "오탐 관리"
+      - "복잡한 환경 지원"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner CSPM"
+      - "Cloud Security Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CSPM은 클라우드 설정 오류와 컴플라이언스 위반을
+      자동 탐지하고 개선하는 보안 관리 솔루션이다.
+    search_keywords:
+      - "CSPM"
+      - "클라우드 보안"
+      - "설정 관리"
+      - "컴플라이언스"
+    related_queries:
+      - "클라우드 보안 도구"
+      - "설정 오류 탐지"
+      - "Prowler"

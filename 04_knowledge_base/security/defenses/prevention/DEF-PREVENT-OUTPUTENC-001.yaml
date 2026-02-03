@@ -1,0 +1,85 @@
+# GR Atom: Output Encoding
+identity:
+  id: "DEF-PREVENT-OUTPUTENC-001"
+  name: "Output Encoding"
+  normalization:
+    normalized_name: "output_encoding"
+    normalization_version: "1.0"
+  aliases:
+    - "Output Escaping"
+    - "Context-Aware Encoding"
+    - "출력 인코딩"
+    - "출력 이스케이프"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P", "XSS"]
+
+definition:
+  what: |
+    HTML, JavaScript, URL 등 출력 컨텍스트에 맞게 특수문자를 이스케이프하는 방어 기법.
+    사용자 입력이 브라우저에서 코드로 해석되지 않도록 안전한 문자열로 변환한다.
+  why: |
+    XSS(Cross-Site Scripting) 공격은 브라우저가 악의적인 스크립트를 정상 콘텐츠로
+    해석할 때 발생한다. 출력 인코딩은 이를 방지하는 핵심 방어 기법으로,
+    사용자 입력이 포함된 모든 출력 지점에서 적용해야 한다.
+  how: |
+    1. HTML 컨텍스트: <, >, &, ", ' 등을 HTML 엔티티로 변환한다.
+    2. JavaScript 컨텍스트: Unicode 이스케이프 시퀀스를 사용한다.
+    3. URL 컨텍스트: URL 인코딩(%XX)을 적용한다.
+    4. CSS 컨텍스트: CSS 이스케이프를 적용한다.
+    5. 템플릿 엔진의 자동 이스케이프 기능을 활성화한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents: ["ATK-INJECT-XSS-001"]
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    implementation:
+      - "HTML entity encoding"
+      - "JavaScript Unicode escaping"
+      - "URL percent encoding"
+      - "Template engine auto-escaping (Jinja2, Thymeleaf, React JSX)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Output Encoding은 HTML, JavaScript, URL 등 출력 컨텍스트에 맞게 특수문자를
+      이스케이프하는 방어 기법이다. XSS 공격을 방지하기 위해 사용자 입력이 포함된
+      출력에서 특수문자를 안전한 형태로 변환한다.
+    search_keywords:
+      - "output encoding"
+      - "output escaping"
+      - "HTML entity encoding"
+      - "XSS prevention"
+      - "출력 인코딩"
+    related_queries:
+      - "XSS를 방지하기 위한 출력 인코딩 방법"
+      - "컨텍스트별 이스케이프 처리"
+      - "템플릿 엔진의 자동 이스케이프 기능"

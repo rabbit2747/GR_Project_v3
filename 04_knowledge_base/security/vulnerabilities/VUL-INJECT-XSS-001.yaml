@@ -1,0 +1,105 @@
+# GR Atom: XSS Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-INJECT-XSS-001"
+  name: "Cross-Site Scripting (XSS) Vulnerability"
+  normalization:
+    normalized_name: "xss cross site scripting vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "XSS 취약점"
+    - "크로스 사이트 스크립팅 취약점"
+    - "사이트 간 스크립팅 결함"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["XSS", "WEB"]
+
+definition:
+  what: |
+    XSS 취약점은 웹 애플리케이션이 사용자 입력을 적절히 이스케이프하지 않고
+    HTML/JavaScript 응답에 포함하여, 공격자가 다른 사용자의 브라우저에서
+    악성 스크립트를 실행할 수 있는 보안 결함이다. CWE-79에 해당한다.
+  why: |
+    웹 애플리케이션에서 가장 흔한 취약점 중 하나로, 세션 탈취, 피싱,
+    키로깅, 페이지 변조 등 광범위한 공격을 가능하게 한다.
+    Stored XSS는 모든 방문자에게 영향을 미쳐 대규모 피해를 유발한다.
+  how: |
+    1. 출력 인코딩 미적용: 사용자 입력이 HTML에 그대로 렌더링
+    2. Stored XSS: DB에 저장된 악성 스크립트가 모든 사용자에게 실행
+    3. Reflected XSS: URL 파라미터가 응답에 반영되어 스크립트 실행
+    4. DOM-based XSS: 클라이언트 JavaScript가 안전하지 않은 DOM 조작 수행
+    5. 소스코드 리뷰, DAST 스캐닝, 브라우저 개발자 도구로 탐지 가능
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  causal:
+    exploited_by:
+      - "ATK-INJECT-XSS-001"  # XSS 공격 기법
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"  # 웹 애플리케이션
+
+properties:
+  security:
+    cwe_id: "CWE-79"
+    owasp: "A03:2021"
+    cvss_base: 6.1
+    impact:
+      confidentiality: "HIGH - 쿠키, 세션, 개인정보 탈취"
+      integrity: "MEDIUM - 페이지 변조, 피싱"
+      availability: "LOW"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-OUTPUTENC-001"
+        name: "Output Encoding"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-CSP-001"
+        name: "Content Security Policy"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "HttpOnly Cookie"
+        effectiveness: "MEDIUM"
+      - name: "Input Validation"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-79: Improper Neutralization of Input During Web Page Generation"
+      - "OWASP XSS Prevention Cheat Sheet"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XSS 취약점(CWE-79)은 사용자 입력이 웹 페이지에 이스케이프 없이 포함되어
+      악성 JavaScript가 실행되는 보안 결함이다. Stored, Reflected, DOM-based 유형이
+      있으며, Output Encoding과 CSP로 방어한다. OWASP A03:2021, CVSS 6.1.
+    search_keywords:
+      - "XSS 취약점"
+      - "Cross-Site Scripting vulnerability"
+      - "CWE-79"
+      - "크로스 사이트 스크립팅 결함"
+    related_queries:
+      - "XSS 취약점이란?"
+      - "XSS 취약점 유형"
+      - "XSS 방어를 위한 Output Encoding"
+      - "CSP로 XSS 방어하기"

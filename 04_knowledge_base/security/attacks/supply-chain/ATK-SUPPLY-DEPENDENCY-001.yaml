@@ -1,0 +1,109 @@
+# GR Atom: Dependency Confusion Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SUPPLY-DEPENDENCY-001"
+  name: "Dependency Confusion Attack"
+  normalization:
+    normalized_name: "dependency confusion supply chain npm pypi package"
+    normalization_version: "1.0"
+  aliases:
+    - "의존성 혼란 공격"
+    - "Package Confusion"
+    - "Namespace Confusion"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "SUPPLY-CHAIN", "DEPENDENCY"]
+
+definition:
+  what: |
+    의존성 혼란은 내부 패키지와 동일한 이름의 악성 패키지를 공개
+    레지스트리에 등록하여 빌드 시스템이 악성 패키지를 설치하게 하는 공격이다.
+  why: |
+    2021년 Alex Birsan이 발견하여 Apple, Microsoft 등에 영향을 미쳤다.
+    자동화된 빌드 시스템을 표적으로 하여 대규모 공급망 침해가 가능하다.
+  how: |
+    1. 대상 조직의 내부 패키지 이름 수집
+    2. 공개 레지스트리에 동일 이름으로 높은 버전 등록
+    3. 빌드 시스템이 공개 패키지 우선 선택
+    4. 악성 코드 실행
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+    related_to:
+      - "ATK-SUPPLY-TYPOSQUAT-001"
+
+properties:
+  technical:
+    affected_ecosystems:
+      - "npm (Node.js)"
+      - "PyPI (Python)"
+      - "RubyGems"
+      - "NuGet (.NET)"
+      - "Maven (Java)"
+    attack_mechanism:
+      - "내부 패키지명 유출 (lock 파일, 에러 메시지)"
+      - "공개 레지스트리에 동일 이름 등록"
+      - "높은 버전 번호 사용"
+      - "preinstall/postinstall 스크립트로 코드 실행"
+    name_discovery:
+      - "공개된 package-lock.json"
+      - "에러 메시지 분석"
+      - "GitHub 검색"
+      - "소셜 엔지니어링"
+    prevention:
+      - name: "Scoping"
+        description: "@company/ 네임스페이스 사용"
+      - name: "Registry Pinning"
+        description: "내부 레지스트리만 사용"
+      - name: "Lock Files"
+        description: "의존성 버전 고정"
+      - name: "Integrity Checks"
+        description: "해시 검증"
+      - name: "Private Registry"
+        description: "Artifactory, Nexus 사용"
+    tools:
+      - "Snyk"
+      - "Socket.dev"
+      - "npm audit"
+      - "pip-audit"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Alex Birsan - Dependency Confusion"
+      - "Microsoft Security Response"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      의존성 혼란은 내부 패키지명으로 공개 레지스트리에 악성 패키지를 등록하는 공격이다.
+      npm, PyPI가 영향받으며 네임스페이스 스코핑, 레지스트리 고정으로 방어한다.
+    search_keywords:
+      - "의존성 혼란"
+      - "Dependency Confusion"
+      - "공급망 공격"
+      - "npm 보안"
+    related_queries:
+      - "공급망 보안"
+      - "패키지 보안"
+      - "npm audit"

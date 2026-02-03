@@ -1,0 +1,124 @@
+# GR Atom: MITRE ATT&CK T1055 - Process Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1055-001"
+  name: "Process Injection (MITRE T1055)"
+  normalization:
+    normalized_name: "mitre t1055 process injection dll hollowing"
+    normalization_version: "1.0"
+  aliases:
+    - "프로세스 인젝션"
+    - "T1055"
+    - "코드 인젝션"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "EVASION"]
+
+definition:
+  what: |
+    Process Injection은 다른 프로세스의 주소 공간에 악성 코드를
+    주입하여 실행하는 기법이다. MITRE ATT&CK T1055.
+  why: |
+    정상 프로세스로 위장하여 탐지를 우회한다.
+    대상 프로세스의 권한과 리소스에 접근할 수 있다.
+  how: |
+    1. 대상 프로세스 선택
+    2. 메모리 할당
+    3. 코드 주입
+    4. 실행 트리거
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-DEF-EVASION-001"
+    enables:
+      - "ATK-MITRE-PRIV-ESC-001"
+
+properties:
+  technical:
+    mitre_id: "T1055"
+    tactics:
+      - "Defense Evasion"
+      - "Privilege Escalation"
+    sub_techniques:
+      - id: "T1055.001"
+        name: "DLL Injection"
+        description: "DLL을 대상 프로세스에 로드"
+        apis: ["LoadLibrary", "CreateRemoteThread"]
+      - id: "T1055.002"
+        name: "Portable Executable Injection"
+        description: "PE 파일 직접 주입"
+      - id: "T1055.003"
+        name: "Thread Execution Hijacking"
+        description: "기존 스레드 컨텍스트 변경"
+      - id: "T1055.004"
+        name: "Asynchronous Procedure Call"
+        description: "APC 큐 악용"
+      - id: "T1055.012"
+        name: "Process Hollowing"
+        description: "정지 상태 프로세스 내용 교체"
+        steps:
+          - "CREATE_SUSPENDED로 프로세스 생성"
+          - "원본 코드 언맵"
+          - "악성 코드 매핑"
+          - "컨텍스트 수정 및 재개"
+    target_processes:
+      - "explorer.exe"
+      - "svchost.exe"
+      - "notepad.exe"
+      - "browsers"
+    windows_apis:
+      - "VirtualAllocEx"
+      - "WriteProcessMemory"
+      - "CreateRemoteThread"
+      - "NtUnmapViewOfSection"
+      - "SetThreadContext"
+    detection:
+      - "프로세스 생성 모니터링"
+      - "메모리 할당 API 호출"
+      - "비정상 부모-자식 관계"
+      - "메모리 속성 변경"
+      - "EDR 행위 분석"
+    prevention:
+      - "코드 서명 정책"
+      - "EDR/AV"
+      - "메모리 보호"
+      - "권한 제한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1055"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1055는 프로세스 인젝션으로 DLL 인젝션, 프로세스 홀로잉을 포함한다.
+      EDR, 메모리 보호, 코드 서명으로 탐지/방어한다.
+    search_keywords:
+      - "T1055"
+      - "프로세스 인젝션"
+      - "DLL 인젝션"
+      - "홀로잉"
+    related_queries:
+      - "코드 인젝션"
+      - "방어 우회"
+      - "메모리 공격"

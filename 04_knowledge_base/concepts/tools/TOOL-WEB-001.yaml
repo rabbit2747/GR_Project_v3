@@ -1,0 +1,101 @@
+# GR Atom: Web Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-WEB-001"
+  name: "Web Security Tool"
+  normalization:
+    normalized_name: "web security tool application testing"
+    normalization_version: "1.0"
+  aliases:
+    - "Web Security Tool"
+    - "웹 보안 도구"
+    - "Web Application Security Tool"
+    - "Web Pentesting Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "WEB"]
+
+definition:
+  what: |
+    웹 애플리케이션 보안 테스트, 취약점 탐지에
+    사용되는 도구 분류이다.
+  why: |
+    웹 취약점을 식별한다.
+    OWASP Top 10을 테스트한다.
+    API 보안을 평가한다.
+  how: |
+    1. 애플리케이션 매핑
+    2. 취약점 스캔
+    3. 수동 테스트
+    4. 익스플로잇 검증
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE-001"
+    has_children:
+      - "TOOL-PENTEST-BURPSUITE-001"
+      - "TOOL-SCANNER-OWASP-ZAP-001"
+      - "TOOL-API-001"
+    related_to:
+      - "VUL-WEB-001"
+      - "ATK-WEB-001"
+
+properties:
+  technical:
+    categories:
+      proxy:
+        description: "인터셉트 프록시"
+        tools: ["Burp Suite", "OWASP ZAP", "mitmproxy"]
+      scanner:
+        description: "웹 스캐너"
+        tools: ["Nikto", "Nuclei", "Wapiti"]
+      fuzzer:
+        description: "퍼저"
+        tools: ["ffuf", "wfuzz", "Gobuster"]
+    examples:
+      - "Burp Suite"
+      - "OWASP ZAP"
+      - "Nikto"
+      - "SQLMap"
+      - "Nuclei"
+    capabilities:
+      - "요청/응답 조작"
+      - "취약점 스캔"
+      - "퍼징"
+      - "인증 테스트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Testing Guide"
+      - "PortSwigger"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Security Tool은 웹 애플리케이션 보안 테스트에
+      사용되는 도구 분류이다.
+    search_keywords:
+      - "Web Security"
+      - "Burp Suite"
+      - "OWASP"
+      - "웹 보안"

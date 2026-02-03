@@ -1,0 +1,115 @@
+# GR Atom: Wireshark Network Analyzer
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-WIRESHARK-001"
+  name: "Wireshark Network Analyzer"
+  normalization:
+    normalized_name: "wireshark network packet capture protocol analyzer"
+    normalization_version: "1.0"
+  aliases:
+    - "Wireshark"
+    - "와이어샤크"
+    - "네트워크 분석기"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "NET", "ANALYZER"]
+
+definition:
+  what: |
+    Wireshark는 네트워크 패킷 캡처 및 분석 도구로,
+    실시간 트래픽 분석과 프로토콜 디코딩을 지원한다.
+  why: |
+    네트워크 문제 해결, 보안 분석, 프로토콜 학습의 표준 도구다.
+    3000+ 프로토콜 지원으로 심층 분석이 가능하다.
+  how: |
+    1. 인터페이스 선택 및 캡처 시작
+    2. 디스플레이 필터로 관심 트래픽 분류
+    3. 프로토콜 분석 및 패킷 검사
+    4. 보고서 생성 또는 추출
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "TOOL-SCAN-TCPDUMP-001"
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    features:
+      - "실시간 패킷 캡처"
+      - "3000+ 프로토콜 지원"
+      - "강력한 필터링"
+      - "VoIP 분석"
+      - "복호화 (TLS, WEP, WPA)"
+      - "통계 및 그래프"
+      - "파일 추출"
+    capture_filters:
+      - example: "host 192.168.1.1"
+        description: "특정 호스트"
+      - example: "port 80 or port 443"
+        description: "특정 포트"
+      - example: "net 10.0.0.0/8"
+        description: "특정 네트워크"
+    display_filters:
+      - example: "http.request.method == GET"
+        description: "HTTP GET 요청"
+      - example: "tcp.flags.syn == 1"
+        description: "SYN 패킷"
+      - example: "dns.qry.name contains evil"
+        description: "DNS 쿼리 검색"
+      - example: "ip.addr == 1.2.3.4"
+        description: "특정 IP"
+    security_analysis:
+      - "악성 트래픽 탐지"
+      - "자격 증명 캡처 (평문)"
+      - "C2 통신 분석"
+      - "데이터 유출 탐지"
+      - "프로토콜 취약점 분석"
+    related_tools:
+      - name: "tshark"
+        description: "CLI 버전"
+      - name: "tcpdump"
+        description: "경량 캡처"
+      - name: "NetworkMiner"
+        description: "포렌식 특화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Wireshark Foundation"
+      - "Wireshark User Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Wireshark는 네트워크 패킷 분석 도구로 3000+ 프로토콜을 지원한다.
+      실시간 캡처, 필터링, 복호화로 네트워크 보안 분석에 사용된다.
+    search_keywords:
+      - "Wireshark"
+      - "패킷 분석"
+      - "네트워크 캡처"
+      - "프로토콜 분석"
+    related_queries:
+      - "네트워크 분석"
+      - "트래픽 캡처"
+      - "패킷 필터링"

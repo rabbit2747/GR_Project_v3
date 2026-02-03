@@ -1,0 +1,108 @@
+# GR Atom: Weak Cryptography
+identity:
+  id: "VUL-CRYPTO-WEAK-001"
+  name: "Weak Cryptography"
+  normalization:
+    normalized_name: "weak cryptography"
+    normalization_version: "1.0"
+  aliases:
+    - "Use of a Broken or Risky Cryptographic Algorithm"
+    - "Weak Encryption"
+    - "Insufficient Cryptographic Strength"
+    - "CWE-327"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["CRYPTO"]
+
+definition:
+  what: |
+    약한 암호화 취약점(CWE-327)은 소프트웨어가 깨지거나 위험한 암호화 알고리즘을 사용하여
+    데이터의 기밀성, 무결성, 인증을 보장하지 못하는 보안 결함이다. MD5, SHA-1, DES, RC4 등
+    이미 보안적으로 취약하다고 알려진 알고리즘의 사용, 부적절한 키 길이, 잘못된 암호화 모드 선택,
+    하드코딩된 암호화 키 등을 포함한다.
+  why: |
+    암호화는 데이터 보호의 근본적인 기반이며, 전송 중인 데이터(data in transit)와
+    저장된 데이터(data at rest) 모두의 보안을 책임진다. 약한 암호화를 사용하면
+    공격자가 암호화된 데이터를 복호화하거나, 디지털 서명을 위조하거나, 인증 메커니즘을
+    우회할 수 있다. 이는 개인정보 유출, 금융 사기, 지적 재산권 침해 등
+    심각한 결과를 초래할 수 있다. 규제 요건(GDPR, PCI DSS 등)에서도
+    강력한 암호화 사용을 의무화하고 있다.
+  how: |
+    - 발생 조건: 폐기된 암호화 알고리즘 사용(MD5, SHA-1, DES, RC4, 3DES),
+      부적절한 키 길이(RSA 1024비트 이하, AES 128비트 미만),
+      ECB 모드와 같은 취약한 암호화 모드 사용, 하드코딩된 암호화 키,
+      부적절한 난수 생성기 사용, 자체 개발 암호화 알고리즘 사용
+    - 탐지 방법: 소스 코드 정적 분석을 통한 암호화 API 호출 검사,
+      네트워크 트래픽 분석(TLS 버전 및 Cipher Suite 확인),
+      설정 파일 검사, 의존성 라이브러리 암호화 구현 감사
+    - 도구: SonarQube, Checkmarx, SSL Labs, testssl.sh,
+      OpenSSL 커맨드라인 도구, CryptoGuard
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  applicability:
+    applies_to:
+      - "암호화 통신(TLS/SSL)"
+      - "데이터 저장 암호화"
+      - "비밀번호 해싱"
+      - "디지털 서명"
+      - "키 관리 시스템"
+      - "인증 토큰 생성"
+
+properties:
+  security:
+    cwe_id: "CWE-327"
+    owasp: "A02:2021"
+    cvss_base: 7.5
+    severity: "High"
+    impact:
+      confidentiality: "High"
+      integrity: "High"
+      availability: "None"
+    attack_vector: "Network"
+    attack_complexity: "High"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Weak Cryptography (CWE-327)는 소프트웨어가 깨지거나 위험한 암호화 알고리즘을
+      사용하여 데이터 보호가 불충분한 보안 취약점이다.
+      MD5, SHA-1, DES 등 취약한 알고리즘 사용이나 부적절한 키 관리를 포함하며,
+      데이터 기밀성과 무결성을 심각하게 위협한다.
+    search_keywords:
+      - "weak cryptography"
+      - "broken encryption"
+      - "CWE-327"
+      - "deprecated algorithm"
+      - "MD5"
+      - "SHA-1"
+      - "DES"
+      - "RC4"
+      - "cryptographic weakness"
+      - "약한 암호화"
+      - "취약한 알고리즘"
+    related_queries:
+      - "약한 암호화 알고리즘을 어떻게 식별하는가?"
+      - "권장되는 암호화 알고리즘은 무엇인가?"
+      - "TLS Cipher Suite를 어떻게 강화하는가?"
+      - "암호화 키 관리 모범 사례는?"

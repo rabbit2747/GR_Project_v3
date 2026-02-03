@@ -1,0 +1,104 @@
+# GR Atom: AWS S3
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-AWS-S3-001"
+  name: "AWS S3 (Simple Storage Service)"
+  normalization:
+    normalized_name: "aws s3 simple storage service object storage bucket"
+    normalization_version: "1.0"
+  aliases:
+    - "AWS S3"
+    - "S3"
+    - "S3 Bucket"
+
+classification:
+  domain: infrastructure
+  type: cloud_service
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["INFRA", "CLOUD", "AWS", "STORAGE"]
+
+definition:
+  what: |
+    AWS S3(Simple Storage Service)는 확장 가능한 객체 스토리지 서비스다.
+    정적 웹 호스팅, 백업, 데이터 레이크 등에 사용된다.
+  why: |
+    가장 많이 사용되는 클라우드 스토리지이자 가장 많이 노출되는 서비스다.
+    퍼블릭 버킷, 잘못된 정책이 대규모 데이터 유출의 원인이다.
+  how: |
+    1. Bucket: 객체 컨테이너 (전역 고유 이름)
+    2. Object: 파일과 메타데이터
+    3. Access Control: ACL, Bucket Policy, IAM
+    4. Encryption: SSE-S3, SSE-KMS, SSE-C
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-001"
+      - "INFRA-DATA-STORAGE-001"
+  causal:
+    vulnerable_to:
+      - "VUL-CONFIG-MISCONFIG-001"
+
+properties:
+  technical:
+    access_control:
+      - name: "Block Public Access"
+        description: "계정/버킷 레벨 퍼블릭 접근 차단"
+        status: "기본 활성화 (신규 버킷)"
+      - name: "Bucket Policy"
+        description: "JSON 기반 리소스 정책"
+      - name: "ACL (Legacy)"
+        description: "레거시 접근 제어"
+        recommendation: "사용 비권장"
+      - name: "IAM Policy"
+        description: "자격 증명 기반 접근"
+    encryption:
+      - "SSE-S3: S3 관리 키"
+      - "SSE-KMS: KMS 관리 키"
+      - "SSE-C: 고객 제공 키"
+    security_features:
+      - "Versioning: 버전 관리"
+      - "MFA Delete: 삭제 시 MFA"
+      - "Object Lock: 변경/삭제 방지"
+      - "Access Logging: 접근 로깅"
+    common_misconfigurations:
+      - "퍼블릭 버킷"
+      - "과도하게 허용적인 Bucket Policy"
+      - "암호화 미설정"
+      - "로깅 미활성화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AWS S3 Security Best Practices"
+      - "CIS AWS Benchmark - S3"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      AWS S3는 객체 스토리지 서비스다. 퍼블릭 버킷이 가장 흔한 클라우드
+      보안 이슈이며 Block Public Access, 암호화, 로깅이 필수다.
+    search_keywords:
+      - "AWS S3"
+      - "S3 Bucket"
+      - "S3 보안"
+      - "퍼블릭 버킷"
+    related_queries:
+      - "S3 버킷 보안"
+      - "S3 암호화"
+      - "S3 정책"

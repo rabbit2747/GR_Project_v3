@@ -1,0 +1,118 @@
+# GR Atom: ICMP Attacks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-ICMP-001"
+  name: "ICMP Attacks"
+  normalization:
+    normalized_name: "icmp attacks ping flood smurf redirect"
+    normalization_version: "1.0"
+  aliases:
+    - "ICMP 공격"
+    - "Ping 공격"
+    - "ICMP 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone4"
+    tags: ["ATK", "NET", "ICMP"]
+
+definition:
+  what: |
+    ICMP(Internet Control Message Protocol)를 악용하여
+    서비스 거부, 네트워크 정찰, 리다이렉션 공격을 수행한다.
+  why: |
+    네트워크 인프라를 공격한다.
+    정상 통신을 방해하거나 우회시킨다.
+  how: |
+    1. ICMP 패킷 생성
+    2. 공격 유형에 따른 페이로드 구성
+    3. 대상 시스템에 전송
+    4. 서비스 영향 또는 정보 수집
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-DDOS-001"
+      - "DEF-NET-FIREWALL-001"
+
+properties:
+  technical:
+    protocol: "ICMP"
+    attack_types:
+      - name: "Ping Flood"
+        description: "대량의 ICMP Echo Request 전송"
+        impact: "서비스 거부"
+      - name: "Smurf Attack"
+        description: "브로드캐스트 주소를 이용한 증폭 공격"
+        impact: "DDoS 증폭"
+      - name: "Ping of Death"
+        description: "과대 크기 ICMP 패킷 전송"
+        impact: "시스템 충돌"
+      - name: "ICMP Redirect"
+        description: "라우팅 테이블 조작"
+        impact: "트래픽 리다이렉션"
+      - name: "ICMP Tunneling"
+        description: "ICMP로 데이터 은닉"
+        impact: "방화벽 우회"
+    icmp_types:
+      - type: 0
+        name: "Echo Reply"
+      - type: 3
+        name: "Destination Unreachable"
+      - type: 5
+        name: "Redirect"
+      - type: 8
+        name: "Echo Request"
+    tools:
+      - "hping3"
+      - "Scapy"
+      - "ping"
+      - "ptunnel (ICMP 터널링)"
+    detection:
+      - "ICMP 트래픽 임계값"
+      - "비정상 ICMP 유형"
+      - "페이로드 크기 모니터링"
+    mitigation:
+      - "ICMP Rate Limiting"
+      - "브로드캐스트 비활성화"
+      - "ICMP Redirect 비활성화"
+      - "방화벽 ICMP 필터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 792 ICMP"
+      - "NIST Network Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ICMP 공격은 Ping Flood, Smurf, ICMP Redirect 등 프로토콜을
+      악용하여 서비스 거부나 네트워크 조작을 수행하는 공격이다.
+    search_keywords:
+      - "ICMP"
+      - "Ping"
+      - "Smurf"
+      - "네트워크 공격"
+    related_queries:
+      - "ICMP 보안"
+      - "DoS 공격"
+      - "네트워크 방어"

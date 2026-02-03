@@ -1,0 +1,114 @@
+# GR Atom: Blue Team Operations
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-BLUE-TEAM-001"
+  name: "Blue Team Operations"
+  normalization:
+    normalized_name: "blue team operations defensive security soc detection"
+    normalization_version: "1.0"
+  aliases:
+    - "블루팀 운영"
+    - "방어팀"
+    - "SOC 운영"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "DEFENSE", "SOC"]
+
+definition:
+  what: |
+    조직의 정보 시스템을 공격으로부터 보호하고 위협을
+    탐지, 대응, 복구하는 방어적 보안 운영 활동이다.
+  why: |
+    사이버 공격으로부터 조직을 보호한다.
+    보안 이벤트를 관리하고 대응한다.
+  how: |
+    1. 모니터링 및 탐지
+    2. 분석 및 조사
+    3. 대응 및 격리
+    4. 복구 및 개선
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "TECH-CONCEPT-RED-TEAM-001"
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    core_functions:
+      - "보안 모니터링"
+      - "위협 탐지"
+      - "인시던트 대응"
+      - "취약점 관리"
+      - "보안 도구 운영"
+    soc_tiers:
+      - tier: 1
+        name: "알림 분류"
+        tasks: ["알림 트리아지", "초기 분석", "에스컬레이션"]
+      - tier: 2
+        name: "심층 분석"
+        tasks: ["상세 조사", "포렌식", "대응 조정"]
+      - tier: 3
+        name: "고급 분석"
+        tasks: ["위협 헌팅", "악성코드 분석", "규칙 개발"]
+    key_capabilities:
+      - "SIEM 운영"
+      - "EDR 모니터링"
+      - "로그 분석"
+      - "네트워크 모니터링"
+      - "위협 인텔리전스"
+    tools:
+      siem: ["Splunk", "Elastic", "Microsoft Sentinel"]
+      edr: ["CrowdStrike", "SentinelOne", "Microsoft Defender"]
+      soar: ["Palo Alto XSOAR", "Splunk SOAR"]
+      forensics: ["Volatility", "Autopsy"]
+    metrics:
+      - "MTTD (Mean Time to Detect)"
+      - "MTTR (Mean Time to Respond)"
+      - "알림 볼륨"
+      - "오탐율"
+    frameworks:
+      - "NIST Cybersecurity Framework"
+      - "MITRE ATT&CK (방어 관점)"
+      - "SOC-CMM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "SANS Blue Team"
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Blue Team Operations는 위협 탐지, 인시던트 대응 등
+      조직을 방어하는 보안 운영 활동이다.
+    search_keywords:
+      - "Blue Team"
+      - "SOC"
+      - "방어"
+      - "탐지"
+    related_queries:
+      - "보안 운영"
+      - "인시던트 대응"
+      - "SIEM"

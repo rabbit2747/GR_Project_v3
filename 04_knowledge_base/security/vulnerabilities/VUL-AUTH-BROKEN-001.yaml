@@ -1,0 +1,109 @@
+# GR Atom: Broken Authentication Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-AUTH-BROKEN-001"
+  name: "Broken Authentication"
+  normalization:
+    normalized_name: "broken authentication identification failure"
+    normalization_version: "1.0"
+  aliases:
+    - "인증 결함"
+    - "Identification and Authentication Failures"
+    - "취약한 인증"
+    - "Authentication Bypass Vulnerability"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTH"]
+
+definition:
+  what: |
+    Broken Authentication 취약점은 인증 메커니즘의 설계 또는 구현 결함으로 인해
+    공격자가 비인가 접근을 획득할 수 있는 보안 결함이다. CWE-287에 해당하며,
+    약한 비밀번호 정책, 세션 관리 결함, 자격증명 보호 부재 등을 포함한다.
+  why: |
+    인증은 보안의 첫 번째 관문으로, 이 취약점이 존재하면 전체 시스템의
+    접근 통제가 무력화된다. 계정 탈취, 신원 위조, 권한 상승의 근본 원인이며,
+    OWASP Top 10 2021에서 A07에 위치한다.
+  how: |
+    1. 약한 비밀번호 허용 (짧은 길이, 단순 패턴)
+    2. Brute Force 방어 미구현 (Rate Limiting, Account Lockout 부재)
+    3. 세션 토큰 예측 가능 또는 URL 노출
+    4. 비밀번호 평문 저장 또는 약한 해시 사용
+    5. MFA 미적용, 비밀번호 재설정 로직 결함
+    6. 자동화 도구 또는 수동 테스트로 탐지 가능
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  causal:
+    exploited_by:
+      - "ATK-AUTH-BRUTEFORCE-001"  # 무차별 대입 공격
+      - "ATK-AUTH-BYPASS-001"      # 인증 우회 공격
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  security:
+    cwe_id: "CWE-287"
+    owasp: "A07:2021"
+    cvss_base: 8.2
+    impact:
+      confidentiality: "HIGH - 비인가 계정 접근"
+      integrity: "HIGH - 계정 변조, 데이터 조작"
+      availability: "MEDIUM - 계정 잠금 유발"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-MFA-001"
+        name: "Multi-Factor Authentication"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-RATELIMIT-001"
+        name: "Rate Limiting / Account Lockout"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "강력한 비밀번호 정책"
+        effectiveness: "MEDIUM"
+      - name: "안전한 세션 관리"
+        effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-287: Improper Authentication"
+      - "OWASP A07:2021 - Identification and Authentication Failures"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Broken Authentication(CWE-287)은 인증 메커니즘 결함으로 비인가 접근이
+      가능한 취약점이다. 약한 비밀번호, 세션 관리 결함, Brute Force 방어 부재
+      등이 원인이다. MFA, Rate Limiting으로 방어한다. OWASP A07:2021, CVSS 8.2.
+    search_keywords:
+      - "Broken Authentication"
+      - "인증 결함"
+      - "CWE-287"
+      - "Authentication Failure"
+      - "인증 우회 취약점"
+    related_queries:
+      - "Broken Authentication이란?"
+      - "인증 취약점 방어 방법"
+      - "OWASP A07:2021 대응 방안"

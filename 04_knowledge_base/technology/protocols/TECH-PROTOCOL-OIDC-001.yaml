@@ -1,0 +1,108 @@
+# GR Atom: OpenID Connect Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-OIDC-001"
+  name: "OpenID Connect (OIDC)"
+  normalization:
+    normalized_name: "openid connect oidc identity authentication sso"
+    normalization_version: "1.0"
+  aliases:
+    - "OIDC"
+    - "OpenID Connect"
+    - "OpenID"
+
+classification:
+  domain: application
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "AUTH", "IDENTITY"]
+
+definition:
+  what: |
+    OpenID Connect(OIDC)는 OAuth 2.0 위에 구축된 인증 계층이다.
+    사용자 신원 확인(Authentication)을 표준화하며 ID Token을 제공한다.
+  why: |
+    소셜 로그인, SSO의 표준이다. OAuth 2.0이 인가만 다루는 반면,
+    OIDC는 인증까지 포함한다.
+  how: |
+    1. Authentication Request: scope에 "openid" 포함
+    2. ID Token 발급: JWT 형태의 사용자 정보
+    3. UserInfo Endpoint: 추가 사용자 정보 조회
+    4. Claims: 표준화된 사용자 속성
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+    extends:
+      - "TECH-PROTOCOL-OAUTH-001"
+  causal:
+    uses:
+      - "TECH-FORMAT-JWT-001"
+
+properties:
+  technical:
+    components:
+      - name: "ID Token"
+        type: "JWT"
+        claims: ["iss", "sub", "aud", "exp", "iat", "nonce"]
+      - name: "UserInfo Endpoint"
+        purpose: "추가 사용자 정보"
+      - name: "Discovery"
+        endpoint: "/.well-known/openid-configuration"
+    flows:
+      - name: "Authorization Code Flow"
+        use_case: "웹 앱 (권장)"
+      - name: "Implicit Flow (Deprecated)"
+        use_case: "레거시 SPA"
+      - name: "Hybrid Flow"
+        use_case: "특수 케이스"
+    standard_claims:
+      - "sub (Subject Identifier)"
+      - "name, given_name, family_name"
+      - "email, email_verified"
+      - "phone_number"
+      - "address"
+    providers:
+      - "Google"
+      - "Microsoft (Azure AD)"
+      - "Okta"
+      - "Auth0"
+      - "Keycloak"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OpenID Connect Core 1.0"
+      - "OpenID Foundation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OpenID Connect(OIDC)는 OAuth 2.0 기반 인증 프로토콜이다.
+      ID Token(JWT)으로 사용자 신원을 확인하며 소셜 로그인, SSO에 사용된다.
+    search_keywords:
+      - "OpenID Connect"
+      - "OIDC"
+      - "ID Token"
+      - "SSO"
+      - "소셜 로그인"
+    related_queries:
+      - "OIDC vs OAuth"
+      - "OIDC 구현"
+      - "ID Token 검증"

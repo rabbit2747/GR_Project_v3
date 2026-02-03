@@ -1,0 +1,113 @@
+# GR Atom: GraphQL
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-GRAPHQL-001"
+  name: "GraphQL"
+  normalization:
+    normalized_name: "graphql query language api facebook schema"
+    normalization_version: "1.0"
+  aliases:
+    - "그래프큐엘"
+    - "Graph Query Language"
+
+classification:
+  domain: technology
+  type: concept
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["TECH", "API", "GRAPHQL"]
+
+definition:
+  what: |
+    GraphQL은 Facebook이 개발한 API용 쿼리 언어이자 런타임이다.
+    클라이언트가 필요한 데이터만 정확히 요청할 수 있는 유연한 API를 제공한다.
+  why: |
+    REST의 over-fetching, under-fetching 문제를 해결한다. 복잡한 데이터 관계,
+    모바일 앱, 마이크로서비스에서 효율적이나 고유한 보안 위험이 존재한다.
+  how: |
+    1. Query: 데이터 읽기 요청
+    2. Mutation: 데이터 수정 요청
+    3. Subscription: 실시간 데이터 구독
+    4. Schema: 타입 시스템 기반 API 정의
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-APPLICATION-001"
+    related_to:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-FORMAT-JSON-001"
+  causal:
+    vulnerable_to:
+      - "VUL-API-EXCESSIVE-DATA-001"
+      - "ATK-INJECT-SQL-001"
+
+properties:
+  technical:
+    core_concepts:
+      - name: "Schema"
+        description: "타입 정의와 쿼리 가능 필드"
+      - name: "Types"
+        description: "Object, Scalar, Enum, Interface, Union"
+      - name: "Resolvers"
+        description: "각 필드의 데이터 반환 함수"
+      - name: "Introspection"
+        description: "스키마 자체 조회 기능"
+    security_concerns:
+      - "Introspection 노출"
+      - "Nested Query DoS (Query Depth)"
+      - "Batching Attack"
+      - "Authorization 우회"
+      - "Injection (SQL, NoSQL)"
+      - "Excessive Data Exposure"
+    security_controls:
+      - name: "Query Depth Limiting"
+        description: "중첩 쿼리 깊이 제한"
+      - name: "Query Complexity Analysis"
+        description: "쿼리 복잡도 분석 및 제한"
+      - name: "Rate Limiting"
+        description: "요청 속도 제한"
+      - name: "Disable Introspection in Production"
+        description: "운영 환경 인트로스펙션 비활성화"
+      - name: "Field-level Authorization"
+        description: "필드별 접근 권한 검사"
+    tools:
+      - "Apollo Server/Client"
+      - "GraphQL Playground"
+      - "GraphiQL"
+      - "Hasura"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "GraphQL Official Specification"
+      - "OWASP GraphQL Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      GraphQL은 Facebook이 개발한 API 쿼리 언어다. Query, Mutation, Schema 기반으로
+      유연한 데이터 요청이 가능하나 Depth Attack, Introspection 노출 등 보안 위험이 있다.
+    search_keywords:
+      - "GraphQL"
+      - "그래프큐엘"
+      - "API 쿼리"
+      - "Schema"
+    related_queries:
+      - "GraphQL 보안"
+      - "REST vs GraphQL"
+      - "GraphQL Depth Attack"

@@ -1,0 +1,118 @@
+# GR Atom: Wireless Network Attacks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-WIRELESS-001"
+  name: "Wireless Network Attacks"
+  normalization:
+    normalized_name: "wireless wifi attack wpa wpa2 evil twin deauth"
+    normalization_version: "1.0"
+  aliases:
+    - "무선 네트워크 공격"
+    - "WiFi 해킹"
+    - "무선 침투"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["ATK", "NET", "WIRELESS"]
+
+definition:
+  what: |
+    무선 네트워크 공격은 WiFi 및 기타 무선 프로토콜의 취약점을
+    악용하여 네트워크에 침투하거나 트래픽을 가로채는 공격이다.
+  why: |
+    무선 신호는 물리적 경계를 넘어 전파되어 원격 공격이 가능하다.
+    약한 암호화, 설정 오류가 흔하며 MITM 공격의 진입점이다.
+  how: |
+    1. 무선 네트워크 스캔 (airodump-ng)
+    2. 취약점 식별 (WEP, 약한 WPA2)
+    3. 공격 실행 (핸드셰이크 캡처, Evil Twin)
+    4. 네트워크 접근 또는 트래픽 가로채기
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "WPA2 Handshake Capture"
+        description: "4-way 핸드셰이크 캡처 후 오프라인 크래킹"
+        tools: ["aircrack-ng", "hashcat"]
+      - name: "Evil Twin"
+        description: "가짜 AP로 사용자 유인"
+        impact: "자격 증명 탈취, MITM"
+      - name: "Deauthentication Attack"
+        description: "인증 해제 패킷으로 연결 끊기"
+        use: "핸드셰이크 캡처 유도"
+      - name: "KRACK (Key Reinstallation Attack)"
+        description: "WPA2 프로토콜 취약점"
+      - name: "PMKID Attack"
+        description: "클라이언트 없이 해시 캡처"
+      - name: "Rogue AP"
+        description: "악성 AP 설치"
+    tools:
+      - "aircrack-ng 스위트"
+      - "Wireshark"
+      - "Kismet"
+      - "WiFite"
+      - "Bettercap"
+      - "Fluxion"
+    protocol_security:
+      - name: "WEP"
+        status: "취약 (사용 금지)"
+      - name: "WPA"
+        status: "취약 (사용 금지)"
+      - name: "WPA2-Personal"
+        status: "조건부 안전 (강력한 암호)"
+      - name: "WPA2-Enterprise"
+        status: "권장"
+      - name: "WPA3"
+        status: "최신 권장"
+    prevention:
+      - "WPA3 또는 WPA2-Enterprise 사용"
+      - "강력한 암호 (15자 이상)"
+      - "SSID 숨김 (제한적 효과)"
+      - "MAC 필터링 (제한적 효과)"
+      - "802.1X 인증"
+      - "VPN 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "WiFi Alliance Security"
+      - "KRACK Attacks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      무선 네트워크 공격은 WiFi 취약점을 악용하는 공격이다. 핸드셰이크 캡처, Evil Twin,
+      Deauth가 주요 기법이며 WPA3, 강력한 암호, 802.1X로 방어한다.
+    search_keywords:
+      - "무선 공격"
+      - "WiFi 해킹"
+      - "Evil Twin"
+      - "WPA2 크래킹"
+    related_queries:
+      - "WiFi 보안"
+      - "aircrack-ng"
+      - "WPA3"

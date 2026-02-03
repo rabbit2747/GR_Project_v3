@@ -1,0 +1,111 @@
+# GR Atom: DNS Spoofing Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-DNSSPOOF-001"
+  name: "DNS Spoofing"
+  normalization:
+    normalized_name: "dns spoofing dns cache poisoning dns hijacking"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS 스푸핑"
+    - "DNS Cache Poisoning"
+    - "DNS 캐시 포이즈닝"
+    - "DNS Hijacking"
+    - "DNS 하이재킹"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "NET", "DNS"]
+
+definition:
+  what: |
+    DNS 스푸핑(DNS Spoofing)은 DNS 응답을 위조하거나 DNS 캐시를 오염시켜
+    사용자를 악성 사이트로 리다이렉션하는 공격이다. 정상 도메인 요청이
+    공격자 서버로 연결된다.
+  why: |
+    사용자는 URL이 정상이므로 피싱 의심을 하지 않는다. 대규모 피싱,
+    자격 증명 탈취, 악성코드 배포에 활용된다. HTTPS가 없으면 탐지가 어렵다.
+  how: |
+    1. DNS 쿼리 가로채기 (MITM) 또는 DNS 서버 취약점 악용
+    2. 위조된 DNS 응답으로 악성 IP 주소 전달
+    3. 사용자 브라우저가 악성 서버에 연결
+    4. 피싱 페이지나 악성코드 제공
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+  causal:
+    targets:
+      - "INFRA-NET-DNS-001"
+    enables:
+      - "ATK-AUTH-CREDSTUFF-001"
+    mitigated_by:
+      - "DEF-PREVENT-DNSSEC-001"
+
+properties:
+  technical:
+    attack_methods:
+      - name: "Local DNS Spoofing"
+        method: "로컬 네트워크에서 ARP 스푸핑과 결합"
+        scope: "단일 네트워크"
+      - name: "DNS Cache Poisoning"
+        method: "DNS 서버 캐시에 위조 레코드 삽입"
+        scope: "해당 DNS 사용자 전체"
+      - name: "Rogue DNS Server"
+        method: "악성 DNS 서버 설정 (악성코드, 라우터 해킹)"
+        scope: "해당 DNS 사용 피해자"
+    indicators:
+      - "HTTPS 인증서 오류 (HTTPS 사이트의 경우)"
+      - "비정상적인 IP 주소로 연결"
+      - "예상치 못한 리다이렉션"
+    impact:
+      - "피싱 공격"
+      - "자격 증명 탈취"
+      - "악성코드 배포"
+      - "중간자 공격 설정"
+  security:
+    severity: high
+    cvss_base: 7.4
+    cwe_id: "CWE-350"
+    attack_category: "Spoofing"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1557.001 - LLMNR/NBT-NS Poisoning"
+      - "CWE-350: Reliance on Reverse DNS Resolution"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS Spoofing(DNS 스푸핑)은 DNS 응답을 위조하여 사용자를
+      악성 사이트로 리다이렉션하는 공격이다. DNSSEC, HTTPS로 방어한다.
+    search_keywords:
+      - "DNS Spoofing"
+      - "DNS 스푸핑"
+      - "DNS Cache Poisoning"
+      - "DNS 하이재킹"
+    related_queries:
+      - "DNS 스푸핑이란?"
+      - "DNS 캐시 포이즈닝 방어"
+      - "DNSSEC"

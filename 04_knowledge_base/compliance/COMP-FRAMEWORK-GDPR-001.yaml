@@ -1,0 +1,122 @@
+# GR Atom: GDPR Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-GDPR-001"
+  name: "GDPR (General Data Protection Regulation)"
+  normalization:
+    normalized_name: "gdpr general data protection regulation privacy eu"
+    normalization_version: "1.0"
+  aliases:
+    - "GDPR"
+    - "일반 데이터 보호 규정"
+    - "EU 개인정보보호"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["COMP", "FRAMEWORK", "PRIVACY"]
+
+definition:
+  what: |
+    GDPR은 EU 시민의 개인정보 보호와 처리에 관한 규정으로,
+    전 세계적으로 가장 엄격한 데이터 보호 법규 중 하나다.
+  why: |
+    EU 시민 데이터를 처리하는 모든 조직에 적용된다.
+    위반 시 최대 2천만 유로 또는 매출 4% 과징금이 부과된다.
+  how: |
+    1. 개인정보 처리 현황 파악
+    2. 법적 근거 확보
+    3. 정보주체 권리 보장
+    4. 기술적/관리적 보호조치
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMPLIANCE-001"
+    related_to:
+      - "COMP-FRAMEWORK-CCPA-001"
+
+properties:
+  technical:
+    effective_date: "2018-05-25"
+    scope:
+      - "EU 내 조직"
+      - "EU 시민 데이터 처리 조직"
+      - "EU에 서비스 제공 조직"
+    key_principles:
+      - name: "합법성, 공정성, 투명성"
+        description: "적법하고 공정하게 처리"
+      - name: "목적 제한"
+        description: "명시적 목적으로만 수집"
+      - name: "데이터 최소화"
+        description: "필요한 최소한만 수집"
+      - name: "정확성"
+        description: "정확하게 유지"
+      - name: "저장 제한"
+        description: "필요 기간만 보유"
+      - name: "무결성과 기밀성"
+        description: "적절한 보안 조치"
+      - name: "책임성"
+        description: "원칙 준수 입증"
+    data_subject_rights:
+      - "정보 제공 받을 권리"
+      - "접근권"
+      - "정정권"
+      - "삭제권 (잊힐 권리)"
+      - "처리 제한권"
+      - "이동권"
+      - "반대권"
+      - "자동화된 결정 거부권"
+    legal_bases:
+      - "동의"
+      - "계약 이행"
+      - "법적 의무"
+      - "중대한 이익"
+      - "공익"
+      - "정당한 이익"
+    requirements:
+      - "DPO (Data Protection Officer) 지정"
+      - "개인정보 영향평가 (DPIA)"
+      - "유출 72시간 내 통지"
+      - "Privacy by Design"
+      - "기록 유지"
+    penalties:
+      tier1: "최대 €10M 또는 매출 2%"
+      tier2: "최대 €20M 또는 매출 4%"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "EU GDPR Official"
+      - "GDPR.eu"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      GDPR은 EU 개인정보 보호 규정이다. 7대 원칙, 8대 권리, 높은 과징금이
+      특징이며 전 세계 개인정보 보호법의 기준이 되었다.
+    search_keywords:
+      - "GDPR"
+      - "개인정보"
+      - "EU"
+      - "데이터 보호"
+    related_queries:
+      - "개인정보 보호"
+      - "정보주체 권리"
+      - "DPO"

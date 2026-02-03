@@ -1,0 +1,117 @@
+# GR Atom: BloodHound
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AD-BLOODHOUND-001"
+  name: "BloodHound"
+  normalization:
+    normalized_name: "bloodhound active directory attack path graph"
+    normalization_version: "1.0"
+  aliases:
+    - "BloodHound"
+    - "AD 공격 경로 분석"
+    - "그래프 기반 AD 분석"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "AD", "RECON"]
+
+definition:
+  what: |
+    Active Directory 환경에서 공격 경로를 그래프 기반으로
+    시각화하고 분석하는 오픈소스 도구이다.
+  why: |
+    복잡한 AD 관계에서 공격 경로를 발견한다.
+    권한 상승 경로를 식별한다.
+  how: |
+    1. 데이터 수집 (SharpHound)
+    2. 데이터베이스 임포트
+    3. 그래프 분석
+    4. 공격 경로 식별
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "TECH-CONCEPT-AD-SECURITY-001"
+      - "ATK-WIN-KERBEROASTING-001"
+
+properties:
+  technical:
+    components:
+      - name: "BloodHound"
+        description: "그래프 시각화 UI"
+        database: "Neo4j"
+      - name: "SharpHound"
+        description: "Windows 데이터 수집기"
+      - name: "AzureHound"
+        description: "Azure AD 데이터 수집기"
+    collected_data:
+      - "사용자 및 그룹"
+      - "컴퓨터"
+      - "GPO"
+      - "OU 구조"
+      - "세션 정보"
+      - "ACL 관계"
+    attack_paths:
+      - "Domain Admin까지 최단 경로"
+      - "Kerberoastable 사용자"
+      - "AS-REP Roastable 사용자"
+      - "DC Sync 가능 계정"
+      - "Unconstrained Delegation"
+    builtin_queries:
+      - "Find all Domain Admins"
+      - "Shortest Paths to Domain Admins"
+      - "Kerberoastable Users"
+      - "Users with DCSync Rights"
+      - "Computers with Unconstrained Delegation"
+    usage:
+      sharphound: "SharpHound.exe -c All"
+      bloodhound: "BloodHound GUI에서 JSON 임포트"
+    versions:
+      - "BloodHound Classic (CE)"
+      - "BloodHound Enterprise"
+    related_tools:
+      - "ADRecon"
+      - "PingCastle"
+      - "Adalanche"
+    license: "GPLv3"
+    repository: "https://github.com/BloodHoundAD/BloodHound"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "BloodHound Documentation"
+      - "SpecterOps"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BloodHound는 Active Directory 공격 경로를 그래프로
+      시각화하고 권한 상승 경로를 분석하는 도구이다.
+    search_keywords:
+      - "BloodHound"
+      - "AD 공격 경로"
+      - "SharpHound"
+      - "그래프 분석"
+    related_queries:
+      - "AD 보안"
+      - "권한 상승"
+      - "도메인 관리자"

@@ -1,0 +1,116 @@
+# GR Atom: Supply Chain Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-SUPPLY-CHAIN-SECURITY-001"
+  name: "Supply Chain Security"
+  normalization:
+    normalized_name: "supply chain security sbom dependency third party risk"
+    normalization_version: "1.0"
+  aliases:
+    - "Software Supply Chain"
+    - "공급망 보안"
+    - "Third-Party Risk"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["CONCEPT", "SUPPLY", "RISK"]
+
+definition:
+  what: |
+    소프트웨어 개발부터 배포까지 공급망 전체에서
+    보안 위험을 관리하는 프로세스이다.
+  why: |
+    서드파티 의존성 위험을 관리한다.
+    공급망 공격을 방지한다.
+  how: |
+    1. 의존성 인벤토리
+    2. 취약점 모니터링
+    3. 무결성 검증
+    4. 지속적 평가
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-RISK-MANAGEMENT-001"
+    related_to:
+      - "DEF-DEVSECOPS-SCA-001"
+      - "ATK-SUPPLY-CHAIN-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "Dependency Confusion"
+        description: "공개 패키지로 내부 패키지 대체"
+      - name: "Typosquatting"
+        description: "유사 이름 악성 패키지"
+      - name: "Compromised Package"
+        description: "정상 패키지에 악성코드 삽입"
+      - name: "Build System Compromise"
+        description: "빌드 인프라 침해"
+    notable_incidents:
+      - "SolarWinds (2020)"
+      - "Log4Shell (2021)"
+      - "Codecov (2021)"
+      - "ua-parser-js (2021)"
+      - "node-ipc (2022)"
+    sbom:
+      name: "Software Bill of Materials"
+      purpose: "소프트웨어 구성요소 목록"
+      formats:
+        - "SPDX"
+        - "CycloneDX"
+        - "SWID"
+    frameworks:
+      - "SLSA (Supply chain Levels for Software Artifacts)"
+      - "NIST SSDF"
+      - "CNCF Supply Chain Best Practices"
+    tools:
+      sca:
+        - "Snyk"
+        - "Dependabot"
+        - "OWASP Dependency-Check"
+      signing:
+        - "Sigstore"
+        - "in-toto"
+        - "TUF"
+    best_practices:
+      - "SBOM 생성 및 유지"
+      - "의존성 취약점 스캔"
+      - "패키지 서명 검증"
+      - "최소 의존성 원칙"
+      - "벤더 보안 평가"
+      - "빌드 파이프라인 보호"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SSDF"
+      - "SLSA Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Supply Chain Security는 소프트웨어 의존성과 빌드 파이프라인의
+      보안을 관리하여 공급망 공격을 방지한다.
+    search_keywords:
+      - "Supply Chain"
+      - "SBOM"
+      - "Dependency"
+      - "공급망 보안"

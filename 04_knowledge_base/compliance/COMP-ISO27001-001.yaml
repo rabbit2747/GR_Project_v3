@@ -1,0 +1,116 @@
+# GR Atom: ISO/IEC 27001
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-ISO27001-001"
+  name: "ISO/IEC 27001"
+  normalization:
+    normalized_name: "iso 27001 isms information security management"
+    normalization_version: "1.0"
+  aliases:
+    - "ISO 27001"
+    - "ISMS"
+    - "정보보호관리체계"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["COMP", "STANDARD", "ISMS"]
+
+definition:
+  what: |
+    정보보호 관리체계(ISMS)의 수립, 구현, 유지, 개선을 위한
+    국제 표준으로 리스크 기반 접근법을 사용한다.
+  why: |
+    체계적인 정보보안 관리를 구현한다.
+    비즈니스 연속성을 보장한다.
+  how: |
+    1. 범위 정의
+    2. 리스크 평가
+    3. 통제 구현
+    4. 인증 심사
+
+relations:
+  structural:
+    is_a:
+      - "COMP-STANDARD-001"
+    related_to:
+      - "COMP-ISO27002-001"
+      - "COMP-NIST-CSF-001"
+
+properties:
+  technical:
+    current_version: "ISO/IEC 27001:2022"
+    structure:
+      clauses:
+        - "4. 조직의 상황"
+        - "5. 리더십"
+        - "6. 계획"
+        - "7. 지원"
+        - "8. 운영"
+        - "9. 성과 평가"
+        - "10. 개선"
+    annex_a_controls:
+      categories:
+        - name: "5. 조직적 통제"
+          count: 37
+        - name: "6. 인적 통제"
+          count: 8
+        - name: "7. 물리적 통제"
+          count: 14
+        - name: "8. 기술적 통제"
+          count: 34
+      total: 93
+    pdca_cycle:
+      plan: "ISMS 수립"
+      do: "ISMS 구현 및 운영"
+      check: "ISMS 모니터링 및 검토"
+      act: "ISMS 유지 및 개선"
+    risk_management:
+      - "자산 식별"
+      - "위협/취약점 식별"
+      - "영향 분석"
+      - "리스크 평가"
+      - "리스크 처리"
+    certification:
+      stages:
+        - "Stage 1: 문서 검토"
+        - "Stage 2: 현장 심사"
+      validity: "3년 (연간 사후 심사)"
+    related_standards:
+      - "ISO 27002: 통제 지침"
+      - "ISO 27005: 리스크 관리"
+      - "ISO 27017: 클라우드 보안"
+      - "ISO 27018: 클라우드 개인정보"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ISO/IEC 27001:2022"
+      - "ISO/IEC 27002:2022"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ISO 27001은 정보보호 관리체계(ISMS)를 위한 국제 표준으로
+      93개 통제 항목과 리스크 기반 접근법을 제공한다.
+    search_keywords:
+      - "ISO 27001"
+      - "ISMS"
+      - "정보보호관리체계"
+      - "보안 인증"

@@ -1,0 +1,75 @@
+# GR Atom: Web Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-001"
+  name: "Web Attack"
+  normalization:
+    normalized_name: "web attack application owasp"
+    normalization_version: "1.0"
+  aliases:
+    - "Web Attack"
+    - "웹 공격"
+    - "Web Application Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "WEB"]
+
+definition:
+  what: |
+    웹 애플리케이션의 취약점을 악용하는 공격 기법 분류이다.
+  why: |
+    웹 서비스를 침해한다.
+    데이터를 탈취한다.
+    서버를 장악한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-WEB-PROTOTYPE-POLLUTION-001"
+      - "ATK-WEB-SUBDOMAIN-TAKEOVER-001"
+    related_to:
+      - "VUL-WEB-001"
+      - "TOOL-WEB-001"
+
+properties:
+  technical:
+    owasp_top10:
+      - "Injection"
+      - "Broken Authentication"
+      - "XSS"
+      - "SSRF"
+      - "Security Misconfiguration"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Web Attack은 웹 애플리케이션을 대상으로 하는 공격 기법 분류이다.
+    search_keywords:
+      - "Web Attack"
+      - "웹 공격"
+      - "OWASP"

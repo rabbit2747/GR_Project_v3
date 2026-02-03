@@ -1,0 +1,118 @@
+# GR Atom: Firewall
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-FIREWALL-001"
+  name: "Firewall"
+  normalization:
+    normalized_name: "firewall network security packet filtering stateful ngfw"
+    normalization_version: "1.0"
+  aliases:
+    - "Firewall"
+    - "방화벽"
+    - "NGFW"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["DEF", "PREVENT", "NETWORK"]
+
+definition:
+  what: |
+    사전 정의된 보안 규칙에 따라 네트워크 트래픽을
+    모니터링하고 제어하는 네트워크 보안 시스템이다.
+  why: |
+    무단 네트워크 접근을 차단한다.
+    네트워크 경계를 보호한다.
+  how: |
+    1. 트래픽 검사
+    2. 규칙 매칭
+    3. 허용/차단 결정
+    4. 로깅
+
+relations:
+  structural:
+    is_a:
+      - "DEF-PREVENT-001"
+    related_to:
+      - "DEF-NET-IDS-001"
+      - "TECH-CONCEPT-NETWORK-SECURITY-001"
+
+properties:
+  technical:
+    types:
+      - name: "Packet Filter"
+        layer: "L3-L4"
+        inspection: "IP, Port"
+      - name: "Stateful"
+        layer: "L3-L4"
+        inspection: "연결 상태 추적"
+      - name: "Application"
+        layer: "L7"
+        inspection: "애플리케이션 프로토콜"
+      - name: "NGFW"
+        layer: "L3-L7"
+        features: ["DPI", "IPS", "App Control", "SSL Inspection"]
+    deployment_modes:
+      - "네트워크 경계"
+      - "DMZ"
+      - "내부 세그멘테이션"
+      - "호스트 기반"
+    rule_components:
+      - "Source IP/Network"
+      - "Destination IP/Network"
+      - "Protocol"
+      - "Port"
+      - "Action (Allow/Deny)"
+      - "Logging"
+    popular_solutions:
+      enterprise:
+        - "Palo Alto Networks"
+        - "Fortinet FortiGate"
+        - "Cisco ASA/Firepower"
+        - "Check Point"
+      open_source:
+        - "pfSense"
+        - "OPNsense"
+        - "iptables/nftables"
+      cloud:
+        - "AWS Security Groups"
+        - "Azure NSG"
+        - "GCP Firewall Rules"
+    best_practices:
+      - "기본 거부 정책"
+      - "최소 권한 원칙"
+      - "규칙 정기 검토"
+      - "로깅 활성화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-41"
+      - "Firewall Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Firewall은 보안 규칙에 따라 네트워크 트래픽을
+      모니터링하고 제어하는 기본적인 네트워크 보안 시스템이다.
+    search_keywords:
+      - "Firewall"
+      - "방화벽"
+      - "NGFW"
+      - "패킷 필터링"

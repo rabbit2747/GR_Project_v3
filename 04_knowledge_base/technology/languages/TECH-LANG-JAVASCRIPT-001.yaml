@@ -1,0 +1,110 @@
+# GR Atom: JavaScript Language
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-LANG-JAVASCRIPT-001"
+  name: "JavaScript"
+  normalization:
+    normalized_name: "javascript js ecmascript"
+    normalization_version: "1.0"
+  aliases:
+    - "JS"
+    - "ECMAScript"
+    - "ES6"
+    - "자바스크립트"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["WEB", "A"]
+
+definition:
+  what: |
+    JavaScript는 웹 브라우저에서 실행되는 동적 프로그래밍 언어다.
+    DOM 조작, 이벤트 처리, 비동기 통신(AJAX) 등을 담당한다.
+    Node.js를 통해 서버에서도 실행 가능하다.
+  why: |
+    클라이언트 측 웹 애플리케이션의 핵심 언어다. XSS 공격의 목표는
+    악성 JavaScript를 실행시키는 것이므로, JavaScript 이해는
+    웹 보안에 필수적이다.
+  how: |
+    1. 브라우저가 HTML 내 script 태그 또는 외부 JS 파일 로드
+    2. JavaScript 엔진(V8, SpiderMonkey 등)이 파싱 및 실행
+    3. DOM API를 통해 페이지 조작
+    4. 이벤트 루프를 통한 비동기 처리
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-PROGRAMMING-LANG-001"]
+  causal:
+    enables:
+      - "ATK-INJECT-XSS-001"  # XSS 공격 실행
+      - "INFRA-APP-SPA-001"   # SPA 구현
+  conditional:
+    requires:
+      - "TECH-CONCEPT-DOM-001"  # 브라우저에서 DOM 필요
+
+properties:
+  technical:
+    type: "Dynamic Programming Language"
+    paradigms:
+      - "객체 지향"
+      - "함수형"
+      - "이벤트 기반"
+    runtime:
+      browser: ["V8 (Chrome)", "SpiderMonkey (Firefox)", "JavaScriptCore (Safari)"]
+      server: ["Node.js", "Deno", "Bun"]
+    key_apis:
+      - "DOM API"
+      - "Fetch API"
+      - "Web Storage"
+      - "WebSocket"
+    security_sensitive:
+      - name: "eval()"
+        risk: "임의 코드 실행"
+      - name: "innerHTML"
+        risk: "XSS 취약점"
+      - name: "document.cookie"
+        risk: "쿠키 탈취"
+      - name: "XMLHttpRequest/fetch"
+        risk: "데이터 유출"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ECMA-262 ECMAScript Language Specification"
+      - "MDN Web Docs"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      JavaScript는 웹 브라우저에서 실행되는 동적 프로그래밍 언어다.
+      DOM 조작, 이벤트 처리, AJAX 통신을 담당한다. XSS 공격은 악성
+      JavaScript를 실행시키는 것이 목표다. eval, innerHTML, document.cookie
+      등은 보안에 민감한 API다. Node.js로 서버에서도 실행 가능하다.
+    search_keywords:
+      - "JavaScript"
+      - "JS"
+      - "ECMAScript"
+      - "DOM 조작"
+      - "XSS"
+      - "Node.js"
+    related_queries:
+      - "JavaScript란?"
+      - "JavaScript와 XSS 관계"
+      - "JavaScript 보안 취약점"

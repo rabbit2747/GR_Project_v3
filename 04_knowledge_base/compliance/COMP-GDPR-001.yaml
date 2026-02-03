@@ -1,0 +1,115 @@
+# GR Atom: General Data Protection Regulation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-GDPR-001"
+  name: "General Data Protection Regulation"
+  normalization:
+    normalized_name: "gdpr data protection privacy eu regulation"
+    normalization_version: "1.0"
+  aliases:
+    - "GDPR"
+    - "일반 데이터 보호 규정"
+    - "EU 개인정보보호법"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["COMP", "PRIVACY", "EU"]
+
+definition:
+  what: |
+    EU 시민의 개인정보 보호를 위한 규정으로
+    데이터 처리, 저장, 이전에 대한 요구사항을 정의한다.
+  why: |
+    개인정보 보호 권리를 보장한다.
+    데이터 처리의 투명성을 요구한다.
+  how: |
+    1. 법적 근거 확보
+    2. 개인정보 처리 원칙 준수
+    3. 정보주체 권리 보장
+    4. 보안 조치 구현
+
+relations:
+  structural:
+    is_a:
+      - "COMP-PRIVACY-001"
+    related_to:
+      - "COMP-PIPA-001"
+      - "TECH-CONCEPT-PRIVACY-001"
+
+properties:
+  technical:
+    scope:
+      territorial: "EU 내 또는 EU 시민 데이터 처리"
+      material: "개인정보의 자동화/수동 처리"
+    key_principles:
+      - name: "적법성, 공정성, 투명성"
+        article: "Article 5(1)(a)"
+      - name: "목적 제한"
+        article: "Article 5(1)(b)"
+      - name: "데이터 최소화"
+        article: "Article 5(1)(c)"
+      - name: "정확성"
+        article: "Article 5(1)(d)"
+      - name: "저장 제한"
+        article: "Article 5(1)(e)"
+      - name: "무결성 및 기밀성"
+        article: "Article 5(1)(f)"
+    data_subject_rights:
+      - "정보를 받을 권리 (Art. 13-14)"
+      - "접근권 (Art. 15)"
+      - "정정권 (Art. 16)"
+      - "삭제권/잊힐 권리 (Art. 17)"
+      - "처리 제한권 (Art. 18)"
+      - "이동권 (Art. 20)"
+      - "반대권 (Art. 21)"
+    legal_bases:
+      - "동의"
+      - "계약 이행"
+      - "법적 의무"
+      - "중대한 이익"
+      - "공익/공권력 행사"
+      - "정당한 이익"
+    breach_notification:
+      authority: "72시간 이내"
+      data_subject: "고위험 시 즉시"
+    penalties:
+      tier1: "최대 €10M 또는 매출 2%"
+      tier2: "최대 €20M 또는 매출 4%"
+    key_roles:
+      - "Data Controller"
+      - "Data Processor"
+      - "DPO (Data Protection Officer)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Regulation (EU) 2016/679"
+      - "EDPB Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      GDPR은 EU 시민의 개인정보 보호를 위한 규정으로
+      데이터 처리 원칙과 정보주체 권리를 규정한다.
+    search_keywords:
+      - "GDPR"
+      - "개인정보보호"
+      - "EU Privacy"
+      - "Data Protection"

@@ -1,0 +1,116 @@
+# GR Atom: MITRE ATT&CK T1059 - Command and Scripting Interpreter
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1059-001"
+  name: "Command and Scripting Interpreter"
+  normalization:
+    normalized_name: "mitre t1059 command script interpreter powershell bash"
+    normalization_version: "1.0"
+  aliases:
+    - "명령 및 스크립팅 인터프리터"
+    - "T1059"
+    - "스크립트 실행"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    공격자가 시스템 명령어 해석기(PowerShell, cmd, bash 등)를 악용하여
+    악성 코드를 실행하는 기법이다. MITRE ATT&CK T1059.
+  why: |
+    대부분의 시스템에 기본 설치되어 있어 추가 도구 없이 공격 가능하다.
+    합법적 관리 도구로 위장이 용이하다.
+  how: |
+    1. 초기 접근 획득
+    2. 적절한 인터프리터 선택
+    3. 스크립트 또는 명령 실행
+    4. 페이로드 다운로드 또는 직접 실행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "ATK-MITRE-PERSISTENCE-001"
+
+properties:
+  technical:
+    mitre_id: "T1059"
+    tactic: "Execution"
+    sub_techniques:
+      - id: "T1059.001"
+        name: "PowerShell"
+        description: "Windows PowerShell 악용"
+        examples:
+          - "IEX (New-Object Net.WebClient).DownloadString()"
+          - "Encoded Command (-enc)"
+      - id: "T1059.003"
+        name: "Windows Command Shell"
+        description: "cmd.exe 악용"
+        examples:
+          - "cmd /c 명령"
+          - "FOR 루프 악용"
+      - id: "T1059.004"
+        name: "Unix Shell"
+        description: "bash, sh 악용"
+        examples:
+          - "curl | bash"
+          - "reverse shell"
+      - id: "T1059.005"
+        name: "Visual Basic"
+        description: "VBScript 악용"
+      - id: "T1059.006"
+        name: "Python"
+        description: "Python 스크립트 실행"
+      - id: "T1059.007"
+        name: "JavaScript"
+        description: "JScript, Node.js 악용"
+    detection:
+      - "명령줄 로깅 (4688 이벤트)"
+      - "PowerShell 로깅 (ScriptBlock, Module)"
+      - "비정상 프로세스 트리"
+      - "Base64 인코딩 탐지"
+    prevention:
+      - "PowerShell Constrained Language Mode"
+      - "AppLocker/WDAC"
+      - "스크립트 서명 정책"
+      - "명령줄 로깅 활성화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1059"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1059는 명령어 인터프리터 악용 기법이다. PowerShell, cmd, bash가 대표적이며
+      명령줄 로깅, 스크립트 제어로 탐지/방어한다.
+    search_keywords:
+      - "T1059"
+      - "PowerShell"
+      - "스크립트 실행"
+      - "명령어 인터프리터"
+    related_queries:
+      - "PowerShell 공격"
+      - "스크립트 보안"
+      - "Living off the Land"

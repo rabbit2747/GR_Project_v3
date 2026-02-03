@@ -1,0 +1,113 @@
+# GR Atom: Zero Trust Architecture
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-ZERO-TRUST-001"
+  name: "Zero Trust Architecture"
+  normalization:
+    normalized_name: "zero trust never trust always verify microsegmentation"
+    normalization_version: "1.0"
+  aliases:
+    - "Zero Trust"
+    - "ZTA"
+    - "제로 트러스트"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["CONCEPT", "ARCHITECTURE", "MODERN"]
+
+definition:
+  what: |
+    네트워크 위치에 관계없이 모든 접근 요청을 검증하는
+    보안 모델로 "Never Trust, Always Verify"가 원칙이다.
+  why: |
+    경계 기반 보안의 한계를 극복한다.
+    내부 위협과 측면 이동을 방지한다.
+  how: |
+    1. 신원 검증
+    2. 디바이스 검증
+    3. 최소 권한 접근
+    4. 지속적 모니터링
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-ARCHITECTURE-001"
+    related_to:
+      - "DEF-AUTH-MFA-001"
+      - "DEF-NET-MICROSEGMENTATION-001"
+
+properties:
+  technical:
+    core_principles:
+      - name: "Verify Explicitly"
+        description: "모든 데이터 포인트로 인증/권한 부여"
+      - name: "Use Least Privilege"
+        description: "JIT/JEA, 위험 기반 적응형 정책"
+      - name: "Assume Breach"
+        description: "침해 가정, 폭발 반경 최소화"
+    pillars:
+      - name: "Identity"
+        controls: ["MFA", "IAM", "UEBA"]
+      - name: "Devices"
+        controls: ["MDM", "EDR", "Compliance Check"]
+      - name: "Network"
+        controls: ["Microsegmentation", "Encryption"]
+      - name: "Applications"
+        controls: ["In-app Security", "Shadow IT"]
+      - name: "Data"
+        controls: ["Classification", "DLP", "Encryption"]
+      - name: "Infrastructure"
+        controls: ["JIT Access", "Telemetry"]
+    nist_sp_800_207:
+      components:
+        - "Policy Engine (PE)"
+        - "Policy Administrator (PA)"
+        - "Policy Enforcement Point (PEP)"
+    deployment_models:
+      - "Enhanced Identity Governance"
+      - "Micro-segmentation"
+      - "Software Defined Perimeter"
+    solutions:
+      - "Microsoft Zero Trust"
+      - "Google BeyondCorp"
+      - "Zscaler"
+      - "Palo Alto Prisma"
+    benefits:
+      - "측면 이동 방지"
+      - "내부자 위협 완화"
+      - "원격 근무 보안"
+      - "가시성 향상"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-207"
+      - "Forrester Zero Trust"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Zero Trust는 "Never Trust, Always Verify" 원칙으로
+      모든 접근을 검증하는 현대적 보안 아키텍처이다.
+    search_keywords:
+      - "Zero Trust"
+      - "ZTA"
+      - "제로 트러스트"
+      - "BeyondCorp"

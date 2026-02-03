@@ -1,0 +1,111 @@
+# GR Atom: Security Misconfiguration Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CONFIG-MISCONFIG-001"
+  name: "Security Misconfiguration"
+  normalization:
+    normalized_name: "security misconfiguration configuration vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "보안 설정 오류"
+    - "잘못된 보안 구성"
+    - "Configuration Vulnerability"
+    - "Default Configuration Risk"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["CONFIG"]
+
+definition:
+  what: |
+    Security Misconfiguration 취약점은 시스템, 프레임워크, 서버, 클라우드 등의
+    보안 설정이 부적절하거나 기본값으로 방치되어 공격에 노출되는 보안 결함이다.
+    CWE-16에 해당하며, 전체 스택(OS, 웹서버, DB, 프레임워크, 클라우드)에 걸쳐 발생한다.
+  why: |
+    OWASP Top 10 2021에서 A05에 위치하며, 가장 광범위하게 발생하는 취약점이다.
+    기본 계정, 불필요한 서비스, 디버그 모드, 과도한 권한 등이 공격자에게
+    쉬운 침투 경로를 제공한다. 클라우드 환경에서 특히 빈번하게 발견된다.
+  how: |
+    1. 기본 관리자 계정/비밀번호 미변경 (admin/admin)
+    2. 불필요한 기능, 포트, 서비스 활성화
+    3. 디버그 모드, 상세 에러 메시지 노출
+    4. 보안 헤더 미설정 (X-Frame-Options, CSP 등)
+    5. 클라우드 스토리지 공개 접근 허용 (S3 Public)
+    6. 취약한 소프트웨어 버전 미패치
+    7. 자동화 스캐너, 설정 감사 도구로 탐지
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-NET-SERVER-001"
+      - "INFRA-CLOUD-001"
+
+properties:
+  security:
+    cwe_id: "CWE-16"
+    owasp: "A05:2021"
+    cvss_base: 6.5
+    impact:
+      confidentiality: "MEDIUM - 내부 정보 노출"
+      integrity: "MEDIUM - 설정 변조 가능"
+      availability: "MEDIUM - 서비스 중단 가능"
+  countermeasures:
+    primary:
+      - name: "보안 강화(Hardening) 프로세스"
+        description: "최소 권한, 불필요 기능 제거, 기본값 변경"
+        effectiveness: "HIGH"
+      - name: "자동화된 설정 감사"
+        description: "IaC, CIS Benchmark 기반 자동 검증"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "정기 패치 관리"
+        effectiveness: "HIGH"
+      - name: "환경 분리 (개발/운영)"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CWE-16: Configuration"
+      - "OWASP A05:2021 - Security Misconfiguration"
+      - "CIS Benchmarks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Misconfiguration(CWE-16)은 보안 설정이 부적절하거나 기본값으로
+      방치되어 공격에 노출되는 취약점이다. 기본 계정, 디버그 모드, 클라우드 공개
+      설정 등이 원인이다. 보안 강화 프로세스와 자동화 설정 감사로 방어한다.
+      OWASP A05:2021, CVSS 6.5.
+    search_keywords:
+      - "Security Misconfiguration"
+      - "보안 설정 오류"
+      - "CWE-16"
+      - "잘못된 보안 구성"
+      - "기본 설정 취약점"
+    related_queries:
+      - "Security Misconfiguration이란?"
+      - "보안 설정 오류 방어 방법"
+      - "OWASP A05:2021 대응 방안"
+      - "서버 보안 강화 방법"

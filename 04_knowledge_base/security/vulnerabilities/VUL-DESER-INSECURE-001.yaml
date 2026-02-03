@@ -1,0 +1,114 @@
+# GR Atom: Insecure Deserialization
+identity:
+  id: "VUL-DESER-INSECURE-001"
+  name: "Insecure Deserialization"
+  normalization:
+    normalized_name: "insecure deserialization"
+    normalization_version: "1.0"
+  aliases:
+    - "Deserialization of Untrusted Data"
+    - "Unsafe Deserialization"
+    - "Object Injection"
+    - "CWE-502"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["INJECT", "DATA"]
+
+definition:
+  what: |
+    안전하지 않은 역직렬화 취약점(CWE-502)은 애플리케이션이 신뢰할 수 없는 출처의
+    직렬화된 데이터를 적절한 검증 없이 역직렬화할 때 발생하는 보안 결함이다.
+    공격자가 조작된 직렬화 객체를 전달하여 원격 코드 실행(RCE), 권한 상승,
+    서비스 거부(DoS), 인증 우회 등 심각한 공격을 수행할 수 있다.
+    Java, PHP, Python, .NET 등 다양한 언어와 프레임워크에서 발생한다.
+  why: |
+    역직렬화는 객체 상태를 복원하는 과정에서 클래스의 매직 메서드나 가젯 체인을 통해
+    임의 코드가 실행될 수 있는 위험한 작업이다. 이 취약점은 원격 코드 실행으로
+    직결될 수 있어 가장 치명적인 취약점 유형 중 하나로 분류된다.
+    Apache Commons Collections, Spring Framework 등 널리 사용되는 라이브러리에서
+    다수의 역직렬화 가젯 체인이 발견되어 실제 공격에 활용되고 있다.
+    OWASP Top 10 2021에서 A08(Software and Data Integrity Failures)로 분류된다.
+  how: |
+    - 발생 조건: 사용자 입력에서 직렬화된 객체를 받아 역직렬화하는 경우,
+      쿠키/세션/토큰에 직렬화된 객체 포함, API 엔드포인트에서 직렬화 형식
+      (Java Serialization, Pickle, PHP serialize 등) 수용,
+      메시지 큐에서 직렬화된 메시지 처리
+    - 탐지 방법: 네트워크 트래픽에서 직렬화 매직 바이트 탐지
+      (Java: 0xACED0005, PHP: O:, Python pickle: 0x80),
+      소스 코드에서 역직렬화 함수 호출 검사(ObjectInputStream.readObject(),
+      unserialize(), pickle.loads()), 동적 분석을 통한 역직렬화 동작 모니터링
+    - 도구: ysoserial, PHPGGC, Burp Suite Deserialization Scanner,
+      Java Deserialization Scanner, GadgetInspector
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
+  associative:
+    related_to:
+      - id: "ATK-SERVER-DESER-001"
+        type: "exploited_by"
+        description: "역직렬화 공격에 의해 악용됨"
+  applicability:
+    applies_to:
+      - "Java 애플리케이션(RMI, JMX, JMS)"
+      - "PHP 애플리케이션"
+      - "Python 애플리케이션(Pickle)"
+      - ".NET 애플리케이션(BinaryFormatter)"
+      - "API 엔드포인트"
+      - "메시지 큐 시스템"
+
+properties:
+  security:
+    cwe_id: "CWE-502"
+    owasp: "A08:2021"
+    cvss_base: 9.8
+    severity: "Critical"
+    impact:
+      confidentiality: "High"
+      integrity: "High"
+      availability: "High"
+    attack_vector: "Network"
+    attack_complexity: "Low"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Insecure Deserialization (CWE-502)은 신뢰할 수 없는 직렬화 데이터를
+      검증 없이 역직렬화하여 발생하는 취약점이다.
+      원격 코드 실행, 권한 상승 등 치명적 공격으로 이어질 수 있으며,
+      OWASP A08:2021에 해당한다.
+    search_keywords:
+      - "insecure deserialization"
+      - "CWE-502"
+      - "object injection"
+      - "deserialization vulnerability"
+      - "ysoserial"
+      - "gadget chain"
+      - "Java serialization"
+      - "pickle exploit"
+      - "역직렬화"
+      - "객체 주입"
+    related_queries:
+      - "안전하지 않은 역직렬화란 무엇인가?"
+      - "역직렬화 공격을 어떻게 방어하는가?"
+      - "Java 역직렬화 가젯 체인이란?"
+      - "역직렬화 대신 사용할 수 있는 안전한 대안은?"

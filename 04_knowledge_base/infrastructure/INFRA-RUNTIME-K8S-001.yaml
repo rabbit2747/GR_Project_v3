@@ -1,0 +1,99 @@
+# GR Atom: Kubernetes
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-RUNTIME-K8S-001"
+  name: "Kubernetes"
+  normalization:
+    normalized_name: "kubernetes k8s container orchestration"
+    normalization_version: "1.0"
+  aliases:
+    - "K8s"
+    - "쿠버네티스"
+    - "Container Orchestration"
+    - "컨테이너 오케스트레이션"
+
+classification:
+  domain: infrastructure
+  type: platform
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["INFRA", "PLATFORM", "CLOUD"]
+
+definition:
+  what: |
+    쿠버네티스(Kubernetes, K8s)는 컨테이너화된 애플리케이션의 배포, 확장,
+    관리를 자동화하는 오케스트레이션 플랫폼이다.
+  why: |
+    클라우드 네이티브 인프라의 사실상 표준이다. RBAC 설정 오류, 노출된 API,
+    Pod 보안 정책 미비가 주요 공격 대상이다.
+  how: |
+    1. Control Plane: API Server, etcd, Scheduler, Controller Manager
+    2. Worker Nodes: kubelet, kube-proxy, Container Runtime
+    3. Workloads: Pods, Deployments, Services
+    4. Networking: CNI, Service Mesh
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    requires:
+      - "INFRA-RUNTIME-CONTAINER-001"
+  causal:
+    enables:
+      - "INFRA-APP-WEBAPP-001"
+
+properties:
+  technical:
+    components:
+      - name: "API Server"
+        function: "클러스터 진입점, 모든 요청 처리"
+      - name: "etcd"
+        function: "클러스터 상태 저장소"
+      - name: "kubelet"
+        function: "노드 에이전트, Pod 관리"
+    security_features:
+      - "RBAC (Role-Based Access Control)"
+      - "Pod Security Standards"
+      - "Network Policies"
+      - "Secrets Management"
+    common_vulnerabilities:
+      - "Exposed API server"
+      - "RBAC misconfiguration"
+      - "etcd exposure"
+      - "Service account token abuse"
+      - "Pod escape"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Kubernetes Benchmark"
+      - "Kubernetes Security Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kubernetes(K8s)는 컨테이너 오케스트레이션 플랫폼이다.
+      RBAC 설정 오류, API 노출, etcd 접근이 주요 보안 위협이다.
+    search_keywords:
+      - "Kubernetes"
+      - "K8s"
+      - "쿠버네티스"
+      - "컨테이너 오케스트레이션"
+    related_queries:
+      - "쿠버네티스 보안"
+      - "K8s RBAC"
+      - "Pod 보안"

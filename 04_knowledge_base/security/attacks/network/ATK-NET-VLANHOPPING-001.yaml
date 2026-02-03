@@ -1,0 +1,101 @@
+# GR Atom: VLAN Hopping Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-VLANHOPPING-001"
+  name: "VLAN Hopping"
+  normalization:
+    normalized_name: "vlan hopping double tagging switch spoofing"
+    normalization_version: "1.0"
+  aliases:
+    - "VLAN 호핑"
+    - "VLAN Bypass"
+    - "Double Tagging Attack"
+    - "Switch Spoofing"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["ATK", "NET", "VLAN"]
+
+definition:
+  what: |
+    VLAN 호핑(VLAN Hopping)은 네트워크 세그멘테이션을 우회하여 다른 VLAN에
+    무단 접근하는 공격이다. 스위치 스푸핑과 더블 태깅이 주요 기법이다.
+  why: |
+    VLAN 기반 네트워크 분리를 무력화한다. 민감한 VLAN(서버, 관리)에
+    접근하여 측면 이동에 사용된다.
+  how: |
+    1. Switch Spoofing: DTP를 이용해 트렁크 협상
+    2. Double Tagging: 두 개의 802.1Q 태그로 VLAN 이동
+    3. 공격자가 다른 VLAN에 트래픽 전송
+    4. 격리된 네트워크 세그먼트 접근
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+  causal:
+    enables:
+      - "ATK-NET-SNIFF-001"
+
+properties:
+  technical:
+    attack_methods:
+      - name: "Switch Spoofing"
+        method: "DTP(Dynamic Trunking Protocol)로 트렁크 협상"
+        requirement: "Access 포트가 DTP 활성화"
+      - name: "Double Tagging"
+        method: "두 개의 802.1Q 태그 (외부 태그는 Native VLAN)"
+        requirement: "Native VLAN이 사용자 VLAN과 동일"
+        limitation: "단방향 (응답 수신 불가)"
+    detection_indicators:
+      - "비정상적인 DTP 메시지"
+      - "트렁크가 아닌 포트의 802.1Q 태그"
+      - "VLAN 간 비인가 트래픽"
+    prevention:
+      - "모든 Access 포트에서 DTP 비활성화 (switchport nonegotiate)"
+      - "사용하지 않는 포트 비활성화"
+      - "Native VLAN을 사용하지 않는 VLAN으로 변경"
+      - "VLAN 1 사용 금지"
+      - "Private VLAN 사용"
+  security:
+    severity: medium
+    cvss_base: 5.5
+    attack_category: "Network Segmentation Bypass"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Cisco VLAN Security"
+      - "SANS VLAN Hopping"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      VLAN Hopping은 네트워크 세그멘테이션을 우회하는 L2 공격이다.
+      Switch Spoofing, Double Tagging 기법이 있으며 DTP 비활성화로 방어한다.
+    search_keywords:
+      - "VLAN Hopping"
+      - "VLAN 호핑"
+      - "Double Tagging"
+      - "DTP"
+    related_queries:
+      - "VLAN 호핑 방어"
+      - "스위치 보안"
+      - "네트워크 세그멘테이션"

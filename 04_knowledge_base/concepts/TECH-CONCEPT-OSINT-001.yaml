@@ -1,0 +1,121 @@
+# GR Atom: Open Source Intelligence
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-OSINT-001"
+  name: "Open Source Intelligence"
+  normalization:
+    normalized_name: "osint open source intelligence reconnaissance information gathering"
+    normalization_version: "1.0"
+  aliases:
+    - "OSINT"
+    - "공개 정보 수집"
+    - "오픈소스 인텔리전스"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "RECON", "INTEL"]
+
+definition:
+  what: |
+    공개적으로 이용 가능한 소스에서 정보를 수집, 분석하여
+    인텔리전스를 생산하는 정보 수집 방법론이다.
+  why: |
+    타겟에 대한 정보를 수집한다.
+    위협 인텔리전스를 보강한다.
+  how: |
+    1. 요구사항 정의
+    2. 소스 식별
+    3. 데이터 수집
+    4. 분석 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-INTELLIGENCE-001"
+    related_to:
+      - "TECH-CONCEPT-CTI-001"
+      - "TECH-CONCEPT-RED-TEAM-001"
+
+properties:
+  technical:
+    sources:
+      - name: "인터넷"
+        examples: ["웹사이트", "블로그", "포럼"]
+      - name: "소셜 미디어"
+        examples: ["Twitter/X", "LinkedIn", "Facebook"]
+      - name: "공공 기록"
+        examples: ["특허", "법원 기록", "정부 문서"]
+      - name: "기술 소스"
+        examples: ["Shodan", "Censys", "DNS"]
+      - name: "다크웹"
+        examples: ["포럼", "마켓플레이스", "Paste 사이트"]
+    tools:
+      search:
+        - "Google Dorks"
+        - "Maltego"
+        - "SpiderFoot"
+      domain:
+        - "Whois"
+        - "DNSdumpster"
+        - "crt.sh"
+      social:
+        - "Sherlock"
+        - "theHarvester"
+        - "Social-Analyzer"
+      technical:
+        - "Shodan"
+        - "Censys"
+        - "BuiltWith"
+    use_cases:
+      offensive:
+        - "침투 테스트 정찰"
+        - "소셜 엔지니어링 정보"
+        - "공격 표면 분석"
+      defensive:
+        - "위협 인텔리전스"
+        - "브랜드 모니터링"
+        - "유출 탐지"
+    google_dorks:
+      - "site:domain.com"
+      - "filetype:pdf confidential"
+      - "inurl:admin"
+      - "intitle:index of"
+    ethics:
+      - "법적 범위 내 수집"
+      - "개인정보 존중"
+      - "소스 검증"
+      - "목적 적합성"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OSINT Framework"
+      - "SANS OSINT"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OSINT는 공개 소스에서 정보를 수집, 분석하여
+      위협 인텔리전스를 생산하는 정보 수집 방법론이다.
+    search_keywords:
+      - "OSINT"
+      - "Open Source Intelligence"
+      - "정찰"
+      - "정보 수집"

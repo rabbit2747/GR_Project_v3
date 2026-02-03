@@ -1,0 +1,125 @@
+# GR Atom: VPN Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NETWORK-VPN-001"
+  name: "VPN Security"
+  normalization:
+    normalized_name: "vpn virtual private network ipsec ssl wireguard tunnel"
+    normalization_version: "1.0"
+  aliases:
+    - "VPN 보안"
+    - "Virtual Private Network"
+    - "가상 사설망"
+
+classification:
+  domain: security
+  type: infrastructure
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone2"
+    tags: ["INFRA", "NET", "VPN"]
+
+definition:
+  what: |
+    VPN은 공용 네트워크를 통해 암호화된 터널을 생성하여
+    원격 접근과 사이트 간 연결을 보안하는 기술이다.
+  why: |
+    원격 근무 환경에서 안전한 접근을 제공한다.
+    인터넷을 통한 데이터 전송을 보호한다.
+  how: |
+    1. VPN 서버/클라이언트 구성
+    2. 인증 및 키 교환
+    3. 암호화 터널 수립
+    4. 트래픽 암호화 전송
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    related_to:
+      - "DEF-ARCH-ZERO-TRUST-001"
+      - "TECH-PROTO-IPSEC-001"
+
+properties:
+  technical:
+    vpn_types:
+      - name: "Remote Access VPN"
+        use: "원격 사용자 접속"
+      - name: "Site-to-Site VPN"
+        use: "사무실 간 연결"
+      - name: "Client-based VPN"
+        use: "소프트웨어 클라이언트"
+      - name: "SSL/TLS VPN"
+        use: "브라우저 기반"
+    protocols:
+      - name: "IPsec"
+        mode: ["Transport", "Tunnel"]
+        ports: "UDP 500, 4500"
+        security: "높음"
+      - name: "OpenVPN"
+        basis: "SSL/TLS"
+        ports: "UDP 1194"
+        security: "높음, 오픈소스"
+      - name: "WireGuard"
+        features: "현대적, 빠름, 간단"
+        ports: "UDP 51820"
+        security: "높음"
+      - name: "L2TP/IPsec"
+        status: "레거시"
+      - name: "PPTP"
+        status: "취약, 사용 금지"
+    security_considerations:
+      - "강력한 인증 (MFA)"
+      - "Split Tunneling 위험"
+      - "VPN 집중 장치 보호"
+      - "로깅 및 모니터링"
+      - "취약점 패치"
+    vulnerabilities:
+      - "오래된 프로토콜"
+      - "약한 암호화"
+      - "자격 증명 탈취"
+      - "VPN 집중 장치 취약점"
+      - "Split Tunneling 악용"
+    vs_ztna:
+      vpn: "네트워크 레벨, 광범위 접근"
+      ztna: "애플리케이션 레벨, 세분화"
+    best_practices:
+      - "MFA 필수"
+      - "강력한 암호화"
+      - "최신 프로토콜 사용"
+      - "접근 로깅"
+      - "네트워크 세그멘테이션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST VPN Guidelines"
+      - "CISA VPN Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      VPN은 암호화 터널로 원격 접근을 보안한다. IPsec, WireGuard가
+      권장되며 MFA, 로깅, 최신 프로토콜이 중요하다.
+    search_keywords:
+      - "VPN"
+      - "IPsec"
+      - "WireGuard"
+      - "원격 접근"
+    related_queries:
+      - "VPN vs ZTNA"
+      - "원격 근무 보안"
+      - "터널링"

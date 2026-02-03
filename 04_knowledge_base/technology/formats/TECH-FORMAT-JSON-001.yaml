@@ -1,0 +1,96 @@
+# GR Atom: JSON Format
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-FORMAT-JSON-001"
+  name: "JSON (JavaScript Object Notation)"
+  normalization:
+    normalized_name: "json javascript object notation"
+    normalization_version: "1.0"
+  aliases:
+    - "JSON"
+
+classification:
+  domain: data
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["D", "WEB", "API"]
+
+definition:
+  what: |
+    JSON은 데이터를 키-값 쌍과 배열로 표현하는 경량 데이터 교환 형식이다.
+    JavaScript 객체 문법을 기반으로 하며, 언어 독립적이다.
+  why: |
+    REST API의 표준 데이터 형식이며, 현대 웹 애플리케이션에서 가장 많이
+    사용된다. XML보다 가볍고 파싱이 빠르다.
+  how: |
+    1. 데이터를 JSON 형식으로 직렬화 (Serialize)
+    2. HTTP Body에 담아 전송
+    3. 수신 측에서 역직렬화 (Deserialize)
+    4. 프로그래밍 언어의 객체/맵으로 변환
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DATA-FORMAT-001"]
+  conditional:
+    alternative_to:
+      - "TECH-FORMAT-XML-001"  # XML의 대안
+  applicability:
+    applies_to:
+      - "INFRA-APP-API-001"  # REST API
+
+properties:
+  technical:
+    type: "Data Format"
+    data_types:
+      - "String"
+      - "Number"
+      - "Boolean"
+      - "null"
+      - "Object"
+      - "Array"
+    mime_type: "application/json"
+    security_concerns:
+      - name: "JSON Injection"
+        risk: "데이터 조작"
+      - name: "Prototype Pollution"
+        risk: "JavaScript 객체 오염"
+      - name: "Mass Assignment"
+        risk: "의도하지 않은 필드 변경"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 8259 - JSON Data Interchange Format"
+      - "ECMA-404"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      JSON JavaScript Object Notation은 경량 데이터 교환 형식이다.
+      REST API의 표준 형식이며, 키-값 쌍과 배열로 데이터를 표현한다.
+      application/json MIME 타입을 사용하며, XML보다 가볍고 빠르다.
+      JSON Injection, Prototype Pollution 등의 보안 이슈가 있다.
+    search_keywords:
+      - "JSON"
+      - "REST API"
+      - "데이터 교환"
+      - "직렬화"
+    related_queries:
+      - "JSON이란?"
+      - "JSON과 XML 차이"
+      - "JSON 보안 취약점"

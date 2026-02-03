@@ -1,0 +1,135 @@
+# GR Atom: REST API Server
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-API-001"
+  name: "REST API Server"
+  normalization:
+    normalized_name: "rest api server restful api"
+    normalization_version: "1.0"
+  aliases:
+    - "API Server"
+    - "REST API"
+    - "RESTful API"
+    - "API 서버"
+    - "백엔드 API"
+
+classification:
+  domain: infrastructure
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["A", "API", "WEB"]
+
+definition:
+  what: |
+    REST API Server는 HTTP 메소드(GET, POST, PUT, DELETE)를 사용하여
+    리소스를 CRUD하는 웹 서비스다. 클라이언트와 서버 간 데이터 교환을
+    JSON/XML 형식으로 수행한다.
+  why: |
+    현대 웹/모바일 애플리케이션의 백엔드 핵심이다.
+    프론트엔드와 백엔드의 분리, 마이크로서비스 아키텍처의 기반이 되며,
+    다양한 클라이언트(웹, 모바일, IoT)에 동일한 API를 제공한다.
+  how: |
+    1. 클라이언트가 HTTP 요청 (Method + URL + Body)
+    2. API 서버가 요청 파싱 및 인증/인가 검증
+    3. 비즈니스 로직 실행
+    4. 데이터베이스 조회/수정
+    5. JSON/XML 형식으로 응답 반환
+
+relations:
+  structural:
+    is_a: ["INFRA-APP-WAS-001"]
+  causal:
+    enables:
+      - "INFRA-APP-SPA-001"
+      - "INFRA-APP-MOBILE-API-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-FORMAT-JSON-001"
+  applicability:
+    applies_to: []
+
+properties:
+  technical:
+    protocols:
+      - "REST over HTTP/HTTPS"
+    methods:
+      - name: "GET"
+        purpose: "리소스 조회"
+        idempotent: true
+      - name: "POST"
+        purpose: "리소스 생성"
+        idempotent: false
+      - name: "PUT"
+        purpose: "리소스 전체 수정"
+        idempotent: true
+      - name: "PATCH"
+        purpose: "리소스 부분 수정"
+        idempotent: false
+      - name: "DELETE"
+        purpose: "리소스 삭제"
+        idempotent: true
+    data_formats:
+      - "JSON (주로)"
+      - "XML"
+    common_frameworks:
+      - "Express.js (Node.js)"
+      - "Spring Boot (Java)"
+      - "Django REST (Python)"
+      - "FastAPI (Python)"
+      - "ASP.NET Web API (.NET)"
+  security:
+    authentication:
+      - "API Key"
+      - "JWT Token"
+      - "OAuth 2.0"
+      - "Basic Auth"
+    attack_surface:
+      - "인증 우회"
+      - "인가 부족 (IDOR)"
+      - "Injection (SQL, NoSQL)"
+      - "Mass Assignment"
+      - "Rate Limiting 부재"
+    owasp_api_top10:
+      - "API1: Broken Object Level Authorization"
+      - "API2: Broken Authentication"
+      - "API3: Broken Object Property Level Authorization"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "https://restfulapi.net/"
+      - "OWASP API Security Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      REST API Server는 HTTP 메소드로 리소스를 CRUD하는 웹 서비스다.
+      GET, POST, PUT, DELETE로 JSON 데이터를 주고받으며, JWT, OAuth로
+      인증한다. OWASP API Security Top 10에 따라 인가, 인증, Injection
+      취약점에 주의해야 한다. Express, Spring Boot, FastAPI 등으로 구현한다.
+    search_keywords:
+      - "REST API"
+      - "API Server"
+      - "RESTful"
+      - "JSON API"
+      - "백엔드"
+    related_queries:
+      - "REST API란?"
+      - "API 보안 취약점"
+      - "REST API 인증 방법"

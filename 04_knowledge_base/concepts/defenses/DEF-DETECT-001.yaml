@@ -1,0 +1,102 @@
+# GR Atom: Detection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-001"
+  name: "Detection"
+  normalization:
+    normalized_name: "detection monitoring alert threat"
+    normalization_version: "1.0"
+  aliases:
+    - "Detection"
+    - "탐지"
+    - "Security Detection"
+    - "Threat Detection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "DETECT"]
+
+definition:
+  what: |
+    보안 위협, 이상 행위, 침해 시도를 식별하고
+    탐지하는 보안 통제 분류이다.
+  why: |
+    위협을 조기에 발견한다.
+    침해 시간을 단축한다.
+    대응 조치를 가능하게 한다.
+  how: |
+    1. 데이터 수집
+    2. 분석/상관관계
+    3. 탐지 규칙 적용
+    4. 알림 생성
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-SIEM-001"
+      - "DEF-ENDPOINT-EDR-001"
+      - "DEF-NDR-001"
+      - "DEF-XDR-001"
+    related_to:
+      - "DEF-RESPOND-001"
+      - "TECH-CONCEPT-SOC-001"
+
+properties:
+  technical:
+    methods:
+      signature: "알려진 패턴 매칭"
+      anomaly: "정상 기준선 이탈 탐지"
+      behavior: "행위 기반 분석"
+      heuristic: "휴리스틱 분석"
+    technologies:
+      - "SIEM"
+      - "EDR"
+      - "NDR"
+      - "XDR"
+      - "UEBA"
+      - "IDS/IPS"
+    metrics:
+      - "Mean Time to Detect (MTTD)"
+      - "False Positive Rate"
+      - "Detection Coverage"
+    data_sources:
+      - "로그"
+      - "네트워크 트래픽"
+      - "엔드포인트 텔레메트리"
+      - "클라우드 이벤트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "NIST CSF"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Detection은 보안 위협과 침해 시도를 식별하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "Detection"
+      - "탐지"
+      - "Monitoring"
+      - "SIEM"

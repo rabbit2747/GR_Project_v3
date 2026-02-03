@@ -1,0 +1,110 @@
+# GR Atom: Aircrack-ng
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-WIRELESS-AIRCRACK-001"
+  name: "Aircrack-ng"
+  normalization:
+    normalized_name: "aircrack wifi wireless wep wpa cracking"
+    normalization_version: "1.0"
+  aliases:
+    - "Aircrack-ng"
+    - "Aircrack"
+    - "무선 크래킹"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["TOOL", "WIRELESS", "PENTEST"]
+
+definition:
+  what: |
+    802.11 무선 네트워크 보안을 평가하는 도구 모음으로
+    모니터링, 공격, 테스트, 크래킹을 지원한다.
+  why: |
+    무선 네트워크 보안을 테스트한다.
+    WEP/WPA 키를 복구한다.
+  how: |
+    1. 모니터 모드 설정
+    2. 패킷 캡처
+    3. 인증 해제 공격
+    4. 핸드셰이크 크래킹
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-WIRELESS-001"
+    related_to:
+      - "ATK-WIRELESS-DEAUTH-001"
+      - "ATK-WIRELESS-EVIL-TWIN-001"
+
+properties:
+  technical:
+    license: "GPL"
+    components:
+      - name: "airmon-ng"
+        purpose: "모니터 모드 설정"
+      - name: "airodump-ng"
+        purpose: "패킷 캡처"
+      - name: "aireplay-ng"
+        purpose: "패킷 인젝션"
+      - name: "aircrack-ng"
+        purpose: "키 크래킹"
+      - name: "airdecap-ng"
+        purpose: "복호화"
+    supported_attacks:
+      wep:
+        - "PTW 공격"
+        - "FMS/KoreK"
+        - "Fragmentation"
+      wpa:
+        - "사전 공격"
+        - "PMKID 공격"
+        - "Hashcat 연동"
+    workflow_wpa:
+      - "airmon-ng start wlan0"
+      - "airodump-ng wlan0mon"
+      - "airodump-ng -c CH --bssid MAC -w capture wlan0mon"
+      - "aireplay-ng -0 5 -a MAC wlan0mon"
+      - "aircrack-ng -w wordlist.txt capture.cap"
+    wordlists:
+      - "rockyou.txt"
+      - "SecLists"
+      - "Custom"
+    hardware:
+      - "모니터 모드 지원 카드"
+      - "패킷 인젝션 지원"
+      - "Alfa, TP-Link"
+    website: "https://www.aircrack-ng.org"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Aircrack-ng Documentation"
+      - "Kali Linux Tools"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Aircrack-ng는 802.11 무선 네트워크 보안을 평가하고
+      WEP/WPA 키를 크래킹하는 도구 모음이다.
+    search_keywords:
+      - "Aircrack-ng"
+      - "WiFi Cracking"
+      - "Wireless Security"
+      - "WPA Handshake"

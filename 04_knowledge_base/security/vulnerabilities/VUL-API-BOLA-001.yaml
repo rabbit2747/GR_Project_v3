@@ -1,0 +1,111 @@
+# GR Atom: Broken Object Level Authorization (BOLA)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-API-BOLA-001"
+  name: "Broken Object Level Authorization (BOLA)"
+  normalization:
+    normalized_name: "bola broken object level authorization api idor insecure direct object"
+    normalization_version: "1.0"
+  aliases:
+    - "BOLA"
+    - "API IDOR"
+    - "객체 수준 인가 취약점"
+    - "API1:2023"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["VUL", "API", "AUTHZ"]
+
+definition:
+  what: |
+    BOLA(Broken Object Level Authorization)는 API가 객체(리소스) 접근 시
+    사용자의 권한을 제대로 검증하지 않아 타 사용자의 데이터에 접근 가능한 취약점이다.
+  why: |
+    OWASP API Security Top 10 2023에서 1위 취약점이다. 대규모 데이터 유출의
+    가장 흔한 원인이며 자동화된 공격으로 대량 데이터 수집이 가능하다.
+  how: |
+    1. API 엔드포인트 식별 (/api/users/{id}/data)
+    2. 요청의 객체 ID 값 변경 (1 → 2)
+    3. 타 사용자 데이터 접근 성공
+    4. 자동화하여 대량 데이터 수집
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    same_as:
+      - "VUL-ACCESS-BROKEN-001"
+  causal:
+    affects:
+      - "TECH-CONCEPT-REST-001"
+      - "INFRA-APP-API-001"
+    exploited_by:
+      - "ATK-SERVER-IDOR-001"
+
+properties:
+  technical:
+    owasp_api_rank: 1
+    attack_vectors:
+      - "Path parameter manipulation (/users/123 → /users/124)"
+      - "Query parameter manipulation (?user_id=123)"
+      - "Body parameter manipulation"
+      - "Header manipulation"
+    examples:
+      - name: "사용자 정보 조회"
+        vulnerable: "GET /api/users/123/profile"
+        attack: "GET /api/users/124/profile"
+      - name: "주문 조회"
+        vulnerable: "GET /api/orders/ORD-001"
+        attack: "GET /api/orders/ORD-002"
+    detection:
+      - "권한 검사 코드 리뷰"
+      - "다른 사용자 계정으로 객체 ID 변경 테스트"
+      - "자동화된 권한 테스트 도구"
+    prevention:
+      - "모든 객체 접근에 권한 검사"
+      - "사용자-객체 소유권 검증"
+      - "예측 불가능한 객체 ID (UUID)"
+      - "중앙집중식 권한 검사 레이어"
+  security:
+    severity: high
+    cvss_base: 8.0
+    cwe_id: "CWE-639"
+    owasp_category: "API1:2023 - Broken Object Level Authorization"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10 2023"
+      - "CWE-639: Authorization Bypass"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BOLA는 API 객체 수준 인가 취약점으로 OWASP API Top 10 1위다.
+      객체 ID 변경으로 타 사용자 데이터 접근이 가능하며 권한 검사 강화로 방어한다.
+    search_keywords:
+      - "BOLA"
+      - "API IDOR"
+      - "객체 권한"
+      - "API1:2023"
+    related_queries:
+      - "API 인가 취약점"
+      - "OWASP API Top 10"
+      - "객체 접근 제어"

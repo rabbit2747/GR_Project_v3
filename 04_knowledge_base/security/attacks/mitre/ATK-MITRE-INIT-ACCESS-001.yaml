@@ -1,0 +1,116 @@
+# GR Atom: Initial Access (MITRE ATT&CK TA0001)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-INIT-ACCESS-001"
+  name: "Initial Access (TA0001)"
+  normalization:
+    normalized_name: "initial access mitre attack ta0001 phishing exploit public"
+    normalization_version: "1.0"
+  aliases:
+    - "초기 접근"
+    - "Initial Access"
+    - "TA0001"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Initial Access는 공격자가 대상 네트워크에 최초 진입하는 전술이다.
+    피싱, 공개 취약점 악용, 공급망 침해 등이 포함된다.
+  why: |
+    사이버 킬체인의 첫 번째 단계다. 이 단계를 막으면 전체 공격을 차단할 수 있어
+    보안 투자 ROI가 가장 높은 영역이다.
+  how: |
+    1. Phishing (T1566): 악성 첨부파일/링크
+    2. Exploit Public-Facing Application (T1190): 외부 서비스 취약점
+    3. External Remote Services (T1133): VPN, RDP 등 원격 접근
+    4. Supply Chain Compromise (T1195): 공급망 침해
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    followed_by:
+      - "ATK-MITRE-EXECUTION-001"
+  causal:
+    uses:
+      - "ATK-INJECT-SQL-001"
+      - "ATK-AUTH-CREDSTUFF-001"
+
+properties:
+  technical:
+    mitre_id: "TA0001"
+    techniques:
+      - id: "T1190"
+        name: "Exploit Public-Facing Application"
+        description: "외부 노출 서비스 취약점 악용"
+        examples: ["SQLi", "RCE", "Authentication Bypass"]
+      - id: "T1566"
+        name: "Phishing"
+        sub_techniques:
+          - "T1566.001: Spearphishing Attachment"
+          - "T1566.002: Spearphishing Link"
+          - "T1566.003: Spearphishing via Service"
+      - id: "T1133"
+        name: "External Remote Services"
+        description: "VPN, RDP, SSH 등 원격 서비스"
+      - id: "T1195"
+        name: "Supply Chain Compromise"
+        description: "소프트웨어/하드웨어 공급망 침해"
+      - id: "T1078"
+        name: "Valid Accounts"
+        description: "유효한 계정 정보 사용"
+      - id: "T1189"
+        name: "Drive-by Compromise"
+        description: "악성 웹사이트 방문으로 감염"
+    detection:
+      - "이메일 보안 게이트웨이"
+      - "웹 애플리케이션 방화벽"
+      - "네트워크 IDS/IPS"
+      - "엔드포인트 탐지 (EDR)"
+    prevention:
+      - "보안 인식 교육"
+      - "패치 관리"
+      - "네트워크 분할"
+      - "다중 인증 (MFA)"
+      - "공급망 보안"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Initial Access"
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Initial Access(TA0001)는 네트워크 최초 진입 전술이다. Phishing, Exploit,
+      Supply Chain 등이 주요 기법이며 이메일 보안, WAF, 패치 관리로 방어한다.
+    search_keywords:
+      - "Initial Access"
+      - "TA0001"
+      - "초기 접근"
+      - "피싱"
+    related_queries:
+      - "초기 침입 방어"
+      - "피싱 공격"
+      - "취약점 악용"

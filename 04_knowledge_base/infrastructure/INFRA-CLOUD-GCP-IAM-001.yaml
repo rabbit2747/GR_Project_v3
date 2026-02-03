@@ -1,0 +1,114 @@
+# GR Atom: GCP IAM
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-GCP-IAM-001"
+  name: "GCP Cloud IAM"
+  normalization:
+    normalized_name: "gcp cloud iam identity access management roles permissions"
+    normalization_version: "1.0"
+  aliases:
+    - "GCP IAM"
+    - "Google Cloud IAM"
+    - "Cloud Identity and Access Management"
+
+classification:
+  domain: infrastructure
+  type: cloud_service
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "CLOUD", "GCP", "IAM"]
+
+definition:
+  what: |
+    GCP Cloud IAM은 Google Cloud 리소스에 대한 액세스를 관리하는 서비스다.
+    누가(ID) 무엇을(역할) 어디서(리소스)에 할 수 있는지 정의한다.
+  why: |
+    GCP 보안의 핵심이다. AWS IAM과 다른 모델(역할 상속, 서비스 계정)을 이해해야 한다.
+    서비스 계정 권한 남용이 가장 흔한 공격 경로다.
+  how: |
+    1. Members: 사용자, 서비스 계정, 그룹
+    2. Roles: 권한 모음 (Basic, Predefined, Custom)
+    3. Bindings: 멤버에 역할 부여
+    4. Policies: 리소스별 IAM 정책
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-GCP-001"
+    related_to:
+      - "INFRA-CLOUD-AWS-IAM-001"
+  causal:
+    targeted_by:
+      - "ATK-CLOUD-PRIVESC-001"
+
+properties:
+  technical:
+    core_concepts:
+      - name: "Members (Principals)"
+        types:
+          - "user: 사용자 (Google 계정)"
+          - "serviceAccount: 서비스 계정"
+          - "group: Google 그룹"
+          - "domain: Google Workspace 도메인"
+      - name: "Roles"
+        types:
+          - "Basic: Owner, Editor, Viewer (권장 안함)"
+          - "Predefined: 서비스별 사전 정의 역할"
+          - "Custom: 사용자 정의 역할"
+      - name: "Service Accounts"
+        description: "워크로드 ID, 애플리케이션 인증용"
+      - name: "IAM Policy"
+        description: "역할-멤버 바인딩 모음"
+    security_best_practices:
+      - "최소 권한 원칙"
+      - "Basic roles 사용 금지"
+      - "서비스 계정 키 사용 최소화"
+      - "Workload Identity 사용"
+      - "조직 정책 활용"
+      - "IAM Recommender 활용"
+    common_misconfigurations:
+      - "allUsers, allAuthenticatedUsers 권한 부여"
+      - "서비스 계정 키 코드에 하드코딩"
+      - "Editor 역할 과다 부여"
+      - "크로스 프로젝트 권한 오류"
+      - "사용하지 않는 서비스 계정"
+    privilege_escalation_paths:
+      - "iam.serviceAccountTokenCreator"
+      - "deploymentmanager.deployments.create"
+      - "cloudfunctions.functions.create + iam.serviceAccounts.actAs"
+      - "compute.instances.setServiceAccount"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "GCP IAM Documentation"
+      - "CIS Google Cloud Platform Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      GCP IAM은 Google Cloud 액세스 관리 서비스다. Members, Roles, Policies로 구성되며
+      서비스 계정 권한 남용, allUsers 권한 부여가 주요 보안 위험이다.
+    search_keywords:
+      - "GCP IAM"
+      - "Google Cloud IAM"
+      - "서비스 계정"
+      - "GCP 권한"
+    related_queries:
+      - "GCP 권한 관리"
+      - "서비스 계정 보안"
+      - "GCP 최소 권한"

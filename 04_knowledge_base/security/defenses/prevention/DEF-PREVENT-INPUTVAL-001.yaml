@@ -1,0 +1,90 @@
+# GR Atom: Input Validation
+identity:
+  id: "DEF-PREVENT-INPUTVAL-001"
+  name: "Input Validation"
+  normalization:
+    normalized_name: "input_validation"
+    normalization_version: "1.0"
+  aliases:
+    - "Input Sanitization"
+    - "Data Validation"
+    - "입력 검증"
+    - "입력값 검증"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P"]
+
+definition:
+  what: |
+    사용자 입력을 허용된 형식(화이트리스트)으로 검증하여 악의적인 데이터가
+    애플리케이션 로직에 도달하지 못하게 하는 방어 기법.
+    허용된 문자, 길이, 범위, 형식만 통과시키는 화이트리스트 방식을 우선한다.
+  why: |
+    대부분의 인젝션 공격(SQL, XSS, Command Injection 등)은 검증되지 않은 사용자 입력에서
+    시작된다. 입력 검증은 여러 공격 벡터를 동시에 차단하는 1차 방어선으로,
+    심층 방어(Defense in Depth) 전략의 핵심 계층이다.
+  how: |
+    1. 화이트리스트 접근: 허용된 문자, 패턴, 범위만 정의하여 이에 부합하는 입력만 수용한다.
+    2. 서버 측 검증: 클라이언트 측 검증은 우회 가능하므로 반드시 서버 측에서도 검증한다.
+    3. 데이터 타입 검증: 숫자, 이메일, 날짜 등 기대 형식에 맞는지 확인한다.
+    4. 길이 제한: 입력 데이터의 최소/최대 길이를 제한한다.
+    5. 정규표현식 활용: 복잡한 패턴 검증에 정규표현식을 사용한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-INJECT-SQL-001"
+      - "ATK-INJECT-XSS-001"
+      - "ATK-INJECT-CMD-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    implementation:
+      - "Whitelist validation"
+      - "Regular expression patterns"
+      - "Schema validation (JSON Schema, XML Schema)"
+      - "Framework validators (Bean Validation, Django Forms)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Input Validation은 사용자 입력을 허용된 형식(화이트리스트)으로 검증하여
+      악의적인 데이터가 애플리케이션에 도달하지 못하게 하는 방어 기법이다.
+      SQL 인젝션, XSS, 커맨드 인젝션 등 다양한 인젝션 공격을 예방하는 1차 방어선이다.
+    search_keywords:
+      - "input validation"
+      - "input sanitization"
+      - "whitelist validation"
+      - "data validation"
+      - "입력 검증"
+    related_queries:
+      - "사용자 입력을 안전하게 처리하는 방법"
+      - "화이트리스트와 블랙리스트 검증의 차이"
+      - "서버 측 입력 검증 구현"

@@ -1,0 +1,159 @@
+# GR Atom: CDN (Content Delivery Network)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-CDN-001"
+  name: "CDN (Content Delivery Network)"
+  normalization:
+    normalized_name: "cdn content delivery network edge cache"
+    normalization_version: "1.0"
+  aliases:
+    - "CDN"
+    - "콘텐츠 전송 네트워크"
+    - "콘텐츠 배포 네트워크"
+    - "Content Distribution Network"
+    - "Edge Network"
+
+classification:
+  domain: network
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0B"
+    tags: ["NET"]
+
+definition:
+  what: |
+    CDN(Content Delivery Network)은 전 세계에 분산된 엣지 서버를 통해
+    사용자에게 가장 가까운 위치에서 콘텐츠(웹 페이지, 이미지, 동영상, API 응답
+    등)를 캐시하여 전송 속도를 극대화하는 네트워크 인프라다.
+  why: |
+    웹 성능 최적화의 핵심이다. 지리적으로 분산된 사용자에게 낮은 지연시간(Latency)을
+    제공하고, 오리진 서버 부하를 감소시킨다. DDoS 공격 흡수, SSL/TLS 종료,
+    WAF 기능 등 보안 역할도 수행한다. 대규모 트래픽 처리와 가용성 확보에 필수적이다.
+  how: |
+    1. 사용자가 도메인으로 요청 (DNS가 CDN 엣지로 라우팅)
+    2. 가장 가까운 엣지 서버(PoP)가 요청 수신
+    3. 캐시 히트: 엣지에서 즉시 응답
+    4. 캐시 미스: 오리진 서버에서 콘텐츠 가져온 후 캐시 저장 및 응답
+    5. TTL(Time-to-Live)에 따라 캐시 갱신
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-NETWORK-DEVICE-001"]
+  causal:
+    enables:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-WEBSERVER-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-HTTPS-001"
+
+properties:
+  technical:
+    content_types:
+      static:
+        - "이미지 (JPEG, PNG, WebP, SVG)"
+        - "CSS/JavaScript 파일"
+        - "폰트 파일"
+        - "동영상/오디오"
+        - "다운로드 파일"
+      dynamic:
+        - "API 응답 (캐시 가능 부분)"
+        - "동적 HTML 가속"
+        - "Edge Computing 처리"
+    features:
+      - name: "Edge Caching"
+        description: "전 세계 PoP에서 콘텐츠 캐시"
+      - name: "SSL/TLS Termination"
+        description: "엣지에서 SSL 처리하여 오리진 부하 감소"
+      - name: "Compression"
+        description: "Gzip/Brotli 압축으로 전송량 감소"
+      - name: "Image Optimization"
+        description: "이미지 크기/포맷 자동 최적화"
+      - name: "HTTP/2, HTTP/3"
+        description: "최신 프로토콜 지원으로 성능 향상"
+      - name: "Edge Computing"
+        description: "엣지에서 서버리스 코드 실행"
+    providers:
+      global:
+        - name: "Cloudflare"
+          description: "보안 + CDN 통합, 무료 플랜 제공"
+        - name: "AWS CloudFront"
+          description: "AWS 생태계 통합, Lambda@Edge"
+        - name: "Akamai"
+          description: "가장 큰 CDN 네트워크, 엔터프라이즈"
+        - name: "Fastly"
+          description: "Varnish 기반, 실시간 퍼지"
+        - name: "Google Cloud CDN"
+          description: "GCP 통합, Anycast 기반"
+        - name: "Azure CDN"
+          description: "Microsoft Azure 생태계 통합"
+    performance_metrics:
+      - "TTFB (Time to First Byte)"
+      - "Cache Hit Ratio"
+      - "Latency (지연시간)"
+      - "Throughput (처리량)"
+      - "Availability (가용성)"
+  security:
+    features:
+      - "DDoS 방어 (L3/L4/L7)"
+      - "WAF 통합 (CDN 엣지 WAF)"
+      - "Bot Management"
+      - "Rate Limiting"
+      - "SSL/TLS 인증서 관리"
+      - "Origin Shield (오리진 보호)"
+      - "Geo-blocking (지역 차단)"
+    risks:
+      - "CDN 캐시 포이즈닝 (Cache Poisoning)"
+      - "캐시된 민감 데이터 노출"
+      - "오리진 IP 노출"
+      - "CDN 서비스 장애 시 전체 사이트 영향"
+      - "SSL 인증서 관리 실수"
+    attack_surface:
+      - "Cache Key 조작으로 캐시 오염"
+      - "Host 헤더 조작"
+      - "오리진 IP 직접 공격"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Cloudflare CDN Documentation"
+      - "AWS CloudFront Developer Guide"
+      - "Akamai Technical Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CDN(Content Delivery Network)은 전 세계 분산 엣지 서버를 통해 콘텐츠를
+      빠르게 전송하는 네트워크 인프라다. 캐싱, 압축, SSL 종료로 성능을 최적화하고,
+      DDoS 방어, WAF, Bot Management 등 보안 기능도 제공한다. Cloudflare,
+      AWS CloudFront, Akamai가 대표적이며, Cache Poisoning, 오리진 IP 노출 등의
+      보안 위협이 존재한다.
+    search_keywords:
+      - "CDN"
+      - "콘텐츠 전송 네트워크"
+      - "Cloudflare"
+      - "CloudFront"
+      - "Akamai"
+      - "엣지 캐시"
+      - "콘텐츠 배포"
+    related_queries:
+      - "CDN이란?"
+      - "CDN 동작 원리"
+      - "CDN 보안 기능"
+      - "Cloudflare vs CloudFront"
+      - "CDN Cache Poisoning"

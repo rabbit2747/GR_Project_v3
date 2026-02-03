@@ -1,0 +1,115 @@
+# GR Atom: SOC 2
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-SOC2-001"
+  name: "SOC 2"
+  normalization:
+    normalized_name: "soc 2 service organization control trust services"
+    normalization_version: "1.0"
+  aliases:
+    - "SOC 2"
+    - "Service Organization Control"
+    - "서비스 조직 통제"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["COMP", "AUDIT", "CLOUD"]
+
+definition:
+  what: |
+    서비스 조직의 내부 통제를 평가하는 감사 프레임워크로
+    신뢰 서비스 기준(TSC)을 기반으로 한다.
+  why: |
+    고객 데이터 보안을 입증한다.
+    비즈니스 신뢰를 구축한다.
+  how: |
+    1. 범위 정의
+    2. 통제 구현
+    3. 준비 평가
+    4. 외부 감사
+
+relations:
+  structural:
+    is_a:
+      - "COMP-AUDIT-001"
+    related_to:
+      - "COMP-ISO27001-001"
+      - "COMP-SOC1-001"
+
+properties:
+  technical:
+    governing_body: "AICPA"
+    trust_service_criteria:
+      - name: "Security (필수)"
+        description: "무단 접근으로부터 보호"
+        common_criteria: true
+      - name: "Availability"
+        description: "시스템 가용성"
+      - name: "Processing Integrity"
+        description: "처리 완전성 및 정확성"
+      - name: "Confidentiality"
+        description: "기밀 정보 보호"
+      - name: "Privacy"
+        description: "개인정보 수집/사용/보유/공개"
+    report_types:
+      type1:
+        description: "특정 시점의 통제 설계"
+        duration: "시점 평가"
+      type2:
+        description: "기간 동안의 통제 운영 효과"
+        duration: "보통 6-12개월"
+    common_criteria_categories:
+      - "CC1: 통제 환경"
+      - "CC2: 커뮤니케이션 및 정보"
+      - "CC3: 리스크 평가"
+      - "CC4: 모니터링 활동"
+      - "CC5: 통제 활동"
+      - "CC6: 논리적/물리적 접근 통제"
+      - "CC7: 시스템 운영"
+      - "CC8: 변경 관리"
+      - "CC9: 리스크 완화"
+    use_cases:
+      - "SaaS/클라우드 제공업체"
+      - "데이터 센터"
+      - "관리 서비스 제공업체"
+      - "금융 서비스"
+    preparation:
+      - "갭 분석"
+      - "정책/절차 문서화"
+      - "통제 구현"
+      - "증거 수집"
+      - "내부 평가"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AICPA SOC 2"
+      - "Trust Services Criteria"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SOC 2는 서비스 조직의 보안, 가용성, 처리 무결성,
+      기밀성, 개인정보 통제를 평가하는 감사 프레임워크이다.
+    search_keywords:
+      - "SOC 2"
+      - "Service Organization"
+      - "Trust Services"
+      - "클라우드 감사"

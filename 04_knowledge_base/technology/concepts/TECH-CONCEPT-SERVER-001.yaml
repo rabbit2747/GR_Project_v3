@@ -1,0 +1,95 @@
+# GR Atom: Server (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-SERVER-001"
+  name: "Server"
+  normalization:
+    normalized_name: "server web server application server"
+    normalization_version: "1.0"
+  aliases:
+    - "서버"
+    - "Web Server"
+    - "웹 서버"
+    - "Application Server"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["INFRA", "SRV"]
+
+definition:
+  what: |
+    서버(Server)는 클라이언트 요청을 받아 처리하고 응답을 반환하는
+    컴퓨터 시스템 또는 소프트웨어다. 웹 서버, 애플리케이션 서버,
+    데이터베이스 서버 등으로 구분된다.
+  why: |
+    모든 백엔드 서비스의 실행 환경이다. 서버 설정 오류,
+    취약한 소프트웨어, 불필요한 서비스 노출이 공격 표면이 된다.
+    Hardening과 최소 권한 원칙이 핵심이다.
+  how: |
+    1. Web Server: 정적 콘텐츠 제공 (Nginx, Apache)
+    2. Application Server: 동적 로직 처리 (Tomcat, Node.js)
+    3. Reverse Proxy: 요청 분배, SSL 종료
+    4. Load Balancer: 트래픽 분산
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-APP-WEBSERVER-001"
+      - "INFRA-APP-WAS-001"
+
+properties:
+  technical:
+    server_types:
+      - name: "Web Server"
+        examples: ["Nginx", "Apache", "IIS"]
+        function: "Static Content, Reverse Proxy"
+      - name: "Application Server"
+        examples: ["Tomcat", "JBoss", "Node.js"]
+        function: "Dynamic Processing"
+    hardening:
+      - "불필요한 서비스 비활성화"
+      - "기본 계정/암호 변경"
+      - "최신 패치 적용"
+      - "보안 헤더 설정"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Benchmarks for Web Servers"
+      - "OWASP Server Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Server(서버)는 클라이언트 요청을 처리하는 시스템이다.
+      Web Server(Nginx, Apache), Application Server(Tomcat, Node.js)
+      등이 있다. 설정 오류와 취약점이 공격 표면이 되며
+      Hardening과 최소 권한 원칙으로 보호한다.
+    search_keywords:
+      - "Server"
+      - "서버"
+      - "Web Server"
+      - "Application Server"
+      - "Server Hardening"
+    related_queries:
+      - "서버 종류"
+      - "웹 서버 보안"
+      - "서버 하드닝"
+      - "Nginx vs Apache"

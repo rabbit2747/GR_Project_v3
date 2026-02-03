@@ -1,0 +1,107 @@
+# GR Atom: ARP Spoofing
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-ARP-SPOOFING-001"
+  name: "ARP Spoofing"
+  normalization:
+    normalized_name: "arp spoofing poisoning mitm layer2 cache"
+    normalization_version: "1.0"
+  aliases:
+    - "ARP Spoofing"
+    - "ARP Poisoning"
+    - "ARP Cache Poisoning"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["ATK", "NETWORK", "MITM"]
+
+definition:
+  what: |
+    위조된 ARP 응답을 보내 공격자의 MAC 주소를 타겟의
+    ARP 캐시에 삽입하여 트래픽을 가로채는 공격이다.
+  why: |
+    중간자 위치를 확보한다.
+    네트워크 트래픽을 도청한다.
+  how: |
+    1. 네트워크 스캔
+    2. 위조 ARP 응답 전송
+    3. ARP 캐시 오염
+    4. 트래픽 인터셉트
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITM-001"
+    related_to:
+      - "ATK-NET-DNS-SPOOFING-001"
+      - "ATK-WIN-NTLM-RELAY-001"
+
+properties:
+  technical:
+    layer: "Layer 2 (Data Link)"
+    mechanism:
+      - "무상태 ARP 프로토콜 악용"
+      - "Gratuitous ARP 전송"
+      - "ARP 캐시 갱신"
+    tools:
+      - name: "arpspoof"
+        suite: "dsniff"
+      - name: "ettercap"
+        type: "MITM Framework"
+      - name: "bettercap"
+        type: "Network Attack Tool"
+      - name: "Cain & Abel"
+        platform: "Windows"
+    attack_scenarios:
+      - "트래픽 도청"
+      - "세션 하이재킹"
+      - "DNS 스푸핑 연계"
+      - "자격 증명 탈취"
+    usage_example:
+      arpspoof: "arpspoof -i eth0 -t victim gateway"
+      ettercap: "ettercap -T -q -i eth0 -M arp:remote /target1// /target2//"
+    detection:
+      - "중복 IP 경고"
+      - "ARP 테이블 모니터링"
+      - "IDS/IPS"
+      - "Static ARP 불일치"
+    prevention:
+      - "Static ARP 엔트리"
+      - "Dynamic ARP Inspection (DAI)"
+      - "Port Security"
+      - "802.1X 인증"
+      - "VPN/암호화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "RFC 826"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      ARP Spoofing은 위조된 ARP 응답으로 ARP 캐시를 오염시켜
+      중간자 위치를 확보하는 Layer 2 공격이다.
+    search_keywords:
+      - "ARP Spoofing"
+      - "ARP Poisoning"
+      - "MITM"
+      - "Layer 2"

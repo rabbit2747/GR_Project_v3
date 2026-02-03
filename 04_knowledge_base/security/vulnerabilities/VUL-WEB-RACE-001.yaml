@@ -1,0 +1,111 @@
+# GR Atom: Race Condition Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-RACE-001"
+  name: "Race Condition Vulnerability"
+  normalization:
+    normalized_name: "race condition toctou concurrency timing vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "레이스 컨디션"
+    - "경쟁 조건"
+    - "TOCTOU"
+    - "Time-of-Check Time-of-Use"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["VUL", "WEB", "RACE"]
+
+definition:
+  what: |
+    Race Condition은 여러 프로세스나 스레드가 공유 리소스에 동시에 접근할 때
+    타이밍에 따라 예상치 못한 동작이 발생하는 취약점이다.
+  why: |
+    금융 거래 조작, 쿠폰 중복 사용, 권한 검사 우회가 가능하다.
+    마이크로서비스, 분산 시스템에서 더욱 빈번하다.
+  how: |
+    1. 동시 요청 발생 가능 지점 식별
+    2. 여러 병렬 요청 전송
+    3. 타이밍 조작으로 검증 우회
+    4. 중복 처리 또는 권한 상승
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    related_to:
+      - "VUL-WEB-BUSINESS-LOGIC-001"
+
+properties:
+  technical:
+    race_types:
+      - name: "TOCTOU"
+        description: "검사 시점과 사용 시점 불일치"
+        example: "파일 권한 검사 후 다른 파일로 교체"
+      - name: "Double Spending"
+        description: "잔액 중복 사용"
+        example: "동시 송금으로 잔액 초과 인출"
+      - name: "Limit Bypass"
+        description: "제한 우회"
+        example: "쿠폰, 할인 중복 적용"
+    attack_scenarios:
+      - name: "금융 거래"
+        description: "잔액 확인과 차감 사이 공격"
+      - name: "쿠폰 중복"
+        description: "일회용 쿠폰 다중 사용"
+      - name: "계정 생성"
+        description: "중복 계정 또는 권한 상승"
+      - name: "파일 작업"
+        description: "심볼릭 링크 교체 공격"
+    testing_tools:
+      - "Turbo Intruder (Burp)"
+      - "Race the Web"
+      - "Custom concurrent scripts"
+    prevention:
+      - "데이터베이스 트랜잭션"
+      - "Mutex/Lock 사용"
+      - "Optimistic Locking"
+      - "Idempotency Key"
+      - "분산 락 (Redis)"
+    detection:
+      - "트랜잭션 로그 분석"
+      - "중복 요청 모니터링"
+      - "동시성 테스트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Race Condition"
+      - "PortSwigger Race Conditions"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Race Condition은 동시 접근으로 인한 타이밍 취약점이다. 금융 거래, 쿠폰 중복이
+      주요 공격 시나리오이며 트랜잭션, 락, Idempotency로 방어한다.
+    search_keywords:
+      - "레이스 컨디션"
+      - "Race Condition"
+      - "TOCTOU"
+      - "동시성"
+    related_queries:
+      - "동시 요청 공격"
+      - "Double Spending"
+      - "트랜잭션 보안"

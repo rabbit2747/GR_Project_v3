@@ -1,0 +1,135 @@
+# GR Atom: Relational Database (RDBMS)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-DATA-RDBMS-001"
+  name: "Relational Database Management System (RDBMS)"
+  normalization:
+    normalized_name: "rdbms relational database sql database"
+    normalization_version: "1.0"
+  aliases:
+    - "RDBMS"
+    - "관계형 데이터베이스"
+    - "SQL 데이터베이스"
+    - "RDB"
+
+classification:
+  domain: data
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"  # Data Zone
+    tags: ["D", "S"]
+
+definition:
+  what: |
+    RDBMS는 데이터를 테이블(행과 열) 형태로 저장하고, SQL을 사용하여
+    데이터를 조회, 삽입, 수정, 삭제하는 데이터베이스 관리 시스템이다.
+    ACID 트랜잭션을 지원한다.
+  why: |
+    대부분의 비즈니스 애플리케이션의 핵심 데이터 저장소다.
+    SQL Injection 공격의 주요 대상이며, 민감한 데이터(개인정보, 인증정보)를
+    저장하므로 보안이 매우 중요하다.
+  how: |
+    1. 클라이언트(애플리케이션)가 SQL 쿼리 전송
+    2. RDBMS가 쿼리 파싱 및 최적화
+    3. 실행 계획 수립 및 데이터 접근
+    4. 결과 반환
+    5. 트랜잭션 로그 기록 (ACID 보장)
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DATABASE-001"]
+  causal:
+    enables:
+      - "ATK-INJECT-SQL-001"  # SQL Injection 대상
+  conditional:
+    requires:
+      - "TECH-LANG-SQL-001"  # SQL 사용
+  applicability:
+    applies_to: []
+
+properties:
+  technical:
+    common_products:
+      - name: "MySQL"
+        vendor: "Oracle"
+        license: "GPL / Commercial"
+      - name: "PostgreSQL"
+        vendor: "PostgreSQL Global"
+        license: "PostgreSQL License"
+      - name: "Microsoft SQL Server"
+        vendor: "Microsoft"
+        license: "Commercial"
+      - name: "Oracle Database"
+        vendor: "Oracle"
+        license: "Commercial"
+      - name: "MariaDB"
+        vendor: "MariaDB Foundation"
+        license: "GPL"
+    features:
+      - "ACID 트랜잭션"
+      - "SQL 표준 지원"
+      - "인덱싱"
+      - "뷰, 저장 프로시저"
+      - "트리거"
+      - "외래 키 제약"
+    default_ports:
+      mysql: 3306
+      postgresql: 5432
+      mssql: 1433
+      oracle: 1521
+  security:
+    attack_surface:
+      - "SQL Injection"
+      - "기본 계정/비밀번호"
+      - "권한 상승"
+      - "네트워크 노출"
+      - "백업 파일 노출"
+    sensitive_data:
+      - "사용자 인증 정보"
+      - "개인정보"
+      - "금융 정보"
+      - "비즈니스 기밀"
+    hardening:
+      - "최소 권한 원칙"
+      - "Parameterized Query 사용"
+      - "네트워크 격리"
+      - "암호화 (At-rest, In-transit)"
+      - "감사 로깅"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Benchmarks for Databases"
+      - "OWASP Database Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      RDBMS 관계형 데이터베이스는 SQL을 사용하여 테이블 형태로 데이터를 저장한다.
+      MySQL, PostgreSQL, MSSQL, Oracle이 대표적이다. SQL Injection의
+      주요 대상이며, 민감한 데이터를 저장하므로 Parameterized Query,
+      최소 권한, 네트워크 격리, 암호화가 필수다.
+    search_keywords:
+      - "RDBMS"
+      - "관계형 데이터베이스"
+      - "MySQL"
+      - "PostgreSQL"
+      - "SQL"
+    related_queries:
+      - "RDBMS란?"
+      - "데이터베이스 보안"
+      - "SQL Injection 방어"

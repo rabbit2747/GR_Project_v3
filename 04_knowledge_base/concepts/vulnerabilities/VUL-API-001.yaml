@@ -1,0 +1,81 @@
+# GR Atom: API Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-API-001"
+  name: "API Vulnerability"
+  normalization:
+    normalized_name: "api vulnerability rest graphql"
+    normalization_version: "1.0"
+  aliases:
+    - "API Vulnerability"
+    - "API 취약점"
+    - "API Security Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "API"]
+
+definition:
+  what: |
+    API 설계, 구현, 운영의 결함으로 인한 취약점 분류이다.
+  why: |
+    API 보안 취약점을 식별한다.
+    API 보안 가이드라인을 수립한다.
+    API 기반 공격을 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-API-BOLA-001"
+      - "VUL-API-RATE-LIMIT-001"
+    related_to:
+      - "TECH-API-001"
+      - "DEF-API-GATEWAY-001"
+
+properties:
+  technical:
+    owasp_api_top10:
+      - "Broken Object Level Authorization"
+      - "Broken Authentication"
+      - "Excessive Data Exposure"
+      - "Lack of Resources & Rate Limiting"
+      - "Broken Function Level Authorization"
+      - "Mass Assignment"
+      - "Security Misconfiguration"
+      - "Injection"
+      - "Improper Assets Management"
+      - "Insufficient Logging"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API Vulnerability는 API 관련 보안 취약점 분류이다.
+    search_keywords:
+      - "API Vulnerability"
+      - "API 취약점"
+      - "REST Security"
+      - "GraphQL Security"

@@ -1,0 +1,103 @@
+# GR Atom: Certificate (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-CERTIFICATE-001"
+  name: "Digital Certificate"
+  normalization:
+    normalized_name: "digital certificate ssl certificate x509"
+    normalization_version: "1.0"
+  aliases:
+    - "디지털 인증서"
+    - "SSL 인증서"
+    - "TLS 인증서"
+    - "X.509 Certificate"
+    - "PKI Certificate"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Cross"
+    tags: ["SEC", "E"]
+
+definition:
+  what: |
+    디지털 인증서(Digital Certificate)는 공개 키와 소유자 정보를
+    CA(인증 기관)가 서명하여 신뢰성을 보장하는 전자 문서다.
+    X.509 표준이 가장 널리 사용된다.
+  why: |
+    HTTPS/TLS 통신의 필수 요소로 서버 인증에 사용된다.
+    인증서 오류, 만료, 잘못된 검증은 MITM 공격으로 이어진다.
+    Let's Encrypt가 무료 인증서 보급을 촉진했다.
+  how: |
+    1. CA가 도메인/조직 검증 후 인증서 발급
+    2. 서버가 TLS Handshake에서 인증서 제시
+    3. 클라이언트가 CA 신뢰 체인 검증
+    4. 공개 키로 세션 키 교환
+
+relations:
+  conditional:
+    required_by:
+      - "TECH-PROTOCOL-HTTPS-001"
+  causal:
+    prevents:
+      - "ATK-NET-MITM-001"
+
+properties:
+  technical:
+    standard: "X.509 v3"
+    components:
+      - "Subject (소유자)"
+      - "Issuer (발급자)"
+      - "Validity Period"
+      - "Public Key"
+      - "Digital Signature"
+    validation_levels:
+      - "DV (Domain Validation)"
+      - "OV (Organization Validation)"
+      - "EV (Extended Validation)"
+    providers:
+      - "Let's Encrypt (무료)"
+      - "DigiCert"
+      - "Comodo"
+      - "GoDaddy"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 5280 - X.509 PKI"
+      - "CA/Browser Forum Baseline Requirements"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Digital Certificate(디지털 인증서)는 CA가 서명한 공개 키 문서다.
+      X.509 표준을 따르며 HTTPS/TLS 서버 인증에 필수다.
+      Let's Encrypt가 무료 DV 인증서를 제공하며, 인증서 오류는
+      MITM 공격 위험을 높인다.
+    search_keywords:
+      - "Digital Certificate"
+      - "SSL 인증서"
+      - "TLS 인증서"
+      - "X.509"
+      - "Let's Encrypt"
+      - "CA"
+    related_queries:
+      - "SSL 인증서란?"
+      - "인증서 발급 방법"
+      - "Let's Encrypt 사용법"
+      - "인증서 오류 원인"

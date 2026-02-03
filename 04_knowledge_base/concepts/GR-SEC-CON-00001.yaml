@@ -1,0 +1,98 @@
+# GR-SEC-CON-00001: 인젝션 취약점 패밀리
+
+identity:
+  id: GR-SEC-CON-00001
+  name: "인젝션 취약점"
+  normalization:
+    normalized_name: "인젝션 취약점"
+    normalization_version: "1.0"
+  aliases:
+    - "삽입 공격"
+    - "주입 취약점"
+    - "Injection"
+    - "코드 인젝션 패밀리"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "OWASP-A03"
+
+definition:
+  what: |
+    신뢰할 수 없는 데이터가 인터프리터에게 명령어나 쿼리의
+    일부로 전송될 때 발생하는 취약점 패밀리이다. 공격자의
+    악의적 데이터가 의도치 않은 명령 실행이나 데이터 접근을
+    유발한다.
+  why: |
+    OWASP Top 10에서 지속적으로 상위권을 차지하는 가장
+    위험한 취약점 유형이다. 데이터 유출, 시스템 장악,
+    서비스 거부 등 심각한 결과를 초래할 수 있다.
+  how: |
+    애플리케이션이 사용자 입력을 검증/인코딩 없이 인터프리터
+    (SQL 엔진, OS 쉘, LDAP 등)에 전달할 때 발생한다.
+    공격자는 구문 구조를 변경하는 특수문자를 삽입한다.
+
+relations:
+  structural:
+    is_a:
+      - GR-SEC-PRI-00001  # 입력-코드 혼합 위험
+  causal:
+    causes:
+      - GR-SEC-CON-00010  # 데이터 유출 (TODO)
+      - GR-SEC-CON-00011  # 인증 우회 (TODO)
+      - GR-SEC-CON-00012  # 시스템 장악 (TODO)
+
+properties:
+  security:
+    severity: critical
+    owasp: "A03:2021"
+    cwe: "CWE-74"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "https://owasp.org/Top10/A03_2021-Injection/"
+      - "https://cwe.mitre.org/data/definitions/74.html"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "OWASP-CWE"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-foundation"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "전문가 작성"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      인젝션 취약점은 신뢰할 수 없는 데이터가 인터프리터에게
+      명령어의 일부로 전송될 때 발생하는 취약점 패밀리이다.
+      SQL 인젝션, 명령어 인젝션, LDAP 인젝션, XSS 등이
+      이 카테고리에 속한다. OWASP Top 10에서 A03으로 분류되며
+      데이터 유출, 인증 우회, 시스템 장악 등을 유발할 수 있다.
+    search_keywords:
+      - "인젝션"
+      - "삽입 공격"
+      - "주입 취약점"
+      - "OWASP A03"
+      - "CWE-74"
+    related_queries:
+      - "인젝션 취약점이란?"
+      - "인젝션 공격의 종류는?"
+      - "OWASP A03은 무엇인가?"

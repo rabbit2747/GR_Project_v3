@@ -1,0 +1,118 @@
+# GR Atom: Serverless Architecture Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-SERVERLESS-001"
+  name: "Serverless Architecture Security"
+  normalization:
+    normalized_name: "serverless faas lambda function azure functions security"
+    normalization_version: "1.0"
+  aliases:
+    - "서버리스 보안"
+    - "FaaS 보안"
+    - "Lambda 보안"
+
+classification:
+  domain: security
+  type: infrastructure
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["INFRA", "CLOUD", "SERVERLESS"]
+
+definition:
+  what: |
+    Serverless 보안은 AWS Lambda, Azure Functions, GCP Cloud Functions 등
+    서버리스 컴퓨팅 환경의 고유한 보안 위협과 방어책을 다룬다.
+  why: |
+    전통적 서버 보안과 다른 공격 표면을 가진다. 함수 권한 과다,
+    이벤트 주입, 비밀 관리가 주요 과제다.
+  how: |
+    1. 최소 권한 IAM 역할
+    2. 입력 검증 강화
+    3. 비밀 관리 서비스 사용
+    4. 함수 간 통신 보안
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-COMPUTE-001"
+    related_to:
+      - "INFRA-CLOUD-AWS-001"
+      - "INFRA-CLOUD-AZURE-001"
+      - "INFRA-CLOUD-GCP-001"
+
+properties:
+  technical:
+    platforms:
+      - name: "AWS Lambda"
+        features: ["다양한 런타임", "VPC 통합", "레이어 지원"]
+      - name: "Azure Functions"
+        features: ["Durable Functions", "Azure AD 통합"]
+      - name: "GCP Cloud Functions"
+        features: ["Cloud Run 통합", "GCP IAM"]
+      - name: "Cloudflare Workers"
+        features: ["Edge 실행", "V8 Isolate"]
+    security_challenges:
+      - name: "함수 권한 과다"
+        description: "과도한 IAM 권한 부여"
+        mitigation: "최소 권한 원칙 적용"
+      - name: "이벤트 인젝션"
+        description: "악성 이벤트 데이터 주입"
+        mitigation: "입력 검증 및 스키마 검증"
+      - name: "비밀 노출"
+        description: "환경 변수의 비밀 노출"
+        mitigation: "Secrets Manager 사용"
+      - name: "Cold Start 공격"
+        description: "초기화 시점 취약점"
+        mitigation: "Provisioned Concurrency"
+      - name: "의존성 취약점"
+        description: "패키지 취약점"
+        mitigation: "SCA 도구 사용"
+    best_practices:
+      - "함수별 최소 권한 IAM"
+      - "VPC 내 민감 리소스 배치"
+      - "WAF 통합"
+      - "로깅 및 모니터링"
+      - "코드 서명"
+      - "네트워크 격리"
+    tools:
+      - name: "Serverless Framework"
+        purpose: "배포 및 관리"
+      - name: "AWS SAM"
+        purpose: "Lambda 개발"
+      - name: "Snyk"
+        purpose: "취약점 스캐닝"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Serverless Top 10"
+      - "AWS Lambda Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      서버리스 보안은 Lambda, Azure Functions 등 FaaS 환경을 다룬다. 함수 권한,
+      이벤트 인젝션, 비밀 관리가 핵심이며 최소 권한, 입력 검증으로 방어한다.
+    search_keywords:
+      - "서버리스"
+      - "Lambda"
+      - "FaaS"
+      - "함수 보안"
+    related_queries:
+      - "Lambda 보안"
+      - "서버리스 취약점"
+      - "FaaS IAM"

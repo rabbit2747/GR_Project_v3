@@ -1,0 +1,113 @@
+# GR Atom: Server-Side Request Forgery (SSRF)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-SSRF-001"
+  name: "Server-Side Request Forgery (SSRF)"
+  normalization:
+    normalized_name: "ssrf server side request forgery internal network"
+    normalization_version: "1.0"
+  aliases:
+    - "SSRF"
+    - "서버 사이드 요청 위조"
+    - "내부 네트워크 접근"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["VUL", "WEB", "SSRF"]
+
+definition:
+  what: |
+    SSRF는 공격자가 서버를 이용하여 내부 네트워크 또는 외부 시스템에
+    임의의 요청을 보내도록 유도하는 취약점이다.
+  why: |
+    클라우드 환경의 메타데이터 서비스 접근, 내부 서비스 스캔,
+    방화벽 우회가 가능하다. AWS IMDSv1은 특히 취약하다.
+  how: |
+    1. URL 파라미터 조작
+    2. 내부 IP (127.0.0.1, 169.254.169.254) 요청
+    3. 메타데이터/내부 서비스 접근
+    4. 데이터 추출 또는 추가 공격
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    related_to:
+      - "ATK-WEB-SSRF-001"
+      - "INFRA-CLOUD-AWS-001"
+
+properties:
+  technical:
+    ssrf_types:
+      - name: "Basic SSRF"
+        description: "직접적인 내부 URL 접근"
+      - name: "Blind SSRF"
+        description: "응답 없이 요청만 발생"
+      - name: "Semi-blind SSRF"
+        description: "부분적인 응답 또는 시간 차이"
+    attack_vectors:
+      - "URL 파라미터"
+      - "Webhook URL"
+      - "파일 업로드 (SVG, PDF)"
+      - "XML 외부 엔티티 (XXE)"
+      - "리다이렉트 체인"
+    cloud_targets:
+      - name: "AWS Metadata"
+        url: "http://169.254.169.254/latest/meta-data/"
+        risk: "IAM 자격 증명 탈취"
+      - name: "GCP Metadata"
+        url: "http://metadata.google.internal/"
+        risk: "서비스 계정 토큰"
+      - name: "Azure Metadata"
+        url: "http://169.254.169.254/metadata/instance"
+        risk: "관리 ID 토큰"
+    bypass_techniques:
+      - "IP 주소 인코딩 (십진수, 16진수)"
+      - "DNS Rebinding"
+      - "리다이렉트 우회"
+      - "URL 파서 불일치"
+      - "IPv6 사용"
+    prevention:
+      - "화이트리스트 기반 URL 검증"
+      - "내부 IP 차단"
+      - "IMDSv2 사용 (AWS)"
+      - "네트워크 세그멘테이션"
+      - "응답 필터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SSRF"
+      - "PortSwigger SSRF"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSRF는 서버를 통해 내부 네트워크에 접근하는 취약점이다. 클라우드 메타데이터 탈취,
+      내부 서비스 접근이 주요 위협이며 URL 화이트리스트, IMDSv2로 방어한다.
+    search_keywords:
+      - "SSRF"
+      - "서버 요청 위조"
+      - "메타데이터"
+      - "내부 네트워크"
+    related_queries:
+      - "클라우드 SSRF"
+      - "AWS 메타데이터"
+      - "내부 서비스 접근"

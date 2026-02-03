@@ -1,0 +1,108 @@
+# GR Atom: Cookie Concept
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-COOKIE-001"
+  name: "HTTP Cookie"
+  normalization:
+    normalized_name: "http cookie web cookie"
+    normalization_version: "1.0"
+  aliases:
+    - "Cookie"
+    - "쿠키"
+    - "Web Cookie"
+    - "Browser Cookie"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["WEB", "A"]
+
+definition:
+  what: |
+    쿠키는 웹 서버가 사용자 브라우저에 저장하는 작은 데이터 조각이다.
+    HTTP의 무상태성을 보완하여 사용자 식별, 세션 유지, 개인화에 사용된다.
+  why: |
+    세션 관리의 핵심 메커니즘이다. 쿠키 탈취(XSS), 쿠키 조작, CSRF 등
+    많은 웹 공격이 쿠키를 대상으로 한다.
+  how: |
+    1. 서버가 Set-Cookie 헤더로 쿠키 전송
+    2. 브라우저가 쿠키 저장
+    3. 이후 요청마다 Cookie 헤더에 포함하여 전송
+    4. 서버가 쿠키로 사용자 식별
+
+relations:
+  structural:
+    part_of: ["TECH-PROTOCOL-HTTP-001"]
+  causal:
+    enables:
+      - "TECH-CONCEPT-SESSION-001"  # 세션 유지
+      - "ATK-SESSION-HIJACK-001"    # 세션 하이재킹
+      - "ATK-AUTH-CSRF-001"         # CSRF
+  applicability:
+    effective_against: []
+
+properties:
+  technical:
+    storage: "Browser"
+    max_size: "4KB per cookie"
+    headers:
+      set: "Set-Cookie"
+      send: "Cookie"
+    attributes:
+      - name: "Domain"
+        purpose: "쿠키 전송 도메인 제한"
+      - name: "Path"
+        purpose: "쿠키 전송 경로 제한"
+      - name: "Expires/Max-Age"
+        purpose: "쿠키 만료 시간"
+      - name: "HttpOnly"
+        purpose: "JavaScript 접근 차단"
+        security: true
+      - name: "Secure"
+        purpose: "HTTPS에서만 전송"
+        security: true
+      - name: "SameSite"
+        purpose: "CSRF 방어"
+        security: true
+        values: ["Strict", "Lax", "None"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 6265 - HTTP State Management Mechanism"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HTTP Cookie는 브라우저에 저장되는 작은 데이터로 세션 유지에 사용된다.
+      HttpOnly는 JavaScript 접근을 차단하고, Secure는 HTTPS에서만 전송하며,
+      SameSite는 CSRF를 방어한다. 쿠키 탈취는 XSS의 주요 목표이며,
+      세션 하이재킹에 사용된다.
+    search_keywords:
+      - "Cookie"
+      - "쿠키"
+      - "HttpOnly"
+      - "Secure"
+      - "SameSite"
+      - "세션"
+    related_queries:
+      - "쿠키란?"
+      - "HttpOnly 쿠키"
+      - "쿠키와 세션 차이"
+      - "쿠키 보안 속성"

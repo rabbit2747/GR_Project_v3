@@ -1,0 +1,115 @@
+# GR Atom: DNS Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-DNS-001"
+  name: "DNS (Domain Name System)"
+  normalization:
+    normalized_name: "dns domain name system name resolution"
+    normalization_version: "1.0"
+  aliases:
+    - "DNS"
+    - "도메인 네임 시스템"
+    - "Domain Name Service"
+    - "이름 해석"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["TECH", "PROTOCOL", "NET"]
+
+definition:
+  what: |
+    DNS(Domain Name System)는 도메인 이름을 IP 주소로 변환하는 분산 네이밍
+    시스템이다. 인터넷의 전화번호부 역할을 하며 계층적 구조를 가진다.
+  why: |
+    인터넷 인프라의 핵심이다. DNS 스푸핑, 캐시 포이즈닝, DDoS 증폭,
+    DNS 터널링이 주요 보안 위협이다.
+  how: |
+    1. Query: 클라이언트가 도메인 이름 질의
+    2. Recursive Resolution: DNS 서버가 계층적 조회
+    3. Response: IP 주소 반환
+    4. Caching: 결과 캐싱으로 성능 향상
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+  causal:
+    targeted_by:
+      - "ATK-NET-DNSSPOOF-001"
+    enables:
+      - "INFRA-NET-DNS-001"
+
+properties:
+  technical:
+    ports:
+      - port: 53
+        protocol: "UDP/TCP"
+        service: "DNS Queries"
+      - port: 853
+        protocol: "TCP"
+        service: "DNS over TLS (DoT)"
+    record_types:
+      - type: "A"
+        description: "IPv4 주소"
+      - type: "AAAA"
+        description: "IPv6 주소"
+      - type: "CNAME"
+        description: "별칭"
+      - type: "MX"
+        description: "메일 서버"
+      - type: "TXT"
+        description: "텍스트 레코드 (SPF, DKIM)"
+      - type: "NS"
+        description: "네임서버"
+    security_extensions:
+      - name: "DNSSEC"
+        description: "DNS 응답 서명 검증"
+      - name: "DoH (DNS over HTTPS)"
+        description: "HTTPS로 DNS 암호화"
+      - name: "DoT (DNS over TLS)"
+        description: "TLS로 DNS 암호화"
+    common_attacks:
+      - "DNS Spoofing/Cache Poisoning"
+      - "DNS Amplification DDoS"
+      - "DNS Tunneling (데이터 유출)"
+      - "DNS Hijacking"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 1035 - DNS"
+      - "RFC 4033 - DNSSEC"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DNS(Domain Name System)는 도메인 이름을 IP 주소로 변환하는
+      인터넷 핵심 프로토콜이다. DNS 스푸핑, 캐시 포이즈닝, 증폭 DDoS,
+      터널링이 주요 위협이며 DNSSEC, DoH로 보안을 강화한다.
+    search_keywords:
+      - "DNS"
+      - "Domain Name System"
+      - "DNS 스푸핑"
+      - "DNSSEC"
+      - "DoH"
+    related_queries:
+      - "DNS 공격"
+      - "DNSSEC란?"
+      - "DNS 보안"

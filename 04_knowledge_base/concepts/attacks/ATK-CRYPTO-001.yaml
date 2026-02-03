@@ -1,0 +1,77 @@
+# GR Atom: Cryptographic Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-CRYPTO-001"
+  name: "Cryptographic Attack"
+  normalization:
+    normalized_name: "cryptographic attack encryption weakness"
+    normalization_version: "1.0"
+  aliases:
+    - "Cryptographic Attack"
+    - "암호 공격"
+    - "Crypto Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "CRYPTO"]
+
+definition:
+  what: |
+    암호화 알고리즘, 프로토콜, 구현의 약점을 악용하는 공격 기법 분류이다.
+  why: |
+    암호화된 데이터를 복호화한다.
+    인증을 우회한다.
+    기밀성을 침해한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-CRYPTO-PADDING-ORACLE-001"
+      - "ATK-CRYPTO-DOWNGRADE-001"
+    related_to:
+      - "GR-SEC-CRYPTO-001"
+      - "VUL-CRYPTO-001"
+
+properties:
+  technical:
+    techniques:
+      - "Brute Force"
+      - "Side-Channel Attack"
+      - "Padding Oracle"
+      - "Birthday Attack"
+      - "Downgrade Attack"
+      - "Key Recovery"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Cryptographic Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cryptographic Attack은 암호화 시스템의 약점을 악용하는 공격 기법 분류이다.
+    search_keywords:
+      - "Cryptographic Attack"
+      - "암호 공격"
+      - "Encryption"
+      - "Decryption"

@@ -1,0 +1,125 @@
+# GR Atom: Health Insurance Portability and Accountability Act
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-HIPAA-001"
+  name: "Health Insurance Portability and Accountability Act"
+  normalization:
+    normalized_name: "hipaa health information privacy phi healthcare"
+    normalization_version: "1.0"
+  aliases:
+    - "HIPAA"
+    - "건강보험 이동성 및 책임법"
+    - "의료정보 보호법"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone0"
+    tags: ["COMP", "HEALTHCARE", "US"]
+
+definition:
+  what: |
+    미국의 의료 정보 보호를 위한 연방법으로
+    PHI(보호대상 건강정보)의 보안과 프라이버시를 규정한다.
+  why: |
+    환자 의료 정보를 보호한다.
+    의료 기관의 보안 표준을 정립한다.
+  how: |
+    1. PHI 식별
+    2. Privacy Rule 준수
+    3. Security Rule 구현
+    4. 위반 대응
+
+relations:
+  structural:
+    is_a:
+      - "COMP-PRIVACY-001"
+    related_to:
+      - "COMP-GDPR-001"
+      - "COMP-HITECH-001"
+
+properties:
+  technical:
+    scope:
+      covered_entities:
+        - "의료 제공자"
+        - "건강 보험사"
+        - "의료 정보 교환소"
+      business_associates: "PHI 처리 계약자"
+    phi_definition:
+      description: "Protected Health Information"
+      identifiers:
+        - "이름"
+        - "주소"
+        - "생년월일"
+        - "사회보장번호"
+        - "의료 기록 번호"
+        - "건강 보험 번호"
+    rules:
+      privacy_rule:
+        purpose: "PHI 사용/공개 제한"
+        requirements:
+          - "최소 필요 원칙"
+          - "환자 권리 보장"
+          - "공개 동의"
+      security_rule:
+        purpose: "ePHI 보호"
+        safeguards:
+          administrative:
+            - "보안 관리 프로세스"
+            - "보안 책임자 지정"
+            - "인력 보안"
+            - "정보 접근 관리"
+          physical:
+            - "시설 접근 통제"
+            - "워크스테이션 보안"
+            - "장치/미디어 통제"
+          technical:
+            - "접근 통제"
+            - "감사 통제"
+            - "무결성 통제"
+            - "전송 보안"
+      breach_notification_rule:
+        timeline: "60일 이내 통지"
+        requirements:
+          - "개인 통지"
+          - "언론 통지 (500명 이상)"
+          - "HHS 보고"
+    penalties:
+      tier1: "인지 없음: $100-$50,000"
+      tier2: "합리적 사유: $1,000-$50,000"
+      tier3: "고의적 방치: $10,000-$50,000"
+      tier4: "시정 미이행: $50,000+"
+      criminal: "최대 $250,000 + 10년 징역"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "HHS HIPAA"
+      - "45 CFR Parts 160, 164"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HIPAA는 미국의 의료 정보(PHI) 보호법으로
+      Privacy, Security, Breach Notification 규칙을 포함한다.
+    search_keywords:
+      - "HIPAA"
+      - "PHI"
+      - "의료정보"
+      - "Healthcare Security"

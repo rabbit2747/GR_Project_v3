@@ -1,0 +1,101 @@
+# GR Atom: Prevention
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-001"
+  name: "Prevention"
+  normalization:
+    normalized_name: "prevention protection blocking control"
+    normalization_version: "1.0"
+  aliases:
+    - "Prevention"
+    - "예방"
+    - "Preventive Control"
+    - "Protection"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "PREVENT"]
+
+definition:
+  what: |
+    보안 위협이 발생하기 전에 차단하고 방지하는
+    예방적 보안 통제 분류이다.
+  why: |
+    공격을 사전에 차단한다.
+    취약점 악용을 방지한다.
+    위험을 원천적으로 제거한다.
+  how: |
+    1. 위험 식별
+    2. 통제 구현
+    3. 정책 적용
+    4. 효과 검증
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-NET-FIREWALL-001"
+      - "DEF-WAF-001"
+      - "DEF-AUTH-MFA-001"
+    related_to:
+      - "DEF-DETECT-001"
+      - "GR-SEC-PRI-DEFENSE-DEPTH-001"
+
+properties:
+  technical:
+    control_types:
+      access_control: "접근 통제"
+      encryption: "암호화"
+      filtering: "필터링"
+      hardening: "강화"
+    technologies:
+      - "방화벽"
+      - "WAF"
+      - "MFA"
+      - "암호화"
+      - "입력 검증"
+      - "네트워크 분리"
+    examples:
+      - "방화벽 규칙"
+      - "WAF 정책"
+      - "CSP 헤더"
+      - "입력 검증"
+    principles:
+      - "Default Deny"
+      - "Least Privilege"
+      - "Defense in Depth"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-53"
+      - "CIS Controls"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Prevention은 보안 위협을 사전에 차단하는
+      예방적 보안 통제 분류이다.
+    search_keywords:
+      - "Prevention"
+      - "예방"
+      - "Protection"
+      - "Blocking"

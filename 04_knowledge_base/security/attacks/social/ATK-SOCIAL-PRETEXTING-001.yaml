@@ -1,0 +1,117 @@
+# GR Atom: Pretexting Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SOCIAL-PRETEXTING-001"
+  name: "Pretexting Attack"
+  normalization:
+    normalized_name: "pretexting social engineering impersonation scenario"
+    normalization_version: "1.0"
+  aliases:
+    - "프리텍스팅"
+    - "가장 공격"
+    - "시나리오 기반 사회공학"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "SOCIAL", "PRETEXT"]
+
+definition:
+  what: |
+    프리텍스팅은 공격자가 거짓 시나리오(pretext)를 만들어
+    피해자에게 정보를 공개하거나 행동을 하도록 유도하는 사회공학 공격이다.
+  why: |
+    기술적 보안을 완전히 우회한다. 인간의 신뢰와 도움 본능을 악용하며
+    비싱, 피싱의 핵심 기법이다.
+  how: |
+    1. 대상 조사 (OSINT)
+    2. 신뢰할 수 있는 시나리오 구성
+    3. 역할 수행 (IT 지원, 은행 직원)
+    4. 정보 획득 또는 행동 유도
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    enables:
+      - "ATK-NET-PHISHING-001"
+
+properties:
+  technical:
+    common_pretexts:
+      - name: "IT 지원"
+        scenario: "컴퓨터 문제 해결을 위해 비밀번호 필요"
+      - name: "은행/금융기관"
+        scenario: "계정 확인을 위해 개인정보 필요"
+      - name: "경찰/정부"
+        scenario: "수사를 위해 정보 요청"
+      - name: "동료/상사"
+        scenario: "긴급 상황으로 송금 요청"
+      - name: "설문 조사원"
+        scenario: "설문을 빙자한 정보 수집"
+      - name: "구직자/인턴"
+        scenario: "내부 정보 접근"
+    attack_phases:
+      - name: "Research"
+        description: "대상 조직/개인 정보 수집"
+      - name: "Pretext Development"
+        description: "설득력 있는 시나리오 구성"
+      - name: "Relationship Building"
+        description: "신뢰 관계 구축"
+      - name: "Exploitation"
+        description: "정보 획득 또는 행동 유도"
+    channels:
+      - "전화 (Vishing)"
+      - "이메일"
+      - "대면"
+      - "소셜 미디어"
+      - "문자 (Smishing)"
+    red_flags:
+      - "예상치 못한 연락"
+      - "긴급성 강조"
+      - "민감 정보 요청"
+      - "신원 확인 거부"
+      - "비정상적인 요청"
+    prevention:
+      - "보안 인식 교육"
+      - "정보 공개 정책"
+      - "신원 확인 절차"
+      - "콜백 정책"
+      - "민감 정보 분류"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Social Engineering Penetration Testing"
+      - "SANS Social Engineering"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      프리텍스팅은 거짓 시나리오로 정보를 얻는 사회공학 공격이다. IT 지원, 은행 직원
+      가장이 흔하며 보안 교육, 신원 확인 절차로 방어한다.
+    search_keywords:
+      - "프리텍스팅"
+      - "Pretexting"
+      - "사회공학"
+      - "가장 공격"
+    related_queries:
+      - "사회공학 방어"
+      - "Vishing"
+      - "인적 보안"

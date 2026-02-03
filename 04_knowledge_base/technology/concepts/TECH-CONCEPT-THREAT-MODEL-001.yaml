@@ -1,0 +1,125 @@
+# GR Atom: Threat Modeling
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-THREAT-MODEL-001"
+  name: "Threat Modeling"
+  normalization:
+    normalized_name: "threat modeling stride dread attack surface analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "위협 모델링"
+    - "Threat Analysis"
+    - "보안 설계 분석"
+
+classification:
+  domain: security
+  type: technology
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "CONCEPT", "DESIGN"]
+
+definition:
+  what: |
+    위협 모델링은 시스템의 잠재적 보안 위협을 체계적으로 식별하고
+    분석하여 대응책을 설계하는 프로세스다.
+  why: |
+    설계 단계에서 보안 문제를 발견하면 수정 비용이 최소화된다.
+    공격자 관점에서 시스템을 이해할 수 있다.
+  how: |
+    1. 자산 및 시스템 이해
+    2. 데이터 흐름 다이어그램 작성
+    3. 위협 식별 (STRIDE 등)
+    4. 대응책 결정
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    related_to:
+      - "TECH-CONCEPT-DEVSECOPS-001"
+
+properties:
+  technical:
+    methodologies:
+      - name: "STRIDE"
+        description: "Microsoft 위협 분류"
+        categories:
+          - "Spoofing (신원 위조)"
+          - "Tampering (변조)"
+          - "Repudiation (부인)"
+          - "Information Disclosure (정보 유출)"
+          - "Denial of Service (서비스 거부)"
+          - "Elevation of Privilege (권한 상승)"
+      - name: "PASTA"
+        description: "프로세스 기반 애플리케이션 위협"
+        stages: 7
+      - name: "OCTAVE"
+        description: "자산 중심 위협 평가"
+      - name: "VAST"
+        description: "시각적 애자일 단순 위협"
+    dread_scoring:
+      categories:
+        - "Damage (피해)"
+        - "Reproducibility (재현성)"
+        - "Exploitability (익스플로잇 용이성)"
+        - "Affected Users (영향 사용자)"
+        - "Discoverability (발견 용이성)"
+      scale: "1-10"
+    process_steps:
+      - step: "1. 범위 정의"
+        output: "자산, 진입점 식별"
+      - step: "2. 시스템 분해"
+        output: "DFD (Data Flow Diagram)"
+      - step: "3. 위협 식별"
+        output: "위협 목록"
+      - step: "4. 위협 분석"
+        output: "위험 평가"
+      - step: "5. 대응책 결정"
+        output: "완화 전략"
+      - step: "6. 검증"
+        output: "테스트 케이스"
+    tools:
+      - "Microsoft Threat Modeling Tool"
+      - "OWASP Threat Dragon"
+      - "IriusRisk"
+      - "ThreatModeler"
+    best_practices:
+      - "개발 초기 수행"
+      - "정기적 업데이트"
+      - "다양한 관점 참여"
+      - "자동화 통합"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Threat Modeling"
+      - "Microsoft SDL"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      위협 모델링은 시스템 위협을 체계적으로 분석한다. STRIDE, DREAD로
+      위협을 식별/평가하고 설계 단계에서 대응책을 결정한다.
+    search_keywords:
+      - "위협 모델링"
+      - "STRIDE"
+      - "DREAD"
+      - "보안 설계"
+    related_queries:
+      - "위험 분석"
+      - "공격 표면"
+      - "보안 아키텍처"

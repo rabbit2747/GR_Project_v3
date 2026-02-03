@@ -1,0 +1,113 @@
+# GR Atom: Wifite
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-WIRELESS-WIFITE-001"
+  name: "Wifite"
+  normalization:
+    normalized_name: "wifite wifi automated wireless attack audit"
+    normalization_version: "1.0"
+  aliases:
+    - "Wifite"
+    - "Wifite2"
+    - "자동화 무선 공격"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["TOOL", "WIRELESS", "AUTO"]
+
+definition:
+  what: |
+    무선 네트워크 감사를 자동화하는 Python 도구로
+    다양한 공격을 자동으로 수행한다.
+  why: |
+    무선 테스트를 자동화한다.
+    여러 공격을 순차 실행한다.
+  how: |
+    1. 자동 타겟 탐색
+    2. 공격 방법 선택
+    3. 자동 공격 실행
+    4. 결과 보고
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-WIRELESS-001"
+    related_to:
+      - "TOOL-WIRELESS-AIRCRACK-001"
+      - "ATK-WIRELESS-001"
+
+properties:
+  technical:
+    version: "Wifite2"
+    license: "GPL"
+    language: "Python"
+    dependencies:
+      required:
+        - "Aircrack-ng"
+        - "iw"
+        - "iwconfig"
+      optional:
+        - "Hashcat"
+        - "Reaver"
+        - "Bully"
+        - "hcxdumptool"
+    attack_methods:
+      wep:
+        - "PTW 공격"
+        - "ARP Replay"
+      wpa:
+        - "WPA Handshake"
+        - "PMKID 공격"
+        - "WPS Pixie-Dust"
+        - "WPS PIN 브루트포스"
+    features:
+      - "자동 타겟 선택"
+      - "순차적 공격 시도"
+      - "세션 저장/복원"
+      - "결과 자동 저장"
+    usage_examples:
+      basic: "wifite"
+      wpa_only: "wifite --wpa"
+      specific: "wifite -b BSSID"
+      dict: "wifite --dict wordlist.txt"
+    options:
+      "--wpa": "WPA 네트워크만"
+      "--wps": "WPS 공격만"
+      "--kill": "충돌 프로세스 종료"
+      "-i": "인터페이스 지정"
+    cracked_files: "~/.wifite/cracked.txt"
+    repository: "https://github.com/derv82/wifite2"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Wifite2 GitHub"
+      - "Kali Linux Tools"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Wifite는 WPA 핸드셰이크, WPS 공격 등 무선 네트워크
+      감사를 자동화하는 Python 도구이다.
+    search_keywords:
+      - "Wifite"
+      - "WiFi Audit"
+      - "Automated Wireless"
+      - "무선 자동화"

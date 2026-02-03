@@ -1,0 +1,123 @@
+# GR Atom: HIPAA Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-HIPAA-001"
+  name: "HIPAA (Health Insurance Portability and Accountability Act)"
+  normalization:
+    normalized_name: "hipaa health insurance portability accountability phi healthcare"
+    normalization_version: "1.0"
+  aliases:
+    - "HIPAA"
+    - "의료정보 보호법"
+    - "PHI 보호"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["COMP", "FRAMEWORK", "HEALTHCARE"]
+
+definition:
+  what: |
+    HIPAA는 미국의 보호대상 의료정보(PHI) 보호를 위한 규정으로,
+    의료 기관과 관련 사업체에 적용된다.
+  why: |
+    의료 정보는 가장 민감한 개인정보 중 하나다.
+    유출 시 심각한 프라이버시 침해와 법적 책임이 발생한다.
+  how: |
+    1. PHI 식별 및 분류
+    2. 위험 분석 수행
+    3. 보호 조치 구현
+    4. 정기 감사 및 교육
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMPLIANCE-001"
+    related_to:
+      - "COMP-FRAMEWORK-GDPR-001"
+
+properties:
+  technical:
+    scope:
+      covered_entities:
+        - "의료 제공자"
+        - "건강 보험"
+        - "의료 청구"
+      business_associates:
+        - "PHI 처리 협력업체"
+        - "클라우드 서비스"
+        - "IT 서비스"
+    rules:
+      - name: "Privacy Rule"
+        purpose: "PHI 사용 및 공개 제한"
+        key_requirements:
+          - "최소 필요 원칙"
+          - "환자 권리 보장"
+          - "개인정보 고지"
+      - name: "Security Rule"
+        purpose: "전자 PHI(ePHI) 보호"
+        safeguards:
+          - type: "Administrative"
+            examples: ["위험 분석", "접근 관리", "교육"]
+          - type: "Physical"
+            examples: ["시설 접근", "장비 통제"]
+          - type: "Technical"
+            examples: ["접근 통제", "감사 로그", "암호화"]
+      - name: "Breach Notification Rule"
+        purpose: "유출 통지 의무"
+        requirements:
+          - "60일 내 개인 통지"
+          - "500명 이상 시 언론 통지"
+          - "HHS 보고"
+    phi_elements:
+      - "이름"
+      - "주소"
+      - "날짜 (생년월일, 진료일)"
+      - "전화번호"
+      - "이메일"
+      - "SSN"
+      - "의료기록 번호"
+      - "건강 정보"
+    penalties:
+      tier1: "$100-$50,000/위반 (미인지)"
+      tier2: "$1,000-$50,000/위반 (합리적 사유)"
+      tier3: "$10,000-$50,000/위반 (고의적 방치)"
+      tier4: "$50,000/위반 (고의적, 미시정)"
+      criminal: "최대 $250,000 및 10년 징역"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "HHS HIPAA"
+      - "HIPAA Journal"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      HIPAA는 미국 의료정보 보호법이다. Privacy, Security, Breach Notification
+      규칙으로 PHI를 보호하며 높은 과징금이 부과된다.
+    search_keywords:
+      - "HIPAA"
+      - "의료 보안"
+      - "PHI"
+      - "ePHI"
+    related_queries:
+      - "의료정보 보호"
+      - "헬스케어 보안"
+      - "PHI 암호화"

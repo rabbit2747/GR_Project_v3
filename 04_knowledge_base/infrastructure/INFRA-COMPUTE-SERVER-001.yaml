@@ -1,0 +1,103 @@
+# GR Atom: Physical/Virtual Server (Compute)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-COMPUTE-SERVER-001"
+  name: "Server (Compute Resource)"
+  normalization:
+    normalized_name: "server physical server bare metal compute"
+    normalization_version: "1.0"
+  aliases:
+    - "서버"
+    - "Physical Server"
+    - "Bare Metal"
+    - "Compute Instance"
+
+classification:
+  domain: infrastructure
+  type: compute
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L1"
+    zone: "Zone1"
+    tags: ["INFRA", "COMPUTE", "HARDWARE"]
+
+definition:
+  what: |
+    서버(Compute Resource)는 애플리케이션을 실행하는 물리적 또는 가상화된
+    컴퓨팅 자원이다. CPU, 메모리, 스토리지, 네트워크 인터페이스를 제공한다.
+  why: |
+    모든 인프라의 기반이다. OS 취약점, 설정 오류, 물리적 접근,
+    권한 상승이 주요 보안 위협이다.
+  how: |
+    1. Hardware: CPU, RAM, Storage, NIC
+    2. Firmware: BIOS/UEFI, BMC/IPMI
+    3. Operating System: Linux, Windows Server
+    4. Runtime: 애플리케이션 실행 환경
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    supports:
+      - "INFRA-COMPUTE-VM-001"
+      - "INFRA-RUNTIME-CONTAINER-001"
+  causal:
+    protected_by:
+      - "DEF-PREVENT-SANDBOX-001"
+
+properties:
+  technical:
+    server_types:
+      - name: "Bare Metal"
+        description: "물리 서버 직접 사용"
+      - name: "Virtual Machine"
+        description: "하이퍼바이저 위 가상 서버"
+      - name: "Cloud Instance"
+        description: "클라우드 제공 컴퓨팅"
+    security_layers:
+      - layer: "Physical"
+        controls: ["데이터센터 보안", "물리적 접근 제어"]
+      - layer: "Firmware"
+        controls: ["Secure Boot", "TPM", "BMC 보안"]
+      - layer: "OS"
+        controls: ["Hardening", "패치 관리", "접근 제어"]
+      - layer: "Application"
+        controls: ["최소 권한", "격리", "모니터링"]
+    common_vulnerabilities:
+      - "OS 미패치 취약점"
+      - "기본 자격 증명"
+      - "불필요한 서비스"
+      - "권한 상승"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Benchmarks"
+      - "NIST Server Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Server(서버)는 애플리케이션을 실행하는 컴퓨팅 자원이다.
+      OS 취약점, 설정 오류, 권한 상승이 주요 보안 위협이다.
+    search_keywords:
+      - "Server"
+      - "서버"
+      - "Compute"
+      - "Bare Metal"
+    related_queries:
+      - "서버 보안"
+      - "서버 하드닝"
+      - "Linux 보안"

@@ -1,0 +1,115 @@
+# GR Atom: Security Orchestration, Automation and Response
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-SOAR-001"
+  name: "Security Orchestration, Automation and Response"
+  normalization:
+    normalized_name: "soar security automation orchestration playbook incident"
+    normalization_version: "1.0"
+  aliases:
+    - "SOAR"
+    - "보안 자동화"
+    - "Security Automation"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "AUTOMATION", "SOC"]
+
+definition:
+  what: |
+    보안 도구를 오케스트레이션하고 반복 작업을 자동화하여
+    인시던트 대응을 효율화하는 플랫폼이다.
+  why: |
+    대응 시간을 단축한다.
+    분석가 업무 부담을 줄인다.
+  how: |
+    1. 경보 수집/강화
+    2. 플레이북 실행
+    3. 자동 대응 조치
+    4. 케이스 관리
+
+relations:
+  structural:
+    is_a:
+      - "DEF-AUTOMATION-001"
+    related_to:
+      - "DEF-SIEM-001"
+      - "DEF-ENDPOINT-EDR-001"
+
+properties:
+  technical:
+    core_capabilities:
+      orchestration:
+        description: "보안 도구 간 연동 및 통합"
+        examples: ["API 연동", "워크플로우 연결"]
+      automation:
+        description: "반복 작업 자동화"
+        examples: ["IOC 조회", "티켓 생성", "차단"]
+      response:
+        description: "인시던트 대응 워크플로우"
+        examples: ["플레이북", "케이스 관리"]
+    playbook_types:
+      - "피싱 대응"
+      - "악성코드 분석"
+      - "계정 침해"
+      - "데이터 유출"
+      - "취약점 관리"
+    integrations:
+      siem: ["Splunk", "QRadar", "Sentinel"]
+      edr: ["CrowdStrike", "SentinelOne", "Defender"]
+      threat_intel: ["VirusTotal", "MISP", "ThreatConnect"]
+      ticketing: ["ServiceNow", "Jira", "PagerDuty"]
+    popular_solutions:
+      commercial:
+        - "Splunk SOAR (Phantom)"
+        - "Palo Alto XSOAR"
+        - "IBM Security QRadar SOAR"
+        - "Swimlane"
+      open_source:
+        - "TheHive"
+        - "Shuffle"
+        - "Cortex XSOAR Community"
+    metrics:
+      - "Mean Time to Respond (MTTR)"
+      - "자동화율"
+      - "플레이북 실행 횟수"
+      - "분석가 시간 절감"
+    benefits:
+      - "일관된 대응 프로세스"
+      - "대응 속도 향상"
+      - "인적 오류 감소"
+      - "가시성 향상"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner SOAR"
+      - "SANS SOAR"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SOAR는 보안 도구를 오케스트레이션하고 플레이북으로
+      인시던트 대응을 자동화하는 SOC 플랫폼이다.
+    search_keywords:
+      - "SOAR"
+      - "Security Automation"
+      - "Playbook"
+      - "자동화"

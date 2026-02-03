@@ -1,0 +1,100 @@
+# GR Atom: Vulnerability Scanner
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCANNER-001"
+  name: "Vulnerability Scanner"
+  normalization:
+    normalized_name: "vulnerability scanner automated assessment"
+    normalization_version: "1.0"
+  aliases:
+    - "Vulnerability Scanner"
+    - "취약점 스캐너"
+    - "Security Scanner"
+    - "Automated Scanner"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "SCANNER"]
+
+definition:
+  what: |
+    시스템, 네트워크, 애플리케이션의 취약점을 자동으로
+    탐지하는 스캐닝 도구 분류이다.
+  why: |
+    알려진 취약점을 빠르게 탐지한다.
+    대규모 환경을 효율적으로 평가한다.
+    정기적 보안 점검을 자동화한다.
+  how: |
+    1. 대상 정의
+    2. 스캔 프로파일 선택
+    3. 스캔 실행
+    4. 결과 분석/보고
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT-001"
+    has_children:
+      - "TOOL-SCANNER-NESSUS-001"
+      - "TOOL-SCANNER-OPENVAS-001"
+      - "TOOL-SCANNER-NIKTO-001"
+    related_to:
+      - "GR-SEC-VULN-001"
+      - "TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001"
+
+properties:
+  technical:
+    types:
+      network:
+        description: "네트워크 취약점 스캐너"
+        examples: ["Nessus", "OpenVAS", "Qualys"]
+      web:
+        description: "웹 애플리케이션 스캐너"
+        examples: ["Nikto", "OWASP ZAP", "Acunetix"]
+      container:
+        description: "컨테이너 스캐너"
+        examples: ["Trivy", "Clair", "Anchore"]
+    examples:
+      - "Nessus"
+      - "OpenVAS"
+      - "Qualys"
+      - "Rapid7 InsightVM"
+    output:
+      - "취약점 목록"
+      - "CVSS 점수"
+      - "개선 권고"
+      - "트렌드 분석"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner VA"
+      - "NIST SP 800-115"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Vulnerability Scanner는 시스템 취약점을 자동으로
+      탐지하는 스캐닝 도구 분류이다.
+    search_keywords:
+      - "Scanner"
+      - "Vulnerability"
+      - "Nessus"
+      - "스캐너"

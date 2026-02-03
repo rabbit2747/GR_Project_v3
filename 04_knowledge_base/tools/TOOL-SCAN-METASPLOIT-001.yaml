@@ -1,0 +1,119 @@
+# GR Atom: Metasploit Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-METASPLOIT-001"
+  name: "Metasploit Framework"
+  normalization:
+    normalized_name: "metasploit exploit framework rapid7 penetration testing"
+    normalization_version: "1.0"
+  aliases:
+    - "Metasploit"
+    - "메타스플로잇"
+    - "MSF"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "EXPLOIT", "PENTEST"]
+
+definition:
+  what: |
+    Metasploit은 Rapid7에서 관리하는 오픈소스 침투 테스트 프레임워크로,
+    취약점 익스플로잇, 페이로드 생성, 포스트 익스플로잇을 지원한다.
+  why: |
+    취약점 검증과 보안 테스트의 표준 도구다. 광범위한 익스플로잇 모듈과
+    자동화 기능으로 효율적인 침투 테스트가 가능하다.
+  how: |
+    1. 대상 정보 수집 (auxiliary)
+    2. 취약점 식별 및 익스플로잇 선택
+    3. 페이로드 설정 및 실행
+    4. 포스트 익스플로잇 활동
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "TOOL-C2-COBALTSTRIKE-001"
+      - "ATK-MITRE-EXECUTION-001"
+
+properties:
+  technical:
+    versions:
+      - name: "Metasploit Framework"
+        description: "무료 오픈소스"
+      - name: "Metasploit Pro"
+        description: "상용, 자동화 기능"
+    architecture:
+      - name: "Exploits"
+        description: "취약점 익스플로잇 모듈"
+        count: "2000+"
+      - name: "Payloads"
+        description: "공격 후 실행 코드"
+        types: ["singles", "stagers", "stages"]
+      - name: "Auxiliary"
+        description: "스캐닝, 정보 수집"
+      - name: "Post"
+        description: "포스트 익스플로잇"
+      - name: "Encoders"
+        description: "페이로드 인코딩"
+      - name: "Evasion"
+        description: "AV 우회"
+    meterpreter:
+      description: "고급 페이로드, 메모리 상주"
+      features:
+        - "파일 시스템 접근"
+        - "프로세스 조작"
+        - "네트워크 피벗"
+        - "권한 상승"
+        - "스크린샷/키로깅"
+    commands:
+      - name: "msfconsole"
+        description: "메인 인터페이스"
+      - name: "msfvenom"
+        description: "페이로드 생성"
+      - name: "msfdb"
+        description: "데이터베이스 관리"
+    best_practices:
+      - "법적 허가 필수"
+      - "격리된 환경 테스트"
+      - "로깅 활성화"
+      - "모듈 정기 업데이트"
+      - "커스텀 모듈 개발"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Rapid7 Metasploit"
+      - "Metasploit Unleashed"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Metasploit은 침투 테스트 프레임워크로 익스플로잇, 페이로드, 포스트 익스플로잇을
+      제공한다. Meterpreter, 2000+ 모듈로 취약점 검증에 사용된다.
+    search_keywords:
+      - "Metasploit"
+      - "익스플로잇"
+      - "침투 테스트"
+      - "Meterpreter"
+    related_queries:
+      - "취약점 검증"
+      - "페이로드 생성"
+      - "포스트 익스플로잇"

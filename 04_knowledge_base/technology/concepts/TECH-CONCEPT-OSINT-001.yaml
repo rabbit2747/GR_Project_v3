@@ -1,0 +1,126 @@
+# GR Atom: OSINT (Open Source Intelligence)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-OSINT-001"
+  name: "Open Source Intelligence (OSINT)"
+  normalization:
+    normalized_name: "osint open source intelligence reconnaissance gathering"
+    normalization_version: "1.0"
+  aliases:
+    - "OSINT"
+    - "공개 정보 수집"
+    - "오픈소스 인텔리전스"
+
+classification:
+  domain: security
+  type: technology
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "CONCEPT", "RECON"]
+
+definition:
+  what: |
+    OSINT는 공개적으로 이용 가능한 정보원에서 정보를 수집하고
+    분석하여 유용한 인텔리전스를 생산하는 활동이다.
+  why: |
+    공격자가 먼저 수집하는 정보를 파악하여 방어한다.
+    침투 테스트와 위협 인텔리전스의 첫 단계다.
+  how: |
+    1. 정보 요구사항 정의
+    2. 정보원 식별
+    3. 데이터 수집
+    4. 분석 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    related_to:
+      - "ATK-MITRE-RECON-001"
+      - "DEF-INTEL-THREAT-001"
+
+properties:
+  technical:
+    information_sources:
+      - name: "검색 엔진"
+        examples: ["Google Dorking", "Bing", "DuckDuckGo"]
+      - name: "소셜 미디어"
+        examples: ["LinkedIn", "Twitter", "Facebook"]
+      - name: "도메인/IP"
+        examples: ["WHOIS", "DNS", "Shodan"]
+      - name: "코드 저장소"
+        examples: ["GitHub", "GitLab", "Pastebin"]
+      - name: "다크웹"
+        examples: ["Tor", "I2P"]
+      - name: "공공 기록"
+        examples: ["SEC", "법원", "특허"]
+    google_dorks:
+      - "site:target.com filetype:pdf"
+      - "inurl:admin site:target.com"
+      - "intitle:index of site:target.com"
+      - "\"password\" filetype:log"
+    tools:
+      reconnaissance:
+        - "theHarvester"
+        - "Recon-ng"
+        - "Maltego"
+        - "Spiderfoot"
+      infrastructure:
+        - "Shodan"
+        - "Censys"
+        - "Fofa"
+      social:
+        - "Sherlock"
+        - "Social Analyzer"
+      email:
+        - "Hunter.io"
+        - "Have I Been Pwned"
+    use_cases:
+      - name: "보안 평가"
+        purpose: "공격 표면 파악"
+      - name: "위협 인텔리전스"
+        purpose: "위협 행위자 추적"
+      - name: "사고 대응"
+        purpose: "IOC 조사"
+      - name: "due diligence"
+        purpose: "인수/합병 조사"
+    ethics:
+      - "법적 경계 준수"
+      - "개인정보 보호"
+      - "침입 금지"
+      - "정보 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OSINT Framework"
+      - "SANS OSINT"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OSINT는 공개 정보에서 인텔리전스를 수집한다. 검색 엔진, 소셜 미디어,
+      Shodan 등을 활용하며 보안 평가, 위협 인텔리전스에 사용된다.
+    search_keywords:
+      - "OSINT"
+      - "정보 수집"
+      - "정찰"
+      - "Google Dorking"
+    related_queries:
+      - "Reconnaissance"
+      - "Shodan"
+      - "위협 인텔리전스"

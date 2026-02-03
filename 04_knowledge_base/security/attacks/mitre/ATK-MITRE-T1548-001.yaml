@@ -1,0 +1,103 @@
+# GR Atom: Abuse Elevation Control Mechanism
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1548-001"
+  name: "Abuse Elevation Control Mechanism"
+  normalization:
+    normalized_name: "abuse elevation control mechanism uac bypass privilege escalation"
+    normalization_version: "1.0"
+  aliases:
+    - "권한 상승 메커니즘 악용"
+    - "UAC Bypass"
+    - "sudo 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "PRIV-ESC"]
+
+definition:
+  what: |
+    권한 상승 제어 메커니즘을 악용하여 높은 권한을 획득하는 기법이다.
+    UAC 우회, sudo 악용, setuid/setgid 악용 등이 포함된다.
+  why: |
+    관리자 권한 없이 시스템 제어권을 획득한다.
+    보안 제어를 우회하여 악성 행위를 수행한다.
+  how: |
+    1. 권한 상승 메커니즘 식별
+    2. 취약점 또는 설정 오류 탐색
+    3. 권한 상승 기법 실행
+    4. 상승된 권한으로 작업 수행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-PRIV-ESC-001"
+    related_to:
+      - "ATK-WIN-UAC-BYPASS-001"
+      - "DEF-DETECT-XDR-001"
+
+properties:
+  technical:
+    mitre_id: "T1548"
+    tactic: "Privilege Escalation, Defense Evasion"
+    platforms: ["Windows", "Linux", "macOS"]
+    sub_techniques:
+      - id: "T1548.001"
+        name: "Setuid and Setgid"
+        description: "Unix 권한 비트 악용"
+      - id: "T1548.002"
+        name: "Bypass User Account Control"
+        description: "Windows UAC 우회"
+      - id: "T1548.003"
+        name: "Sudo and Sudo Caching"
+        description: "sudo 캐싱 악용"
+      - id: "T1548.004"
+        name: "Elevated Execution with Prompt"
+        description: "권한 상승 프롬프트 악용"
+    detection:
+      - "프로세스 모니터링"
+      - "권한 변경 이벤트"
+      - "UAC 이벤트 로그"
+      - "sudo 로그 분석"
+    mitigation:
+      - "최소 권한 원칙"
+      - "UAC 설정 강화"
+      - "sudo 설정 제한"
+      - "권한 상승 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1548"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      권한 상승 제어 메커니즘 악용은 UAC 우회, sudo 악용 등을 통해
+      높은 권한을 획득하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "UAC Bypass"
+      - "권한 상승"
+      - "sudo"
+      - "setuid"
+    related_queries:
+      - "권한 상승 공격"
+      - "UAC 우회 기법"
+      - "Linux 권한 상승"

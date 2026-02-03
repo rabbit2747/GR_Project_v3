@@ -1,0 +1,78 @@
+# GR Atom: Configuration Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CONFIG-001"
+  name: "Configuration Vulnerability"
+  normalization:
+    normalized_name: "configuration vulnerability misconfiguration"
+    normalization_version: "1.0"
+  aliases:
+    - "Configuration Vulnerability"
+    - "설정 취약점"
+    - "Misconfiguration Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "CONFIG"]
+
+definition:
+  what: |
+    시스템, 애플리케이션, 인프라의 잘못된 설정으로 인한 취약점 분류이다.
+  why: |
+    설정 오류를 식별한다.
+    보안 설정 기준을 수립한다.
+    기본 설정 위험을 제거한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-CONFIG-DEFAULT-001"
+      - "VUL-CONFIG-EXPOSED-001"
+    related_to:
+      - "DEF-HARDENING-001"
+      - "COMP-CIS-001"
+
+properties:
+  technical:
+    types:
+      - "Default Credentials"
+      - "Unnecessary Services"
+      - "Verbose Error Messages"
+      - "Directory Listing"
+      - "Missing Security Headers"
+      - "Overly Permissive Access"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Benchmarks"
+      - "OWASP Security Misconfiguration"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Configuration Vulnerability는 설정 오류로 인한 취약점 분류이다.
+    search_keywords:
+      - "Configuration Vulnerability"
+      - "설정 취약점"
+      - "Misconfiguration"
+      - "Default Credentials"

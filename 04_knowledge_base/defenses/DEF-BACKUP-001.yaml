@@ -1,0 +1,113 @@
+# GR Atom: Backup and Recovery
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-BACKUP-001"
+  name: "Backup and Recovery"
+  normalization:
+    normalized_name: "backup recovery disaster restoration 3-2-1 ransomware"
+    normalization_version: "1.0"
+  aliases:
+    - "Backup"
+    - "백업 및 복구"
+    - "Data Protection"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "RECOVER", "DATA"]
+
+definition:
+  what: |
+    데이터와 시스템의 복사본을 생성하고 재해 발생 시
+    복구할 수 있도록 하는 데이터 보호 전략이다.
+  why: |
+    데이터 손실을 방지한다.
+    랜섬웨어로부터 복구한다.
+  how: |
+    1. 백업 정책 수립
+    2. 정기 백업 실행
+    3. 오프사이트 저장
+    4. 복구 테스트
+
+relations:
+  structural:
+    is_a:
+      - "DEF-RECOVER-001"
+    related_to:
+      - "ATK-MITRE-T1486-001"
+      - "TECH-CONCEPT-BCP-001"
+
+properties:
+  technical:
+    3_2_1_rule:
+      copies: "3개 이상의 데이터 복사본"
+      media: "2개 이상의 다른 미디어"
+      offsite: "1개 이상의 오프사이트 저장"
+    backup_types:
+      full: "전체 백업"
+      incremental: "변경분만 백업"
+      differential: "마지막 전체 이후 변경분"
+      snapshot: "특정 시점 스냅샷"
+    storage_locations:
+      - "로컬 디스크"
+      - "NAS/SAN"
+      - "테이프"
+      - "클라우드"
+      - "오프사이트"
+    ransomware_protection:
+      - "오프라인 백업 (Air Gap)"
+      - "불변 백업 (Immutable)"
+      - "다중 세대 보관"
+      - "복구 테스트"
+    metrics:
+      rpo: "Recovery Point Objective"
+      rto: "Recovery Time Objective"
+    popular_solutions:
+      enterprise:
+        - "Veeam"
+        - "Commvault"
+        - "Veritas NetBackup"
+        - "Rubrik"
+      cloud:
+        - "AWS Backup"
+        - "Azure Backup"
+        - "GCP Cloud Storage"
+    best_practices:
+      - "정기 복구 테스트"
+      - "암호화 적용"
+      - "접근 통제"
+      - "모니터링 및 경보"
+      - "문서화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-34"
+      - "CISA Ransomware Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Backup and Recovery는 3-2-1 규칙으로 데이터를 보호하고
+      랜섬웨어 등 재해로부터 복구하는 데이터 보호 전략이다.
+    search_keywords:
+      - "Backup"
+      - "Recovery"
+      - "3-2-1"
+      - "Ransomware Protection"

@@ -1,0 +1,123 @@
+# GR Atom: SCA (Software Composition Analysis)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DEVSECOPS-SCA-001"
+  name: "SCA (Software Composition Analysis)"
+  normalization:
+    normalized_name: "sca software composition analysis dependency vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "SCA"
+    - "소프트웨어 구성 분석"
+    - "의존성 취약점 스캔"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "DEVSECOPS", "SUPPLY"]
+
+definition:
+  what: |
+    오픈소스 및 서드파티 구성요소의 취약점, 라이선스,
+    품질 위험을 식별하는 분석 기법이다.
+  why: |
+    의존성 취약점을 관리한다.
+    라이선스 컴플라이언스를 확보한다.
+  how: |
+    1. 의존성 목록 생성 (SBOM)
+    2. 취약점 데이터베이스와 매칭
+    3. 위험 평가
+    4. 수정 권고 제공
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT-001"
+    related_to:
+      - "ATK-SUPPLY-DEPENDENCY-001"
+      - "VUL-COMPONENT-VULN-001"
+
+properties:
+  technical:
+    analysis_scope:
+      - "오픈소스 라이브러리"
+      - "프레임워크"
+      - "컨테이너 이미지"
+      - "운영체제 패키지"
+    sbom:
+      description: "Software Bill of Materials"
+      formats: ["SPDX", "CycloneDX"]
+    vulnerability_databases:
+      - "NVD (National Vulnerability Database)"
+      - "GitHub Advisory Database"
+      - "Snyk Vulnerability DB"
+      - "OSV (Open Source Vulnerabilities)"
+    sca_tools:
+      commercial:
+        - "Snyk"
+        - "Sonatype Nexus"
+        - "WhiteSource (Mend)"
+        - "Black Duck"
+      open_source:
+        - "OWASP Dependency-Check"
+        - "Trivy"
+        - "Grype"
+        - "npm audit"
+        - "pip-audit"
+    integration_points:
+      - "IDE"
+      - "CI/CD"
+      - "Container Registry"
+      - "Package Manager"
+    capabilities:
+      - "취약점 탐지"
+      - "라이선스 분석"
+      - "버전 권고"
+      - "수정 PR 자동 생성"
+    prioritization:
+      - "CVSS 점수"
+      - "익스플로잇 가용성"
+      - "런타임 도달성"
+      - "수정 가용성"
+    best_practices:
+      - "CI/CD 파이프라인 통합"
+      - "정기적 스캔"
+      - "SBOM 유지관리"
+      - "취약 버전 자동 업데이트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SCA"
+      - "NIST SBOM"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SCA는 오픈소스 의존성의 취약점과 라이선스 위험을
+      식별하는 소프트웨어 공급망 보안 기법이다.
+    search_keywords:
+      - "SCA"
+      - "의존성 스캔"
+      - "SBOM"
+      - "오픈소스 보안"
+    related_queries:
+      - "공급망 보안"
+      - "의존성 취약점"
+      - "Snyk"

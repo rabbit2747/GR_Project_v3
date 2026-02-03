@@ -1,0 +1,113 @@
+# GR Atom: Multi-Factor Authentication
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-AUTH-MFA-001"
+  name: "Multi-Factor Authentication"
+  normalization:
+    normalized_name: "mfa multi factor authentication 2fa otp totp"
+    normalization_version: "1.0"
+  aliases:
+    - "MFA"
+    - "2FA"
+    - "다중 인증"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "AUTH", "ACCESS"]
+
+definition:
+  what: |
+    두 가지 이상의 인증 요소를 조합하여
+    사용자 신원을 검증하는 보안 메커니즘이다.
+  why: |
+    비밀번호 탈취 시에도 계정을 보호한다.
+    인증 보안을 강화한다.
+  how: |
+    1. 첫 번째 요소 (비밀번호)
+    2. 두 번째 요소 (OTP 등)
+    3. 추가 요소 (생체인증 등)
+    4. 접근 승인
+
+relations:
+  structural:
+    is_a:
+      - "DEF-AUTH-001"
+    related_to:
+      - "DEF-AUTH-SSO-001"
+      - "ATK-AUTH-PHISHING-001"
+
+properties:
+  technical:
+    authentication_factors:
+      - name: "Something you know"
+        examples: ["비밀번호", "PIN", "보안 질문"]
+      - name: "Something you have"
+        examples: ["OTP 토큰", "스마트카드", "휴대폰"]
+      - name: "Something you are"
+        examples: ["지문", "홍채", "안면 인식"]
+      - name: "Somewhere you are"
+        examples: ["IP 위치", "GPS"]
+    methods:
+      - name: "TOTP"
+        description: "시간 기반 일회용 비밀번호"
+        apps: ["Google Authenticator", "Microsoft Authenticator", "Authy"]
+      - name: "HOTP"
+        description: "카운터 기반 일회용 비밀번호"
+      - name: "SMS OTP"
+        description: "문자 메시지 인증 (권장하지 않음)"
+        weakness: "SIM Swapping 취약"
+      - name: "Push Notification"
+        description: "모바일 앱 푸시 승인"
+      - name: "Hardware Key"
+        description: "FIDO2/WebAuthn 키"
+        examples: ["YubiKey", "Google Titan"]
+      - name: "Biometric"
+        description: "생체 인증"
+    standards:
+      - "FIDO2 / WebAuthn"
+      - "OATH TOTP (RFC 6238)"
+      - "OATH HOTP (RFC 4226)"
+    bypass_techniques:
+      - "Phishing (실시간 릴레이)"
+      - "SIM Swapping"
+      - "MFA Fatigue/Bombing"
+      - "Session Hijacking"
+    best_practices:
+      - "Phishing-resistant MFA 사용"
+      - "SMS 대신 앱/하드웨어 키"
+      - "복구 코드 안전 보관"
+      - "조건부 접근 정책"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-63B"
+      - "FIDO Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      MFA는 비밀번호, OTP, 생체인증 등 여러 요소를 조합하여
+      인증 보안을 강화하는 필수 보안 메커니즘이다.
+    search_keywords:
+      - "MFA"
+      - "Multi-Factor Authentication"
+      - "2FA"
+      - "OTP"

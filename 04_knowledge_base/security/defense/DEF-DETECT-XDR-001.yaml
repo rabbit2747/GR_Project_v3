@@ -1,0 +1,116 @@
+# GR Atom: Extended Detection and Response (XDR)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-XDR-001"
+  name: "Extended Detection and Response (XDR)"
+  normalization:
+    normalized_name: "xdr extended detection response unified security platform"
+    normalization_version: "1.0"
+  aliases:
+    - "XDR"
+    - "확장 탐지 및 대응"
+    - "통합 보안 플랫폼"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "DETECT", "XDR"]
+
+definition:
+  what: |
+    XDR은 여러 보안 계층(엔드포인트, 네트워크, 클라우드, 이메일)의 데이터를
+    통합하여 위협을 탐지하고 대응하는 보안 플랫폼이다.
+  why: |
+    사일로화된 보안 도구를 통합하여 가시성을 높인다.
+    상관관계 분석으로 고급 위협을 탐지한다.
+  how: |
+    1. 다중 소스 데이터 수집
+    2. 정규화 및 상관관계 분석
+    3. ML/AI 기반 위협 탐지
+    4. 자동화된 대응
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "TOOL-DETECT-EDR-001"
+      - "TOOL-DETECT-SIEM-001"
+
+properties:
+  technical:
+    data_sources:
+      - "Endpoint (EDR)"
+      - "Network (NDR)"
+      - "Email Security"
+      - "Cloud Workloads"
+      - "Identity"
+    vs_edr:
+      edr: "엔드포인트만"
+      xdr: "다중 계층 통합"
+    vs_siem:
+      siem: "로그 중심, 수동 분석"
+      xdr: "원시 데이터, 자동 분석"
+    capabilities:
+      - name: "통합 가시성"
+        description: "단일 콘솔에서 모든 계층"
+      - name: "자동 상관관계"
+        description: "크로스 레이어 분석"
+      - name: "위협 인텔리전스"
+        description: "IOC/TTP 매칭"
+      - name: "자동 대응"
+        description: "격리, 차단, 복구"
+      - name: "포렌식"
+        description: "공격 타임라인 재구성"
+    vendors:
+      - "CrowdStrike Falcon"
+      - "Microsoft Defender XDR"
+      - "Palo Alto Cortex XDR"
+      - "SentinelOne Singularity"
+      - "Trend Micro Vision One"
+    deployment_types:
+      native: "단일 벤더 통합"
+      hybrid: "기존 도구 연동"
+      open: "개방형 API 기반"
+    benefits:
+      - "알림 피로 감소"
+      - "MTTD/MTTR 단축"
+      - "분석가 효율성 향상"
+      - "통합 대응"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner XDR"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XDR은 다중 보안 계층을 통합하는 탐지/대응 플랫폼이다. EDR, NDR, 클라우드
+      데이터를 상관분석하여 고급 위협을 탐지한다.
+    search_keywords:
+      - "XDR"
+      - "통합 보안"
+      - "탐지 대응"
+      - "EDR"
+    related_queries:
+      - "EDR vs XDR"
+      - "SIEM vs XDR"
+      - "위협 탐지"

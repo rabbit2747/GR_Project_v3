@@ -1,0 +1,115 @@
+# GR Atom: Kerberos Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-KERBEROS-001"
+  name: "Kerberos Authentication Protocol"
+  normalization:
+    normalized_name: "kerberos authentication protocol ticket sso active directory"
+    normalization_version: "1.0"
+  aliases:
+    - "Kerberos"
+    - "케르베로스"
+    - "커버로스"
+
+classification:
+  domain: technology
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone2"
+    tags: ["TECH", "PROTOCOL", "AUTH"]
+
+definition:
+  what: |
+    Kerberos는 티켓 기반의 네트워크 인증 프로토콜이다.
+    Active Directory의 기본 인증 메커니즘이며 SSO를 제공한다.
+  why: |
+    비밀번호를 네트워크로 전송하지 않는 안전한 인증 방식이다.
+    하지만 Kerberoasting, Golden Ticket 등 고급 공격 기법의 대상이다.
+  how: |
+    1. AS-REQ/AS-REP: KDC로부터 TGT 획득
+    2. TGS-REQ/TGS-REP: 서비스 티켓 획득
+    3. AP-REQ/AP-REP: 서비스 접근
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+    related_to:
+      - "TECH-PROTOCOL-LDAP-001"
+      - "INFRA-IAM-LDAP-001"
+
+properties:
+  technical:
+    components:
+      - name: "KDC (Key Distribution Center)"
+        sub_components:
+          - "AS (Authentication Server)"
+          - "TGS (Ticket Granting Server)"
+      - name: "TGT (Ticket Granting Ticket)"
+        description: "마스터 티켓"
+      - name: "Service Ticket"
+        description: "서비스 접근용 티켓"
+      - name: "Principal"
+        description: "인증 대상 (사용자, 서비스)"
+    authentication_flow:
+      - "1. 사용자가 AS에 TGT 요청"
+      - "2. AS가 암호화된 TGT 반환"
+      - "3. 사용자가 TGT로 TGS에 서비스 티켓 요청"
+      - "4. TGS가 서비스 티켓 반환"
+      - "5. 사용자가 서비스 티켓으로 서비스 접근"
+    attacks:
+      - name: "Kerberoasting"
+        description: "서비스 티켓 오프라인 크래킹"
+        mitigation: "강력한 서비스 계정 비밀번호"
+      - name: "AS-REP Roasting"
+        description: "Kerberos Pre-auth 미적용 계정 공격"
+        mitigation: "Pre-authentication 필수 적용"
+      - name: "Golden Ticket"
+        description: "krbtgt 해시로 TGT 위조"
+        mitigation: "krbtgt 비밀번호 정기 변경"
+      - name: "Silver Ticket"
+        description: "서비스 계정 해시로 서비스 티켓 위조"
+        mitigation: "서비스 계정 모니터링"
+      - name: "Pass the Ticket"
+        description: "탈취한 티켓 재사용"
+    security_controls:
+      - "AES 암호화 사용 (RC4 비활성화)"
+      - "Pre-authentication 필수"
+      - "Protected Users 그룹"
+      - "Kerberos Armoring (FAST)"
+      - "강력한 서비스 계정 비밀번호"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 4120 - Kerberos V5"
+      - "Microsoft Kerberos Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Kerberos는 티켓 기반 인증 프로토콜로 AD의 기본 인증이다. Kerberoasting,
+      Golden Ticket이 주요 공격이며 AES 암호화, Pre-auth 필수가 핵심 방어다.
+    search_keywords:
+      - "Kerberos"
+      - "케르베로스"
+      - "TGT"
+      - "Golden Ticket"
+    related_queries:
+      - "Kerberoasting"
+      - "AD 인증"
+      - "티켓 공격"

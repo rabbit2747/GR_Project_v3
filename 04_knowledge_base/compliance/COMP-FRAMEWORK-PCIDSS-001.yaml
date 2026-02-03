@@ -1,0 +1,134 @@
+# GR Atom: PCI DSS Compliance Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-FRAMEWORK-PCIDSS-001"
+  name: "PCI DSS Compliance Framework"
+  normalization:
+    normalized_name: "pci dss payment card industry data security standard"
+    normalization_version: "1.0"
+  aliases:
+    - "PCI DSS"
+    - "PCI 보안 표준"
+    - "카드 데이터 보안"
+
+classification:
+  domain: security
+  type: compliance
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["COMP", "FRAMEWORK", "PAYMENT"]
+
+definition:
+  what: |
+    PCI DSS는 카드 결제 데이터를 처리, 저장, 전송하는 조직이
+    준수해야 하는 보안 표준이다.
+  why: |
+    카드 데이터 유출 방지를 위한 필수 요구사항이다.
+    미준수 시 벌금, 거래 제한, 평판 손상의 위험이 있다.
+  how: |
+    1. 카드 데이터 흐름 파악
+    2. 12개 요구사항 준수
+    3. 분기별/연간 평가
+    4. 인증 획득 및 유지
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMPLIANCE-001"
+    related_to:
+      - "COMP-FRAMEWORK-SOC2-001"
+      - "DEF-CRYPTO-ENCRYPTION-001"
+
+properties:
+  technical:
+    current_version: "4.0"
+    requirements:
+      - group: "안전한 네트워크 구축 및 유지"
+        items:
+          - req: "1"
+            name: "방화벽 설치 및 유지"
+          - req: "2"
+            name: "기본 비밀번호 변경"
+      - group: "카드 소유자 데이터 보호"
+        items:
+          - req: "3"
+            name: "저장된 카드 데이터 보호"
+          - req: "4"
+            name: "전송 시 암호화"
+      - group: "취약점 관리"
+        items:
+          - req: "5"
+            name: "안티멀웨어 사용"
+          - req: "6"
+            name: "보안 시스템 개발"
+      - group: "접근 제어"
+        items:
+          - req: "7"
+            name: "접근 제한 (알 필요 기반)"
+          - req: "8"
+            name: "사용자 식별"
+          - req: "9"
+            name: "물리적 접근 제한"
+      - group: "모니터링 및 테스트"
+        items:
+          - req: "10"
+            name: "접근 추적 및 모니터링"
+          - req: "11"
+            name: "보안 시스템 테스트"
+      - group: "정보 보안 정책"
+        items:
+          - req: "12"
+            name: "보안 정책 유지"
+    validation_levels:
+      - level: "1"
+        criteria: "연간 600만건 이상"
+        assessment: "연간 QSA 감사"
+      - level: "2"
+        criteria: "연간 100만~600만건"
+        assessment: "연간 SAQ"
+      - level: "3"
+        criteria: "연간 2만~100만건"
+        assessment: "연간 SAQ"
+      - level: "4"
+        criteria: "연간 2만건 미만"
+        assessment: "연간 SAQ"
+    key_changes_v4:
+      - "맞춤형 접근 방식 도입"
+      - "인증 요구사항 강화"
+      - "보안 인식 교육 강화"
+      - "스크립트 및 e-skimming 대응"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "PCI Security Standards Council"
+      - "PCI DSS v4.0"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PCI DSS는 카드 결제 데이터 보안 표준이다. 12개 요구사항, 4개 검증 레벨,
+      정기 평가로 카드 데이터를 보호한다.
+    search_keywords:
+      - "PCI DSS"
+      - "결제 보안"
+      - "카드 데이터"
+      - "컴플라이언스"
+    related_queries:
+      - "PCI 인증"
+      - "카드 데이터 보호"
+      - "결제 보안 표준"

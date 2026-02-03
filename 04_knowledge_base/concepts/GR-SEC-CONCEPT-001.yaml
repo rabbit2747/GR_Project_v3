@@ -1,0 +1,101 @@
+# GR Atom: Security Concept
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-CONCEPT-001"
+  name: "Security Concept"
+  normalization:
+    normalized_name: "security concept theory foundation"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Concept"
+    - "보안 개념"
+    - "Security Theory"
+    - "Security Foundation"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "THEORY", "ROOT"]
+
+definition:
+  what: |
+    정보보안의 기본 이론, 개념, 기술적 기반을 포괄하는
+    추상적 지식 체계의 최상위 분류이다.
+  why: |
+    보안 이해의 기반을 제공한다.
+    기술과 방법론의 토대가 된다.
+    일관된 보안 사고를 가능하게 한다.
+  how: |
+    1. 개념 이해
+    2. 원리 학습
+    3. 실무 적용
+    4. 지속적 발전
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "TECH-CONCEPT-ZERO-TRUST-001"
+      - "TECH-CONCEPT-OSINT-001"
+      - "TECH-CONCEPT-PENTESTING-001"
+      - "TECH-CONCEPT-THREAT-MODELING-001"
+    related_to:
+      - "GR-SEC-DEF-001"
+      - "GR-SEC-ATK-001"
+
+properties:
+  technical:
+    domains:
+      architecture: ["Zero Trust", "Defense in Depth"]
+      operations: ["SOC", "Incident Response"]
+      assessment: ["Penetration Testing", "Vulnerability Management"]
+      intelligence: ["OSINT", "Threat Intelligence"]
+      forensics: ["Digital Forensics", "Malware Analysis"]
+    core_concepts:
+      CIA_triad:
+        - "Confidentiality (기밀성)"
+        - "Integrity (무결성)"
+        - "Availability (가용성)"
+      AAA:
+        - "Authentication (인증)"
+        - "Authorization (인가)"
+        - "Accounting (계정관리)"
+    knowledge_areas:
+      - "Cryptography"
+      - "Network Security"
+      - "Application Security"
+      - "Cloud Security"
+      - "Identity Management"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CISSP CBK"
+      - "NIST Cybersecurity"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Concept은 정보보안의 기본 이론과 개념을
+      포괄하는 추상적 지식 체계의 최상위 분류이다.
+    search_keywords:
+      - "Security Concept"
+      - "보안 개념"
+      - "Security Theory"
+      - "CIA Triad"

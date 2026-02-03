@@ -1,0 +1,87 @@
+# GR Atom: Middleware (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-MIDDLEWARE-001"
+  name: "Middleware"
+  normalization:
+    normalized_name: "middleware application server message broker"
+    normalization_version: "1.0"
+  aliases:
+    - "미들웨어"
+    - "Application Middleware"
+    - "Enterprise Middleware"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["TECH", "INFRA"]
+
+definition:
+  what: |
+    미들웨어(Middleware)는 운영체제와 애플리케이션 사이에서 서비스를
+    제공하는 소프트웨어 계층이다. WAS, 메시지 브로커, API 게이트웨이 등이 있다.
+  why: |
+    분산 시스템의 핵심 구성요소다. 미들웨어 취약점은 다수의
+    애플리케이션에 영향을 미치므로 공격 대상이 된다.
+  how: |
+    1. Application Server: 애플리케이션 실행 환경 제공
+    2. Message Broker: 비동기 메시지 전달
+    3. API Gateway: API 라우팅, 인증, 속도 제한
+    4. ESB: 엔터프라이즈 서비스 버스
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-APP-WAS-001"
+      - "INFRA-DATA-MQ-001"
+
+properties:
+  technical:
+    middleware_types:
+      - name: "Application Server"
+        examples: ["Tomcat", "JBoss", "WebLogic"]
+      - name: "Message Broker"
+        examples: ["RabbitMQ", "Kafka", "ActiveMQ"]
+      - name: "API Gateway"
+        examples: ["Kong", "AWS API Gateway", "Nginx"]
+    security_concerns:
+      - "Configuration vulnerabilities"
+      - "Authentication bypass"
+      - "Deserialization attacks"
+      - "Management interface exposure"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Middleware Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Middleware(미들웨어)는 OS와 애플리케이션 사이의 소프트웨어 계층이다.
+      WAS, 메시지 브로커가 대표적이며 설정 오류가 보안 위협이다.
+    search_keywords:
+      - "Middleware"
+      - "미들웨어"
+      - "Application Server"
+      - "Message Broker"
+    related_queries:
+      - "미들웨어 보안"
+      - "WAS 보안"
+      - "미들웨어 종류"

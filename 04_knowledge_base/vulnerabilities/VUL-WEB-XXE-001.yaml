@@ -1,0 +1,105 @@
+# GR Atom: XML External Entity
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-XXE-001"
+  name: "XML External Entity"
+  normalization:
+    normalized_name: "xxe xml external entity injection file read"
+    normalization_version: "1.0"
+  aliases:
+    - "XXE"
+    - "XXE Injection"
+    - "XML 외부 엔티티 삽입"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "OWASP"]
+
+definition:
+  what: |
+    XML 파서가 외부 엔티티를 처리할 때 발생하는 취약점으로
+    파일 읽기, SSRF, DoS 등이 가능하다.
+  why: |
+    서버 파일을 읽을 수 있다.
+    내부 네트워크에 접근할 수 있다.
+  how: |
+    1. XML 입력 지점 식별
+    2. DTD 엔티티 정의
+    3. 외부 엔티티 참조
+    4. 데이터 추출
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "VUL-WEB-SSRF-001"
+      - "ATK-WEB-INJECTION-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-611"
+    owasp_rank: "OWASP Top 10 2017 - A4"
+    payload_examples:
+      file_read: |
+        <!DOCTYPE foo [
+          <!ENTITY xxe SYSTEM "file:///etc/passwd">
+        ]>
+        <foo>&xxe;</foo>
+      ssrf: |
+        <!DOCTYPE foo [
+          <!ENTITY xxe SYSTEM "http://internal-server/">
+        ]>
+      billion_laughs: |
+        <!DOCTYPE lolz [
+          <!ENTITY lol "lol">
+          <!ENTITY lol2 "&lol;&lol;&lol;">
+        ]>
+    attack_types:
+      - "파일 읽기"
+      - "SSRF"
+      - "DoS (Billion Laughs)"
+      - "Blind XXE (OOB)"
+    vulnerable_parsers:
+      - "SAX"
+      - "DOM"
+      - "SimpleXML"
+    prevention:
+      - "외부 엔티티 비활성화"
+      - "DTD 처리 비활성화"
+      - "입력 검증"
+      - "최신 파서 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP XXE"
+      - "CWE-611"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XXE는 XML 파서가 외부 엔티티를 처리할 때
+      파일 읽기, SSRF가 가능한 웹 취약점이다.
+    search_keywords:
+      - "XXE"
+      - "XML External Entity"
+      - "XML Injection"
+      - "파일 읽기"

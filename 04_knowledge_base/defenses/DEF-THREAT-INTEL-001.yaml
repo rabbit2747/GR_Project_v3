@@ -1,0 +1,121 @@
+# GR Atom: Threat Intelligence Platform
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-THREAT-INTEL-001"
+  name: "Threat Intelligence Platform"
+  normalization:
+    normalized_name: "tip threat intelligence platform ioc feed sharing"
+    normalization_version: "1.0"
+  aliases:
+    - "TIP"
+    - "위협 인텔리전스 플랫폼"
+    - "Threat Intel Platform"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "INTEL", "PLATFORM"]
+
+definition:
+  what: |
+    다양한 소스에서 위협 인텔리전스를 수집, 분석, 공유하고
+    보안 도구와 통합하는 플랫폼이다.
+  why: |
+    위협 정보를 중앙 관리한다.
+    선제적 방어를 지원한다.
+  how: |
+    1. 피드 수집/집계
+    2. 정규화/강화
+    3. 분석/상관관계
+    4. 배포/통합
+
+relations:
+  structural:
+    is_a:
+      - "DEF-INTEL-001"
+    related_to:
+      - "TECH-CONCEPT-CTI-001"
+      - "DEF-SIEM-001"
+
+properties:
+  technical:
+    intelligence_types:
+      strategic: "고수준 위협 동향"
+      tactical: "TTP, 공격 기법"
+      operational: "캠페인, 공격 그룹"
+      technical: "IOC (IP, 해시, 도메인)"
+    ioc_types:
+      - "IP 주소"
+      - "도메인/URL"
+      - "파일 해시 (MD5, SHA256)"
+      - "이메일 주소"
+      - "CVE"
+      - "YARA 규칙"
+    standards:
+      - name: "STIX"
+        description: "Structured Threat Information Expression"
+      - name: "TAXII"
+        description: "Trusted Automated Exchange of Intelligence"
+      - name: "OpenIOC"
+        description: "오픈 IOC 형식"
+    feed_sources:
+      commercial:
+        - "Recorded Future"
+        - "Mandiant"
+        - "CrowdStrike"
+      open_source:
+        - "AlienVault OTX"
+        - "Abuse.ch"
+        - "CIRCL"
+        - "VirusTotal"
+      government:
+        - "CISA"
+        - "US-CERT"
+        - "KISA"
+    popular_solutions:
+      commercial:
+        - "Anomali ThreatStream"
+        - "ThreatConnect"
+        - "Recorded Future"
+      open_source:
+        - "MISP"
+        - "OpenCTI"
+        - "TheHive"
+    integrations:
+      - "SIEM"
+      - "EDR"
+      - "Firewall"
+      - "SOAR"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner TIP"
+      - "MITRE ATT&CK"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      TIP는 다양한 소스의 위협 인텔리전스를 수집, 분석하고
+      STIX/TAXII 표준으로 보안 도구와 통합하는 플랫폼이다.
+    search_keywords:
+      - "TIP"
+      - "Threat Intelligence"
+      - "IOC"
+      - "STIX TAXII"

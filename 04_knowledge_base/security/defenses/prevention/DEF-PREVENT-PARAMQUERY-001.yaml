@@ -1,0 +1,82 @@
+# GR Atom: Parameterized Query
+identity:
+  id: "DEF-PREVENT-PARAMQUERY-001"
+  name: "Parameterized Query"
+  normalization:
+    normalized_name: "parameterized_query"
+    normalization_version: "1.0"
+  aliases:
+    - "Prepared Statement"
+    - "Bound Parameter Query"
+    - "파라미터화된 쿼리"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["P", "INJ"]
+
+definition:
+  what: |
+    SQL 쿼리의 파라미터를 바인딩하여 사용자 입력이 SQL 코드로 해석되지 않게 하는 방어 기법.
+    쿼리 구조와 데이터를 분리하여 SQL 인젝션 공격을 근본적으로 차단한다.
+  why: |
+    SQL 인젝션은 가장 흔하고 치명적인 웹 애플리케이션 취약점 중 하나로,
+    데이터 유출, 변조, 삭제 및 시스템 장악까지 이어질 수 있다.
+    파라미터화된 쿼리는 SQL 인젝션을 원천적으로 방지하는 가장 효과적인 방어 수단이다.
+  how: |
+    1. SQL 쿼리 작성 시 사용자 입력 위치에 플레이스홀더(?, :param 등)를 사용한다.
+    2. 쿼리 실행 시 플레이스홀더에 사용자 입력 값을 별도로 바인딩한다.
+    3. 데이터베이스 드라이버가 자동으로 이스케이프 처리하여 입력값이 SQL 구문으로 해석되지 않는다.
+    4. ORM 프레임워크 사용 시에도 raw query 대신 파라미터 바인딩을 활용한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents: ["ATK-INJECT-SQL-001"]
+  applicability:
+    applies_to: ["INFRA-DATA-RDBMS-001"]
+
+properties:
+  technical:
+    implementation:
+      - "PreparedStatement (Java)"
+      - "parameterized query (Python DB-API)"
+      - "SqlParameter (.NET)"
+      - "Prepared Statements (PHP PDO)"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Parameterized Query는 SQL 쿼리의 파라미터를 바인딩하여 사용자 입력이 SQL 코드로
+      해석되지 않게 하는 방어 기법이다. Prepared Statement이라고도 하며, SQL 인젝션을
+      근본적으로 방지하는 가장 효과적인 수단이다.
+    search_keywords:
+      - "parameterized query"
+      - "prepared statement"
+      - "SQL injection prevention"
+      - "parameter binding"
+      - "파라미터화된 쿼리"
+    related_queries:
+      - "SQL 인젝션을 방지하는 방법"
+      - "PreparedStatement 사용법"
+      - "파라미터 바인딩과 문자열 연결의 차이"

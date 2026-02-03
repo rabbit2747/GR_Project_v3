@@ -1,0 +1,87 @@
+# GR Atom: Cloud Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-001"
+  name: "Cloud Infrastructure"
+  normalization:
+    normalized_name: "cloud infrastructure aws azure gcp iaas paas"
+    normalization_version: "1.0"
+  aliases:
+    - "Cloud Infrastructure"
+    - "클라우드 인프라"
+    - "Cloud Computing Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "CLOUD"]
+
+definition:
+  what: |
+    클라우드 서비스 제공자가 운영하는 컴퓨팅 인프라 분류이다.
+  why: |
+    클라우드 아키텍처를 이해한다.
+    클라우드 보안을 평가한다.
+    하이브리드 환경을 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-CLOUD-AWS-001"
+      - "INFRA-CLOUD-AZURE-001"
+      - "INFRA-CLOUD-GCP-001"
+    related_to:
+      - "ATK-CLOUD-001"
+      - "VUL-CLOUD-001"
+      - "DEF-CLOUD-001"
+
+properties:
+  technical:
+    service_models:
+      - "IaaS"
+      - "PaaS"
+      - "SaaS"
+      - "FaaS"
+    providers:
+      - "AWS"
+      - "Azure"
+      - "GCP"
+      - "OCI"
+    security_areas:
+      - "Identity & Access"
+      - "Network Security"
+      - "Data Protection"
+      - "Compliance"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CSA Cloud Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Infrastructure는 클라우드 컴퓨팅 인프라 분류이다.
+    search_keywords:
+      - "Cloud Infrastructure"
+      - "클라우드 인프라"
+      - "AWS"
+      - "Azure"

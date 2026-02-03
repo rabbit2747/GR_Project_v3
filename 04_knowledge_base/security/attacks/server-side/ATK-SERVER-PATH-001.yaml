@@ -1,0 +1,133 @@
+# GR Atom: Path Traversal
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SERVER-PATH-001"
+  name: "Path Traversal (Directory Traversal)"
+  normalization:
+    normalized_name: "path traversal directory traversal lfi"
+    normalization_version: "1.0"
+  aliases:
+    - "경로 탐색"
+    - "디렉토리 탐색"
+    - "Directory Traversal"
+    - "LFI (Local File Inclusion)"
+    - "Dot-Dot-Slash"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["EXPLOIT", "WEB"]
+
+definition:
+  what: |
+    Path Traversal은 "../" 등의 경로 이동 문자를 사용하여 웹 루트
+    디렉토리 밖의 파일에 접근하는 공격이다. 서버의 중요 파일
+    (/etc/passwd, 소스코드, 설정 파일 등)을 읽을 수 있다.
+  why: |
+    소스코드, 설정 파일(DB 접속 정보), 시스템 파일을 유출할 수 있다.
+    LFI(Local File Inclusion)와 결합하면 원격 코드 실행도 가능하다.
+  how: |
+    1. 파일 경로를 파라미터로 받는 기능 식별
+    2. "../" 시퀀스로 상위 디렉토리 이동
+    3. 대상 파일 경로 구성
+    4. 서버 파일 내용 획득
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-SERVER-ATTACK-001"]
+  causal:
+    enables:
+      - "VUL-DATA-EXPOSURE-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    payloads:
+      basic:
+        - "../../../etc/passwd"
+        - "..\\..\\..\\windows\\win.ini"
+      encoded:
+        - "%2e%2e%2f%2e%2e%2f"
+        - "..%252f..%252f"
+        - "%c0%ae%c0%ae/"
+      null_byte:
+        - "../../../etc/passwd%00.jpg"
+    target_files:
+      linux:
+        - "/etc/passwd"
+        - "/etc/shadow"
+        - "/etc/hosts"
+        - "/proc/self/environ"
+        - "~/.ssh/id_rsa"
+      windows:
+        - "C:\\Windows\\win.ini"
+        - "C:\\Windows\\System32\\config\\SAM"
+      application:
+        - "WEB-INF/web.xml"
+        - ".env"
+        - "config/database.yml"
+        - "wp-config.php"
+  security:
+    impact:
+      confidentiality: "HIGH - 민감 파일 유출"
+      integrity: "LOW"
+      availability: "LOW"
+    cvss_base: 7.5
+    cwe_id: "CWE-22"
+    mitre_attack:
+      technique_id: "T1083"
+      tactic: "Discovery"
+  countermeasures:
+    primary:
+      - name: "파일 경로 정규화 (Canonicalize)"
+        effectiveness: "HIGH"
+      - name: "화이트리스트 파일/디렉토리 검증"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "Chroot/Jail 환경"
+        effectiveness: "HIGH"
+      - name: "최소 권한 파일 시스템"
+        effectiveness: "MEDIUM"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Path Traversal"
+      - "CWE-22"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Path Traversal은 ../를 사용하여 웹 루트 밖의 파일에 접근하는 공격이다.
+      /etc/passwd, 설정 파일, 소스코드를 유출할 수 있으며, LFI와 결합하면
+      코드 실행도 가능하다. 경로 정규화, 화이트리스트 검증으로 방어한다.
+    search_keywords:
+      - "Path Traversal"
+      - "Directory Traversal"
+      - "LFI"
+      - "경로 탐색"
+      - "../"
+    related_queries:
+      - "Path Traversal이란?"
+      - "디렉토리 탐색 공격"
+      - "LFI vs RFI"

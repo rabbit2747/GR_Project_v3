@@ -1,0 +1,112 @@
+# GR Atom: Pass-the-Hash Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WIN-PASS-THE-HASH-001"
+  name: "Pass-the-Hash Attack"
+  normalization:
+    normalized_name: "pass the hash pth ntlm hash lateral movement"
+    normalization_version: "1.0"
+  aliases:
+    - "Pass-the-Hash"
+    - "PtH"
+    - "해시 전달"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "WIN", "NTLM"]
+
+definition:
+  what: |
+    Pass-the-Hash는 비밀번호 대신 NTLM 해시를 사용하여
+    Windows 시스템에 인증하는 횡적 이동 기법이다.
+  why: |
+    비밀번호를 크래킹할 필요 없이 인증할 수 있다.
+    같은 비밀번호를 사용하는 모든 시스템에 접근 가능하다.
+  how: |
+    1. NTLM 해시 획득 (LSASS 덤프)
+    2. 해시로 인증 시도
+    3. 원격 시스템 접근
+    4. 추가 횡적 이동
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-LATERAL-001"
+    requires:
+      - "ATK-MITRE-T1003-001"
+    related_to:
+      - "ATK-WIN-KERBEROASTING-001"
+
+properties:
+  technical:
+    ntlm_authentication:
+      - "NTLM은 challenge-response 프로토콜"
+      - "해시만으로 응답 생성 가능"
+      - "비밀번호 알 필요 없음"
+    hash_acquisition:
+      - "LSASS 메모리 덤프"
+      - "SAM 데이터베이스"
+      - "캐시된 자격 증명"
+    tools:
+      - name: "Mimikatz"
+        command: "sekurlsa::pth /user:admin /ntlm:HASH /domain:corp"
+      - name: "Impacket"
+        tools: ["psexec.py", "wmiexec.py", "smbexec.py"]
+      - name: "CrackMapExec"
+        command: "cme smb target -u user -H HASH"
+    affected_protocols:
+      - "SMB"
+      - "WMI"
+      - "LDAP"
+      - "MSSQL"
+      - "WinRM"
+    detection:
+      - "이벤트 ID 4624 (Type 3 로그온)"
+      - "동일 해시 다중 시스템"
+      - "비정상 접근 패턴"
+      - "NTLM 인증 모니터링"
+    prevention:
+      - "Credential Guard"
+      - "LSASS 보호 (RunAsPPL)"
+      - "로컬 관리자 비밀번호 다양화 (LAPS)"
+      - "Restricted Admin 모드"
+      - "Protected Users 그룹"
+      - "NTLM 사용 제한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1550.002"
+      - "Microsoft PtH Mitigations"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Pass-the-Hash는 NTLM 해시로 인증하는 횡적 이동 기법이다. Credential Guard,
+      LAPS, Protected Users로 방어한다.
+    search_keywords:
+      - "Pass-the-Hash"
+      - "PtH"
+      - "NTLM"
+      - "횡적 이동"
+    related_queries:
+      - "LSASS 덤프"
+      - "Credential Guard"
+      - "LAPS"

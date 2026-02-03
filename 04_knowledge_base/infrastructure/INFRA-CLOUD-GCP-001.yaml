@@ -1,0 +1,121 @@
+# GR Atom: Google Cloud Platform
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-GCP-001"
+  name: "Google Cloud Platform (GCP)"
+  normalization:
+    normalized_name: "google cloud platform gcp iaas paas kubernetes"
+    normalization_version: "1.0"
+  aliases:
+    - "GCP"
+    - "Google Cloud"
+    - "구글 클라우드"
+
+classification:
+  domain: infrastructure
+  type: cloud_platform
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["INFRA", "CLOUD", "GCP"]
+
+definition:
+  what: |
+    Google Cloud Platform(GCP)은 구글의 클라우드 컴퓨팅 플랫폼이다.
+    빅데이터, AI/ML, 컨테이너(GKE)에 강점이 있는 주요 클라우드 서비스다.
+  why: |
+    Kubernetes 원조(GKE), 빅데이터 처리(BigQuery), AI/ML 서비스가 강점이다.
+    AWS, Azure와 다른 IAM 모델과 고유한 보안 설정이 필요하다.
+  how: |
+    1. Compute: Compute Engine, Cloud Functions, GKE
+    2. Storage: Cloud Storage, Cloud SQL, BigQuery
+    3. Networking: VPC, Cloud Load Balancing, Cloud CDN
+    4. Security: Cloud IAM, Security Command Center
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-001"
+    has_part:
+      - "INFRA-CLOUD-GCP-IAM-001"
+  causal:
+    vulnerable_to:
+      - "VUL-CLOUD-MISCONFIG-001"
+
+properties:
+  technical:
+    core_services:
+      compute:
+        - "Compute Engine"
+        - "Google Kubernetes Engine (GKE)"
+        - "Cloud Functions"
+        - "Cloud Run"
+        - "App Engine"
+      storage:
+        - "Cloud Storage"
+        - "Cloud SQL"
+        - "Cloud Spanner"
+        - "BigQuery"
+        - "Firestore"
+      networking:
+        - "Virtual Private Cloud (VPC)"
+        - "Cloud Load Balancing"
+        - "Cloud CDN"
+        - "Cloud DNS"
+      security:
+        - "Cloud IAM"
+        - "Security Command Center"
+        - "Cloud KMS"
+        - "Cloud Armor"
+    security_features:
+      - "Cloud IAM (Identity and Access Management)"
+      - "Security Command Center"
+      - "Cloud Key Management Service (KMS)"
+      - "Cloud Armor (WAF)"
+      - "VPC Service Controls"
+      - "Binary Authorization"
+      - "Cloud Data Loss Prevention"
+    common_misconfigurations:
+      - "공개된 Cloud Storage 버킷"
+      - "과도한 IAM 권한"
+      - "VPC 방화벽 규칙 오류"
+      - "서비스 계정 키 노출"
+      - "기본 네트워크 사용"
+    unique_concepts:
+      - "Projects: 리소스 조직 단위"
+      - "Service Accounts: 워크로드 ID"
+      - "Organization Policies: 조직 수준 제약"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Google Cloud Documentation"
+      - "CIS Google Cloud Platform Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      GCP는 구글 클라우드 플랫폼이다. GKE, BigQuery, Cloud IAM이 핵심이며
+      Cloud Storage 노출, 서비스 계정 키 유출이 주요 보안 위험이다.
+    search_keywords:
+      - "GCP"
+      - "Google Cloud"
+      - "구글 클라우드"
+      - "GKE"
+    related_queries:
+      - "GCP 보안"
+      - "GCP IAM"
+      - "GCP vs AWS"

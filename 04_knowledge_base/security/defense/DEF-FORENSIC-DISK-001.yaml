@@ -1,0 +1,125 @@
+# GR Atom: Disk Forensics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-FORENSIC-DISK-001"
+  name: "Disk Forensics"
+  normalization:
+    normalized_name: "disk forensics storage image analysis evidence"
+    normalization_version: "1.0"
+  aliases:
+    - "디스크 포렌식"
+    - "저장 매체 분석"
+    - "하드 드라이브 분석"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "FORENSIC", "DISK"]
+
+definition:
+  what: |
+    디스크 포렌식은 하드 드라이브, SSD 등 저장 매체에서
+    증거를 수집하고 분석하는 디지털 포렌식 분야다.
+  why: |
+    삭제된 파일, 타임라인, 사용자 활동 흔적을 복구한다.
+    법적 증거로 사용 가능한 분석을 수행한다.
+  how: |
+    1. 증거 보존 (이미징)
+    2. 해시 검증
+    3. 파일시스템 분석
+    4. 아티팩트 추출 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "DEF-FORENSIC-ANALYSIS-001"
+    related_to:
+      - "DEF-FORENSIC-MEMORY-001"
+
+properties:
+  technical:
+    imaging_tools:
+      - name: "FTK Imager"
+        format: "E01, DD"
+      - name: "dd / dc3dd"
+        format: "RAW"
+      - name: "Guymager"
+        format: "E01, AFF"
+    analysis_tools:
+      - name: "Autopsy"
+        type: "오픈소스"
+        features: ["타임라인", "키워드 검색"]
+      - name: "EnCase"
+        type: "상용"
+      - name: "X-Ways Forensics"
+        type: "상용"
+      - name: "Sleuth Kit"
+        type: "CLI 오픈소스"
+    windows_artifacts:
+      - name: "Registry"
+        location: "SAM, SYSTEM, SOFTWARE"
+        info: "사용자, 설정, 실행 흔적"
+      - name: "Event Logs"
+        location: "winevt\\Logs"
+        info: "시스템 이벤트"
+      - name: "Prefetch"
+        location: "Windows\\Prefetch"
+        info: "프로그램 실행 흔적"
+      - name: "NTFS Artifacts"
+        types: ["$MFT", "$UsnJrnl", "$LogFile"]
+      - name: "Browser History"
+        info: "웹 활동"
+      - name: "ShimCache/Amcache"
+        info: "프로그램 실행"
+    linux_artifacts:
+      - "/var/log/*"
+      - "~/.bash_history"
+      - "/etc/passwd, shadow"
+      - "cron jobs"
+    chain_of_custody:
+      - "획득 시간 기록"
+      - "해시 값 (MD5, SHA256)"
+      - "처리자 기록"
+      - "보관 조건"
+    anti_forensics:
+      - "데이터 삭제"
+      - "타임스탬프 조작"
+      - "암호화"
+      - "스테가노그래피"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "SANS Digital Forensics"
+      - "NIST SP 800-86"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      디스크 포렌식은 저장 매체에서 증거를 분석한다. 이미징, 해시 검증,
+      아티팩트 분석으로 삭제 파일과 활동 흔적을 복구한다.
+    search_keywords:
+      - "디스크 포렌식"
+      - "Autopsy"
+      - "EnCase"
+      - "이미징"
+    related_queries:
+      - "증거 수집"
+      - "삭제 파일 복구"
+      - "타임라인 분석"

@@ -1,0 +1,125 @@
+# GR Atom: MITRE ATT&CK T1003 - OS Credential Dumping
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1003-001"
+  name: "OS Credential Dumping (MITRE T1003)"
+  normalization:
+    normalized_name: "mitre t1003 credential dumping lsass sam ntds mimikatz"
+    normalization_version: "1.0"
+  aliases:
+    - "자격 증명 덤핑"
+    - "T1003"
+    - "Mimikatz"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "CREDENTIAL"]
+
+definition:
+  what: |
+    OS Credential Dumping은 운영체제에 저장된 계정 자격 증명을
+    추출하는 기법이다. MITRE ATT&CK T1003.
+  why: |
+    추출된 자격 증명으로 권한 상승과 횡적 이동이 가능하다.
+    도메인 관리자 해시 획득 시 전체 도메인 장악이 가능하다.
+  how: |
+    1. 관리자 권한 획득
+    2. 크리덴셜 저장소 접근
+    3. 메모리 또는 파일에서 추출
+    4. 크래킹 또는 Pass-the-Hash
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-CREDENTIAL-001"
+    enables:
+      - "ATK-MITRE-T1021-001"
+      - "ATK-MITRE-LATERAL-001"
+
+properties:
+  technical:
+    mitre_id: "T1003"
+    tactic: "Credential Access"
+    sub_techniques:
+      - id: "T1003.001"
+        name: "LSASS Memory"
+        description: "LSASS 프로세스 메모리에서 추출"
+        tools: ["Mimikatz", "Procdump", "Task Manager"]
+      - id: "T1003.002"
+        name: "Security Account Manager"
+        description: "SAM 데이터베이스에서 로컬 해시"
+        location: "C:\\Windows\\System32\\config\\SAM"
+      - id: "T1003.003"
+        name: "NTDS"
+        description: "도메인 컨트롤러 AD 데이터베이스"
+        tools: ["ntdsutil", "secretsdump"]
+      - id: "T1003.004"
+        name: "LSA Secrets"
+        description: "서비스 계정, 자동 로그온"
+      - id: "T1003.005"
+        name: "Cached Domain Credentials"
+        description: "오프라인 로그인용 캐시"
+      - id: "T1003.006"
+        name: "DCSync"
+        description: "DC 복제 프로토콜 악용"
+        requirement: "DS-Replication-Get-Changes"
+    tools:
+      - name: "Mimikatz"
+        commands:
+          - "sekurlsa::logonpasswords"
+          - "lsadump::sam"
+          - "lsadump::dcsync"
+      - name: "secretsdump.py"
+        source: "Impacket"
+      - name: "procdump"
+        method: "LSASS 메모리 덤프"
+    detection:
+      - "LSASS 접근 모니터링"
+      - "SAM/NTDS 파일 접근"
+      - "Sysmon Event ID 10"
+      - "디버거 권한 사용"
+      - "비정상 DC 복제 요청"
+    prevention:
+      - "Credential Guard"
+      - "LSA Protection"
+      - "Protected Users 그룹"
+      - "LAPS (Local Admin Password)"
+      - "Restricted Admin 모드"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1003"
+      - "Mimikatz Wiki"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1003은 자격 증명 덤핑 기법으로 LSASS, SAM, NTDS에서 해시를 추출한다.
+      Credential Guard, LSA Protection으로 방어한다.
+    search_keywords:
+      - "T1003"
+      - "Mimikatz"
+      - "자격 증명 덤핑"
+      - "LSASS"
+    related_queries:
+      - "해시 추출"
+      - "Pass-the-Hash"
+      - "DCSync"

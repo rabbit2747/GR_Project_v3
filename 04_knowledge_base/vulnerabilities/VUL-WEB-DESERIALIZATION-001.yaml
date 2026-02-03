@@ -1,0 +1,103 @@
+# GR Atom: Insecure Deserialization
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-DESERIALIZATION-001"
+  name: "Insecure Deserialization"
+  normalization:
+    normalized_name: "deserialization rce object injection java pickle"
+    normalization_version: "1.0"
+  aliases:
+    - "Object Injection"
+    - "역직렬화 취약점"
+    - "Unmarshalling Vulnerability"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "OWASP"]
+
+definition:
+  what: |
+    신뢰할 수 없는 데이터를 역직렬화할 때 발생하는 취약점으로
+    원격 코드 실행이나 권한 상승이 가능하다.
+  why: |
+    원격 코드 실행을 달성할 수 있다.
+    인증 우회나 권한 상승이 가능하다.
+  how: |
+    1. 직렬화된 객체 식별
+    2. 가젯 체인 구성
+    3. 악성 페이로드 생성
+    4. 객체 주입
+
+relations:
+  structural:
+    is_a:
+      - "VUL-WEB-001"
+    related_to:
+      - "ATK-WEB-RCE-001"
+      - "VUL-WEB-INJECTION-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-502"
+    owasp_rank: "OWASP Top 10 2017 - A8"
+    affected_languages:
+      java:
+        - "ObjectInputStream"
+        - "Apache Commons Collections"
+        - "Spring Framework"
+      php:
+        - "unserialize()"
+        - "Phar deserialization"
+      python:
+        - "pickle"
+        - "PyYAML"
+      dotnet:
+        - "BinaryFormatter"
+        - "ObjectStateFormatter"
+    tools:
+      - "ysoserial"
+      - "phpggc"
+      - "marshalsec"
+    detection_patterns:
+      - "rO0AB (Java Base64)"
+      - "O:4: (PHP)"
+      - "pickle header"
+    prevention:
+      - "역직렬화 입력 검증"
+      - "화이트리스트 클래스"
+      - "서명 검증"
+      - "JSON 등 안전한 형식 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Deserialization"
+      - "CWE-502"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Insecure Deserialization은 악성 객체를 역직렬화하여
+      원격 코드 실행이 가능한 심각한 웹 취약점이다.
+    search_keywords:
+      - "Deserialization"
+      - "Object Injection"
+      - "ysoserial"
+      - "RCE"

@@ -1,0 +1,122 @@
+# GR Atom: Security Orchestration, Automation and Response (SOAR)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DETECT-SOAR-001"
+  name: "Security Orchestration, Automation and Response (SOAR)"
+  normalization:
+    normalized_name: "soar security orchestration automation response playbook"
+    normalization_version: "1.0"
+  aliases:
+    - "SOAR"
+    - "보안 자동화"
+    - "플레이북 자동화"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "DETECT", "SOAR"]
+
+definition:
+  what: |
+    SOAR는 보안 운영을 자동화하고 여러 보안 도구를 오케스트레이션하여
+    사고 대응 효율을 높이는 플랫폼이다.
+  why: |
+    보안 팀의 알림 피로와 인력 부족을 해결한다.
+    반복적 작업을 자동화하여 분석가가 복잡한 위협에 집중하게 한다.
+  how: |
+    1. 알림 수집 및 강화
+    2. 플레이북 실행
+    3. 자동 대응 조치
+    4. 사례 관리 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "TOOL-DETECT-SIEM-001"
+      - "DEF-RESPOND-INCIDENT-001"
+
+properties:
+  technical:
+    core_capabilities:
+      - name: "Orchestration"
+        description: "여러 보안 도구 연동"
+      - name: "Automation"
+        description: "반복 작업 자동화"
+      - name: "Response"
+        description: "대응 조치 실행"
+      - name: "Case Management"
+        description: "사고 관리 워크플로우"
+      - name: "Playbooks"
+        description: "자동화된 대응 절차"
+    playbook_examples:
+      - name: "피싱 대응"
+        steps:
+          - "이메일 헤더 분석"
+          - "URL/첨부 파일 샌드박스"
+          - "위협 인텔 조회"
+          - "유사 이메일 검색"
+          - "차단/삭제 조치"
+      - name: "IOC 차단"
+        steps:
+          - "IOC 유효성 검증"
+          - "방화벽 규칙 추가"
+          - "EDR 검색"
+          - "영향 시스템 격리"
+    integrations:
+      - "SIEM"
+      - "EDR/XDR"
+      - "방화벽"
+      - "이메일 보안"
+      - "위협 인텔리전스"
+      - "티켓팅 시스템"
+    vendors:
+      - "Splunk SOAR (Phantom)"
+      - "Palo Alto XSOAR"
+      - "IBM Resilient"
+      - "ServiceNow SecOps"
+      - "Rapid7 InsightConnect"
+      - "Swimlane"
+    metrics:
+      - "플레이북 실행 횟수"
+      - "자동화된 조치 비율"
+      - "MTTR 단축"
+      - "분석가 시간 절약"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner SOAR"
+      - "SANS SOAR"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SOAR는 보안 도구 오케스트레이션과 자동화 플랫폼이다. 플레이북으로
+      반복 작업을 자동화하고 MTTR을 단축한다.
+    search_keywords:
+      - "SOAR"
+      - "자동화"
+      - "플레이북"
+      - "오케스트레이션"
+    related_queries:
+      - "보안 자동화"
+      - "사고 대응 자동화"
+      - "SIEM vs SOAR"

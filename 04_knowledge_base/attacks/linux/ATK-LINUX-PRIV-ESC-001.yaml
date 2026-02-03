@@ -1,0 +1,116 @@
+# GR Atom: Linux Privilege Escalation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-LINUX-PRIV-ESC-001"
+  name: "Linux Privilege Escalation"
+  normalization:
+    normalized_name: "linux privilege escalation sudo suid root"
+    normalization_version: "1.0"
+  aliases:
+    - "Linux PrivEsc"
+    - "리눅스 권한 상승"
+    - "Root Escalation"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "LINUX", "PRIVESC"]
+
+definition:
+  what: |
+    Linux 시스템에서 일반 사용자 권한으로 root 또는
+    높은 권한을 획득하는 공격 기법이다.
+  why: |
+    시스템 전체 접근을 획득한다.
+    지속성을 확보한다.
+  how: |
+    1. 시스템 열거
+    2. 취약점 식별
+    3. 익스플로잇 실행
+    4. root 획득
+
+relations:
+  structural:
+    is_a:
+      - "ATK-PRIVILEGE-ESCALATION-001"
+    related_to:
+      - "ATK-MITRE-T1548-001"
+      - "TOOL-LINUX-LINPEAS-001"
+
+properties:
+  technical:
+    techniques:
+      kernel:
+        - "Kernel Exploits (Dirty COW, PwnKit)"
+        - "CVE-2021-4034 (PwnKit)"
+        - "CVE-2022-0847 (Dirty Pipe)"
+      sudo:
+        - "sudo -l 남용"
+        - "sudo 취약점"
+        - "sudoers 설정 오류"
+      suid:
+        - "SUID 바이너리 남용"
+        - "find -perm -4000"
+        - "GTFOBins"
+      capabilities:
+        - "CAP_SETUID"
+        - "getcap -r /"
+      cron:
+        - "월드 쓰기 가능 스크립트"
+        - "PATH 하이재킹"
+      credentials:
+        - "비밀번호 파일"
+        - "SSH 키"
+        - "히스토리 파일"
+      misc:
+        - "NFS no_root_squash"
+        - "Docker 그룹"
+        - "LXC/LXD"
+    enumeration_tools:
+      - "LinPEAS"
+      - "LinEnum"
+      - "linux-exploit-suggester"
+      - "pspy"
+    common_vectors:
+      - "SUID root 바이너리"
+      - "sudo ALL 설정"
+      - "월드 쓰기 가능 /etc/passwd"
+      - "취약 커널 버전"
+    prevention:
+      - "최소 권한"
+      - "패치 관리"
+      - "SUID 감사"
+      - "sudo 설정 강화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK Privilege Escalation"
+      - "GTFOBins"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Linux Privilege Escalation은 sudo, SUID, 커널 취약점 등을
+      악용하여 root 권한을 획득하는 공격 기법이다.
+    search_keywords:
+      - "Linux PrivEsc"
+      - "Privilege Escalation"
+      - "SUID"
+      - "Root"

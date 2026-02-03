@@ -1,0 +1,119 @@
+# GR Atom: MITRE ATT&CK T1566 - Phishing
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1566-001"
+  name: "Phishing (MITRE T1566)"
+  normalization:
+    normalized_name: "mitre t1566 phishing spearphishing attachment link"
+    normalization_version: "1.0"
+  aliases:
+    - "피싱 (MITRE)"
+    - "T1566"
+    - "스피어피싱"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "INITIAL-ACCESS"]
+
+definition:
+  what: |
+    피싱은 악성 첨부 파일이나 링크가 포함된 전자 메시지를 통해
+    피해자 시스템에 접근하는 초기 접근 기법이다. MITRE ATT&CK T1566.
+  why: |
+    사용자 상호작용에 의존하여 기술적 보안을 우회한다.
+    대규모 캠페인 또는 표적 공격 모두에 효과적이다.
+  how: |
+    1. 대상 정보 수집 (스피어피싱)
+    2. 설득력 있는 메시지 작성
+    3. 악성 페이로드 첨부 또는 링크 삽입
+    4. 피해자 상호작용 유도
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-INITIAL-ACCESS-001"
+    enables:
+      - "ATK-MITRE-EXECUTION-001"
+    related_to:
+      - "ATK-SOCIAL-PRETEXTING-001"
+
+properties:
+  technical:
+    mitre_id: "T1566"
+    tactic: "Initial Access"
+    sub_techniques:
+      - id: "T1566.001"
+        name: "Spearphishing Attachment"
+        description: "악성 첨부 파일"
+        file_types:
+          - "Office 매크로 (doc, xls)"
+          - "PDF"
+          - "실행 파일 (위장)"
+          - "ISO, IMG"
+          - "OneNote"
+      - id: "T1566.002"
+        name: "Spearphishing Link"
+        description: "악성 링크"
+        techniques:
+          - "자격 증명 수집"
+          - "드라이브 바이 다운로드"
+          - "OAuth 앱 권한 요청"
+      - id: "T1566.003"
+        name: "Spearphishing via Service"
+        description: "서비스 통한 피싱"
+        platforms: ["LinkedIn", "Slack", "Teams"]
+    evasion_techniques:
+      - "HTML Smuggling"
+      - "암호 보호 첨부"
+      - "URL 단축기"
+      - "QR 코드 (Quishing)"
+      - "합법 서비스 악용"
+    detection:
+      - "이메일 보안 게이트웨이"
+      - "샌드박스 분석"
+      - "URL 평판 검사"
+      - "첨부 파일 분석"
+      - "사용자 보고"
+    prevention:
+      - "보안 인식 교육"
+      - "이메일 필터링"
+      - "매크로 비활성화"
+      - "브라우저 격리"
+      - "MFA"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1566"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1566은 피싱 기법으로 첨부 파일, 링크, 서비스 통해 초기 접근한다.
+      이메일 보안, 사용자 교육, 매크로 제어로 방어한다.
+    search_keywords:
+      - "T1566"
+      - "피싱"
+      - "스피어피싱"
+      - "악성 첨부"
+    related_queries:
+      - "피싱 방어"
+      - "이메일 보안"
+      - "첨부 파일 분석"

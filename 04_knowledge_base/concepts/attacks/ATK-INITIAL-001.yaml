@@ -1,0 +1,89 @@
+# GR Atom: Initial Access
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-INITIAL-001"
+  name: "Initial Access"
+  normalization:
+    normalized_name: "initial access entry point foothold"
+    normalization_version: "1.0"
+  aliases:
+    - "Initial Access"
+    - "초기 접근"
+    - "Entry Point"
+    - "Foothold"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "INITIAL"]
+
+definition:
+  what: |
+    대상 네트워크/시스템에 최초 진입하기 위한
+    공격 기법 분류이다.
+  why: |
+    공격의 시작점을 확보한다.
+    내부 네트워크에 진입한다.
+    후속 공격의 발판을 마련한다.
+  how: |
+    1. 표적 식별
+    2. 진입 벡터 선택
+    3. 익스플로잇 실행
+    4. 접근 확인
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1190-001"
+      - "ATK-MITRE-T1566-001"
+    related_to:
+      - "ATK-MITRE-INIT-ACCESS-001"
+      - "ATK-PHISHING-001"
+
+properties:
+  technical:
+    vectors:
+      - "Phishing"
+      - "Exploit Public-Facing Application"
+      - "Drive-by Compromise"
+      - "Supply Chain Compromise"
+      - "Valid Accounts"
+      - "External Remote Services"
+    mitre_tactic: "TA0001"
+    common_techniques:
+      - "스피어피싱"
+      - "웹 취약점 익스플로잇"
+      - "자격 증명 피싱"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0001"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Initial Access는 대상에 최초 진입하기 위한 공격 기법 분류이다.
+    search_keywords:
+      - "Initial Access"
+      - "초기 접근"
+      - "Entry"
+      - "Foothold"

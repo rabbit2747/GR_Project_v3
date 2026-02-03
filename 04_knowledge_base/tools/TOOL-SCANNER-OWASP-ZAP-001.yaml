@@ -1,0 +1,114 @@
+# GR Atom: OWASP ZAP
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCANNER-OWASP-ZAP-001"
+  name: "OWASP ZAP"
+  normalization:
+    normalized_name: "owasp zap zed attack proxy web scanner dast"
+    normalization_version: "1.0"
+  aliases:
+    - "ZAP"
+    - "Zed Attack Proxy"
+    - "OWASP ZAP"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "SCANNER", "DAST"]
+
+definition:
+  what: |
+    웹 애플리케이션 보안 테스트를 위한 오픈소스 DAST 도구로
+    OWASP에서 관리하는 통합 침투 테스트 도구이다.
+  why: |
+    무료로 웹 취약점을 스캔한다.
+    CI/CD 파이프라인에 통합한다.
+  how: |
+    1. 프록시 설정
+    2. 스파이더링/크롤링
+    3. 능동/수동 스캔
+    4. 취약점 분석
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-SCANNER-001"
+    related_to:
+      - "TOOL-PENTEST-BURPSUITE-001"
+      - "DEF-DEVSECOPS-DAST-001"
+
+properties:
+  technical:
+    developer: "OWASP"
+    license: "Apache 2.0"
+    modes:
+      desktop: "GUI 인터페이스"
+      daemon: "API 모드"
+      automation: "자동화 프레임워크"
+    key_features:
+      - name: "Intercepting Proxy"
+        description: "HTTP 트래픽 인터셉트"
+      - name: "Spider"
+        description: "자동 크롤링"
+      - name: "Active Scanner"
+        description: "능동 취약점 스캔"
+      - name: "Passive Scanner"
+        description: "수동 분석"
+      - name: "Fuzzer"
+        description: "입력 퍼징"
+      - name: "API Scan"
+        description: "OpenAPI/GraphQL 스캔"
+    automation:
+      - "Automation Framework"
+      - "Docker 이미지"
+      - "CI/CD 통합"
+      - "GitHub Actions"
+    scan_policies:
+      - "Default Policy"
+      - "API Scan Policy"
+      - "Ajax Spider"
+    add_ons:
+      - "Community Scripts"
+      - "Selenium Integration"
+      - "Report Generation"
+    usage_examples:
+      gui: "ZAP 실행 후 Quick Start"
+      baseline: "zap-baseline.py -t https://target"
+      api: "zap-api-scan.py -t https://target/openapi.json"
+    vs_burp:
+      zap: "무료, 오픈소스, CI/CD 친화적"
+      burp: "상용 기능, 더 많은 플러그인"
+    website: "https://www.zaproxy.org"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ZAP"
+      - "ZAP Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OWASP ZAP은 웹 애플리케이션 보안 테스트를 위한
+      무료 오픈소스 DAST 도구로 CI/CD 통합이 용이하다.
+    search_keywords:
+      - "OWASP ZAP"
+      - "ZAP"
+      - "Web Scanner"
+      - "DAST"

@@ -1,0 +1,180 @@
+# GR-SEC-INS-F0002: MSSQL DBMS Fingerprint
+
+identity:
+  id: GR-SEC-INS-F0002
+  name: "MSSQL DBMS Fingerprint"
+  normalization:
+    normalized_name: "mssql dbms fingerprint"
+    normalization_version: "1.0"
+  aliases:
+    - "SQL Server Detection"
+    - "MSSQL Identification"
+    - "Microsoft SQL Server Fingerprint"
+
+classification:
+  domain: security
+  type: fingerprint
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-RECON"
+
+definition:
+  what: |
+    대상 데이터베이스가 Microsoft SQL Server인지 확인하기
+    위한 핑거프린트 페이로드와 응답 패턴 집합이다.
+  why: |
+    MSSQL은 xp_cmdshell, OPENROWSET 등 OS 명령 실행이
+    가능한 고급 기능이 있어 공격 가능성이 높다.
+    정확한 식별이 공격 전략 수립에 중요하다.
+
+fingerprint:
+  # MSSQL 고유 문법 테스트
+  syntax_probes:
+    - probe: "' AND @@version--"
+      indicator: "@@version returns Microsoft value"
+      confidence: 0.9
+
+    - probe: "'; WAITFOR DELAY '0:0:1'--"
+      indicator: "WAITFOR command works"
+      confidence: 0.95
+
+    - probe: "' AND LEN('test')=4--"
+      indicator: "LEN function (not LENGTH)"
+      confidence: 0.8
+
+    - probe: "' AND CHARINDEX('a','abc')=1--"
+      indicator: "CHARINDEX function works"
+      confidence: 0.85
+
+  # 에러 메시지 패턴
+  error_patterns:
+    - pattern: "Microsoft SQL Server"
+      confidence: 0.95
+    - pattern: "ODBC SQL Server Driver"
+      confidence: 0.95
+    - pattern: "SQLServer JDBC Driver"
+      confidence: 0.9
+    - pattern: "Unclosed quotation mark"
+      confidence: 0.85
+    - pattern: "Incorrect syntax near"
+      confidence: 0.8
+    - pattern: "mssql_query"
+      confidence: 0.95
+    - pattern: "SqlClient"
+      confidence: 0.9
+    - pattern: "Procedure or function"
+      confidence: 0.75
+
+  # MSSQL 고유 함수
+  function_probes:
+    - function: "@@version"
+      expected_format: "Microsoft SQL Server 20xx"
+    - function: "@@servername"
+      returns: "server name"
+    - function: "DB_NAME()"
+      returns: "current database"
+    - function: "SYSTEM_USER"
+      returns: "login name"
+    - function: "SUSER_SNAME()"
+      returns: "login name"
+    - function: "HOST_NAME()"
+      returns: "client hostname"
+
+  # 시스템 테이블 존재 확인
+  system_tables:
+    - table: "master.sys.databases"
+      query: "SELECT 1 FROM master.sys.databases"
+    - table: "sysobjects"
+      query: "SELECT 1 FROM sysobjects WHERE xtype='U'"
+    - table: "INFORMATION_SCHEMA.TABLES"
+      query: "SELECT 1 FROM INFORMATION_SCHEMA.TABLES"
+
+  # 위험한 기능 확인
+  dangerous_features:
+    xp_cmdshell:
+      check: "EXEC xp_cmdshell 'whoami'"
+      risk: "OS command execution"
+    openrowset:
+      check: "SELECT * FROM OPENROWSET(...)"
+      risk: "File read, remote query"
+    bulk_insert:
+      check: "BULK INSERT"
+      risk: "File read"
+    xp_dirtree:
+      check: "EXEC xp_dirtree 'C:\\'"
+      risk: "Directory listing, OOB"
+
+  # 버전별 특성
+  version_features:
+    "2000": "Basic SQLi, limited xp_cmdshell by default"
+    "2005+": "TRY-CATCH, CTEs, PIVOT"
+    "2008+": "MERGE, table-valued parameters"
+    "2012+": "SEQUENCE, OFFSET-FETCH"
+    "2016+": "JSON support, temporal tables"
+    "2017+": "Linux support, graph processing"
+    "2019+": "Accelerated database recovery"
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-CMP-00012  # MSSQL Component (TODO)
+  conditional:
+    enables:
+      - GR-SEC-TEC-00003  # Time-based (WAITFOR)
+      - GR-SEC-TEC-00005  # Stacked Queries (native)
+      - GR-SEC-TEC-00006  # OOB (xp_dirtree)
+    informs:
+      - GR-SEC-INS-P0005  # Data extraction (MSSQL syntax)
+
+properties:
+  security:
+    severity: info
+    purpose: reconnaissance
+    default_ports: [1433, 1434]
+    common_drivers:
+      - "ODBC"
+      - "SqlClient"
+      - "JDBC"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-fingerprints"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      MSSQL DBMS Fingerprint는 대상 DB가 Microsoft SQL
+      Server인지 확인하는 핑거프린트 집합이다. WAITFOR DELAY,
+      LEN(), @@servername 등의 고유 문법을 테스트한다.
+      xp_cmdshell, OPENROWSET 등 OS 명령 실행 가능 기능
+      확인이 중요하다. 에러 메시지(ODBC SQL Server Driver,
+      Unclosed quotation mark 등)로도 식별 가능하다.
+    search_keywords:
+      - "MSSQL"
+      - "SQL Server"
+      - "Microsoft"
+      - "WAITFOR"
+      - "xp_cmdshell"
+      - "@@servername"

@@ -1,0 +1,121 @@
+# GR Atom: Network Forensics
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-FORENSIC-NETWORK-001"
+  name: "Network Forensics"
+  normalization:
+    normalized_name: "network forensics pcap traffic analysis packet capture"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 포렌식"
+    - "트래픽 분석"
+    - "패킷 캡처 분석"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["DEF", "FORENSIC", "NET"]
+
+definition:
+  what: |
+    네트워크 포렌식은 네트워크 트래픽을 캡처하고 분석하여
+    침해 증거, 데이터 유출, 악성 활동을 파악하는 기법이다.
+  why: |
+    네트워크 기반 공격 증거를 확보한다.
+    C2 통신, 데이터 유출, 횡적 이동을 추적한다.
+  how: |
+    1. 트래픽 캡처
+    2. 프로토콜 분석
+    3. 이상 트래픽 식별
+    4. 페이로드 추출
+
+relations:
+  structural:
+    is_a:
+      - "DEF-FORENSIC-ANALYSIS-001"
+    related_to:
+      - "TOOL-SCAN-WIRESHARK-001"
+      - "DEF-NET-IDS-001"
+
+properties:
+  technical:
+    capture_methods:
+      - name: "SPAN/Mirror Port"
+        description: "스위치 포트 미러링"
+      - name: "Network TAP"
+        description: "물리적 탭 장치"
+      - name: "Host-based"
+        description: "엔드포인트 캡처"
+    capture_tools:
+      - "tcpdump"
+      - "Wireshark/tshark"
+      - "Zeek (Bro)"
+      - "NetworkMiner"
+    analysis_focus:
+      - name: "프로토콜 분석"
+        targets: ["HTTP", "DNS", "SMB", "SSL/TLS"]
+      - name: "페이로드 추출"
+        types: ["파일", "자격 증명", "명령어"]
+      - name: "세션 재구성"
+        tools: ["Wireshark Follow Stream"]
+      - name: "이상 탐지"
+        indicators: ["비정상 포트", "C2 패턴"]
+    artifacts:
+      - "연결 로그"
+      - "DNS 쿼리"
+      - "HTTP 요청/응답"
+      - "파일 전송"
+      - "암호화된 트래픽 메타데이터"
+    zeek_logs:
+      - "conn.log: 연결 정보"
+      - "dns.log: DNS 쿼리"
+      - "http.log: HTTP 트래픽"
+      - "files.log: 파일 전송"
+      - "ssl.log: TLS 정보"
+    challenges:
+      - "대용량 데이터"
+      - "암호화 트래픽"
+      - "저장 공간"
+      - "실시간 처리"
+    encryption_analysis:
+      - "JA3/JA3S 핑거프린팅"
+      - "인증서 분석"
+      - "SNI 정보"
+      - "트래픽 패턴"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "SANS Network Forensics"
+      - "Zeek Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      네트워크 포렌식은 트래픽에서 침해 증거를 분석한다. Wireshark, Zeek로
+      프로토콜, 페이로드, 세션을 분석한다.
+    search_keywords:
+      - "네트워크 포렌식"
+      - "PCAP"
+      - "트래픽 분석"
+      - "Zeek"
+    related_queries:
+      - "패킷 분석"
+      - "C2 탐지"
+      - "데이터 유출 탐지"

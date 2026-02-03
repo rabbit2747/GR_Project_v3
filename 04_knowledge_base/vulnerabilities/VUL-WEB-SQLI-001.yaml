@@ -1,0 +1,103 @@
+# GR Atom: SQL Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-WEB-SQLI-001"
+  name: "SQL Injection"
+  normalization:
+    normalized_name: "sql injection sqli database query manipulation"
+    normalization_version: "1.0"
+  aliases:
+    - "SQL Injection"
+    - "SQLi"
+    - "SQL 인젝션"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["VUL", "WEB", "OWASP"]
+
+definition:
+  what: |
+    사용자 입력이 SQL 쿼리에 삽입되어 쿼리 구조를
+    변경할 수 있는 코드 인젝션 취약점이다.
+  why: |
+    데이터베이스를 무단으로 접근한다.
+    데이터 탈취, 변조, 삭제가 가능하다.
+  how: |
+    1. 입력 필드 식별
+    2. SQL 구문 삽입
+    3. 쿼리 조작
+    4. 데이터 추출
+
+relations:
+  structural:
+    is_a:
+      - "VUL-INJECTION-001"
+    related_to:
+      - "TOOL-PENTEST-SQLMAP-001"
+      - "ATK-WEB-INJECTION-001"
+
+properties:
+  technical:
+    cwe_id: "CWE-89"
+    owasp_rank: "OWASP Top 10 2021 - A03 Injection"
+    types:
+      - name: "In-band SQLi"
+        subtypes: ["Error-based", "Union-based"]
+      - name: "Blind SQLi"
+        subtypes: ["Boolean-based", "Time-based"]
+      - name: "Out-of-band SQLi"
+        method: "DNS/HTTP exfiltration"
+    payloads:
+      auth_bypass: "' OR '1'='1"
+      union: "' UNION SELECT username,password FROM users--"
+      error_based: "' AND 1=CONVERT(int,(SELECT TOP 1 username FROM users))--"
+      time_based: "' OR SLEEP(5)--"
+    impact:
+      - "데이터 유출"
+      - "인증 우회"
+      - "데이터 조작/삭제"
+      - "원격 코드 실행 (일부)"
+    prevention:
+      - "Prepared Statements (Parameterized Queries)"
+      - "Stored Procedures"
+      - "입력 검증 (화이트리스트)"
+      - "최소 권한 DB 계정"
+      - "WAF"
+    testing_tools:
+      - "SQLMap"
+      - "Burp Suite"
+      - "Havij"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SQL Injection"
+      - "CWE-89"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SQL Injection은 사용자 입력으로 SQL 쿼리를 조작하여
+      데이터베이스에 무단 접근하는 치명적 웹 취약점이다.
+    search_keywords:
+      - "SQL Injection"
+      - "SQLi"
+      - "데이터베이스 공격"
+      - "Injection"

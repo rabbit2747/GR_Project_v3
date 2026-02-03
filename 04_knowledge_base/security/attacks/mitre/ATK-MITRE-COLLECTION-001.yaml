@@ -1,0 +1,123 @@
+# GR Atom: Collection (MITRE ATT&CK TA0009)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-COLLECTION-001"
+  name: "Collection (TA0009)"
+  normalization:
+    normalized_name: "collection mitre attack ta0009 data gathering staging"
+    normalization_version: "1.0"
+  aliases:
+    - "수집"
+    - "Collection"
+    - "TA0009"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Collection은 공격자가 관심 있는 데이터를 수집하고 유출 전에
+    스테이징하는 전술이다. 문서, 이메일, 화면 캡처 등이 포함된다.
+  why: |
+    공격의 궁극적 목표가 정보 탈취인 경우 필수 단계다.
+    고가치 데이터를 식별하고 효율적으로 유출하기 위해 필요하다.
+  how: |
+    1. Data from Local System (T1005): 로컬 데이터 수집
+    2. Screen Capture (T1113): 화면 캡처
+    3. Email Collection (T1114): 이메일 수집
+    4. Data Staged (T1074): 유출 전 스테이징
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    preceded_by:
+      - "ATK-MITRE-DISCOVERY-001"
+    followed_by:
+      - "ATK-MITRE-EXFILTRATION-001"
+
+properties:
+  technical:
+    mitre_id: "TA0009"
+    techniques:
+      - id: "T1005"
+        name: "Data from Local System"
+        description: "로컬 파일 시스템에서 데이터 수집"
+      - id: "T1113"
+        name: "Screen Capture"
+        description: "스크린샷 캡처"
+      - id: "T1114"
+        name: "Email Collection"
+        sub_techniques:
+          - "T1114.001: Local Email Collection"
+          - "T1114.002: Remote Email Collection"
+          - "T1114.003: Email Forwarding Rule"
+      - id: "T1074"
+        name: "Data Staged"
+        sub_techniques:
+          - "T1074.001: Local Data Staging"
+          - "T1074.002: Remote Data Staging"
+      - id: "T1119"
+        name: "Automated Collection"
+        description: "스크립트로 자동화된 수집"
+      - id: "T1123"
+        name: "Audio Capture"
+        description: "오디오 녹음"
+      - id: "T1125"
+        name: "Video Capture"
+        description: "비디오 녹화"
+    target_data:
+      - "문서 (Word, Excel, PDF)"
+      - "이메일"
+      - "소스 코드"
+      - "데이터베이스"
+      - "자격 증명 파일"
+      - "설정 파일"
+    detection:
+      - "대량 파일 접근 모니터링"
+      - "압축 파일 생성 탐지"
+      - "이메일 전달 규칙 감시"
+      - "화면 캡처 API 호출"
+    prevention:
+      - "DLP 솔루션"
+      - "파일 접근 제어"
+      - "암호화"
+      - "워터마킹"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Collection"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Collection(TA0009)은 데이터 수집 전술이다. 문서, 이메일, 화면 캡처 등을
+      수집하고 스테이징하며 DLP, 파일 접근 제어로 탐지/방어한다.
+    search_keywords:
+      - "Collection"
+      - "TA0009"
+      - "데이터 수집"
+      - "스테이징"
+    related_queries:
+      - "데이터 수집 탐지"
+      - "이메일 수집"
+      - "DLP"

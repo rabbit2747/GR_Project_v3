@@ -1,0 +1,103 @@
+# GR Atom: Certipy
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AD-CERTIPY-001"
+  name: "Certipy"
+  normalization:
+    normalized_name: "certipy adcs certificate attack escalation"
+    normalization_version: "1.0"
+  aliases:
+    - "Certipy"
+    - "AD CS Attack Tool"
+    - "인증서 공격 도구"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "AD", "CERTIFICATE"]
+
+definition:
+  what: |
+    Active Directory Certificate Services(AD CS)를
+    열거하고 악용하는 공격 도구이다.
+  why: |
+    AD CS 취약점을 발견한다.
+    인증서 기반 공격을 수행한다.
+  how: |
+    1. AD CS 열거
+    2. 취약 템플릿 식별
+    3. 인증서 요청/남용
+    4. 권한 상승
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AD-001"
+    related_to:
+      - "ATK-WIN-ADCS-001"
+      - "DEF-CRYPTO-PKI-001"
+
+properties:
+  technical:
+    developer: "ly4k (Oliver Lyak)"
+    license: "MIT"
+    language: "Python"
+    esc_attacks:
+      - name: "ESC1"
+        description: "SAN 지정 가능, 클라이언트 인증"
+      - name: "ESC2"
+        description: "Any Purpose EKU"
+      - name: "ESC3"
+        description: "Agent 템플릿 남용"
+      - name: "ESC4"
+        description: "템플릿 ACL 남용"
+      - name: "ESC6"
+        description: "EDITF_ATTRIBUTESUBJECTALTNAME2"
+      - name: "ESC7"
+        description: "CA ACL 남용"
+      - name: "ESC8"
+        description: "HTTP 웹 등록"
+    usage_examples:
+      find: "certipy find -u user@domain -p pass -dc-ip DC"
+      req: "certipy req -u user -p pass -target CA -template VulnTemplate"
+      auth: "certipy auth -pfx cert.pfx"
+      shadow: "certipy shadow auto -u user@domain -p pass -account admin"
+    output:
+      - "BloodHound 통합 JSON"
+      - "취약 템플릿 보고서"
+      - "PFX 인증서"
+    related_research: "Certified Pre-Owned (SpecterOps)"
+    repository: "https://github.com/ly4k/Certipy"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Certipy GitHub"
+      - "Certified Pre-Owned"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Certipy는 AD CS를 열거하고 ESC1-8 취약점을
+      악용하여 권한 상승하는 인증서 공격 도구이다.
+    search_keywords:
+      - "Certipy"
+      - "AD CS"
+      - "Certificate Attack"
+      - "ESC"

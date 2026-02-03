@@ -1,0 +1,112 @@
+# GR Atom: Insecure Direct Object Reference (IDOR)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SERVER-IDOR-001"
+  name: "IDOR (Insecure Direct Object Reference)"
+  normalization:
+    normalized_name: "idor insecure direct object reference access control bypass"
+    normalization_version: "1.0"
+  aliases:
+    - "안전하지 않은 직접 객체 참조"
+    - "IDOR 공격"
+    - "Broken Object Level Authorization"
+    - "BOLA"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "ACCESS", "API"]
+
+definition:
+  what: |
+    IDOR(Insecure Direct Object Reference)은 사용자가 제공하는 입력값을
+    통해 내부 객체(파일, 레코드, 키)에 직접 접근할 때 권한 검증 없이
+    다른 사용자의 데이터에 접근하는 공격이다.
+  why: |
+    가장 흔한 접근 제어 취약점 중 하나다. API 기반 애플리케이션에서
+    특히 빈번하며, 대규모 데이터 유출로 이어질 수 있다.
+    OWASP API Top 10의 1위(BOLA)와 직결된다.
+  how: |
+    1. 정상 요청의 객체 식별자(ID) 확인
+    2. ID 값을 다른 값으로 변경 (예: user_id=123 → 124)
+    3. 권한 없는 데이터 접근 시도
+    4. 응답에서 다른 사용자 데이터 획득
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+  causal:
+    exploits:
+      - "VUL-ACCESS-BROKEN-001"
+    targets:
+      - "INFRA-APP-API-001"
+      - "INFRA-APP-WEBAPP-001"
+    mitigated_by:
+      - "DEF-PREVENT-AUTHZ-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "Sequential ID"
+        method: "순차적 ID 값 조작"
+        example: "/api/users/1001 → /api/users/1002"
+      - name: "UUID Guessing"
+        method: "예측 가능한 UUID 패턴 활용"
+      - name: "Parameter Tampering"
+        method: "여러 파라미터 동시 조작"
+        example: "account_id, order_id 등 복합 조작"
+    detection_indicators:
+      - "응답에 다른 사용자 데이터 포함"
+      - "권한 에러 없이 데이터 반환"
+      - "ID 패턴 분석으로 예측 가능"
+    impact:
+      - "데이터 유출 (Data Breach)"
+      - "개인정보 침해"
+      - "수평적 권한 상승"
+      - "데이터 조작/삭제"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-639"
+    owasp_category: "A01:2021 - Broken Access Control"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Broken Access Control"
+      - "OWASP API Security Top 10 - BOLA"
+      - "CWE-639: Authorization Bypass Through User-Controlled Key"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IDOR(Insecure Direct Object Reference)은 객체 식별자를 조작하여
+      권한 없는 데이터에 접근하는 공격이다. API에서 특히 흔하며
+      OWASP API Top 10의 BOLA와 동일하다. 서버 측 권한 검증으로 방어한다.
+    search_keywords:
+      - "IDOR"
+      - "Insecure Direct Object Reference"
+      - "BOLA"
+      - "접근 제어 우회"
+      - "권한 상승"
+    related_queries:
+      - "IDOR 공격이란?"
+      - "BOLA vs IDOR"
+      - "접근 제어 취약점"

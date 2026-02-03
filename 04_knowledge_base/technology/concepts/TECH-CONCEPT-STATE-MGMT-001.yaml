@@ -1,0 +1,100 @@
+# GR Atom: State Management (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-STATE-MGMT-001"
+  name: "State Management"
+  normalization:
+    normalized_name: "state management session management user state"
+    normalization_version: "1.0"
+  aliases:
+    - "상태 관리"
+    - "Session Management"
+    - "세션 관리"
+    - "User State"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "AUTH"]
+
+definition:
+  what: |
+    상태 관리(State Management)는 HTTP의 무상태성을 보완하여
+    사용자 상태를 유지하는 메커니즘이다. 세션, 토큰, 쿠키 등을
+    사용하여 인증 상태와 사용자 데이터를 관리한다.
+  why: |
+    인증과 개인화의 기반이다. 세션 관리 취약점은 계정 탈취,
+    권한 상승으로 이어진다. Session Hijacking, Fixation 등
+    주요 공격 대상이다.
+  how: |
+    1. Session: 서버 측 상태 저장
+    2. Token (JWT): 클라이언트 측 상태
+    3. Cookie: 세션 ID 또는 토큰 전달
+    4. Local Storage: 클라이언트 측 저장
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-CONCEPT-SESSION-001"
+  causal:
+    enables:
+      - "ATK-SESSION-HIJACK-001"
+
+properties:
+  technical:
+    state_types:
+      - name: "Server-Side Session"
+        storage: "Memory, Redis, Database"
+        security: "Session ID in cookie"
+      - name: "JWT Token"
+        storage: "Client (Cookie, Header)"
+        security: "Signature verification"
+      - name: "Cookie-Based"
+        storage: "Browser"
+        security: "HttpOnly, Secure, SameSite"
+    security_measures:
+      - "Session ID 재생성 (로그인 후)"
+      - "세션 만료 정책"
+      - "HttpOnly, Secure 쿠키 플래그"
+      - "토큰 서명 검증"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Session Management Cheat Sheet"
+      - "CWE-384 Session Fixation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      State Management(상태 관리)는 HTTP 무상태성을 보완하여 사용자 상태를
+      유지하는 메커니즘이다. Session, JWT Token, Cookie 등이 있다.
+      Session Hijacking, Fixation 공격의 대상이며 HttpOnly 쿠키,
+      세션 재생성 등으로 보호한다.
+    search_keywords:
+      - "State Management"
+      - "상태 관리"
+      - "Session Management"
+      - "세션 관리"
+      - "JWT"
+    related_queries:
+      - "세션 관리란?"
+      - "JWT vs Session 비교"
+      - "세션 보안"
+      - "Session Hijacking 방어"

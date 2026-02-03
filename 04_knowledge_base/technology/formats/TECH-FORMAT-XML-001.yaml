@@ -1,0 +1,100 @@
+# GR Atom: XML Format
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-FORMAT-XML-001"
+  name: "XML (eXtensible Markup Language)"
+  normalization:
+    normalized_name: "xml extensible markup language"
+    normalization_version: "1.0"
+  aliases:
+    - "XML"
+
+classification:
+  domain: data
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["D"]
+
+definition:
+  what: |
+    XML은 데이터를 구조화하여 저장하고 전송하기 위한 마크업 언어다.
+    태그를 사용하여 계층적 데이터 구조를 표현하며, 사람과 기계 모두
+    읽을 수 있다.
+  why: |
+    설정 파일, SOAP API, 데이터 교환 등에 널리 사용된다.
+    XML 파서의 기능을 악용한 XXE(XML External Entity) 공격이 가능하므로
+    보안상 중요하다.
+  how: |
+    1. XML 문서 작성 (태그, 속성, 텍스트)
+    2. XML 파서가 문서를 읽고 파싱
+    3. DOM 또는 SAX 방식으로 처리
+    4. DTD/XSD로 스키마 검증 (선택)
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DATA-FORMAT-001"]
+  causal:
+    enables:
+      - "ATK-INJECT-XML-001"  # XXE 공격
+
+properties:
+  technical:
+    type: "Data Format"
+    features:
+      - "계층적 구조"
+      - "자기 기술적 (Self-describing)"
+      - "확장 가능"
+    components:
+      - "Element (요소)"
+      - "Attribute (속성)"
+      - "Text Content"
+      - "CDATA Section"
+    parsers:
+      - "DOM Parser"
+      - "SAX Parser"
+      - "StAX Parser"
+    security_features:
+      dangerous:
+        - name: "External Entity"
+          risk: "XXE - 파일 읽기, SSRF"
+        - name: "DTD Processing"
+          risk: "Billion Laughs DoS"
+        - name: "XInclude"
+          risk: "외부 파일 포함"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "W3C XML 1.0 Specification"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XML eXtensible Markup Language는 데이터 구조화를 위한 마크업 언어다.
+      설정 파일, SOAP API, 데이터 교환에 사용된다. External Entity 기능을
+      악용한 XXE 공격이 가능하며, 파일 읽기, SSRF, DoS가 발생할 수 있다.
+    search_keywords:
+      - "XML"
+      - "마크업"
+      - "XXE"
+      - "External Entity"
+      - "데이터 포맷"
+    related_queries:
+      - "XML이란?"
+      - "XXE 공격과 XML"
+      - "XML 파서 종류"

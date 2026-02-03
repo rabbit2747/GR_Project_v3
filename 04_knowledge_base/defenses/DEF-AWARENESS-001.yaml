@@ -1,0 +1,117 @@
+# GR Atom: Security Awareness Training
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-AWARENESS-001"
+  name: "Security Awareness Training"
+  normalization:
+    normalized_name: "security awareness training phishing simulation education"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Awareness"
+    - "보안 인식 교육"
+    - "Phishing Training"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "HUMAN", "EDUCATION"]
+
+definition:
+  what: |
+    직원들에게 보안 위협과 모범 사례를 교육하여
+    인적 취약점을 줄이는 프로그램이다.
+  why: |
+    소셜 엔지니어링을 방지한다.
+    보안 문화를 구축한다.
+  how: |
+    1. 교육 콘텐츠 개발
+    2. 정기 교육 실시
+    3. 피싱 시뮬레이션
+    4. 효과 측정
+
+relations:
+  structural:
+    is_a:
+      - "DEF-HUMAN-001"
+    related_to:
+      - "ATK-SOCIAL-PHISHING-001"
+      - "ATK-MITRE-T1566-001"
+
+properties:
+  technical:
+    topics:
+      - "피싱 인식"
+      - "비밀번호 보안"
+      - "물리적 보안"
+      - "소셜 미디어 위험"
+      - "원격 근무 보안"
+      - "데이터 분류"
+      - "인시던트 보고"
+    delivery_methods:
+      - "온라인 교육 (CBT)"
+      - "대면 교육"
+      - "동영상"
+      - "포스터/뉴스레터"
+      - "게임화"
+    phishing_simulation:
+      description: "실제 피싱 시나리오 테스트"
+      metrics:
+        - "클릭률"
+        - "보고율"
+        - "개선 추이"
+      frequency: "월간/분기"
+    popular_platforms:
+      - "KnowBe4"
+      - "Proofpoint Security Awareness"
+      - "SANS Security Awareness"
+      - "Cofense"
+      - "Gophish (오픈소스)"
+    compliance:
+      - "PCI DSS 12.6"
+      - "HIPAA"
+      - "SOC 2"
+      - "ISO 27001 A.7"
+    metrics:
+      - "교육 완료율"
+      - "피싱 클릭률"
+      - "인시던트 보고 건수"
+      - "퀴즈 점수"
+    best_practices:
+      - "정기적 교육 (연간+)"
+      - "역할 기반 교육"
+      - "실제 사례 활용"
+      - "긍정적 강화"
+      - "경영진 지원"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-50"
+      - "SANS Security Awareness"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Awareness Training은 직원 교육과 피싱 시뮬레이션으로
+      인적 취약점을 줄이고 보안 문화를 구축하는 프로그램이다.
+    search_keywords:
+      - "Security Awareness"
+      - "Phishing Training"
+      - "보안 교육"
+      - "KnowBe4"

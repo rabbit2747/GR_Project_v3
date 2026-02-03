@@ -1,0 +1,108 @@
+# GR Atom: Insufficient Monitoring Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-MONITORING-INSUFFICIENT-001"
+  name: "Insufficient Monitoring"
+  normalization:
+    normalized_name: "insufficient monitoring lack of visibility detection gap"
+    normalization_version: "1.0"
+  aliases:
+    - "모니터링 부재"
+    - "Lack of Monitoring"
+    - "Detection Gap"
+    - "보안 가시성 부족"
+
+classification:
+  domain: application
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["VUL", "DETECT", "MONITOR"]
+
+definition:
+  what: |
+    모니터링 부재(Insufficient Monitoring)는 보안 이벤트를 실시간으로
+    감지하고 분석하는 체계가 없거나 부족한 상태다.
+  why: |
+    공격을 탐지하지 못하면 침해가 장기간 지속될 수 있다.
+    평균 침해 탐지 시간은 수개월에 달하며, 이는 피해를 크게 증가시킨다.
+  how: |
+    1. 이벤트 수집 부재: 로그 중앙화 없음
+    2. 분석 부재: SIEM 없거나 규칙 부재
+    3. 알람 부재: 이상 탐지 알림 없음
+    4. 대응 부재: 탐지해도 대응 프로세스 없음
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-LOG-INSUFFICIENT-001"
+  causal:
+    detected_by:
+      - "DEF-DETECT-MONITORING-001"
+    enables:
+      - "ATK-AUTH-BRUTEFORCE-001"
+
+properties:
+  technical:
+    impact_factors:
+      - "Extended dwell time (attackers persist longer)"
+      - "Delayed incident response"
+      - "Increased breach damage"
+      - "Compliance violations"
+    monitoring_gaps:
+      - name: "No centralized logging"
+        risk: "Events scattered, correlation impossible"
+      - name: "No SIEM"
+        risk: "No automated analysis"
+      - name: "No alerting"
+        risk: "Events go unnoticed"
+      - name: "No baseline"
+        risk: "Can't detect anomalies"
+    remediation:
+      - "Implement centralized logging"
+      - "Deploy SIEM solution"
+      - "Create detection rules"
+      - "Establish alerting thresholds"
+      - "Define incident response procedures"
+  security:
+    severity: medium
+    cvss_base: 5.0
+    cwe_id: "CWE-778"
+    owasp_category: "A09:2021 - Security Logging and Monitoring Failures"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Logging and Monitoring Failures"
+      - "CWE-778: Insufficient Logging"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Insufficient Monitoring(모니터링 부재)은 보안 이벤트를 실시간으로
+      감지하지 못하는 취약점이다. SIEM 구축, 탐지 규칙 설정으로 해결한다.
+    search_keywords:
+      - "Insufficient Monitoring"
+      - "모니터링 부재"
+      - "보안 가시성"
+      - "SIEM"
+    related_queries:
+      - "보안 모니터링"
+      - "SIEM 구축"
+      - "침해 탐지"

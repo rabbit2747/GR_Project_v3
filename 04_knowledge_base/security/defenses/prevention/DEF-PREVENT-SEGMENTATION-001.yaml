@@ -1,0 +1,105 @@
+# GR Atom: Network Segmentation
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-SEGMENTATION-001"
+  name: "Network Segmentation"
+  normalization:
+    normalized_name: "network segmentation vlan microsegmentation zone"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 세그멘테이션"
+    - "네트워크 분리"
+    - "VLAN Segmentation"
+    - "Microsegmentation"
+
+classification:
+  domain: network
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Cross"
+    tags: ["DEF", "PREVENT", "NET"]
+
+definition:
+  what: |
+    네트워크 세그멘테이션(Network Segmentation)은 네트워크를 보안 요구사항에
+    따라 분리하여 공격 확산을 제한하는 방어 기법이다.
+  why: |
+    측면 이동(Lateral Movement)을 차단하는 핵심 방어다. 침해 발생 시
+    피해 범위를 제한하고 중요 자산을 보호한다.
+  how: |
+    1. VLAN: 논리적 네트워크 분리
+    2. Firewall: 세그먼트 간 트래픽 제어
+    3. ACL: 접근 제어 목록
+    4. Microsegmentation: 워크로드 수준 분리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+  causal:
+    prevents:
+      - "ATK-NET-VLANHOPPING-001"
+    protected_by:
+      - "INFRA-NET-FIREWALL-001"
+
+properties:
+  technical:
+    segmentation_types:
+      - name: "Physical Segmentation"
+        method: "물리적으로 분리된 네트워크"
+        pros: "가장 강력한 격리"
+        cons: "비용, 유연성 부족"
+      - name: "VLAN Segmentation"
+        method: "802.1Q 기반 논리적 분리"
+        pros: "유연성, 비용 효율"
+        cons: "VLAN 호핑 취약 가능"
+      - name: "Microsegmentation"
+        method: "SDN/호스트 기반 워크로드 분리"
+        pros: "세밀한 제어"
+        cons: "복잡성"
+    best_practices:
+      - "DMZ 분리"
+      - "관리 네트워크 분리"
+      - "개발/운영 환경 분리"
+      - "PCI DSS 카드홀더 데이터 환경 분리"
+      - "IoT/OT 네트워크 분리"
+    implementation:
+      - "Firewall rules between segments"
+      - "ACLs on routers/switches"
+      - "Zero Trust Network Access"
+      - "Software-Defined Networking (SDN)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST Network Segmentation"
+      - "CIS Controls - Network Segmentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Segmentation은 네트워크를 분리하여 측면 이동을 차단하는 방어다.
+      VLAN, 방화벽, Microsegmentation으로 구현하며 침해 피해를 제한한다.
+    search_keywords:
+      - "Network Segmentation"
+      - "네트워크 세그멘테이션"
+      - "VLAN"
+      - "Microsegmentation"
+    related_queries:
+      - "네트워크 분리"
+      - "VLAN 설계"
+      - "Zero Trust Network"

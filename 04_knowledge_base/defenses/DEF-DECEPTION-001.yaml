@@ -1,0 +1,130 @@
+# GR Atom: Deception Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DECEPTION-001"
+  name: "Deception Technology"
+  normalization:
+    normalized_name: "deception technology honeypot honeytoken decoy"
+    normalization_version: "1.0"
+  aliases:
+    - "Deception Technology"
+    - "Honeypot"
+    - "기만 기술"
+    - "허니팟"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["DEF", "DETECTION", "DECEPTION"]
+
+definition:
+  what: |
+    가짜 자산(허니팟, 허니토큰, 미끼)을 배포하여 공격자를
+    탐지하고 기만하는 능동적 방어 기술이다.
+  why: |
+    초기 침입을 탐지한다.
+    공격자 TTPs를 수집한다.
+    False positive 없는 고신뢰 알림을 생성한다.
+  how: |
+    1. 미끼 자산 배포
+    2. 접근 모니터링
+    3. 상호작용 분석
+    4. 경보/대응
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECTION-001"
+    related_to:
+      - "DEF-SIEM-001"
+      - "TECH-CONCEPT-INCIDENT-RESPONSE-001"
+      - "DEF-THREAT-INTEL-001"
+
+properties:
+  technical:
+    types:
+      honeypot:
+        description: "가짜 시스템/서비스"
+        examples:
+          - "가짜 서버"
+          - "가짜 데이터베이스"
+          - "가짜 웹 애플리케이션"
+        interaction_levels:
+          - "Low-interaction (에뮬레이션)"
+          - "Medium-interaction"
+          - "High-interaction (실제 시스템)"
+      honeytoken:
+        description: "가짜 자격 증명/데이터"
+        examples:
+          - "가짜 API 키"
+          - "가짜 사용자 계정"
+          - "가짜 문서/파일"
+          - "가짜 데이터베이스 레코드"
+      honeynet:
+        description: "상호연결된 허니팟 네트워크"
+        purpose: "복잡한 공격 분석"
+      breadcrumb:
+        description: "허니팟으로 유도하는 미끼"
+        examples:
+          - "가짜 자격 증명 파일"
+          - "유인 링크"
+    deployment_locations:
+      - "DMZ"
+      - "내부 네트워크"
+      - "클라우드 환경"
+      - "엔드포인트"
+      - "Active Directory"
+    benefits:
+      - "낮은 False Positive"
+      - "조기 탐지"
+      - "공격자 인텔리전스 수집"
+      - "공격 지연/방해"
+      - "내부자 위협 탐지"
+    commercial_solutions:
+      - "Attivo Networks"
+      - "Illusive Networks"
+      - "TrapX"
+      - "Cymmetria"
+    open_source:
+      - "Cowrie (SSH/Telnet)"
+      - "Dionaea"
+      - "Honeyd"
+      - "OpenCanary"
+    best_practices:
+      - "프로덕션과 구분 불가능하게 배포"
+      - "SIEM과 통합"
+      - "주기적 갱신/순환"
+      - "다양한 자산 유형 배포"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE Shield"
+      - "Gartner Deception Technology"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Deception Technology는 허니팟, 허니토큰 등 미끼 자산을
+      배포하여 공격자를 탐지하고 기만하는 능동적 방어 기술이다.
+    search_keywords:
+      - "Deception"
+      - "Honeypot"
+      - "Honeytoken"
+      - "Decoy"

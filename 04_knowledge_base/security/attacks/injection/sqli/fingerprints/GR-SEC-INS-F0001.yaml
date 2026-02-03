@@ -1,0 +1,155 @@
+# GR-SEC-INS-F0001: MySQL DBMS Fingerprint
+
+identity:
+  id: GR-SEC-INS-F0001
+  name: "MySQL DBMS Fingerprint"
+  normalization:
+    normalized_name: "mysql dbms fingerprint"
+    normalization_version: "1.0"
+  aliases:
+    - "MySQL Detection"
+    - "MySQL Identification"
+
+classification:
+  domain: security
+  type: fingerprint
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-RECON"
+
+definition:
+  what: |
+    대상 데이터베이스가 MySQL인지 확인하기 위한
+    핑거프린트 페이로드와 응답 패턴 집합이다.
+  why: |
+    DBMS별로 문법, 함수, 시스템 테이블이 다르므로
+    정확한 DBMS 식별이 선행되어야 적절한 페이로드를
+    선택할 수 있다.
+
+fingerprint:
+  # MySQL 고유 문법 테스트
+  syntax_probes:
+    - probe: "' AND 1=1#"
+      indicator: "# comment works"
+      confidence: 0.7
+
+    - probe: "' AND @@version--"
+      indicator: "@@version returns value"
+      confidence: 0.9
+
+    - probe: "' AND SLEEP(0)--"
+      indicator: "SLEEP function exists"
+      confidence: 0.85
+
+    - probe: "/*!50000SELECT*/ 1"
+      indicator: "MySQL version comment accepted"
+      confidence: 0.95
+
+  # 에러 메시지 패턴
+  error_patterns:
+    - pattern: "mysql_fetch"
+      confidence: 0.95
+    - pattern: "MySQL"
+      confidence: 0.8
+    - pattern: "MariaDB"
+      confidence: 0.95
+    - pattern: "You have an error in your SQL syntax"
+      confidence: 0.9
+    - pattern: "check the manual that corresponds to your MySQL"
+      confidence: 0.95
+    - pattern: "supplied argument is not a valid MySQL"
+      confidence: 0.95
+
+  # MySQL 고유 함수
+  function_probes:
+    - function: "@@version"
+      expected_format: "5.x.x or 8.x.x or 10.x.x (MariaDB)"
+    - function: "VERSION()"
+      expected_format: "5.x.x-MySQL or similar"
+    - function: "DATABASE()"
+      returns: "current database name"
+    - function: "USER()"
+      returns: "user@host format"
+    - function: "@@datadir"
+      returns: "filesystem path"
+
+  # 시스템 테이블 존재 확인
+  system_tables:
+    - table: "information_schema.tables"
+      query: "SELECT 1 FROM information_schema.tables LIMIT 1"
+    - table: "mysql.user"
+      query: "SELECT 1 FROM mysql.user LIMIT 1"
+
+  # 버전별 특성
+  version_features:
+    "5.0+": "information_schema available"
+    "5.1+": "event scheduler"
+    "5.5+": "performance_schema"
+    "5.6+": "GTID replication"
+    "5.7+": "JSON type, sys schema"
+    "8.0+": "window functions, CTE"
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-CMP-00010  # MySQL Component (TODO)
+  conditional:
+    enables:
+      - GR-SEC-TEC-00003  # Time-based (SLEEP)
+      - GR-SEC-TEC-00004  # Error-based (EXTRACTVALUE)
+      - GR-SEC-TEC-00008  # Comment bypass (version comments)
+    informs:
+      - GR-SEC-INS-P0005  # Data extraction (MySQL syntax)
+
+properties:
+  security:
+    severity: info
+    purpose: reconnaissance
+    default_ports: [3306]
+    common_drivers:
+      - "mysql"
+      - "mysqli"
+      - "PDO_MYSQL"
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-fingerprints"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      MySQL DBMS Fingerprint는 대상 DB가 MySQL인지 확인하는
+      핑거프린트 집합이다. #주석, @@version, SLEEP(),
+      MySQL 버전 주석(/*!*/) 등의 고유 문법을 테스트한다.
+      에러 메시지 패턴(mysql_fetch, MariaDB 등)으로도
+      식별 가능하다. 정확한 DBMS 식별이 공격 페이로드
+      선택의 전제 조건이다.
+    search_keywords:
+      - "MySQL"
+      - "MariaDB"
+      - "fingerprint"
+      - "@@version"
+      - "SLEEP"
+      - "information_schema"

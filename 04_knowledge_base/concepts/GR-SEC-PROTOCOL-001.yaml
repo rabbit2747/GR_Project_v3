@@ -1,0 +1,104 @@
+# GR Atom: Security Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-PROTOCOL-001"
+  name: "Security Protocol"
+  normalization:
+    normalized_name: "security protocol communication authentication"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Protocol"
+    - "보안 프로토콜"
+    - "Communication Protocol"
+    - "통신 프로토콜"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "PROTOCOL", "ROOT"]
+
+definition:
+  what: |
+    안전한 통신, 인증, 키 교환 등을 위한 규칙과 절차의
+    집합인 보안 프로토콜의 최상위 분류이다.
+  why: |
+    안전한 데이터 전송을 보장한다.
+    인증과 무결성을 제공한다.
+    상호 운용성을 확보한다.
+  how: |
+    1. 프로토콜 선택
+    2. 올바른 구현
+    3. 안전한 설정
+    4. 취약점 모니터링
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "TECH-PROTOCOL-TLS-001"
+      - "TECH-PROTOCOL-SSH-001"
+      - "TECH-PROTOCOL-OAUTH-001"
+      - "TECH-PROTOCOL-KERBEROS-001"
+    related_to:
+      - "GR-SEC-CRYPTO-001"
+      - "GR-SEC-DEF-001"
+
+properties:
+  technical:
+    categories:
+      transport:
+        description: "전송 계층 보안"
+        examples: ["TLS/SSL", "DTLS", "SSH"]
+      authentication:
+        description: "인증 프로토콜"
+        examples: ["Kerberos", "OAuth", "SAML", "OIDC"]
+      key_exchange:
+        description: "키 교환 프로토콜"
+        examples: ["Diffie-Hellman", "ECDH", "IKE"]
+      network:
+        description: "네트워크 보안"
+        examples: ["IPSec", "WireGuard", "OpenVPN"]
+    security_properties:
+      - "Confidentiality (기밀성)"
+      - "Integrity (무결성)"
+      - "Authentication (인증)"
+      - "Non-repudiation (부인방지)"
+      - "Forward Secrecy (순방향 비밀성)"
+    common_vulnerabilities:
+      - "Protocol Downgrade"
+      - "Weak Cipher Suites"
+      - "Implementation Bugs"
+      - "Side-Channel Attacks"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "IETF RFCs"
+      - "NIST Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Protocol은 안전한 통신과 인증을 위한
+      규칙과 절차의 최상위 분류 개념이다.
+    search_keywords:
+      - "Protocol"
+      - "프로토콜"
+      - "TLS"
+      - "Authentication"

@@ -1,0 +1,80 @@
+# GR Atom: Audit Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "COMP-AUDIT-001"
+  name: "Audit Compliance"
+  normalization:
+    normalized_name: "audit compliance assessment certification"
+    normalization_version: "1.0"
+  aliases:
+    - "Audit Compliance"
+    - "감사 컴플라이언스"
+    - "Compliance Audit"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["CONCEPT", "COMPLIANCE", "AUDIT"]
+
+definition:
+  what: |
+    보안 감사 및 인증 관련 준수 분류이다.
+  why: |
+    감사 요건을 이해한다.
+    감사 대응을 체계화한다.
+    인증을 획득/유지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-COMP-001"
+    has_children:
+      - "COMP-AUDIT-INTERNAL-001"
+      - "COMP-AUDIT-EXTERNAL-001"
+    related_to:
+      - "DEF-AUDIT-001"
+      - "COMP-FRAMEWORK-001"
+
+properties:
+  technical:
+    types:
+      - "Internal Audit"
+      - "External Audit"
+      - "Third-Party Assessment"
+      - "Certification Audit"
+    activities:
+      - "Gap Assessment"
+      - "Control Testing"
+      - "Evidence Collection"
+      - "Remediation Tracking"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Audit Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Audit Compliance는 보안 감사 및 인증 준수 분류이다.
+    search_keywords:
+      - "Audit Compliance"
+      - "감사 컴플라이언스"
+      - "Certification"
+      - "Assessment"

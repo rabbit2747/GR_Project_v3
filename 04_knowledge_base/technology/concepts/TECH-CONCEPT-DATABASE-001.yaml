@@ -1,0 +1,102 @@
+# GR Atom: Database (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-DATABASE-001"
+  name: "Database"
+  normalization:
+    normalized_name: "database db data storage dbms"
+    normalization_version: "1.0"
+  aliases:
+    - "데이터베이스"
+    - "DB"
+    - "DBMS"
+    - "Data Store"
+    - "데이터 저장소"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DATA", "INFRA"]
+
+definition:
+  what: |
+    데이터베이스(Database)는 구조화된 데이터를 저장, 관리, 검색하는
+    시스템이다. RDBMS(관계형), NoSQL, 캐시 DB 등 다양한 유형이 있다.
+  why: |
+    애플리케이션 데이터의 영구 저장소로 핵심 자산을 보관한다.
+    SQL Injection이 가장 위험한 웹 취약점인 이유다.
+    데이터베이스 침해는 대규모 데이터 유출로 이어진다.
+  how: |
+    1. RDBMS: MySQL, PostgreSQL, Oracle (SQL 사용)
+    2. NoSQL: MongoDB, Redis, Cassandra (다양한 쿼리)
+    3. Cache: Redis, Memcached (고속 임시 저장)
+    4. Search: Elasticsearch (전문 검색)
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-DATA-RDBMS-001"
+      - "INFRA-DATA-CACHE-001"
+  causal:
+    enables:
+      - "ATK-INJECT-SQL-001"
+
+properties:
+  technical:
+    database_types:
+      - name: "RDBMS"
+        examples: ["MySQL", "PostgreSQL", "Oracle", "MSSQL"]
+        query_language: "SQL"
+      - name: "NoSQL"
+        examples: ["MongoDB", "Cassandra", "DynamoDB"]
+        query_language: "Various"
+      - name: "Cache"
+        examples: ["Redis", "Memcached"]
+        query_language: "Key-Value"
+    security_measures:
+      - "Parameterized Queries"
+      - "Least Privilege Access"
+      - "Encryption at Rest"
+      - "Network Isolation (Zone3)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Database Security"
+      - "CIS Database Benchmarks"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Database(데이터베이스)는 데이터를 저장하고 관리하는 시스템이다.
+      RDBMS(MySQL, PostgreSQL), NoSQL(MongoDB), Cache(Redis) 등이 있다.
+      SQL Injection의 주요 대상이며 데이터 유출의 핵심 경로다.
+      Zone3에 배치하고 Parameterized Query로 보호한다.
+    search_keywords:
+      - "Database"
+      - "데이터베이스"
+      - "RDBMS"
+      - "NoSQL"
+      - "SQL Injection"
+      - "데이터 저장"
+    related_queries:
+      - "데이터베이스 종류"
+      - "RDBMS vs NoSQL 비교"
+      - "데이터베이스 보안"
+      - "SQL Injection 방어"

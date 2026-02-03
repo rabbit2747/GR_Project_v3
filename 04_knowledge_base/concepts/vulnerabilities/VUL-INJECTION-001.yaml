@@ -1,0 +1,80 @@
+# GR Atom: Injection Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-INJECTION-001"
+  name: "Injection Vulnerability"
+  normalization:
+    normalized_name: "injection vulnerability sql command code"
+    normalization_version: "1.0"
+  aliases:
+    - "Injection Vulnerability"
+    - "인젝션 취약점"
+    - "Code Injection Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "INJECTION"]
+
+definition:
+  what: |
+    신뢰할 수 없는 데이터가 명령어나 쿼리에 삽입되어
+    의도치 않은 실행을 유발하는 취약점 분류이다.
+  why: |
+    데이터와 코드의 분리 실패를 식별한다.
+    입력 검증 필요성을 강조한다.
+    주입 공격을 방어한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-SQLI-001"
+      - "VUL-COMMAND-INJECTION-001"
+      - "VUL-LDAP-INJECTION-001"
+    related_to:
+      - "ATK-INJECTION-001"
+      - "DEF-INPUT-VALIDATION-001"
+
+properties:
+  technical:
+    types:
+      - "SQL Injection"
+      - "Command Injection"
+      - "LDAP Injection"
+      - "XPath Injection"
+      - "NoSQL Injection"
+      - "Template Injection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Injection Prevention"
+      - "CWE-74"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Injection Vulnerability는 코드/명령 인젝션 관련 취약점 분류이다.
+    search_keywords:
+      - "Injection Vulnerability"
+      - "인젝션 취약점"
+      - "SQL Injection"
+      - "Command Injection"

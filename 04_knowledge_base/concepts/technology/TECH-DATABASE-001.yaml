@@ -1,0 +1,82 @@
+# GR Atom: Database Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-DATABASE-001"
+  name: "Database Technology"
+  normalization:
+    normalized_name: "database technology sql nosql rdbms"
+    normalization_version: "1.0"
+  aliases:
+    - "Database Technology"
+    - "데이터베이스 기술"
+    - "DBMS Technology"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "DATABASE"]
+
+definition:
+  what: |
+    데이터 저장, 관리, 조회를 위한 데이터베이스 기술 분류이다.
+  why: |
+    데이터베이스 기술을 이해한다.
+    데이터베이스 보안을 평가한다.
+    데이터 아키텍처를 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-DB-SQL-001"
+      - "TECH-DB-NOSQL-001"
+    related_to:
+      - "VUL-INJECTION-001"
+      - "DEF-DB-SEC-001"
+
+properties:
+  technical:
+    types:
+      - "Relational (SQL)"
+      - "NoSQL"
+      - "Graph"
+      - "Time-Series"
+      - "In-Memory"
+    examples:
+      - "MySQL"
+      - "PostgreSQL"
+      - "MongoDB"
+      - "Redis"
+      - "Elasticsearch"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Database Security Standards"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Database Technology는 데이터 저장 및 관리 기술 분류이다.
+    search_keywords:
+      - "Database Technology"
+      - "데이터베이스 기술"
+      - "SQL"
+      - "NoSQL"

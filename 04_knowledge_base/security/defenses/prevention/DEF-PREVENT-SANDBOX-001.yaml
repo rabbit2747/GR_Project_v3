@@ -1,0 +1,90 @@
+# GR Atom: Sandboxing
+identity:
+  id: "DEF-PREVENT-SANDBOX-001"
+  name: "Sandboxing"
+  normalization:
+    normalized_name: "sandboxing"
+    normalization_version: "1.0"
+  aliases:
+    - "Sandbox Isolation"
+    - "Process Sandboxing"
+    - "샌드박싱"
+    - "샌드박스 격리"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone2"
+    tags: ["P"]
+
+definition:
+  what: |
+    신뢰할 수 없는 코드나 프로세스를 격리된 환경(샌드박스)에서 실행하여,
+    악의적인 동작이 호스트 시스템이나 다른 프로세스에 영향을 미치지 못하게 하는 방어 기법.
+  why: |
+    신뢰할 수 없는 코드(사용자 업로드 파일, 서드파티 플러그인, 외부 스크립트 등)가
+    시스템 리소스에 무제한 접근할 경우, 시스템 장악, 데이터 유출, 악성코드 확산 등
+    치명적인 보안 사고가 발생할 수 있다. 샌드박싱은 이러한 위험을 격리하여 차단한다.
+  how: |
+    1. 컨테이너 격리: Docker, Podman 등 컨테이너 기술로 프로세스를 격리한다.
+    2. OS 수준 샌드박스: seccomp, AppArmor, SELinux 등으로 시스템 콜을 제한한다.
+    3. 브라우저 샌드박스: iframe sandbox 속성, Web Workers를 활용한다.
+    4. VM 격리: 가상머신을 사용하여 완전한 환경 격리를 구현한다.
+    5. 언어 수준 샌드박스: WebAssembly, Java SecurityManager 등을 활용한다.
+    6. 최소 권한 원칙을 적용하여 샌드박스 내 권한을 최소화한다.
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-DEFENSE-001"]
+  causal:
+    prevents:
+      - "ATK-EXEC-RCE-001"
+      - "ATK-PRIV-ESCAPE-001"
+  applicability:
+    applies_to:
+      - "INFRA-COMPUTE-SERVER-001"
+      - "INFRA-COMPUTE-CONTAINER-001"
+
+properties:
+  technical:
+    implementation:
+      - "Container isolation (Docker, Podman)"
+      - "OS sandboxing (seccomp, AppArmor, SELinux)"
+      - "Browser sandbox (iframe sandbox, Web Workers)"
+      - "VM isolation (KVM, Hyper-V)"
+      - "WebAssembly sandboxing"
+  security:
+    effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Sandboxing은 신뢰할 수 없는 코드나 프로세스를 격리된 환경에서 실행하여
+      호스트 시스템에 영향을 미치지 못하게 하는 방어 기법이다. 컨테이너, OS 샌드박스,
+      VM 격리 등 다양한 수준의 격리 기술을 활용한다.
+    search_keywords:
+      - "sandboxing"
+      - "process isolation"
+      - "container isolation"
+      - "sandbox security"
+      - "샌드박싱"
+    related_queries:
+      - "샌드박스 격리 기술의 종류"
+      - "컨테이너 기반 샌드박싱 구현"
+      - "브라우저 샌드박스 설정 방법"

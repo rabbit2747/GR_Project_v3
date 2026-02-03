@@ -1,0 +1,118 @@
+# GR Atom: Attack Surface Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-ATTACK-SURFACE-001"
+  name: "Attack Surface Management"
+  normalization:
+    normalized_name: "attack surface management asm external exposure"
+    normalization_version: "1.0"
+  aliases:
+    - "ASM"
+    - "공격 표면 관리"
+    - "External Attack Surface"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["CONCEPT", "OPERATIONS", "RECON"]
+
+definition:
+  what: |
+    조직의 외부 노출 자산을 지속적으로 발견, 분류, 모니터링하여
+    공격 표면을 관리하는 프로세스이다.
+  why: |
+    알려지지 않은 자산을 발견한다.
+    외부 노출 위험을 줄인다.
+  how: |
+    1. 자산 발견
+    2. 인벤토리 구축
+    3. 위험 평가
+    4. 지속 모니터링
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SECURITY-OPERATIONS-001"
+    related_to:
+      - "TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001"
+      - "TOOL-RECON-SHODAN-001"
+
+properties:
+  technical:
+    attack_surface_types:
+      - name: "Digital"
+        examples: ["도메인", "IP", "클라우드", "API"]
+      - name: "Physical"
+        examples: ["사무실", "데이터센터", "IoT"]
+      - name: "Human"
+        examples: ["직원", "파트너", "소셜미디어"]
+    easm_capabilities:
+      - name: "Asset Discovery"
+        methods:
+          - "DNS 열거"
+          - "인증서 투명성"
+          - "포트 스캔"
+          - "클라우드 발견"
+      - name: "Risk Assessment"
+        factors:
+          - "취약점 존재"
+          - "데이터 노출"
+          - "설정 오류"
+          - "폐기 자산"
+      - name: "Continuous Monitoring"
+        frequency: "실시간/일간/주간"
+    common_exposures:
+      - "Shadow IT"
+      - "미사용 서브도메인"
+      - "노출된 개발 환경"
+      - "클라우드 스토리지 공개"
+      - "인증서 만료"
+      - "기본 자격증명"
+    tools:
+      commercial:
+        - "Mandiant Attack Surface Management"
+        - "Microsoft Defender EASM"
+        - "CyCognito"
+        - "Censys"
+      open_source:
+        - "Amass"
+        - "Subfinder"
+        - "httpx"
+    metrics:
+      - "자산 발견율"
+      - "미관리 자산 수"
+      - "고위험 노출 수"
+      - "평균 발견 시간"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner EASM"
+      - "CISA ASM"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Attack Surface Management는 외부 노출 자산을
+      발견하고 모니터링하여 공격 표면을 관리한다.
+    search_keywords:
+      - "Attack Surface"
+      - "ASM"
+      - "EASM"
+      - "외부 노출"

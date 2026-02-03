@@ -1,0 +1,112 @@
+# GR Atom: Single Sign-On
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-AUTH-SSO-001"
+  name: "Single Sign-On"
+  normalization:
+    normalized_name: "sso single sign on saml oauth oidc federation"
+    normalization_version: "1.0"
+  aliases:
+    - "SSO"
+    - "싱글 사인온"
+    - "통합 인증"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "AUTH", "IAM"]
+
+definition:
+  what: |
+    한 번의 인증으로 여러 애플리케이션과 서비스에
+    접근할 수 있게 하는 인증 메커니즘이다.
+  why: |
+    사용자 경험을 개선한다.
+    비밀번호 관리 부담을 줄인다.
+  how: |
+    1. Identity Provider 인증
+    2. 토큰/어설션 발급
+    3. Service Provider 검증
+    4. 세션 생성
+
+relations:
+  structural:
+    is_a:
+      - "DEF-AUTH-001"
+    related_to:
+      - "DEF-AUTH-MFA-001"
+      - "TECH-CONCEPT-IAM-001"
+
+properties:
+  technical:
+    protocols:
+      - name: "SAML 2.0"
+        description: "XML 기반 엔터프라이즈 표준"
+        components: ["IdP", "SP", "Assertion"]
+        binding: ["HTTP POST", "HTTP Redirect"]
+      - name: "OAuth 2.0"
+        description: "권한 위임 프레임워크"
+        flows: ["Authorization Code", "Client Credentials", "PKCE"]
+      - name: "OpenID Connect (OIDC)"
+        description: "OAuth 2.0 기반 인증 레이어"
+        tokens: ["ID Token", "Access Token", "Refresh Token"]
+      - name: "Kerberos"
+        description: "티켓 기반 인증 프로토콜"
+        components: ["KDC", "TGT", "Service Ticket"]
+    identity_providers:
+      cloud:
+        - "Okta"
+        - "Azure AD"
+        - "Auth0"
+        - "Ping Identity"
+      on_premises:
+        - "Active Directory"
+        - "LDAP"
+        - "Keycloak"
+    security_considerations:
+      - "토큰 탈취 시 모든 서비스 침해"
+      - "IdP가 단일 실패 지점"
+      - "세션 관리 중요"
+    attacks:
+      - "Token Replay"
+      - "Session Hijacking"
+      - "SAML Signature Bypass"
+      - "OAuth Token Theft"
+    best_practices:
+      - "MFA 연동"
+      - "토큰 수명 최소화"
+      - "세션 모니터링"
+      - "강력한 IdP 보안"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OASIS SAML"
+      - "OAuth 2.0 RFC 6749"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSO는 한 번의 인증으로 여러 서비스에 접근하게 하는
+      SAML, OAuth, OIDC 기반의 통합 인증 메커니즘이다.
+    search_keywords:
+      - "SSO"
+      - "Single Sign-On"
+      - "SAML"
+      - "OAuth"

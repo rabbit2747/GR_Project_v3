@@ -1,0 +1,117 @@
+# GR Atom: API Authentication Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-API-AUTH-001"
+  name: "API Authentication"
+  normalization:
+    normalized_name: "api authentication oauth jwt bearer token api key"
+    normalization_version: "1.0"
+  aliases:
+    - "API 인증"
+    - "API Auth"
+    - "토큰 인증"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["DEF", "API", "AUTH"]
+
+definition:
+  what: |
+    API 인증은 API 요청자의 신원을 확인하는 보안 메커니즘이다.
+    OAuth 2.0, JWT, API Key 등 다양한 방식이 사용된다.
+  why: |
+    무단 API 접근을 방지하고 사용자별 접근 제어를 가능하게 한다.
+    API 보안의 첫 번째 방어선이며 OWASP API Security의 핵심이다.
+  how: |
+    1. API Key: 간단한 식별자 기반 인증
+    2. OAuth 2.0: 위임된 인가 프레임워크
+    3. JWT: 자체 포함된 토큰 인증
+    4. mTLS: 상호 TLS 인증
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "TECH-PROTOCOL-OAUTH-001"
+      - "TECH-FORMAT-JWT-001"
+  causal:
+    mitigates:
+      - "VUL-AUTH-BROKEN-001"
+      - "VUL-API-BOLA-001"
+
+properties:
+  technical:
+    authentication_methods:
+      - name: "API Key"
+        description: "단순 식별자"
+        location: "Header, Query Parameter"
+        security_level: "낮음"
+        use_case: "내부 서비스, 저위험 API"
+      - name: "OAuth 2.0 + JWT"
+        description: "표준 인가 프레임워크"
+        security_level: "높음"
+        use_case: "사용자 대면 API, 타사 통합"
+      - name: "JWT Bearer Token"
+        description: "자체 포함된 토큰"
+        security_level: "중간-높음"
+        use_case: "마이크로서비스, SPA"
+      - name: "mTLS"
+        description: "상호 인증서 인증"
+        security_level: "매우 높음"
+        use_case: "서비스 간 통신, 고보안 API"
+    best_practices:
+      - "HTTPS 필수 사용"
+      - "토큰 만료 시간 짧게 설정"
+      - "Refresh Token 구현"
+      - "토큰 저장소 보안"
+      - "API Key 정기 순환"
+      - "Rate Limiting 병행"
+    common_mistakes:
+      - "API Key를 URL에 노출"
+      - "토큰 만료 없음"
+      - "JWT 서명 검증 안함"
+      - "Weak Secret 사용"
+      - "토큰을 Local Storage에 저장"
+    implementation:
+      - "Authorization: Bearer <token>"
+      - "X-API-Key: <key>"
+      - "JWT RS256 또는 ES256 서명"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OAuth 2.0 RFC 6749"
+      - "OWASP API Security Top 10"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      API 인증은 API 요청자 신원 확인 메커니즘이다. OAuth 2.0, JWT, API Key, mTLS가
+      주요 방식이며 HTTPS, 토큰 만료, 서명 검증이 핵심 보안 요소다.
+    search_keywords:
+      - "API 인증"
+      - "OAuth"
+      - "JWT"
+      - "API Key"
+    related_queries:
+      - "API 보안"
+      - "토큰 인증"
+      - "Bearer Token"

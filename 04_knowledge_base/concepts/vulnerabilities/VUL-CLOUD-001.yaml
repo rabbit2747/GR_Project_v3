@@ -1,0 +1,80 @@
+# GR Atom: Cloud Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-CLOUD-001"
+  name: "Cloud Vulnerability"
+  normalization:
+    normalized_name: "cloud vulnerability aws azure gcp misconfiguration"
+    normalization_version: "1.0"
+  aliases:
+    - "Cloud Vulnerability"
+    - "클라우드 취약점"
+    - "Cloud Security Vulnerability"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["CONCEPT", "VULNERABILITY", "CLOUD"]
+
+definition:
+  what: |
+    클라우드 환경의 설정, 아키텍처, 서비스 결함으로 인한 취약점 분류이다.
+  why: |
+    클라우드 보안 취약점을 식별한다.
+    클라우드 보안 태세를 강화한다.
+    클라우드 침해를 방지한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    has_children:
+      - "VUL-CLOUD-IAM-001"
+      - "VUL-CLOUD-STORAGE-001"
+    related_to:
+      - "ATK-CLOUD-001"
+      - "DEF-CLOUD-001"
+      - "INFRA-CLOUD-001"
+
+properties:
+  technical:
+    categories:
+      - "IAM Misconfiguration"
+      - "Public Storage Buckets"
+      - "Insecure APIs"
+      - "Metadata Service Exposure"
+      - "Network Exposure"
+      - "Insufficient Logging"
+    platforms: ["AWS", "Azure", "GCP"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CSA Cloud Security"
+      - "MITRE ATT&CK Cloud"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Vulnerability는 클라우드 환경의 보안 취약점 분류이다.
+    search_keywords:
+      - "Cloud Vulnerability"
+      - "클라우드 취약점"
+      - "AWS Security"
+      - "Azure Security"

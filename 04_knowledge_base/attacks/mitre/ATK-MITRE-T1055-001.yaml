@@ -1,0 +1,95 @@
+# GR Atom: Process Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1055-001"
+  name: "Process Injection"
+  normalization:
+    normalized_name: "process injection dll hollowing shellcode"
+    normalization_version: "1.0"
+  aliases:
+    - "DLL Injection"
+    - "Process Hollowing"
+    - "프로세스 인젝션"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "EVASION"]
+
+definition:
+  what: |
+    다른 프로세스의 메모리 공간에 악성 코드를 삽입하여
+    정상 프로세스를 위장하는 방어 우회 기법이다.
+  why: |
+    보안 솔루션 탐지를 회피한다.
+    정상 프로세스로 위장하여 활동한다.
+  how: |
+    1. 타겟 프로세스 선택
+    2. 메모리 할당
+    3. 코드 삽입
+    4. 실행 흐름 변경
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0005-001"
+    related_to:
+      - "ATK-MITRE-T1036-001"
+      - "ATK-MALWARE-ROOTKIT-001"
+
+properties:
+  technical:
+    mitre_id: "T1055"
+    tactic: "Defense Evasion, Privilege Escalation"
+    sub_techniques:
+      - id: "T1055.001"
+        name: "DLL Injection"
+      - id: "T1055.002"
+        name: "Portable Executable Injection"
+      - id: "T1055.003"
+        name: "Thread Execution Hijacking"
+      - id: "T1055.004"
+        name: "Asynchronous Procedure Call"
+      - id: "T1055.012"
+        name: "Process Hollowing"
+    api_calls:
+      - "VirtualAllocEx"
+      - "WriteProcessMemory"
+      - "CreateRemoteThread"
+      - "NtUnmapViewOfSection"
+    detection:
+      - "API 호출 모니터링"
+      - "메모리 이상 탐지"
+      - "Sysmon Event ID 8"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1055"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Process Injection은 다른 프로세스에 코드를 삽입하여
+      탐지를 회피하는 MITRE ATT&CK 방어 우회 기법이다.
+    search_keywords:
+      - "Process Injection"
+      - "DLL Injection"
+      - "Process Hollowing"
+      - "T1055"

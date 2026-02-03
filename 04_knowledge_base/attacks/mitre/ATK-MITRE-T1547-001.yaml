@@ -1,0 +1,110 @@
+# GR Atom: Boot or Logon Autostart Execution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1547-001"
+  name: "Boot or Logon Autostart Execution"
+  normalization:
+    normalized_name: "persistence autostart registry startup run key"
+    normalization_version: "1.0"
+  aliases:
+    - "Registry Run Keys"
+    - "자동 시작 지속성"
+    - "Startup Persistence"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "PERSIST"]
+
+definition:
+  what: |
+    시스템 부팅이나 사용자 로그온 시 자동 실행되도록
+    설정하여 지속성을 확보하는 기법이다.
+  why: |
+    시스템 재부팅 후에도 접근을 유지한다.
+    자동으로 악성코드를 실행한다.
+  how: |
+    1. 자동 시작 위치 식별
+    2. 레지스트리/폴더 수정
+    3. 페이로드 배치
+    4. 재부팅 시 실행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0003-001"
+    related_to:
+      - "ATK-MITRE-T1053-001"
+      - "ATK-MALWARE-PERSISTENCE-001"
+
+properties:
+  technical:
+    mitre_id: "T1547"
+    tactic: "Persistence, Privilege Escalation"
+    sub_techniques:
+      - id: "T1547.001"
+        name: "Registry Run Keys / Startup Folder"
+        locations:
+          - "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+          - "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+          - "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+      - id: "T1547.004"
+        name: "Winlogon Helper DLL"
+      - id: "T1547.005"
+        name: "Security Support Provider"
+      - id: "T1547.009"
+        name: "Shortcut Modification"
+    windows_locations:
+      registry:
+        - "Run, RunOnce"
+        - "RunServices, RunServicesOnce"
+        - "Winlogon\\Shell"
+        - "Winlogon\\Userinit"
+      folder:
+        - "Startup 폴더"
+        - "All Users Startup"
+    linux_locations:
+      - "/etc/rc.local"
+      - "crontab @reboot"
+      - ".bashrc, .profile"
+      - "systemd service"
+    detection:
+      - "레지스트리 변경 모니터링"
+      - "Autoruns 분석"
+      - "Sysmon Event ID 12, 13"
+    prevention:
+      - "레지스트리 감시"
+      - "EDR 모니터링"
+      - "최소 권한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1547"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1547은 레지스트리 Run 키나 시작 폴더를 수정하여
+      부팅/로그온 시 자동 실행되는 MITRE ATT&CK 지속성 기법이다.
+    search_keywords:
+      - "Autostart Execution"
+      - "T1547"
+      - "Registry Run"
+      - "Persistence"

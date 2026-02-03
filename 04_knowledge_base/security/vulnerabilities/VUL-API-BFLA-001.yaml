@@ -1,0 +1,114 @@
+# GR Atom: Broken Function Level Authorization (BFLA)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "VUL-API-BFLA-001"
+  name: "Broken Function Level Authorization (BFLA)"
+  normalization:
+    normalized_name: "bfla broken function level authorization api privilege escalation"
+    normalization_version: "1.0"
+  aliases:
+    - "BFLA"
+    - "기능 수준 인가 취약점"
+    - "API 권한 상승"
+    - "API5:2023"
+
+classification:
+  domain: security
+  type: vulnerability
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone3"
+    tags: ["VUL", "API", "AUTHZ"]
+
+definition:
+  what: |
+    BFLA(Broken Function Level Authorization)는 API가 기능(함수/엔드포인트) 호출 시
+    사용자 역할과 권한을 제대로 검증하지 않아 권한 상승이 가능한 취약점이다.
+  why: |
+    관리자 기능 무단 접근, 시스템 설정 변경, 데이터 조작이 가능하다.
+    BOLA가 수평적 권한 상승이라면 BFLA는 수직적 권한 상승에 해당한다.
+  how: |
+    1. 일반 사용자로 API 분석
+    2. 관리자 전용 엔드포인트 발견 (/admin/*, /api/internal/*)
+    3. 해당 엔드포인트 직접 호출
+    4. 권한 검사 우회하여 관리 기능 실행
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-VULNERABILITY-001"
+    related_to:
+      - "VUL-ACCESS-BROKEN-001"
+      - "VUL-API-BOLA-001"
+  causal:
+    affects:
+      - "TECH-CONCEPT-REST-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    owasp_api_rank: 5
+    attack_patterns:
+      - name: "URL 추측"
+        description: "/api/users → /api/admin/users"
+      - name: "HTTP 메서드 변경"
+        description: "GET → DELETE, POST"
+      - name: "Role 파라미터 조작"
+        description: "role=user → role=admin"
+      - name: "관리자 엔드포인트 직접 호출"
+        description: "/api/v1/admin/config"
+    common_endpoints:
+      - "/admin/*"
+      - "/internal/*"
+      - "/api/v*/admin/*"
+      - "/management/*"
+      - "/actuator/*"
+    detection:
+      - "역할별 접근 권한 매트릭스 검토"
+      - "권한 없는 사용자로 관리 API 호출 테스트"
+      - "HTTP 메서드별 권한 검사 테스트"
+    prevention:
+      - "역할 기반 접근 제어 (RBAC)"
+      - "모든 엔드포인트에 권한 검사"
+      - "관리 기능 분리 배포"
+      - "엔드포인트 목록 최소 노출"
+      - "기본 거부 정책 적용"
+  security:
+    severity: high
+    cvss_base: 8.0
+    cwe_id: "CWE-285"
+    owasp_category: "API5:2023 - Broken Function Level Authorization"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10 2023"
+      - "CWE-285: Improper Authorization"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BFLA는 API 기능 수준 인가 취약점으로 수직적 권한 상승을 허용한다.
+      관리자 엔드포인트 무단 접근이 가능하며 RBAC, 권한 검사 강화로 방어한다.
+    search_keywords:
+      - "BFLA"
+      - "기능 권한"
+      - "API 권한 상승"
+      - "관리자 API"
+    related_queries:
+      - "API 권한 상승"
+      - "RBAC"
+      - "관리 API 보안"

@@ -1,0 +1,119 @@
+# GR Atom: Amass
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-RECON-AMASS-001"
+  name: "Amass"
+  normalization:
+    normalized_name: "amass subdomain enumeration attack surface mapping"
+    normalization_version: "1.0"
+  aliases:
+    - "Amass"
+    - "서브도메인 열거"
+    - "공격 표면 매핑"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "RECON", "DNS"]
+
+definition:
+  what: |
+    OWASP 프로젝트의 네트워크 매핑 및 공격 표면 발견 도구로
+    서브도메인 열거와 자산 발견에 특화되어 있다.
+  why: |
+    조직의 외부 공격 표면을 파악한다.
+    숨겨진 서브도메인을 발견한다.
+  how: |
+    1. 타겟 도메인 지정
+    2. 다양한 소스에서 정보 수집
+    3. DNS 확인 및 검증
+    4. 공격 표면 매핑
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-RECON-001"
+    related_to:
+      - "ATK-RECON-SCAN-001"
+      - "TECH-CONCEPT-OSINT-001"
+
+properties:
+  technical:
+    project: "OWASP"
+    language: "Go"
+    modes:
+      - name: "enum"
+        description: "서브도메인 열거"
+      - name: "intel"
+        description: "인텔리전스 수집"
+      - name: "track"
+        description: "변경 추적"
+      - name: "db"
+        description: "데이터베이스 관리"
+    data_sources:
+      passive:
+        - "Certificate Transparency"
+        - "DNS 아카이브"
+        - "검색 엔진"
+        - "Wayback Machine"
+        - "VirusTotal"
+        - "Shodan"
+      active:
+        - "DNS 브루트포스"
+        - "Zone Transfer"
+        - "DNS 와일드카드"
+        - "역방향 DNS"
+    usage_examples:
+      basic: "amass enum -d target.com"
+      passive: "amass enum -passive -d target.com"
+      brute: "amass enum -brute -d target.com -w wordlist.txt"
+      output: "amass enum -d target.com -o results.txt"
+    features:
+      - "80+ 데이터 소스"
+      - "능동/수동 열거"
+      - "그래프 데이터베이스"
+      - "API 키 통합"
+      - "시각화"
+    output_formats:
+      - "텍스트"
+      - "JSON"
+      - "그래프 (Maltego)"
+    license: "Apache 2.0"
+    repository: "https://github.com/owasp-amass/amass"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Amass"
+      - "Attack Surface Management"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Amass는 OWASP 프로젝트의 공격 표면 매핑 도구로
+      80개 이상의 소스에서 서브도메인을 열거한다.
+    search_keywords:
+      - "Amass"
+      - "서브도메인"
+      - "공격 표면"
+      - "DNS 열거"
+    related_queries:
+      - "외부 정찰"
+      - "자산 발견"
+      - "OSINT"

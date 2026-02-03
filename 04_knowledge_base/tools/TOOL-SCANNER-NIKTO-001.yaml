@@ -1,0 +1,108 @@
+# GR Atom: Nikto
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCANNER-NIKTO-001"
+  name: "Nikto"
+  normalization:
+    normalized_name: "nikto web server scanner vulnerability cgi"
+    normalization_version: "1.0"
+  aliases:
+    - "Nikto"
+    - "Nikto2"
+    - "웹 서버 스캐너"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "SCANNER", "WEB"]
+
+definition:
+  what: |
+    웹 서버의 보안 취약점, 잘못된 설정, 위험한 파일을
+    탐지하는 오픈소스 웹 서버 스캐너이다.
+  why: |
+    웹 서버 보안 문제를 발견한다.
+    빠른 초기 평가를 수행한다.
+  how: |
+    1. 타겟 지정
+    2. 스캔 옵션 설정
+    3. 검사 실행
+    4. 결과 분석
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-SCANNER-001"
+    related_to:
+      - "TOOL-PENTEST-BURPSUITE-001"
+      - "VUL-CONFIG-MISCONFIGURATION-001"
+
+properties:
+  technical:
+    license: "GPL"
+    language: "Perl"
+    checks:
+      - "7000+ 위험한 파일/CGI"
+      - "1250+ 서버 버전"
+      - "270+ 버전별 문제"
+    detection_types:
+      - "위험한 파일/프로그램"
+      - "구버전 소프트웨어"
+      - "서버 설정 오류"
+      - "기본 파일"
+      - "디렉토리 인덱싱"
+    usage_examples:
+      basic: "nikto -h http://target"
+      ssl: "nikto -h https://target -ssl"
+      output: "nikto -h target -o report.html -Format htm"
+      tuning: "nikto -h target -Tuning 1234"
+    tuning_options:
+      "1": "Interesting File"
+      "2": "Misconfiguration"
+      "3": "Information Disclosure"
+      "4": "Injection (XSS/Script/HTML)"
+      "5": "Remote File Retrieval"
+      "6": "Denial of Service"
+      "7": "Remote File Retrieval (Server Wide)"
+      "8": "Command Execution"
+      "9": "SQL Injection"
+    limitations:
+      - "노이즈가 많음"
+      - "스텔스하지 않음"
+      - "최신 취약점 제한적"
+      - "웹 앱 로직 테스트 불가"
+    use_case: "초기 정찰, 빠른 평가"
+    repository: "https://github.com/sullo/nikto"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Nikto GitHub"
+      - "CIRT.net"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Nikto는 웹 서버의 위험한 파일, 설정 오류, 구버전을
+      탐지하는 오픈소스 웹 서버 스캐너이다.
+    search_keywords:
+      - "Nikto"
+      - "Web Scanner"
+      - "웹 서버 스캔"
+      - "CGI Scanner"

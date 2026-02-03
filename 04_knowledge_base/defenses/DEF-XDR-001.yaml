@@ -1,0 +1,112 @@
+# GR Atom: Extended Detection and Response
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-XDR-001"
+  name: "Extended Detection and Response"
+  normalization:
+    normalized_name: "xdr extended detection response unified security"
+    normalization_version: "1.0"
+  aliases:
+    - "XDR"
+    - "확장 탐지 대응"
+    - "Unified Security"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "DETECT", "UNIFIED"]
+
+definition:
+  what: |
+    엔드포인트, 네트워크, 클라우드 등 다양한 보안 계층의
+    데이터를 통합 분석하여 탐지/대응하는 플랫폼이다.
+  why: |
+    보안 사일로를 해소한다.
+    통합된 위협 가시성을 제공한다.
+  how: |
+    1. 다중 소스 데이터 수집
+    2. 상관분석 및 탐지
+    3. 통합 조사
+    4. 자동화된 대응
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    related_to:
+      - "DEF-ENDPOINT-EDR-001"
+      - "DEF-SIEM-001"
+
+properties:
+  technical:
+    data_sources:
+      - "엔드포인트 (EDR)"
+      - "네트워크 (NTA, NDR)"
+      - "이메일"
+      - "클라우드 (CASB, CWPP)"
+      - "Identity"
+    vs_edr:
+      edr: "엔드포인트만"
+      xdr: "다중 계층 통합"
+    vs_siem:
+      siem: "로그 수집/상관분석 중심"
+      xdr: "탐지/대응 중심, 네이티브 통합"
+    types:
+      native_xdr:
+        description: "단일 벤더 통합 솔루션"
+        pros: "원활한 통합"
+        cons: "벤더 종속"
+      open_xdr:
+        description: "다중 벤더 통합"
+        pros: "유연성"
+        cons: "통합 복잡성"
+    key_capabilities:
+      - "자동 상관분석"
+      - "크로스 레이어 탐지"
+      - "통합 인시던트 뷰"
+      - "자동화된 대응"
+      - "위협 사냥"
+    popular_solutions:
+      - "Palo Alto Cortex XDR"
+      - "Microsoft Defender XDR"
+      - "CrowdStrike Falcon XDR"
+      - "SentinelOne Singularity"
+      - "Trend Micro Vision One"
+    benefits:
+      - "탐지 정확도 향상"
+      - "조사 시간 단축"
+      - "도구 통합"
+      - "TCO 절감"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner XDR"
+      - "Forrester XDR"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      XDR은 엔드포인트, 네트워크, 클라우드 데이터를 통합
+      분석하여 탐지/대응하는 확장된 보안 플랫폼이다.
+    search_keywords:
+      - "XDR"
+      - "Extended Detection"
+      - "통합 보안"
+      - "탐지 대응"

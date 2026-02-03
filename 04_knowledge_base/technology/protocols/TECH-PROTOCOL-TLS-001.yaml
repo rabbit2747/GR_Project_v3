@@ -1,0 +1,112 @@
+# GR Atom: TLS Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-TLS-001"
+  name: "TLS (Transport Layer Security)"
+  normalization:
+    normalized_name: "tls transport layer security ssl encryption"
+    normalization_version: "1.0"
+  aliases:
+    - "TLS"
+    - "SSL"
+    - "전송 계층 보안"
+    - "Transport Layer Security"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Cross"
+    tags: ["TECH", "PROTOCOL", "CRYPTO"]
+
+definition:
+  what: |
+    TLS(Transport Layer Security)는 네트워크 통신을 암호화하는 프로토콜이다.
+    SSL의 후속 버전이며 HTTPS, SMTPS, LDAPS 등의 기반이 된다.
+  why: |
+    인터넷 통신 암호화의 표준이다. 다운그레이드 공격, 약한 암호 스위트,
+    인증서 검증 오류가 주요 보안 위협이다.
+  how: |
+    1. Handshake: 클라이언트-서버 협상 (버전, 암호 스위트)
+    2. Key Exchange: 비대칭 암호화로 세션 키 교환
+    3. Authentication: 인증서로 서버(선택적으로 클라이언트) 인증
+    4. Encryption: 대칭 암호화로 데이터 암호화
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+    required_by:
+      - "TECH-PROTOCOL-HTTPS-001"
+  causal:
+    prevents:
+      - "ATK-NET-MITM-001"
+      - "ATK-NET-SNIFF-001"
+    requires:
+      - "TECH-CONCEPT-CERTIFICATE-001"
+
+properties:
+  technical:
+    versions:
+      - version: "TLS 1.0"
+        status: "Deprecated (2021)"
+        issues: ["BEAST", "POODLE"]
+      - version: "TLS 1.1"
+        status: "Deprecated (2021)"
+        issues: ["No AEAD"]
+      - version: "TLS 1.2"
+        status: "Widely supported"
+        features: ["AEAD ciphers", "SHA-256"]
+      - version: "TLS 1.3"
+        status: "Recommended (2018)"
+        features: ["Faster handshake", "Removed weak ciphers"]
+    cipher_suites:
+      recommended:
+        - "TLS_AES_256_GCM_SHA384"
+        - "TLS_CHACHA20_POLY1305_SHA256"
+        - "TLS_AES_128_GCM_SHA256"
+      deprecated:
+        - "TLS_RSA_*"
+        - "TLS_*_CBC_*"
+        - "TLS_*_RC4_*"
+    common_vulnerabilities:
+      - "BEAST (TLS 1.0)"
+      - "POODLE (SSL 3.0 fallback)"
+      - "FREAK (Export ciphers)"
+      - "Logjam (Weak DH)"
+      - "Heartbleed (OpenSSL bug)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 8446 (TLS 1.3)"
+      - "NIST TLS Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      TLS(Transport Layer Security)는 네트워크 통신 암호화 프로토콜이다.
+      TLS 1.3이 권장되며 다운그레이드 공격, 약한 암호 스위트가 보안 위협이다.
+    search_keywords:
+      - "TLS"
+      - "SSL"
+      - "전송 계층 보안"
+      - "HTTPS 암호화"
+    related_queries:
+      - "TLS 버전 비교"
+      - "TLS 1.3 특징"
+      - "SSL vs TLS"

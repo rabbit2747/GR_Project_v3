@@ -1,0 +1,123 @@
+# GR Atom: Network Firewall Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-FIREWALL-001"
+  name: "Network Firewall Security"
+  normalization:
+    normalized_name: "firewall network security packet filter stateful ngfw"
+    normalization_version: "1.0"
+  aliases:
+    - "방화벽"
+    - "네트워크 방화벽"
+    - "NGFW"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["DEF", "NET", "FIREWALL"]
+
+definition:
+  what: |
+    방화벽은 네트워크 트래픽을 모니터링하고 보안 정책에 따라
+    허용 또는 차단하는 네트워크 보안 장치다.
+  why: |
+    네트워크 경계 보안의 기본이다. 무단 접근을 차단하고
+    내부 네트워크를 외부 위협으로부터 보호한다.
+  how: |
+    1. 트래픽 검사
+    2. 정책 매칭
+    3. 허용/차단 결정
+    4. 로깅 및 알림
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "DEF-NET-IDS-001"
+      - "DEF-ARCH-ZERO-TRUST-001"
+
+properties:
+  technical:
+    types:
+      - name: "Packet Filtering"
+        layer: "L3-L4"
+        basis: "IP, 포트, 프로토콜"
+        limitation: "상태 비추적"
+      - name: "Stateful Inspection"
+        layer: "L3-L4"
+        basis: "연결 상태 추적"
+        advantage: "컨텍스트 인식"
+      - name: "Application Firewall"
+        layer: "L7"
+        basis: "애플리케이션 프로토콜"
+        example: "WAF"
+      - name: "NGFW (Next-Gen)"
+        layer: "L3-L7"
+        features:
+          - "IPS 통합"
+          - "애플리케이션 인식"
+          - "사용자 인식"
+          - "SSL 검사"
+          - "위협 인텔리전스"
+    deployment_models:
+      - name: "Network Firewall"
+        placement: "네트워크 경계"
+      - name: "Host Firewall"
+        placement: "개별 호스트"
+      - name: "Cloud Firewall"
+        examples: ["AWS SG", "Azure NSG", "GCP Firewall"]
+    rule_best_practices:
+      - "기본 거부 정책"
+      - "최소 권한 원칙"
+      - "구체적 규칙 우선"
+      - "주석으로 문서화"
+      - "정기적 검토"
+      - "로깅 활성화"
+    vendors:
+      - "Palo Alto Networks"
+      - "Fortinet FortiGate"
+      - "Cisco Firepower"
+      - "Check Point"
+      - "pfSense (오픈소스)"
+    limitations:
+      - "암호화 트래픽 가시성 제한"
+      - "내부 위협 탐지 한계"
+      - "애플리케이션 레벨 공격"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST 800-41"
+      - "Firewall Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      방화벽은 네트워크 트래픽을 정책에 따라 제어한다. NGFW는 IPS, 애플리케이션
+      인식을 통합하며 기본 거부, 최소 권한이 원칙이다.
+    search_keywords:
+      - "방화벽"
+      - "NGFW"
+      - "네트워크 보안"
+      - "트래픽 제어"
+    related_queries:
+      - "방화벽 규칙"
+      - "네트워크 분리"
+      - "경계 보안"

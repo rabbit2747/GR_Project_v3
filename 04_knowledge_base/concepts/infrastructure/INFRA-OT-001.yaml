@@ -1,0 +1,81 @@
+# GR Atom: OT Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-OT-001"
+  name: "OT Infrastructure"
+  normalization:
+    normalized_name: "ot infrastructure scada ics industrial"
+    normalization_version: "1.0"
+  aliases:
+    - "OT Infrastructure"
+    - "OT 인프라"
+    - "Operational Technology Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "OT"]
+
+definition:
+  what: |
+    산업 제어 시스템과 운영 기술 인프라 분류이다.
+  why: |
+    OT 환경을 이해한다.
+    IT/OT 융합 보안을 평가한다.
+    핵심 인프라를 보호한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-OT-SCADA-001"
+      - "INFRA-OT-ICS-001"
+      - "INFRA-OT-PLC-001"
+    related_to:
+      - "ATK-IOT-001"
+      - "COMP-ICS-CERT-001"
+
+properties:
+  technical:
+    systems:
+      - "SCADA"
+      - "ICS"
+      - "DCS"
+      - "PLC"
+      - "HMI"
+    standards:
+      - "IEC 62443"
+      - "NIST SP 800-82"
+      - "ISA/IEC 62443"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST ICS Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      OT Infrastructure는 운영 기술 인프라 분류이다.
+    search_keywords:
+      - "OT Infrastructure"
+      - "OT 인프라"
+      - "SCADA"
+      - "ICS"

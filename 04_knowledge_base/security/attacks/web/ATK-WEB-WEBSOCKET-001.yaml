@@ -1,0 +1,109 @@
+# GR Atom: WebSocket Security Attacks
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-WEBSOCKET-001"
+  name: "WebSocket Security Attacks"
+  normalization:
+    normalized_name: "websocket security cswsh hijacking injection"
+    normalization_version: "1.0"
+  aliases:
+    - "웹소켓 공격"
+    - "CSWSH"
+    - "WebSocket Hijacking"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "WEBSOCKET"]
+
+definition:
+  what: |
+    WebSocket 보안 공격은 양방향 통신 프로토콜인 WebSocket의
+    취약점을 악용하는 공격이다.
+  why: |
+    WebSocket은 Same-Origin Policy의 일부 보호를 받지 못한다.
+    실시간 앱에서 널리 사용되며 인증/권한 검사가 미흡한 경우가 많다.
+  how: |
+    1. WebSocket 엔드포인트 식별
+    2. 핸드셰이크 분석
+    3. CSWSH 또는 메시지 조작 공격
+    4. 민감한 데이터 탈취 또는 권한 상승
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-CLIENT-ATTACK-001"
+    related_to:
+      - "ATK-AUTH-CSRF-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Cross-Site WebSocket Hijacking (CSWSH)"
+        description: "CSRF와 유사, 악성 사이트에서 WebSocket 연결"
+        impact: "세션 하이재킹, 데이터 탈취"
+      - name: "Message Tampering"
+        description: "WebSocket 메시지 조작"
+      - name: "Denial of Service"
+        description: "대량 메시지로 서버 과부하"
+      - name: "Injection Attacks"
+        description: "메시지 내 XSS, SQLi"
+    cswsh_attack:
+      steps:
+        - "1. 악성 웹사이트 생성"
+        - "2. WebSocket 연결 코드 삽입"
+        - "3. 피해자가 악성 사이트 방문"
+        - "4. 피해자 쿠키로 WebSocket 연결"
+        - "5. 서버로부터 데이터 수신"
+      requirements:
+        - "Origin 헤더 검증 미흡"
+        - "쿠키 기반 인증"
+    vulnerabilities:
+      - "Origin 검증 미흡"
+      - "인증 토큰 없음"
+      - "메시지 검증 미흡"
+      - "TLS 미사용 (ws:// vs wss://)"
+    prevention:
+      - "Origin 헤더 검증"
+      - "CSRF 토큰 사용"
+      - "WebSocket 전용 인증 토큰"
+      - "wss:// (TLS) 필수"
+      - "메시지 검증/이스케이프"
+      - "Rate Limiting"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP WebSocket Security"
+      - "PortSwigger WebSocket"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WebSocket 공격은 양방향 통신 프로토콜의 취약점을 악용한다. CSWSH가 대표적이며
+      Origin 검증, 전용 인증 토큰, wss:// 사용으로 방어한다.
+    search_keywords:
+      - "WebSocket 보안"
+      - "CSWSH"
+      - "웹소켓 공격"
+      - "실시간 통신"
+    related_queries:
+      - "WebSocket 인증"
+      - "실시간 앱 보안"
+      - "Origin 검증"

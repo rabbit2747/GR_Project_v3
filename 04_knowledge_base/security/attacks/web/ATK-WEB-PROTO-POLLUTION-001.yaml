@@ -1,0 +1,108 @@
+# GR Atom: Prototype Pollution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-PROTO-POLLUTION-001"
+  name: "Prototype Pollution"
+  normalization:
+    normalized_name: "prototype pollution javascript __proto__ constructor"
+    normalization_version: "1.0"
+  aliases:
+    - "프로토타입 오염"
+    - "Prototype Pollution Attack"
+    - "__proto__ Injection"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "JAVASCRIPT"]
+
+definition:
+  what: |
+    프로토타입 오염은 JavaScript 객체의 프로토타입 체인을 조작하여
+    모든 객체의 속성을 오염시키는 공격이다.
+  why: |
+    Node.js와 클라이언트 사이드 JavaScript에서 RCE, XSS, DoS로 이어질 수 있다.
+    JSON 파싱, 객체 병합 시 발생하며 탐지가 어렵다.
+  how: |
+    1. 사용자 입력이 객체 속성 설정에 사용되는 곳 찾기
+    2. __proto__ 또는 constructor.prototype 주입
+    3. Object.prototype에 속성 추가
+    4. 애플리케이션 동작 변경 또는 RCE
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-CLIENT-ATTACK-001"
+    related_to:
+      - "TECH-LANG-JAVASCRIPT-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "JSON Parsing"
+        payload: '{"__proto__": {"isAdmin": true}}'
+      - name: "Object Merge"
+        vulnerable_code: "Object.assign({}, userInput)"
+      - name: "Query String Parsing"
+        payload: "?__proto__[polluted]=1"
+    exploitation_paths:
+      - name: "Property Injection"
+        impact: "비즈니스 로직 우회"
+        example: "isAdmin, isAuthenticated 속성 주입"
+      - name: "RCE (Server-side)"
+        impact: "원격 코드 실행"
+        gadgets: ["child_process.spawn", "ejs 템플릿"]
+      - name: "XSS (Client-side)"
+        impact: "클라이언트 측 스크립트 실행"
+    vulnerable_patterns:
+      - "재귀적 객체 병합"
+      - "lodash.merge (< 4.17.12)"
+      - "jQuery.extend (deep=true)"
+      - "JSON5 파싱"
+    detection:
+      - "Object.prototype 속성 모니터링"
+      - "AST 분석으로 위험 패턴 탐지"
+      - "런타임 프로토타입 변경 감지"
+    prevention:
+      - "Object.freeze(Object.prototype)"
+      - "Object.create(null) 사용"
+      - "hasOwnProperty 검사"
+      - "__proto__, constructor 키 필터링"
+      - "취약한 라이브러리 업데이트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Prototype Pollution"
+      - "NodeJS Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      프로토타입 오염은 JavaScript 프로토타입 체인을 조작하는 공격이다. __proto__
+      주입으로 RCE, XSS가 가능하며 Object.freeze, 키 필터링으로 방어한다.
+    search_keywords:
+      - "프로토타입 오염"
+      - "Prototype Pollution"
+      - "__proto__"
+      - "JavaScript 보안"
+    related_queries:
+      - "Node.js 보안"
+      - "JavaScript 취약점"
+      - "객체 오염"

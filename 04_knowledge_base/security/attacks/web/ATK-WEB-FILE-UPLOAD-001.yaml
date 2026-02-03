@@ -1,0 +1,115 @@
+# GR Atom: File Upload Vulnerabilities
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-FILE-UPLOAD-001"
+  name: "File Upload Vulnerabilities"
+  normalization:
+    normalized_name: "file upload vulnerability unrestricted shell webshell"
+    normalization_version: "1.0"
+  aliases:
+    - "파일 업로드 취약점"
+    - "Unrestricted File Upload"
+    - "웹쉘 업로드"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "WEB", "UPLOAD"]
+
+definition:
+  what: |
+    파일 업로드 취약점은 애플리케이션이 업로드된 파일을 적절히 검증하지 않아
+    악성 파일(웹쉘 등)을 서버에 업로드하고 실행할 수 있는 취약점이다.
+  why: |
+    웹쉘 업로드 시 서버 완전 장악이 가능하다.
+    RCE(원격 코드 실행)의 가장 흔한 경로 중 하나다.
+  how: |
+    1. 업로드 기능 식별
+    2. 허용 파일 유형 테스트
+    3. 검증 우회 시도
+    4. 웹쉘 업로드 및 실행
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-VULN-001"
+    enables:
+      - "ATK-MITRE-EXECUTION-001"
+
+properties:
+  technical:
+    bypass_techniques:
+      - name: "확장자 블랙리스트 우회"
+        methods:
+          - ".pHp, .pHP5"
+          - ".php.jpg"
+          - ".php%00.jpg (null byte)"
+          - ".php;.jpg"
+      - name: "Content-Type 조작"
+        method: "image/jpeg로 변경"
+      - name: "Magic Bytes"
+        method: "GIF89a + PHP 코드"
+      - name: "더블 확장자"
+        example: "shell.php.png"
+      - name: "대소문자"
+        example: ".PhP"
+    dangerous_extensions:
+      php: [".php", ".php3", ".php5", ".phtml"]
+      asp: [".asp", ".aspx"]
+      jsp: [".jsp", ".jspx"]
+      other: [".exe", ".sh", ".bat", ".py"]
+    webshell_examples:
+      - "<?php system($_GET['cmd']); ?>"
+      - "c99, r57 webshells"
+      - "WSO Shell"
+      - "China Chopper"
+    secure_upload:
+      - "화이트리스트 확장자 검증"
+      - "Content-Type 검증"
+      - "파일 시그니처(Magic Bytes) 검증"
+      - "파일명 재생성 (UUID)"
+      - "업로드 디렉토리 실행 권한 제거"
+      - "별도 도메인/스토리지 사용"
+      - "파일 크기 제한"
+      - "AV 스캔"
+    dangerous_configs:
+      - "업로드 폴더 웹 접근 가능"
+      - "스크립트 실행 허용"
+      - "심볼릭 링크 허용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Unrestricted File Upload"
+      - "CWE-434"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      파일 업로드 취약점은 웹쉘 업로드로 RCE를 유발한다. 화이트리스트 검증,
+      실행 권한 제거, 별도 스토리지로 방어한다.
+    search_keywords:
+      - "파일 업로드"
+      - "웹쉘"
+      - "RCE"
+      - "업로드 검증"
+    related_queries:
+      - "웹쉘 탐지"
+      - "업로드 보안"
+      - "파일 검증"

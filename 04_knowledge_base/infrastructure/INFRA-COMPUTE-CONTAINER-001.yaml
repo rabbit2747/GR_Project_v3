@@ -1,0 +1,100 @@
+# GR Atom: Container (Compute Resource)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-COMPUTE-CONTAINER-001"
+  name: "Container"
+  normalization:
+    normalized_name: "container docker container linux container"
+    normalization_version: "1.0"
+  aliases:
+    - "컨테이너"
+    - "Docker Container"
+    - "Linux Container"
+    - "OCI Container"
+
+classification:
+  domain: infrastructure
+  type: compute
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone1"
+    tags: ["INFRA", "COMPUTE", "CONTAINER"]
+
+definition:
+  what: |
+    컨테이너(Container)는 애플리케이션과 의존성을 격리된 환경에서 실행하는
+    경량 가상화 기술이다. 호스트 OS 커널을 공유하며 VM보다 가볍다.
+  why: |
+    마이크로서비스, DevOps, CI/CD의 핵심 기술이다. 컨테이너 탈출,
+    이미지 취약점, 권한 상승이 주요 보안 위협이다.
+  how: |
+    1. 이미지 빌드: Dockerfile로 이미지 생성
+    2. 레지스트리: 이미지 저장 및 배포
+    3. 런타임 실행: 컨테이너 인스턴스 생성
+    4. 오케스트레이션: Kubernetes 등으로 관리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+    requires:
+      - "INFRA-RUNTIME-CONTAINER-001"
+  causal:
+    supports:
+      - "INFRA-APP-WEBAPP-001"
+    mitigated_by:
+      - "DEF-PREVENT-SANDBOX-001"
+
+properties:
+  technical:
+    isolation_mechanisms:
+      - "Namespaces (PID, Network, Mount, UTS, IPC, User)"
+      - "cgroups (CPU, Memory, I/O limits)"
+      - "Capabilities"
+      - "seccomp profiles"
+    security_best_practices:
+      - "Use minimal base images"
+      - "Run as non-root"
+      - "Scan images for vulnerabilities"
+      - "Use read-only filesystem"
+      - "Drop unnecessary capabilities"
+    common_vulnerabilities:
+      - "Container escape"
+      - "Privileged container abuse"
+      - "Vulnerable base images"
+      - "Exposed Docker socket"
+      - "Secrets in environment variables"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS Docker Benchmark"
+      - "NIST Container Security Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Container(컨테이너)는 애플리케이션을 격리 실행하는 경량 가상화 기술이다.
+      Namespace, cgroups로 격리하며 컨테이너 탈출이 주요 보안 위협이다.
+    search_keywords:
+      - "Container"
+      - "컨테이너"
+      - "Docker Container"
+      - "컨테이너 보안"
+    related_queries:
+      - "컨테이너 보안"
+      - "컨테이너 탈출"
+      - "Docker 보안"

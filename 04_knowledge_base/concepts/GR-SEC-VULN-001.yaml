@@ -1,0 +1,104 @@
+# GR Atom: Security Vulnerability
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-VULN-001"
+  name: "Security Vulnerability"
+  normalization:
+    normalized_name: "security vulnerability weakness flaw"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Vulnerability"
+    - "보안 취약점"
+    - "Vulnerability"
+    - "Security Weakness"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "VULNERABILITY", "ROOT"]
+
+definition:
+  what: |
+    시스템의 기밀성, 무결성, 가용성을 손상시킬 수 있는
+    결함, 약점 또는 설계 오류의 최상위 분류이다.
+  why: |
+    공격자가 악용할 수 있는 진입점이 된다.
+    보안 사고의 근본 원인이 된다.
+    위험 관리의 핵심 대상이다.
+  how: |
+    1. 취약점 식별
+    2. 위험도 평가
+    3. 우선순위 결정
+    4. 패치/완화 적용
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "VUL-WEB-001"
+      - "VUL-AUTH-001"
+      - "VUL-INJECTION-001"
+      - "VUL-CONFIG-001"
+      - "VUL-CRYPTO-001"
+    related_to:
+      - "GR-SEC-ATK-001"
+      - "GR-SEC-DEF-001"
+
+properties:
+  technical:
+    categories:
+      web: "웹 애플리케이션 취약점"
+      authentication: "인증 취약점"
+      injection: "인젝션 취약점"
+      configuration: "설정 취약점"
+      cryptographic: "암호화 취약점"
+      access_control: "접근 제어 취약점"
+    severity_levels:
+      critical: "CVSS 9.0-10.0"
+      high: "CVSS 7.0-8.9"
+      medium: "CVSS 4.0-6.9"
+      low: "CVSS 0.1-3.9"
+    standards:
+      - "CVE (Common Vulnerabilities and Exposures)"
+      - "CWE (Common Weakness Enumeration)"
+      - "CVSS (Common Vulnerability Scoring System)"
+      - "OWASP Top 10"
+    lifecycle:
+      - "Discovery (발견)"
+      - "Disclosure (공개)"
+      - "Remediation (수정)"
+      - "Verification (검증)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE CVE"
+      - "NIST NVD"
+      - "OWASP"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Vulnerability는 시스템 보안을 손상시킬 수 있는
+      모든 결함과 약점의 최상위 분류 개념이다.
+    search_keywords:
+      - "Vulnerability"
+      - "취약점"
+      - "Security Weakness"
+      - "CVE"

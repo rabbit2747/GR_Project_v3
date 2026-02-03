@@ -1,0 +1,81 @@
+# GR Atom: Active Directory Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-AD-001"
+  name: "Active Directory Infrastructure"
+  normalization:
+    normalized_name: "active directory infrastructure domain controller"
+    normalization_version: "1.0"
+  aliases:
+    - "Active Directory Infrastructure"
+    - "AD 인프라"
+    - "Directory Services"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "AD"]
+
+definition:
+  what: |
+    Windows 환경의 중앙 인증/권한 관리 인프라 분류이다.
+  why: |
+    AD 아키텍처를 이해한다.
+    AD 보안을 평가한다.
+    엔터프라이즈 인증을 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-AD-DC-001"
+      - "INFRA-AD-FOREST-001"
+    related_to:
+      - "ATK-KERBEROS-001"
+      - "TECH-AUTH-001"
+      - "ATK-LATERAL-001"
+
+properties:
+  technical:
+    components:
+      - "Domain Controller"
+      - "Global Catalog"
+      - "FSMO Roles"
+      - "Group Policy"
+    security_areas:
+      - "Kerberos Authentication"
+      - "LDAP Security"
+      - "Privileged Access"
+      - "Tiering Model"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft AD Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Active Directory Infrastructure는 Windows AD 인프라 분류이다.
+    search_keywords:
+      - "Active Directory"
+      - "AD 인프라"
+      - "Domain Controller"
+      - "Kerberos"

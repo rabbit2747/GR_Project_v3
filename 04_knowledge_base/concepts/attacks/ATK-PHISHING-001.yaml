@@ -1,0 +1,79 @@
+# GR Atom: Phishing Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-PHISHING-001"
+  name: "Phishing Attack"
+  normalization:
+    normalized_name: "phishing attack spear whaling"
+    normalization_version: "1.0"
+  aliases:
+    - "Phishing Attack"
+    - "피싱 공격"
+    - "Email Phishing"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "PHISHING"]
+
+definition:
+  what: |
+    사회공학 기법을 통해 사용자를 속여 정보를 획득하거나
+    악성 행위를 유도하는 공격 기법 분류이다.
+  why: |
+    자격 증명을 탈취한다.
+    악성코드를 배포한다.
+    초기 침투를 달성한다.
+
+relations:
+  structural:
+    is_a:
+      - "ATK-SOCIAL-001"
+    has_children:
+      - "ATK-PHISHING-SPEAR-001"
+      - "ATK-PHISHING-WHALING-001"
+      - "ATK-PHISHING-SMISHING-001"
+    related_to:
+      - "ATK-MITRE-T1566-001"
+      - "DEF-AWARENESS-001"
+
+properties:
+  technical:
+    variants:
+      - "Email Phishing"
+      - "Spear Phishing"
+      - "Whaling"
+      - "Smishing"
+      - "Vishing"
+      - "Clone Phishing"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1566"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Phishing Attack은 사회공학을 통해 정보를 탈취하는 공격 기법 분류이다.
+    search_keywords:
+      - "Phishing"
+      - "피싱"
+      - "Spear Phishing"
+      - "Whaling"

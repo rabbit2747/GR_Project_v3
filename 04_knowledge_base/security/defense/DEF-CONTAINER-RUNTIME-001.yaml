@@ -1,0 +1,116 @@
+# GR Atom: Container Runtime Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CONTAINER-RUNTIME-001"
+  name: "Container Runtime Security"
+  normalization:
+    normalized_name: "container runtime security seccomp apparmor selinux"
+    normalization_version: "1.0"
+  aliases:
+    - "컨테이너 런타임 보안"
+    - "Docker 런타임 보안"
+    - "컨테이너 격리"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["DEF", "CONTAINER", "RUNTIME"]
+
+definition:
+  what: |
+    컨테이너 런타임 수준에서 보안 정책을 적용하여
+    컨테이너 격리를 강화하고 공격을 방지하는 메커니즘이다.
+  why: |
+    컨테이너 탈출을 방지한다.
+    최소 권한 원칙을 적용한다.
+  how: |
+    1. 보안 프로파일 생성
+    2. 런타임에 정책 적용
+    3. 시스템 콜 제한
+    4. 리소스 접근 제어
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "ATK-CONTAINER-ESCAPE-001"
+      - "INFRA-CONTAINER-DOCKER-001"
+
+properties:
+  technical:
+    security_mechanisms:
+      - name: "Seccomp"
+        description: "시스템 콜 필터링"
+        default_blocked: ["mount", "ptrace", "reboot"]
+      - name: "AppArmor"
+        description: "MAC (Mandatory Access Control)"
+        usage: "파일/네트워크 접근 제어"
+      - name: "SELinux"
+        description: "보안 강화 Linux"
+        usage: "레이블 기반 접근 제어"
+      - name: "Capabilities"
+        description: "세분화된 root 권한"
+        recommended: "최소 케이퍼빌리티만 부여"
+    docker_security_options:
+      - "--security-opt seccomp=profile.json"
+      - "--security-opt apparmor=profile"
+      - "--cap-drop=ALL"
+      - "--cap-add=<specific>"
+      - "--read-only"
+      - "--user=<uid>:<gid>"
+    kubernetes_security:
+      securityContext:
+        readOnlyRootFilesystem: true
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+    best_practices:
+      - "기본 Seccomp 프로파일 사용"
+      - "불필요한 케이퍼빌리티 제거"
+      - "non-root 사용자로 실행"
+      - "읽기 전용 루트 파일시스템"
+      - "리소스 제한 설정"
+    runtime_security_tools:
+      - "Falco (런타임 탐지)"
+      - "Sysdig Secure"
+      - "Aqua Security"
+      - "Twistlock/Prisma Cloud"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Docker Security Documentation"
+      - "CIS Docker Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      컨테이너 런타임 보안은 Seccomp, AppArmor 등으로
+      컨테이너 격리를 강화하고 탈출을 방지하는 방어 메커니즘이다.
+    search_keywords:
+      - "컨테이너 보안"
+      - "Seccomp"
+      - "AppArmor"
+      - "런타임 보안"
+    related_queries:
+      - "Docker 보안"
+      - "컨테이너 격리"
+      - "Kubernetes 보안"

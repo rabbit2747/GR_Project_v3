@@ -1,0 +1,92 @@
+# GR Atom: Markup Language (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-MARKUP-001"
+  name: "Markup Language"
+  normalization:
+    normalized_name: "markup language document markup"
+    normalization_version: "1.0"
+  aliases:
+    - "마크업 언어"
+    - "Document Markup"
+    - "문서 마크업"
+
+classification:
+  domain: application
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Cross"
+    tags: ["TECH", "WEB"]
+
+definition:
+  what: |
+    마크업 언어(Markup Language)는 문서의 구조와 표현을 정의하는
+    태그 기반 언어다. HTML, XML, Markdown 등이 있으며,
+    웹 콘텐츠와 데이터 교환에 널리 사용된다.
+  why: |
+    웹의 기본 구성 요소다. HTML Injection, XSS 공격의 근본 원인이
+    마크업 해석 과정에 있다. 안전한 출력 인코딩이 필수적이다.
+  how: |
+    1. HTML: 웹 페이지 구조 정의
+    2. XML: 구조화된 데이터 표현
+    3. Markdown: 경량 문서 작성
+    4. 브라우저가 마크업을 파싱하여 DOM 구성
+
+relations:
+  structural:
+    abstracts:
+      - "TECH-LANG-HTML-001"
+  causal:
+    enables:
+      - "ATK-INJECT-XSS-001"
+
+properties:
+  technical:
+    markup_types:
+      - name: "HTML"
+        purpose: "Web Page Structure"
+        security: "XSS via unescaped output"
+      - name: "XML"
+        purpose: "Data Exchange"
+        security: "XXE, XPath Injection"
+      - name: "Markdown"
+        purpose: "Documentation"
+        security: "HTML injection if rendered"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "W3C HTML Specification"
+      - "W3C XML Specification"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Markup Language(마크업 언어)는 문서 구조를 정의하는 태그 기반 언어다.
+      HTML, XML, Markdown 등이 있다. XSS, XXE 공격의 근본 원인이
+      마크업 해석 과정에 있으며 출력 인코딩으로 방어한다.
+    search_keywords:
+      - "Markup Language"
+      - "마크업 언어"
+      - "HTML"
+      - "XML"
+      - "XSS"
+    related_queries:
+      - "마크업 언어 종류"
+      - "HTML 보안"
+      - "XSS 방어"
+      - "출력 인코딩"

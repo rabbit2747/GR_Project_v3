@@ -1,0 +1,105 @@
+# GR Atom: BGP Hijacking
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-BGP-HIJACK-001"
+  name: "BGP Hijacking"
+  normalization:
+    normalized_name: "bgp hijacking route hijack prefix hijacking"
+    normalization_version: "1.0"
+  aliases:
+    - "BGP 하이재킹"
+    - "라우팅 하이재킹"
+    - "프리픽스 하이재킹"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone4"
+    tags: ["ATK", "NET", "ROUTING"]
+
+definition:
+  what: |
+    Border Gateway Protocol(BGP) 취약점을 악용하여 인터넷 트래픽을
+    공격자가 제어하는 경로로 우회시키는 공격이다.
+  why: |
+    대규모 트래픽 가로채기가 가능하다.
+    암호화폐, 금융 거래 등을 타겟으로 한다.
+  how: |
+    1. 악의적인 BGP 공지 생성
+    2. 타겟 IP 대역 광고
+    3. 트래픽 리다이렉션
+    4. 데이터 가로채기 또는 조작
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+      - "DEF-NET-RPKI-001"
+
+properties:
+  technical:
+    protocol: "BGP (Border Gateway Protocol)"
+    port: "TCP 179"
+    attack_types:
+      - name: "Prefix Hijacking"
+        description: "더 구체적인 프리픽스 광고"
+      - name: "AS Path Manipulation"
+        description: "AS 경로 조작"
+      - name: "Route Leak"
+        description: "의도치 않은 경로 누출"
+    impact:
+      - "대규모 트래픽 가로채기"
+      - "서비스 중단"
+      - "중간자 공격"
+      - "데이터 도청"
+    notable_incidents:
+      - "2018 Amazon Route 53 하이재킹"
+      - "2008 YouTube 차단 사고"
+    detection:
+      - "RPKI 검증"
+      - "BGP 모니터링 서비스"
+      - "AS 경로 이상 탐지"
+      - "트래픽 패턴 분석"
+    mitigation:
+      - "RPKI 구현"
+      - "BGP 피어링 인증"
+      - "프리픽스 필터링"
+      - "IRR 등록"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "BGP Security Best Practices"
+      - "NIST BGP Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BGP 하이재킹은 라우팅 프로토콜 취약점을 악용하여 인터넷 트래픽을
+      우회시키는 대규모 네트워크 공격이다.
+    search_keywords:
+      - "BGP"
+      - "라우팅 공격"
+      - "프리픽스 하이재킹"
+      - "AS 경로"
+    related_queries:
+      - "BGP 보안"
+      - "RPKI"
+      - "네트워크 하이재킹"

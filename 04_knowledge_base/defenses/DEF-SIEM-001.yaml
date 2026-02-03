@@ -1,0 +1,116 @@
+# GR Atom: Security Information and Event Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-SIEM-001"
+  name: "Security Information and Event Management"
+  normalization:
+    normalized_name: "siem log management correlation security analytics"
+    normalization_version: "1.0"
+  aliases:
+    - "SIEM"
+    - "보안 정보 및 이벤트 관리"
+    - "Log Management"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "DETECT", "SOC"]
+
+definition:
+  what: |
+    다양한 소스에서 보안 로그를 수집, 정규화, 상관분석하여
+    위협을 탐지하고 컴플라이언스를 지원하는 플랫폼이다.
+  why: |
+    통합 보안 가시성을 제공한다.
+    위협을 상관분석으로 탐지한다.
+  how: |
+    1. 로그 수집
+    2. 정규화/파싱
+    3. 상관분석
+    4. 경보/대시보드
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    related_to:
+      - "DEF-ENDPOINT-EDR-001"
+      - "DEF-SOAR-001"
+
+properties:
+  technical:
+    core_functions:
+      - name: "Log Collection"
+        sources:
+          - "방화벽, IDS/IPS"
+          - "서버, 엔드포인트"
+          - "애플리케이션"
+          - "클라우드 서비스"
+      - name: "Normalization"
+        description: "다양한 형식의 로그를 표준화"
+      - name: "Correlation"
+        description: "여러 이벤트 간 관계 분석"
+        rules: "상관분석 규칙 기반"
+      - name: "Alerting"
+        description: "임계값 또는 패턴 기반 경보"
+      - name: "Reporting"
+        description: "컴플라이언스 보고서 생성"
+    popular_solutions:
+      commercial:
+        - "Splunk"
+        - "IBM QRadar"
+        - "Microsoft Sentinel"
+        - "LogRhythm"
+        - "Exabeam"
+      open_source:
+        - "Elastic SIEM (ELK)"
+        - "Wazuh"
+        - "OSSIM"
+        - "Graylog"
+    use_cases:
+      - "위협 탐지"
+      - "인시던트 조사"
+      - "컴플라이언스 감사"
+      - "포렌식 분석"
+    deployment_models:
+      - "온프레미스"
+      - "클라우드 (SaaS)"
+      - "하이브리드"
+    challenges:
+      - "대용량 데이터 처리"
+      - "오탐 관리"
+      - "규칙 튜닝"
+      - "인력 부족"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner SIEM"
+      - "NIST Cybersecurity"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SIEM은 보안 로그를 통합 수집, 상관분석하여
+      위협을 탐지하고 컴플라이언스를 지원하는 SOC 핵심 플랫폼이다.
+    search_keywords:
+      - "SIEM"
+      - "Log Management"
+      - "상관분석"
+      - "보안 모니터링"

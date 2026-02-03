@@ -1,0 +1,179 @@
+# GR Atom: Firewall
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-FIREWALL-001"
+  name: "Firewall"
+  normalization:
+    normalized_name: "firewall packet filter stateful inspection ngfw"
+    normalization_version: "1.0"
+  aliases:
+    - "방화벽"
+    - "네트워크 방화벽"
+    - "FW"
+    - "Network Firewall"
+    - "Next-Generation Firewall"
+    - "NGFW"
+
+classification:
+  domain: security
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["NET", "P"]
+
+definition:
+  what: |
+    방화벽(Firewall)은 사전 정의된 보안 규칙에 따라 네트워크 트래픽을
+    모니터링하고 허용 또는 차단하는 네트워크 보안 장비 또는 소프트웨어다.
+    L3/L4 패킷 필터링부터 L7 애플리케이션 제어까지 다양한 수준에서 동작한다.
+  why: |
+    네트워크 보안의 가장 기본적인 방어선이다. 외부 네트워크로부터의 무단 접근을
+    차단하고, 내부 네트워크 세그먼트 간 접근을 제어한다. 기업 보안 정책 준수,
+    규정 준수(PCI-DSS, ISO 27001 등)의 필수 요소다.
+  how: |
+    1. 네트워크 트래픽이 방화벽에 도착
+    2. 패킷 헤더 검사 (출발지/목적지 IP, 포트, 프로토콜)
+    3. Stateful Inspection: 연결 상태 테이블 참조
+    4. 보안 규칙(ACL)과 매칭
+    5. 허용(Allow), 차단(Deny), 또는 로그 후 드롭
+    6. NGFW: 애플리케이션 식별, IPS, 악성코드 검사 추가 수행
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-NETWORK-DEVICE-001"]
+  causal:
+    prevents:
+      - "ATK-NET-MITM-001"
+    enables:
+      - "INFRA-NET-WAF-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-TCP-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-NET-LB-001"
+
+properties:
+  technical:
+    types:
+      - name: "Packet Filter"
+        description: "패킷 헤더(IP, Port, Protocol) 기반 필터링"
+        layer: "L3/L4"
+        stateful: false
+        example: "iptables, ACL"
+      - name: "Stateful Inspection"
+        description: "연결 상태를 추적하여 컨텍스트 기반 필터링"
+        layer: "L3/L4"
+        stateful: true
+        example: "Cisco ASA, pfSense"
+      - name: "Next-Generation Firewall (NGFW)"
+        description: "애플리케이션 인식, IPS, 악성코드 검사, SSL 복호화"
+        layer: "L3-L7"
+        stateful: true
+        example: "Palo Alto PA, Fortinet FortiGate, Check Point"
+      - name: "Host-based Firewall"
+        description: "개별 호스트에서 동작하는 소프트웨어 방화벽"
+        layer: "L3/L4"
+        example: "Windows Firewall, iptables, firewalld"
+      - name: "Cloud Firewall"
+        description: "클라우드 환경의 네트워크 보안 그룹"
+        layer: "L3/L4"
+        example: "AWS Security Group, Azure NSG, GCP Firewall"
+    deployment_zones:
+      - name: "Perimeter"
+        description: "외부-내부 네트워크 경계"
+      - name: "DMZ"
+        description: "비무장 지대, 공개 서버 분리"
+      - name: "Internal Segmentation"
+        description: "내부 네트워크 마이크로세그먼테이션"
+      - name: "Host-level"
+        description: "개별 서버/엔드포인트"
+    common_products:
+      hardware:
+        - "Palo Alto Networks PA Series"
+        - "Fortinet FortiGate"
+        - "Check Point Quantum"
+        - "Cisco Firepower"
+        - "Juniper SRX"
+      software:
+        - "pfSense"
+        - "OPNsense"
+        - "iptables/nftables"
+        - "Windows Defender Firewall"
+      cloud:
+        - "AWS Security Group / Network ACL"
+        - "Azure NSG / Azure Firewall"
+        - "GCP Firewall Rules"
+    rule_components:
+      - "Source IP/Network"
+      - "Destination IP/Network"
+      - "Source Port"
+      - "Destination Port"
+      - "Protocol (TCP/UDP/ICMP)"
+      - "Action (Allow/Deny/Log)"
+      - "Direction (Inbound/Outbound)"
+  security:
+    protection_scope:
+      - "네트워크 접근 제어"
+      - "포트 기반 서비스 차단"
+      - "IP 기반 허용/차단"
+      - "프로토콜 필터링"
+      - "DDoS 기본 방어 (NGFW)"
+      - "악성코드 탐지 (NGFW)"
+    limitations:
+      - "암호화된 트래픽 내부 검사 어려움 (기본 FW)"
+      - "애플리케이션 계층 공격 탐지 제한 (기본 FW)"
+      - "내부자 위협 탐지 어려움"
+      - "제로데이 공격 탐지 한계"
+      - "규칙 복잡성 증가 시 관리 어려움"
+    attack_surface:
+      - "방화벽 규칙 우회 (포트 호핑, 터널링)"
+      - "관리 인터페이스 노출"
+      - "방화벽 자체 취약점"
+      - "규칙 오설정 (과도한 허용)"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-41 Rev.1 (Guidelines on Firewalls)"
+      - "CIS Benchmarks for Firewall"
+      - "PCI-DSS Requirement 1"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      방화벽(Firewall)은 네트워크 트래픽을 규칙에 따라 허용/차단하는 보안 장비다.
+      Packet Filter, Stateful Inspection, NGFW 유형이 있다. Palo Alto, FortiGate,
+      Check Point가 대표적이며, 클라우드에서는 Security Group, NSG를 사용한다.
+      네트워크 경계, DMZ, 내부 세그먼테이션에 배치하며, 접근 제어와 보안 정책
+      적용의 핵심 인프라다. WAF와 달리 L3/L4 중심으로 동작한다.
+    search_keywords:
+      - "Firewall"
+      - "방화벽"
+      - "NGFW"
+      - "패킷 필터링"
+      - "Stateful Inspection"
+      - "네트워크 보안"
+      - "접근 제어"
+    related_queries:
+      - "방화벽이란?"
+      - "Firewall vs WAF 차이"
+      - "NGFW란?"
+      - "방화벽 규칙 설정 방법"
+      - "Stateful vs Stateless 방화벽"

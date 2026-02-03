@@ -1,0 +1,105 @@
+# GR Atom: SSH Protocol
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-PROTOCOL-SSH-001"
+  name: "SSH (Secure Shell)"
+  normalization:
+    normalized_name: "ssh secure shell remote access encrypted terminal"
+    normalization_version: "1.0"
+  aliases:
+    - "SSH"
+    - "Secure Shell"
+    - "시큐어 쉘"
+
+classification:
+  domain: network
+  type: protocol
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["TECH", "PROTOCOL", "CRYPTO", "REMOTE"]
+
+definition:
+  what: |
+    SSH(Secure Shell)는 네트워크를 통해 암호화된 원격 접속을 제공하는
+    프로토콜이다. 터미널 접근, 파일 전송(SFTP/SCP), 포트 포워딩을 지원한다.
+  why: |
+    서버 관리의 표준 프로토콜이다. 키 관리 부실, 취약한 설정,
+    브루트포스 공격이 주요 위협이다.
+  how: |
+    1. Key Exchange: Diffie-Hellman으로 세션 키 협상
+    2. Authentication: 비밀번호 또는 공개키 인증
+    3. Encryption: 대칭 암호화로 통신 보호
+    4. Channel Multiplexing: 단일 연결에서 다중 채널
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-PROTOCOL-001"
+  causal:
+    prevents:
+      - "ATK-NET-SNIFF-001"
+    targeted_by:
+      - "ATK-AUTH-BRUTEFORCE-001"
+
+properties:
+  technical:
+    versions:
+      - version: "SSH-1"
+        status: "Deprecated (취약)"
+      - version: "SSH-2"
+        status: "Current Standard"
+    ports:
+      - port: 22
+        service: "SSH"
+    authentication_methods:
+      - "Password"
+      - "Public Key"
+      - "Keyboard-Interactive"
+      - "GSSAPI (Kerberos)"
+    features:
+      - "Remote Shell"
+      - "SFTP/SCP (파일 전송)"
+      - "Port Forwarding (Local/Remote/Dynamic)"
+      - "X11 Forwarding"
+    hardening:
+      - "비밀번호 인증 비활성화 (공개키만)"
+      - "root 로그인 비활성화"
+      - "포트 변경"
+      - "fail2ban 등 브루트포스 방어"
+      - "강력한 암호화 알고리즘만 허용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "RFC 4251 - SSH Protocol Architecture"
+      - "CIS SSH Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SSH(Secure Shell)는 암호화된 원격 접속 프로토콜이다.
+      서버 관리 표준이며 키 인증, 브루트포스 방어, 포트 변경으로 보안을 강화한다.
+    search_keywords:
+      - "SSH"
+      - "Secure Shell"
+      - "원격 접속"
+      - "SFTP"
+      - "공개키 인증"
+    related_queries:
+      - "SSH 보안 설정"
+      - "SSH 키 인증"
+      - "SSH 하드닝"

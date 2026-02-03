@@ -1,0 +1,116 @@
+# GR Atom: Exfiltration (MITRE ATT&CK TA0010)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-EXFILTRATION-001"
+  name: "Exfiltration (TA0010)"
+  normalization:
+    normalized_name: "exfiltration mitre attack ta0010 data theft steal"
+    normalization_version: "1.0"
+  aliases:
+    - "데이터 유출"
+    - "Exfiltration"
+    - "TA0010"
+
+classification:
+  domain: security
+  type: attack_tactic
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "TACTIC"]
+
+definition:
+  what: |
+    Exfiltration은 공격자가 수집한 데이터를 대상 네트워크 밖으로
+    빼내는 전술이다. 공격의 최종 목표 중 하나다.
+  why: |
+    정보 탈취형 공격의 최종 단계다. 민감한 데이터(영업 비밀, 고객 정보, IP)가
+    외부로 유출되어 금전적/평판적 피해를 유발한다.
+  how: |
+    1. Exfiltration Over C2 Channel (T1041): C2 채널로 유출
+    2. Exfiltration Over Alternative Protocol (T1048): 대체 프로토콜 사용
+    3. Exfiltration Over Web Service (T1567): 클라우드 스토리지 활용
+    4. Automated Exfiltration (T1020): 자동화된 유출
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-MITRE-ATTACK-001"
+    preceded_by:
+      - "ATK-MITRE-LATERAL-001"
+
+properties:
+  technical:
+    mitre_id: "TA0010"
+    techniques:
+      - id: "T1041"
+        name: "Exfiltration Over C2 Channel"
+        description: "기존 C2 채널로 데이터 유출"
+      - id: "T1048"
+        name: "Exfiltration Over Alternative Protocol"
+        sub_techniques:
+          - "T1048.001: Exfiltration Over Symmetric Encrypted Non-C2 Protocol"
+          - "T1048.002: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol"
+          - "T1048.003: Exfiltration Over Unencrypted Non-C2 Protocol"
+      - id: "T1567"
+        name: "Exfiltration Over Web Service"
+        sub_techniques:
+          - "T1567.002: Exfiltration to Cloud Storage"
+      - id: "T1020"
+        name: "Automated Exfiltration"
+        description: "스크립트로 자동화된 데이터 유출"
+      - id: "T1030"
+        name: "Data Transfer Size Limits"
+        description: "탐지 회피 위해 작은 단위로 전송"
+      - id: "T1537"
+        name: "Transfer Data to Cloud Account"
+        description: "클라우드 계정으로 데이터 전송"
+    common_channels:
+      - "HTTPS (합법적 트래픽으로 위장)"
+      - "DNS Tunneling"
+      - "Cloud Storage (Dropbox, Google Drive)"
+      - "Email"
+      - "FTP/SFTP"
+    detection:
+      - "대용량 아웃바운드 트래픽"
+      - "비정상적인 클라우드 업로드"
+      - "DNS 터널링 탐지"
+      - "DLP 솔루션"
+    prevention:
+      - "Data Loss Prevention (DLP)"
+      - "아웃바운드 트래픽 모니터링"
+      - "클라우드 스토리지 접근 제어"
+      - "네트워크 세그먼테이션"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Exfiltration"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Exfiltration(TA0010)은 데이터 유출 전술이다. C2 채널, 클라우드 스토리지, DNS 터널링
+      등이 사용되며 DLP, 아웃바운드 모니터링으로 탐지/방어한다.
+    search_keywords:
+      - "Exfiltration"
+      - "TA0010"
+      - "데이터 유출"
+      - "정보 탈취"
+    related_queries:
+      - "데이터 유출 탐지"
+      - "DLP"
+      - "DNS 터널링"

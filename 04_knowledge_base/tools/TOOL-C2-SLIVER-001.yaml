@@ -1,0 +1,106 @@
+# GR Atom: Sliver
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-C2-SLIVER-001"
+  name: "Sliver"
+  normalization:
+    normalized_name: "sliver c2 implant red team open source"
+    normalization_version: "1.0"
+  aliases:
+    - "Sliver"
+    - "Sliver C2"
+    - "오픈소스 C2"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["TOOL", "C2", "OPENSOURCE"]
+
+definition:
+  what: |
+    레드팀과 적대자 시뮬레이션을 위한 오픈소스
+    크로스플랫폼 C2 프레임워크이다.
+  why: |
+    Cobalt Strike의 오픈소스 대안이다.
+    커스텀 임플란트를 생성한다.
+  how: |
+    1. 서버 설정
+    2. 임플란트 생성
+    3. 배포
+    4. 운영자 작전 수행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-C2-001"
+    related_to:
+      - "TOOL-C2-COBALTSTRIKE-001"
+      - "TECH-CONCEPT-RED-TEAM-001"
+
+properties:
+  technical:
+    developer: "BishopFox"
+    license: "GPL v3"
+    language: "Go"
+    implants:
+      - name: "Session"
+        description: "실시간 연결"
+      - name: "Beacon"
+        description: "비동기 통신"
+    protocols:
+      - "mTLS"
+      - "HTTP/HTTPS"
+      - "DNS"
+      - "WireGuard"
+    platforms:
+      - "Windows"
+      - "Linux"
+      - "macOS"
+    features:
+      - "동적 코드 생성"
+      - "프로세스 인젝션"
+      - "권한 상승"
+      - "측면 이동"
+      - "멀티플레이어 운영"
+    armory:
+      description: "확장 기능 저장소"
+      extensions:
+        - "BOF (Beacon Object Files)"
+        - "커스텀 모듈"
+    vs_cobaltstrike:
+      sliver: "무료, 오픈소스, 커스텀 용이"
+      cobaltstrike: "상용, 성숙, 문서 풍부"
+    repository: "https://github.com/BishopFox/sliver"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Sliver GitHub"
+      - "BishopFox"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Sliver는 BishopFox가 개발한 오픈소스 크로스플랫폼
+      C2 프레임워크로 Cobalt Strike의 대안이다.
+    search_keywords:
+      - "Sliver"
+      - "C2 Framework"
+      - "Open Source C2"
+      - "BishopFox"

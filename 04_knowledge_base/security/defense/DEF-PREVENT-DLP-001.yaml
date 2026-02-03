@@ -1,0 +1,119 @@
+# GR Atom: Data Loss Prevention (DLP)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-PREVENT-DLP-001"
+  name: "Data Loss Prevention (DLP)"
+  normalization:
+    normalized_name: "dlp data loss prevention leakage protection classification"
+    normalization_version: "1.0"
+  aliases:
+    - "DLP"
+    - "데이터 유출 방지"
+    - "정보 유출 방지"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["DEF", "PREVENT", "DLP"]
+
+definition:
+  what: |
+    DLP는 민감한 데이터의 무단 전송, 공유, 유출을 탐지하고
+    방지하는 보안 기술이다.
+  why: |
+    데이터 유출은 금전적 손실과 규제 위반을 초래한다.
+    의도적/비의도적 유출 모두를 방지해야 한다.
+  how: |
+    1. 민감 데이터 식별 및 분류
+    2. 정책 정의
+    3. 모니터링 및 탐지
+    4. 차단 또는 알림
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "COMP-FRAMEWORK-GDPR-001"
+
+properties:
+  technical:
+    deployment_types:
+      - name: "Network DLP"
+        location: "네트워크 게이트웨이"
+        monitors: "이메일, 웹, FTP"
+      - name: "Endpoint DLP"
+        location: "클라이언트 에이전트"
+        monitors: "USB, 클립보드, 프린트"
+      - name: "Cloud DLP"
+        location: "SaaS, IaaS"
+        monitors: "클라우드 스토리지, 앱"
+    detection_methods:
+      - name: "정규식"
+        example: "신용카드 번호 패턴"
+      - name: "키워드"
+        example: "기밀, 대외비"
+      - name: "데이터 지문"
+        example: "문서 해시 매칭"
+      - name: "머신러닝"
+        example: "민감 문서 분류"
+    data_types_protected:
+      - "PII (개인정보)"
+      - "PHI (의료정보)"
+      - "PCI (카드정보)"
+      - "지적재산권"
+      - "영업비밀"
+    actions:
+      - "모니터링 (로그만)"
+      - "알림 (사용자/관리자)"
+      - "암호화"
+      - "차단"
+      - "격리"
+    vendors:
+      - "Microsoft Purview"
+      - "Symantec DLP"
+      - "Digital Guardian"
+      - "Forcepoint"
+      - "Netskope"
+    challenges:
+      - "오탐/미탐 밸런스"
+      - "암호화된 트래픽"
+      - "사용자 생산성 영향"
+      - "정책 복잡성"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner DLP"
+      - "SANS DLP"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DLP는 민감 데이터 유출을 방지하는 기술이다. 네트워크, 엔드포인트,
+      클라우드에서 정책 기반으로 데이터를 보호한다.
+    search_keywords:
+      - "DLP"
+      - "데이터 유출"
+      - "정보 보호"
+      - "민감 데이터"
+    related_queries:
+      - "데이터 분류"
+      - "유출 방지"
+      - "컴플라이언스"

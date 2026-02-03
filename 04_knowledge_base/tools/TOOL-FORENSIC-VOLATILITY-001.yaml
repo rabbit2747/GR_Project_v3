@@ -1,0 +1,116 @@
+# GR Atom: Volatility
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-FORENSIC-VOLATILITY-001"
+  name: "Volatility"
+  normalization:
+    normalized_name: "volatility memory forensics analysis ram dump"
+    normalization_version: "1.0"
+  aliases:
+    - "Volatility"
+    - "메모리 포렌식 도구"
+    - "RAM 분석"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone3"
+    tags: ["TOOL", "FORENSIC", "MEMORY"]
+
+definition:
+  what: |
+    메모리 덤프 파일을 분석하여 프로세스, 네트워크 연결,
+    악성코드 등을 추출하는 오픈소스 메모리 포렌식 프레임워크이다.
+  why: |
+    휘발성 데이터에서 증거를 추출한다.
+    파일리스 악성코드를 탐지한다.
+  how: |
+    1. 메모리 덤프 획득
+    2. 운영체제 프로파일 식별
+    3. 플러그인으로 분석
+    4. 아티팩트 추출
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-FORENSIC-001"
+    related_to:
+      - "DEF-FORENSIC-MEMORY-001"
+      - "ATK-MALWARE-RANSOMWARE-001"
+
+properties:
+  technical:
+    versions:
+      - "Volatility 2 (Python 2)"
+      - "Volatility 3 (Python 3, 현재 버전)"
+    supported_os:
+      - "Windows (XP ~ 11)"
+      - "Linux"
+      - "macOS"
+    key_plugins:
+      process:
+        - "windows.pslist: 프로세스 목록"
+        - "windows.pstree: 프로세스 트리"
+        - "windows.psscan: 숨겨진 프로세스"
+        - "windows.cmdline: 명령줄 인수"
+      network:
+        - "windows.netscan: 네트워크 연결"
+        - "windows.netstat: 연결 상태"
+      malware:
+        - "windows.malfind: 악성 코드 영역"
+        - "windows.vadinfo: VAD 분석"
+        - "windows.dlllist: DLL 목록"
+      credentials:
+        - "windows.hashdump: 패스워드 해시"
+        - "windows.lsadump: LSA 시크릿"
+      registry:
+        - "windows.registry.hivelist: 하이브 목록"
+        - "windows.registry.printkey: 레지스트리 키"
+    usage_examples:
+      identify: "vol -f memory.dmp windows.info"
+      processes: "vol -f memory.dmp windows.pslist"
+      network: "vol -f memory.dmp windows.netscan"
+      malfind: "vol -f memory.dmp windows.malfind"
+    memory_acquisition_tools:
+      - "WinPmem"
+      - "DumpIt"
+      - "LiME"
+      - "F-Response"
+    license: "GPL"
+    repository: "https://github.com/volatilityfoundation/volatility3"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Volatility Foundation"
+      - "SANS Memory Forensics"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Volatility는 메모리 덤프를 분석하여 프로세스, 네트워크,
+      악성코드를 추출하는 표준 메모리 포렌식 프레임워크이다.
+    search_keywords:
+      - "Volatility"
+      - "메모리 포렌식"
+      - "RAM 분석"
+      - "악성코드"
+    related_queries:
+      - "메모리 덤프"
+      - "휘발성 데이터"
+      - "디지털 포렌식"

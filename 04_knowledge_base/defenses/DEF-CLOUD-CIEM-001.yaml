@@ -1,0 +1,111 @@
+# GR Atom: Cloud Infrastructure Entitlement Management
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-CLOUD-CIEM-001"
+  name: "Cloud Infrastructure Entitlement Management"
+  normalization:
+    normalized_name: "ciem cloud entitlement iam permissions least privilege"
+    normalization_version: "1.0"
+  aliases:
+    - "CIEM"
+    - "클라우드 권한 관리"
+    - "Cloud Permissions Management"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["DEF", "CLOUD", "IAM"]
+
+definition:
+  what: |
+    멀티 클라우드 환경에서 ID와 권한을 관리하고
+    과도한 권한을 탐지/수정하는 보안 솔루션이다.
+  why: |
+    클라우드 권한 리스크를 관리한다.
+    최소 권한 원칙을 적용한다.
+  how: |
+    1. 권한 발견/인벤토리
+    2. 사용량 분석
+    3. 과도한 권한 탐지
+    4. 권한 최적화
+
+relations:
+  structural:
+    is_a:
+      - "DEF-CLOUD-001"
+    related_to:
+      - "DEF-IAM-001"
+      - "VUL-CLOUD-IAM-001"
+
+properties:
+  technical:
+    challenges:
+      - "멀티 클라우드 복잡성"
+      - "과도한 권한 부여"
+      - "사용되지 않는 권한"
+      - "서비스 계정 관리"
+    capabilities:
+      - name: "Entitlement Discovery"
+        description: "모든 권한 발견/매핑"
+      - name: "Risk Analysis"
+        description: "과도한 권한 식별"
+      - name: "Usage Analytics"
+        description: "권한 사용 패턴 분석"
+      - name: "Right-sizing"
+        description: "최소 권한으로 조정"
+      - name: "Anomaly Detection"
+        description: "비정상 권한 사용 탐지"
+    cloud_support:
+      - "AWS IAM"
+      - "Azure AD / RBAC"
+      - "GCP IAM"
+      - "Kubernetes RBAC"
+    popular_solutions:
+      - "Ermetic"
+      - "CloudKnox (Microsoft)"
+      - "Sonrai Security"
+      - "Palo Alto Prisma Cloud"
+      - "Zscaler CIEM"
+    integration:
+      - "CSPM"
+      - "CWPP"
+      - "SIEM"
+      - "IGA (Identity Governance)"
+    use_cases:
+      - "권한 인벤토리"
+      - "과도한 권한 탐지"
+      - "최소 권한 적용"
+      - "컴플라이언스 감사"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner CIEM"
+      - "Cloud Security Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CIEM은 멀티 클라우드 환경에서 ID와 권한을 관리하고
+      최소 권한 원칙을 적용하는 클라우드 보안 솔루션이다.
+    search_keywords:
+      - "CIEM"
+      - "Cloud Entitlement"
+      - "클라우드 권한"
+      - "Least Privilege"

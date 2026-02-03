@@ -1,0 +1,99 @@
+# GR Atom: Threat Intelligence
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-INTEL-001"
+  name: "Threat Intelligence"
+  normalization:
+    normalized_name: "threat intelligence ti ioc ttp"
+    normalization_version: "1.0"
+  aliases:
+    - "Threat Intelligence"
+    - "위협 인텔리전스"
+    - "Cyber Threat Intelligence"
+    - "CTI"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "INTELLIGENCE"]
+
+definition:
+  what: |
+    위협 정보를 수집, 분석, 공유하여 방어에 활용하는
+    보안 통제 분류이다.
+  why: |
+    위협을 사전에 인지한다.
+    방어 우선순위를 결정한다.
+    공격자를 이해한다.
+  how: |
+    1. 정보 수집
+    2. 분석/가공
+    3. 배포/공유
+    4. 방어에 적용
+
+relations:
+  structural:
+    is_a:
+      - "DEF-DETECT-001"
+    has_children:
+      - "DEF-THREAT-INTEL-001"
+    related_to:
+      - "TECH-CONCEPT-OSINT-001"
+      - "TOOL-OSINT-001"
+
+properties:
+  technical:
+    types:
+      strategic: "경영진 대상, 위협 동향"
+      tactical: "보안팀 대상, TTPs"
+      operational: "SOC 대상, 캠페인 정보"
+      technical: "시스템 대상, IOCs"
+    indicators:
+      - "IP 주소"
+      - "도메인"
+      - "해시"
+      - "URL"
+      - "TTPs"
+    frameworks:
+      - "MITRE ATT&CK"
+      - "STIX/TAXII"
+      - "Kill Chain"
+      - "Diamond Model"
+    sources:
+      - "Commercial feeds"
+      - "OSINT"
+      - "ISACs"
+      - "Government"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "NIST Threat Intelligence"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Threat Intelligence는 위협 정보를 수집하고 분석하여
+      방어에 활용하는 보안 통제 분류이다.
+    search_keywords:
+      - "Threat Intelligence"
+      - "위협 인텔리전스"
+      - "IOC"
+      - "TTP"

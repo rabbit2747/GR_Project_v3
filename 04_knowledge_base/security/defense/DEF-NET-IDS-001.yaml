@@ -1,0 +1,121 @@
+# GR Atom: Intrusion Detection System (IDS)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-NET-IDS-001"
+  name: "Intrusion Detection System (IDS)"
+  normalization:
+    normalized_name: "ids intrusion detection system snort suricata network"
+    normalization_version: "1.0"
+  aliases:
+    - "침입 탐지 시스템"
+    - "IDS"
+    - "네트워크 탐지"
+
+classification:
+  domain: security
+  type: defense
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["DEF", "NET", "DETECT"]
+
+definition:
+  what: |
+    IDS는 네트워크 트래픽이나 시스템 활동을 모니터링하여
+    악의적 활동이나 정책 위반을 탐지하고 알림을 제공한다.
+  why: |
+    실시간 위협 탐지로 보안 사고 대응 시간을 단축한다.
+    방화벽을 우회하는 공격도 탐지할 수 있다.
+  how: |
+    1. 트래픽/활동 수집
+    2. 시그니처/이상 탐지 분석
+    3. 이벤트 상관관계 분석
+    4. 알림 생성 및 로깅
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    related_to:
+      - "DEF-NET-IPS-001"
+      - "TOOL-DETECT-SIEM-001"
+
+properties:
+  technical:
+    types:
+      - name: "NIDS (Network IDS)"
+        placement: "네트워크 세그먼트"
+        monitors: "네트워크 트래픽"
+        examples: ["Snort", "Suricata", "Zeek"]
+      - name: "HIDS (Host IDS)"
+        placement: "개별 호스트"
+        monitors: "시스템 파일, 로그, 프로세스"
+        examples: ["OSSEC", "Wazuh", "Tripwire"]
+    detection_methods:
+      - name: "Signature-based"
+        description: "알려진 공격 패턴 매칭"
+        pros: "정확도 높음, 오탐 낮음"
+        cons: "알려지지 않은 공격 미탐"
+      - name: "Anomaly-based"
+        description: "정상 기준선 이탈 탐지"
+        pros: "새로운 공격 탐지"
+        cons: "오탐 높음, 튜닝 필요"
+      - name: "Stateful Protocol Analysis"
+        description: "프로토콜 상태 검증"
+        pros: "프로토콜 악용 탐지"
+    tools:
+      - name: "Snort"
+        type: "NIDS"
+        features: ["실시간 분석", "패킷 로깅"]
+      - name: "Suricata"
+        type: "NIDS"
+        features: ["멀티스레드", "Lua 스크립팅"]
+      - name: "Zeek (Bro)"
+        type: "NIDS"
+        features: ["프로토콜 분석", "스크립팅"]
+      - name: "Wazuh"
+        type: "HIDS"
+        features: ["파일 무결성", "로그 분석"]
+    deployment:
+      - "인라인 (IPS 모드)"
+      - "패시브 (미러링/SPAN)"
+      - "클라우드 VPC 모니터링"
+    best_practices:
+      - "규칙 정기 업데이트"
+      - "오탐/미탐 튜닝"
+      - "SIEM 통합"
+      - "성능 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST 800-94"
+      - "Snort Documentation"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IDS는 네트워크/호스트에서 침입을 탐지한다. 시그니처, 이상 기반 탐지를
+      수행하며 Snort, Suricata, Wazuh가 대표적이다.
+    search_keywords:
+      - "IDS"
+      - "침입 탐지"
+      - "Snort"
+      - "네트워크 모니터링"
+    related_queries:
+      - "IPS"
+      - "네트워크 보안"
+      - "위협 탐지"

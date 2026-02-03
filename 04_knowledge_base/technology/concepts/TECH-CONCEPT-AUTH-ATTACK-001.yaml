@@ -1,0 +1,103 @@
+# GR Atom: Authentication Attack (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-AUTH-ATTACK-001"
+  name: "Authentication Attack"
+  normalization:
+    normalized_name: "authentication attack credential attack login attack"
+    normalization_version: "1.0"
+  aliases:
+    - "인증 공격"
+    - "Credential Attack"
+    - "자격증명 공격"
+    - "Login Attack"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "AUTH"]
+
+definition:
+  what: |
+    인증 공격(Authentication Attack)은 사용자 인증 메커니즘을 우회하거나
+    악용하여 무단 접근을 시도하는 공격의 총칭이다. 비밀번호 공격,
+    세션 공격, 인증 우회 등을 포함한다.
+  why: |
+    인증은 보안의 첫 번째 관문이다. 인증이 뚫리면 모든 후속 보안 통제가
+    무력화된다. 대부분의 데이터 유출 사고가 인증 실패에서 시작된다.
+  how: |
+    1. Brute Force: 무차별 대입 공격
+    2. Credential Stuffing: 유출된 자격증명 재사용
+    3. Session Hijacking: 세션 토큰 탈취
+    4. Authentication Bypass: 인증 로직 우회
+    5. CSRF: 인증된 사용자의 요청 위조
+
+relations:
+  structural:
+    abstracts:
+      - "ATK-AUTH-BRUTEFORCE-001"
+      - "ATK-AUTH-BYPASS-001"
+      - "ATK-AUTH-CREDSTUFF-001"
+      - "ATK-AUTH-CSRF-001"
+      - "ATK-SESSION-HIJACK-001"
+  causal:
+    exploits:
+      - "VUL-AUTH-BROKEN-001"
+      - "VUL-AUTH-SESSION-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Password Attacks"
+        techniques: ["Brute Force", "Dictionary", "Credential Stuffing"]
+      - name: "Session Attacks"
+        techniques: ["Session Hijacking", "Session Fixation"]
+      - name: "Bypass Attacks"
+        techniques: ["Authentication Bypass", "MFA Bypass"]
+      - name: "Request Forgery"
+        techniques: ["CSRF", "Replay Attack"]
+    mitre_tactics:
+      - "TA0006 - Credential Access"
+      - "TA0001 - Initial Access"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK - Credential Access"
+      - "OWASP Authentication Cheat Sheet"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Authentication Attack(인증 공격)은 인증 메커니즘을 우회하거나 악용하는
+      공격이다. Brute Force, Credential Stuffing, Session Hijacking,
+      Authentication Bypass, CSRF 등을 포함한다. 인증이 뚫리면 모든 보안이
+      무력화되므로 가장 중요한 공격 범주 중 하나다.
+    search_keywords:
+      - "Authentication Attack"
+      - "인증 공격"
+      - "Credential Attack"
+      - "Session Attack"
+      - "Brute Force"
+      - "CSRF"
+    related_queries:
+      - "인증 공격 종류"
+      - "Brute Force와 Credential Stuffing 차이"
+      - "세션 공격 방어 방법"
+      - "인증 우회란?"

@@ -1,0 +1,100 @@
+# GR Atom: Cloud Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-CLOUD-001"
+  name: "Cloud Security Tool"
+  normalization:
+    normalized_name: "cloud security tool aws azure gcp"
+    normalization_version: "1.0"
+  aliases:
+    - "Cloud Security Tool"
+    - "클라우드 보안 도구"
+    - "Cloud Pentesting Tool"
+    - "CSPM Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "CLOUD"]
+
+definition:
+  what: |
+    클라우드 환경(AWS, Azure, GCP)의 보안 평가,
+    설정 검사에 사용되는 도구 분류이다.
+  why: |
+    클라우드 설정 오류를 탐지한다.
+    컴플라이언스를 검증한다.
+    클라우드 취약점을 식별한다.
+  how: |
+    1. 클라우드 자격 증명 설정
+    2. 리소스 열거
+    3. 설정 감사
+    4. 취약점 분석
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    has_children:
+      - "TOOL-CLOUD-PROWLER-001"
+      - "TOOL-CLOUD-SCOUTSUITE-001"
+    related_to:
+      - "ATK-CLOUD-001"
+      - "DEF-CLOUD-001"
+
+properties:
+  technical:
+    categories:
+      cspm:
+        description: "클라우드 보안 상태 관리"
+        tools: ["Prowler", "ScoutSuite", "CloudSploit"]
+      offensive:
+        description: "클라우드 침투 테스트"
+        tools: ["Pacu", "CloudGoat", "Endgame"]
+      iam:
+        description: "IAM 분석"
+        tools: ["Cloudsplaining", "PMapper"]
+    examples:
+      - "Prowler"
+      - "ScoutSuite"
+      - "Pacu"
+      - "CloudMapper"
+      - "Steampipe"
+    platforms:
+      - "AWS"
+      - "Azure"
+      - "GCP"
+      - "Multi-Cloud"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "AWS Security"
+      - "Cloud Security Alliance"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Cloud Security Tool은 클라우드 환경의 보안 평가에
+      사용되는 도구 분류이다.
+    search_keywords:
+      - "Cloud Security"
+      - "AWS"
+      - "Azure"
+      - "클라우드"

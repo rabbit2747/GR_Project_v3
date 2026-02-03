@@ -1,0 +1,81 @@
+# GR Atom: CI/CD Technology
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CI-CD-001"
+  name: "CI/CD Technology"
+  normalization:
+    normalized_name: "ci cd continuous integration delivery devops"
+    normalization_version: "1.0"
+  aliases:
+    - "CI/CD Technology"
+    - "CI/CD 기술"
+    - "Continuous Integration/Deployment"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TECHNOLOGY", "DEVOPS"]
+
+definition:
+  what: |
+    소프트웨어 빌드, 테스트, 배포를 자동화하는 CI/CD 기술 분류이다.
+  why: |
+    파이프라인 보안을 이해한다.
+    안전한 배포를 구현한다.
+    DevSecOps를 실현한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    has_children:
+      - "TECH-CI-JENKINS-001"
+      - "TECH-CI-GITHUB-ACTIONS-001"
+    related_to:
+      - "DEF-DEVSECOPS-001"
+      - "ATK-SUPPLY-001"
+
+properties:
+  technical:
+    platforms:
+      - "Jenkins"
+      - "GitHub Actions"
+      - "GitLab CI"
+      - "CircleCI"
+      - "Azure DevOps"
+    security_practices:
+      - "Pipeline as Code"
+      - "Secrets Management"
+      - "SAST/DAST Integration"
+      - "Artifact Signing"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "DevSecOps Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      CI/CD Technology는 지속적 통합/배포 기술 분류이다.
+    search_keywords:
+      - "CI/CD"
+      - "DevOps"
+      - "Jenkins"
+      - "Pipeline"

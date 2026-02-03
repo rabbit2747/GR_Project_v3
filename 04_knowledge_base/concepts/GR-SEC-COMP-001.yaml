@@ -1,0 +1,102 @@
+# GR Atom: Security Compliance
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-COMP-001"
+  name: "Security Compliance"
+  normalization:
+    normalized_name: "security compliance regulation standard framework"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Compliance"
+    - "보안 컴플라이언스"
+    - "Regulatory Compliance"
+    - "보안 준수"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "COMPLIANCE", "ROOT"]
+
+definition:
+  what: |
+    보안 관련 법규, 규정, 표준, 프레임워크를 준수하는
+    활동과 체계의 최상위 분류이다.
+  why: |
+    법적 의무를 충족한다.
+    비즈니스 신뢰를 구축한다.
+    체계적 보안 관리를 실현한다.
+  how: |
+    1. 요구사항 파악
+    2. 갭 분석
+    3. 통제 구현
+    4. 감사 및 인증
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "COMP-FRAMEWORK-001"
+      - "COMP-REGULATION-001"
+      - "COMP-STANDARD-001"
+      - "COMP-GDPR-001"
+      - "COMP-PCIDSS-001"
+    related_to:
+      - "GR-SEC-DEF-001"
+
+properties:
+  technical:
+    categories:
+      regulations:
+        description: "법적 규정"
+        examples: ["GDPR", "HIPAA", "개인정보보호법"]
+      standards:
+        description: "산업 표준"
+        examples: ["ISO 27001", "PCI DSS", "SOC 2"]
+      frameworks:
+        description: "보안 프레임워크"
+        examples: ["NIST CSF", "CIS Controls", "COBIT"]
+    compliance_process:
+      - "Scope Definition"
+      - "Gap Assessment"
+      - "Remediation"
+      - "Evidence Collection"
+      - "Audit/Certification"
+      - "Continuous Monitoring"
+    benefits:
+      - "법적 위험 감소"
+      - "고객 신뢰 증가"
+      - "보안 수준 향상"
+      - "경쟁 우위 확보"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "ISO 27001"
+      - "NIST Cybersecurity Framework"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Compliance는 보안 법규, 표준, 프레임워크
+      준수 활동의 최상위 분류 개념이다.
+    search_keywords:
+      - "Compliance"
+      - "컴플라이언스"
+      - "Regulation"
+      - "Standard"

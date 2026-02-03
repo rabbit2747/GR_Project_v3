@@ -1,0 +1,80 @@
+# GR Atom: IoT Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-IOT-001"
+  name: "IoT Infrastructure"
+  normalization:
+    normalized_name: "iot infrastructure embedded industrial"
+    normalization_version: "1.0"
+  aliases:
+    - "IoT Infrastructure"
+    - "IoT 인프라"
+    - "Internet of Things Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "IOT"]
+
+definition:
+  what: |
+    IoT 기기와 연결 시스템을 포함하는 인프라 분류이다.
+  why: |
+    IoT 환경을 이해한다.
+    IoT 보안을 평가한다.
+    스마트 환경을 설계한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-IOT-CONSUMER-001"
+      - "INFRA-IOT-INDUSTRIAL-001"
+    related_to:
+      - "ATK-IOT-001"
+      - "DEF-IOT-SEC-001"
+
+properties:
+  technical:
+    types:
+      - "Consumer IoT"
+      - "Industrial IoT"
+      - "Medical IoT"
+      - "Smart Building"
+    components:
+      - "Sensors"
+      - "Gateways"
+      - "Edge Computing"
+      - "Cloud Backend"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST IoT Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IoT Infrastructure는 사물인터넷 인프라 분류이다.
+    search_keywords:
+      - "IoT Infrastructure"
+      - "IoT 인프라"
+      - "Industrial IoT"
+      - "Smart Device"

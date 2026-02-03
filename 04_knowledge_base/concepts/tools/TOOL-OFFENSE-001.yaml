@@ -1,0 +1,98 @@
+# GR Atom: Offensive Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OFFENSE-001"
+  name: "Offensive Security Tool"
+  normalization:
+    normalized_name: "offensive security tool pentest exploit"
+    normalization_version: "1.0"
+  aliases:
+    - "Offensive Security Tool"
+    - "공격적 보안 도구"
+    - "Pentest Tool"
+    - "Hacking Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "OFFENSE"]
+
+definition:
+  what: |
+    침투 테스트, 취약점 익스플로잇, 공격 시뮬레이션에
+    사용되는 보안 도구 분류이다.
+  why: |
+    실제 공격자 관점에서 보안을 테스트한다.
+    취약점을 실증적으로 검증한다.
+    방어 체계의 효과를 평가한다.
+  how: |
+    1. 표적 식별
+    2. 취약점 탐색
+    3. 익스플로잇 실행
+    4. 결과 문서화
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    has_children:
+      - "TOOL-PENTEST-METASPLOIT-001"
+      - "TOOL-PENTEST-BURPSUITE-001"
+      - "TOOL-PENTEST-SQLMAP-001"
+      - "TOOL-PASSWORD-001"
+      - "TOOL-C2-001"
+    related_to:
+      - "GR-SEC-ATK-001"
+      - "TECH-CONCEPT-PENTESTING-001"
+
+properties:
+  technical:
+    subcategories:
+      exploitation: "익스플로잇 프레임워크"
+      web_testing: "웹 애플리케이션 테스트"
+      password: "비밀번호 공격"
+      c2: "명령 및 제어"
+      wireless: "무선 공격"
+    examples:
+      - "Metasploit Framework"
+      - "Burp Suite"
+      - "SQLMap"
+      - "Cobalt Strike"
+      - "Mimikatz"
+    legal_considerations:
+      - "사전 서면 승인 필수"
+      - "테스트 범위 명확히 정의"
+      - "증거 보존 및 문서화"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Kali Linux"
+      - "PTES"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Offensive Security Tool은 침투 테스트와 공격 시뮬레이션에
+      사용되는 보안 도구의 분류이다.
+    search_keywords:
+      - "Offensive Tool"
+      - "Pentest"
+      - "Exploit"
+      - "공격 도구"

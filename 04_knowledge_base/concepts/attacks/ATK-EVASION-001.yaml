@@ -1,0 +1,90 @@
+# GR Atom: Defense Evasion
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-EVASION-001"
+  name: "Defense Evasion"
+  normalization:
+    normalized_name: "defense evasion bypass detection avoidance"
+    normalization_version: "1.0"
+  aliases:
+    - "Defense Evasion"
+    - "방어 우회"
+    - "Detection Evasion"
+    - "AV Bypass"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["CONCEPT", "ATTACK", "EVASION"]
+
+definition:
+  what: |
+    보안 통제, 탐지 시스템을 우회하거나 회피하는
+    공격 기법 분류이다.
+  why: |
+    탐지를 피한다.
+    보안 도구를 무력화한다.
+    은밀한 활동을 유지한다.
+  how: |
+    1. 보안 통제 식별
+    2. 우회 기법 선택
+    3. 페이로드 수정
+    4. 테스트 및 적용
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-ATK-001"
+    has_children:
+      - "ATK-MITRE-T1070-001"
+    related_to:
+      - "ATK-MITRE-DEF-EVASION-001"
+      - "DEF-DETECT-001"
+
+properties:
+  technical:
+    techniques:
+      - "Obfuscation"
+      - "Encryption"
+      - "Living off the Land"
+      - "Process Injection"
+      - "Timestomping"
+      - "Log Deletion"
+      - "Disabling Security Tools"
+    mitre_tactic: "TA0005"
+    targets:
+      - "Antivirus/EDR"
+      - "SIEM/Logging"
+      - "Network Detection"
+      - "Application Controls"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK TA0005"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Defense Evasion은 보안 통제를 우회하는 공격 기법 분류이다.
+    search_keywords:
+      - "Evasion"
+      - "우회"
+      - "Bypass"
+      - "Detection"

@@ -1,0 +1,101 @@
+# GR Atom: Virtual Machine
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-COMPUTE-VM-001"
+  name: "Virtual Machine"
+  normalization:
+    normalized_name: "virtual machine vm hypervisor virtualization"
+    normalization_version: "1.0"
+  aliases:
+    - "VM"
+    - "가상 머신"
+    - "Virtual Server"
+    - "가상 서버"
+
+classification:
+  domain: infrastructure
+  type: compute
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["INFRA", "COMPUTE", "VIRTUAL"]
+
+definition:
+  what: |
+    가상 머신(Virtual Machine)은 하이퍼바이저 위에서 실행되는 가상화된
+    컴퓨터 시스템이다. 물리 하드웨어를 추상화하여 독립적인 운영체제를 실행한다.
+  why: |
+    서버 통합, 리소스 효율화, 격리의 핵심 기술이다.
+    VM 탈출, 하이퍼바이저 취약점, 스냅샷 노출이 보안 위협이다.
+  how: |
+    1. 하이퍼바이저: VMware, KVM, Hyper-V
+    2. 리소스 할당: CPU, 메모리, 디스크 가상화
+    3. 네트워크 가상화: 가상 NIC, 가상 스위치
+    4. 관리: 스냅샷, 마이그레이션, 복제
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-001"
+  causal:
+    supports:
+      - "INFRA-APP-WAS-001"
+      - "INFRA-APP-WEBSERVER-001"
+    mitigated_by:
+      - "DEF-PREVENT-SANDBOX-001"
+
+properties:
+  technical:
+    hypervisors:
+      - name: "VMware ESXi"
+        type: "Type 1 (Bare Metal)"
+      - name: "Microsoft Hyper-V"
+        type: "Type 1"
+      - name: "KVM"
+        type: "Type 1 (Linux)"
+      - name: "VirtualBox"
+        type: "Type 2 (Hosted)"
+    security_features:
+      - "Hardware isolation"
+      - "Snapshot and rollback"
+      - "Network segmentation"
+      - "Encrypted storage"
+    common_vulnerabilities:
+      - "VM escape (Hypervisor exploit)"
+      - "Snapshot exposure"
+      - "Side-channel attacks"
+      - "Shared resource abuse"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "CIS VMware Benchmark"
+      - "NIST Virtualization Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Virtual Machine(가상 머신)은 하이퍼바이저 위에서 실행되는 가상화된
+      컴퓨터 시스템이다. VM 탈출, 하이퍼바이저 취약점이 보안 위협이다.
+    search_keywords:
+      - "Virtual Machine"
+      - "VM"
+      - "가상 머신"
+      - "Hypervisor"
+    related_queries:
+      - "VM 보안"
+      - "하이퍼바이저 취약점"
+      - "VM 탈출"

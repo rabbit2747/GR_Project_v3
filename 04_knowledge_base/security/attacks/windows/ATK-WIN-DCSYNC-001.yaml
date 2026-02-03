@@ -1,0 +1,107 @@
+# GR Atom: DCSync Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WIN-DCSYNC-001"
+  name: "DCSync Attack"
+  normalization:
+    normalized_name: "dcsync attack mimikatz domain controller replication"
+    normalization_version: "1.0"
+  aliases:
+    - "DCSync 공격"
+    - "도메인 컨트롤러 동기화 공격"
+    - "DRSUAPI 악용"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "WIN", "AD"]
+
+definition:
+  what: |
+    도메인 컨트롤러 복제 프로토콜(DRSUAPI)을 악용하여
+    Active Directory에서 패스워드 해시를 추출하는 공격이다.
+  why: |
+    도메인 관리자 해시를 획득한다.
+    Golden Ticket 공격의 전제가 된다.
+  how: |
+    1. 복제 권한 획득
+    2. DRSUAPI 프로토콜 사용
+    3. 특정 계정 해시 요청
+    4. 패스워드 해시 추출
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-CRED-ACCESS-001"
+    related_to:
+      - "ATK-WIN-GOLDEN-TICKET-001"
+      - "TECH-CONCEPT-AD-SECURITY-001"
+
+properties:
+  technical:
+    protocol: "DRSUAPI (Directory Replication Service)"
+    required_privileges:
+      - "Replicating Directory Changes"
+      - "Replicating Directory Changes All"
+      - "Replicating Directory Changes in Filtered Set"
+    default_groups:
+      - "Domain Admins"
+      - "Enterprise Admins"
+      - "Domain Controllers"
+    tools:
+      - name: "Mimikatz"
+        command: 'lsadump::dcsync /domain:corp.local /user:Administrator'
+      - name: "Impacket secretsdump"
+        command: "secretsdump.py corp/admin@dc.corp.local"
+    extractable_data:
+      - "NTLM 해시"
+      - "Kerberos 키"
+      - "패스워드 히스토리"
+      - "크러쉬 AES 키"
+    detection:
+      - "DC 외부에서의 복제 요청"
+      - "Event ID 4662 (객체 접근)"
+      - "비정상 DRSUAPI 호출"
+      - "네트워크 이상 패턴"
+    mitigation:
+      - "복제 권한 제한"
+      - "특권 접근 관리"
+      - "DC 강화"
+      - "지속적 모니터링"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK"
+      - "Microsoft Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DCSync는 도메인 컨트롤러 복제 프로토콜을 악용하여
+      AD에서 패스워드 해시를 추출하는 공격이다.
+    search_keywords:
+      - "DCSync"
+      - "Mimikatz"
+      - "DRSUAPI"
+      - "AD 해시"
+    related_queries:
+      - "도메인 공격"
+      - "패스워드 덤프"
+      - "Golden Ticket"

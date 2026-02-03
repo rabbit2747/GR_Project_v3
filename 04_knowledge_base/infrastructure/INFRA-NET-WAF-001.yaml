@@ -1,0 +1,151 @@
+# GR Atom: Web Application Firewall (WAF)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NET-WAF-001"
+  name: "Web Application Firewall (WAF)"
+  normalization:
+    normalized_name: "waf web application firewall"
+    normalization_version: "1.0"
+  aliases:
+    - "WAF"
+    - "웹 방화벽"
+    - "웹 애플리케이션 방화벽"
+    - "L7 Firewall"
+
+classification:
+  domain: security
+  type: component
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["D", "P", "WEB"]
+
+definition:
+  what: |
+    WAF는 HTTP/HTTPS 트래픽을 검사하여 웹 애플리케이션 공격(SQL Injection,
+    XSS, CSRF 등)을 탐지하고 차단하는 보안 장비/소프트웨어다.
+    OSI 7계층(애플리케이션)에서 동작한다.
+  why: |
+    웹 애플리케이션의 첫 번째 방어선이다. OWASP Top 10 공격을 실시간으로
+    차단하며, 코드 수정 없이 취약점을 보완(가상 패치)할 수 있다.
+    규정 준수(PCI-DSS 등)에도 필요하다.
+  how: |
+    1. 클라이언트 HTTP 요청이 WAF에 도착
+    2. 규칙 기반 검사 (시그니처, 정규식)
+    3. 이상 탐지 (행위 기반, ML)
+    4. 악성 요청: 차단 또는 로깅
+    5. 정상 요청: 백엔드 서버로 전달
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-FIREWALL-001"]
+  causal:
+    prevents:
+      - "ATK-INJECT-SQL-001"
+      - "ATK-INJECT-XSS-001"
+      - "ATK-INJECT-CMD-001"
+      - "ATK-SERVER-SSRF-001"
+  conditional:
+    requires:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-HTTPS-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    deployment_modes:
+      - name: "Reverse Proxy"
+        description: "트래픽이 WAF를 통과"
+      - name: "Transparent"
+        description: "네트워크에 투명하게 삽입"
+      - name: "Cloud-based"
+        description: "DNS 기반 클라우드 WAF"
+    detection_methods:
+      - name: "Signature-based"
+        description: "알려진 공격 패턴 매칭"
+      - name: "Anomaly-based"
+        description: "정상 행위 이탈 탐지"
+      - name: "ML-based"
+        description: "머신러닝 기반 탐지"
+    common_products:
+      commercial:
+        - "Imperva WAF"
+        - "F5 Advanced WAF"
+        - "Fortinet FortiWeb"
+        - "Akamai Kona Site Defender"
+      open_source:
+        - "ModSecurity"
+        - "NAXSI (Nginx)"
+      cloud:
+        - "AWS WAF"
+        - "Azure WAF"
+        - "Cloudflare WAF"
+    rule_sets:
+      - name: "OWASP Core Rule Set (CRS)"
+        description: "OWASP 제공 표준 규칙"
+      - name: "Vendor-specific"
+        description: "제조사 제공 규칙"
+      - name: "Custom"
+        description: "사용자 정의 규칙"
+  security:
+    protection_coverage:
+      - "SQL Injection"
+      - "Cross-Site Scripting (XSS)"
+      - "Command Injection"
+      - "Path Traversal"
+      - "File Inclusion"
+      - "SSRF"
+      - "CSRF"
+      - "HTTP Protocol Violations"
+    limitations:
+      - "암호화된 페이로드 탐지 어려움"
+      - "비즈니스 로직 취약점 탐지 불가"
+      - "제로데이 공격 탐지 한계"
+      - "오탐(False Positive) 가능성"
+    bypass_techniques:
+      - "인코딩 우회 (URL, Unicode, HTML)"
+      - "대소문자 변환"
+      - "주석 삽입"
+      - "HTTP Parameter Pollution"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP ModSecurity Core Rule Set"
+      - "NIST SP 800-95"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      WAF Web Application Firewall은 HTTP 트래픽을 검사하여 웹 공격을
+      차단하는 보안 장비다. SQL Injection, XSS, Command Injection 등
+      OWASP Top 10 공격을 방어한다. ModSecurity, AWS WAF, Cloudflare가
+      대표적이며, OWASP CRS 규칙을 주로 사용한다. 인코딩 우회 등의
+      우회 기법이 존재하며, 비즈니스 로직 취약점은 탐지하지 못한다.
+    search_keywords:
+      - "WAF"
+      - "웹 방화벽"
+      - "ModSecurity"
+      - "OWASP CRS"
+      - "웹 공격 차단"
+    related_queries:
+      - "WAF란?"
+      - "WAF 우회 기법"
+      - "ModSecurity 설정"
+      - "WAF vs IDS"

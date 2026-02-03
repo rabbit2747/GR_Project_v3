@@ -1,0 +1,81 @@
+# GR Atom: Endpoint Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-ENDPOINT-001"
+  name: "Endpoint Infrastructure"
+  normalization:
+    normalized_name: "endpoint infrastructure workstation mobile device"
+    normalization_version: "1.0"
+  aliases:
+    - "Endpoint Infrastructure"
+    - "엔드포인트 인프라"
+    - "End User Computing"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "ENDPOINT"]
+
+definition:
+  what: |
+    사용자가 직접 사용하는 엔드포인트 장치 인프라 분류이다.
+  why: |
+    엔드포인트 환경을 이해한다.
+    엔드포인트 보안을 구현한다.
+    사용자 환경을 관리한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-ENDPOINT-WORKSTATION-001"
+      - "INFRA-ENDPOINT-MOBILE-001"
+    related_to:
+      - "DEF-EDR-001"
+      - "ATK-MOBILE-001"
+
+properties:
+  technical:
+    types:
+      - "Desktop"
+      - "Laptop"
+      - "Mobile Device"
+      - "Tablet"
+      - "IoT Device"
+    management:
+      - "MDM"
+      - "UEM"
+      - "EDR"
+      - "DLP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Endpoint Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Endpoint Infrastructure는 사용자 엔드포인트 인프라 분류이다.
+    search_keywords:
+      - "Endpoint Infrastructure"
+      - "엔드포인트 인프라"
+      - "Workstation"
+      - "Mobile Device"

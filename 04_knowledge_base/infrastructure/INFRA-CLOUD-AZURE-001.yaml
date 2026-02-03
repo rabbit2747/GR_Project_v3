@@ -1,0 +1,120 @@
+# GR Atom: Microsoft Azure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-CLOUD-AZURE-001"
+  name: "Microsoft Azure"
+  normalization:
+    normalized_name: "microsoft azure cloud platform iaas paas saas"
+    normalization_version: "1.0"
+  aliases:
+    - "Azure"
+    - "마이크로소프트 애저"
+    - "Azure Cloud"
+
+classification:
+  domain: infrastructure
+  type: cloud_platform
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["INFRA", "CLOUD", "AZURE"]
+
+definition:
+  what: |
+    Microsoft Azure는 마이크로소프트의 클라우드 컴퓨팅 플랫폼이다.
+    IaaS, PaaS, SaaS 서비스를 제공하며 하이브리드 클라우드에 강점이 있다.
+  why: |
+    엔터프라이즈 시장 점유율 2위의 주요 클라우드다. Active Directory 통합,
+    Windows 생태계 연동이 특징이며 고유한 보안 위험과 설정 오류가 존재한다.
+  how: |
+    1. Compute: VM, App Service, Functions, AKS
+    2. Storage: Blob, Files, Queue, Table
+    3. Networking: Virtual Network, Load Balancer, CDN
+    4. Identity: Azure AD, Key Vault
+
+relations:
+  structural:
+    is_a:
+      - "INFRA-CLOUD-001"
+    has_part:
+      - "INFRA-CLOUD-AZURE-AD-001"
+  causal:
+    vulnerable_to:
+      - "VUL-CLOUD-MISCONFIG-001"
+
+properties:
+  technical:
+    core_services:
+      compute:
+        - "Azure Virtual Machines"
+        - "Azure App Service"
+        - "Azure Functions"
+        - "Azure Kubernetes Service (AKS)"
+      storage:
+        - "Azure Blob Storage"
+        - "Azure Files"
+        - "Azure Disk Storage"
+      networking:
+        - "Virtual Network (VNet)"
+        - "Azure Load Balancer"
+        - "Application Gateway"
+        - "Azure CDN"
+      security:
+        - "Azure Active Directory"
+        - "Azure Key Vault"
+        - "Azure Security Center"
+        - "Azure Sentinel"
+    security_features:
+      - "Azure Active Directory (Azure AD)"
+      - "Azure Security Center / Defender for Cloud"
+      - "Azure Sentinel (SIEM)"
+      - "Azure Key Vault"
+      - "Network Security Groups (NSG)"
+      - "Azure Firewall"
+      - "Azure DDoS Protection"
+    common_misconfigurations:
+      - "공개된 Blob Storage"
+      - "과도한 RBAC 권한"
+      - "NSG 규칙 오류"
+      - "Key Vault 접근 정책 미흡"
+      - "Azure AD 설정 오류"
+    compliance:
+      - "ISO 27001"
+      - "SOC 1/2/3"
+      - "GDPR"
+      - "HIPAA"
+      - "FedRAMP"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft Azure Documentation"
+      - "CIS Microsoft Azure Foundations Benchmark"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Microsoft Azure는 마이크로소프트 클라우드 플랫폼이다. Azure AD, Key Vault,
+      Security Center가 핵심 보안 서비스이며 Blob Storage 노출이 주요 위험이다.
+    search_keywords:
+      - "Microsoft Azure"
+      - "Azure"
+      - "Azure 클라우드"
+      - "Azure 보안"
+    related_queries:
+      - "Azure 보안 설정"
+      - "Azure AD"
+      - "Azure vs AWS"

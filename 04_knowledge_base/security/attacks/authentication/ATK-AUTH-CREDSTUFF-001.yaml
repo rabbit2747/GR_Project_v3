@@ -1,0 +1,146 @@
+# GR Atom: Credential Stuffing
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-AUTH-CREDSTUFF-001"
+  name: "Credential Stuffing"
+  normalization:
+    normalized_name: "credential stuffing automated login breach data"
+    normalization_version: "1.0"
+  aliases:
+    - "크리덴셜 스터핑"
+    - "자격증명 대입 공격"
+    - "Credential Reuse Attack"
+    - "Breach Replay Attack"
+
+classification:
+  domain: security
+  type: technique
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["AUTH", "EXPLOIT"]
+
+definition:
+  what: |
+    Credential Stuffing은 다른 서비스에서 유출된 자격증명(아이디/비밀번호)
+    목록을 사용하여 대규모 자동 로그인 시도를 수행하는 공격이다.
+    사용자가 여러 서비스에서 동일한 비밀번호를 재사용하는 습관을 악용한다.
+  why: |
+    대규모 데이터 유출 사고로 수십억 개의 자격증명이 다크웹에 유통되고 있다.
+    사용자의 약 65%가 비밀번호를 재사용하므로 높은 성공률(0.1~2%)을 보인다.
+    계정 탈취 후 금전적 피해, 개인정보 유출, 추가 공격의 발판이 된다.
+  how: |
+    1. 다크웹/유출 데이터베이스에서 자격증명 목록 확보
+    2. 자동화 도구(Sentry MBA, OpenBullet 등)로 대상 사이트 설정
+    3. 프록시 리스트를 활용하여 IP 기반 차단 우회
+    4. 대규모 자동 로그인 시도 수행
+    5. 성공한 자격증명 수집 및 악용
+    6. 탈취 계정으로 금전적 이득 또는 추가 공격 수행
+
+relations:
+  structural:
+    is_a: ["TECH-CONCEPT-AUTH-ATTACK-001"]
+  causal:
+    enables:
+      - "VUL-AUTH-BROKEN-001"
+  conditional:
+    requires:
+      - "TECH-CONCEPT-SESSION-001"
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    attack_flow:
+      - step: "자격증명 수집"
+        description: "유출 데이터베이스에서 이메일/비밀번호 쌍 확보"
+      - step: "도구 설정"
+        description: "자동화 도구에 대상 로그인 엔드포인트 설정"
+      - step: "프록시 설정"
+        description: "IP 차단 우회를 위한 프록시 로테이션"
+      - step: "대량 로그인 시도"
+        description: "수천~수백만 건의 로그인 요청 전송"
+      - step: "결과 수집"
+        description: "성공/실패 응답 분석 및 유효 계정 추출"
+    tools:
+      - "Sentry MBA"
+      - "OpenBullet"
+      - "STORM"
+      - "BlackBullet"
+      - "Custom Python Scripts"
+    data_sources:
+      - "다크웹 유출 데이터베이스"
+      - "Combo Lists"
+      - "Have I Been Pwned (확인용)"
+    success_rate: "0.1% ~ 2% (비밀번호 재사용률에 따라)"
+  security:
+    impact:
+      confidentiality: "CRITICAL - 대규모 계정 탈취"
+      integrity: "HIGH - 계정 정보 변조"
+      availability: "MEDIUM - 대량 요청으로 서비스 부하"
+    cvss_base: 8.1
+    cwe_id: "CWE-307"
+    mitre_attack:
+      technique_id: "T1110.004"
+      tactic: "Credential Access"
+  countermeasures:
+    primary:
+      - id: "DEF-PREVENT-MFA-001"
+        name: "Multi-Factor Authentication"
+        effectiveness: "HIGH"
+      - id: "DEF-PREVENT-RATELIMIT-001"
+        name: "Rate Limiting"
+        effectiveness: "HIGH"
+    secondary:
+      - name: "CAPTCHA"
+        effectiveness: "MEDIUM"
+      - name: "Breached Password Detection"
+        effectiveness: "HIGH"
+      - name: "Device Fingerprinting"
+        effectiveness: "MEDIUM"
+      - name: "Bot Detection"
+        effectiveness: "HIGH"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Credential Stuffing"
+      - "MITRE ATT&CK T1110.004"
+      - "CWE-307: Improper Restriction of Excessive Authentication Attempts"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: medium
+  ai:
+    embedding_text: |
+      Credential Stuffing은 유출된 자격증명 목록을 사용하여 대규모 자동
+      로그인 시도를 수행하는 공격이다. 비밀번호 재사용 습관을 악용하며,
+      Sentry MBA, OpenBullet 등의 자동화 도구를 사용한다. MFA, Rate Limiting,
+      CAPTCHA, Bot Detection으로 방어한다. Brute Force의 변형으로 분류되며,
+      CWE-307에 해당한다.
+    search_keywords:
+      - "Credential Stuffing"
+      - "크리덴셜 스터핑"
+      - "자격증명 대입"
+      - "비밀번호 재사용"
+      - "계정 탈취"
+      - "Combo List"
+    related_queries:
+      - "Credential Stuffing이란?"
+      - "Credential Stuffing vs Brute Force 차이"
+      - "Credential Stuffing 방어 방법"
+      - "유출 자격증명 공격 대응"

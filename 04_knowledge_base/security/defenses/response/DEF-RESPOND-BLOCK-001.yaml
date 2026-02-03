@@ -1,0 +1,125 @@
+# GR Atom: IP/Request Blocking
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-RESPOND-BLOCK-001"
+  name: "IP/Request Blocking"
+  normalization:
+    normalized_name: "ip request blocking"
+    normalization_version: "1.0"
+  aliases:
+    - "IP 차단"
+    - "요청 차단"
+    - "IP Blocking"
+    - "Request Blocking"
+    - "블랙리스트 차단"
+    - "Rate Limiting Block"
+
+classification:
+  domain: security
+  type: control
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone1"
+    tags: ["R", "P"]
+
+definition:
+  what: |
+    악성 IP 또는 공격 요청을 실시간으로 차단하는 대응 조치.
+    방화벽, WAF, IPS, 로드밸런서 등에서 특정 IP 주소, IP 대역,
+    악성 요청 패턴을 식별하여 접근을 거부한다.
+    블랙리스트 기반, Rate Limiting, Geo-blocking 등을 포함한다.
+  why: |
+    공격이 탐지된 후 가장 즉각적으로 취할 수 있는 대응 조치이다.
+    공격 IP를 차단하면 해당 소스로부터의 추가 공격을 즉시 중단시키며,
+    시스템 부하를 줄이고 서비스 가용성을 보호한다.
+    자동화된 차단은 DDoS, 브루트포스 등 대량 공격에 필수적이다.
+  how: |
+    1. 공격 탐지 시스템(IDS, WAF, SIEM)에서 악성 IP/패턴 식별
+    2. 자동 또는 수동으로 차단 규칙 생성
+    3. 방화벽/WAF/IPS에 차단 규칙 적용
+    4. 차단된 트래픽 로깅 및 모니터링
+    5. 정기적으로 차단 목록 검토 및 해제 판단
+
+relations:
+  structural:
+    is_a:
+      - "DEF-RESPOND"  # 대응 방어의 하위 개념
+    depends_on:
+      - "DEF-DETECT-IDS-001"      # IDS 탐지 결과에 의존
+      - "DEF-DETECT-WAF-001"      # WAF 탐지 결과에 의존
+  causal:
+    prevents:
+      - "ATK-AUTH-BRUTEFORCE-001"  # 브루트포스 차단
+      - "ATK-SERVER-SSRF-001"      # SSRF 소스 차단
+  applicability:
+    applies_to:
+      - "INFRA-NET-FIREWALL-001"
+      - "INFRA-NET-WAF-001"
+      - "INFRA-NET-LB-001"
+
+properties:
+  technical:
+    blocking_methods:
+      - name: "IP Blacklisting"
+        description: "특정 IP 주소 또는 대역을 차단 목록에 추가"
+        scope: "개별 IP, CIDR 블록"
+      - name: "Rate Limiting"
+        description: "단위 시간당 요청 수 제한, 초과 시 차단"
+        scope: "IP별, 사용자별, 엔드포인트별"
+      - name: "Geo-blocking"
+        description: "특정 국가/지역의 IP 대역 차단"
+        scope: "국가/지역 단위"
+      - name: "Request Pattern Blocking"
+        description: "악성 요청 패턴(페이로드) 기반 차단"
+        scope: "URI, 파라미터, 헤더"
+    blocking_tools:
+      - "iptables/nftables"
+      - "WAF Rules"
+      - "Fail2Ban"
+      - "CloudFlare/AWS WAF"
+    automation:
+      - "SOAR 연동 자동 차단"
+      - "Threat Intelligence Feed 연동"
+      - "IPS 자동 차단 모드"
+    considerations:
+      - "오차단(False Positive) 시 서비스 영향"
+      - "공유 IP(NAT) 환경에서의 과차단 주의"
+      - "차단 해제 프로세스 정의 필요"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "NIST SP 800-94 IDPS Guide"
+      - "CIS Controls - Network Monitoring and Defense"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      IP/Request Blocking은 악성 IP 또는 공격 요청을 실시간으로 차단하는 대응 조치이다.
+      방화벽, WAF, IPS에서 블랙리스트, Rate Limiting, Geo-blocking 등을 적용한다.
+      Fail2Ban, iptables, CloudFlare 등을 사용하며, DDoS/브루트포스 방어에 필수적이다.
+    search_keywords:
+      - "IP Blocking"
+      - "IP 차단"
+      - "Rate Limiting"
+      - "Geo-blocking"
+      - "블랙리스트"
+      - "Fail2Ban"
+    related_queries:
+      - "IP 차단 방법"
+      - "Rate Limiting 설정법"
+      - "자동 IP 차단 방법"
+      - "Fail2Ban 설정 방법"

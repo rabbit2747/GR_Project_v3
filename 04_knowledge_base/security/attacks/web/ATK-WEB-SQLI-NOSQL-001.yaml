@@ -1,0 +1,111 @@
+# GR Atom: NoSQL Injection
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WEB-SQLI-NOSQL-001"
+  name: "NoSQL Injection"
+  normalization:
+    normalized_name: "nosql injection mongodb query operator json"
+    normalization_version: "1.0"
+  aliases:
+    - "NoSQL 인젝션"
+    - "MongoDB Injection"
+    - "NoSQLi"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone1"
+    tags: ["ATK", "INJECT", "NOSQL"]
+
+definition:
+  what: |
+    NoSQL 인젝션은 NoSQL 데이터베이스(MongoDB, CouchDB 등)의 쿼리를
+    조작하여 데이터를 탈취하거나 인증을 우회하는 공격이다.
+  why: |
+    SQL이 아닌 다른 쿼리 언어를 사용하지만 인젝션 취약점은 동일하게 존재한다.
+    JSON 기반 쿼리에서 연산자 주입이 주요 공격 벡터다.
+  how: |
+    1. 사용자 입력이 쿼리에 직접 사용되는 곳 찾기
+    2. JSON 구조나 쿼리 연산자 주입
+    3. 인증 우회, 데이터 추출
+    4. 서버 사이드 JavaScript 실행 (MongoDB)
+
+relations:
+  structural:
+    is_a:
+      - "ATK-INJECT-SQL-001"
+    related_to:
+      - "TECH-FORMAT-JSON-001"
+
+properties:
+  technical:
+    attack_types:
+      - name: "Query Operator Injection"
+        database: "MongoDB"
+        payload: '{"username": {"$ne": ""}, "password": {"$ne": ""}}'
+        impact: "인증 우회"
+      - name: "$where Injection"
+        database: "MongoDB"
+        payload: '{"$where": "this.password == \'x\' || 1==1"}'
+        impact: "JavaScript 실행"
+      - name: "Regex Injection"
+        database: "MongoDB"
+        payload: '{"password": {"$regex": "^a"}}'
+        impact: "블라인드 데이터 추출"
+    mongodb_operators:
+      comparison: ["$eq", "$ne", "$gt", "$lt", "$gte", "$lte"]
+      logical: ["$and", "$or", "$not", "$nor"]
+      evaluation: ["$regex", "$where", "$expr"]
+    vulnerable_patterns:
+      - "JSON.parse(userInput)"
+      - "db.users.find({username: req.body.username})"
+      - "쿼리 파라미터 직접 사용"
+    exploitation:
+      - name: "Boolean-based"
+        technique: "참/거짓 응답 차이로 데이터 추출"
+      - name: "Time-based"
+        technique: "$where + sleep으로 시간 차이"
+      - name: "Error-based"
+        technique: "에러 메시지에서 정보 추출"
+    prevention:
+      - "쿼리 파라미터 타입 검증"
+      - "사용자 입력에서 $, { } 등 필터링"
+      - "ODM (Mongoose) 사용"
+      - "$where 비활성화"
+      - "입력 화이트리스트"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP NoSQL Injection"
+      - "MongoDB Security Checklist"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      NoSQL 인젝션은 MongoDB 등 NoSQL DB 쿼리를 조작하는 공격이다. $ne, $regex
+      연산자 주입이 주요 벡터며 타입 검증, ODM 사용으로 방어한다.
+    search_keywords:
+      - "NoSQL Injection"
+      - "NoSQL 인젝션"
+      - "MongoDB 공격"
+      - "$ne"
+    related_queries:
+      - "MongoDB 보안"
+      - "NoSQL 취약점"
+      - "쿼리 인젝션"

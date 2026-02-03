@@ -1,0 +1,111 @@
+# GR Atom: MITRE ATT&CK T1486 - Data Encrypted for Impact
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1486-001"
+  name: "Data Encrypted for Impact (Ransomware)"
+  normalization:
+    normalized_name: "mitre t1486 ransomware encryption data impact"
+    normalization_version: "1.0"
+  aliases:
+    - "랜섬웨어 암호화"
+    - "T1486"
+    - "데이터 암호화 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone1"
+    tags: ["ATK", "MITRE", "IMPACT"]
+
+definition:
+  what: |
+    공격자가 피해자 데이터를 암호화하여 가용성을 파괴하고
+    복호화 대가로 금전을 요구하는 기법이다. MITRE ATT&CK T1486.
+  why: |
+    랜섬웨어의 핵심 기법으로 직접적인 금전적 피해를 유발한다.
+    이중 갈취(데이터 유출 위협)와 결합되어 더욱 위협적이다.
+  how: |
+    1. 초기 접근 및 지속성 확보
+    2. 권한 상승 및 횡적 이동
+    3. 백업 파괴 및 보안 도구 비활성화
+    4. 대규모 암호화 실행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-IMPACT-001"
+    related_to:
+      - "ATK-MALWARE-RANSOMWARE-001"
+
+properties:
+  technical:
+    mitre_id: "T1486"
+    tactic: "Impact"
+    encryption_methods:
+      - name: "파일 기반"
+        description: "개별 파일 암호화"
+        algorithms: ["AES-256", "RSA", "ChaCha20"]
+      - name: "전체 디스크"
+        description: "MBR/파티션 암호화"
+      - name: "하이브리드"
+        description: "대칭키로 파일, 비대칭키로 키 암호화"
+    ransomware_families:
+      - name: "LockBit"
+        features: ["자동화", "RaaS"]
+      - name: "BlackCat/ALPHV"
+        features: ["Rust 기반", "다중 플랫폼"]
+      - name: "Conti"
+        features: ["조직적 운영"]
+      - name: "REvil/Sodinokibi"
+        features: ["고액 요구"]
+    pre_encryption_actions:
+      - "Shadow Copy 삭제"
+      - "백업 소프트웨어 종료"
+      - "보안 제품 비활성화"
+      - "복구 모드 비활성화"
+    detection:
+      - "대량 파일 I/O"
+      - "암호화된 파일 확장자"
+      - "프로세스 행위 분석"
+      - "Shadow Copy 삭제 모니터링"
+    prevention:
+      - "오프라인/격리 백업"
+      - "EDR/XDR"
+      - "네트워크 세그멘테이션"
+      - "권한 최소화"
+      - "패치 관리"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1486"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      T1486은 랜섬웨어 암호화 기법이다. 하이브리드 암호화로 파일을 잠그고
+      금전을 요구하며 백업, EDR, 세그멘테이션으로 방어한다.
+    search_keywords:
+      - "T1486"
+      - "랜섬웨어"
+      - "암호화"
+      - "데이터 파괴"
+    related_queries:
+      - "랜섬웨어 방어"
+      - "백업 전략"
+      - "암호화 공격"

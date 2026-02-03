@@ -1,0 +1,122 @@
+# GR Atom: Nmap Network Scanner
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-SCAN-NMAP-001"
+  name: "Nmap Network Scanner"
+  normalization:
+    normalized_name: "nmap network scanner port discovery service detection"
+    normalization_version: "1.0"
+  aliases:
+    - "Nmap"
+    - "엔맵"
+    - "Network Mapper"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L3"
+    zone: "Zone3"
+    tags: ["TOOL", "NET", "SCANNER"]
+
+definition:
+  what: |
+    Nmap은 네트워크 탐색 및 보안 감사 도구로,
+    호스트 발견, 포트 스캔, 서비스/OS 탐지를 수행한다.
+  why: |
+    네트워크 보안 평가와 인벤토리의 표준 도구다.
+    NSE 스크립트로 취약점 탐지까지 확장 가능하다.
+  how: |
+    1. 대상 범위 정의
+    2. 스캔 유형 선택
+    3. 스캔 실행
+    4. 결과 분석 및 보고
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    related_to:
+      - "ATK-MITRE-DISCOVERY-001"
+      - "TOOL-SCAN-MASSCAN-001"
+
+properties:
+  technical:
+    scan_types:
+      - name: "TCP SYN (-sS)"
+        description: "스텔스 스캔 (기본)"
+        stealth: true
+      - name: "TCP Connect (-sT)"
+        description: "전체 연결"
+        stealth: false
+      - name: "UDP (-sU)"
+        description: "UDP 포트 스캔"
+      - name: "Version (-sV)"
+        description: "서비스 버전 탐지"
+      - name: "OS Detection (-O)"
+        description: "운영체제 탐지"
+    discovery_options:
+      - "-sn: 호스트 발견만 (Ping Scan)"
+      - "-Pn: 호스트 발견 건너뛰기"
+      - "-PS: TCP SYN 발견"
+      - "-PA: TCP ACK 발견"
+      - "-PU: UDP 발견"
+    timing_templates:
+      - "-T0: Paranoid (매우 느림)"
+      - "-T1: Sneaky (느림)"
+      - "-T2: Polite (느림)"
+      - "-T3: Normal (기본)"
+      - "-T4: Aggressive (빠름)"
+      - "-T5: Insane (매우 빠름)"
+    nse_categories:
+      - "auth: 인증 테스트"
+      - "vuln: 취약점 탐지"
+      - "exploit: 익스플로잇"
+      - "brute: 브루트 포스"
+      - "discovery: 정보 수집"
+    common_commands:
+      - example: "nmap -sS -sV -O target"
+        description: "기본 스캔"
+      - example: "nmap -p- target"
+        description: "전체 포트 스캔"
+      - example: "nmap --script vuln target"
+        description: "취약점 스캔"
+    output_formats:
+      - "-oN: 일반 출력"
+      - "-oX: XML 출력"
+      - "-oG: Grep 가능 출력"
+      - "-oA: 모든 형식"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Nmap.org"
+      - "Nmap Reference Guide"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Nmap은 네트워크 스캐너로 포트, 서비스, OS 탐지를 수행한다.
+      NSE 스크립트로 취약점 탐지가 가능하며 보안 평가의 표준 도구다.
+    search_keywords:
+      - "Nmap"
+      - "포트 스캔"
+      - "네트워크 스캔"
+      - "서비스 탐지"
+    related_queries:
+      - "포트 스캐닝"
+      - "네트워크 매핑"
+      - "취약점 스캔"

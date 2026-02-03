@@ -1,0 +1,134 @@
+# GR Atom: Metasploit Framework
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-OFFENSE-METASPLOIT-001"
+  name: "Metasploit Framework"
+  normalization:
+    normalized_name: "metasploit framework"
+    normalization_version: "1.0"
+  aliases:
+    - "Metasploit"
+    - "MSF"
+    - "msfconsole"
+    - "메타스플로잇"
+    - "Metasploit Pro"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "Cross"
+    zone: "Zone0A"
+    tags: ["EXPLOIT"]
+
+definition:
+  what: |
+    세계에서 가장 널리 사용되는 오픈소스 침투 테스트 프레임워크.
+    익스플로잇 모듈(2000+), 페이로드 생성, 보조 모듈(스캐닝/퍼징/정보 수집),
+    포스트 익스플로잇(권한 상승/지속성/피봇) 기능을 통합적으로 제공한다.
+    msfconsole 대화형 인터페이스와 msfvenom 페이로드 생성기를 포함한다.
+  why: |
+    침투 테스트 및 보안 평가의 업계 표준 프레임워크로, 알려진 취약점에 대한
+    익스플로잇을 체계적으로 관리하고 실행할 수 있다. 취약점 발견부터
+    익스플로잇, 포스트 익스플로잇까지 전체 공격 라이프사이클을 하나의 프레임워크에서
+    수행할 수 있어 보안 전문가의 효율성을 극대화한다.
+    레드팀 훈련, 보안 감사, 취약점 검증에 필수적으로 활용된다.
+  how: |
+    1. msfconsole 실행하여 대화형 인터페이스 진입
+    2. search 명령으로 대상 취약점에 해당하는 익스플로잇 모듈 검색
+    3. use 명령으로 익스플로잇 모듈 선택
+    4. set 명령으로 RHOST, RPORT, PAYLOAD 등 옵션 설정
+    5. exploit/run 명령으로 익스플로잇 실행
+    6. 세션 획득 후 포스트 익스플로잇 모듈 실행 (권한 상승, 피봇 등)
+    7. msfvenom으로 독립 실행형 페이로드 생성 가능
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-OFFENSE"  # 공격 도구의 하위
+    used_for:
+      - "ATK-INJECT-CMD-001"       # 커맨드 인젝션 익스플로잇
+      - "ATK-SERVER-DESER-001"     # 역직렬화 취약점 익스플로잇
+  applicability:
+    applies_to:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+
+properties:
+  technical:
+    vendor: "Rapid7 (Open Source)"
+    license: "BSD (Framework), Commercial (Pro)"
+    language: "Ruby"
+    key_features:
+      - name: "Exploit Modules"
+        description: "알려진 취약점에 대한 익스플로잇 모듈 2000개 이상 제공"
+      - name: "Payload Generation"
+        description: "리버스 셸, Meterpreter, 바인드 셸 등 다양한 페이로드 생성"
+      - name: "Auxiliary Modules"
+        description: "스캐닝, 퍼징, 정보 수집 등 보조 모듈"
+      - name: "Post-Exploitation"
+        description: "권한 상승, 지속성 확보, 피봇, 정보 추출 등 후속 공격 모듈"
+      - name: "Msfconsole"
+        description: "대화형 CLI 인터페이스로 모든 기능 통합 제어"
+      - name: "Msfvenom"
+        description: "독립 실행형 페이로드 생성기 (인코딩/포맷 변환 포함)"
+    common_usage:
+      - "use exploit/multi/handler"
+      - "set PAYLOAD windows/meterpreter/reverse_tcp"
+      - "msfvenom -p linux/x64/shell_reverse_tcp LHOST=... -f elf"
+      - "search type:exploit platform:windows smb"
+      - "use auxiliary/scanner/portscan/tcp"
+    related_tools:
+      - name: "Meterpreter"
+        description: "Metasploit 고급 페이로드 (인메모리 실행)"
+      - name: "Armitage"
+        description: "Metasploit GUI 프론트엔드"
+      - name: "Cobalt Strike"
+        description: "상용 레드팀 프레임워크 (Metasploit 기반 확장)"
+    platform: ["Windows", "macOS", "Linux"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Metasploit Official Documentation"
+      - "Rapid7 Metasploit Framework GitHub"
+      - "Offensive Security - Metasploit Unleashed"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: high
+  ai:
+    embedding_text: |
+      Metasploit Framework는 Rapid7이 관리하는 세계 최대 오픈소스 침투 테스트 프레임워크이다.
+      2000개 이상의 익스플로잇 모듈, 페이로드 생성(msfvenom), 보조 모듈(스캐닝/퍼징),
+      포스트 익스플로잇(권한 상승/피봇) 기능을 제공한다. Ruby로 개발되었으며
+      msfconsole 대화형 인터페이스를 통해 전체 공격 라이프사이클을 수행한다.
+      침투 테스트, 레드팀 훈련, 취약점 검증의 업계 표준 도구이다.
+    search_keywords:
+      - "Metasploit"
+      - "메타스플로잇"
+      - "MSF"
+      - "msfconsole"
+      - "msfvenom"
+      - "침투 테스트"
+      - "익스플로잇 프레임워크"
+      - "Rapid7"
+      - "Meterpreter"
+    related_queries:
+      - "Metasploit 사용법"
+      - "msfconsole 명령어 정리"
+      - "msfvenom 페이로드 생성 방법"
+      - "Metasploit으로 침투 테스트 수행"
+      - "Metasploit vs Cobalt Strike 비교"

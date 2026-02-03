@@ -1,0 +1,118 @@
+# GR Atom: Local File Inclusion (LFI)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SERVER-LFI-001"
+  name: "Local File Inclusion (LFI)"
+  normalization:
+    normalized_name: "lfi local file inclusion file read vulnerability"
+    normalization_version: "1.0"
+  aliases:
+    - "로컬 파일 포함"
+    - "LFI 공격"
+    - "File Inclusion Attack"
+    - "파일 인클루전"
+
+classification:
+  domain: application
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["ATK", "FILE", "PATH"]
+
+definition:
+  what: |
+    LFI(Local File Inclusion)는 서버의 파일 포함(include) 기능을 악용하여
+    서버 로컬 파일을 읽거나 실행하는 공격이다. Path Traversal과 결합되어
+    시스템 파일이나 설정 파일에 접근한다.
+  why: |
+    민감한 설정 파일(/etc/passwd, config 파일), 소스 코드, 로그 파일
+    노출로 이어진다. 특정 조건에서는 로그 포이즈닝을 통한 RCE까지 가능하다.
+  how: |
+    1. 파일 경로를 받는 파라미터 식별 (include, page, file 등)
+    2. Path Traversal 시퀀스 (../) 삽입
+    3. 민감한 파일 경로 접근 시도
+    4. 서버 응답에서 파일 내용 확인
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-SERVER-ATTACK-001"
+    related_to:
+      - "ATK-SERVER-PATH-001"
+      - "ATK-SERVER-RFI-001"
+  causal:
+    exploits:
+      - "VUL-PATH-TRAVERSAL-001"
+    targets:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-WAS-001"
+    mitigated_by:
+      - "DEF-PREVENT-INPUTVAL-001"
+
+properties:
+  technical:
+    attack_vectors:
+      - name: "Basic LFI"
+        payload: "?page=../../../etc/passwd"
+        target: "시스템 파일"
+      - name: "Null Byte Bypass"
+        payload: "?page=../../../etc/passwd%00"
+        note: "확장자 검증 우회 (PHP < 5.3.4)"
+      - name: "Filter Wrapper"
+        payload: "?page=php://filter/convert.base64-encode/resource=config.php"
+        target: "PHP 소스 코드"
+      - name: "Log Poisoning"
+        method: "로그에 PHP 코드 삽입 후 LFI로 실행"
+        escalates_to: "RCE"
+    common_targets:
+      - "/etc/passwd"
+      - "/etc/shadow"
+      - "../../config/database.php"
+      - "../.env"
+      - "/var/log/apache2/access.log"
+    impact:
+      - "민감 정보 노출"
+      - "소스 코드 유출"
+      - "자격 증명 탈취"
+      - "RCE (Log Poisoning 시)"
+  security:
+    severity: high
+    cvss_base: 7.5
+    cwe_id: "CWE-98"
+    owasp_category: "A03:2021 - Injection"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Path Traversal"
+      - "CWE-98: Improper Control of Filename for Include/Require Statement"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      LFI(Local File Inclusion)는 서버의 파일 포함 기능을 악용하여
+      로컬 파일을 읽는 공격이다. Path Traversal과 결합되어 시스템 파일,
+      설정 파일에 접근한다. Log Poisoning으로 RCE 가능.
+    search_keywords:
+      - "LFI"
+      - "Local File Inclusion"
+      - "파일 인클루전"
+      - "로컬 파일 포함"
+    related_queries:
+      - "LFI 공격이란?"
+      - "LFI vs RFI 차이"
+      - "LFI to RCE"

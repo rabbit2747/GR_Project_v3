@@ -1,0 +1,108 @@
+# GR Atom: NTLM Relay Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-WIN-NTLM-RELAY-001"
+  name: "NTLM Relay Attack"
+  normalization:
+    normalized_name: "ntlm relay smb relay authentication relay mitm"
+    normalization_version: "1.0"
+  aliases:
+    - "NTLM Relay"
+    - "SMB Relay"
+    - "NTLM 릴레이 공격"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "WIN", "NETWORK"]
+
+definition:
+  what: |
+    NTLM 인증 요청을 중계하여 다른 서비스에
+    피해자의 권한으로 인증하는 공격이다.
+  why: |
+    자격 증명 없이 권한을 획득한다.
+    높은 권한의 시스템에 접근한다.
+  how: |
+    1. 인증 트래픽 유도 (Responder)
+    2. NTLM 메시지 캡처
+    3. 타겟 서비스에 릴레이
+    4. 인증 성공으로 접근
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITM-001"
+    related_to:
+      - "TOOL-PENTEST-RESPONDER-001"
+      - "TOOL-PENTEST-IMPACKET-001"
+
+properties:
+  technical:
+    mitre_id: "T1557.001"
+    prerequisites:
+      - "NTLM 인증 사용"
+      - "SMB 서명 미적용"
+      - "네트워크 접근"
+    tools:
+      - name: "Responder"
+        purpose: "LLMNR/NBT-NS 스푸핑"
+      - name: "ntlmrelayx.py"
+        purpose: "NTLM 릴레이"
+        command: "ntlmrelayx.py -t smb://target -smb2support"
+      - name: "Impacket"
+        purpose: "릴레이 도구 모음"
+    relay_targets:
+      - "SMB (파일 공유, psexec)"
+      - "LDAP/LDAPS (AD 수정)"
+      - "HTTP/HTTPS"
+      - "MSSQL"
+      - "Exchange (EWS)"
+    attack_scenarios:
+      - "SMB → SMB 릴레이"
+      - "HTTP → LDAP 릴레이"
+      - "WebDAV → SMB 릴레이"
+      - "Printer Bug 활용"
+    detection:
+      - "NTLM 인증 로그 분석"
+      - "비정상 SMB 연결"
+      - "LLMNR/NBT-NS 트래픽"
+    defense:
+      - "SMB 서명 필수화"
+      - "LDAP 서명/채널 바인딩"
+      - "EPA (Extended Protection for Auth)"
+      - "LLMNR/NBT-NS 비활성화"
+      - "Kerberos만 사용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1557.001"
+      - "The Hacker Recipes"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      NTLM Relay는 NTLM 인증을 중계하여 피해자 권한으로
+      다른 서비스에 접근하는 Windows 네트워크 공격이다.
+    search_keywords:
+      - "NTLM Relay"
+      - "SMB Relay"
+      - "Responder"
+      - "ntlmrelayx"

@@ -1,0 +1,120 @@
+# GR Atom: Phishing Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-SOCIAL-PHISHING-001"
+  name: "Phishing Attack"
+  normalization:
+    normalized_name: "phishing attack email social engineering credential theft"
+    normalization_version: "1.0"
+  aliases:
+    - "피싱 공격"
+    - "이메일 피싱"
+    - "사회공학 공격"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "SOCIAL", "PHISHING"]
+
+definition:
+  what: |
+    신뢰할 수 있는 주체로 위장하여 이메일, 메시지 등을 통해
+    민감한 정보를 탈취하는 사회공학적 공격이다.
+  why: |
+    사용자 자격 증명을 탈취한다.
+    악성코드 배포의 초기 접근 수단이다.
+  how: |
+    1. 신뢰할 수 있는 발신자로 위장
+    2. 긴급성/호기심 유발
+    3. 악성 링크/첨부파일 클릭 유도
+    4. 자격 증명 또는 악성코드 전달
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-T1566-001"
+    related_to:
+      - "ATK-SOCIAL-PRETEXTING-001"
+      - "VUL-AUTH-BROKEN-001"
+
+properties:
+  technical:
+    phishing_types:
+      - name: "Email Phishing"
+        description: "대량 이메일 발송"
+      - name: "Spear Phishing"
+        description: "특정 개인/조직 타겟"
+      - name: "Whaling"
+        description: "고위 경영진 타겟"
+      - name: "Clone Phishing"
+        description: "정상 이메일 복제"
+      - name: "Vishing"
+        description: "음성 전화 피싱"
+      - name: "Smishing"
+        description: "SMS 피싱"
+    common_pretexts:
+      - "패스워드 만료 경고"
+      - "계정 이상 활동"
+      - "배송 알림"
+      - "세금/환급"
+      - "기술 지원"
+    techniques:
+      - "도메인 스푸핑"
+      - "유사 도메인 (Typosquatting)"
+      - "HTML 이메일 위장"
+      - "URL 단축기"
+      - "첨부파일 악성코드"
+    indicators:
+      - "긴급성 강조"
+      - "철자/문법 오류"
+      - "일반적인 인사말"
+      - "의심스러운 링크"
+      - "개인정보 요청"
+    detection:
+      - "이메일 필터링"
+      - "URL 분석"
+      - "발신자 검증 (SPF/DKIM/DMARC)"
+      - "사용자 보고"
+    mitigation:
+      - "보안 인식 교육"
+      - "이메일 필터링"
+      - "MFA"
+      - "피싱 시뮬레이션"
+      - "DMARC 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK Phishing"
+      - "APWG Phishing Reports"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      피싱은 신뢰할 수 있는 주체로 위장하여 이메일 등으로
+      자격 증명을 탈취하는 사회공학적 공격이다.
+    search_keywords:
+      - "피싱"
+      - "Phishing"
+      - "스피어 피싱"
+      - "이메일 공격"
+    related_queries:
+      - "사회공학"
+      - "자격 증명 탈취"
+      - "보안 인식"

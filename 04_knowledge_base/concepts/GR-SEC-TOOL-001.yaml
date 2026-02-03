@@ -1,0 +1,102 @@
+# GR Atom: Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "GR-SEC-TOOL-001"
+  name: "Security Tool"
+  normalization:
+    normalized_name: "security tool software utility"
+    normalization_version: "1.0"
+  aliases:
+    - "Security Tool"
+    - "보안 도구"
+    - "Security Software"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "ROOT"]
+
+definition:
+  what: |
+    보안 테스트, 방어, 모니터링, 분석 등 정보보안 활동에
+    사용되는 소프트웨어 도구의 최상위 분류이다.
+  why: |
+    보안 작업을 자동화한다.
+    수동 작업의 효율성을 높인다.
+    일관된 보안 활동을 지원한다.
+  how: |
+    1. 목적에 맞는 도구 선택
+    2. 도구 설정 및 구성
+    3. 실행 및 결과 수집
+    4. 결과 분석 및 조치
+
+relations:
+  structural:
+    is_a: []
+    has_children:
+      - "TOOL-OFFENSE-001"
+      - "TOOL-DEFENSE-001"
+      - "TOOL-AUDIT-001"
+      - "TOOL-RECON-001"
+      - "TOOL-FORENSICS-001"
+    related_to:
+      - "GR-SEC-DEF-001"
+      - "GR-SEC-ATK-001"
+
+properties:
+  technical:
+    categories:
+      offensive:
+        description: "공격적 보안 테스트 도구"
+        examples: ["Metasploit", "Burp Suite", "SQLMap"]
+      defensive:
+        description: "방어 및 탐지 도구"
+        examples: ["SIEM", "EDR", "WAF"]
+      audit:
+        description: "감사 및 스캔 도구"
+        examples: ["Nessus", "OpenVAS", "Nikto"]
+      reconnaissance:
+        description: "정찰 및 정보 수집 도구"
+        examples: ["Nmap", "Shodan", "theHarvester"]
+      forensics:
+        description: "포렌식 및 분석 도구"
+        examples: ["Volatility", "Autopsy", "Wireshark"]
+    selection_criteria:
+      - "목적 적합성"
+      - "정확성 및 신뢰성"
+      - "사용 편의성"
+      - "커뮤니티/지원"
+      - "라이선스"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "SANS Security Tools"
+      - "Kali Linux Tools"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Security Tool은 보안 테스트, 방어, 분석에 사용되는
+      모든 보안 소프트웨어 도구의 최상위 분류 개념이다.
+    search_keywords:
+      - "Security Tool"
+      - "보안 도구"
+      - "Pentest Tool"
+      - "Security Software"

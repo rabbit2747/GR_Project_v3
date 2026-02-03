@@ -1,0 +1,100 @@
+# GR Atom: Application (Abstract Concept)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-APPLICATION-001"
+  name: "Application"
+  normalization:
+    normalized_name: "application software app program"
+    normalization_version: "1.0"
+  aliases:
+    - "애플리케이션"
+    - "응용 프로그램"
+    - "Software Application"
+    - "앱"
+
+classification:
+  domain: infrastructure
+  type: concept
+  abstraction_level: 4
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["APP", "INFRA"]
+
+definition:
+  what: |
+    애플리케이션(Application)은 사용자에게 특정 기능을 제공하는
+    소프트웨어 프로그램이다. 웹 애플리케이션, API, 모바일 앱 등
+    다양한 형태로 존재한다.
+  why: |
+    사용자와 시스템이 직접 상호작용하는 인터페이스다.
+    대부분의 보안 취약점이 애플리케이션 계층에서 발생한다.
+    OWASP Top 10이 웹 애플리케이션 취약점을 다루는 이유다.
+  how: |
+    1. Web Application: 브라우저 기반 서비스
+    2. API: 프로그래밍 인터페이스
+    3. Mobile App: 모바일 기기용 애플리케이션
+    4. Desktop App: 데스크톱 설치형
+
+relations:
+  structural:
+    abstracts:
+      - "INFRA-APP-WEBAPP-001"
+      - "INFRA-APP-API-001"
+      - "INFRA-APP-WAS-001"
+      - "INFRA-APP-WEBSERVER-001"
+
+properties:
+  technical:
+    application_types:
+      - name: "Web Application"
+        delivery: "Browser"
+        technologies: ["HTML", "JavaScript", "CSS"]
+      - name: "REST API"
+        delivery: "HTTP"
+        technologies: ["JSON", "XML"]
+      - name: "SPA"
+        delivery: "Browser"
+        technologies: ["React", "Vue", "Angular"]
+    security_layers:
+      - "Input Validation"
+      - "Authentication/Authorization"
+      - "Session Management"
+      - "Output Encoding"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP Top 10"
+      - "NIST Application Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Application(애플리케이션)은 사용자에게 기능을 제공하는 소프트웨어다.
+      Web Application, API, Mobile App 등이 있으며 L7 계층에 위치한다.
+      대부분의 보안 취약점이 이 계층에서 발생하며 OWASP Top 10이
+      웹 애플리케이션 보안을 다룬다.
+    search_keywords:
+      - "Application"
+      - "애플리케이션"
+      - "Web Application"
+      - "API"
+      - "OWASP"
+    related_queries:
+      - "애플리케이션 종류"
+      - "웹 애플리케이션 보안"
+      - "API 보안"
+      - "OWASP Top 10"

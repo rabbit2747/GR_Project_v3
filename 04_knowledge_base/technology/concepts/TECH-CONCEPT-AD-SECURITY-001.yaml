@@ -1,0 +1,127 @@
+# GR Atom: Active Directory Security
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TECH-CONCEPT-AD-SECURITY-001"
+  name: "Active Directory Security"
+  normalization:
+    normalized_name: "active directory security ad domain controller kerberos ldap"
+    normalization_version: "1.0"
+  aliases:
+    - "AD 보안"
+    - "Active Directory"
+    - "도메인 컨트롤러 보안"
+
+classification:
+  domain: security
+  type: technology
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["TECH", "CONCEPT", "AD"]
+
+definition:
+  what: |
+    Active Directory는 Windows 환경의 중앙 집중식 인증 및 권한 관리 서비스로,
+    도메인, 사용자, 그룹, 정책을 관리한다.
+  why: |
+    대부분의 기업 환경에서 AD가 핵심 인프라다.
+    AD 침해 시 전체 네트워크가 장악될 수 있다.
+  how: |
+    1. AD 아키텍처 이해
+    2. 보안 모범 사례 적용
+    3. 공격 경로 차단
+    4. 모니터링 및 감사
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-CONCEPT-001"
+    related_to:
+      - "TECH-PROTO-KERBEROS-001"
+      - "TECH-PROTO-LDAP-001"
+
+properties:
+  technical:
+    components:
+      - name: "Domain Controller (DC)"
+        role: "인증, 정책, 복제"
+      - name: "Global Catalog"
+        role: "포리스트 전체 검색"
+      - name: "LDAP"
+        role: "디렉터리 쿼리"
+      - name: "Kerberos"
+        role: "인증 프로토콜"
+      - name: "Group Policy"
+        role: "설정 배포"
+    common_attacks:
+      - name: "Kerberoasting"
+        target: "서비스 계정 해시"
+      - name: "AS-REP Roasting"
+        target: "Pre-auth 비활성 계정"
+      - name: "Pass-the-Hash"
+        target: "NTLM 해시 재사용"
+      - name: "Pass-the-Ticket"
+        target: "Kerberos 티켓 재사용"
+      - name: "Golden Ticket"
+        target: "KRBTGT 해시 악용"
+      - name: "Silver Ticket"
+        target: "서비스 계정 해시"
+      - name: "DCSync"
+        target: "DC 복제 프로토콜"
+    privileged_groups:
+      critical:
+        - "Domain Admins"
+        - "Enterprise Admins"
+        - "Schema Admins"
+        - "BUILTIN\\Administrators"
+      sensitive:
+        - "Account Operators"
+        - "Backup Operators"
+        - "Server Operators"
+    hardening:
+      - "계층화된 관리 모델"
+      - "PAW (Privileged Access Workstation)"
+      - "LAPS (Local Admin Password)"
+      - "Protected Users 그룹"
+      - "Credential Guard"
+      - "AdminSDHolder 보호"
+      - "GPO 보안"
+    monitoring:
+      - "이벤트 ID 4624, 4625 (로그온)"
+      - "이벤트 ID 4768, 4769 (Kerberos)"
+      - "이벤트 ID 4662 (AD 객체 접근)"
+      - "DC 복제 이상"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Microsoft AD Security"
+      - "SANS AD Security"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Active Directory는 Windows 인증 핵심이다. Kerberoasting, Pass-the-Hash,
+      Golden Ticket이 주요 공격이며 계층화 관리, PAW, LAPS로 방어한다.
+    search_keywords:
+      - "Active Directory"
+      - "AD 보안"
+      - "도메인 컨트롤러"
+      - "Kerberos"
+    related_queries:
+      - "Kerberoasting"
+      - "Golden Ticket"
+      - "AD 하드닝"

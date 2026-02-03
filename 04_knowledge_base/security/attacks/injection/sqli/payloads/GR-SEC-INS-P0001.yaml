@@ -1,0 +1,125 @@
+# GR-SEC-INS-P0001: Basic Single Quote Detection Payload
+
+identity:
+  id: GR-SEC-INS-P0001
+  name: "Single Quote Error Payload"
+  normalization:
+    normalized_name: "single quote error payload"
+    normalization_version: "1.0"
+  aliases:
+    - "Quote Test"
+    - "Basic SQLi Probe"
+
+classification:
+  domain: security
+  type: payload
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-DETECT"
+
+definition:
+  what: |
+    SQL Injection 취약점 존재 여부를 확인하기 위한
+    가장 기본적인 탐지 페이로드이다. 단일 따옴표(')를
+    삽입하여 SQL 구문 오류를 유발한다.
+  why: |
+    SQL 컨텍스트에서 이스케이프되지 않은 따옴표는
+    구문 오류를 발생시킨다. 오류 반응으로 SQLi
+    취약 가능성을 판단할 수 있다.
+
+payload:
+  raw: "'"
+  encoded:
+    url: "%27"
+    double_url: "%2527"
+    unicode: "%u0027"
+    html: "&#39;"
+  variations:
+    - "'"
+    - "''"
+    - "'''"
+    - "\"'"
+
+detection:
+  indicators:
+    error_patterns:
+      - "SQL syntax"
+      - "mysql_fetch"
+      - "ORA-"
+      - "ODBC"
+      - "unterminated"
+      - "quoted string"
+      - "syntax error"
+    behavior_changes:
+      - response_time_change: "> 100ms difference"
+      - content_length_change: "significant"
+      - status_code_change: [500, 503]
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-CON-00002  # SQL Injection
+  conditional:
+    detects:
+      - GR-SEC-TEC-00004  # Error-based (if error visible)
+    followed_by:
+      - GR-SEC-INS-P0002  # Boolean test payload
+      - GR-SEC-INS-P0003  # Time-based test payload
+
+constraints:
+  - property: effectiveness
+    base_value: 0.9
+    conditions:
+      - when:
+          context_type: security
+          condition: "waf_blocks_quotes == true"
+        then:
+          value: 0.0
+          reason: "WAF가 따옴표 차단"
+
+properties:
+  security:
+    severity: info
+    purpose: detection
+    false_positive_rate: medium
+    dbms_universal: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-payloads"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Single Quote Error Payload는 SQLi 탐지를 위한 가장
+      기본적인 페이로드이다. 단일 따옴표(')를 삽입하여
+      SQL 구문 오류를 유발하고, 에러 메시지나 동작 변화로
+      취약점 존재를 확인한다. 모든 DBMS에서 동작하며
+      SQLi 테스트의 첫 번째 단계이다.
+    search_keywords:
+      - "single quote"
+      - "따옴표 테스트"
+      - "SQLi detection"
+      - "error probe"

@@ -1,0 +1,107 @@
+# GR Atom: Single Page Application
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-APP-SPA-001"
+  name: "Single Page Application (SPA)"
+  normalization:
+    normalized_name: "spa single page application frontend application"
+    normalization_version: "1.0"
+  aliases:
+    - "SPA"
+    - "싱글 페이지 애플리케이션"
+    - "Single Page App"
+    - "Frontend Application"
+
+classification:
+  domain: application
+  type: application
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["INFRA", "APP", "FRONTEND"]
+
+definition:
+  what: |
+    싱글 페이지 애플리케이션(SPA)은 브라우저에서 실행되는 JavaScript 기반
+    웹 애플리케이션이다. React, Vue, Angular 등의 프레임워크로 구축된다.
+  why: |
+    현대 웹 개발의 주류 아키텍처다. XSS, 민감 데이터 노출, JWT 저장 위치,
+    API 보안이 주요 보안 관심사다.
+  how: |
+    1. 초기 로딩: HTML/JS/CSS 번들 다운로드
+    2. 클라이언트 라우팅: 페이지 전환 없이 뷰 변경
+    3. API 통신: REST/GraphQL로 백엔드 데이터 요청
+    4. 상태 관리: Redux, Vuex 등으로 클라이언트 상태 관리
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-APPLICATION-001"
+    requires:
+      - "TECH-LANG-JAVASCRIPT-001"
+  causal:
+    consumes:
+      - "INFRA-APP-API-001"
+    vulnerable_to:
+      - "ATK-INJECT-XSS-001"
+    protected_by:
+      - "DEF-PREVENT-CSP-001"
+
+properties:
+  technical:
+    frameworks:
+      - name: "React"
+        company: "Meta"
+      - name: "Vue.js"
+        company: "Community"
+      - name: "Angular"
+        company: "Google"
+      - name: "Svelte"
+        company: "Community"
+    security_concerns:
+      - "XSS vulnerabilities"
+      - "Sensitive data in localStorage"
+      - "JWT storage (cookie vs localStorage)"
+      - "CORS misconfigurations"
+      - "Exposed API keys"
+    security_best_practices:
+      - "Use Content Security Policy (CSP)"
+      - "Store tokens in HttpOnly cookies"
+      - "Sanitize user inputs"
+      - "Implement proper CORS"
+      - "Use environment variables for secrets"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP SPA Security"
+      - "React Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      SPA(Single Page Application)는 React, Vue 등으로 만든 클라이언트 측
+      웹 애플리케이션이다. XSS, 토큰 저장 위치가 주요 보안 관심사다.
+    search_keywords:
+      - "SPA"
+      - "Single Page Application"
+      - "React"
+      - "Vue"
+      - "프론트엔드"
+    related_queries:
+      - "SPA 보안"
+      - "React 보안"
+      - "JWT 저장 위치"

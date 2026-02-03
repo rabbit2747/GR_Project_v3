@@ -1,0 +1,103 @@
+# GR Atom: Defensive Security Tool
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-DEFENSE-001"
+  name: "Defensive Security Tool"
+  normalization:
+    normalized_name: "defensive security tool protection monitoring"
+    normalization_version: "1.0"
+  aliases:
+    - "Defensive Security Tool"
+    - "방어적 보안 도구"
+    - "Security Monitoring Tool"
+    - "Protection Tool"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "TOOL", "DEFENSE"]
+
+definition:
+  what: |
+    보안 방어, 모니터링, 탐지, 대응에 사용되는
+    보안 도구 분류이다.
+  why: |
+    위협을 실시간 탐지한다.
+    공격을 차단하고 방어한다.
+    보안 이벤트를 분석한다.
+  how: |
+    1. 도구 배포
+    2. 정책 설정
+    3. 모니터링
+    4. 알림 및 대응
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-TOOL-001"
+    has_children:
+      - "DEF-SIEM-001"
+      - "DEF-ENDPOINT-EDR-001"
+      - "DEF-XDR-001"
+    related_to:
+      - "GR-SEC-DEF-001"
+      - "DEF-DETECT-001"
+
+properties:
+  technical:
+    subcategories:
+      siem:
+        description: "보안 이벤트 관리"
+        examples: ["Splunk", "ELK", "QRadar"]
+      edr:
+        description: "엔드포인트 탐지/대응"
+        examples: ["CrowdStrike", "SentinelOne", "Carbon Black"]
+      ndr:
+        description: "네트워크 탐지/대응"
+        examples: ["Darktrace", "Vectra"]
+      soar:
+        description: "보안 자동화/오케스트레이션"
+        examples: ["Phantom", "Demisto"]
+    examples:
+      - "Splunk"
+      - "CrowdStrike Falcon"
+      - "Microsoft Defender"
+      - "Palo Alto Cortex"
+    capabilities:
+      - "실시간 모니터링"
+      - "위협 탐지"
+      - "자동 대응"
+      - "포렌식 분석"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner Security"
+      - "MITRE D3FEND"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Defensive Security Tool은 보안 방어와 모니터링에
+      사용되는 보안 도구 분류이다.
+    search_keywords:
+      - "Defense Tool"
+      - "SIEM"
+      - "EDR"
+      - "방어 도구"

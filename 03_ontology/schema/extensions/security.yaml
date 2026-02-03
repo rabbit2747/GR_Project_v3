@@ -1,0 +1,91 @@
+# GR Security Domain Extension
+# Version: 1.0
+# Last Updated: 2025-01-26
+#
+# 보안 도메인 원자의 확장 속성 정의
+
+extension:
+  name: security
+  version: "1.0"
+  description: "보안 도메인 원자의 확장 속성"
+  maintainer: "GR Security Team"
+
+properties:
+  severity:
+    type: enum
+    values: [info, low, medium, high, critical]
+    description: "심각도"
+
+  cvss:
+    type: object
+    properties:
+      version:
+        type: string
+        enum: ["3.0", "3.1", "4.0"]
+      base_score:
+        type: float
+        range: [0.0, 10.0]
+      vector:
+        type: string
+        description: "CVSS 벡터 문자열"
+
+  cwe:
+    type: string
+    pattern: "CWE-[0-9]+"
+    description: "CWE ID"
+
+  owasp:
+    type: string
+    description: "OWASP 분류 (예: A03:2021)"
+
+  exploitability:
+    type: float
+    range: [0.0, 1.0]
+    description: "공격 가능성 (0=불가능, 1=쉬움)"
+
+  attack_vector:
+    type: enum
+    values: [network, adjacent, local, physical]
+    description: "공격 벡터"
+
+  privileges_required:
+    type: enum
+    values: [none, low, high]
+    description: "필요 권한"
+
+  user_interaction:
+    type: enum
+    values: [none, required]
+    description: "사용자 상호작용 필요 여부"
+
+  impact:
+    confidentiality:
+      type: enum
+      values: [none, low, high]
+    integrity:
+      type: enum
+      values: [none, low, high]
+    availability:
+      type: enum
+      values: [none, low, high]
+
+  affected_versions:
+    type: array
+    items:
+      product: string
+      vendor: string
+      version_start: string
+      version_end: string
+      version_affected: string
+
+  remediation:
+    type: object
+    properties:
+      status:
+        type: enum
+        values: [official_fix, temporary_fix, workaround, none]
+      description:
+        type: string
+      references:
+        type: array
+        items: string

@@ -1,0 +1,98 @@
+# GR Atom: DevSecOps Defense
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "DEF-DEVSECOPS-001"
+  name: "DevSecOps Defense"
+  normalization:
+    normalized_name: "devsecops defense security development pipeline"
+    normalization_version: "1.0"
+  aliases:
+    - "DevSecOps"
+    - "DevSecOps 방어"
+    - "Secure SDLC"
+    - "Shift Left Security"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone2"
+    tags: ["CONCEPT", "DEFENSE", "DEVSECOPS"]
+
+definition:
+  what: |
+    개발 파이프라인에 보안을 통합하는
+    보안 통제 분류이다.
+  why: |
+    보안을 조기에 적용한다.
+    취약점을 사전에 발견한다.
+    보안 비용을 절감한다.
+  how: |
+    1. CI/CD 통합
+    2. 자동화된 스캔
+    3. 정책 게이트
+    4. 지속적 모니터링
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-DEF-001"
+    has_children:
+      - "DEF-DEVSECOPS-SAST-001"
+      - "DEF-DEVSECOPS-DAST-001"
+      - "DEF-DEVSECOPS-SCA-001"
+    related_to:
+      - "TOOL-AUDIT-001"
+      - "TECH-CONCEPT-SUPPLY-CHAIN-SECURITY-001"
+
+properties:
+  technical:
+    practices:
+      sast: "Static Application Security Testing"
+      dast: "Dynamic Application Security Testing"
+      sca: "Software Composition Analysis"
+      iast: "Interactive Application Security Testing"
+      container: "Container Security Scanning"
+    pipeline_stages:
+      - "Commit (Pre-commit hooks)"
+      - "Build (SAST, SCA)"
+      - "Test (DAST, IAST)"
+      - "Deploy (Container scan)"
+      - "Runtime (RASP)"
+    tools:
+      - "SonarQube"
+      - "Checkmarx"
+      - "Snyk"
+      - "Trivy"
+      - "GitLab Security"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP DevSecOps"
+      - "NIST SSDF"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      DevSecOps Defense는 개발 파이프라인에 보안을 통합하는
+      보안 통제 분류이다.
+    search_keywords:
+      - "DevSecOps"
+      - "Shift Left"
+      - "SAST"
+      - "보안 개발"

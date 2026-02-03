@@ -1,0 +1,113 @@
+# GR Atom: Phishing
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1566-001"
+  name: "Phishing"
+  normalization:
+    normalized_name: "phishing spearphishing email attachment link social engineering"
+    normalization_version: "1.0"
+  aliases:
+    - "Phishing"
+    - "Spearphishing"
+    - "피싱 공격"
+
+classification:
+  domain: security
+  type: attack_technique
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags: ["ATK", "MITRE", "INITIAL"]
+
+definition:
+  what: |
+    이메일이나 메시지를 통해 악성 첨부파일이나 링크를 전달하여
+    초기 접근을 확보하는 사회공학 기법이다.
+  why: |
+    초기 침투 경로를 확보한다.
+    사용자 인증 정보를 탈취한다.
+  how: |
+    1. 타겟 분석/OSINT
+    2. 피싱 메시지 작성
+    3. 악성 페이로드 전달
+    4. 사용자 실행 유도
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-TA0001-001"
+    related_to:
+      - "ATK-SOCIAL-PHISHING-001"
+      - "ATK-MITRE-T1204-001"
+
+properties:
+  technical:
+    mitre_id: "T1566"
+    tactic: "Initial Access"
+    sub_techniques:
+      - id: "T1566.001"
+        name: "Spearphishing Attachment"
+        payload: "악성 문서, 실행파일"
+      - id: "T1566.002"
+        name: "Spearphishing Link"
+        payload: "악성 URL, 크레덴셜 수집"
+      - id: "T1566.003"
+        name: "Spearphishing via Service"
+        payload: "소셜미디어, 메시징 앱"
+    common_lures:
+      - "인보이스/청구서"
+      - "배송 알림"
+      - "계정 문제"
+      - "코로나/시사 이슈"
+      - "조직 내부 문서 위장"
+    payload_types:
+      - "Office 매크로"
+      - "HTML Smuggling"
+      - "ISO/IMG 마운트"
+      - "LNK 파일"
+      - "OneNote 첨부"
+    credential_harvesting:
+      - "가짜 로그인 페이지"
+      - "OAuth 앱 동의"
+      - "MFA 우회 (EvilGinx)"
+    detection:
+      - "이메일 헤더 분석"
+      - "URL 평판 검사"
+      - "샌드박스 분석"
+      - "DMARC/DKIM/SPF"
+    prevention:
+      - "보안 인식 교육"
+      - "이메일 보안 게이트웨이"
+      - "피싱 시뮬레이션"
+      - "링크 프로텍션"
+      - "MFA 적용"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1566"
+      - "CISA Phishing"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Phishing(T1566)은 이메일 첨부파일이나 링크를 통해
+      초기 접근을 확보하는 MITRE ATT&CK 기법이다.
+    search_keywords:
+      - "Phishing"
+      - "Spearphishing"
+      - "T1566"
+      - "피싱"

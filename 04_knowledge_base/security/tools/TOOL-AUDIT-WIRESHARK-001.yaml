@@ -1,0 +1,143 @@
+# GR Atom: Wireshark
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-AUDIT-WIRESHARK-001"
+  name: "Wireshark"
+  normalization:
+    normalized_name: "wireshark"
+    normalization_version: "1.0"
+  aliases:
+    - "wireshark"
+    - "tshark"
+    - "와이어샤크"
+    - "Ethereal"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone0A"
+    tags: ["NET", "RECON"]
+
+definition:
+  what: |
+    네트워크 인터페이스에서 실시간으로 패킷을 캡처하고 분석하는 오픈소스 프로토콜 분석기.
+    3000개 이상의 프로토콜 디코딩, 강력한 디스플레이 필터, TCP/UDP/HTTP 스트림 추적,
+    프로토콜 계층/대화/엔드포인트 통계 기능을 제공한다.
+    GUI 기반의 Wireshark와 CLI 기반의 tshark를 포함한다.
+  why: |
+    네트워크 트래픽 분석의 사실상 표준 도구로, 보안 사고 대응, 네트워크 포렌식,
+    프로토콜 디버깅, 성능 분석 등 다양한 분야에서 활용된다.
+    중간자 공격(MITM) 탐지, 악성 트래픽 식별, 데이터 유출 분석에 필수적이며,
+    IDS/IPS 규칙 검증과 보안 모니터링의 보완 도구로도 사용된다.
+    네트워크 보안 전문가와 포렌식 분석가에게 필수적인 도구이다.
+  how: |
+    1. 캡처할 네트워크 인터페이스 선택
+    2. 캡처 필터 설정 (BPF 구문: host, port, protocol 등)
+    3. 패킷 캡처 시작 (실시간 또는 파일 기반)
+    4. 디스플레이 필터로 관심 트래픽 필터링
+    5. Follow Stream으로 TCP/UDP/HTTP 스트림 추적
+    6. Statistics 메뉴로 프로토콜 계층, 대화, 엔드포인트 분석
+    7. tshark CLI로 자동화된 패킷 분석 수행
+
+relations:
+  structural:
+    is_a:
+      - "TOOL-AUDIT"  # 감사 도구의 하위
+    used_for:
+      - "ATK-NET-MITM-001"      # 중간자 공격 트래픽 분석
+      - "DEF-DETECT-IDS-001"    # IDS 포렌식 보완 분석
+  applicability:
+    applies_to:
+      - "INFRA-NET-NETWORK-001"
+
+properties:
+  technical:
+    vendor: "Wireshark Foundation (Open Source)"
+    license: "GPLv2"
+    language: "C/C++"
+    key_features:
+      - name: "Packet Capture"
+        description: "네트워크 인터페이스에서 실시간 패킷 캡처 (libpcap/WinPcap/Npcap)"
+      - name: "Protocol Decode"
+        description: "3000개 이상의 네트워크 프로토콜 디코딩 및 분석"
+      - name: "Display Filters"
+        description: "강력한 필터링 표현식으로 관심 트래픽 추출"
+      - name: "Follow Stream"
+        description: "TCP/UDP/HTTP/TLS 스트림을 시퀀스대로 추적"
+      - name: "Statistics"
+        description: "프로토콜 계층, 대화, 엔드포인트, I/O 그래프 통계"
+      - name: "tshark"
+        description: "CLI 기반 패킷 분석 도구 (스크립팅/자동화 지원)"
+    common_filters:
+      - "tcp.port == 80"
+      - "http.request.method == POST"
+      - "ip.addr == 192.168.1.1"
+      - "tls.handshake.type == 1"
+      - "dns.qry.name contains example"
+      - "tcp.flags.syn == 1 && tcp.flags.ack == 0"
+    capture_formats:
+      - "pcap"
+      - "pcapng"
+      - "cap"
+      - "snoop"
+      - "netmon"
+    related_tools:
+      - name: "tshark"
+        description: "Wireshark CLI 버전 (터미널 기반 패킷 분석)"
+      - name: "tcpdump"
+        description: "CLI 패킷 캡처 도구 (BPF 필터)"
+      - name: "dumpcap"
+        description: "Wireshark 패킷 캡처 엔진"
+      - name: "editcap"
+        description: "캡처 파일 편집 유틸리티"
+      - name: "mergecap"
+        description: "캡처 파일 병합 유틸리티"
+    platform: ["Windows", "macOS", "Linux"]
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Wireshark Official Documentation"
+      - "Wireshark User's Guide"
+      - "Wireshark Display Filter Reference"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Wireshark는 Wireshark Foundation이 개발한 오픈소스 네트워크 프로토콜 분석기이다.
+      실시간 패킷 캡처, 3000+ 프로토콜 디코딩, 디스플레이 필터, 스트림 추적,
+      프로토콜 통계 기능을 제공한다. C/C++로 개발되었으며 GPLv2 라이선스이다.
+      네트워크 포렌식, MITM 탐지, 악성 트래픽 분석의 표준 도구이며
+      tshark CLI 도구를 통한 자동화 분석도 지원한다.
+    search_keywords:
+      - "Wireshark"
+      - "와이어샤크"
+      - "패킷 캡처"
+      - "패킷 분석"
+      - "프로토콜 분석기"
+      - "네트워크 포렌식"
+      - "tshark"
+      - "pcap"
+    related_queries:
+      - "Wireshark 사용법"
+      - "Wireshark 디스플레이 필터 사용법"
+      - "Wireshark 패킷 캡처 방법"
+      - "Wireshark로 네트워크 포렌식 분석"
+      - "tshark CLI 명령어"
+      - "Wireshark vs tcpdump 비교"

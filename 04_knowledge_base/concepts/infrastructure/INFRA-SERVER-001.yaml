@@ -1,0 +1,80 @@
+# GR Atom: Server Infrastructure
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "INFRA-SERVER-001"
+  name: "Server Infrastructure"
+  normalization:
+    normalized_name: "server infrastructure physical virtual"
+    normalization_version: "1.0"
+  aliases:
+    - "Server Infrastructure"
+    - "서버 인프라"
+    - "Compute Infrastructure"
+
+classification:
+  domain: security
+  type: concept
+  abstraction_level: 3
+  gr_coordinates:
+    layer: "L4"
+    zone: "Zone2"
+    tags: ["CONCEPT", "INFRASTRUCTURE", "SERVER"]
+
+definition:
+  what: |
+    서비스를 제공하는 물리적/가상 서버 인프라 분류이다.
+  why: |
+    서버 아키텍처를 이해한다.
+    서버 보안을 평가한다.
+    인프라 용량을 계획한다.
+
+relations:
+  structural:
+    is_a:
+      - "GR-SEC-INFRA-001"
+    has_children:
+      - "INFRA-SERVER-PHYSICAL-001"
+      - "INFRA-SERVER-VIRTUAL-001"
+    related_to:
+      - "TECH-OS-001"
+      - "DEF-HARDENING-001"
+
+properties:
+  technical:
+    types:
+      - "Physical Server"
+      - "Virtual Machine"
+      - "Container"
+      - "Serverless"
+    roles:
+      - "Web Server"
+      - "Application Server"
+      - "Database Server"
+      - "File Server"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Server Security Guidelines"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Server Infrastructure는 서버 컴퓨팅 인프라 분류이다.
+    search_keywords:
+      - "Server Infrastructure"
+      - "서버 인프라"
+      - "Virtual Machine"
+      - "Physical Server"

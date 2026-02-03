@@ -1,0 +1,122 @@
+# GR Atom: Network Sniffing Attack
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-NET-SNIFF-001"
+  name: "Network Sniffing"
+  normalization:
+    normalized_name: "network sniffing packet capture traffic interception"
+    normalization_version: "1.0"
+  aliases:
+    - "네트워크 스니핑"
+    - "Packet Sniffing"
+    - "패킷 캡처"
+    - "Traffic Interception"
+    - "도청"
+
+classification:
+  domain: network
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L2"
+    zone: "Zone3"
+    tags: ["ATK", "NET", "RECON"]
+
+definition:
+  what: |
+    네트워크 스니핑(Network Sniffing)은 네트워크 트래픽을 캡처하여
+    전송 중인 데이터를 가로채는 공격이다. 암호화되지 않은 통신에서
+    자격 증명, 세션 토큰, 민감 정보를 탈취한다.
+  why: |
+    평문 통신(HTTP, FTP, Telnet 등)에서 직접적인 정보 탈취가 가능하다.
+    MITM 공격의 전제 조건이며, 내부 네트워크 침투 후 횡적 이동에 활용된다.
+  how: |
+    1. 네트워크 인터페이스를 프로미스큐어스 모드로 설정
+    2. ARP 스푸핑 등으로 트래픽 리다이렉션 (필요시)
+    3. 패킷 캡처 도구로 트래픽 수집
+    4. 캡처된 패킷에서 민감 정보 추출
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-NETWORK-ATTACK-001"
+    related_to:
+      - "ATK-NET-MITM-001"
+  causal:
+    exploits:
+      - "VUL-CRYPTO-WEAK-001"
+    targets:
+      - "TECH-PROTOCOL-HTTP-001"
+      - "TECH-PROTOCOL-TCP-001"
+    enables:
+      - "ATK-SESSION-HIJACK-001"
+      - "ATK-AUTH-CREDSTUFF-001"
+    mitigated_by:
+      - "DEF-PREVENT-HTTPS-001"
+      - "DEF-PREVENT-ENCRYPT-001"
+
+properties:
+  technical:
+    attack_methods:
+      - name: "Passive Sniffing"
+        method: "허브 환경에서 모든 트래픽 캡처"
+        detection: "거의 탐지 불가"
+      - name: "Active Sniffing"
+        method: "스위치 환경에서 ARP 스푸핑으로 트래픽 리다이렉션"
+        detection: "ARP 테이블 이상으로 탐지 가능"
+    tools:
+      - "Wireshark"
+      - "tcpdump"
+      - "Ettercap"
+      - "dsniff"
+    extractable_data:
+      - "HTTP 자격 증명"
+      - "세션 쿠키"
+      - "이메일 내용"
+      - "DNS 쿼리"
+      - "파일 전송 내용"
+    impact:
+      - "자격 증명 탈취"
+      - "세션 하이재킹"
+      - "민감 정보 노출"
+      - "정보 수집 (Reconnaissance)"
+  security:
+    severity: medium
+    cvss_base: 5.3
+    cwe_id: "CWE-319"
+    attack_category: "Information Disclosure"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1040 - Network Sniffing"
+      - "CWE-319: Cleartext Transmission of Sensitive Information"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Network Sniffing(네트워크 스니핑)은 네트워크 트래픽을 캡처하여
+      평문 통신에서 자격 증명, 세션 토큰을 탈취하는 공격이다.
+      암호화(HTTPS, TLS)로 방어한다.
+    search_keywords:
+      - "Network Sniffing"
+      - "네트워크 스니핑"
+      - "패킷 캡처"
+      - "Wireshark"
+      - "트래픽 도청"
+    related_queries:
+      - "네트워크 스니핑이란?"
+      - "패킷 캡처 방어"
+      - "암호화 통신"

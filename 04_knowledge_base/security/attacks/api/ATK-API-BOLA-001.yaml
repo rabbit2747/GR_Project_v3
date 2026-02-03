@@ -1,0 +1,110 @@
+# GR Atom: Broken Object Level Authorization (BOLA)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-API-BOLA-001"
+  name: "Broken Object Level Authorization (BOLA)"
+  normalization:
+    normalized_name: "bola broken object level authorization idor api"
+    normalization_version: "1.0"
+  aliases:
+    - "BOLA 공격"
+    - "객체 수준 권한 우회"
+    - "IDOR API"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone4"
+    tags: ["ATK", "API", "AUTH"]
+
+definition:
+  what: |
+    API에서 객체 ID 조작을 통해 다른 사용자의 리소스에
+    무단으로 접근하는 공격이다. OWASP API Top 10 #1.
+  why: |
+    다른 사용자의 데이터를 탈취한다.
+    권한 없이 리소스를 수정/삭제한다.
+  how: |
+    1. API 요청의 객체 ID 식별
+    2. ID 값 조작 (순차적, 예측 가능한 값)
+    3. 다른 사용자 리소스 접근
+    4. 데이터 탈취 또는 조작
+
+relations:
+  structural:
+    is_a:
+      - "ATK-SERVER-IDOR-001"
+    related_to:
+      - "VUL-API-BOLA-001"
+      - "VUL-ACCESS-BROKEN-001"
+
+properties:
+  technical:
+    owasp_api_rank: 1
+    attack_patterns:
+      - name: "Sequential ID Enumeration"
+        example: "/api/users/1001 → /api/users/1002"
+      - name: "UUID Guessing"
+        example: "공개된 UUID 수집 후 사용"
+      - name: "Parameter Tampering"
+        example: "user_id, account_id 변경"
+    vulnerable_endpoints:
+      - "GET /api/users/{id}"
+      - "GET /api/orders/{orderId}"
+      - "PUT /api/accounts/{accountId}"
+      - "DELETE /api/documents/{docId}"
+    exploitation:
+      - "버프 스위트로 ID 변경"
+      - "자동화된 ID 열거"
+      - "API 퍼징"
+    impact:
+      - "개인정보 유출"
+      - "금융 데이터 접근"
+      - "권한 상승"
+      - "데이터 무결성 침해"
+    detection:
+      - "비정상 ID 접근 패턴"
+      - "다량의 404/403 응답"
+      - "순차적 ID 요청"
+    mitigation:
+      - "서버 측 권한 검증"
+      - "예측 불가능한 ID (UUID)"
+      - "객체 수준 접근 제어"
+      - "요청자 소유권 확인"
+      - "Rate Limiting"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "OWASP API Security Top 10"
+      - "API Security Best Practices"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      BOLA는 API의 객체 ID를 조작하여 다른 사용자의 리소스에
+      무단 접근하는 OWASP API Top 10 #1 취약점 공격이다.
+    search_keywords:
+      - "BOLA"
+      - "IDOR"
+      - "API 보안"
+      - "객체 권한"
+    related_queries:
+      - "API 접근 제어"
+      - "OWASP API"
+      - "객체 ID 보안"

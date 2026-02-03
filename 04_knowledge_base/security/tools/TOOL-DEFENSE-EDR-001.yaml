@@ -1,0 +1,114 @@
+# GR Atom: Endpoint Detection and Response (EDR)
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "TOOL-DEFENSE-EDR-001"
+  name: "Endpoint Detection and Response (EDR)"
+  normalization:
+    normalized_name: "edr endpoint detection response xdr behavior analysis"
+    normalization_version: "1.0"
+  aliases:
+    - "EDR"
+    - "엔드포인트 탐지 및 대응"
+    - "Endpoint Security"
+
+classification:
+  domain: security
+  type: tool
+  abstraction_level: 2
+  gr_coordinates:
+    layer: "L6"
+    zone: "Zone4"
+    tags: ["TOOL", "DEFENSE", "ENDPOINT"]
+
+definition:
+  what: |
+    EDR은 엔드포인트에서 의심스러운 활동을 탐지하고 조사하며
+    대응하는 보안 솔루션이다. 행위 기반 분석이 핵심이다.
+  why: |
+    시그니처 기반 안티바이러스의 한계를 극복한다. 파일리스 공격,
+    Living-off-the-Land 공격 등 고급 위협을 탐지할 수 있다.
+  how: |
+    1. Data Collection: 프로세스, 파일, 네트워크 활동 수집
+    2. Detection: 행위 분석, 이상 탐지
+    3. Investigation: 타임라인 분석, 위협 헌팅
+    4. Response: 격리, 프로세스 종료, 롤백
+
+relations:
+  structural:
+    is_a:
+      - "TECH-CONCEPT-DEFENSE-001"
+    related_to:
+      - "DEF-DETECT-IDS-001"
+      - "DEF-DETECT-MONITORING-001"
+  causal:
+    detects:
+      - "ATK-MITRE-EXECUTION-001"
+      - "ATK-MITRE-DEF-EVASION-001"
+
+properties:
+  technical:
+    core_capabilities:
+      - name: "Telemetry Collection"
+        description: "프로세스, 파일, 레지스트리, 네트워크 이벤트 수집"
+      - name: "Behavioral Analysis"
+        description: "행위 패턴 기반 위협 탐지"
+      - name: "Threat Intelligence"
+        description: "위협 인텔리전스 통합"
+      - name: "Incident Response"
+        description: "원격 격리, 프로세스 종료"
+      - name: "Forensics"
+        description: "타임라인 분석, 증거 수집"
+    key_vendors:
+      - "CrowdStrike Falcon"
+      - "Microsoft Defender for Endpoint"
+      - "Carbon Black (VMware)"
+      - "SentinelOne"
+      - "Palo Alto Cortex XDR"
+      - "Trend Micro Vision One"
+    detection_techniques:
+      - "프로세스 체인 분석"
+      - "메모리 스캔"
+      - "IoC 매칭"
+      - "MITRE ATT&CK 매핑"
+      - "ML/AI 기반 이상 탐지"
+    xdr_evolution:
+      description: "XDR은 EDR을 네트워크, 클라우드, 이메일로 확장"
+      components:
+        - "Endpoint"
+        - "Network"
+        - "Cloud"
+        - "Email"
+        - "Identity"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "Gartner EDR Market Guide"
+      - "MITRE ATT&CK Evaluations"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      EDR은 엔드포인트 행위 기반 보안 솔루션이다. 프로세스, 파일, 네트워크 활동을
+      분석하여 고급 위협을 탐지하며 CrowdStrike, Defender가 대표 제품이다.
+    search_keywords:
+      - "EDR"
+      - "엔드포인트 보안"
+      - "XDR"
+      - "행위 분석"
+    related_queries:
+      - "EDR 솔루션"
+      - "엔드포인트 탐지"
+      - "XDR 비교"

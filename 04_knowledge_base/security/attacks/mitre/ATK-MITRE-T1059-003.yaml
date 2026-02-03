@@ -1,0 +1,103 @@
+# GR Atom: Windows Command Shell
+# Version: 1.0
+# Created: 2025-01-29
+
+identity:
+  id: "ATK-MITRE-T1059-003"
+  name: "Windows Command Shell"
+  normalization:
+    normalized_name: "windows command shell cmd execution"
+    normalization_version: "1.0"
+  aliases:
+    - "Windows 명령 셸"
+    - "cmd.exe"
+    - "배치 스크립트"
+
+classification:
+  domain: security
+  type: attack
+  abstraction_level: 1
+  gr_coordinates:
+    layer: "L5"
+    zone: "Zone4"
+    tags: ["ATK", "MITRE", "EXECUTION"]
+
+definition:
+  what: |
+    Windows 명령 셸(cmd.exe)을 사용하여 명령을 실행하는 기법이다.
+    배치 스크립트나 직접 명령 실행이 포함된다.
+  why: |
+    시스템에 기본 설치된 도구를 활용한다.
+    스크립팅을 통한 자동화된 공격이 가능하다.
+  how: |
+    1. cmd.exe 프로세스 생성
+    2. 명령어 또는 스크립트 실행
+    3. 출력 결과 수집
+    4. 추가 공격 진행
+
+relations:
+  structural:
+    is_a:
+      - "ATK-MITRE-T1059-001"
+    related_to:
+      - "ATK-MITRE-EXECUTION-001"
+      - "TECH-CONCEPT-SHELL-001"
+
+properties:
+  technical:
+    mitre_id: "T1059.003"
+    tactic: "Execution"
+    platforms: ["Windows"]
+    parent_technique: "T1059 (Command and Scripting Interpreter)"
+    execution_methods:
+      - "직접 cmd.exe 실행"
+      - "배치 파일 (.bat, .cmd)"
+      - "프로세스 생성 API"
+      - "ShellExecute 함수"
+    common_commands:
+      - "net user"
+      - "net localgroup"
+      - "ipconfig"
+      - "tasklist"
+      - "sc query"
+      - "reg query"
+    detection:
+      - "프로세스 생성 로깅"
+      - "명령줄 인수 모니터링"
+      - "Sysmon 이벤트 ID 1"
+      - "부모-자식 프로세스 관계"
+    mitigation:
+      - "PowerShell Constrained Language Mode"
+      - "애플리케이션 화이트리스트"
+      - "명령줄 로깅"
+      - "권한 제한"
+
+metadata:
+  trust:
+    source: official
+    references:
+      - "MITRE ATT&CK T1059.003"
+    confidence: 1.0
+    verified:
+      status: verified
+      date: 2025-01-29
+      by: "GR System"
+  temporal:
+    created: 2025-01-29
+    modified: 2025-01-29
+    revision: 1
+  security:
+    sensitivity: public
+  ai:
+    embedding_text: |
+      Windows Command Shell은 cmd.exe를 사용하여 명령을 실행하는
+      MITRE ATT&CK Execution 서브 기법이다.
+    search_keywords:
+      - "cmd.exe"
+      - "Windows Shell"
+      - "배치 스크립트"
+      - "명령 실행"
+    related_queries:
+      - "Windows 명령어 실행"
+      - "배치 파일 공격"
+      - "CMD 악용"
