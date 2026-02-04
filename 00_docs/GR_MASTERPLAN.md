@@ -1,173 +1,440 @@
-# GR 마스터플랜 (통합본)
+# GR 생태계 마스터플랜 v3.0
+# GR Ecosystem Masterplan v3.0
 
+> **Gotroot - 보안 지식의 표준 온톨로지**
 > **"Foundation, not Product - AI를 위한 보안 지능의 토대"**
-> **버전**: 3.0 (통합본)
-> **최종 수정**: 2026-02-04
+> 
+> **Schema Version**: 2.0
+> **Document Version**: 3.0
+> **Last Updated**: 2026-02-04
 
 ---
 
-## 문서 정보
+## 📋 문서 정보
 
 | 항목 | 내용 |
 |------|------|
-| **문서명** | GR 마스터플랜 (통합본) |
-| **목적** | GR 생태계의 비전, 아키텍처, 비즈니스 모델, 실행 계획 통합 |
-| **대상 독자** | 모든 이해관계자 (기술자, 비기술자, 투자자) |
-| **통합 원본** | 5개 마스터플랜 문서 통합 |
+| **문서명** | GR 생태계 마스터플랜 v3.0 |
+| **버전** | 3.0 (2026-02-04) |
+| **목적** | GR 생태계의 비전, 전략, 아키텍처, 실행 계획을 정의하는 최상위 통합 문서 |
+| **대상 독자** | 모든 이해관계자 (투자자, 파트너사, 신규 팀원, 기술 의사결정자, AI 에이전트) |
+| **통합 문서** | GR_마스터플랜_비전.md, GR_마스터플랜_아키텍처.md, GR_생태계_마스터플랜(일반용)v3.1.md, GR_생태계_마스터플랜_전문용_v2.2.md, GR_ONTOLOGY_MASTERPLAN_v1.0.md |
 
 ---
 
 # Part 1: 비전 & 전략
 
-## 1. Executive Summary
+---
 
-### 1.1 한 줄 요약
+## 1.1 Executive Summary
 
-> **보안 컨설팅 회사의 전문 지식을 DB화하여, 하나의 Core로 여러 사업을 만드는 프로젝트**
+### 한 줄 요약
 
-### 1.2 프로젝트 정체성
+> **"세상의 모든 보안/IT 지식을 원자화하여 DB로 구축하고, 이를 Core로 여러 사업 생태계를 만드는 프로젝트"**
+
+### 원자화 대상
+
+GR Ontology는 다음의 모든 보안/IT 지식을 **원자(Atom)** 단위로 분해하고 구조화합니다:
+
+| 분류 | 설명 | 예시 |
+|------|------|------|
+| **인프라 요소** | 실제 배포되는 IT 구성요소 | 서버, DB, 방화벽, 로드밸런서, 컨테이너 |
+| **IT 개념** | 추상적 개념과 원칙 | 프로토콜, 아키텍처 패턴, 설계 원칙 |
+| **공격 기법** | 시스템을 침해하는 방법 | SQL Injection, XSS, 권한 상승 |
+| **방어 기법** | 공격을 막는 방법 | WAF, 입력 검증, 암호화 |
+| **취약점** | 시스템의 보안 결함 | CVE, CWE, 설정 오류 |
+| **도구** | 공격/방어에 사용되는 소프트웨어 | Burp Suite, Nmap, SIEM |
+| **원칙** | 보안/설계의 근본 원리 | 최소 권한, 심층 방어, Zero Trust |
+
+### 프로젝트 정체성
 
 ```
-GR = 인프라 맥락 기반 통합 보안 온톨로지
+GR = Gotroot (회사명)
+GR Ontology = 인프라 맥락 기반 통합 보안 온톨로지
 
 "보안은 인프라 위에서 일어난다"
 모든 공격/방어/취약점에 WHERE(인프라 맥락)를 부여하여
 AI가 맥락을 이해하고 추론할 수 있게 하는 지식 체계
 ```
 
-### 1.3 핵심 가치 제안
+### 핵심 가치 제안
 
 | 기존 문제 | GR 솔루션 |
 |-----------|-----------|
-| MITRE ATT&CK: 공격 기법만, 인프라 맥락 없음 | 모든 기법에 WHERE 부여 |
-| CVE: 취약점 나열, 관계 부족 | 인프라-취약점-공격-방어 연결 |
-| 상용 LLM 의존 | 자체 LLM/RAG용 지식베이스 |
-| 파편화된 보안 지식 | 통합 온톨로지로 연결 |
+| MITRE ATT&CK: 공격 기법만 있고, 인프라 맥락(WHERE)이 없음 | 모든 기법에 WHERE(인프라 위치) 부여 |
+| CVE: 취약점을 나열만 하고, 관계가 부족함 | 인프라-취약점-공격-방어를 그래프로 연결 |
+| 상용 LLM 의존: 보안 지식에 대한 할루시네이션 발생 | 자체 LLM/RAG용 검증된 지식베이스 제공 |
+| 파편화된 보안 지식: 각 표준이 분리되어 있음 | 통합 온톨로지로 모든 지식을 연결 |
 
-### 1.4 최종 산출물
+### 최종 산출물
 
 ```
 GR Ontology (Core)
     │
-    ├─→ 자체 LLM / RAG 시스템
-    ├─→ 자동화 진단 도구 (DAST, SAST, ...)
-    ├─→ 보안 관리 솔루션
-    ├─→ 교육 시스템 (GR Edu)
-    └─→ 신뢰성 높은 IaC 생성
+    ├─→ 자체 LLM / RAG 시스템 (보안 전문 AI)
+    ├─→ 자동화 진단 도구 (DAST, SAST, 인프라 스캔)
+    ├─→ 보안 관리 솔루션 (탐지, 대응, 모니터링)
+    ├─→ 교육 시스템 (GR Edu - 실습 환경 자동 구축)
+    └─→ 신뢰성 높은 IaC 생성 (보안이 내장된 인프라 코드)
 ```
 
 ---
 
-## 2. 비전 & 철학
+## 1.2 비전
 
-### 2.1 비전
+### 핵심 비전
 
 > **"보안 지식의 표준 온톨로지를 구축하여, 인프라 맥락 기반의 AI 추론을 가능하게 한다"**
 
-### 2.2 핵심 철학
+### 부가 비전
 
-**1. Foundation, not Product (토대, 제품이 아님)**
-- 우리는 특정 보안 솔루션을 만들지 않습니다
-- 모든 보안 제품이 공통으로 사용할 **'보안의 표준 언어와 좌표계'**를 만듭니다
-- GR DB와 GR Framework는 상품이 아니라 **생태계의 기초 인프라**입니다
-
-**2. Context-Aware Security (맥락 기반 보안)**
-- 제품 자체가 아니라, 그 제품이 **'어디서(Zone/Layer) 무엇을(Function) 하는가'**에 따라 보안 정책을 결정합니다
-- 같은 Nginx라도 프록시로 쓰면 Layer 2, 웹서버로 쓰면 Layer 7의 보안 정책을 적용합니다
-
-**3. AI-First Architecture (AI 우선 설계)**
-- 사람이 읽기 위한 문서가 아니라, **AI가 학습하고 추론하기 위한 데이터셋**으로 설계합니다
-- RAG를 통해 할루시네이션 없는 정확한 보안 진단을 제공합니다
-
-**4. 인프라가 앵커(Anchor)**
-- 모든 보안 지식은 인프라 위에서 맥락을 가짐
-- 공격/방어/취약점 모두 "어디서(WHERE)"와 연결
-
-**5. 관계 중심 (Ontology)**
-- 단순 나열이 아닌 연결된 지식 그래프
-- AI가 관계를 통해 추론 가능
-
-**6. 실용성 우선**
-- 학술적 완벽성보다 실무 적용 가능성
-- 진단 도구, 교육 시스템에 바로 사용 가능
+> **"From Classification to Intelligence"**
+> 
+> GR 생태계는 전 세계의 모든 IT 인프라 제품과 기술을 **'보안 지능(Security Intelligence)'이 이해할 수 있는 언어**로 번역하고 구조화하는 토대입니다.
 
 ---
 
-## 3. 왜 이 프로젝트인가?
+## 1.3 핵심 철학
 
-### 3.1 문제: 컨설팅 비즈니스의 한계
+GR 생태계는 다음 5가지 핵심 철학을 기반으로 설계됩니다.
+
+### 1.3.1 Foundation, not Product (토대, 제품이 아님)
+
+**정의**: 
+- GR은 특정 보안 솔루션(제품)을 만들지 않습니다
+- 모든 보안 제품이 공통으로 사용할 **'보안의 표준 언어와 좌표계'**를 만듭니다
+- GR DB와 GR Framework는 상품이 아니라 **생태계의 기초 인프라**입니다
+
+**왜 중요한가**:
+- 개별 제품은 시장 변화에 따라 대체될 수 있음
+- 토대(Foundation)는 생태계 전체가 의존하므로 대체 불가능한 가치를 가짐
+- "Intel Inside"처럼 "Powered by GR"이 목표
+
+**구체적 예시**:
+```
+일반 회사: 보안 스캐너 제품 A를 만듦 → 경쟁 제품 B에 대체됨
+GR 방식: 모든 보안 스캐너가 참조하는 DB를 만듦 → 제품들이 바뀌어도 DB는 유지됨
+```
+
+### 1.3.2 Context-Aware Security (맥락 기반 보안)
+
+**정의**:
+- 제품 자체가 아니라, 그 제품이 **'어디서(Zone/Layer) 무엇을(Function) 하는가'**에 따라 보안 정책을 결정합니다
+- 동일한 소프트웨어도 배치 위치와 역할에 따라 다른 보안 정책이 적용됩니다
+
+**왜 중요한가**:
+- 같은 Nginx라도 용도에 따라 공격 표면이 다름
+- 위치(맥락)를 모르면 적절한 보안 정책을 적용할 수 없음
+
+**구체적 예시**:
+```
+Nginx를 Reverse Proxy로 사용하는 경우:
+  - Layer: L2 (네트워크 인프라)
+  - Zone: Z1 (경계 영역)
+  - 적용 정책: DDoS 방어, Rate Limiting, TLS Termination
+
+Nginx를 Web Server로 사용하는 경우:
+  - Layer: L7 (애플리케이션)
+  - Zone: Z2 (애플리케이션 영역)
+  - 적용 정책: 정적 파일 보안, Directory Traversal 방지
+```
+
+### 1.3.3 AI-First Architecture (AI 우선 설계)
+
+**정의**:
+- 사람이 읽기 위한 문서가 아니라, **AI가 학습하고 추론하기 위한 데이터셋**으로 설계합니다
+- RAG(Retrieval-Augmented Generation)를 통해 할루시네이션 없는 정확한 보안 진단을 제공합니다
+
+**왜 중요한가**:
+- 2025년 이후 모든 보안 솔루션이 AI를 사용함
+- AI의 품질은 학습 데이터의 품질에 의존함
+- 검증된 보안 지식 DB가 없으면 AI는 할루시네이션을 생성함
+
+**구체적 예시**:
+```
+일반 LLM에게 질문: "Log4Shell 취약점이 있는 서버를 어떻게 방어하나요?"
+  → 일반적인 답변, 구체적인 맥락 없음, 할루시네이션 가능성
+
+GR RAG에게 질문: "Log4Shell 취약점이 있는 서버를 어떻게 방어하나요?"
+  → GR DB에서 Log4Shell 원자 검색
+  → 관련 인프라(L7, Z2), 공격 경로(T1190), 방어 기법(WAF, 패치) 연결
+  → 맥락 기반의 구체적이고 정확한 답변
+```
+
+### 1.3.4 인프라가 앵커 (Infrastructure as Anchor)
+
+**정의**:
+- 모든 보안 지식은 **인프라 위에서 맥락을 가짐**
+- 공격/방어/취약점 모두 "어디서(WHERE)"와 연결되어야 의미가 있음
+- 인프라 없이 떠다니는 보안 지식은 실무에 적용할 수 없음
+
+**왜 중요한가**:
+- "SQL Injection"이라는 공격은 "데이터베이스가 있는 곳"에서만 의미가 있음
+- 인프라 맥락 없이는 "어디를 방어해야 하는지" 알 수 없음
+
+**구체적 예시**:
+```
+맥락 없는 지식: "SQL Injection은 위험한 공격이다"
+  → 그래서 어쩌라고?
+
+맥락 있는 지식: "SQL Injection은 L7(애플리케이션)과 L5(데이터베이스) 사이에서 발생하며,
+                Z2(애플리케이션 영역)에서 Z3(데이터 영역)으로의 공격 경로를 형성한다.
+                방어: Z2에 WAF(S3.4) 배치, L7에 Parameterized Query(DEF-PREVENT-PARAMQUERY) 적용"
+  → 구체적인 조치 가능
+```
+
+### 1.3.5 실용성 우선 (Pragmatism First)
+
+**정의**:
+- 학술적 완벽성보다 **실무 적용 가능성**을 우선합니다
+- 진단 도구, 교육 시스템에 바로 사용 가능해야 합니다
+- 이론적으로 완벽하지만 실무에서 쓸 수 없는 것은 가치가 없습니다
+
+**왜 중요한가**:
+- 온톨로지가 너무 복잡하면 아무도 사용하지 않음
+- 실무자가 바로 적용할 수 있어야 채택됨
+
+**구체적 예시**:
+```
+학술적 접근: 모든 가능한 관계 타입을 50개로 정의
+  → 너무 복잡해서 아무도 올바르게 사용하지 못함
+
+GR 접근: 핵심 관계 타입 15개로 한정 (is_a, enables, prevents, requires, applies_to 등)
+  → 누구나 일관되게 사용 가능, AI도 학습 용이
+```
+
+---
+
+## 1.4 왜 이 프로젝트인가?
+
+### 1.4.1 문제: 컨설팅 비즈니스의 한계
+
+보안 컨설팅은 **"사람이 직접 하는 일"**입니다.
 
 ```
 일이 늘어나면 → 사람을 뽑아야 함 → 인건비 증가 → 수익률 정체
 ```
 
-보안 컨설팅은 **"사람이 직접 하는 일"**입니다.
-- 프로젝트 10개 하려면 → 10명 필요
-- 프로젝트 100개 하려면 → 100명 필요
+| 프로젝트 수 | 필요 인력 | 수익 |
+|------------|----------|------|
+| 10개 | 10명 | 10 |
+| 100개 | 100명 | 10 (수익률 동일) |
 
 이것이 **선형 성장의 함정**입니다.
 
-### 3.2 해결: 노하우를 "자산"으로 만들기
+### 1.4.2 해결: 보안 지식을 "자산"으로 만들기
 
 ```
-전문가의 머릿속 지식 → DB에 저장 → 여러 제품이 재사용 → 확장 가능한 사업
+세상의 보안/IT 지식 → DB에 구조화 → 여러 제품이 재사용 → 확장 가능한 사업
 ```
 
-핵심 아이디어:
-1. 컨설팅하면서 쌓은 **보안 노하우**를 체계적으로 정리
-2. 이것을 **DB + Framework + 시각화(Atlas)**로 구축
-3. 이 Core 위에 **여러 사업 아이템**을 올림
+**핵심 아이디어 3단계**:
 
-### 3.3 왜 지금인가? (2025년 AI 시대의 기회)
+1. **수집**: 전 세계의 보안/IT 지식을 체계적으로 수집
+   - 인프라 제품 정보 (10,000개+)
+   - 공격/방어 기법 (MITRE ATT&CK, D3FEND)
+   - 취약점 (CVE, CWE)
+   - 보안 원칙, 패턴
+
+2. **구조화**: 이것을 **DB + Framework + 시각화(Atlas)**로 구축
+   - 3D 좌표계로 모든 요소의 위치 정의
+   - 관계 그래프로 요소 간 연결
+   - AI가 학습할 수 있는 형태로 정제
+
+3. **활용**: 이 Core 위에 **여러 사업 아이템**을 올림
+   - 자동화 진단
+   - 보안 솔루션
+   - IaC 생성
+   - 교육 시스템
+
+### 1.4.3 왜 지금인가? (AI 시대의 기회)
 
 ```
-과거: 데이터 구축 = 사람이 직접 = 비용 막대
-현재: 데이터 구축 = AI 자동화 = 비용 현실적
+과거: 데이터 구축 = 사람이 직접 = 비용 막대 = 대기업만 가능
+현재: 데이터 구축 = AI 자동화 = 비용 현실적 = 소규모 팀 가능
 ```
 
-- LLM이 제품 문서를 읽고 분류 가능
-- 크롤링 + AI로 대량 데이터 구축 가능
-- 소규모 팀으로도 대규모 DB 구축 가능
+**AI가 가능하게 한 것들**:
+- LLM이 제품 문서를 읽고 자동 분류
+- 크롤링 + AI로 대량 데이터 구축
+- CVE 설명을 읽고 MITRE 기법 자동 매핑
+- 소규모 팀(5-10명)으로도 대규모 DB 구축 가능
 
-### 3.4 보안 컨설팅 회사가 하기에 적합한 이유
+**비용 비교**:
+| 방식 | 10,000개 제품 DB 구축 비용 | 소요 기간 |
+|------|---------------------------|----------|
+| 수작업 (과거) | $5,000,000+ | 3년+ |
+| AI 자동화 (현재) | $100,000 | 6개월 |
 
-1. **실무 데이터 접근성**: 매일 고객사 인프라를 봄
-2. **검증 기회**: 컨설팅하면서 Framework 테스트 가능
-3. **즉시 사용자**: 본인 회사가 첫 번째 고객
-4. **도메인 전문성**: 외부 개발사보다 보안을 잘 앎
+### 1.4.4 보안 컨설팅 회사가 적합한 4가지 이유
+
+| 이유 | 설명 |
+|------|------|
+| **1. 실무 데이터 접근성** | 매일 고객사 인프라를 직접 보고 분석함 |
+| **2. 검증 기회** | 컨설팅하면서 Framework를 실제 환경에서 테스트 가능 |
+| **3. 즉시 사용자** | 본인 회사가 첫 번째 고객 (자체 도구로 활용) |
+| **4. 도메인 전문성** | 외부 개발사보다 보안 도메인을 깊이 이해함 |
 
 ---
 
-## 4. MITRE ATT&CK과의 관계: WHERE + HOW
+## 1.5 온톨로지 비전 (Ontology Vision)
 
-### 4.1 기존 보안 프레임워크의 한계
+### 1.5.1 온톨로지의 목표
+
+> **"100% 신뢰할 수 있는 원자화 규칙을 만들어, 어떤 AI 에이전트가 실행해도 동일한 결과를 도출한다"**
+
+GR 온톨로지는 단순한 데이터베이스가 아닙니다. **"보안 지식을 원자 단위로 분해하는 규칙 체계"**입니다.
+
+**핵심 목표**:
+- **일관성**: 누가 분류해도 같은 결과
+- **완전성**: 모든 보안/IT 지식을 표현 가능
+- **기계 가독성**: AI가 학습하고 추론 가능
+- **확장성**: 새로운 기술이 나와도 체계 유지
+
+### 1.5.2 원자화의 핵심 원칙
+
+**1. 모호성 불허 (Zero Ambiguity)**
+```
+❌ 나쁜 예: "이 도구는 보안 관련이므로 Security 태그"
+   → "보안 관련"의 기준이 모호함
+
+✅ 좋은 예: "이 도구가 인증/암호화/탐지/차단 기능을 수행하는가?"
+   → Yes면 Security 태그, No면 다른 태그
+```
+
+**2. 4가지 질문으로 is_infrastructure 판정**
+
+모든 원자는 **"인프라 요소인가, 지식/개념인가"**를 먼저 판정해야 합니다.
+
+| 질문 | Yes 예시 | No 예시 |
+|------|---------|---------|
+| 네트워크 주소(IP/Port)를 가질 수 있는가? | Nginx, PostgreSQL | SQL Injection (기법) |
+| 프로세스로 실행될 수 있는가? | Docker Container, Apache | OWASP Top 10 (개념) |
+| 물리적 형태가 있을 수 있는가? | 서버, 네트워크 장비 | Zero Trust (원칙) |
+| 시스템 자원(CPU/메모리)을 소비하는가? | Redis, JVM | HTTP Protocol (표준) |
+
+→ **하나라도 Yes면 `is_infrastructure: true`**
+
+**3. Type 분류의 명확한 분리**
+
+| is_infrastructure | Type | 설명 | 예시 |
+|-------------------|------|------|------|
+| **true** | component | 일반 인프라 구성요소 | WAS, DB, 웹서버 |
+| **true** | component_tool | 배포된 보안/진단 도구 | Nmap 서버, Burp Suite |
+| **true** | component_control | 배포된 보안 통제 | WAF, IDS, 방화벽 |
+| **false** | concept | 추상적 개념 | Zero Trust, Defense in Depth |
+| **false** | technique | 공격/방어 기법 | SQL Injection, Parameterized Query |
+| **false** | vulnerability | 취약점 유형 | CWE-89, Buffer Overflow |
+| **false** | principle | 보안 원칙 | 최소 권한, 심층 방어 |
+| **false** | pattern | 설계 패턴 | MVC, Microservices |
+| **false** | protocol | 통신 프로토콜 | HTTP, TLS, OAuth |
+| **false** | tool_knowledge | 도구 사용법 지식 | Nmap 사용법, Burp Suite 튜토리얼 |
+| **false** | control_policy | 통제 정책 | 접근 제어 정책, 암호화 정책 |
+
+### 1.5.3 관계 설계 철학
+
+**related_to 관계 금지**
+
+```
+❌ related_to: ["SQL", "Database", "Web"]
+   → 의미가 모호함, 무한 확장 가능, AI가 학습 불가
+
+✅ 대체 방안:
+   - 임베딩 유사도: 벡터 검색으로 관련성 계산
+   - atom_tags 공유: 동일 태그를 가진 원자 검색
+   - 정밀 관계: is_a, requires, enables, prevents, applies_to
+```
+
+**허용되는 관계 타입**:
+| 카테고리 | 관계 | 설명 |
+|----------|------|------|
+| structural | is_a | 상위 개념 (상속) |
+| structural | part_of | 구성 요소 관계 |
+| causal | requires | 필요 조건 |
+| causal | enables | 가능하게 함 |
+| causal | prevents | 방지함 |
+| applicability | applies_to | 적용 대상 |
+| implementation | implements | 프로토콜 구현 |
+
+### 1.5.4 Function vs atom_tags 구분
+
+| 구분 | Function | atom_tags |
+|------|----------|-----------|
+| **용도** | 3D 좌표 3차원 | 원자 특성 분류 |
+| **구조** | 계층적 (A1.1, S2.3) | 평면적 (INJ, WEB) |
+| **대상** | 인프라 컴포넌트만 | 모든 원자 |
+| **예시** | A2.1 (REST API) | AUTH, CRYPTO, LINUX |
+
+```yaml
+# 인프라 요소 예시 (is_infrastructure: true)
+INFRA-APP-WAS-001:
+  gr_coordinates:
+    layer: L7
+    zone: Z2
+    function: A2.1  # 계층적 Function
+  atom_tags: [JAVA, WEB, BACKEND]  # 평면적 태그
+
+# 지식 요소 예시 (is_infrastructure: false)
+ATK-INJECT-SQL-001:
+  scope:
+    target_layers: [L5, L7]
+    target_zones: [Z2, Z3]
+  atom_tags: [INJ, WEB, DB]  # 평면적 태그만
+```
+
+### 1.5.5 온톨로지 품질 기준
+
+| 기준 | 목표 | 검증 방법 |
+|------|------|-----------|
+| **일관성** | 동일 입력 → 동일 분류 | AI 에이전트 A/B 테스트 |
+| **완전성** | 모든 보안 지식 표현 가능 | 커버리지 측정 |
+| **정확성** | 전문가 검증 통과 | 샘플링 검증 |
+| **관계 밀도** | 원자당 5개 이상 관계 | 자동 검증 |
+| **모호성 제로** | 분류 규칙에 "~일 수 있다" 없음 | 규칙 감사 |
+
+---
+
+# Part 2: MITRE ATT&CK 연동
+
+---
+
+## 2.1 기존 보안 프레임워크의 한계
 
 **MITRE ATT&CK**은 업계 표준 공격 기법 분류체계입니다.
 하지만 MITRE는 **"어떻게(HOW)"** 공격하는지만 알려줍니다.
 
 ```
 MITRE ATT&CK이 알려주는 것:
-- T1190: 공개된 애플리케이션 취약점 공격
-- T1059: 명령어 실행
-- T1003: 인증 정보 탈취
+- T1190: Exploit Public-Facing Application (공개된 애플리케이션 취약점 공격)
+- T1059: Command and Scripting Interpreter (명령어 실행)
+- T1003: OS Credential Dumping (인증 정보 탈취)
 
 → "어떻게 공격하는지"는 알지만
 → "어디를 공격하는지"는 모름
 ```
 
-### 4.2 GR Framework의 역할: "WHERE"
+**문제점**:
+- 공격 기법은 알지만, 우리 인프라의 어디가 취약한지 모름
+- 방어 방법은 알지만, 어디에 적용해야 하는지 모름
+- 공격 경로를 시뮬레이션할 수 없음
+
+---
+
+## 2.2 GR Framework의 역할: WHERE + HOW
 
 ```
-┌─────────────────────────────────┬───────────────────────────────┐
-│       MITRE ATT&CK              │        GR Framework           │
-│         (HOW)                   │           (WHERE)             │
-├─────────────────────────────────┼───────────────────────────────┤
-│  "이렇게 공격한다"               │  "여기가 공격당한다"           │
-│                                 │                               │
-│  • 공격 기법 분류                │  • 인프라 위치 분류            │
-│  • 공격 단계 정의                │  • 공격 대상 정의              │
-│  • 방어 방법 제안                │  • 공격 경로 시각화            │
-└─────────────────────────────────┴───────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    완전한 보안 그림                          │
+├─────────────────────────────┬───────────────────────────────┤
+│       MITRE ATT&CK          │        GR Framework           │
+│         (HOW)               │           (WHERE)             │
+├─────────────────────────────┼───────────────────────────────┤
+│  "이렇게 공격한다"           │  "여기가 공격당한다"           │
+│                             │                               │
+│  • 공격 기법 분류            │  • 인프라 위치 분류            │
+│  • 공격 단계 정의            │  • 공격 대상 정의              │
+│  • 방어 방법 제안            │  • 공격 경로 시각화            │
+└─────────────────────────────┴───────────────────────────────┘
 
                     ↓ 결합하면 ↓
 
@@ -176,23 +443,152 @@ MITRE ATT&CK이 알려주는 것:
 
 **GR Framework는 MITRE와 경쟁하지 않습니다. 보완합니다.**
 
-### 4.3 실제 예시: Log4Shell 취약점
+---
+
+## 2.3 실제 예시: Log4Shell 취약점
+
+### MITRE만 볼 때
 
 ```
-MITRE만 보면:
-  "T1190 기법으로 공격할 수 있다" (끝)
+CVE-2021-44228 (Log4Shell)
+  → MITRE: "T1190 기법으로 공격할 수 있다" (끝)
+  → 그래서 어디를 어떻게 방어해야 하는지 모름
+```
 
-GR + MITRE를 보면:
-  1. [Z1 → Z2] 웹서버에서 Log4j 취약점 공격 (T1190)
-  2. [Z2 → Z3] 내부 네트워크로 이동, DB 접근 시도 (T1003)
-  3. 구체적 대응: Z2에 WAF 강화, Z3 접근 제어 강화
+### GR + MITRE를 볼 때
+
+```
+CVE-2021-44228 (Log4Shell)
+
+공격 경로:
+  Step 1: [Z0A → Z1] 인터넷에서 경계 영역으로 악성 요청
+          Layer: L2 (네트워크)
+          Technique: T1190 (Exploit Public-Facing Application)
+
+  Step 2: [Z1 → Z2] 웹서버에서 Log4j 취약점 트리거
+          Layer: L7 (애플리케이션)
+          Technique: T1059.007 (Command Injection via Log4j)
+
+  Step 3: [Z2 → Z3] 내부 네트워크로 이동, DB 접근 시도
+          Layer: L5 (데이터)
+          Technique: T1003 (Credential Dumping)
+
+구체적 대응:
+  - Z1: WAF 규칙 추가 (${jndi: 패턴 차단)
+  - Z2: Log4j 버전 업그레이드 (2.17.0+)
+  - Z2 → Z3: 네트워크 격리 강화, 최소 권한 적용
+  - 모든 Zone: SIEM 모니터링 활성화
 ```
 
 ---
 
-## 5. GR Core: 모든 것의 토대
+## 2.4 MITRE ATT&CK 매핑 상세
 
-### 5.1 생태계 계층 구조
+GR의 ATK(공격) 원자에는 MITRE 매핑이 포함됩니다.
+
+```yaml
+# ATK 원자 예시: SQL Injection
+ATK-INJECT-SQL-001:
+  identity:
+    id: "ATK-INJECT-SQL-001"
+    name: "SQL Injection"
+    aliases: ["SQLi", "SQL 인젝션"]
+
+  # MITRE ATT&CK 매핑
+  mitre_mapping:
+    technique_id: "T1190"
+    technique_name: "Exploit Public-Facing Application"
+    tactic: "Initial Access"
+    sub_techniques: ["T1190.001"]
+
+  # GR 확장: WHERE 정보 추가
+  gr_extension:
+    target_layers: ["L5", "L7"]           # 데이터, 애플리케이션 계층
+    target_zones: ["Z2", "Z3"]            # 애플리케이션, 데이터 영역
+    target_components:                     # 공격 대상 컴포넌트
+      - "INFRA-DATA-RDBMS-*"              # 모든 RDBMS
+      - "INFRA-APP-WAS-*"                 # 모든 WAS
+    attack_path:
+      entry_zone: "Z0A"                   # 공격 시작점 (인터넷)
+      target_zone: "Z3"                   # 최종 목표 (데이터 영역)
+```
+
+---
+
+## 2.5 CVE/CWE 연동
+
+GR의 VUL(취약점) 원자에는 CVE/CWE 연결이 포함됩니다.
+
+```yaml
+# VUL 원자 예시: SQL Injection 취약점
+VUL-INJECT-SQL-001:
+  identity:
+    id: "VUL-INJECT-SQL-001"
+    name: "SQL Injection Vulnerability"
+
+  # 표준 취약점 연동
+  cwe_id: "CWE-89"
+  related_cves:
+    - id: "CVE-2021-XXXXX"
+      cvss: 9.8
+      affected_products: ["INFRA-APP-WAS-*"]
+
+  # GR 확장: 인프라 맥락
+  gr_context:
+    commonly_found_in:
+      - layer: "L7"
+        zone: "Z2"
+        components: ["Web Application", "API Server"]
+    attack_path:
+      entry: "Z0A"                        # 인터넷
+      target: "Z3"                        # 데이터 영역
+    severity_by_zone:
+      Z2: "High"                          # 애플리케이션 영역
+      Z3: "Critical"                      # 데이터 영역 (더 심각)
+```
+
+---
+
+## 2.6 MITRE D3FEND 연동
+
+GR의 DEF(방어) 원자에는 D3FEND 매핑이 포함됩니다.
+
+```yaml
+# DEF 원자 예시: Parameterized Query
+DEF-PREVENT-PARAMQUERY-001:
+  identity:
+    id: "DEF-PREVENT-PARAMQUERY-001"
+    name: "Parameterized Query"
+    aliases: ["Prepared Statement", "바인드 변수"]
+
+  # MITRE D3FEND 매핑
+  d3fend_mapping:
+    technique_id: "D3-PQ"
+    technique_name: "Parameterized Query"
+    tactic: "Application Hardening"
+
+  # GR 확장: 적용 위치
+  gr_application:
+    target_layers: ["L7"]                 # 애플리케이션 계층
+    target_components:
+      - "INFRA-APP-WAS-*"                 # 모든 WAS
+      - "INFRA-APP-API-*"                 # 모든 API 서버
+    mitigates:                            # 완화하는 위협
+      - "VUL-INJECT-SQL-001"
+      - "ATK-INJECT-SQL-001"
+    effectiveness: 0.95                   # 효과성 (95%)
+```
+
+
+---
+
+# Part 3: GR Core 아키텍처
+
+---
+
+## 3.1 생태계 계층 구조 (Foundation vs Product)
+
+GR 생태계는 **4개의 계층**으로 구성됩니다. 각 계층의 역할을 명확히 구분하는 것이 중요합니다.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -214,7 +610,7 @@ GR + MITRE를 보면:
                             │ (학습)
 ┌─────────────────────────────────────────────────────────────┐
 │  Layer 2: 문법 (Grammar) - GR Framework                     │
-│  - 3차원 좌표계 (Layer × Zone × Function)                    │
+│  - 3차원 좌표계 (Layer × Zone × Function)                   │
 │  - 보안 정책 규칙                                            │
 │  - 원자화(Atomization) 방법론                                │
 └─────────────────────────────────────────────────────────────┘
@@ -228,7 +624,7 @@ GR + MITRE를 보면:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 5.2 각 계층의 정의
+### 각 계층의 상세 정의
 
 | 계층 | 명칭 | 역할 | 비유 | 수익 모델 |
 |------|------|------|------|----------|
@@ -237,56 +633,104 @@ GR + MITRE를 보면:
 | **Layer 3** | AI/RAG | GR DB를 참조하여 상황에 맞는 답을 추론 | 전문가 | API 사용료 |
 | **Layer 4** | Products | 고객의 문제를 해결하는 구체적 서비스 | 의사/변호사 | SaaS 구독료 |
 
-### 5.3 GR Atlas: 보안의 지도
-
-**GR Atlas**는 인프라를 **지도처럼** 보여주는 시각화 기능입니다.
-
-```
-일반 지도                          GR Atlas
-─────────────                      ─────────
-• 지형, 도로, 건물                 • Layer, Zone, 서버
-• 교통 흐름                        • 데이터 흐름
-• 위험 지역 표시                   • 취약점 위치 표시
-• 최적 경로 안내                   • 공격 경로 시각화
-```
-
-**Atlas는 제품이 아니라 기능(Feature)입니다** - 자동화 진단, IaC, Edu에 내장되는 공통 컴포넌트
-
 ---
 
-# Part 2: 3D 프레임워크 & 아키텍처
+## 3.2 GR Core 구성요소
 
-## 6. 3차원 좌표계 (3D Framework)
-
-AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
-
-### 6.1 개념도
+GR Core는 3가지 핵심 구성요소로 이루어집니다.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    GR Ontology                              │
+│                        GR CORE                              │
+├───────────────────┬───────────────────┬─────────────────────┤
+│      GR DB        │   GR Framework    │      GR Atlas       │
+│                   │                   │                     │
+│  "무엇이 있는가"   │  "어떻게 분류할까" │   "어떻게 보여줄까"  │
+│                   │                   │                     │
+│  • IT 제품 정보    │  • 3D 좌표 체계   │  • 지도처럼 보기     │
+│  • 취약점(CVE)    │  • 관계 규칙      │  • 공격 흐름 시각화  │
+│  • 공격 기법      │  • 보안 정책 규칙  │  • 직관적 이해      │
+└───────────────────┴───────────────────┴─────────────────────┘
+```
+
+### 3.2.1 GR DB
+
+**역할**: "무엇이 있는가" - 세상의 모든 보안/IT 지식을 저장
+
+**저장 내용**:
+- 전 세계 IT 제품 메타데이터 (10,000개+ 목표)
+- 각 제품의 가능한 모든 역할 (Archetypes)
+- 취약점 데이터 (CVE, CWE)
+- 공격 기법 (MITRE ATT&CK 매핑)
+- 방어 기법 (MITRE D3FEND 매핑)
+- 보안 원칙, 패턴, 프로토콜
+
+**비유**: 보안의 위키피디아 + AI 학습 원천 데이터
+
+### 3.2.2 GR Framework
+
+**역할**: "어떻게 분류할까" - 데이터를 해석하는 규칙과 좌표계
+
+**구성**:
+- **3D 좌표 체계**: Layer × Zone × Function
+- **관계 규칙**: is_a, enables, prevents, requires, applies_to 등
+- **보안 정책 규칙**: 좌표에 따른 자동 정책 적용
+- **원자화 방법론**: 지식을 원자 단위로 분해하는 규칙
+
+**비유**: 문법책 - 데이터를 읽고 해석하는 방법
+
+### 3.2.3 GR Atlas
+
+**역할**: "어떻게 보여줄까" - 인프라를 지도처럼 시각화
+
+**기능**:
+- 3D 좌표계 기반 인프라 맵
+- 취약점/공격 흐름 하이라이트
+- MITRE ATT&CK 연동 drill-down
+- 공격 경로 시뮬레이션 시각화
+
+**중요**: Atlas는 **제품이 아니라 기능(Feature)**입니다.
+- 자동화 진단 솔루션, IaC, Edu에 **내장되는 공통 컴포넌트**
+
+**일반 지도 vs GR Atlas 비교**:
+
+| 일반 지도 | GR Atlas |
+|----------|----------|
+| 지형, 도로, 건물 | Layer, Zone, 서버 |
+| 교통 흐름 | 데이터 흐름 |
+| 위험 지역 표시 | 취약점 위치 표시 |
+| 최적 경로 안내 | 공격 경로 시각화 |
+
+**Atlas 화면 예시**:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      GR Atlas 화면                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐  │
-│   │ INFRA       │────→│ VULNERABILITY│←────│ ATTACK      │  │
-│   │ 인프라 요소  │     │ 취약점       │     │ 공격 기법    │  │
-│   └──────┬──────┘     └──────┬──────┘     └──────┬──────┘  │
-│          │                   │                   │          │
-│          │    ┌──────────────┼──────────────┐    │          │
-│          │    │              │              │    │          │
-│          ▼    ▼              ▼              ▼    ▼          │
-│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐  │
-│   │ DEFENSE     │     │ TOOL        │     │ CONCEPT     │  │
-│   │ 방어 기법    │     │ 도구        │     │ 개념        │  │
-│   └─────────────┘     └─────────────┘     └─────────────┘  │
+│   [인터넷]                                                  │
+│      │                                                      │
+│      ▼                                                      │
+│   ┌──────┐     ┌──────┐     ┌──────┐                       │
+│   │ WAF  │────▶│ API  │────▶│  DB  │                       │
+│   │ ⚠️   │     │ 🔴   │     │ ✅   │                       │
+│   └──────┘     └──────┘     └──────┘                       │
+│   Zone 1       Zone 2       Zone 3                         │
 │                                                             │
-│   ─────────────────────────────────────────────────────    │
-│   모든 요소는 GR 좌표 (Layer/Zone/Function)를 가짐          │
+│   ⚠️ 설정 미흡  🔴 CVE 발견  ✅ 정상                        │
+│                                                             │
+│   [공격 경로] Z1 → Z2 → Z3 (위험도: 높음)                   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 6.2 축 1: Deployment Layer (기술 스택의 수직적 깊이)
+---
+
+## 3.3 3D 좌표 프레임워크 (3D Framework)
+
+AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
+
+### 3.3.1 축 1: Deployment Layer (기술 스택의 수직적 깊이)
 
 **AI의 관점**: "이 구성요소는 하드웨어인가, 소프트웨어인가, 아니면 우리가 빌려 쓰는 서비스인가?"
 
@@ -302,7 +746,11 @@ AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
 | **L7** | 애플리케이션 & AI | Application & AI Logic | 비즈니스 로직 및 AI 워크로드 | Very High | Web App, LLM Model, Vector Search, RAG Pipeline |
 | **Cross** | 관리 & 보안 | Management & Security | 모든 계층 관통 | Medium | Monitoring, IAM, SIEM, Testing |
 
-### 6.3 축 2: Security Zone (보안 신뢰의 수평적 경계)
+**v2.0 주요 변경**:
+- ✅ **Layer 0 신설**: SaaS/API 서비스를 명시적으로 분리 (우리가 관리하지 않는 외부 서비스)
+- ✅ **Layer 7 확장**: AI 워크로드 (LLM, Embedding Model, Vector DB, Agentic Workflow) 포함
+
+### 3.3.2 축 2: Security Zone (보안 신뢰의 수평적 경계)
 
 **AI의 관점**: "이곳은 얼마나 위험한가? 누구와 대화할 수 있는가?"
 
@@ -310,159 +758,187 @@ AI가 인프라를 입체적으로 인식하기 위한 3축 좌표계입니다.
 |------|------|--------|------|----------|--------------|
 | **Z0A** | 비신뢰 외부 | 0% | 일반 인터넷, 해커, 익명 사용자 | Default Deny | - |
 | **Z0B** | 신뢰 파트너 | 10% | API Key로 인증된 외부 SaaS/Partner | Allow with Auth | OpenAI API, GitHub, Slack |
-| **Z1** | 경계 영역 (Perimeter) | 0-20% | 외부 위협 차단 최전선 (DMZ) | 최대 강도 필터링 | Firewall, WAF, DDoS 방어 |
-| **Z2** | 애플리케이션 영역 | 30% | 비즈니스 로직 실행 영역 | 인증/인가 필수 | Web Server, API Server |
+| **Z1** | 경계 영역 (Perimeter) | 20% | 외부 위협 차단 최전선 (DMZ) | 최대 강도 필터링 | Firewall, WAF, DDoS 방어 |
+| **Z2** | 애플리케이션 영역 | 40% | 비즈니스 로직 실행 영역 | 인증/인가 필수 | Web Server, API Server |
 | **Z3** | 데이터 영역 | 60% | 가장 민감한 자산 보관 | 격리 + 암호화 | Database, 파일 스토리지 |
 | **Z4** | 관리 영역 (Management) | 80% | 시스템 전체 통제 관제탑 | 최고 수준 접근 제어 | 모니터링, 로깅, CI/CD |
 | **Z5** | 엔드포인트 영역 | 50% | 제로 트러스트 기반 사용자 단말 | 지속적 검증 | 사용자 PC, 모바일, VPN Client |
 
-### 6.4 축 3: Function (기능적 역할)
+**v2.0 주요 변경**:
+- ✅ **Zone 0 세분화**: Z0A (Untrusted External) vs Z0B (Trusted Partner) 분리
+- ✅ **신뢰도 수치화**: AI가 리스크를 계산할 수 있도록 신뢰 수준을 퍼센트로 명시
+
+### 3.3.3 축 3: Function (기능)
 
 **AI의 관점**: "이 녀석의 정체는 무엇이고, 어떤 기능을 수행하는가?"
 
-#### 기능 도메인 (8개)
+#### 10개 Function 도메인
 
-| 코드 | 도메인명 (한글) | 도메인명 (영문) | 설명 |
-|------|----------------|----------------|------|
-| **M** | 관리 기능 | Management | 모니터링, 로깅, 백업 |
-| **N** | 네트워크 기능 | Network | 라우팅, 로드밸런싱, 프록시 |
-| **S** | 보안 기능 | Security | 인증, 암호화, 위협 탐지 |
-| **A** | 애플리케이션 기능 | Application | 웹서버, API, UI/UX |
-| **D** | 데이터 기능 | Data | 저장, 처리, 분석 |
-| **R** | 런타임 기능 | Runtime | 컨테이너, 메시징, 캐시 |
-| **C** | 컴퓨팅 기능 | Computing | 가상화, 오케스트레이션 |
-| **P** | 플랫폼 기능 | Platform | CI/CD, IaC, 버전 관리 |
+| 코드 | 도메인명 (한글) | 도메인명 (영문) | 태그 개수 | 설명 |
+|------|----------------|----------------|----------|------|
+| **M** | 모니터링 기능 | Monitoring | 25개 | 메트릭 수집, 로깅, APM, 분산 추적 |
+| **N** | 네트워크 기능 | Network | 40개 | 라우팅, 로드밸런싱, 프록시, DNS |
+| **S** | 보안 기능 | Security | 50개 | 인증, 암호화, 위협 탐지, 접근 제어 |
+| **A** | 애플리케이션 기능 | Application | 35개 | 웹서버, API, UI/UX, 비즈니스 로직 |
+| **D** | 데이터 기능 | Data | 40개 | 저장, 처리, 분석, 캐싱 |
+| **R** | 리소스 기능 | Resource | 20개 | 자동 확장, 리소스 관리 |
+| **C** | 컴플라이언스 기능 | Compliance | 15개 | 감사, 규정 준수, 거버넌스 |
+| **P** | 플랫폼 기능 | Platform | 25개 | CI/CD, IaC, 버전 관리 |
+| **T** | 기술 스택 | Tech Stack | 30개 | 언어, 런타임, OS (CVE 매핑용) |
+| **I** | 인터페이스 | Interface | 25개 | 프로토콜, 데이터 포맷 (통신 흐름 분석용) |
 
-#### 계층적 구조 (예: Application 도메인)
+**총계**: 10개 도메인, 약 280개 태그
+
+**Domain T (Tech Stack) 예시** - CVE 영향도 분석용:
+```
+T1.1 Java
+T1.2 Python
+T1.3 Go
+T1.4 Node.js
+T2.1 JVM
+T2.2 .NET CLR
+T3.1 Linux
+T3.2 Windows
+```
+
+**Domain I (Interface) 예시** - 통신 흐름 분석용:
+```
+I1.1 HTTP/1.1
+I1.2 HTTP/2
+I1.3 gRPC
+I1.4 WebSocket
+I2.1 JSON
+I2.2 XML
+I2.3 Protobuf
+```
+
+### 3.3.4 좌표의 의미와 활용
+
+**예시**: PostgreSQL을 캐시로 사용하는 경우
+
+```yaml
+Product: PostgreSQL
+Archetype: Application Cache
+GR Coordinates:
+  Layer: L5 (데이터 서비스)
+  Zone: Z2 (애플리케이션 영역)
+  Function: D3.1 (캐시)
+
+자동 적용 보안 정책:
+  - 암호화: 선택 (Z2는 필수 아님)
+  - 접근 제어: 애플리케이션 서버만 접근 허용
+  - 모니터링: 성능 메트릭 수집
+```
+
+**핵심 원리**: "좌표가 정해지면, 보안 정책이 자동으로 따라온다"
 
 ```
-A: Application (애플리케이션)
-├── A1: Web Services (웹 서비스)
-│   ├── A1.1: Static Content (정적 콘텐츠)
-│   ├── A1.2: Dynamic Content (동적 콘텐츠)
-│   └── A1.3: Single Page App (SPA)
-├── A2: API Services (API 서비스)
-│   ├── A2.1: REST API
-│   ├── A2.2: GraphQL
-│   └── A2.3: gRPC
-└── A3: Business Logic (비즈니스 로직)
-    ├── A3.1: Transaction Processing
-    └── A3.2: Workflow Engine
+PostgreSQL이 Z3(데이터 영역)에 있다면:
+→ 자동으로 "암호화 필수" 정책 적용
+→ 자동으로 "접근 제어 강화" 정책 적용
+→ 자동으로 관련 CVE 취약점 알림
+
+사람이 매번 "이 DB에는 어떤 보안이 필요하지?" 고민할 필요 없음
+위치만 정하면 Framework가 알려줌
 ```
+
 
 ---
 
-## 7. 원자(Atom) 구조
+## 3.4 원자(Atom) 구조
 
-### 7.1 표준 구조 (스키마 v2.0)
+### 3.4.1 표준 구조
+
+모든 원자는 다음 YAML 스키마를 따릅니다:
 
 ```yaml
 Atom:
-  # ─── 정체성 ───
-  id: "DOMAIN-TYPE-NAME-###"
-  name: "정식 명칭"
-  aliases: ["별칭들"]
+  # ─── 정체성 (Identity) ───
+  identity:
+    id: "DOMAIN-TYPE-NAME-###"        # 고유 식별자
+    name: "정식 명칭"                  # 공식 이름
+    normalized_name: "정규화된 명칭"   # 검색/비교용
+    aliases: ["별칭1", "별칭2"]       # 다른 이름들
 
-  # ─── GR 분류 ───
-  type: component | component_tool | component_control | concept | technique | vulnerability | principle | pattern | protocol | tool_knowledge | control_policy
-  is_infrastructure: true | false  # 인프라 요소 여부
+  # ─── GR 분류 (Classification) ───
+  classification:
+    domain: infrastructure | security | attack | defense | tool | concept
+    type: component | component_tool | component_control | technique | 
+          vulnerability | protocol | pattern | principle | 
+          tool_knowledge | control_policy
+    is_infrastructure: true | false   # 인프라 요소 여부
+    
+    # 인프라 요소인 경우 (is_infrastructure: true)
+    gr_coordinates:
+      layer: "L0-L7 | Cross"
+      zone: "Z0A | Z0B | Z1-Z5"
+      function: ["M1.1", "N2.3", ...]  # 계층적 Function 코드
+    
+    # 지식 요소인 경우 (is_infrastructure: false)
+    scope:
+      target_layers: ["L5", "L7"]
+      target_zones: ["Z2", "Z3"]
+    
+    atom_tags: ["INJ", "WEB", "LINUX"]  # 평면적 특성 태그
 
-  # ─── GR 좌표 (인프라 요소만) ───
-  gr_coordinates:  # is_infrastructure: true인 경우
-    layer: "L0-L7 | Cross"
-    zone: "Z0A | Z0B | Z1-Z5"
-    function: "A1.1 | S2.1 | ..."
-
-  # ─── 범위 (지식/개념만) ───
-  scope:  # is_infrastructure: false인 경우
-    layers: ["L5", "L7"]
-    zones: ["Z2", "Z3"]
-
-  # ─── 원자 태그 (모든 원자) ───
-  atom_tags: ["INJ", "WEB", "AUTH"]
-
-  # ─── 정의 (LLM 학습용) ───
+  # ─── 정의 (Definition) - LLM 학습용 ───
   definition:
     what: "무엇인가 (200-300자)"
     why: "왜 중요한가 (150-200자)"
     how: "어떻게 작동하는가 (200-400자)"
 
-  # ─── 핵심 개념 ───
+  # ─── 핵심 개념 (Core Concepts) ───
   core_concepts:
     - name: "개념명"
       description: "설명"
       security_relevance: "보안 관련성"
 
-  # ─── 관계 (온톨로지 핵심) ───
+  # ─── 관계 (Relations) - 온톨로지 핵심 ───
   relations:
     structural:
-      is_a: []           # 상위 개념
-      has_subtypes: []   # 하위 유형
+      is_a: []              # 상위 개념
+      part_of: []           # 구성 요소 관계
     causal:
-      requires: []       # 필요 조건
-      enables: []        # 가능하게 하는 것
-      prevents: []       # 방지하는 것
-    security:
-      targets: []        # 공격 대상 (공격 기법인 경우)
-      mitigates: []      # 완화 대상 (방어 기법인 경우)
-      vulnerable_to: []  # 취약한 공격/취약점
+      requires: []          # 필요 조건
+      enables: []           # 가능하게 하는 것
+      prevents: []          # 방지하는 것
+    applicability:
+      applies_to: []        # 적용 대상
     implementation:
-      implements: []     # 구현하는 프로토콜/표준
+      implements: []        # 프로토콜 구현 (인프라만)
+    # 주의: related_to 관계는 금지됨
 
-  # ─── 보안 프로파일 ───
+  # ─── 보안 프로파일 (Security Profile) ───
   security:
     attack_surface: []
     common_vulnerabilities: []
     attack_techniques: []
     defenses: []
 
-  # ─── 제품/인스턴스 ───
+  # ─── 제품/인스턴스 (Products) ───
   products: []
 
-  # ─── 프로토콜 ───
+  # ─── 프로토콜 (Protocols) ───
   protocols: []
 
-  # ─── 메타데이터 ───
+  # ─── 메타데이터 (Metadata) ───
   metadata:
     trust:
-      source: ""
-      references: []
+      source: "official | verified | community"
       confidence: 0.0-1.0
+      references: []
     temporal:
-      created: ""
-      modified: ""
-      version: ""
+      created: "YYYY-MM-DD"
+      modified: "YYYY-MM-DD"
+      revision: 1
+    security:
+      sensitivity: "public | internal | confidential"
+    ai:
+      embedding_text: "임베딩용 텍스트 (50-200단어)"
+      search_keywords: ["키워드1", "키워드2", ...]
 ```
 
-### 7.2 is_infrastructure 판정 기준
-
-**4가지 질문 (하나라도 Yes면 true)**:
-
-| 질문 | Yes 예시 | No 예시 |
-|------|---------|---------|
-| 네트워크 주소를 가질 수 있는가? | Nginx (IP:Port), PostgreSQL | SQL Injection (기법) |
-| 프로세스로 실행될 수 있는가? | Docker Container, Apache | OWASP Top 10 (개념) |
-| 물리적 형태가 있을 수 있는가? | 서버, 네트워크 장비 | Zero Trust (원칙) |
-| 시스템 자원을 소비하는가? | Redis (메모리), JVM | HTTP Protocol (표준) |
-
-### 7.3 Type 분류 체계
-
-**is_infrastructure: true (인프라 요소)**
-- `component`: 일반 인프라 구성요소 (WAS, DB, 웹서버)
-- `component_tool`: 배포된 보안/진단 도구 (Nmap 서버, Burp Suite)
-- `component_control`: 배포된 보안 통제 (WAF, IDS, 방화벽)
-
-**is_infrastructure: false (지식/개념)**
-- `concept`: 추상적 개념 (Zero Trust, Defense in Depth)
-- `technique`: 공격/방어 기법 (SQL Injection, Parameterized Query)
-- `vulnerability`: 취약점 유형 (CWE-89, Buffer Overflow)
-- `principle`: 보안 원칙 (최소 권한, 심층 방어)
-- `pattern`: 설계 패턴 (MVC, Microservices)
-- `protocol`: 통신 프로토콜 (HTTP, TLS, OAuth)
-- `tool_knowledge`: 도구 사용법 지식 (Nmap 사용법)
-- `control_policy`: 통제 정책 (접근 제어 정책)
-
-### 7.4 원자 분량 가이드라인
+### 3.4.2 원자 분량 가이드라인
 
 | 섹션 | 목적 | 권장 분량 |
 |------|------|-----------|
@@ -474,134 +950,90 @@ Atom:
 
 **총 원자 분량**: A4 2-4페이지 (YAML 포함)
 
-### 7.5 원자 유형별 ID 체계
+### 3.4.3 추상화 레벨 체계
 
-```
-INFRA-*     인프라 요소
-  INFRA-NET-*     네트워크 (라우터, 방화벽, LB...)
-  INFRA-COMPUTE-* 컴퓨팅 (서버, VM, 클라우드...)
-  INFRA-DATA-*    데이터 (DB, 스토리지...)
-  INFRA-APP-*     애플리케이션 (WAS, 웹서버...)
-  INFRA-RUNTIME-* 런타임 (컨테이너, K8s...)
-  INFRA-PLATFORM-* 플랫폼 (CI/CD, IaC...)
-  INFRA-IAM-*     인증/인가 (AD, SSO, PKI...)
-  INFRA-CLOUD-*   클라우드 서비스 (AWS, Azure, GCP...)
-
-ATK-*       공격 기법
-  ATK-RECON-*     정찰
-  ATK-INIT-*      초기 접근
-  ATK-EXEC-*      실행
-  ATK-PERSIST-*   지속성
-  ATK-PRIVESC-*   권한 상승
-  ATK-EVASION-*   방어 회피
-  ATK-CRED-*      자격증명 접근
-  ATK-DISCOVERY-* 탐색
-  ATK-LATERAL-*   측면 이동
-  ATK-COLLECT-*   수집
-  ATK-EXFIL-*     유출
-  ATK-IMPACT-*    영향
-
-DEF-*       방어 기법
-  DEF-DETECT-*    탐지
-  DEF-PREVENT-*   예방
-  DEF-RESPOND-*   대응
-  DEF-RECOVER-*   복구
-
-VUL-*       취약점 유형
-  VUL-INJECT-*    인젝션
-  VUL-AUTH-*      인증
-  VUL-CRYPTO-*    암호화
-  VUL-CONFIG-*    설정
-  VUL-MEMORY-*    메모리
-
-TOOL-*      도구
-  TOOL-OFFENSE-*  공격 도구
-  TOOL-DEFENSE-*  방어 도구
-  TOOL-AUDIT-*    감사 도구
-
-CON-*       개념
-  CON-PRINCIPLE-* 원칙
-  CON-PATTERN-*   패턴
-  CON-PROTOCOL-*  프로토콜
-```
+| Level | 이름 | 설명 | 예시 |
+|-------|------|------|------|
+| **4** | Principle (원칙) | 보편적 진리, 설계 원칙 | 최소 권한, 심층 방어, Zero Trust |
+| **3** | Concept (개념) | 추상적 분류, 카테고리 | Injection, 미들웨어, 인증 우회 |
+| **2** | Technique (기법) | 구체적 방법, 유형 | UNION-based SQLi, WAS, RDBMS |
+| **1** | Instance (인스턴스) | 특정 제품, 사례 | Apache Tomcat 9.0, CVE-2021-44228 |
 
 ---
 
-## 8. 기존 표준 연동
+## 3.5 원자 유형별 ID 체계
 
-### 8.1 MITRE ATT&CK 매핑
+### 전체 ID 프리픽스 구조
 
-```yaml
-# ATK 원자에 MITRE 매핑 포함
-ATK-INJECT-SQL-001:
-  name: "SQL Injection"
-  mitre_mapping:
-    technique_id: "T1190"
-    technique_name: "Exploit Public-Facing Application"
-    tactic: "Initial Access"
-    sub_techniques: ["T1190.001"]
+```
+INFRA-*         인프라 요소 (is_infrastructure: true)
+  INFRA-NET-*       네트워크 (라우터, 방화벽, LB...)
+  INFRA-COMPUTE-*   컴퓨팅 (서버, VM, 클라우드...)
+  INFRA-DATA-*      데이터 (DB, 스토리지...)
+  INFRA-APP-*       애플리케이션 (WAS, 웹서버...)
+  INFRA-RUNTIME-*   런타임 (컨테이너, K8s...)
+  INFRA-PLATFORM-*  플랫폼 (CI/CD, IaC...)
+  INFRA-IAM-*       인증/인가 (AD, SSO, PKI...)
+  INFRA-CLOUD-*     클라우드 서비스 (AWS, Azure, GCP...)
 
-  # GR 확장: WHERE 정보 추가
-  gr_extension:
-    target_layers: ["L5", "L7"]
-    target_zones: ["Z2", "Z3"]
-    target_components: ["INFRA-DATA-RDBMS-*", "INFRA-APP-WAS-*"]
+ATK-*           공격 기법 (is_infrastructure: false)
+  ATK-RECON-*       정찰
+  ATK-INIT-*        초기 접근
+  ATK-EXEC-*        실행
+  ATK-PERSIST-*     지속성
+  ATK-PRIVESC-*     권한 상승
+  ATK-EVASION-*     방어 회피
+  ATK-CRED-*        자격증명 접근
+  ATK-DISCOVERY-*   탐색
+  ATK-LATERAL-*     측면 이동
+  ATK-COLLECT-*     수집
+  ATK-EXFIL-*       유출
+  ATK-IMPACT-*      영향
+
+DEF-*           방어 기법 (is_infrastructure: false)
+  DEF-DETECT-*      탐지
+  DEF-PREVENT-*     예방
+  DEF-RESPOND-*     대응
+  DEF-RECOVER-*     복구
+
+VUL-*           취약점 유형 (is_infrastructure: false)
+  VUL-INJECT-*      인젝션
+  VUL-AUTH-*        인증
+  VUL-CRYPTO-*      암호화
+  VUL-CONFIG-*      설정
+  VUL-MEMORY-*      메모리
+
+TOOL-*          도구
+  TOOL-OFFENSE-*    공격 도구 (component_tool)
+  TOOL-DEFENSE-*    방어 도구 (component_tool)
+  TOOL-AUDIT-*      감사 도구 (component_tool)
+
+CON-*           개념 (is_infrastructure: false)
+  CON-PRINCIPLE-*   원칙
+  CON-PATTERN-*     패턴
+  CON-PROTOCOL-*    프로토콜
+
+COMP-*          컴포넌트 (is_infrastructure: true)
+  COMP-APP-*        애플리케이션 컴포넌트
+  COMP-CONTROL-*    보안 통제 컴포넌트
 ```
 
-### 8.2 CVE/CWE 연동
-
-```yaml
-# VUL 원자에 CVE/CWE 연결
-VUL-INJECT-SQL-001:
-  name: "SQL Injection Vulnerability"
-  cwe_id: "CWE-89"
-  related_cves:
-    - id: "CVE-2021-XXXXX"
-      cvss: 9.8
-      affected_products: ["INFRA-APP-WAS-*"]
-
-  # GR 확장: 인프라 맥락
-  gr_context:
-    commonly_found_in:
-      - layer: "L7"
-        zone: "Z2"
-        components: ["Web Application"]
-    attack_path:
-      entry: "Z0A"
-      target: "Z3"
-```
-
-### 8.3 MITRE D3FEND 연동
-
-```yaml
-# DEF 원자에 D3FEND 매핑
-DEF-PREVENT-PARAMQUERY-001:
-  name: "Parameterized Query"
-  d3fend_mapping:
-    technique_id: "D3-PQ"
-    technique_name: "Parameterized Query"
-    tactic: "Application Hardening"
-
-  # GR 확장: 적용 위치
-  gr_application:
-    target_layers: ["L7"]
-    target_components: ["INFRA-APP-WAS-*", "INFRA-APP-API-*"]
-    mitigates: ["VUL-INJECT-SQL-001", "ATK-INJECT-SQL-001"]
-```
 
 ---
 
-## 9. 데이터 아키텍처
+# Part 4: 데이터 아키텍처
 
-### 9.1 하이브리드 데이터베이스 전략
+---
 
-GR DB는 **단일 DB가 아닌 3개 DB의 조합**입니다.
+## 4.1 하이브리드 데이터베이스 전략
+
+GR DB는 **단일 DB가 아닌 3개 DB의 조합**입니다. 각 DB는 특화된 역할을 수행합니다.
 
 ```
-┌─────────────────────────────────────────────────────┐
-│               API Gateway (FastAPI)                 │
-│          단일 진입점, 쿼리 라우팅 및 조합             │
-└────────────┬───────────────┬────────────────┬───────┘
+┌─────────────────────────────────────────────────────────────┐
+│               API Gateway (FastAPI)                          │
+│          단일 진입점, 쿼리 라우팅 및 조합                      │
+└────────────┬───────────────┬────────────────┬────────────────┘
              │               │                │
              ▼               ▼                ▼
     ┌─────────────┐  ┌──────────────┐  ┌─────────────┐
@@ -610,88 +1042,287 @@ GR DB는 **단일 DB가 아닌 3개 DB의 조합**입니다.
     └─────────────┘  └──────────────┘  └─────────────┘
          │                  │                  │
     [Product Info]    [Relationships]    [Embeddings]
-    - Name            - Zone → Layer    - 설명 벡터
-    - Vendor          - Function → Product   - 스펙 벡터
-    - CPE             - Attack Path     - 유사도 검색
+    - Name            - Zone → Layer     - 설명 벡터
+    - Vendor          - Tag → Product    - 스펙 벡터
+    - CPE             - Attack Path      - 유사도 검색
     - Version         - Dependency
     - License         - CVE Impact
 ```
 
-### 9.2 DB별 역할 분담
+---
+
+## 4.2 DB별 역할 분담
 
 | Database | 역할 | 저장 데이터 | 핵심 쿼리 | 선택 이유 |
 |----------|------|------------|----------|----------|
 | **PostgreSQL** | Master (불변 팩트) | Product 정보, Vendor, CPE, License, Version | `SELECT * WHERE vendor='Apache'` | ACID 보장, 트랜잭션 지원 |
-| **Neo4j** | Relationships (관계) | Zone↔Layer 연결, Function 조합, 공격 경로, 의존성 | `MATCH (a)-[*]->(b) RETURN path` | 관계 탐색 최적화, 그래프 쿼리 |
+| **Neo4j** | Relationships (관계) | Zone↔Layer 연결, Tag 조합, 공격 경로, 의존성 | `MATCH (a)-[*]->(b) RETURN path` | 관계 탐색 최적화, 그래프 쿼리 |
 | **Pinecone** | Semantics (의미) | 제품 설명 임베딩, 스펙 벡터 | `similarity_search(vector, k=10)` | 고속 벡터 검색, RAG 최적화 |
 
-### 9.3 2-Tier 원자화 전략
+---
 
-#### Tier 1: Product Master (불변의 팩트)
+## 4.3 데이터 흐름 예시
+
+**사용자 질문**: "Nginx와 비슷한 역할을 하는 제품을 찾아줘"
+
+```
+Step 1: API Gateway가 질문을 받음
+
+Step 2: Vector DB (Pinecone)에서 "Nginx 설명 벡터"와 유사한 제품 10개 검색
+        → 결과: [Apache, HAProxy, Traefik, Envoy, ...]
+
+Step 3: Graph DB (Neo4j)에서 각 제품의 Archetype(역할) 조회
+        → "Apache는 Reverse Proxy + Web Server 역할 가능"
+
+Step 4: PostgreSQL에서 각 제품의 상세 정보 조회
+        → Vendor, Version, License, EOL 등
+
+Step 5: API Gateway가 결과를 통합하여 반환
+```
+
+---
+
+## 4.4 2-Tier 원자화 전략
+
+GR DB는 제품을 **2단계로 분해**하여 저장합니다.
+
+### 4.4.1 Tier 1: Product Master (불변의 팩트)
 
 **저장 위치**: PostgreSQL
 **성격**: 변하지 않는 제품의 객관적 정보
 
+**스키마**:
 ```sql
 CREATE TABLE products (
     id UUID PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    vendor VARCHAR(200),
-    cpe VARCHAR(500),
-    license VARCHAR(100),
-    primary_language VARCHAR(50),
-    release_date DATE,
-    eol_date DATE,
-    source_url TEXT,
-    description TEXT,
+    name VARCHAR(200) NOT NULL,              -- 제품명
+    vendor VARCHAR(200),                     -- 개발사/재단
+    cpe VARCHAR(500),                        -- CVE 매칭용 식별자
+    license VARCHAR(100),                    -- 라이선스 타입
+    primary_language VARCHAR(50),            -- 주 개발 언어
+    release_date DATE,                       -- 출시일
+    eol_date DATE,                           -- 기술지원 종료일
+    source_url TEXT,                         -- GitHub 등 소스 주소
+    description TEXT,                        -- 제품 설명
     created_at TIMESTAMP DEFAULT NOW()
 );
 ```
 
-#### Tier 2: Component Archetypes (가능한 역할들)
+**예시 데이터 (Redis)**:
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Redis",
+  "vendor": "Redis Ltd.",
+  "cpe": "cpe:2.3:a:redis:redis:*:*:*:*:*:*:*:*",
+  "license": "RSALv2 / SSPL",
+  "primary_language": "C",
+  "release_date": "2009-05-10",
+  "eol_date": null,
+  "source_url": "https://github.com/redis/redis",
+  "description": "In-memory data structure store, used as database, cache, and message broker"
+}
+```
+
+### 4.4.2 Tier 2: Component Archetypes (가능한 역할들)
 
 **저장 위치**: Neo4j (Graph) + Pinecone (Vector)
 **성격**: 하나의 제품이 가질 수 있는 **모든 변신 형태**
 
-```
+**핵심 개념**:
+- 하나의 제품(Product)은 여러 개의 Archetype(원형)을 가질 수 있습니다
+- Archetype = "이 제품을 이렇게 쓰면, 이런 좌표에 배치되고, 이런 보안 정책이 적용된다"
+
+**Neo4j 그래프 모델**:
+```cypher
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:Cache)
                                      ├─ layer: "L5"
                                      ├─ zone: "Z2"
-                                     ├─ primary_function: "D3.1"
+                                     ├─ primary_tag: "D3.1"
                                      └─ use_case: "Application cache"
 
 (Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:SessionStore)
                                      ├─ layer: "L5"
                                      ├─ zone: "Z3"
-                                     ├─ primary_function: "D3.3"
+                                     ├─ primary_tag: "D3.3"
                                      └─ use_case: "Session management"
+
+(Product:Redis) -[:HAS_ARCHETYPE]-> (Archetype:MessageBroker)
+                                     ├─ layer: "L6"
+                                     ├─ zone: "Z2"
+                                     ├─ primary_tag: "R3.2"
+                                     └─ use_case: "Pub/Sub messaging"
+```
+
+**예시 데이터 테이블**:
+
+| Archetype ID | Product | 역할 (Role) | Layer | Zone | Primary Tag | 설명 |
+|--------------|---------|------------|-------|------|-------------|------|
+| arch-001 | Redis | Cache | L5 | Z2 | D3.1 | 애플리케이션 전용 캐시 |
+| arch-002 | Redis | Session Store | L5 | Z3 | D3.3 | 중요 세션 저장소 |
+| arch-003 | Redis | Message Broker | L6 | Z2 | R3.2 | Pub/Sub 메시징 큐 |
+
+---
+
+## 4.5 CVE-MITRE 통합 스키마
+
+### 4.5.1 PostgreSQL 스키마 확장
+
+```sql
+-- MITRE ATT&CK Technique 테이블
+CREATE TABLE mitre_techniques (
+    id UUID PRIMARY KEY,
+    technique_id VARCHAR(20) UNIQUE,  -- T1190, T1059 등
+    name VARCHAR(200),
+    tactic VARCHAR(50),               -- Initial Access, Execution 등
+
+    -- GR Framework 매핑
+    common_layers JSONB,              -- ["L2", "L7"]
+    common_zones JSONB,               -- ["Z1", "Z2"]
+    affected_tags JSONB,              -- ["N2.1", "S3.4", "A1.5"]
+
+    description TEXT,
+    mitigation TEXT,
+    detection TEXT,
+
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- CVE-MITRE 매핑 테이블
+CREATE TABLE cve_mitre_mapping (
+    id UUID PRIMARY KEY,
+    cve_id UUID REFERENCES cves(id),
+    technique_id UUID REFERENCES mitre_techniques(id),
+
+    -- 매핑 컨텍스트
+    confidence DECIMAL(3,2),          -- 0.00 ~ 1.00
+    exploit_chain_order INT,          -- 공격 체인 순서 (1, 2, 3...)
+
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- CVE 테이블 GR 컨텍스트 추가
+ALTER TABLE cves ADD COLUMN vulnerable_layers JSONB;
+ALTER TABLE cves ADD COLUMN vulnerable_zones JSONB;
+ALTER TABLE cves ADD COLUMN vulnerable_tags JSONB;
+```
+
+**예시 데이터 (Log4Shell)**:
+```sql
+INSERT INTO cves (cve_id, description, severity, cvss_score,
+                  vulnerable_layers, vulnerable_zones, vulnerable_tags)
+VALUES (
+    'CVE-2021-44228',
+    'Apache Log4j2 Remote Code Execution',
+    'Critical',
+    10.0,
+    '["L7", "L6"]'::jsonb,            -- Application & Runtime
+    '["Z2", "Z3"]'::jsonb,            -- Application & Data
+    '["T1.1", "T2.1", "A1.5"]'::jsonb -- Java, JVM, Backend API
+);
+```
+
+### 4.5.2 Attack Path 시뮬레이션 (Neo4j)
+
+**그래프 모델**:
+```cypher
+// Zone 간 공격 경로 노드 생성
+CREATE (ap:AttackPath {
+  id: 'path-log4shell-001',
+  name: 'Log4Shell Exploitation Chain',
+  severity: 'Critical',
+  start_zone: 'Z1',
+  end_zone: 'Z3',
+  cves: ['CVE-2021-44228'],
+  mitre_techniques: ['T1190', 'T1059.007', 'T1003'],
+  affected_layers: ['L2', 'L7', 'L5'],
+  affected_products: ['Apache Log4j', 'Tomcat', 'PostgreSQL']
+})
+
+// Zone-to-Zone 공격 관계
+MATCH (z1:Zone {code: 'Z1'}), (z2:Zone {code: 'Z2'})
+CREATE (z1)-[:ATTACK_PATH {
+  technique: 'T1190',
+  cve: 'CVE-2021-44228',
+  difficulty: 'Low',
+  time_to_exploit: '5 minutes',
+  detection_difficulty: 'Medium'
+}]->(z2)
+```
+
+**공격 경로 쿼리**:
+```cypher
+// Zone 1에서 Zone 3까지의 모든 공격 경로 찾기
+MATCH path = (z1:Zone {code: 'Z1'})
+             -[:ATTACK_PATH*1..5]->
+             (z3:Zone {code: 'Z3'})
+WHERE ALL(r IN relationships(path) WHERE r.difficulty IN ['Low', 'Medium'])
+RETURN path,
+       [r IN relationships(path) | r.technique] AS techniques,
+       [r IN relationships(path) | r.cve] AS cves,
+       LENGTH(path) AS hop_count
+ORDER BY hop_count
+LIMIT 10
 ```
 
 ---
 
-## 10. LLM & AI 전략
+## 4.6 인프라 비용 (초기)
 
-### 10.1 Phase별 LLM 사용 구분
+| 항목 | 서비스 | 규모 | 월 비용 | 연 비용 |
+|------|--------|------|---------|---------|
+| PostgreSQL | AWS RDS | db.t3.medium | $50 | $600 |
+| Neo4j | AuraDB Professional | 1 instance | $200 | $2,400 |
+| Pinecone | Serverless (100k vectors) | 1 pod | $70 | $840 |
+| OpenAI API | Embedding (ada-002) | 100개 제품 | $100 | $1,200 |
+| **합계** | - | - | **$420** | **$5,040** |
 
-#### 구축 단계 (Phase 0-2)
+
+---
+
+# Part 5: LLM 전략
+
+---
+
+## 5.1 Phase별 LLM 사용 전략
+
+GR 생태계는 **데이터 구축 단계**와 **고객 배포 단계**에서 LLM 사용 전략이 명확히 다릅니다.
+
+### 5.1.1 Phase 0-2: GR DB 구축 단계
 
 **목표**: 10,000개 제품 × 평균 3개 Archetype = 30,000개 지식 노드 구축
 
-**LLM 사용**:
-- 외부 LLM API 자유 사용 (GPT-4, Claude, Gemini)
-- 제품 설명 → Archetype 추론
-- 공식 문서 → Function 추출
-- CVE 설명 → MITRE Technique 매핑
+**LLM 사용 방식**:
+- ✅ **외부 LLM API 자유 사용** (GPT-4, Claude, Gemini)
+- 제품 설명 → Archetype 자동 추론
+- 공식 문서 → Function 태그 자동 추출
+- CVE 설명 → MITRE Technique 자동 매핑
 
-**데이터 안전성**: 모두 공개 데이터 (제품 정보, CVE, 공식 문서) → 외부 API 사용 안전
+**비용 구조 (연간)**:
+```yaml
+OpenAI API:
+  - Embedding (ada-002): $500/년 (10,000개 제품)
+  - GPT-4 (추론): $300/년 (월 100개 제품 처리)
 
-#### 고객 배포 단계 (Phase 2+)
+Anthropic Claude API:
+  - Claude 3.5 Sonnet (분석): $200/년
+
+합계: ~$1,000/년
+```
+
+**데이터 안전성**:
+- ✅ 모두 공개 데이터 (제품 정보, CVE, 공식 문서)
+- ✅ 기밀 정보 없음 → 외부 API 사용 안전
+
+### 5.1.2 Phase 2+: 고객 배포 단계
+
+**목표**: 고객사 인프라 분석 및 보안 진단
 
 **80/20 원칙**: Direct Query 80% + AI-Assisted 20%
 
 **80% Direct Query (AI 불필요)**:
 ```python
-# 제품 태그 조회 (단순 DB 쿼리)
+# Case 1: 제품 태그 조회 (단순 DB 쿼리)
 def get_product_tags(product_name: str):
     """
     PostgreSQL + Neo4j 직접 쿼리
@@ -700,35 +1331,262 @@ def get_product_tags(product_name: str):
     - 비용: $0
     - 기밀 안전: ✅
     """
+    return db.execute("""
+        SELECT p.name, a.role, a.layer, a.zone, array_agg(t.tag_code)
+        FROM products p
+        JOIN archetypes a ON p.id = a.product_id
+        WHERE p.name = %s
+    """, [product_name])
+
+# Case 2: Zone 간 통신 경로 검증
+def check_communication_allowed(source_zone: str, target_zone: str):
+    """
+    Neo4j 그래프 쿼리
+    - 응답 시간: 100ms
+    - 정확도: 100%
+    - 비용: $0
+    """
+    return neo4j.execute("""
+        MATCH path = (z1:Zone {code: $source})
+                    -[:ALLOWS_COMMUNICATION*1..3]->
+                     (z2:Zone {code: $target})
+        RETURN EXISTS(path)
+    """, {"source": source_zone, "target": target_zone})
 ```
 
 **20% AI-Assisted (복잡한 추론 필요)**:
-- 옵션 1: On-premise LLM (기밀 유지) - Llama 3.1, Mistral
-- 옵션 2: 익명화 후 외부 LLM - 민감 정보 마스킹
+```python
+# Case 3: 공격 경로 시뮬레이션 (AI 필요)
+def analyze_attack_path(infrastructure_data: dict):
+    """
+    옵션 1: On-premise LLM (기밀 유지)
+    - 고객사 내부 서버에 설치
+    - Llama 3.1 (8B), Mistral (7B) 등
+    - 초기 비용: $10K~$50K (GPU 서버)
+    - 기밀 완벽 보장
 
-### 10.2 비용 비교
+    옵션 2: 익명화 후 외부 LLM
+    - 민감 정보 마스킹 (IP, 도메인, 계정명)
+    - 구조만 외부 LLM에 전송
+    - 비용: 월 $100~$500
+    """
+    # Neo4j에서 공격 경로 그래프 추출
+    attack_paths = neo4j.execute(...)
 
-| 방식 | 응답 속도 | 정확도 | 월 비용 | 기밀 안전성 |
-|------|----------|--------|---------|------------|
-| Direct Query (80%) | 50-100ms | 100% | $0 | 완벽 |
-| On-premise LLM (20%) | 500ms-2s | 95% | $0 (운영비만) | 완벽 |
-| External LLM (20%) | 1-3s | 98% | $100-$500 | 익명화 필요 |
-
-### 10.3 자체 AI 모델 개발 계획 (Phase 3)
-
-- GR DB 기반 Fine-tuned LLM 개발
-- 30,000+ Archetype 데이터로 학습
-- 보안 도메인 특화 모델
-- Base 모델: Llama 3 / Mistral
-- Serving: vLLM / TGI
+    # LLM으로 위험도 분석 및 대응 방안 생성
+    analysis = llm.generate(
+        prompt=f"Analyze attack paths: {attack_paths}",
+        model="llama-3.1-8b-instruct"  # On-premise
+    )
+    return analysis
+```
 
 ---
 
-# Part 3: 비즈니스 & 실행
+## 5.2 비용 비교
 
-## 11. 비즈니스 모델
+| 방식 | 응답 속도 | 정확도 | 월 비용 | 기밀 안전성 |
+|------|----------|--------|---------|------------|
+| Direct Query (80%) | 50-100ms | 100% | $0 | ✅ 완벽 |
+| On-premise LLM (20%) | 500ms-2s | 95% | $0 (운영비만) | ✅ 완벽 |
+| External LLM (20%) | 1-3s | 98% | $100-$500 | ⚠️ 익명화 필요 |
 
-### 11.1 수익 구조
+---
+
+## 5.3 자체 AI 모델 개발 계획 (Phase 3)
+
+**Phase 3 (성숙기)**에서 자체 Fine-tuned LLM 개발:
+- GR DB 기반 Fine-tuned LLM 개발
+- 30,000+ Archetype 데이터로 학습
+- 보안 도메인 특화 모델
+
+**비용 분석**:
+```yaml
+Self-Hosted LLM:
+  initial_cost: $50,000 (GPU 서버 + 개발)
+  annual_operating: $10,000 (전기, 유지보수)
+  breakeven: 장기적으로 외부 API 대비 비용 효율적
+
+External API (계속 사용):
+  annual_cost: $1,000 (초기 단계)
+  long_term_total: 누적 비용 증가
+
+결론: Phase 0-2는 외부 API가 효율적, Phase 3부터 자체 모델 고려
+```
+
+---
+
+# Part 6: 원자 생성 파이프라인
+
+---
+
+## 6.1 생성 프로세스
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Atom Generation Pipeline                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   1. 주제 선정                                               │
+│      └── 우선순위 목록에서 선택                              │
+│                                                             │
+│   2. 자료 수집                                               │
+│      ├── 공식 문서 (제품 문서, RFC)                          │
+│      ├── MITRE ATT&CK / D3FEND                              │
+│      ├── CVE / CWE 데이터베이스                             │
+│      ├── OWASP 가이드                                       │
+│      └── 실무 경험 / 컨설팅 사례                            │
+│                                                             │
+│   3. 초안 생성 (LLM 활용)                                    │
+│      ├── 표준 템플릿 적용                                    │
+│      ├── 정의(what/why/how) 생성                            │
+│      ├── 관계(relations) 자동 제안                          │
+│      └── 보안 프로파일 작성                                  │
+│                                                             │
+│   4. 검증 및 보완                                            │
+│      ├── 기술적 정확성 검토 (보안 전문가)                    │
+│      ├── 관계 일관성 확인                                    │
+│      ├── GR 좌표 적절성 검증                                │
+│      └── 누락 정보 보완                                      │
+│                                                             │
+│   5. 등록 및 연결                                            │
+│      ├── DB 저장 (PostgreSQL + Neo4j + Pinecone)            │
+│      ├── 기존 원자와 관계 연결                              │
+│      └── 인덱스 업데이트                                    │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 6.2 품질 기준
+
+| 항목 | 기준 | 검증 방법 |
+|------|------|-----------|
+| 정의 완성도 | what/why/how 모두 작성 | 체크리스트 |
+| 관계 밀도 | 최소 5개 관계 | 자동 검증 |
+| GR 좌표 | Layer/Zone/Function 모두 지정 | 자동 검증 |
+| 보안 정보 | 취약점 또는 방어 최소 3개 | 체크리스트 |
+| 출처 명시 | 최소 2개 출처 | 메타데이터 확인 |
+| 임베딩 텍스트 | 50-200 단어 | 길이 검증 |
+| 검색 키워드 | 5개 이상 | 개수 검증 |
+
+---
+
+## 6.3 자동화 도구
+
+```python
+class AtomGenerator:
+    """원자 생성 보조 도구"""
+    
+    def generate_from_topic(self, topic: str, atom_type: str) -> dict:
+        """주제로부터 원자 초안 생성
+        
+        Args:
+            topic: 원자 주제 (예: "SQL Injection")
+            atom_type: 원자 유형 (예: "ATK", "DEF", "INFRA")
+        
+        Returns:
+            원자 YAML 초안
+        """
+        pass
+
+    def validate_atom(self, atom: dict) -> ValidationResult:
+        """원자 품질 검증
+        
+        검증 항목:
+        - 필수 필드 존재 여부
+        - 관계 밀도 (최소 5개)
+        - GR 좌표 유효성
+        - 출처 명시 여부
+        """
+        pass
+
+    def suggest_relations(self, atom: dict) -> list:
+        """관련 원자 추천
+        
+        기존 DB에서 연결 가능한 원자 검색
+        - 같은 Layer/Zone의 원자
+        - 비슷한 atom_tags를 가진 원자
+        - 공격-방어 쌍
+        """
+        pass
+
+    def check_consistency(self, atom: dict) -> list:
+        """기존 원자와 일관성 확인
+        
+        - 중복 원자 검사 (normalized_name 기준)
+        - 모순되는 관계 검사
+        - 좌표 충돌 검사
+        """
+        pass
+```
+
+---
+
+## 6.4 원자화 프로세스 상세
+
+### Step 1: AI가 제품 문서 분석
+
+```python
+prompt = """
+Redis의 공식 문서를 분석하여, GR Framework의 Function 목록 중
+매칭되는 기능을 모두 찾아내고, 각 기능별로 적합한 Layer와 Zone을 추천해줘.
+
+Function 목록: 
+  - D3.1 (Cache)
+  - D3.3 (Session Store)  
+  - R3.2 (Message Queue)
+  - D2.2 (Key-Value Store)
+  ...
+
+출력 형식:
+  - Function: [코드]
+  - Layer: [L0-L7]
+  - Zone: [Z0A-Z5]
+  - 신뢰도: [0-100%]
+  - 근거: [문서에서 찾은 증거]
+"""
+```
+
+### Step 2: AI가 제안한 Archetype 후보
+
+```
+후보 1: Cache (D3.1 / L5 / Z2) - 신뢰도 95%
+  근거: "Redis is often used as a caching layer..."
+
+후보 2: Message Broker (R3.2 / L6 / Z2) - 신뢰도 90%
+  근거: "Redis Pub/Sub provides messaging capabilities..."
+
+후보 3: Session Store (D3.3 / L5 / Z3) - 신뢰도 85%
+  근거: "Redis is commonly used for session management..."
+
+후보 4: Database (D2.2 / L5 / Z3) - 신뢰도 60%
+  근거: "Redis can be used as a primary data store..."
+```
+
+### Step 3: 보안 전문가가 검증 및 승인
+
+```
+✅ 후보 1, 2, 3 승인 → GR DB에 적재
+  - Cache: 일반적인 사용 사례
+  - Message Broker: Pub/Sub 기능 활용
+  - Session Store: 세션 데이터 저장
+
+❌ 후보 4 기각
+  - Redis를 Primary DB로 쓰는 것은 안티패턴
+  - 영속성 보장이 약함
+  - 메모리 기반이라 데이터 손실 위험
+```
+
+
+---
+
+# Part 7: 사업 모델
+
+---
+
+## 7.1 생태계 계층별 수익 구조
 
 GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니다.
 
@@ -755,9 +1613,29 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
 └─────────────────────────────────────────────────────────┘
 ```
 
-### 11.2 제품 라인업
+---
 
-#### 11.2.1 자동화 진단 도구
+## 7.2 Core 위에 올라가는 사업들 (4가지)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     수익 창출 제품들                         │
+├───────────────┬───────────────┬───────────────┬─────────────┤
+│  자동화 진단   │  보안 솔루션   │    GR IaC    │   보안 교육  │
+│               │               │              │             │
+│ 컨설팅 자동화  │ 탐지/대응     │ 보안 내재    │  실습 환경   │
+│               │               │ 인프라 코드  │  자동 구축   │
+└───────────────┴───────────────┴───────────────┴─────────────┘
+                              ▲
+                              │
+                    ┌─────────┴─────────┐
+                    │     GR CORE       │
+                    │  DB + Framework   │
+                    │     + Atlas       │
+                    └───────────────────┘
+```
+
+### 7.2.1 자동화 진단 도구
 
 **현재**: 컨설턴트가 직접 인프라 점검 → 보고서 작성 (2-4주)
 **GR 적용 후**: 시스템이 자동 스캔 → 즉시 결과 (1-2일)
@@ -773,7 +1651,30 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
 출력: 상세 진단 보고서 + Atlas 시각화
 ```
 
-#### 11.2.2 GR IaC (Infrastructure as Code)
+**수익 효과**: 기존 컨설팅 대비 10배 많은 고객 처리 가능
+
+### 7.2.2 보안 솔루션
+
+진단 도구로 **문제를 발견**하면, 솔루션으로 **문제를 해결**합니다.
+
+```
+진단 결과: "Z2의 API 서버에서 비정상 접근 탐지"
+        ↓
+    [GR 기반 솔루션]
+    • 해당 좌표(Z2, L7)에 맞는 대응 규칙 적용
+    • 자동 차단 또는 알림
+        ↓
+결과: 위협 대응 완료
+```
+
+**차별점**: 다른 솔루션은 "이상 행위"만 탐지. GR 솔루션은 **"어디서 왜"**까지 설명.
+
+### 7.2.3 GR IaC (Infrastructure as Code)
+
+**일반 IaC의 문제**:
+- 인프라는 만들어지지만
+- 보안 설정은 별도로 해야 함
+- 실수하면 취약점 발생
 
 **GR IaC의 차별점**:
 ```
@@ -787,8 +1688,16 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
 출력: 보안이 내장된 인프라 코드
 ```
 
-#### 11.2.3 GR Edu (보안 교육)
+"만들면서 동시에 보안이 적용되는" 인프라
 
+### 7.2.4 보안 교육 (GR Edu)
+
+**기존 교육의 문제**: 실습 환경 부족
+- 이론만 배우면 실전에서 못 씀
+- 실습 환경 만드는데 시간/비용 많이 듦
+- CVE 나올 때마다 새 실습 환경 필요
+
+**GR Edu의 해결책**:
 ```
 입력: "CVE-2021-44228 (Log4Shell) 실습하고 싶어"
         ↓
@@ -800,7 +1709,11 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
 출력: 즉시 사용 가능한 실습 환경
 ```
 
-### 11.3 시너지: 순환하는 사업 구조
+---
+
+## 7.3 시너지: 순환하는 사업 구조
+
+4개 사업은 **독립적이지 않고 서로 연결**됩니다.
 
 ```
          ┌──────────────────┐
@@ -821,7 +1734,17 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
            └───────────┘
 ```
 
-### 11.4 타겟 고객
+**순환 관계**:
+1. **진단**으로 문제 발견 → **솔루션**이 해결
+2. **솔루션** 도입할 인프라 → **IaC**로 자동 구축
+3. **IaC**로 만든 환경 → **교육** 실습에 활용
+4. **교육**받은 인력 → **진단** 도구 사용
+
+**하나가 팔리면 다른 것도 자연스럽게 연결됩니다.**
+
+---
+
+## 7.4 타겟 고객
 
 | 고객 유형 | 니즈 | 제품 | ARR 예상 |
 |----------|------|------|----------|
@@ -830,143 +1753,217 @@ GR은 **"토대는 무료, 지능과 제품은 유료"** 전략을 사용합니�
 | **보안 컨설팅사** | GR DB API 사용 | API 라이선스 | $6K~$20K |
 | **교육기관** | 보안 실습 환경 | GR Edu | $2K~$10K |
 
-### 11.5 단계별 ARR 목표
+---
 
-| 단계 | 고객 수 | 평균 단가 | ARR 목표 | 누적 투자 |
-|------|---------|----------|---------|----------|
-| 초기 단계 | 10 | $10K | $100K | $115K |
-| 중기 단계 | 50 | $20K | $1M | $600K |
-| 확장 단계 | 200 | $25K | $5M | $1.6M |
-| 성장기 | 500 | $30K | $15M | $3M |
-| 성숙기 | 1,000+ | $50K | $50M+ | $5M |
+## 7.5 단계별 ARR 목표
+
+| 단계 | Phase | 고객 수 | 평균 단가 | ARR 목표 | 누적 투자 |
+|------|-------|---------|----------|---------|----------|
+| 초기 단계 | Phase 0-1 | 10 | $10K | $100K | $115K |
+| 중기 단계 | Phase 1-2 | 50 | $20K | $1M | $600K |
+| 확장 단계 | Phase 2 | 200 | $25K | $5M | $1.6M |
+| 성장기 | 생태계 확대 | 500 | $30K | $15M | $3M |
+| 성숙기 | 글로벌 진출 | 1,000+ | $50K | $50M+ | $5M |
 
 ---
 
-## 12. 실행 로드맵
-
-### Phase 0: 토대 구축 (현재)
-
-**목표**: Framework 설계 완성 + 500개 핵심 제품 DB화
-
-```
-작업:
-  ✅ 3D 좌표 체계 설계
-  ✅ DB 아키텍처 설계
-  ✅ 초기 약 500개 atoms 생성
-  ⬜ 기본 Atlas 프로토타입
-
-결과물:
-  • GR Framework 명세서 완성
-  • GR DB v0.1 (500개+ Atom)
-```
-
-### Phase 1: MVP 검증 (4주)
-
-**목표**: 웹 애플리케이션 보안 도메인 완성
-
-```
-Week 1-2: 인프라 원자 생성
-  ├── INFRA-APP-WAS-001 (WAS)
-  ├── INFRA-APP-WEBSERVER-001 (Web Server)
-  ├── INFRA-DATA-RDBMS-001 (RDBMS)
-  └── ... (총 30개)
-
-Week 3: 공격/취약점 원자 생성
-  ├── ATK-INJECT-SQL-001 (SQL Injection)
-  ├── ATK-INJECT-XSS-001 (XSS)
-  └── ... (총 30개)
-
-Week 4: 방어 원자 + 관계 연결
-  ├── DEF-PREVENT-* (예방 기법)
-  └── RAG 테스트
-
-결과물:
-  • 원자 100개
-  • 관계 500개 이상
-  • 웹 보안 RAG 프로토타입
-```
-
-### Phase 2: 확장 (8주)
-
-**목표**: 주요 도메인 확장 + MITRE 매핑
-
-```
-Week 1-4: 도메인 확장
-  ├── 네트워크 보안 (30개)
-  ├── 클라우드 보안 (30개)
-  ├── 컨테이너/K8s 보안 (30개)
-  └── 인증/인가 (30개)
-
-Week 5-6: MITRE ATT&CK 매핑
-  ├── Top 50 Techniques 완전 매핑
-  └── 각 기법에 GR 좌표 부여
-
-Week 7-8: D3FEND 연동 + 검증
-  ├── 주요 방어 기법 매핑
-  └── RAG 성능 A/B 테스트
-
-결과물:
-  • 원자 500개
-  • MITRE Top 50 완전 매핑
-  • RAG 성능 30% 향상 검증
-```
-
-### Phase 3: 지능 구축 (12주)
-
-**목표**: AI 서비스 구축
-
-```
-Week 1-4: 자체 LLM 파인튜닝
-  ├── Llama/Mistral 기반 실험
-  └── GR 데이터로 파인튜닝
-
-Week 5-8: 서비스 프로토타입
-  ├── 진단 도구 RAG 연동
-  ├── 교육 시스템 프로토타입
-  └── IaC 생성 실험
-
-Week 9-12: 통합 및 최적화
-  ├── 서비스 통합
-  └── 프로덕션 준비
-
-결과물:
-  • 자체 보안 LLM v1.0
-  • 서비스 프로토타입 3개
-  • 원자 2000개
-```
-
-### Phase 4: 생태계 확장
-
-**목표**: 외부 파트너 생태계 구축
-
-```
-작업:
-  ⬜ GR DB API 공개
-  ⬜ 파트너사 통합
-  ⬜ 커뮤니티 기여 모델
-
-결과물:
-  • "Powered by GR" 생태계
-  • 플랫폼 비즈니스 전환
-```
+# Part 8: 실행 로드맵
 
 ---
 
-## 13. 기술 스택 & 인프라
+## 8.1 Phase 0: 토대 구축 (현재)
 
-### 13.1 개발 환경
+**목표**: Framework 설계 완성 + 500개 핵심 원자 구축
 
 ```yaml
-Language: Python 3.11+
-Framework: FastAPI (API), Pydantic (Schema)
-Database: PostgreSQL, Neo4j (Phase 2)
-Vector DB: Pinecone / pgvector
-Container: Docker, Kubernetes
-CI/CD: GitHub Actions
-Documentation: MkDocs
+작업:
+  ✅ 3D 좌표 체계 설계 (Layer/Zone/Function)
+  ✅ DB 아키텍처 설계 (PostgreSQL + Neo4j + Pinecone)
+  ✅ 스키마 v2.0 완성 (atom_schema.yaml)
+  ⬜ 핵심 원자 500개 생성
+  ⬜ 기본 Atlas 프로토타입
+
+산출물:
+  • GR Framework 명세서 완성
+  • GR DB v0.1 (500개 원자)
+
+예상 비용: $15,000 (인프라 $5K + 인건비 $10K)
 ```
 
-### 13.2 AI/LLM 스택
+---
+
+## 8.2 Phase 1: MVP 검증
+
+**목표**: 자동화 진단 도구 MVP로 실제 검증
+
+```yaml
+전반부:
+  - 자동화 진단 도구 개발
+  - 실제 컨설팅 프로젝트에 적용
+  - 피드백으로 Framework 보정
+
+중반부:
+  - 2,000개 원자로 확장
+  - MITRE Top 50 완전 매핑
+
+후반부:
+  - RAG 시스템 구축
+  - 첫 번째 유료 고객 확보
+
+산출물:
+  • 자동화 진단 도구 v1.0
+  • GR DB v1.0 (2,000개 원자)
+  • 검증된 비즈니스 모델
+
+예상 비용: $100,000 (인프라 $20K + 인건비 $80K)
+```
+
+---
+
+## 8.3 Phase 2: 제품 확장
+
+**목표**: 4개 제품 라인업 완성
+
+```yaml
+전반부:
+  - 보안 솔루션 개발
+  - 10,000개 원자로 확장
+
+중반부:
+  - GR IaC 개발 (Terraform 코드 생성)
+  - CVE 자동 매핑 파이프라인
+
+후반부:
+  - GR Edu 개발 (실습 환경 자동 구축)
+  - 고객 다각화
+
+산출물:
+  • 4개 제품 포트폴리오
+  • GR DB v2.0 (10,000개 원자)
+  • 수익 다각화
+
+예상 비용: $500,000 (인프라 $50K + 인건비 $450K)
+```
+
+---
+
+## 8.4 Phase 3: 생태계 확장
+
+**목표**: 외부 파트너 생태계 구축 + 자체 AI
+
+```yaml
+작업:
+  - GR DB API 공개
+  - 파트너사 통합 ("Powered by GR")
+  - 자체 LLM 파인튜닝
+  - 커뮤니티 기여 모델
+
+산출물:
+  • "Powered by GR" 생태계
+  • 플랫폼 비즈니스 전환
+  • 자체 보안 LLM v1.0
+```
+
+---
+
+# Part 9: 경쟁 우위 & 성공 지표
+
+---
+
+## 9.1 대체 불가능한 해자 (Competitive Moat)
+
+**1. Pre-mapped 지식 베이스**
+- 경쟁사는 "고객 데이터"를 분석하지만, 우리는 **"세상의 모든 제품"**을 미리 정의함
+- 10,000개 제품 × 평균 3개 Archetype = 30,000개 지식 노드
+- 이를 따라잡으려면 최소 2년 + 수백만 달러 필요
+
+**2. 3D 좌표계 특허**
+- Layer × Zone × Function 조합은 GR만의 독창적 방법론
+- 특허 출원 가능
+
+**3. AI의 Ground Truth**
+- 모든 보안 솔루션이 AI를 사용하지만 **"정확한 학습 데이터"**가 없음
+- GR DB는 AI의 할루시네이션을 잡는 유일한 검증된 데이터셋
+
+**4. Network Effect (네트워크 효과)**
+- 더 많은 제품이 매핑될수록 → AI가 더 똑똑해짐
+- 더 많은 고객이 사용할수록 → 피드백으로 데이터 품질 향상
+
+**5. API Economy**
+- GR DB를 다른 보안 솔루션 업체에게 API로 판매 가능
+- "Powered by GR Data" 라벨링으로 B2B2B 시장 진출
+
+---
+
+## 9.2 성공 지표 (KPI)
+
+| 지표 | 목표 | 측정 방법 |
+|------|------|-----------|
+| 원자 수 | Phase 1: 2,000개, Phase 2: 10,000개 | DB count |
+| 관계 밀도 | 원자당 평균 5개 이상 관계 | 관계수/원자수 |
+| RAG 정확도 | 일반 RAG 대비 30% 향상 | A/B 테스트 |
+| MITRE 커버리지 | Top 50 기법 100% 매핑 | 매핑 완료율 |
+| 고객 수 | Phase 1: 10, Phase 2: 200 | CRM |
+| ARR | Phase 1: $100K, Phase 2: $5M | 재무 |
+
+---
+
+# Part 10: 리스크 관리
+
+---
+
+## 10.1 주요 리스크 식별
+
+| 리스크 | 확률 | 영향도 | 대응 전략 |
+|--------|------|--------|----------|
+| **데이터 구축 지연** | 높음 | 치명적 | AI 파이프라인 조기 투자, 외주 활용 |
+| **초기 자본 부족** | 중간 | 높음 | Phase 0로 PoC 먼저 → 투자 유치 |
+| **AI 할루시네이션** | 중간 | 중간 | 전문가 검증 필수화, 신뢰도 점수 표시 |
+| **경쟁사 모방** | 낮음 | 중간 | 특허 출원, First-Mover Advantage 극대화 |
+| **데이터 최신성 유지 실패** | 중간 | 높음 | 자동 크롤링 + 커뮤니티 기여 모델 |
+
+---
+
+## 10.2 대응 전략
+
+**Plan A (기본 계획)**:
+- Phase 0 → PoC → 투자 유치 → Phase 1/2 진행
+
+**Plan B (자본 부족 시)**:
+- Phase 0만 완료 → 컨설팅 서비스로 먼저 수익 창출 → 데이터 구축 병행
+
+**Plan C (시장 반응 부진 시)**:
+- GR DB를 오픈소스화 → 커뮤니티 기여로 데이터 확충 → API 유료화로 수익
+
+---
+
+# Part 11: 기술 스택 & 인프라
+
+---
+
+## 11.1 저장소
+
+```yaml
+Phase 1 (현재):
+  Primary: PostgreSQL 15+
+    - 원자 저장, 관계 저장
+    - 전문 검색 (pg_trgm)
+
+  Secondary: YAML 파일
+    - 버전 관리 (Git)
+    - 리뷰 프로세스
+
+Phase 2 (확장):
+  Graph DB: Neo4j
+    - 복잡한 관계 쿼리, 경로 탐색
+
+  Vector DB: Pinecone / pgvector
+    - 임베딩 저장, 유사도 검색, RAG 지원
+```
+
+---
+
+## 11.2 AI/LLM
 
 ```yaml
 원자 생성:
@@ -984,183 +1981,107 @@ RAG 시스템:
   - Serving: vLLM / TGI
 ```
 
-### 13.3 인프라 비용 (초기)
+---
 
-| 항목 | 서비스 | 규모 | 월 비용 | 연 비용 |
-|------|--------|------|---------|---------|
-| PostgreSQL | AWS RDS | db.t3.medium | $50 | $600 |
-| Neo4j | AuraDB Professional | 1 instance | $200 | $2,400 |
-| Pinecone | Serverless (100k vectors) | 1 pod | $70 | $840 |
-| OpenAI API | Embedding (ada-002) | 100개 제품 | $100 | $1,200 |
-| **합계** | - | - | **$420** | **$5,040** |
+## 11.3 개발 환경
+
+```yaml
+Language: Python 3.11+
+Framework: FastAPI (API), Pydantic (Schema)
+Database: PostgreSQL, Neo4j (Phase 2)
+Container: Docker, Kubernetes
+CI/CD: GitHub Actions
+Documentation: MkDocs
+```
 
 ---
 
-## 14. 위험 요소 & 대응
-
-### 14.1 위험 식별
-
-| 위험 | 확률 | 영향도 | 대응 전략 |
-|------|------|--------|----------|
-| **데이터 구축 지연** | 높음 | 치명적 | AI 파이프라인 조기 투자, 외주 활용 |
-| **초기 자본 부족** | 중간 | 높음 | Phase 0로 PoC 먼저 → 투자 유치 |
-| **AI 할루시네이션** | 중간 | 중간 | 전문가 검증 필수화, 신뢰도 점수 표시 |
-| **경쟁사 모방** | 낮음 | 중간 | 특허 출원, First-Mover Advantage 극대화 |
-| **데이터 최신성 유지 실패** | 중간 | 높음 | 자동 크롤링 + 커뮤니티 기여 모델 |
-| **범위 과다** | 높음 | 높음 | 도메인별 단계적 확장 |
-| **품질 저하** | 중간 | 높음 | 검증 프로세스 강화 |
-| **유지보수 부담** | 중간 | 중간 | 자동화 도구 개발 |
-
-### 14.2 대응 전략
-
-**Plan A (기본 계획)**:
-- Phase 0 → PoC → 투자 유치 → Phase 1/2 진행
-
-**Plan B (자본 부족 시)**:
-- Phase 0만 완료 → 컨설팅 서비스로 먼저 수익 창출 → 데이터 구축 병행
-
-**Plan C (시장 반응 부진 시)**:
-- GR DB를 오픈소스화 → 커뮤니티 기여로 데이터 확충 → API 유료화로 수익
+# Part 12: 거버넌스
 
 ---
 
-## 15. 경쟁 우위 (Competitive Moat)
-
-### 대체 불가능한 해자
-
-**1. Pre-mapped 지식 베이스**
-- 경쟁사는 "고객 데이터"를 분석하지만, 우리는 **"세상의 모든 제품"**을 미리 정의해뒀습니다
-- 10,000개 제품 × 평균 3개 Archetype = 30,000개 지식 노드
-- 이를 따라잡으려면 최소 2년 + 수백만 달러 필요
-
-**2. 3D 좌표계 방법론**
-- Layer × Zone × Function 조합은 GR만의 독창적 방법론
-- 특허 출원 가능
-
-**3. AI의 Ground Truth**
-- 2025년 AI 시대, 모든 보안 솔루션이 AI를 사용하지만 **"정확한 학습 데이터"**가 없습니다
-- GR DB는 AI의 할루시네이션을 잡는 유일한 검증된 데이터셋
-
-**4. Network Effect**
-- 더 많은 제품이 매핑될수록 → AI가 더 똑똑해짐
-- 더 많은 고객이 사용할수록 → 피드백으로 데이터 품질 향상
-
-**5. API Economy**
-- GR DB를 다른 보안 솔루션 업체에게 API로 판매 가능
-- "Powered by GR Data" 라벨링으로 B2B2B 시장 진출
-
----
-
-## 16. 거버넌스 & 품질 관리
-
-### 16.1 문서 체계
+## 12.1 문서 체계
 
 ```
 GR_PROJECT/
-├── 00_docs/              # 마스터플랜, 가이드
-├── 01_vision/            # (레거시 - 통합됨)
-├── 02_framework/         # 프레임워크 상세
-├── 03_ontology/          # 스키마, 헌법, 분류체계
-│   ├── constitution/     # 헌법 (원자화 규칙)
-│   ├── schema/           # 스키마 정의
-│   └── taxonomy/         # 분류체계
-├── 04_knowledge_base/    # 원자 저장소
-│   ├── infrastructure/
-│   ├── attacks/
-│   ├── defenses/
-│   └── vulnerabilities/
-├── 05_tools/             # 도구
-│   ├── generator/        # 원자 생성기
-│   ├── validator/        # 검증기
-│   └── migrator/         # 마이그레이션
-└── 06_applications/      # 응용 (Atlas 등)
+├── 01_vision/                  # 비전 & 마스터플랜
+│   └── GR_MASTERPLAN_v3.0.md   # 이 문서 (통합 마스터플랜)
+├── 02_framework/               # 3D 분류체계 상세
+├── 03_ontology/                # 온톨로지 정의
+│   ├── constitution/           # 헌법 (원칙)
+│   ├── schema/core/            # 핵심 스키마
+│   └── taxonomy/               # 분류 체계
+├── 04_knowledge_base/          # 지식베이스 (원자들)
+├── 05_engine/                  # Engine 설계
+├── 06_applications/            # 애플리케이션
+└── 07_references/              # 참조 자료
 ```
-
-### 16.2 원자 생성 파이프라인
-
-```
-1. 주제 선정
-   └── 우선순위 목록에서 선택
-
-2. 자료 수집
-   ├── 공식 문서
-   ├── MITRE/CWE/CVE
-   ├── OWASP
-   └── 실무 경험
-
-3. 초안 생성 (Claude/GPT 활용)
-   ├── 표준 템플릿 적용
-   ├── 정의/개념/관계 생성
-   └── 보안 프로파일 작성
-
-4. 검증 및 보완
-   ├── 기술적 정확성 검토
-   ├── 관계 일관성 확인
-   └── 누락 정보 보완
-
-5. 등록 및 연결
-   ├── DB 저장
-   ├── 기존 원자와 관계 연결
-   └── 인덱스 업데이트
-```
-
-### 16.3 품질 기준
-
-| 항목 | 기준 | 검증 방법 |
-|------|------|-----------|
-| 정의 완성도 | what/why/how 모두 작성 | 체크리스트 |
-| 관계 밀도 | 최소 5개 관계 | 자동 검증 |
-| GR 좌표 | Layer/Zone/Function 모두 지정 | 자동 검증 |
-| 보안 정보 | 취약점 또는 방어 최소 3개 | 체크리스트 |
-| 출처 명시 | 최소 2개 출처 | 메타데이터 확인 |
-
-### 16.4 변경 관리
-
-- **스키마 변경**: 헌법 수정 절차 적용
-- **원자 추가**: PR 리뷰 후 머지
-- **관계 수정**: 영향 분석 필수
 
 ---
 
-## 17. 성공 지표 (KPI)
+## 12.2 변경 관리
 
-| 지표 | 목표 | 측정 방법 |
-|------|------|-----------|
-| 원자 수 | Phase 1: 500개, Phase 2: 2000개 | DB count |
-| 관계 밀도 | 원자당 평균 5개 이상 관계 | 관계수/원자수 |
-| RAG 정확도 | 일반 RAG 대비 30% 향상 | A/B 테스트 |
-| 커버리지 | MITRE Top 50 기법 100% 매핑 | 매핑 완료율 |
-
----
-
-## 18. 핵심 메시지
-
-### 이 프로젝트가 아닌 것
-
-- 또 하나의 보안 제품
-- MITRE ATT&CK의 경쟁자
-- 단기 수익 프로젝트
-
-### 이 프로젝트가 맞는 것
-
-- 모든 보안 제품의 **토대**
-- MITRE ATT&CK의 **보완재** (WHERE + HOW)
-- 컨설팅 노하우의 **자산화**
-- **확장 가능한** 사업 모델
+| 변경 유형 | 승인 절차 | 영향 범위 |
+|----------|----------|----------|
+| **스키마 변경** | 헌법 수정 절차 적용 | 전체 시스템 |
+| **원자 추가** | PR 리뷰 후 머지 | 해당 원자만 |
+| **관계 수정** | 영향 분석 필수 | 관련 원자들 |
+| **문서 수정** | PR 리뷰 | 해당 문서만 |
 
 ---
 
-## 결론
+## 12.3 버전 관리
+
+```
+원자 버전: 개별 atom의 metadata.temporal.revision 필드
+스키마 버전: 03_ontology/schema/core/atom_schema.yaml 버전
+문서 버전: 각 문서 헤더의 버전
+
+현재 버전:
+- Schema: 2.0
+- Document: 3.0
+```
+
+---
+
+# 부록
+
+---
+
+## 부록 A: 핵심 메시지
+
+### 이 프로젝트가 아닌 것 (❌)
+
+- ❌ 또 하나의 보안 제품
+- ❌ MITRE ATT&CK의 경쟁자
+- ❌ 단기 수익 프로젝트
+- ❌ 특정 회사의 전문지식만 DB화
+
+### 이 프로젝트가 맞는 것 (✅)
+
+- ✅ 모든 보안 제품의 **토대**
+- ✅ MITRE ATT&CK의 **보완재** (WHERE + HOW)
+- ✅ 세상의 모든 보안/IT 지식의 **원자화**
+- ✅ **확장 가능한** 사업 모델
+
+---
+
+## 부록 B: 결론
 
 > **"우리는 제품을 만들지 않습니다. 모든 보안 제품이 서 있을 토대를 만듭니다."**
 
-GR Framework는 보안 컨설팅 회사가 **"일 ↔ 인력"의 선형 성장**에서 벗어나,
+GR Ontology는 보안 컨설팅 회사가 **"일 ↔ 인력"의 선형 성장**에서 벗어나,
 **"Core ↔ 여러 제품"의 확장 가능한 성장**으로 전환하기 위한 프로젝트입니다.
 
 ```
 Before: 일 10개 = 사람 10명 = 수익 10
 After:  Core 1개 = 제품 4개 = 수익 40+
 ```
+
+GR 생태계는 **"보안의 Google Maps"**입니다.
+- **지도 데이터 (GR DB)**: 전 세계 IT 제품의 좌표
+- **내비게이션 엔진 (AI)**: 최적 경로와 위험 요소 계산
+- **운전 대행 서비스 (제품들)**: 고객 문제 해결
 
 이것이 GR Framework의 본질입니다.
 
@@ -1170,12 +2091,11 @@ After:  Core 1개 = 제품 4개 = 수익 40+
 
 | 버전 | 날짜 | 변경 내용 |
 |------|------|-----------|
-| 3.0 | 2026-02-04 | 5개 마스터플랜 문서 통합 |
-| - | - | 원본: GR_마스터플랜_비전.md, GR_마스터플랜_아키텍처.md |
-| - | - | 원본: GR_생태계_마스터플랜(일반용)v3.1.md |
-| - | - | 원본: GR_생태계_마스터플랜_전문용_v2.2.md |
-| - | - | 원본: GR_ONTOLOGY_MASTERPLAN_v1.0.md |
+| 3.0 | 2026-02-04 | 5개 마스터플랜 문서 통합 (비전, 아키텍처, 일반용, 전문용, 온톨로지) |
+| - | - | 한 줄 요약 수정: "세상의 모든 보안/IT 지식 원자화" |
+| - | - | GR = Gotroot (회사명) 명확화 |
 
 ---
 
 **문서 끝**
+
