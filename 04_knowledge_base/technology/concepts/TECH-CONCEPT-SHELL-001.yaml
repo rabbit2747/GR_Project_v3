@@ -19,11 +19,12 @@ identity:
 classification:
   domain: system
   type: concept
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L3"
     zone: "Cross"
-    tags: ["S"]
+    atom_tags: ["S"]
 
 definition:
   what: |

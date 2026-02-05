@@ -15,11 +15,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["P", "AUTH"]
+    atom_tags: ["P", "AUTH"]
 
 definition:
   what: |

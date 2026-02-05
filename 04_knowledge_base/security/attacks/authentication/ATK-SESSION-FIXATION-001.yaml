@@ -16,11 +16,12 @@ identity:
 classification:
   domain: application
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["ATK", "AUTH", "SESSION"]
+    atom_tags: ["ATK", "AUTH", "SESSION"]
 
 definition:
   what: |

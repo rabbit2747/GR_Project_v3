@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: concept
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
     zone: "Z3"
-    tags: ["CONCEPT", "VULNERABILITY", "INJECTION"]
+    atom_tags: ["CONCEPT", "VULNERABILITY", "INJECTION"]
 
 definition:
   what: |

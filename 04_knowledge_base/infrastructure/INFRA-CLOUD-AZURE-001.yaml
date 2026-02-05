@@ -16,11 +16,12 @@ identity:
 classification:
   domain: infrastructure
   type: component
+  is_infrastructure: true
   abstraction_level: 1
   gr_coordinates:
     layer: "L4"
     zone: "Z2"
-    tags: ["INFRA", "CLOUD", "AZURE"]
+    atom_tags: ["INFRA", "CLOUD", "AZURE"]
 
 definition:
   what: |

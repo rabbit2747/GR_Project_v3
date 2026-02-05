@@ -18,11 +18,12 @@ identity:
 classification:
   domain: infrastructure
   type: component
+  is_infrastructure: true
   abstraction_level: 2  # Type
   gr_coordinates:
     layer: "L7"
     zone: "Z1"  # DMZ/Edge
-    tags: ["N", "WEB"]
+    atom_tags: ["N", "WEB"]
 
 definition:
   what: |

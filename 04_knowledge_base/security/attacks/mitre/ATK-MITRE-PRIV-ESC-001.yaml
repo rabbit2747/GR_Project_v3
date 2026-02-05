@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: concept
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    tags: ["ATK", "MITRE", "TACTIC"]
+    atom_tags: ["ATK", "MITRE", "TACTIC"]
 
 definition:
   what: |

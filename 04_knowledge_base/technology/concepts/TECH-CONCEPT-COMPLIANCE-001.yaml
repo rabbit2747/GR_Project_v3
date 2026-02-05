@@ -16,11 +16,12 @@ identity:
 classification:
   domain: technology
   type: concept
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Z0"
-    tags: ["TECH", "COMPLIANCE", "FRAMEWORK"]
+    zone: "Z0A"
+    atom_tags: ["TECH", "COMPLIANCE", "FRAMEWORK"]
 
 definition:
   what: |

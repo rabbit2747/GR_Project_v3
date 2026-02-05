@@ -15,11 +15,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    tags:
+    atom_tags:
       - "S-VUL-INJ"
       - "D-DB-SQL"
       - "T-ATK-BLIND"

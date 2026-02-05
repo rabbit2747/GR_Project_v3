@@ -14,11 +14,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 3
   gr_coordinates:
     layer: "Cross"
     zone: "Z1"
-    tags: ["P", "E"]
+    atom_tags: ["P", "E"]
 
 definition:
   what: |

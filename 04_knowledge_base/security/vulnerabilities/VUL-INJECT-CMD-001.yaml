@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L3"
     zone: "Z2"
-    tags: ["INJ", "OS"]
+    atom_tags: ["INJ", "OS"]
 
 definition:
   what: |

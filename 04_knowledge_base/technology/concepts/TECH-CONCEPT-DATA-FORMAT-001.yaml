@@ -17,11 +17,12 @@ identity:
 classification:
   domain: application
   type: concept
+  is_infrastructure: false
   abstraction_level: 4
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    tags: ["TECH", "DATA"]
+    atom_tags: ["TECH", "DATA"]
 
 definition:
   what: |

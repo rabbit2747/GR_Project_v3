@@ -15,11 +15,12 @@ identity:
 classification:
   domain: technology
   type: concept
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    tags: ["TECH", "API", "GRAPHQL"]
+    atom_tags: ["TECH", "API", "GRAPHQL"]
 
 definition:
   what: |

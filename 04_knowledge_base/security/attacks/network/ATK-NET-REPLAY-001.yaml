@@ -17,11 +17,12 @@ identity:
 classification:
   domain: network
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    tags: ["ATK", "NET", "AUTH"]
+    atom_tags: ["ATK", "NET", "AUTH"]
 
 definition:
   what: |

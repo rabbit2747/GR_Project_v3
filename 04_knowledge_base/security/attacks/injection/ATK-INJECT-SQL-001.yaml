@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 3  # 개념 수준 (하위에 Union, Blind 등 기법 존재)
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["INJ", "EXPLOIT", "WEB", "API"]
+    atom_tags: ["INJ", "EXPLOIT", "WEB", "API"]
 
 definition:
   what: |

@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    tags: ["DEF", "NETWORK", "ARCHITECTURE"]
+    atom_tags: ["DEF", "NETWORK", "ARCHITECTURE"]
 
 definition:
   what: |

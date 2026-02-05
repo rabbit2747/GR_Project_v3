@@ -17,11 +17,12 @@ identity:
 classification:
   domain: application
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    tags: ["INFRA", "APP", "FRONTEND"]
+    atom_tags: ["INFRA", "APP", "FRONTEND"]
 
 definition:
   what: |

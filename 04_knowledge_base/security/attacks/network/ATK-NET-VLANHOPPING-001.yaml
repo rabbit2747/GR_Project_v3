@@ -17,11 +17,12 @@ identity:
 classification:
   domain: network
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    tags: ["ATK", "NET", "VLAN"]
+    atom_tags: ["ATK", "NET", "VLAN"]
 
 definition:
   what: |

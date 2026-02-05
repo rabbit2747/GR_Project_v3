@@ -18,11 +18,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    tags: ["EXPLOIT", "NET"]
+    atom_tags: ["EXPLOIT", "NET"]
 
 definition:
   what: |

@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    tags: ["DEF", "WIN", "ENDPOINT"]
+    atom_tags: ["DEF", "WIN", "ENDPOINT"]
 
 definition:
   what: |

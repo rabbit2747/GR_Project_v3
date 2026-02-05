@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    tags: ["AUTH", "EXPLOIT"]
+    atom_tags: ["AUTH", "EXPLOIT"]
 
 definition:
   what: |

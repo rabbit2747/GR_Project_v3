@@ -18,11 +18,12 @@ identity:
 classification:
   domain: infrastructure
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["A", "API", "WEB"]
+    atom_tags: ["A", "API", "WEB"]
 
 definition:
   what: |

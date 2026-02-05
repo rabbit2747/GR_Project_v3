@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
-    zone: "Z0"
-    tags: ["COMP", "AUDIT", "CLOUD"]
+    zone: "Z0A"
+    atom_tags: ["COMP", "AUDIT", "CLOUD"]
 
 definition:
   what: |

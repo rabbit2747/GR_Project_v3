@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: tool
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    tags: ["TOOL", "AUDIT", "DAST"]
+    atom_tags: ["TOOL", "AUDIT", "DAST"]
 
 definition:
   what: |

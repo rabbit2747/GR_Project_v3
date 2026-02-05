@@ -17,11 +17,12 @@ identity:
 classification:
   domain: infrastructure
   type: component
+  is_infrastructure: true
   abstraction_level: 3
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    tags: ["INFRA", "SYS", "SERVER"]
+    atom_tags: ["INFRA", "SYS", "SERVER"]
 
 definition:
   what: |

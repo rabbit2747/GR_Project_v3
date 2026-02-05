@@ -15,11 +15,12 @@ identity:
 classification:
   domain: network
   type: protocol
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    tags: ["N"]
+    atom_tags: ["N"]
 
 definition:
   what: |

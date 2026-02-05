@@ -14,11 +14,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["AUTH"]
+    atom_tags: ["AUTH"]
 
 definition:
   what: |
@@ -44,13 +45,6 @@ relations:
   structural:
     is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
   associative:
-    related_to:
-      - id: "ATK-SESSION-HIJACK-001"
-        type: "exploited_by"
-        description: "세션 하이재킹 공격에 의해 악용됨"
-      - id: "TECH-CONCEPT-SESSION-001"
-        type: "targets"
-        description: "세션 관리 기술 개념을 대상으로 함"
   applicability:
     applies_to:
       - "웹 애플리케이션"

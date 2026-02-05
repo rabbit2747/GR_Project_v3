@@ -17,11 +17,12 @@ identity:
 classification:
   domain: application
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    tags: ["VUL", "DETECT", "MONITOR"]
+    atom_tags: ["VUL", "DETECT", "MONITOR"]
 
 definition:
   what: |

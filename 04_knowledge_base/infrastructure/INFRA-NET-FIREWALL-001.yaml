@@ -19,11 +19,12 @@ identity:
 classification:
   domain: security
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    tags: ["NET", "P"]
+    atom_tags: ["NET", "P"]
 
 definition:
   what: |

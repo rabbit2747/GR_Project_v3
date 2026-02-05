@@ -18,11 +18,12 @@ identity:
 classification:
   domain: security
   type: principle
+  is_infrastructure: false
   abstraction_level: 4
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    tags: ["PRINCIPLE", "DEFENSE", "ARCHITECTURE"]
+    atom_tags: ["PRINCIPLE", "DEFENSE", "ARCHITECTURE"]
 
 definition:
   what: |

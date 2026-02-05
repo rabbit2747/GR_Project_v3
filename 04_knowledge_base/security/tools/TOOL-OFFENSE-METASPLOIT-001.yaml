@@ -18,11 +18,12 @@ identity:
 classification:
   domain: security
   type: tool
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "Cross"
-    zone: "Z0"A"
-    tags: ["EXPLOIT"]
+    zone: "Z0A"
+    atom_tags: ["EXPLOIT"]
 
 definition:
   what: |

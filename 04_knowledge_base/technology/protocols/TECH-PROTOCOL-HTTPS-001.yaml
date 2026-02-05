@@ -17,11 +17,12 @@ identity:
 classification:
   domain: network
   type: protocol
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    tags: ["N", "WEB", "E"]
+    atom_tags: ["N", "WEB", "E"]
 
 definition:
   what: |

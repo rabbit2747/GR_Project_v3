@@ -19,6 +19,7 @@ normalized_name: "web_application_server"
 classification:
   domain: "infrastructure"
   type: "component"
+  is_infrastructure: true
   abstraction_level: 2  # 1=Instance, 2=Type, 3=Concept, 4=Principle
 
   gr_coordinates:

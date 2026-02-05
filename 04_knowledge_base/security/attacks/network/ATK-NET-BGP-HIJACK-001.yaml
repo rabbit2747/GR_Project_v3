@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
     zone: "Z4"
-    tags: ["ATK", "NET", "ROUTING"]
+    atom_tags: ["ATK", "NET", "ROUTING"]
 
 definition:
   what: |

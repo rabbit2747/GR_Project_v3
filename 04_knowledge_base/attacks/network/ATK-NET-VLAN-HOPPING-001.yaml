@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
     zone: "Z3"
-    tags: ["ATK", "NETWORK", "LATERAL"]
+    atom_tags: ["ATK", "NETWORK", "LATERAL"]
 
 definition:
   what: |

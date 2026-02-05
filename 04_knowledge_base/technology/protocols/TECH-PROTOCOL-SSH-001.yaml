@@ -16,11 +16,12 @@ identity:
 classification:
   domain: network
   type: protocol
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    tags: ["TECH", "PROTOCOL", "CRYPTO", "REMOTE"]
+    atom_tags: ["TECH", "PROTOCOL", "CRYPTO", "REMOTE"]
 
 definition:
   what: |

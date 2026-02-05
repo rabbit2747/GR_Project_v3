@@ -18,11 +18,12 @@ identity:
 classification:
   domain: network
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
-    zone: "Z0"B"
-    tags: ["NET"]
+    zone: "Z0B"
+    atom_tags: ["NET"]
 
 definition:
   what: |

@@ -15,12 +15,13 @@ identity:
 
 classification:
   domain: security
-  type: attack
+  type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    tags: ["ATK", "INJECT", "NOSQL"]
+    atom_tags: ["ATK", "INJECT", "NOSQL"]
 
 definition:
   what: |

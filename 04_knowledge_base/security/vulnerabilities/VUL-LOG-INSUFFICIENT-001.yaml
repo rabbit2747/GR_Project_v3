@@ -14,11 +14,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    tags: ["D"]
+    atom_tags: ["D"]
 
 definition:
   what: |

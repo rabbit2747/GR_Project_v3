@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    tags: ["INFRA", "CLOUD", "SERVERLESS"]
+    atom_tags: ["INFRA", "CLOUD", "SERVERLESS"]
 
 definition:
   what: |

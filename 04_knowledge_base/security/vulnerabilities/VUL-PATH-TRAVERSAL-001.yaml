@@ -15,11 +15,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["INJECT", "FILE"]
+    atom_tags: ["INJECT", "FILE"]
 
 definition:
   what: |
@@ -51,10 +52,6 @@ relations:
   structural:
     is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
   associative:
-    related_to:
-      - id: "ATK-SERVER-PATH-001"
-        type: "exploited_by"
-        description: "경로 순회 공격에 의해 악용됨"
   applicability:
     applies_to:
       - "파일 다운로드 기능"

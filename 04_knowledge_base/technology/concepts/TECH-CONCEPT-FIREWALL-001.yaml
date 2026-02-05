@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: concept
+  is_infrastructure: false
   abstraction_level: 4
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    tags: ["SEC", "N", "D"]
+    atom_tags: ["SEC", "N", "D"]
 
 definition:
   what: |

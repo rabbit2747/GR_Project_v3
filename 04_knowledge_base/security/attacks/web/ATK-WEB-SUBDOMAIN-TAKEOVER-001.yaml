@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L4"
     zone: "Z1"
-    tags: ["ATK", "WEB", "DNS"]
+    atom_tags: ["ATK", "WEB", "DNS"]
 
 definition:
   what: |

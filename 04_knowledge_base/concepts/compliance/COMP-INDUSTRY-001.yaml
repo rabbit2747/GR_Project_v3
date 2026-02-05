@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: concept
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L6"
     zone: "Z4"
-    tags: ["CONCEPT", "COMPLIANCE", "INDUSTRY"]
+    atom_tags: ["CONCEPT", "COMPLIANCE", "INDUSTRY"]
 
 definition:
   what: |

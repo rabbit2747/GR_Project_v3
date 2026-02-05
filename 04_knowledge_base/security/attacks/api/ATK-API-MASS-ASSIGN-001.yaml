@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L6"
     zone: "Z1"
-    tags: ["ATK", "API", "INJECTION"]
+    atom_tags: ["ATK", "API", "INJECTION"]
 
 definition:
   what: |

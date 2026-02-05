@@ -14,11 +14,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["INJECT", "XML"]
+    atom_tags: ["INJECT", "XML"]
 
 definition:
   what: |
@@ -48,13 +49,6 @@ relations:
   structural:
     is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
   associative:
-    related_to:
-      - id: "ATK-INJECT-XML-001"
-        type: "exploited_by"
-        description: "XML 인젝션 공격에 의해 악용됨"
-      - id: "TECH-FORMAT-XML-001"
-        type: "targets"
-        description: "XML 데이터 형식의 처리를 대상으로 함"
   applicability:
     applies_to:
       - "XML 파서를 사용하는 애플리케이션"

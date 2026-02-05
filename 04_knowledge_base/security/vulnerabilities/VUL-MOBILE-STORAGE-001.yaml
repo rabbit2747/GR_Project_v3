@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    tags: ["VUL", "MOBILE", "STORAGE"]
+    atom_tags: ["VUL", "MOBILE", "STORAGE"]
 
 definition:
   what: |

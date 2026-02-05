@@ -16,11 +16,12 @@ identity:
 classification:
   domain: infrastructure
   type: component
+  is_infrastructure: true
   abstraction_level: 1
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    tags: ["INFRA", "CLOUD", "AWS", "IAM"]
+    atom_tags: ["INFRA", "CLOUD", "AWS", "IAM"]
 
 definition:
   what: |

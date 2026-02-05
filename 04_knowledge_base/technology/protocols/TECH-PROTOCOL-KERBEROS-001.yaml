@@ -16,11 +16,12 @@ identity:
 classification:
   domain: technology
   type: protocol
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L6"
     zone: "Z2"
-    tags: ["TECH", "PROTOCOL", "AUTH"]
+    atom_tags: ["TECH", "PROTOCOL", "AUTH"]
 
 definition:
   what: |

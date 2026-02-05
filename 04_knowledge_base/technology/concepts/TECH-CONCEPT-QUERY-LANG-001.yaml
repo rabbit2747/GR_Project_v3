@@ -16,11 +16,12 @@ identity:
 classification:
   domain: application
   type: concept
+  is_infrastructure: false
   abstraction_level: 4
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    tags: ["TECH", "DATA", "DB"]
+    atom_tags: ["TECH", "DATA", "DB"]
 
 definition:
   what: |

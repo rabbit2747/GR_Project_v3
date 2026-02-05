@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L4"
     zone: "Z3"
-    tags: ["VUL", "IOT", "CREDENTIAL"]
+    atom_tags: ["VUL", "IOT", "CREDENTIAL"]
 
 definition:
   what: |

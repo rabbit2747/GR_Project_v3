@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L7"
     zone: "Z5"
-    tags: ["DEF", "RESPOND", "FORENSICS"]
+    atom_tags: ["DEF", "RESPOND", "FORENSICS"]
 
 definition:
   what: |

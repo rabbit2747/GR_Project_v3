@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: component
+  is_infrastructure: true
   abstraction_level: 2
   gr_coordinates:
     layer: "L3"
     zone: "Z2"
-    tags: ["INFRA", "NET", "VPN"]
+    atom_tags: ["INFRA", "NET", "VPN"]
 
 definition:
   what: |

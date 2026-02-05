@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: concept
+  is_infrastructure: false
   abstraction_level: 4
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    tags: ["ATK", "N"]
+    atom_tags: ["ATK", "N"]
 
 definition:
   what: |

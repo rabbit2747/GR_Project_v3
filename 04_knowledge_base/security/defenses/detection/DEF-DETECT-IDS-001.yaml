@@ -18,11 +18,12 @@ identity:
 classification:
   domain: security
   type: control
+  is_infrastructure: true
   abstraction_level: 3
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    tags: ["D"]
+    atom_tags: ["D"]
 
 definition:
   what: |

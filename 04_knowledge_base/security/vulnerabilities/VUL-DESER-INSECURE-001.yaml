@@ -14,11 +14,12 @@ identity:
 classification:
   domain: security
   type: vulnerability
+  is_infrastructure: false
   abstraction_level: 3
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    tags: ["INJECT", "DATA"]
+    atom_tags: ["INJECT", "DATA"]
 
 definition:
   what: |
@@ -50,10 +51,6 @@ relations:
   structural:
     is_a: ["TECH-CONCEPT-VULNERABILITY-001"]
   associative:
-    related_to:
-      - id: "ATK-SERVER-DESER-001"
-        type: "exploited_by"
-        description: "역직렬화 공격에 의해 악용됨"
   applicability:
     applies_to:
       - "Java 애플리케이션(RMI, JMX, JMS)"

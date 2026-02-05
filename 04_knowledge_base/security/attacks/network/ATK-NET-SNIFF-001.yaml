@@ -18,11 +18,12 @@ identity:
 classification:
   domain: network
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
     zone: "Z3"
-    tags: ["ATK", "NET", "RECON"]
+    atom_tags: ["ATK", "NET", "RECON"]
 
 definition:
   what: |

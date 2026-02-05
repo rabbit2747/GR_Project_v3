@@ -16,11 +16,12 @@ identity:
 classification:
   domain: security
   type: technique
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    tags: ["ATK", "MITRE", "PERSISTENCE"]
+    atom_tags: ["ATK", "MITRE", "PERSISTENCE"]
 
 definition:
   what: |

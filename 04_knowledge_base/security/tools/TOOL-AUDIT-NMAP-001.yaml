@@ -17,11 +17,12 @@ identity:
 classification:
   domain: security
   type: tool
+  is_infrastructure: false
   abstraction_level: 2
   gr_coordinates:
     layer: "L2"
-    zone: "Z0"A"
-    tags: ["RECON"]
+    zone: "Z0A"
+    atom_tags: ["RECON"]
 
 definition:
   what: |
