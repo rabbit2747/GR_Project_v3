@@ -24,6 +24,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
+    function: "S5.3"
     atom_tags: ["EXFIL", "LATERAL", "PRIVESC", "SIEM"]
 
 definition:

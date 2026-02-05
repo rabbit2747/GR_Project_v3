@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z5"
+    function: "S13.1"
     atom_tags: ["COLLECT", "IMPACT", "IOT", "NETWORK"]
 
 definition:

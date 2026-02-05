@@ -20,7 +20,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    function: "R1.1"
+    function: "P3.1"
     atom_tags: ["CONTAINER", "EXEC", "NETWORK"]
 
 definition:

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    function: "P3"
+    function: "P1.1"
     atom_tags: ["AWS", "AZURE", "CLOUD", "CONFIG", "EXEC", "GCP", "IAM", "NETWORK"]
 
 definition:

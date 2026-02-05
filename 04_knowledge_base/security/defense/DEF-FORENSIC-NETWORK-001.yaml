@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
+    function: "S13.3"
     atom_tags: ["C2", "EXFIL", "IOT", "LATERAL", "NETWORK"]
 
 definition:

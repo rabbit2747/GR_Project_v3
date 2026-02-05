@@ -23,6 +23,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
+    function: "M6.1"
     atom_tags: ["COLLECT", "FW", "IDS", "LOG", "SIEM", "WAF"]
 
 definition:

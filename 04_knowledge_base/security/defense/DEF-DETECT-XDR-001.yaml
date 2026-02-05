@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
+    function: "S9.2"
     atom_tags: ["CLOUD", "COLLECT", "EDR", "LOG", "NETWORK", "SIEM", "SMTP"]
 
 definition:

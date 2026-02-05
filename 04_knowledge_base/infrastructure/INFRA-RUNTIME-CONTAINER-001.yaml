@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    function: "R1"
+    function: "R1.1"
     atom_tags: ["CLOUD", "CONTAINER", "EXEC", "NETWORK", "PRIVESC"]
 
 definition:

@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
+    function: "C1.3"
     atom_tags: ["CRYPTO", "EXFIL"]
 
 definition:

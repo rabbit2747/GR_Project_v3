@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z1"
-    function: "D2.1"
+    function: "R3.1"
     atom_tags: ["AZURE", "BACKUP", "CRYPTO", "SMB"]
 
 definition:

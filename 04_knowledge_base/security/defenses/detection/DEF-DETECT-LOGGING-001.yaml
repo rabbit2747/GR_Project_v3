@@ -23,6 +23,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
+    function: "S8.1"
     atom_tags: ["AUTHN", "COLLECT", "LOG"]
 
 definition:

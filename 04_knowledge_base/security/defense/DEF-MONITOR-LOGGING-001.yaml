@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
+    function: "M3.1"
     atom_tags: ["AUTHN", "COLLECT", "LOG", "SIEM"]
 
 definition:

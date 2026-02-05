@@ -50,10 +50,8 @@ properties:
     server_types:
       - name: "Web Server"
         examples: ["Nginx", "Apache", "IIS"]
-        function: "Static Content, Reverse Proxy"
       - name: "Application Server"
         examples: ["Tomcat", "JBoss", "Node.js"]
-        function: "Dynamic Processing"
     hardening:
       - "불필요한 서비스 비활성화"
       - "기본 계정/암호 변경"

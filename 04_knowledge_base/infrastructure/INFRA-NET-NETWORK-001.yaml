@@ -22,6 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
+    function: "N2.1"
     atom_tags: ["CONFIG", "FW", "IDS", "LOG", "NETWORK"]
 
 definition:
@@ -55,7 +56,7 @@ properties:
     components:
       - name: "Switch"
         layer: "L2"
-        function: "프레임 스위칭"
+        function: "N2.1"
       - name: "Router"
         layer: "L3"
         function: "패킷 라우팅"

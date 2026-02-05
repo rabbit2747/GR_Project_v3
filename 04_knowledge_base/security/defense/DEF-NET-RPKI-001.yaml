@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
+    function: "N9.1"
     atom_tags: ["AUTHZ", "CACHE", "NETWORK", "TLS"]
 
 definition:

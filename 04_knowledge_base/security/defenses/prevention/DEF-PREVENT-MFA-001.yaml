@@ -20,6 +20,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
+    function: "S2.1"
     atom_tags: ["AUTHN", "EXFIL", "IAM"]
 
 definition:

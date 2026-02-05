@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
+    function: "D5.1"
     atom_tags: ["BACKUP", "EXEC"]
 
 definition:

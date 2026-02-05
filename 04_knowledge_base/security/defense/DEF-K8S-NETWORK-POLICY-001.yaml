@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
+    function: "N8.3"
     atom_tags: ["CONTAINER", "FW", "LATERAL", "NETWORK"]
 
 definition:

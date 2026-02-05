@@ -15,7 +15,8 @@ Security Domain은 **기밀성(Confidentiality), 무결성(Integrity), 가용성
 - Vulnerability Management (S4) 추가
 - SIEM 통합 (S5 확장)
 - AI/ML 보안 (S7.4) 추가
-- Total tags: 25 → 35+
+- v2.1: Endpoint & Extended Security (S9), Cloud Security (S10), Web AppSec Controls (S11), Advanced Security (S12), Digital Forensics (S13), Platform-Specific Security (S14) 추가
+- Total tags: 25 → 60+
 
 ### 1.3 핵심 목표
 1. **Zero Trust Architecture**: "절대 신뢰하지 말고, 항상 검증하라"
@@ -317,6 +318,196 @@ GDPR Request (S8.3):
 ```
 
 **MITRE ATT&CK**: T1078 (Valid Accounts), T1565 (Data Manipulation)
+
+---
+
+### S9: Endpoint & Extended Security (엔드포인트 & 확장 탐지)
+
+**목적**: 엔드포인트, 네트워크, 통합 탐지/대응
+
+**구성 요소**:
+- **S9.1**: EDR (Endpoint Detection and Response)
+  - 도구: CrowdStrike Falcon, Microsoft Defender for Endpoint, SentinelOne
+  - 탐지: 프로세스 행위 분석, 파일리스 공격, 메모리 인젝션
+  - 대응: 프로세스 격리, 파일 삭제, 네트워크 차단
+
+- **S9.2**: XDR (Extended Detection and Response)
+  - 도구: Palo Alto Cortex XDR, Trend Micro Vision One
+  - 통합: Endpoint + Network + Email + Cloud 상관 분석
+  - 탐지: 크로스-레이어 위협 체인 탐지
+
+- **S9.3**: NDR (Network Detection and Response)
+  - 도구: Darktrace, Vectra AI, ExtraHop
+  - 탐지: 네트워크 트래픽 이상 행위, Lateral Movement
+  - 분석: 패킷 캡처, 메타데이터 분석, ML 기반 이상 탐지
+
+**Layer/Zone 연관**: L3-L5 (Endpoint/Network), Zone 1-3
+
+**MITRE ATT&CK**: T1055 (Process Injection), T1021 (Remote Services), T1071 (Application Layer Protocol)
+
+---
+
+### S10: Cloud Security (클라우드 보안)
+
+**목적**: 클라우드 환경 특화 보안 통제
+
+**구성 요소**:
+- **S10.1**: CASB (Cloud Access Security Broker)
+  - 도구: Netskope, Microsoft Defender for Cloud Apps, Zscaler
+  - 통제: Shadow IT 탐지, SaaS 접근 제어, DLP 연동
+
+- **S10.2**: CSPM (Cloud Security Posture Management)
+  - 도구: Prisma Cloud, AWS Security Hub, Wiz
+  - 탐지: 설정 오류, 과도한 권한, 미암호화 리소스
+  - 기준: CIS Benchmarks, AWS Well-Architected
+
+- **S10.3**: CWPP (Cloud Workload Protection Platform)
+  - 도구: Aqua Security, Sysdig, Lacework
+  - 보호: 컨테이너 런타임, 서버리스, VM 워크로드
+  - 탐지: 취약 이미지, 런타임 이상 행위
+
+- **S10.4**: CIEM (Cloud Infrastructure Entitlement Management)
+  - 도구: Ermetic, CloudKnox, Sonrai
+  - 통제: 과도한 IAM 권한 탐지, 최소 권한 적용
+  - 분석: 미사용 권한, 크로스 계정 접근
+
+**Layer/Zone 연관**: L2-L4 (Cloud), Zone 1-4
+
+**MITRE ATT&CK**: T1078 (Valid Accounts), T1530 (Data from Cloud Storage), T1580 (Cloud Infrastructure Discovery)
+
+---
+
+### S11: Web Application Security Controls (웹 애플리케이션 보안 통제)
+
+**목적**: 웹 애플리케이션 레벨의 보안 통제 메커니즘
+
+**구성 요소**:
+- **S11.1**: Input Validation & Output Encoding
+  - 입력 검증: 화이트리스트, 정규식, 타입/길이 검증
+  - 출력 인코딩: HTML Entity, JavaScript Escape, URL Encoding
+  - 적용: 서버사이드 필수, 클라이언트사이드 보조
+
+- **S11.2**: Security Headers (CSP, CORS, HSTS)
+  - CSP: Content-Security-Policy (XSS 방어)
+  - CORS: Cross-Origin Resource Sharing 정책
+  - HSTS: HTTP Strict Transport Security
+  - 기타: X-Frame-Options, X-Content-Type-Options
+
+- **S11.3**: CSRF Protection
+  - CSRF Token: Synchronizer Token Pattern
+  - SameSite Cookie: Lax/Strict
+  - Double Submit Cookie
+
+- **S11.4**: Parameterized Query / ORM
+  - Prepared Statements: SQL Injection 원천 방지
+  - ORM: SQLAlchemy, Hibernate, Prisma
+  - Stored Procedures
+
+**Layer/Zone 연관**: L5-L7 (Application), Zone 2
+
+**MITRE ATT&CK**: T1059 (Command Injection), T1189 (Drive-by Compromise)
+
+---
+
+### S12: Advanced Security (고급 보안)
+
+**목적**: 특수 보안 기술 및 아키텍처
+
+**구성 요소**:
+- **S12.1**: DLP (Data Loss Prevention)
+  - 도구: Symantec DLP, Microsoft Purview, Digital Guardian
+  - 통제: 이메일 첨부, USB, 클라우드 업로드 차단
+  - 정책: PII, PHI, 신용카드 번호 탐지
+
+- **S12.2**: Email Security
+  - 도구: Proofpoint, Mimecast, Microsoft Defender for Office 365
+  - 탐지: 피싱, BEC, 악성 첨부파일
+  - 통제: SPF, DKIM, DMARC
+
+- **S12.3**: UEBA (User and Entity Behavior Analytics)
+  - 도구: Exabeam, Securonix, Microsoft Sentinel UEBA
+  - 탐지: 내부자 위협, 계정 탈취, 이상 접근 패턴
+  - 분석: 베이스라인 학습, 편차 탐지
+
+- **S12.4**: Deception Technology
+  - 도구: Attivo Networks, Illusive Networks, TrapX
+  - 배포: Honeypot, Honey Token, Decoy 계정
+  - 탐지: 공격자 Lateral Movement, 내부 정찰
+
+- **S12.5**: Zero Trust Architecture
+  - 원칙: Never Trust, Always Verify
+  - 구현: Micro-segmentation, ZTNA, SDP
+  - 도구: Zscaler, Cloudflare Access, BeyondTrust
+
+- **S12.6**: SOAR (Security Orchestration, Automation and Response)
+  - 도구: Splunk SOAR, IBM Resilient, Palo Alto XSOAR
+  - 기능: Playbook 자동화, 인시던트 오케스트레이션
+  - 연동: SIEM, EDR, Firewall, Ticketing
+
+- **S12.7**: Sandboxing
+  - 도구: Any.Run, Joe Sandbox, Cuckoo Sandbox
+  - 분석: 악성코드 동적 분석, 파일 실행 격리
+  - 탐지: 파일 행위, 네트워크 IOC, 레지스트리 변경
+
+**Layer/Zone 연관**: All Layers, Zone 1-4
+
+**MITRE ATT&CK**: T1566 (Phishing), T1090 (Proxy), T1030 (Data Transfer Size Limits)
+
+---
+
+### S13: Digital Forensics (디지털 포렌식)
+
+**목적**: 보안 사고 후 증거 수집, 분석, 보존
+
+**구성 요소**:
+- **S13.1**: Disk Forensics
+  - 도구: EnCase, FTK, Autopsy
+  - 수집: 디스크 이미징 (dd, E01)
+  - 분석: 파일 시스템, 삭제 파일 복구, 타임라인
+
+- **S13.2**: Memory Forensics
+  - 도구: Volatility, Rekall
+  - 수집: 메모리 덤프 (WinPmem, LiME)
+  - 분석: 프로세스, 네트워크 연결, 인젝션된 코드
+
+- **S13.3**: Network Forensics
+  - 도구: Wireshark, NetworkMiner, Zeek (Bro)
+  - 수집: PCAP 캡처, NetFlow
+  - 분석: 세션 재구성, 악성 트래픽, 데이터 유출 탐지
+
+**Layer/Zone 연관**: L3-L5, Zone 3-5
+
+**MITRE ATT&CK**: T1005 (Data from Local System), T1074 (Data Staged)
+
+---
+
+### S14: Platform-Specific Security (플랫폼별 보안)
+
+**목적**: 특정 OS/플랫폼 환경 보안 통제
+
+**구성 요소**:
+- **S14.1**: Windows Security Controls
+  - ASR (Attack Surface Reduction) Rules
+  - Credential Guard: LSASS 보호
+  - LAPS (Local Administrator Password Solution)
+  - AppLocker / WDAC: 애플리케이션 통제
+  - Windows Defender: 실시간 보호
+
+- **S14.2**: Linux Security Controls
+  - SELinux / AppArmor: MAC (Mandatory Access Control)
+  - iptables / nftables: 호스트 방화벽
+  - auditd: 시스템 감사 로깅
+  - seccomp: 시스템 콜 필터링
+
+- **S14.3**: macOS Security Controls
+  - Gatekeeper: 코드 서명 검증
+  - System Integrity Protection (SIP)
+  - FileVault: 전체 디스크 암호화
+  - XProtect: 악성코드 탐지
+
+**Layer/Zone 연관**: L5 (Endpoint), Zone 3-5
+
+**MITRE ATT&CK**: T1003 (OS Credential Dumping), T1547 (Boot Autostart Execution)
 
 ---
 

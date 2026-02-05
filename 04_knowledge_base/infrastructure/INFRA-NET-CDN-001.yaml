@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0B"
-    function: "N2.2"
+    function: "N4.1"
     atom_tags: ["API", "AWS", "CACHE", "CLOUD", "DNS", "NETWORK", "TLS", "WAF"]
 
 definition:

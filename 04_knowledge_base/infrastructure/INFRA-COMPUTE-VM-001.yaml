@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    function: "C2"
+    function: "R2.1"
     atom_tags: ["EXEC", "NETWORK"]
 
 definition:

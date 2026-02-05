@@ -22,6 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
+    function: "S12.5"
     atom_tags: ["CLOUD", "IAM", "NETWORK"]
 
 definition:

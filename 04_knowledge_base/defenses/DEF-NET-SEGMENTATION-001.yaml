@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
+    function: "N8.3"
     atom_tags: ["IMPACT", "LATERAL", "LOG", "NETWORK"]
 
 definition:

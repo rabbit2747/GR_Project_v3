@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
+    function: "S7.3"
     atom_tags: ["WEB"]
 
 definition:

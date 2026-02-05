@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
+    function: "S5.3"
     atom_tags: []
 
 definition:

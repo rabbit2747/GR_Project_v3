@@ -54,19 +54,14 @@ properties:
     device_types:
       - name: "Firewall"
         layer: "L2-L4"
-        function: "Packet Filtering"
       - name: "WAF"
         layer: "L7"
-        function: "Web Attack Protection"
       - name: "Load Balancer"
         layer: "L4-L7"
-        function: "Traffic Distribution"
       - name: "CDN"
         layer: "L7"
-        function: "Content Caching"
       - name: "DNS Server"
         layer: "L7"
-        function: "Name Resolution"
 
 metadata:
   trust:

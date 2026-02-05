@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    function: "P3"
+    function: "S6.1"
     atom_tags: ["AD", "AUTHN", "AZURE", "CLOUD", "CONFIG", "IAM"]
 
 definition:

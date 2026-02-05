@@ -151,12 +151,47 @@ Kafka Cluster (Zone 2):
 
 ---
 
+### R6: Application Runtime (애플리케이션 런타임)
+
+**목적**: 애플리케이션 실행 환경 (언어별 런타임/VM)
+
+**구성 요소**:
+- **R6.1**: JVM (Java Virtual Machine)
+  - OpenJDK, Oracle JDK, GraalVM
+  - JVM 옵션: Heap, GC, JIT
+  - 보안: Security Manager (deprecated), Module System
+
+- **R6.2**: .NET CLR (Common Language Runtime)
+  - .NET Framework, .NET Core / .NET 6+
+  - 보안: Code Access Security, Assembly Signing
+
+- **R6.3**: Node.js Runtime
+  - V8 Engine, Deno, Bun
+  - 보안: --permission flag, npm audit
+
+**Layer/Zone 연관**: L3, Zone 1-2
+
+**CVE 예시**:
+```yaml
+CVE-2022-21449: Java Psychic Signatures (ECDSA)
+  Affected: JDK 15-18
+  Severity: Critical
+
+CVE-2023-44487: HTTP/2 Rapid Reset (Node.js)
+  Affected: Node.js < 20.8.1
+  Severity: High
+```
+
+**MITRE ATT&CK**: T1059 (Command Execution), T1203 (Exploitation for Client Execution)
+
+---
+
 ## 3. Layer/Zone 연관성
 
 | Layer | Resource Tags | 구성 요소 |
 |-------|--------------|----------|
 | L2 | R2.2, R4.1 | Kubernetes, Service Mesh |
-| L3 | R3.1, R3.2 | EBS, S3 |
+| L3 | R3.1, R3.2, R6.1 | EBS, S3, JVM |
 
 ---
 

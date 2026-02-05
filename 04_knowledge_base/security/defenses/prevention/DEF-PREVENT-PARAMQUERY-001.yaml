@@ -18,6 +18,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
+    function: "S11.4"
     atom_tags: ["EXEC", "EXFIL", "INJ", "WEB"]
 
 definition:

@@ -14,7 +14,8 @@ Application Domain은 **비즈니스 로직, 사용자 인터페이스, API**를
 ### 1.2 v1.0 → v2.0 변경사항
 - AI/ML 워크로드 (A4) 추가
 - Serverless (A3.3) 추가
-- Total tags: 20 → 30+
+- v2.1: Application Server / WAS (A6) 추가
+- Total tags: 20 → 35+
 
 ### 1.3 핵심 목표
 1. **사용자 경험**: 직관적이고 빠른 인터페이스
@@ -224,6 +225,43 @@ def send_welcome_email(user_id):
     except Exception as exc:
         raise self.retry(exc=exc, countdown=60 * (2 ** self.request.retries))
 ```
+
+---
+
+### A6: Application Server / WAS (애플리케이션 서버)
+
+**목적**: 웹 애플리케이션 실행 환경 (전통적 WAS 및 웹 서버)
+
+**구성 요소**:
+- **A6.1**: Java EE Application Server
+  - Apache Tomcat, JBoss/WildFly, Oracle WebLogic, IBM WebSphere
+  - Servlet Container, EJB Container
+  - 배포: WAR/EAR, Embedded Server
+
+- **A6.2**: Web Server
+  - NGINX, Apache HTTP Server, IIS
+  - 역할: 정적 파일 서빙, Reverse Proxy, SSL Termination
+  - 설정: Virtual Host, Load Balancing, Caching
+
+- **A6.3**: .NET Application Server
+  - IIS (Internet Information Services)
+  - Kestrel (.NET Core)
+  - ASP.NET Runtime
+
+**Layer/Zone 연관**: L1-L2, Zone 1-2
+
+**CVE 예시**:
+```yaml
+CVE-2024-21733: Apache Tomcat Request Smuggling
+  Affected: Tomcat < 9.0.83
+  Severity: High
+
+CVE-2021-44228: Log4Shell (Java EE 영향)
+  Affected: Log4j 2.x (JBoss, WebLogic 등에서 사용)
+  Severity: Critical
+```
+
+**MITRE ATT&CK**: T1190 (Exploit Public-Facing Application), T1505 (Server Software Component)
 
 ---
 

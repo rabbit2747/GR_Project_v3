@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z2"
-    function: "D2.1"
+    function: "R3.2"
     atom_tags: ["AUTHZ", "AWS", "BACKUP", "CLOUD", "CONTAINER", "CRYPTO", "EXFIL", "IAM", "LOG"]
 
 definition:

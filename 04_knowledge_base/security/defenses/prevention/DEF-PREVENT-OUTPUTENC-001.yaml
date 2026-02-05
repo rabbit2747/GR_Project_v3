@@ -19,6 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
+    function: "S11.1"
     atom_tags: ["API", "WEB", "XSS"]
 
 definition:

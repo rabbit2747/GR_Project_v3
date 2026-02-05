@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
+    function: "S10.1"
     atom_tags: ["CLOUD", "DLP", "LOG"]
 
 definition:

@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
+    function: "S3.1"
     atom_tags: ["AUTHN", "CRYPTO", "HTTP", "NETWORK", "TLS"]
 
 definition:

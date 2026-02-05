@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
+    function: "S13.2"
     atom_tags: ["COLLECT", "CRYPTO", "EXEC", "IOT", "NETWORK"]
 
 definition:

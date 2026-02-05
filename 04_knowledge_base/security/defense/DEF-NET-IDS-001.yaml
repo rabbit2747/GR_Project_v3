@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
+    function: "M6.2"
     atom_tags: ["COLLECT", "FW", "IDS", "LOG", "NETWORK"]
 
 definition:

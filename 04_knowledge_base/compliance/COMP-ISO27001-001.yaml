@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
+    function: "C2.2"
     atom_tags: ["AUTHN"]
 
 definition:

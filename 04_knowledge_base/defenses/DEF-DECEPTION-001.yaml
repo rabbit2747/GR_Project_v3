@@ -22,6 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
+    function: "S12.4"
     atom_tags: ["COLLECT", "LOG"]
 
 definition:

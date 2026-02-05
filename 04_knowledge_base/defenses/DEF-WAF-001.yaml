@@ -21,6 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
+    function: "S1.1"
     atom_tags: ["FW", "HTTP", "LOG", "WAF", "WEB", "XSS"]
 
 definition:

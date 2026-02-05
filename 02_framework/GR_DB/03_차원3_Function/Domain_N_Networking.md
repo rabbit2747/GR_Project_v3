@@ -426,13 +426,34 @@ DDoS Protection:
 
 ---
 
+### N9: Routing Security (라우팅 보안)
+
+**목적**: 인터넷 라우팅 인프라 보안
+
+**구성 요소**:
+- **N9.1**: RPKI (Resource Public Key Infrastructure)
+  - ROA (Route Origin Authorization): IP prefix → ASN 매핑 검증
+  - 도구: Routinator, OctoRPKI, FORT
+  - 목적: BGP Hijacking 방지
+
+- **N9.2**: BGP Security
+  - BGPsec: 경로 검증 (Path Validation)
+  - Prefix Filtering: IRRDB 기반 필터
+  - Route Leak Prevention: Provider/Customer/Peer 정책
+
+**Layer/Zone 연관**: L0-L1, Zone 0A-0B
+
+**MITRE ATT&CK**: T1557 (Man-in-the-Middle), T1090 (Proxy)
+
+---
+
 ## 4. Layer/Zone 연관성
 
 ### Layer별 Networking 전략
 
 | Layer | 주요 Networking Tags | 구성 요소 |
 |-------|---------------------|----------|
-| L0 (External) | N4.1 (CDN Edge) | Cloudflare, CloudFront |
+| L0 (External) | N4.1 (CDN Edge), N9.1 (RPKI) | Cloudflare, CloudFront |
 | L1 (Perimeter) | N1.2 (ALB), N7.1 (API Gateway) | AWS ALB, Kong |
 | L2 (Application) | N6.2 (Service Mesh) | Envoy Sidecar, Istio |
 | L3 (Data) | N2.1 (Private Subnet) | VPC, Security Groups |

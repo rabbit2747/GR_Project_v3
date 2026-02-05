@@ -22,6 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
+    function: "R2.2"
     atom_tags: ["API", "CLOUD", "CONFIG", "CONTAINER", "NETWORK", "PROXY"]
 
 definition:
@@ -51,7 +52,7 @@ properties:
   technical:
     components:
       - name: "API Server"
-        function: "R1"
+        function: "R2.2"
       - name: "etcd"
         function: "클러스터 상태 저장소"
       - name: "kubelet"

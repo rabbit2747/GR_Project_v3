@@ -80,6 +80,11 @@ GDPR Compliance (C1.1):
   - OS hardening, Database security
   - Automated scanning
 
+- **C2.4**: NIST CSF (Cybersecurity Framework)
+  - 5 Functions: Identify, Protect, Detect, Respond, Recover
+  - Implementation Tiers: Partial → Adaptive
+  - Profiles: Current → Target
+
 **Layer/Zone**: All Layers
 
 **사용 예시**:
