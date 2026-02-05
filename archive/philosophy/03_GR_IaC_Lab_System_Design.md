@@ -48,7 +48,7 @@
 
 **기존 GR Framework 자산 활용**:
 - ✅ Layer/Zone 좌표계 → 네트워크 토폴로지
-- ✅ Function Tags → 인프라 요소 선택
+- ✅ Function → 인프라 요소 선택
 - ✅ Security Policies → 방화벽 규칙
 - ✅ CVE-MITRE 매핑 → 공격 시나리오
 - ✅ Components 분류 → IaC 템플릿 선택
@@ -306,7 +306,7 @@ CREATE TABLE infra_atoms (
     -- GR 좌표 매핑
     layer_id VARCHAR(20) REFERENCES layers(id),
     zone_id VARCHAR(20) REFERENCES zones(id),
-    related_tags TEXT[],  -- Function Tags와 연결
+    function_refs TEXT[],  -- Function와 연결
 
     -- 기술 스택
     tech_stack VARCHAR(100),  -- 'postgresql', 'nginx', 'docker'
@@ -357,7 +357,7 @@ CREATE INDEX idx_atom_code ON infra_atoms(atom_code);
 CREATE INDEX idx_atom_type ON infra_atoms(atom_type);
 CREATE INDEX idx_atom_layer ON infra_atoms(layer_id);
 CREATE INDEX idx_atom_zone ON infra_atoms(zone_id);
-CREATE INDEX idx_atom_tags ON infra_atoms USING GIN (related_tags);
+CREATE INDEX idx_atom_tags ON infra_atoms USING GIN (function_refs);
 ```
 
 ### 3.4 IaC 템플릿
@@ -1396,7 +1396,7 @@ Layer/Zone 좌표계:
   → IaC 네트워크 토폴로지의 청사진
   → Security Group 규칙 자동 생성
 
-Function Tags (280+):
+Function (280+):
   → 인프라 Atom 선택의 기준
   → 취약점 유형 분류
 

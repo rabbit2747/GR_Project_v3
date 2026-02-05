@@ -1389,7 +1389,7 @@ CREATE (t1:MITRETechnique {
   platforms: ['Linux', 'Windows'],
 
   common_layers: ['L2', 'L7'],
-  common_zones: ['Zone0-A', 'Z1'],
+  common_zones: ['Z0A', 'Z1'],
 
   detection_methods: ['Network IDS', 'Application logs', 'WAF alerts'],
   mitigation_methods: ['Patch management', 'Input validation', 'WAF deployment']

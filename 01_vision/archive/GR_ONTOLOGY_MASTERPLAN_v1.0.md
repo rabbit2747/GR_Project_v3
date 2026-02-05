@@ -321,7 +321,7 @@ VUL-INJECT-SQL-001:
         zone: "Z2"
         components: ["Web Application"]
     attack_path:
-      entry: "Zone0-A"
+      entry: "Z0A"
       target: "Z3"
 ```
 

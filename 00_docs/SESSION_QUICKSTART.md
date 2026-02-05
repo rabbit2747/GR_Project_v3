@@ -11,7 +11,7 @@
 ```
 예: "SQL Injection"이라는 개념 → ATK-INJECT-SQL-001.yaml 파일로 저장
     - 정의, 관계, 속성, 메타데이터 포함
-    - 다른 Atom들과 연결됨 (is_a, related_to, has_children)
+    - 다른 Atom들과 연결됨 (is_a, has_children 등 정밀 관계)
 ```
 
 ---

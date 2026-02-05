@@ -153,7 +153,7 @@ Atom:
     structural:
       is_a: []           # 상위 개념
       has_children: []   # 하위 유형
-      related_to: []     # 관련 개념
+      # related_to: 금지 — 정밀 관계 타입 사용
     causal:
       requires: []       # 필요 조건
       enables: []        # 가능하게 하는 것
@@ -422,7 +422,7 @@ VUL-INJECT-SQL-001:
         zone: "Z2"
         components: ["Web Application"]
     attack_path:
-      entry: "Zone0-A"
+      entry: "Z0A"
       target: "Z3"
 ```
 

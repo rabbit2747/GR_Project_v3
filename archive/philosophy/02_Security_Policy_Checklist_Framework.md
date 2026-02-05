@@ -15,11 +15,11 @@
 ```yaml
 Component (제품/시스템):
   Primary Coordinate: (Layer, Zone)           # 단일 좌표
-  Function Tags: [M3.1, S2.1, D1.1, ...]     # 다중 기능
+  Function: [M3.1, S2.1, D1.1, ...]     # 다중 기능
 
 Policy Checklist (자동 생성):
   Coordinate Policies: Layer + Zone 기반      # 위치 기반 정책
-  Function Tag Policies: 각 태그별 정책        # 기능 기반 정책
+  Function Policies: 각 태그별 정책        # 기능 기반 정책
   Total Required: 45 policies                 # 필요한 정책 총계
 
 Compliance Status (실제 구현):
@@ -47,7 +47,7 @@ Kubernetes → 여러 좌표 할당 시도
 ```
 Kubernetes → 단일 좌표 + 체크리스트
   Primary Coordinate: (Cross-Layer, Zone 4)
-  Function Tags: [P3.2, R2.2, M7.3, S5.2]
+  Function: [P3.2, R2.2, M7.3, S5.2]
 
   Policy Checklist (자동 생성):
     ✅ Coordinate 기반: 12 policies (Zone 4 필수)
@@ -82,7 +82,7 @@ class ComponentInput:
 ```python
 def generate_policy_checklist(component: ComponentInput) -> PolicyChecklist:
     """
-    컴포넌트의 좌표와 Function Tags로부터
+    컴포넌트의 좌표와 Function로부터
     적용되어야 할 모든 보안 정책을 자동 수집
     """
 
@@ -103,9 +103,9 @@ def generate_policy_checklist(component: ComponentInput) -> PolicyChecklist:
     boundary_policies = get_boundary_policies(layer, zone)
     checklist.add_policies(boundary_policies, category="BOUNDARY", priority="MANDATORY")
 
-    # Step 2: Function Tag 기반 정책 수집
+    # Step 2: Function 기반 정책 수집
     for tag in component.atom_tags:
-        tag_policies = get_function_tag_policies(tag)
+        tag_policies = get_function_policies(tag)
 
         # 태그별 우선순위 결정
         priority = determine_tag_priority(tag, component)
@@ -461,7 +461,7 @@ Component:
 
   Primary Coordinate: (Cross-Layer, Zone 4)
 
-  Function Tags:
+  Function:
     - P3.2: Container Orchestration
     - R2.2: Resource Scheduling
     - M7.3: Cluster Management
@@ -709,7 +709,7 @@ Coordinate Policies (18):
   - Zone: 6/8 (75.0%)
   - Boundary: 4/5 (80.0%)
 
-Function Tag Policies (29):
+Function Policies (29):
   Implemented: 25/29 (86.2%)
   - P3.2: 6/8 (75.0%)
   - R2.2: 5/6 (83.3%)
@@ -831,7 +831,7 @@ Component:
 
   Primary Coordinate: (L3 - Data, Zone 3 - Data/Services)
 
-  Function Tags:
+  Function:
     - D1.1: RDBMS
     - T2.1: PostgreSQL
     - S3.1: TLS Encryption
@@ -1019,7 +1019,7 @@ Coordinate Policies (14):
   - Zone: 5/6 (83.3%)
   - Boundary: 3/3 (100%)
 
-Function Tag Policies (18):
+Function Policies (18):
   Implemented: 14/18 (77.8%)
   - D1.1: 4/5 (80.0%)
   - T2.1: 3/4 (75.0%)
@@ -1307,7 +1307,7 @@ class PolicyVerificationEngine:
 | Category | Total | Implemented | % | Grade |
 |----------|-------|-------------|---|-------|
 | Coordinate Policies | 18 | 14 | 77.8% | C |
-| Function Tag Policies | 29 | 25 | 86.2% | B |
+| Function Policies | 29 | 25 | 86.2% | B |
 
 ### By Priority
 | Priority | Total | Implemented | % | Status |
@@ -1481,7 +1481,7 @@ Week 1-2: Database Schema & API
 
 Week 3-4: 정책 매핑 로직
   - Layer/Zone 정책 매핑 규칙 정의
-  - Function Tag 정책 매핑 구현
+  - Function 정책 매핑 구현
   - 정책 우선순위 및 중복 제거 로직
   - 기본 체크리스트 생성 자동화
 
@@ -1567,7 +1567,7 @@ Deliverables:
    - 운영 복잡도 감소
 
 2. ✅ **여러 기능을 가진 제품의 보안 요구사항 표현**
-   - Function Tags로 다중 역할 표현
+   - Function로 다중 역할 표현
    - 각 Tag별 정책 자동 수집
 
 3. ✅ **정책 구현 수준의 정량적 측정**

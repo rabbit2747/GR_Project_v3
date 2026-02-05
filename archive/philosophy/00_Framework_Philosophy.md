@@ -37,13 +37,13 @@
 **좌표계 기반 자동 추론 시스템 (Coordinate-Based Inference System)**:
 
 ```
-기능 분석 → Function Tags 부여 → (Layer, Zone) 좌표 자동 결정
+기능 분석 → Function 부여 → (Layer, Zone) 좌표 자동 결정
 → 보안 정책 자동 상속 → CVE/MITRE 자동 매핑
 ```
 
 **핵심 아이디어**:
 1. **수직 × 수평 좌표계**: 모든 제품은 2D 좌표 공간에 위치함
-2. **기능이 좌표를 결정**: 제품의 기능(Function Tags)이 좌표를 자동 결정
+2. **기능이 좌표를 결정**: 제품의 기능(Function)이 좌표를 자동 결정
 3. **좌표가 정책을 결정**: 같은 좌표 = 같은 보안 정책 자동 적용
 4. **관계 자동 추론**: 좌표 거리와 경계를 통해 제품 간 보안 관계 파악
 5. **배포 독립성**: 온프레미스든 클라우드든 좌표는 동일
@@ -68,7 +68,7 @@
 │    ← Zone 2 (50%) ← Zone 3 (80%) ← Zone 4 (90%)          │
 │    → Zone 5 (20%)                                         │
 │                                                           │
-│  각 제품 = (Layer, Zone) 좌표 + Function Tags             │
+│  각 제품 = (Layer, Zone) 좌표 + Function             │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -81,7 +81,7 @@ Component: PostgreSQL User Database
     - Layer: L3 (Data)
     - Zone: Zone 3 (Data, 80% Trust)
 
-  Function Tags:
+  Function:
     - D1.1 (RDBMS) - 기능 정의
     - T2.1 (PostgreSQL 15.4) - 구체적 기술 스택
     - S3.1 (TLS 1.3) - 보안 기능
@@ -112,7 +112,7 @@ def determine_coordinates(product):
     # Step 1: 기능 분석
     functions = analyze_product_functions(product)
 
-    # Step 2: Function Tags 매핑
+    # Step 2: Function 매핑
     tags = map_to_atom_tags(functions)
 
     # Step 3: Layer 결정 (기능 기반)
@@ -360,7 +360,7 @@ WHERE lp.layer_id = 'L3' AND zp.zone_id = 'Zone_3';
   1. Layer 공통 정책 (모든 Layer X 제품에 적용)
   2. Zone 공통 정책 (모든 Zone Y 제품에 적용)
   3. Layer × Zone 교집합 정책 (Layer X & Zone Y 제품에 적용)
-  4. Function Tag 특화 정책 (특정 기능에만 적용)
+  4. Function 특화 정책 (특정 기능에만 적용)
   5. 제품별 예외 정책 (개별 제품 특성)
 
 정책 우선순위:
@@ -393,7 +393,7 @@ Step 3: (L3, Zone 3) 교집합 정책 적용
   - GDPR/CCPA 준수
   - 감사 로깅 상세화
 
-Step 4: Function Tag 특화 정책
+Step 4: Function 특화 정책
   - D1.1 (RDBMS): 트랜잭션 로깅
   - T2.1 (PostgreSQL): PostgreSQL 특화 설정
   - S3.1 (TLS): SSL/TLS 버전 제한
@@ -419,7 +419,7 @@ Step 5: CVE 자동 매핑
 ```yaml
 Component: Kubernetes v1.28
   Primary Coordinate: (Cross-Layer, Zone 4)  # 단일 좌표
-  Function Tags: [P3.2, R2.2, M7.3, S5.2]   # 다중 기능
+  Function: [P3.2, R2.2, M7.3, S5.2]   # 다중 기능
 
   Policy Checklist (자동 생성):
     Coordinate 기반: 18 policies
@@ -427,7 +427,7 @@ Component: Kubernetes v1.28
       - Zone policies: 8
       - Boundary policies: 5
 
-    Function Tag 기반: 29 policies
+    Function 기반: 29 policies
       - P3.2 (Container Orchestration): 8 policies
       - R2.2 (Resource Scheduling): 6 policies
       - M7.3 (Cluster Management): 5 policies
@@ -449,7 +449,7 @@ Component: Kubernetes v1.28
 ```python
 def generate_policy_checklist(component):
     """
-    좌표와 Function Tags로부터 필요한 모든 보안 정책 자동 수집
+    좌표와 Function로부터 필요한 모든 보안 정책 자동 수집
     """
     checklist = []
 
@@ -459,9 +459,9 @@ def generate_policy_checklist(component):
     checklist += get_zone_policies(zone)        # Zone 정책
     checklist += get_boundary_policies(layer, zone)  # 경계 정책
 
-    # 2. Function Tag 기반 정책 수집
+    # 2. Function 기반 정책 수집
     for tag in component.atom_tags:
-        checklist += get_function_tag_policies(tag)
+        checklist += get_function_policies(tag)
 
     # 3. 중복 제거 및 우선순위 정렬
     checklist = deduplicate_and_prioritize(checklist)
