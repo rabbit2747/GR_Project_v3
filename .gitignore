@@ -5,3 +5,31 @@
 07_raw_sources/structured/mitre_capec/*.xml
 07_raw_sources/structured/mitre_defend/*.json
 07_raw_sources/structured/nist/*.json
+
+# Atomic Red Team (large zip + extracted)
+07_raw_sources/structured/atomic_redteam/*.zip
+07_raw_sources/structured/atomic_redteam/atomics/
+
+# Sigma Rules
+07_raw_sources/structured/sigma/*.zip
+07_raw_sources/structured/sigma/rules/
+
+# LOLBAS
+07_raw_sources/structured/lolbas/*.zip
+07_raw_sources/structured/lolbas/yml/
+
+# GTFOBins
+07_raw_sources/structured/gtfobins/*.zip
+07_raw_sources/structured/gtfobins/bins/
+
+# RFC (text files)
+07_raw_sources/structured/rfc/*.txt
+
+# OWASP WSTG (many files)
+07_raw_sources/structured/owasp_wstg/
+
+# OWASP Cheat Sheets (many files)
+07_raw_sources/structured/owasp_cheatsheet/
+
+# MITRE ATLAS data
+07_raw_sources/structured/mitre_atlas/

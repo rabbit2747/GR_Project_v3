@@ -74,8 +74,55 @@ curl -sL "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.go
 | capec_latest.xml | 3.7MB | 615 공격 패턴 |
 | nist_sp800-53_rev5.json | 10MB | 20 패밀리, 1,196 통제 |
 
+### 추가 다운로드 (2차 수집)
+
+```bash
+# OWASP Cheat Sheet Series (109개 md)
+git clone --depth 1 https://github.com/OWASP/CheatSheetSeries.git /tmp/cs && cp /tmp/cs/cheatsheets/*.md structured/owasp_cheatsheet/
+
+# OWASP WSTG (156개 md)
+git clone --depth 1 https://github.com/OWASP/wstg.git /tmp/wstg && cp -r /tmp/wstg/document/* structured/owasp_wstg/
+
+# Sigma Rules (3,104개 yml)
+curl -sL "https://github.com/SigmaHQ/sigma/archive/refs/heads/master.zip" -o structured/sigma/sigma-master.zip
+
+# Atomic Red Team (328 ATT&CK 기법, 660 파일)
+curl -sL "https://github.com/redcanaryco/atomic-red-team/archive/refs/heads/master.zip" -o structured/atomic_redteam/atomic-red-team-master.zip
+
+# LOLBAS (230 Windows 바이너리)
+curl -sL "https://github.com/LOLBAS-Project/LOLBAS/archive/refs/heads/master.zip" -o structured/lolbas/lolbas-master.zip
+
+# GTFOBins (468 Linux 바이너리)
+curl -sL "https://github.com/GTFOBins/GTFOBins.github.io/archive/refs/heads/master.zip" -o structured/gtfobins/gtfobins-master.zip
+
+# MITRE ATLAS (AI/ML 보안)
+curl -sL "https://github.com/mitre-atlas/atlas-data/archive/refs/heads/main.zip" -o structured/mitre_atlas/atlas-data.zip
+
+# RFC 핵심 프로토콜 (24개)
+for rfc in 2616 7230 7231 7540 9110 8446 5246 4346 1035 8484 2821 5321 4511 4120 6749 7519 7617 793 768 791 792 826 2460 5905; do
+  curl -sL "https://www.rfc-editor.org/rfc/rfc${rfc}.txt" -o structured/rfc/rfc${rfc}.txt
+done
+```
+
+| 소스 | 파일 수 | 내용 |
+|------|---------|------|
+| OWASP Cheat Sheet Series | 109 | 방어 실무 가이드 |
+| OWASP WSTG | 156 | 웹 보안 테스팅 가이드 |
+| Sigma Rules | 3,104 | 탐지 시그니처 규칙 |
+| Atomic Red Team | 660 | ATT&CK 기법별 테스트 (328 기법) |
+| LOLBAS | 230 | Windows 합법 바이너리 악용 |
+| GTFOBins | 468 | Linux 합법 바이너리 악용 |
+| MITRE ATLAS | 54 | AI/ML 보안 위협 + 완화 + 케이스스터디 |
+| RFC 핵심 프로토콜 | 24 | HTTP, TLS, DNS, TCP, OAuth 등 |
+| SANS/CWE Top 25 | 1 | 위험한 소프트웨어 결함 |
+| CSA Top Threats | 1 | 클라우드 보안 위협 |
+| NVD/CVE | API | 331,213개 접근 가능 (샘플 포함) |
+| OWASP Mobile Top 10 | 1 | 모바일 보안 2024 |
+| OWASP ML Top 10 | 1 | ML 보안 위협 |
+
 ---
 
 ## 주의사항
 - 라이선스 조건 준수 필수
 - 원본 데이터 수정 금지 (읽기 전용 취급)
+- 대용량 파일은 .gitignore에 의해 Git 미포함 (위 명령으로 로컬 다운로드)
