@@ -146,18 +146,22 @@ atom:
         examples: ["Z0A", "Z0B", "Z1", "Z2", "Z3", "Z4", "Z5"]
         
       function:
-        type: array
-        items: string
+        type: string
         pattern: "[A-Z][0-9]+(\\.[0-9]+)*"
+        required_if: "is_infrastructure == true"
         description: |
-          GR Framework Function 태그 (계층적)
-          - 02_framework/GR_DB/03_차원3_Function_Tag/ 참조
-          - 예: ["A2.2", "S3.1", "M8.2"]
-          - 복합 기능 가능 (다중 태그)
+          GR Framework Function 코드 (계층적)
+          - 02_framework/GR_DB/03_차원3_Function/ 참조
+          - 10개 도메인: A(Application), C(Compliance), D(Data), I(Interface),
+            M(Monitoring), N(Networking), P(Platform), R(Resource), S(Security), T(TechStack)
+          - 형식: "{도메인}{카테고리}.{세부}" (예: S11.2, A6.1, N8.1)
         examples:
-          - ["A2.2"]                    # Microservices
-          - ["A2.2", "S2.1", "M2.1"]   # Microservices + Auth + Logging
-          - ["N2.1", "S1.2"]           # Firewall + Encryption
+          - "A3.1"    # RESTful API
+          - "S1.1"    # WAF
+          - "N8.1"    # Firewall
+          - "D1.1"    # RDBMS
+          - "S11.2"   # Security Headers (CSP, CORS, HSTS)
+          - "A6.1"    # Java EE Application Server
 
     # ─────────────────────────────────────────────────────────────
     # 적용 범위 (is_infrastructure: false인 경우만 사용)
@@ -412,6 +416,8 @@ changelog:
       - "type 값 분리: tool → component_tool, tool_knowledge"
       - "type 값 분리: control → component_control, control_policy"
       - "gr_coordinates.tags → gr_coordinates.function (명칭 변경)"
+      - "function 타입 변경: array → string (단일 Function 코드)"
+      - "Function 도메인 확장: S9-S14, A6, C2.4, R6, N9 추가"
       - "scope 필드 추가 (is_infrastructure: false용)"
       - "atom_tags 필드 추가 (모든 원자 공통)"
       - "Zone 패턴 수정: Zone[1-7] → Z(0A|0B|[1-5])"

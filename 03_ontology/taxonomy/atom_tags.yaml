@@ -5,7 +5,7 @@
 #
 # ※ 주의: 이 파일은 "atom_tags"를 정의합니다.
 #   - atom_tags: 원자의 특성 분류 (검색/필터링용)
-#   - Function: 3D 좌표계 3차원 (02_framework/.../Function_Tag/)
+#   - Function: 3D 좌표계 3차원 (02_framework/GR_DB/03_차원3_Function/)
 #   - 둘은 다른 개념입니다!
 
 version: "2.0"

@@ -32,7 +32,7 @@ CREATE TABLE zones (
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
--- 1.3 Function Tag Domain (10개: M, N, S, A, D, R, C, P, T, I)
+-- 1.3 Function Domain (10개: M, N, S, A, D, R, C, P, T, I)
 CREATE TABLE domains (
     id VARCHAR(10) PRIMARY KEY,           -- M, N, S, A, D, R, C, P, T, I
     name VARCHAR(100) NOT NULL,           -- Monitoring, Networking, Security, ...
@@ -44,7 +44,7 @@ CREATE TABLE domains (
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
--- 1.4 Function Tags (280+ tags)
+-- 1.4 Functions (280+ tags)
 CREATE TABLE tags (
     id VARCHAR(20) PRIMARY KEY,           -- M1.1, N1.2, S2.2.3, T2.1, I1.1, ...
     domain_id VARCHAR(10) REFERENCES domains(id),

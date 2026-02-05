@@ -1,5 +1,5 @@
 #!/bin/bash
-# Batch update Function Tags for remaining 27 files
+# Batch update Function for remaining 27 files
 
 update_file() {
     local file="$1"
