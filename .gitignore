@@ -1,0 +1,7 @@
+# Raw source large files
+07_raw_sources/structured/mitre_attack/*.json
+07_raw_sources/structured/mitre_cwe/*.xml
+07_raw_sources/structured/mitre_cwe/*.zip
+07_raw_sources/structured/mitre_capec/*.xml
+07_raw_sources/structured/mitre_defend/*.json
+07_raw_sources/structured/nist/*.json
