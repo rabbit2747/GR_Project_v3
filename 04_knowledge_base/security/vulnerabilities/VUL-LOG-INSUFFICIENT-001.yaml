@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["D"]
+    atom_tags: ["AUTHN", "AUTHZ", "AZURE", "CLOUD", "IOT", "LOG", "PENTEST", "SIEM"]
 
 definition:
   what: |

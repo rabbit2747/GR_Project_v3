@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    atom_tags: ["ATK", "NET", "WIRELESS"]
+    atom_tags: ["CONFIG", "CRYPTO", "EXEC", "NETWORK"]
 
 definition:
   what: |

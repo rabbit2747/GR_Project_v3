@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
-    atom_tags: ["INJ"]
+    atom_tags: ["EXEC", "IMPACT", "INJ", "MSSQL", "MYSQL", "PENTEST", "PGSQL", "SQLITE", "WAF"]
 
 definition:
   what: |

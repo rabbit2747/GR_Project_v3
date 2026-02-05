@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["DEF", "EMAIL", "PREVENT"]
+    atom_tags: ["AUTHN", "SMTP"]
 
 definition:
   what: |

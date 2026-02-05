@@ -19,10 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "D-DB-SQL"
-      - "T-EXPLOIT"
+    atom_tags: ["DISCOV", "EXEC", "INJ"]
 
 definition:
   what: |

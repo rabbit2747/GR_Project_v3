@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z2"
-    atom_tags: ["TECH", "PROTOCOL", "AUTH"]
+    atom_tags: ["AD", "AUTHN", "CRYPTO", "IAM", "KERBEROS", "NETWORK"]
 
 definition:
   what: |

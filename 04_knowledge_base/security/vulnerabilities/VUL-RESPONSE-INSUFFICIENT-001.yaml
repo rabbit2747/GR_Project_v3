@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    atom_tags: ["VUL", "RESPOND", "PROCESS"]
+    atom_tags: []
 
 definition:
   what: |

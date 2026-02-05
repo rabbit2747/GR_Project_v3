@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INFRA", "AUTH", "DIRECTORY"]
+    atom_tags: ["AD", "AUTHN", "LDAP"]
 
 definition:
   what: |

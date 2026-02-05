@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["ATK", "SUPPLY-CHAIN", "TYPO"]
+    atom_tags: ["SSH"]
 
 definition:
   what: |

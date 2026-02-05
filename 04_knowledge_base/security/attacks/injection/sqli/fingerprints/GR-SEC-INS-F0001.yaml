@@ -18,10 +18,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "D-DB-SQL"
-      - "T-RECON"
+    atom_tags: ["INJ", "MYSQL"]
 
 definition:
   what: |

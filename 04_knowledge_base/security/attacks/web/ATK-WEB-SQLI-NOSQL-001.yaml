@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["ATK", "INJECT", "NOSQL"]
+    atom_tags: ["AUTHN", "EXEC", "INJ", "MONGODB", "NOSQL", "WEB"]
 
 definition:
   what: |

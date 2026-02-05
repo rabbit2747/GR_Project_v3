@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z1"
-    atom_tags: ["ATK", "WEB", "DNS"]
+    atom_tags: ["CLOUD", "DNS", "WEB"]
 
 definition:
   what: |

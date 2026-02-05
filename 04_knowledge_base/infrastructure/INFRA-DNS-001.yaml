@@ -21,7 +21,8 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INFRA", "NETWORK", "SERVICE"]
+    function: "N4.1"
+    atom_tags: ["DNS", "NETWORK"]
 
 definition:
   what: |

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
-    atom_tags: ["ATK", "NET", "DOS"]
+    atom_tags: ["DNS", "HTTP", "IMPACT", "NETWORK", "UDP"]
 
 definition:
   what: |

@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INJECT", "DATA"]
+    atom_tags: ["API", "AUTHN", "AUTHZ", "COLLECT", "DESERIAL", "EXEC", "INJ", "LOG", "NETWORK", "PENTEST", "PRIVESC"]
 
 definition:
   what: |

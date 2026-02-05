@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z2"
-    atom_tags: ["INFRA", "NET", "VPN"]
+    atom_tags: ["AUTHN", "CRYPTO", "IAM", "IDS", "LOG", "NETWORK"]
 
 definition:
   what: |

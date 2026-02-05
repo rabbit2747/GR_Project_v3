@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["CONCEPT", "ATTACK", "KERBEROS"]
+    atom_tags: ["AUTHN", "AUTHZ", "COLLECT", "CONFIG", "CRED", "KERBEROS", "LATERAL"]
 
 definition:
   what: |

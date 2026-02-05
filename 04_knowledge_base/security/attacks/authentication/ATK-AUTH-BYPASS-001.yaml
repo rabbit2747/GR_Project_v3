@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["AUTH", "EXPLOIT"]
+    atom_tags: ["AUTHN", "AUTHZ", "IAM", "INJ"]
 
 definition:
   what: |

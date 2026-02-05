@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    atom_tags: ["INFRA", "NET"]
+    atom_tags: ["CONFIG", "FW", "IDS", "LOG", "NETWORK"]
 
 definition:
   what: |

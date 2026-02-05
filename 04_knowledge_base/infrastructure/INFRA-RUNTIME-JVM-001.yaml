@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    atom_tags: ["INFRA", "RUNTIME", "JAVA"]
+    function: "R1"
+    atom_tags: ["CONFIG", "EXEC"]
 
 definition:
   what: |

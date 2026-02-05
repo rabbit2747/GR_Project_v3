@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["ATK", "SOCIAL", "PRETEXT"]
+    atom_tags: ["IAM"]
 
 definition:
   what: |

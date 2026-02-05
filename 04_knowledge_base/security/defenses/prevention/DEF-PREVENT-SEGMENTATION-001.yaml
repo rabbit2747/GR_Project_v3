@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    atom_tags: ["DEF", "PREVENT", "NET"]
+    atom_tags: ["FW", "LATERAL", "NETWORK"]
 
 definition:
   what: |

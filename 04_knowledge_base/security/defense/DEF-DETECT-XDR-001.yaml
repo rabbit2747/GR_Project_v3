@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["DEF", "DETECT", "XDR"]
+    atom_tags: ["CLOUD", "COLLECT", "EDR", "LOG", "NETWORK", "SIEM", "SMTP"]
 
 definition:
   what: |

@@ -23,7 +23,8 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"  # DMZ/Edge
-    atom_tags: ["N", "WEB"]
+    function: "A1"
+    atom_tags: ["HTTP", "LB", "PROXY", "TLS", "WEB"]
 
 definition:
   what: |

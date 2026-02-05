@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
-    atom_tags: ["DEF", "DETECT", "INTEL"]
+    atom_tags: ["COLLECT", "EDR", "LOG", "SIEM"]
 
 definition:
   what: |

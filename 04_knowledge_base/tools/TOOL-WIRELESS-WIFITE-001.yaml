@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z3"
-    atom_tags: ["TOOL", "WIRELESS", "AUTO"]
+    atom_tags: ["DISCOV", "EXEC", "NETWORK", "PENTEST"]
 
 definition:
   what: |

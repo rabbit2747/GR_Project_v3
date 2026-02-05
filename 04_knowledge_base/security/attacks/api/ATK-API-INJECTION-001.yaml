@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
-    atom_tags: ["ATK", "API", "INJECT"]
+    atom_tags: ["API", "AUTHN", "EXFIL", "INJ", "NOSQL"]
 
 definition:
   what: |

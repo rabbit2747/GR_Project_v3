@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    atom_tags: ["ATK", "MITRE", "PRIV-ESC"]
+    atom_tags: ["CONFIG", "DISCOV", "EXEC", "LINUX", "PRIVESC"]
 
 definition:
   what: |

@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    atom_tags: ["D", "WEB", "API"]
+    atom_tags: ["API", "DESERIAL", "HTTP", "INJ", "WEB"]
 
 definition:
   what: |

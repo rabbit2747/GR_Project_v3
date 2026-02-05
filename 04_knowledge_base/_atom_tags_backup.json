@@ -1,0 +1,2821 @@
+{
+  "04_knowledge_base/id_registry.yaml": [],
+  "04_knowledge_base/expansion_plan_v1.yaml": [],
+  "04_knowledge_base/attacks/network/ATK-NET-VLAN-HOPPING-001.yaml": [
+    "ATK",
+    "NETWORK",
+    "LATERAL"
+  ],
+  "04_knowledge_base/attacks/network/ATK-NET-DNS-TUNNELING-001.yaml": [
+    "ATK",
+    "NETWORK",
+    "COVERT"
+  ],
+  "04_knowledge_base/attacks/network/ATK-NET-ARP-SPOOFING-001.yaml": [
+    "ATK",
+    "NETWORK",
+    "MITM"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1190-001.yaml": [
+    "ATK",
+    "MITRE",
+    "INITIAL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1070-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EVASION"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1486-001.yaml": [
+    "ATK",
+    "MITRE",
+    "IMPACT"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1547-001.yaml": [
+    "ATK",
+    "MITRE",
+    "PERSIST"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1003-001.yaml": [
+    "ATK",
+    "MITRE",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1078-001.yaml": [
+    "ATK",
+    "MITRE",
+    "ACCESS"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1021-001.yaml": [
+    "ATK",
+    "MITRE",
+    "LATERAL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1055-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EVASION"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1098-001.yaml": [
+    "ATK",
+    "MITRE",
+    "PERSIST"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1110-001.yaml": [
+    "ATK",
+    "MITRE",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1048-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXFIL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1059-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1041-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXFIL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1566-001.yaml": [
+    "ATK",
+    "MITRE",
+    "INITIAL"
+  ],
+  "04_knowledge_base/attacks/mitre/ATK-MITRE-T1087-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DISCOVERY"
+  ],
+  "04_knowledge_base/attacks/windows/ATK-WIN-PASS-THE-HASH-001.yaml": [
+    "ATK",
+    "WIN",
+    "LATERAL"
+  ],
+  "04_knowledge_base/attacks/windows/ATK-WIN-KERBEROASTING-001.yaml": [
+    "ATK",
+    "AD",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/attacks/windows/ATK-WIN-NTLM-RELAY-001.yaml": [
+    "ATK",
+    "WIN",
+    "NETWORK"
+  ],
+  "04_knowledge_base/attacks/windows/ATK-WIN-GOLDEN-TICKET-001.yaml": [
+    "ATK",
+    "AD",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/attacks/windows/ATK-WIN-ASREP-001.yaml": [
+    "ATK",
+    "AD",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/attacks/linux/ATK-LINUX-PRIV-ESC-001.yaml": [
+    "ATK",
+    "LINUX",
+    "PRIVESC"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-CSRF-001.yaml": [
+    "VUL",
+    "WEB",
+    "SESSION"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-SQLI-001.yaml": [
+    "VUL",
+    "WEB",
+    "OWASP"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-CONFIG-MISCONFIGURATION-001.yaml": [
+    "VUL",
+    "CONFIG",
+    "OWASP"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-RCE-001.yaml": [
+    "VUL",
+    "CRITICAL",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-SSRF-001.yaml": [
+    "VUL",
+    "WEB",
+    "OWASP"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-OPEN-REDIRECT-001.yaml": [
+    "VUL",
+    "WEB",
+    "PHISHING"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-IDOR-001.yaml": [
+    "VUL",
+    "WEB",
+    "ACCESS"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-LFI-001.yaml": [
+    "VUL",
+    "WEB",
+    "FILE"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-XXE-001.yaml": [
+    "VUL",
+    "WEB",
+    "OWASP"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-XSS-001.yaml": [
+    "VUL",
+    "WEB",
+    "OWASP"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-SSTI-001.yaml": [
+    "VUL",
+    "WEB",
+    "RCE"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-AUTH-WEAK-PASSWORD-001.yaml": [
+    "VUL",
+    "AUTH",
+    "PASSWORD"
+  ],
+  "04_knowledge_base/vulnerabilities/VUL-WEB-DESERIALIZATION-001.yaml": [
+    "VUL",
+    "WEB",
+    "OWASP"
+  ],
+  "04_knowledge_base/tools/TOOL-SCANNER-NIKTO-001.yaml": [
+    "TOOL",
+    "SCANNER",
+    "WEB"
+  ],
+  "04_knowledge_base/tools/TOOL-SCANNER-OWASP-ZAP-001.yaml": [
+    "TOOL",
+    "SCANNER",
+    "DAST"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-HASHCAT-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "PASSWORD"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-OWASP-ZAP-001.yaml": [
+    "TOOL",
+    "WEB",
+    "DAST"
+  ],
+  "04_knowledge_base/tools/TOOL-SCANNER-NESSUS-001.yaml": [
+    "TOOL",
+    "SCANNER",
+    "VULN"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-NUCLEI-001.yaml": [
+    "TOOL",
+    "SCAN",
+    "PENTEST"
+  ],
+  "04_knowledge_base/tools/TOOL-RECON-THEHARVESTER-001.yaml": [
+    "TOOL",
+    "RECON",
+    "OSINT"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-OPENVAS-001.yaml": [
+    "TOOL",
+    "SCAN",
+    "VULN"
+  ],
+  "04_knowledge_base/tools/TOOL-OSINT-MALTEGO-001.yaml": [
+    "TOOL",
+    "OSINT",
+    "RECON"
+  ],
+  "04_knowledge_base/tools/TOOL-AD-CERTIPY-001.yaml": [
+    "TOOL",
+    "AD",
+    "CERTIFICATE"
+  ],
+  "04_knowledge_base/tools/TOOL-C2-SLIVER-001.yaml": [
+    "TOOL",
+    "C2",
+    "OPENSOURCE"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-NMAP-001.yaml": [
+    "TOOL",
+    "NET",
+    "SCANNER"
+  ],
+  "04_knowledge_base/tools/TOOL-RECON-SHODAN-001.yaml": [
+    "TOOL",
+    "RECON",
+    "OSINT"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-NESSUS-001.yaml": [
+    "TOOL",
+    "SCAN",
+    "VULN"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-TRIVY-001.yaml": [
+    "TOOL",
+    "CONTAINER",
+    "SCAN"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-RESPONDER-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "NETWORK"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-CRACKMAPEXEC-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "AD"
+  ],
+  "04_knowledge_base/tools/TOOL-API-POSTMAN-001.yaml": [
+    "TOOL",
+    "API",
+    "TEST"
+  ],
+  "04_knowledge_base/tools/TOOL-SCANNER-OPENVAS-001.yaml": [
+    "TOOL",
+    "SCANNER",
+    "OPENSOURCE"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-HYDRA-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "BRUTE"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-IMPACKET-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "NETWORK"
+  ],
+  "04_knowledge_base/tools/TOOL-FORENSIC-VOLATILITY-001.yaml": [
+    "TOOL",
+    "FORENSIC",
+    "MEMORY"
+  ],
+  "04_knowledge_base/tools/TOOL-WIRELESS-AIRCRACK-001.yaml": [
+    "TOOL",
+    "WIRELESS",
+    "PENTEST"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-SQLMAP-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "SQL"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-METASPLOIT-001.yaml": [
+    "TOOL",
+    "EXPLOIT",
+    "PENTEST"
+  ],
+  "04_knowledge_base/tools/TOOL-WIRELESS-WIFITE-001.yaml": [
+    "TOOL",
+    "WIRELESS",
+    "AUTO"
+  ],
+  "04_knowledge_base/tools/TOOL-LINUX-LINPEAS-001.yaml": [
+    "TOOL",
+    "LINUX",
+    "ENUM"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-METASPLOIT-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-BURP-001.yaml": [
+    "TOOL",
+    "WEB",
+    "PENTEST"
+  ],
+  "04_knowledge_base/tools/TOOL-CLOUD-PROWLER-001.yaml": [
+    "TOOL",
+    "CLOUD",
+    "AUDIT"
+  ],
+  "04_knowledge_base/tools/TOOL-SCAN-WIRESHARK-001.yaml": [
+    "TOOL",
+    "NET",
+    "ANALYZER"
+  ],
+  "04_knowledge_base/tools/TOOL-RECON-AMASS-001.yaml": [
+    "TOOL",
+    "RECON",
+    "DNS"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-MIMIKATZ-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-NMAP-001.yaml": [
+    "TOOL",
+    "RECON",
+    "NETWORK"
+  ],
+  "04_knowledge_base/tools/TOOL-CONTAINER-FALCO-001.yaml": [
+    "TOOL",
+    "CONTAINER",
+    "DETECT"
+  ],
+  "04_knowledge_base/tools/TOOL-RECON-SUBFINDER-001.yaml": [
+    "TOOL",
+    "RECON",
+    "SUBDOMAIN"
+  ],
+  "04_knowledge_base/tools/TOOL-AD-BLOODHOUND-001.yaml": [
+    "TOOL",
+    "AD",
+    "RECON"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-RUBEUS-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/tools/TOOL-RECON-HTTPX-001.yaml": [
+    "TOOL",
+    "RECON",
+    "WEB"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-DIRB-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "WEB"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-FFUF-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "FUZZ"
+  ],
+  "04_knowledge_base/tools/TOOL-FORENSIC-AUTOPSY-001.yaml": [
+    "TOOL",
+    "FORENSIC",
+    "DISK"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-JOHN-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "CRACK"
+  ],
+  "04_knowledge_base/tools/TOOL-C2-COBALTSTRIKE-001.yaml": [
+    "TOOL",
+    "C2",
+    "REDTEAM"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-BURPSUITE-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "WEB"
+  ],
+  "04_knowledge_base/tools/TOOL-WINDOWS-WINPEAS-001.yaml": [
+    "TOOL",
+    "WINDOWS",
+    "ENUM"
+  ],
+  "04_knowledge_base/tools/TOOL-PENTEST-GOBUSTER-001.yaml": [
+    "TOOL",
+    "PENTEST",
+    "RECON"
+  ],
+  "04_knowledge_base/compliance/COMP-ISO27001-001.yaml": [
+    "COMP",
+    "STANDARD",
+    "ISMS"
+  ],
+  "04_knowledge_base/compliance/COMP-SOC2-001.yaml": [
+    "COMP",
+    "AUDIT",
+    "CLOUD"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-SOC2-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "AUDIT"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-GDPR-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "PRIVACY"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-PCIDSS-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "PAYMENT"
+  ],
+  "04_knowledge_base/compliance/COMP-PCIDSS-001.yaml": [
+    "COMP",
+    "PAYMENT",
+    "STANDARD"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-NIST-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "NIST"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-ISO27001-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "ISMS"
+  ],
+  "04_knowledge_base/compliance/COMP-GDPR-001.yaml": [
+    "COMP",
+    "PRIVACY",
+    "EU"
+  ],
+  "04_knowledge_base/compliance/COMP-FRAMEWORK-HIPAA-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "HEALTHCARE"
+  ],
+  "04_knowledge_base/compliance/COMP-NIST-CSF-001.yaml": [
+    "COMP",
+    "FRAMEWORK",
+    "US"
+  ],
+  "04_knowledge_base/compliance/COMP-HIPAA-001.yaml": [
+    "COMP",
+    "HEALTHCARE",
+    "US"
+  ],
+  "04_knowledge_base/defenses/DEF-NET-FIREWALL-001.yaml": [
+    "DEF",
+    "PREVENT",
+    "NETWORK"
+  ],
+  "04_knowledge_base/defenses/DEF-CLOUD-CIEM-001.yaml": [
+    "DEF",
+    "CLOUD",
+    "IAM"
+  ],
+  "04_knowledge_base/defenses/DEF-SOAR-001.yaml": [
+    "DEF",
+    "AUTOMATION",
+    "SOC"
+  ],
+  "04_knowledge_base/defenses/DEF-EMAIL-SECURITY-001.yaml": [
+    "DEF",
+    "EMAIL",
+    "PREVENT"
+  ],
+  "04_knowledge_base/defenses/DEF-PATCH-MANAGEMENT-001.yaml": [
+    "DEF",
+    "VULN",
+    "OPERATIONS"
+  ],
+  "04_knowledge_base/defenses/DEF-ENDPOINT-EDR-001.yaml": [
+    "DEF",
+    "DETECT",
+    "ENDPOINT"
+  ],
+  "04_knowledge_base/defenses/DEF-DLP-001.yaml": [
+    "DEF",
+    "DATA",
+    "PREVENT"
+  ],
+  "04_knowledge_base/defenses/DEF-CRYPTO-PKI-001.yaml": [
+    "DEF",
+    "CRYPTO",
+    "AUTH"
+  ],
+  "04_knowledge_base/defenses/DEF-IAM-001.yaml": [
+    "DEF",
+    "AUTH",
+    "ACCESS"
+  ],
+  "04_knowledge_base/defenses/DEF-CASB-001.yaml": [
+    "DEF",
+    "CLOUD",
+    "ACCESS"
+  ],
+  "04_knowledge_base/defenses/DEF-NDR-001.yaml": [
+    "DEF",
+    "DETECT",
+    "NETWORK"
+  ],
+  "04_knowledge_base/defenses/DEF-UEBA-001.yaml": [
+    "DEF",
+    "DETECT",
+    "BEHAVIOR"
+  ],
+  "04_knowledge_base/defenses/DEF-THREAT-INTEL-001.yaml": [
+    "DEF",
+    "INTEL",
+    "PLATFORM"
+  ],
+  "04_knowledge_base/defenses/DEF-AUTH-SSO-001.yaml": [
+    "DEF",
+    "AUTH",
+    "IAM"
+  ],
+  "04_knowledge_base/defenses/DEF-NET-IDS-001.yaml": [
+    "DEF",
+    "DETECT",
+    "NETWORK"
+  ],
+  "04_knowledge_base/defenses/DEF-CLOUD-CWPP-001.yaml": [
+    "DEF",
+    "CLOUD",
+    "WORKLOAD"
+  ],
+  "04_knowledge_base/defenses/DEF-WAF-001.yaml": [
+    "DEF",
+    "WEB",
+    "PREVENT"
+  ],
+  "04_knowledge_base/defenses/DEF-CRYPTO-TLS-001.yaml": [
+    "DEF",
+    "CRYPTO",
+    "NETWORK"
+  ],
+  "04_knowledge_base/defenses/DEF-DECEPTION-001.yaml": [
+    "DEF",
+    "DETECTION",
+    "DECEPTION"
+  ],
+  "04_knowledge_base/defenses/DEF-NET-SEGMENTATION-001.yaml": [
+    "DEF",
+    "NETWORK",
+    "ARCHITECTURE"
+  ],
+  "04_knowledge_base/defenses/DEF-SIEM-001.yaml": [
+    "DEF",
+    "DETECT",
+    "SOC"
+  ],
+  "04_knowledge_base/defenses/DEF-AWARENESS-001.yaml": [
+    "DEF",
+    "HUMAN",
+    "EDUCATION"
+  ],
+  "04_knowledge_base/defenses/DEF-LOGGING-001.yaml": [
+    "DEF",
+    "DETECT",
+    "AUDIT"
+  ],
+  "04_knowledge_base/defenses/DEF-AUTH-MFA-001.yaml": [
+    "DEF",
+    "AUTH",
+    "ACCESS"
+  ],
+  "04_knowledge_base/defenses/DEF-XDR-001.yaml": [
+    "DEF",
+    "DETECT",
+    "UNIFIED"
+  ],
+  "04_knowledge_base/defenses/DEF-BACKUP-001.yaml": [
+    "DEF",
+    "RECOVER",
+    "DATA"
+  ],
+  "04_knowledge_base/technology/languages/TECH-LANG-JAVASCRIPT-001.yaml": [
+    "WEB",
+    "A"
+  ],
+  "04_knowledge_base/technology/languages/TECH-LANG-HTML-001.yaml": [
+    "WEB"
+  ],
+  "04_knowledge_base/technology/languages/TECH-LANG-SQL-001.yaml": [
+    "D"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-TLS-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-KERBEROS-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-SAML-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "AUTH",
+    "SSO"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-LDAP-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "IAM"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-TCP-001.yaml": [
+    "N"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-SMTP-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "EMAIL"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-FTP-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "FILE"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTO-OAUTH-001.yaml": [
+    "TECH",
+    "PROTO",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-HTTP-001.yaml": [
+    "N",
+    "WEB"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-OAUTH-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-OIDC-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "AUTH",
+    "IDENTITY"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTO-SAML-001.yaml": [
+    "TECH",
+    "PROTO",
+    "IDENTITY"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-SSH-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "CRYPTO",
+    "REMOTE"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-DNS-001.yaml": [
+    "TECH",
+    "PROTOCOL",
+    "NET"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTOCOL-HTTPS-001.yaml": [
+    "N",
+    "WEB",
+    "E"
+  ],
+  "04_knowledge_base/technology/protocols/TECH-PROTO-OIDC-001.yaml": [
+    "TECH",
+    "PROTO",
+    "IDENTITY"
+  ],
+  "04_knowledge_base/technology/formats/TECH-FORMAT-JSON-001.yaml": [
+    "D",
+    "WEB",
+    "API"
+  ],
+  "04_knowledge_base/technology/formats/TECH-FORMAT-XML-001.yaml": [
+    "D"
+  ],
+  "04_knowledge_base/technology/formats/TECH-FORMAT-JWT-001.yaml": [
+    "TECH",
+    "FORMAT",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-DATABASE-001.yaml": [
+    "DATA",
+    "INFRA"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-STATE-MGMT-001.yaml": [
+    "TECH",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-FIREWALL-001.yaml": [
+    "SEC",
+    "N",
+    "D"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-NETWORK-ATTACK-001.yaml": [
+    "ATK",
+    "N"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-DATA-FORMAT-001.yaml": [
+    "TECH",
+    "DATA"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-QUERY-LANG-001.yaml": [
+    "TECH",
+    "DATA",
+    "DB"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-SHELL-001.yaml": [
+    "S"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-CLIENT-ATTACK-001.yaml": [
+    "ATK",
+    "WEB",
+    "CLIENT"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-MITRE-ATTACK-001.yaml": [
+    "TECH",
+    "FRAMEWORK",
+    "TTP"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-THREAT-HUNTING-001.yaml": [
+    "CONCEPT",
+    "DETECT",
+    "PROACTIVE"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-PROTOCOL-001.yaml": [
+    "N",
+    "TECH"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-APPLICATION-001.yaml": [
+    "APP",
+    "INFRA"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-DEFENSE-001.yaml": [
+    "SEC",
+    "D"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-REST-001.yaml": [
+    "TECH",
+    "API",
+    "REST"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-OSINT-001.yaml": [
+    "TECH",
+    "CONCEPT",
+    "RECON"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-BROWSER-001.yaml": [
+    "WEB",
+    "CLIENT"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-ENCRYPTION-001.yaml": [
+    "TECH",
+    "CRYPTO",
+    "SECURITY"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-CTI-001.yaml": [
+    "CONCEPT",
+    "INTEL",
+    "THREAT"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-SECURE-SDLC-001.yaml": [
+    "CONCEPT",
+    "DEVSECOPS",
+    "PROCESS"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-MIDDLEWARE-001.yaml": [
+    "TECH",
+    "INFRA"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-GRAPHQL-001.yaml": [
+    "TECH",
+    "API",
+    "GRAPHQL"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-THREAT-MODEL-001.yaml": [
+    "TECH",
+    "CONCEPT",
+    "DESIGN"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-AD-SECURITY-001.yaml": [
+    "TECH",
+    "CONCEPT",
+    "AD"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-MARKUP-001.yaml": [
+    "TECH",
+    "WEB"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-COOKIE-001.yaml": [
+    "WEB",
+    "A"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-RED-TEAM-001.yaml": [
+    "CONCEPT",
+    "OFFENSE",
+    "ASSESSMENT"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-CERTIFICATE-001.yaml": [
+    "SEC",
+    "E"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-COMPLIANCE-001.yaml": [
+    "TECH",
+    "COMPLIANCE",
+    "FRAMEWORK"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-BUG-BOUNTY-001.yaml": [
+    "CONCEPT",
+    "VULN",
+    "PROGRAM"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-NETWORK-DEVICE-001.yaml": [
+    "N",
+    "INFRA"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-SERVER-001.yaml": [
+    "INFRA",
+    "SRV"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-PROGRAMMING-LANG-001.yaml": [
+    "TECH",
+    "DEV"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-SERVER-ATTACK-001.yaml": [
+    "ATK",
+    "SRV"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-DOM-001.yaml": [
+    "WEB"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-PENTESTING-001.yaml": [
+    "TECH",
+    "CONCEPT",
+    "TEST"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-PKI-001.yaml": [
+    "TECH",
+    "CRYPTO",
+    "PKI"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-BLUE-TEAM-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "SOC"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-DEVSECOPS-001.yaml": [
+    "TECH",
+    "PROCESS",
+    "DEVSECOPS"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-SESSION-001.yaml": [
+    "WEB",
+    "A"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-AUTH-ATTACK-001.yaml": [
+    "ATK",
+    "AUTH"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-OS-001.yaml": [
+    "INFRA",
+    "SYS"
+  ],
+  "04_knowledge_base/technology/concepts/TECH-CONCEPT-VULNERABILITY-001.yaml": [
+    "SEC"
+  ],
+  "04_knowledge_base/security/attacks/container/ATK-CONTAINER-ESCAPE-001.yaml": [
+    "ATK",
+    "CONTAINER",
+    "PRIV-ESC"
+  ],
+  "04_knowledge_base/security/attacks/container/ATK-K8S-RBAC-001.yaml": [
+    "ATK",
+    "K8S",
+    "PRIV-ESC"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-DNSSPOOF-001.yaml": [
+    "ATK",
+    "NET",
+    "DNS"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-ARPSPOOF-001.yaml": [
+    "ATK",
+    "NET",
+    "SPOOF"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-BGP-HIJACK-001.yaml": [
+    "ATK",
+    "NET",
+    "ROUTING"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-SYN-FLOOD-001.yaml": [
+    "ATK",
+    "NET",
+    "DOS"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-VLANHOPPING-001.yaml": [
+    "ATK",
+    "NET",
+    "VLAN"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-MITM-001.yaml": [
+    "EXPLOIT",
+    "NET"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-ICMP-001.yaml": [
+    "ATK",
+    "NET",
+    "ICMP"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-DDOS-001.yaml": [
+    "ATK",
+    "NET",
+    "DOS"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-REPLAY-001.yaml": [
+    "ATK",
+    "NET",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-PHISHING-001.yaml": [
+    "ATK",
+    "SOCIAL",
+    "PHISHING"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-WIRELESS-001.yaml": [
+    "ATK",
+    "NET",
+    "WIRELESS"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-DNS-001.yaml": [
+    "ATK",
+    "NET",
+    "DNS"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-SNIFF-001.yaml": [
+    "ATK",
+    "NET",
+    "RECON"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-SSL-STRIP-001.yaml": [
+    "ATK",
+    "NET",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/security/attacks/network/ATK-NET-ARP-001.yaml": [
+    "ATK",
+    "NET",
+    "ARP"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1053-001.yaml": [
+    "ATK",
+    "MITRE",
+    "PERSISTENCE"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-COLLECTION-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1105-001.yaml": [
+    "ATK",
+    "MITRE",
+    "C2"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1071-001.yaml": [
+    "ATK",
+    "MITRE",
+    "C2"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1218-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DEF-EVASION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1082-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DISCOVERY"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-PRIV-ESC-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1486-001.yaml": [
+    "ATK",
+    "MITRE",
+    "IMPACT"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1569-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-LATERAL-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1003-001.yaml": [
+    "ATK",
+    "MITRE",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1036-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DEF-EVASION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1204-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1078-001.yaml": [
+    "ATK",
+    "MITRE",
+    "INITIAL-ACCESS"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1021-001.yaml": [
+    "ATK",
+    "MITRE",
+    "LATERAL"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1027-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DEF-EVASION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1136-001.yaml": [
+    "ATK",
+    "MITRE",
+    "PERSISTENCE"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1047-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1497-001.yaml": [
+    "ATK",
+    "MITRE",
+    "DEF-EVASION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1055-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EVASION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1548-001.yaml": [
+    "ATK",
+    "MITRE",
+    "PRIV-ESC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-DISCOVERY-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-CRED-ACCESS-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1110-001.yaml": [
+    "ATK",
+    "MITRE",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-INIT-ACCESS-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-PERSISTENCE-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1059-001.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-EXECUTION-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1059-003.yaml": [
+    "ATK",
+    "MITRE",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-T1566-001.yaml": [
+    "ATK",
+    "MITRE",
+    "INITIAL-ACCESS"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-DEF-EVASION-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-EXFILTRATION-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/mitre/ATK-MITRE-C2-001.yaml": [
+    "ATK",
+    "MITRE",
+    "TACTIC"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-SILVER-TICKET-001.yaml": [
+    "ATK",
+    "WIN",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-PASS-THE-HASH-001.yaml": [
+    "ATK",
+    "WIN",
+    "NTLM"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-KERBEROASTING-001.yaml": [
+    "ATK",
+    "WIN",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-DCSYNC-001.yaml": [
+    "ATK",
+    "WIN",
+    "AD"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-GOLDEN-TICKET-001.yaml": [
+    "ATK",
+    "WIN",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/security/attacks/windows/ATK-WIN-ASREP-001.yaml": [
+    "ATK",
+    "WIN",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/security/attacks/api/ATK-API-INJECTION-001.yaml": [
+    "ATK",
+    "API",
+    "INJECT"
+  ],
+  "04_knowledge_base/security/attacks/api/ATK-API-RATE-LIMIT-001.yaml": [
+    "ATK",
+    "API",
+    "BYPASS"
+  ],
+  "04_knowledge_base/security/attacks/api/ATK-API-BOLA-001.yaml": [
+    "ATK",
+    "API",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/attacks/api/ATK-API-MASS-ASSIGN-001.yaml": [
+    "ATK",
+    "API",
+    "INJECTION"
+  ],
+  "04_knowledge_base/security/attacks/mobile/ATK-MOBILE-HOOK-001.yaml": [
+    "ATK",
+    "MOBILE",
+    "HOOK"
+  ],
+  "04_knowledge_base/security/attacks/mobile/ATK-MOBILE-ROOT-001.yaml": [
+    "ATK",
+    "MOBILE",
+    "BYPASS"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-SQLI-NOSQL-001.yaml": [
+    "ATK",
+    "INJECT",
+    "NOSQL"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-PROTO-POLLUTION-001.yaml": [
+    "ATK",
+    "WEB",
+    "JAVASCRIPT"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-CLICKJACKING-001.yaml": [
+    "ATK",
+    "WEB",
+    "CLIENT"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-WEBSOCKET-001.yaml": [
+    "ATK",
+    "WEB",
+    "WEBSOCKET"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-FILE-UPLOAD-001.yaml": [
+    "ATK",
+    "WEB",
+    "UPLOAD"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-OPEN-REDIRECT-001.yaml": [
+    "ATK",
+    "WEB",
+    "REDIRECT"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-SUBDOMAIN-TAKEOVER-001.yaml": [
+    "ATK",
+    "WEB",
+    "DNS"
+  ],
+  "04_knowledge_base/security/attacks/web/ATK-WEB-SSTI-001.yaml": [
+    "ATK",
+    "WEB",
+    "INJECTION"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-LDAP-001.yaml": [
+    "ATK",
+    "INJECT",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-XML-001.yaml": [
+    "INJ",
+    "EXPLOIT",
+    "WEB",
+    "API"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-XSS-001.yaml": [
+    "INJ",
+    "EXPLOIT",
+    "WEB",
+    "XSS"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-CMD-001.yaml": [
+    "INJ",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-SQL-001.yaml": [
+    "INJ",
+    "EXPLOIT",
+    "WEB",
+    "API"
+  ],
+  "04_knowledge_base/security/attacks/injection/ATK-INJECT-HEADER-001.yaml": [
+    "ATK",
+    "INJECT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0003.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-RECON"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0001.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-RECON"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/fingerprints/GR-SEC-INS-F0002.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-RECON"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/payloads/GR-SEC-INS-P0001.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-DETECT",
+    "'",
+    "''",
+    "'''",
+    "\\"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/payloads/GR-SEC-INS-P0005.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/payloads/GR-SEC-INS-P0002.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-DETECT",
+    "' OR '1'='1",
+    "\\",
+    "' OR 1=1--",
+    "' OR 1=1#",
+    "') OR ('1'='1"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/payloads/GR-SEC-INS-P0003.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-DETECT",
+    "' AND SLEEP(5)--",
+    "' AND SLEEP(5)#",
+    "' OR SLEEP(5)--",
+    "' AND IF(1=1,SLEEP(5),0)--"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/payloads/GR-SEC-INS-P0004.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-EXPLOIT",
+    "' ORDER BY 1--",
+    "' ORDER BY 2--",
+    "' ORDER BY 5--",
+    "' ORDER BY 10--"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00001.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-EXFIL"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00007.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-PERSIST"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00002.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-BLIND"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00003.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-BLIND"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00010.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-EVA-BYPASS"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00006.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-EXFIL",
+    "T-NET-OOB"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00004.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-EXFIL"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00005.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-ATK-MODIFY"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00009.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-EVA-BYPASS"
+  ],
+  "04_knowledge_base/security/attacks/injection/sqli/techniques/GR-SEC-TEC-00008.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "T-EVA-BYPASS"
+  ],
+  "04_knowledge_base/security/attacks/physical/ATK-PHYSICAL-BADUSB-001.yaml": [
+    "ATK",
+    "PHYSICAL",
+    "USB"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-IDOR-001.yaml": [
+    "ATK",
+    "ACCESS",
+    "API"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-LFI-001.yaml": [
+    "ATK",
+    "FILE",
+    "PATH"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-RFI-001.yaml": [
+    "EXPLOIT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-DESER-001.yaml": [
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-FILEUPLOAD-001.yaml": [
+    "EXPLOIT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-PATH-001.yaml": [
+    "EXPLOIT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/server-side/ATK-SERVER-SSRF-001.yaml": [
+    "EXPLOIT",
+    "WEB",
+    "API"
+  ],
+  "04_knowledge_base/security/attacks/supply-chain/ATK-SUPPLY-DEPENDENCY-001.yaml": [
+    "ATK",
+    "SUPPLY-CHAIN",
+    "DEPENDENCY"
+  ],
+  "04_knowledge_base/security/attacks/supply-chain/ATK-SUPPLY-TYPOSQUAT-001.yaml": [
+    "ATK",
+    "SUPPLY-CHAIN",
+    "TYPO"
+  ],
+  "04_knowledge_base/security/attacks/social/ATK-SOCIAL-PRETEXTING-001.yaml": [
+    "ATK",
+    "SOCIAL",
+    "PRETEXT"
+  ],
+  "04_knowledge_base/security/attacks/social/ATK-SOCIAL-PHISHING-001.yaml": [
+    "ATK",
+    "SOCIAL",
+    "PHISHING"
+  ],
+  "04_knowledge_base/security/attacks/cloud/ATK-CLOUD-STORAGE-001.yaml": [
+    "ATK",
+    "CLOUD",
+    "STORAGE"
+  ],
+  "04_knowledge_base/security/attacks/cloud/ATK-CLOUD-LAMBDA-001.yaml": [
+    "ATK",
+    "CLOUD",
+    "SERVERLESS"
+  ],
+  "04_knowledge_base/security/attacks/cloud/ATK-CLOUD-PRIVESC-001.yaml": [
+    "ATK",
+    "CLOUD",
+    "PRIVESC"
+  ],
+  "04_knowledge_base/security/attacks/cloud/ATK-CLOUD-METADATA-001.yaml": [
+    "ATK",
+    "CLOUD",
+    "METADATA"
+  ],
+  "04_knowledge_base/security/attacks/cloud/ATK-CLOUD-IMDS-001.yaml": [
+    "ATK",
+    "CLOUD",
+    "SSRF"
+  ],
+  "04_knowledge_base/security/attacks/client-side/ATK-WEB-OPENREDIR-001.yaml": [
+    "ATK",
+    "WEB",
+    "PHISHING"
+  ],
+  "04_knowledge_base/security/attacks/client-side/ATK-WEB-CLICKJACK-001.yaml": [
+    "EXPLOIT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/iot/ATK-IOT-FIRMWARE-001.yaml": [
+    "ATK",
+    "IOT",
+    "FIRMWARE"
+  ],
+  "04_knowledge_base/security/attacks/crypto/ATK-CRYPTO-WEAK-001.yaml": [
+    "ATK",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/security/attacks/crypto/ATK-CRYPTO-BEAST-001.yaml": [
+    "ATK",
+    "CRYPTO",
+    "TLS"
+  ],
+  "04_knowledge_base/security/attacks/crypto/ATK-CRYPTO-PADDING-ORACLE-001.yaml": [
+    "ATK",
+    "CRYPTO",
+    "ORACLE"
+  ],
+  "04_knowledge_base/security/attacks/crypto/ATK-CRYPTO-DOWNGRADE-001.yaml": [
+    "ATK",
+    "CRYPTO",
+    "NET"
+  ],
+  "04_knowledge_base/security/attacks/crypto/ATK-CRYPTO-POODLE-001.yaml": [
+    "ATK",
+    "CRYPTO",
+    "SSL"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-TROJAN-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "TROJAN"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-RANSOMWARE-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "RANSOMWARE"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-KEYLOGGER-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-WORM-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "WORM"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-ROOTKIT-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "STEALTH"
+  ],
+  "04_knowledge_base/security/attacks/malware/ATK-MALWARE-BOTNET-001.yaml": [
+    "ATK",
+    "MALWARE",
+    "BOTNET"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-SESSION-HIJACK-001.yaml": [
+    "AUTH",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-AUTH-CREDSTUFF-001.yaml": [
+    "AUTH",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-AUTH-BRUTEFORCE-001.yaml": [
+    "AUTH",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-SESSION-FIXATION-001.yaml": [
+    "ATK",
+    "AUTH",
+    "SESSION"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-AUTH-CSRF-001.yaml": [
+    "AUTH",
+    "EXPLOIT",
+    "WEB"
+  ],
+  "04_knowledge_base/security/attacks/authentication/ATK-AUTH-BYPASS-001.yaml": [
+    "AUTH",
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/attacks/reconnaissance/ATK-RECON-SCAN-001.yaml": [
+    "ATK",
+    "RECON",
+    "NET"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-DESER-INSECURE-001.yaml": [
+    "INJECT",
+    "DATA"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-PATH-TRAVERSAL-001.yaml": [
+    "INJECT",
+    "FILE"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-AUTH-PASSWORD-001.yaml": [
+    "VUL",
+    "AUTH",
+    "PASSWORD"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-MOBILE-STORAGE-001.yaml": [
+    "VUL",
+    "MOBILE",
+    "STORAGE"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-WEB-SSRF-001.yaml": [
+    "VUL",
+    "WEB",
+    "SSRF"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-WEB-CACHE-001.yaml": [
+    "VUL",
+    "WEB",
+    "CACHE"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-WEB-BUSINESS-LOGIC-001.yaml": [
+    "VUL",
+    "WEB",
+    "LOGIC"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-CRYPTO-WEAK-001.yaml": [
+    "CRYPTO"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-SSRF-001.yaml": [
+    "SSRF",
+    "WEB"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-ACCESS-BROKEN-001.yaml": [
+    "AUTHZ"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-API-BFLA-001.yaml": [
+    "VUL",
+    "API",
+    "AUTHZ"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-AUTH-BROKEN-001.yaml": [
+    "AUTH"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-WEB-RACE-001.yaml": [
+    "VUL",
+    "WEB",
+    "RACE"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-CLOUD-IAM-001.yaml": [
+    "VUL",
+    "CLOUD",
+    "IAM"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-API-EXCESSIVE-DATA-001.yaml": [
+    "VUL",
+    "API",
+    "DATA"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-IOT-HARDCODED-001.yaml": [
+    "VUL",
+    "IOT",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-INJECT-CMD-001.yaml": [
+    "INJ",
+    "OS"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-INJECT-XSS-001.yaml": [
+    "XSS",
+    "WEB"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-COMPONENT-VULN-001.yaml": [
+    "SUPPLY-CHAIN",
+    "DEPENDENCY"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-RESPONSE-INSUFFICIENT-001.yaml": [
+    "VUL",
+    "RESPOND",
+    "PROCESS"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-WEB-CORS-001.yaml": [
+    "VUL",
+    "WEB",
+    "CORS"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-INJECT-SQL-001.yaml": [
+    "INJ",
+    "WEB"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-CLOUD-MISCONFIG-001.yaml": [
+    "VUL",
+    "CLOUD",
+    "CONFIG"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-API-BOLA-001.yaml": [
+    "VUL",
+    "API",
+    "AUTHZ"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-DATA-EXPOSURE-001.yaml": [
+    "CRYPTO"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-CONFIG-MISCONFIG-001.yaml": [
+    "CONFIG"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-AUTH-SESSION-001.yaml": [
+    "AUTH"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-MONITORING-INSUFFICIENT-001.yaml": [
+    "VUL",
+    "DETECT",
+    "MONITOR"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-XXE-001.yaml": [
+    "INJECT",
+    "XML"
+  ],
+  "04_knowledge_base/security/vulnerabilities/VUL-LOG-INSUFFICIENT-001.yaml": [
+    "D"
+  ],
+  "04_knowledge_base/security/tools/TOOL-OFFENSE-METASPLOIT-001.yaml": [
+    "EXPLOIT"
+  ],
+  "04_knowledge_base/security/tools/TOOL-AUDIT-WIRESHARK-001.yaml": [
+    "NET",
+    "RECON"
+  ],
+  "04_knowledge_base/security/tools/TOOL-AUDIT-SAST-001.yaml": [
+    "TOOL",
+    "AUDIT",
+    "SAST"
+  ],
+  "04_knowledge_base/security/tools/TOOL-OFFENSE-BURP-001.yaml": [
+    "WEB"
+  ],
+  "04_knowledge_base/security/tools/TOOL-OFFENSE-ZAP-001.yaml": [
+    "WEB"
+  ],
+  "04_knowledge_base/security/tools/TOOL-DEFENSE-MODSEC-001.yaml": [
+    "D",
+    "P"
+  ],
+  "04_knowledge_base/security/tools/TOOL-DEFENSE-EDR-001.yaml": [
+    "TOOL",
+    "DEFENSE",
+    "ENDPOINT"
+  ],
+  "04_knowledge_base/security/tools/TOOL-AUDIT-DAST-001.yaml": [
+    "TOOL",
+    "AUDIT",
+    "DAST"
+  ],
+  "04_knowledge_base/security/tools/TOOL-OFFENSE-COBALT-001.yaml": [
+    "TOOL",
+    "OFFENSE",
+    "C2"
+  ],
+  "04_knowledge_base/security/tools/TOOL-AUDIT-NIKTO-001.yaml": [
+    "WEB",
+    "RECON"
+  ],
+  "04_knowledge_base/security/tools/TOOL-OFFENSE-SQLMAP-001.yaml": [
+    "INJ"
+  ],
+  "04_knowledge_base/security/tools/TOOL-AUDIT-NMAP-001.yaml": [
+    "RECON"
+  ],
+  "04_knowledge_base/security/tools/TOOL-DEFENSE-SIEM-001.yaml": [
+    "TOOL",
+    "DEFENSE",
+    "MONITORING"
+  ],
+  "04_knowledge_base/security/defense/DEF-MONITOR-LOGGING-001.yaml": [
+    "DEF",
+    "MONITOR",
+    "LOG"
+  ],
+  "04_knowledge_base/security/defense/DEF-NET-FIREWALL-001.yaml": [
+    "DEF",
+    "NET",
+    "FIREWALL"
+  ],
+  "04_knowledge_base/security/defense/DEF-WIN-CREDENTIAL-GUARD-001.yaml": [
+    "DEF",
+    "WIN",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/security/defense/DEF-DEVSECOPS-SAST-001.yaml": [
+    "DEF",
+    "DEVSECOPS",
+    "ANALYSIS"
+  ],
+  "04_knowledge_base/security/defense/DEF-RESPOND-INCIDENT-001.yaml": [
+    "DEF",
+    "RESPOND",
+    "INCIDENT"
+  ],
+  "04_knowledge_base/security/defense/DEF-DETECT-XDR-001.yaml": [
+    "DEF",
+    "DETECT",
+    "XDR"
+  ],
+  "04_knowledge_base/security/defense/DEF-PREVENT-DLP-001.yaml": [
+    "DEF",
+    "PREVENT",
+    "DLP"
+  ],
+  "04_knowledge_base/security/defense/DEF-DETECT-SOAR-001.yaml": [
+    "DEF",
+    "DETECT",
+    "SOAR"
+  ],
+  "04_knowledge_base/security/defense/DEF-FORENSIC-MEMORY-001.yaml": [
+    "DEF",
+    "FORENSIC",
+    "MEMORY"
+  ],
+  "04_knowledge_base/security/defense/DEF-CONTAINER-RUNTIME-001.yaml": [
+    "DEF",
+    "CONTAINER",
+    "RUNTIME"
+  ],
+  "04_knowledge_base/security/defense/DEF-NET-IDS-001.yaml": [
+    "DEF",
+    "NET",
+    "DETECT"
+  ],
+  "04_knowledge_base/security/defense/DEF-NET-RPKI-001.yaml": [
+    "DEF",
+    "NET",
+    "PKI"
+  ],
+  "04_knowledge_base/security/defense/DEF-WIN-ASR-001.yaml": [
+    "DEF",
+    "WIN",
+    "ENDPOINT"
+  ],
+  "04_knowledge_base/security/defense/DEF-FORENSIC-DISK-001.yaml": [
+    "DEF",
+    "FORENSIC",
+    "DISK"
+  ],
+  "04_knowledge_base/security/defense/DEF-AUTH-PAM-001.yaml": [
+    "DEF",
+    "AUTH",
+    "IDENTITY"
+  ],
+  "04_knowledge_base/security/defense/DEF-K8S-NETWORK-POLICY-001.yaml": [
+    "DEF",
+    "K8S",
+    "NET"
+  ],
+  "04_knowledge_base/security/defense/DEF-PREVENT-CASB-001.yaml": [
+    "DEF",
+    "CLOUD",
+    "CASB"
+  ],
+  "04_knowledge_base/security/defense/DEF-FORENSIC-NETWORK-001.yaml": [
+    "DEF",
+    "FORENSIC",
+    "NET"
+  ],
+  "04_knowledge_base/security/defense/DEF-PREVENT-HSTS-001.yaml": [
+    "DEF",
+    "WEB",
+    "TRANSPORT"
+  ],
+  "04_knowledge_base/security/defense/DEF-CLOUD-POSTURE-001.yaml": [
+    "DEF",
+    "CLOUD",
+    "COMPLIANCE"
+  ],
+  "04_knowledge_base/security/defense/DEF-PREVENT-CERT-PINNING-001.yaml": [
+    "DEF",
+    "CRYPTO",
+    "TLS"
+  ],
+  "04_knowledge_base/security/defense/DEF-DEVSECOPS-DAST-001.yaml": [
+    "DEF",
+    "DEVSECOPS",
+    "TEST"
+  ],
+  "04_knowledge_base/security/defense/DEF-WIN-LAPS-001.yaml": [
+    "DEF",
+    "WIN",
+    "PASSWORD"
+  ],
+  "04_knowledge_base/security/defense/DEF-DEVSECOPS-SCA-001.yaml": [
+    "DEF",
+    "DEVSECOPS",
+    "SUPPLY"
+  ],
+  "04_knowledge_base/security/defenses/respond/DEF-RESPOND-FORENSICS-001.yaml": [
+    "DEF",
+    "RESPOND",
+    "FORENSICS"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-LOGGING-001.yaml": [
+    "D",
+    "M"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-MONITORING-001.yaml": [
+    "D",
+    "M"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-IDS-001.yaml": [
+    "D"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-THREAT-INTEL-001.yaml": [
+    "DEF",
+    "DETECT",
+    "INTEL"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-ANOMALY-001.yaml": [
+    "D"
+  ],
+  "04_knowledge_base/security/defenses/detection/DEF-DETECT-WAF-001.yaml": [
+    "D",
+    "WEB"
+  ],
+  "04_knowledge_base/security/defenses/response/DEF-RESPOND-INCIDENT-001.yaml": [
+    "R"
+  ],
+  "04_knowledge_base/security/defenses/response/DEF-RESPOND-QUARANTINE-001.yaml": [
+    "R",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/defenses/response/DEF-RESPOND-BLOCK-001.yaml": [
+    "R",
+    "P"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-RATELIMIT-001.yaml": [
+    "P",
+    "D"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-SANDBOX-001.yaml": [
+    "P"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-CSRF-TOKEN-001.yaml": [
+    "P",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-ZERO-TRUST-001.yaml": [
+    "DEF",
+    "ARCHITECTURE",
+    "FRAMEWORK"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-API-AUTH-001.yaml": [
+    "DEF",
+    "API",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-CORS-001.yaml": [
+    "P",
+    "WEB"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-OUTPUTENC-001.yaml": [
+    "P",
+    "XSS"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-WAF-RULES-001.yaml": [
+    "DEF",
+    "PREVENT",
+    "WAF"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-MFA-001.yaml": [
+    "P",
+    "AUTH"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-INPUTVAL-001.yaml": [
+    "P"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-CSP-001.yaml": [
+    "P",
+    "XSS"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-ENCRYPT-001.yaml": [
+    "P",
+    "E"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-SECRETS-001.yaml": [
+    "DEF",
+    "PREVENT",
+    "SECRETS"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-HTTPS-001.yaml": [
+    "P",
+    "E"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-SEGMENTATION-001.yaml": [
+    "DEF",
+    "PREVENT",
+    "NET"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-HEADERS-001.yaml": [
+    "P",
+    "WEB"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-API-GATEWAY-001.yaml": [
+    "DEF",
+    "API",
+    "GATEWAY"
+  ],
+  "04_knowledge_base/security/defenses/prevention/DEF-PREVENT-PARAMQUERY-001.yaml": [
+    "P",
+    "INJ"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-CON-00002.yaml": [
+    "S-VUL-INJ",
+    "D-DB-SQL",
+    "A-WEB-API"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-DEF-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-TOOL-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-MITRE-ATTACK-001.yaml": [
+    "CONCEPT",
+    "FRAMEWORK",
+    "THREAT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-LEAST-PRIVILEGE-001.yaml": [
+    "CONCEPT",
+    "PRINCIPLE",
+    "ACCESS"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-ATTACK-SURFACE-001.yaml": [
+    "CONCEPT",
+    "OPERATIONS",
+    "RECON"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-COMP-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-OSINT-001.yaml": [
+    "CONCEPT",
+    "RECON",
+    "INTEL"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-PROTOCOL-001.yaml": [
+    "CONCEPT",
+    "PROTOCOL",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-ENCRYPTION-001.yaml": [
+    "CONCEPT",
+    "CRYPTO",
+    "DATA"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-SOC-001.yaml": [
+    "CONCEPT",
+    "OPERATIONS",
+    "DEFENSE"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-INFRA-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-VULNERABILITY-MANAGEMENT-001.yaml": [
+    "CONCEPT",
+    "OPERATIONS",
+    "VULN"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-DEFENSE-IN-DEPTH-001.yaml": [
+    "CONCEPT",
+    "PRINCIPLE",
+    "ARCHITECTURE"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-SUPPLY-CHAIN-SECURITY-001.yaml": [
+    "CONCEPT",
+    "SUPPLY",
+    "RISK"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-VULN-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-ZERO-TRUST-001.yaml": [
+    "CONCEPT",
+    "ARCHITECTURE",
+    "MODERN"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-FORENSICS-001.yaml": [
+    "CONCEPT",
+    "FORENSICS",
+    "INVESTIGATION"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-ATK-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-INCIDENT-RESPONSE-001.yaml": [
+    "CONCEPT",
+    "OPERATIONS",
+    "RESPONSE"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-CRYPTO-001.yaml": [
+    "CONCEPT",
+    "CRYPTO",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-PENTESTING-001.yaml": [
+    "CONCEPT",
+    "OFFENSE",
+    "ASSESSMENT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-BAS-001.yaml": [
+    "CONCEPT",
+    "TESTING",
+    "AUTOMATION"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-MALWARE-001.yaml": [
+    "CONCEPT",
+    "MALWARE",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-THREAT-MODELING-001.yaml": [
+    "CONCEPT",
+    "SECURITY",
+    "DESIGN"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-CONCEPT-001.yaml": [
+    "CONCEPT",
+    "THEORY",
+    "ROOT"
+  ],
+  "04_knowledge_base/concepts/TECH-CONCEPT-PURPLE-TEAM-001.yaml": [
+    "CONCEPT",
+    "TEAM",
+    "ASSESSMENT"
+  ],
+  "04_knowledge_base/concepts/GR-SEC-CON-00001.yaml": [
+    "S-VUL-INJ",
+    "OWASP-A03"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-NETWORK-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "NETWORK"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-WIN-PRIV-ESC-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "WINDOWS",
+    "PRIVESC"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-MOBILE-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "MOBILE"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-INITIAL-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "INITIAL"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-EXFIL-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "EXFIL"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-KERBEROS-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "KERBEROS"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-EVASION-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "EVASION"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-WEB-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "WEB"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-LATERAL-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "LATERAL"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-PERSISTENCE-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "PERSISTENCE"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-PRIVILEGE-ESCALATION-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "PRIVESC"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-CRYPTO-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-CLOUD-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "CLOUD"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-INJECTION-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "INJECTION"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-SUPPLY-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "SUPPLY"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-EXECUTION-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "EXECUTION"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-PHISHING-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "PHISHING"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-SOCIAL-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "SOCIAL"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-IOT-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "IOT"
+  ],
+  "04_knowledge_base/concepts/attacks/ATK-MITRE-CREDENTIAL-001.yaml": [
+    "CONCEPT",
+    "ATTACK",
+    "CREDENTIAL"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-WEB-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "WEB"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-CONFIG-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "CONFIG"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-CLOUD-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "CLOUD"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-API-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "API"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-LOGIC-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "LOGIC"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-MEMORY-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "MEMORY"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-CRYPTO-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-AUTH-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "AUTH"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-INJECTION-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "INJECTION"
+  ],
+  "04_knowledge_base/concepts/vulnerabilities/VUL-ACCESS-CONTROL-001.yaml": [
+    "CONCEPT",
+    "VULNERABILITY",
+    "ACCESS"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-DEFENSE-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "DEFENSE"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-OSINT-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "OSINT"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-FORENSICS-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "FORENSICS"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-RECON-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "RECON"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-OFFENSE-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "OFFENSE"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-CLOUD-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "CLOUD"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-WIRELESS-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "WIRELESS"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-SCANNER-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "SCANNER"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-API-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "API"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-PASSWORD-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "PASSWORD"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-AD-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "AD"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-AUDIT-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "AUDIT"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-ENUM-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "ENUM"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-WEB-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "WEB"
+  ],
+  "04_knowledge_base/concepts/tools/TOOL-C2-001.yaml": [
+    "CONCEPT",
+    "TOOL",
+    "C2"
+  ],
+  "04_knowledge_base/concepts/compliance/COMP-INDUSTRY-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "INDUSTRY"
+  ],
+  "04_knowledge_base/concepts/compliance/COMP-PRIVACY-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "PRIVACY"
+  ],
+  "04_knowledge_base/concepts/compliance/COMP-AUDIT-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "AUDIT"
+  ],
+  "04_knowledge_base/concepts/compliance/COMP-GOVERNANCE-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "GOVERNANCE"
+  ],
+  "04_knowledge_base/concepts/compliance/COMP-FRAMEWORK-001.yaml": [
+    "CONCEPT",
+    "COMPLIANCE",
+    "FRAMEWORK"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-FORENSIC-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "FORENSICS"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-INTEL-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "INTELLIGENCE"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-RESPOND-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "RESPOND"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-DETECT-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "DETECT"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-EMAIL-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "EMAIL"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-CLOUD-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "CLOUD"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-PREVENT-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "PREVENT"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-AUTH-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "AUTH"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-DATA-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "DATA"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-ENDPOINT-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "ENDPOINT"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-DEVSECOPS-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "DEVSECOPS"
+  ],
+  "04_knowledge_base/concepts/defenses/DEF-NET-001.yaml": [
+    "CONCEPT",
+    "DEFENSE",
+    "NETWORK"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-BACKUP-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "BACKUP"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-API-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "API"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-LOGGING-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "LOGGING"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-OS-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "OS"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-DATABASE-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "DATABASE"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-NETWORK-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "NETWORK"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-PROTOCOL-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "PROTOCOL"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-IAM-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "IAM"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-CONTAINER-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "CONTAINER"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-AUTH-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "AUTH"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-WEB-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "WEB"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-ENCRYPTION-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "CRYPTO"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-CI-CD-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "DEVOPS"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-PKI-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "PKI"
+  ],
+  "04_knowledge_base/concepts/technology/TECH-VIRTUALIZATION-001.yaml": [
+    "CONCEPT",
+    "TECHNOLOGY",
+    "VIRTUALIZATION"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-FAIL-SECURE-001.yaml": [
+    "PRINCIPLE",
+    "RESILIENCE",
+    "SECURITY"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-ZERO-TRUST-001.yaml": [
+    "PRINCIPLE",
+    "ACCESS",
+    "ARCHITECTURE"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-SEPARATION-DUTIES-001.yaml": [
+    "PRINCIPLE",
+    "GOVERNANCE",
+    "ACCESS"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-LEAST-PRIVILEGE-001.yaml": [
+    "PRINCIPLE",
+    "ACCESS",
+    "SECURITY"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-00001.yaml": [
+    "S-VUL-INJ",
+    "P-SECURE-DESIGN"
+  ],
+  "04_knowledge_base/concepts/principles/GR-SEC-PRI-DEFENSE-DEPTH-001.yaml": [
+    "PRINCIPLE",
+    "DEFENSE",
+    "ARCHITECTURE"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-HYBRID-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "HYBRID"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-DATACENTER-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "DATACENTER"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-ENDPOINT-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "ENDPOINT"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-OT-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "OT"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-AD-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "AD"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-NETWORK-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "NETWORK"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-IOT-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "IOT"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-SERVER-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "SERVER"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-SECURITY-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "SECURITY"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-CLOUD-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "CLOUD"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-STORAGE-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "STORAGE"
+  ],
+  "04_knowledge_base/concepts/infrastructure/INFRA-IDENTITY-001.yaml": [
+    "CONCEPT",
+    "INFRASTRUCTURE",
+    "IDENTITY"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-GCP-IAM-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "GCP",
+    "IAM"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WAS-TOMCAT-001.yaml": [
+    "INFRA",
+    "APP",
+    "WAS",
+    "JAVA"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-GCP-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "GCP"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-IAM-LDAP-001.yaml": [
+    "INFRA",
+    "IAM",
+    "AUTH"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-COMPUTE-CONTAINER-001.yaml": [
+    "INFRA",
+    "COMPUTE",
+    "CONTAINER"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WAS-WEBSPHERE-001.yaml": [
+    "INFRA",
+    "APP",
+    "WAS",
+    "JAVA",
+    "ENTERPRISE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-DNS-001.yaml": [
+    "INFRA",
+    "NETWORK",
+    "SERVICE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-DATA-CACHE-001.yaml": [
+    "D",
+    "S"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WEBAPP-001.yaml": [
+    "A",
+    "WEB"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WAS-JBOSS-001.yaml": [
+    "INFRA",
+    "APP",
+    "WAS",
+    "JAVA"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-SYS-SERVER-001.yaml": [
+    "INFRA",
+    "SYS",
+    "SERVER"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-SERVICE-MESH-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "MESH"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-AZURE-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "AZURE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-LB-001.yaml": [
+    "N"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-MOBILE-API-001.yaml": [
+    "INFRA",
+    "APP",
+    "MOBILE",
+    "API"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-SPA-001.yaml": [
+    "INFRA",
+    "APP",
+    "FRONTEND"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-FIREWALL-001.yaml": [
+    "NET",
+    "P"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WEBSERVER-001.yaml": [
+    "N",
+    "WEB"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-DATA-RDBMS-001.yaml": [
+    "D",
+    "S"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-CDN-001.yaml": [
+    "NET"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WAS-001.yaml": [
+    "A-runtime",
+    "A-business",
+    "R-process",
+    "I-api",
+    "S-session",
+    "D-cache"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-API-001.yaml": [
+    "A",
+    "API",
+    "WEB"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CONTAINER-DOCKER-001.yaml": [
+    "INFRA",
+    "CONTAINER",
+    "DOCKER"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-AWS-S3-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "AWS",
+    "STORAGE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-RUNTIME-K8S-001.yaml": [
+    "INFRA",
+    "PLATFORM",
+    "CLOUD"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-RUNTIME-CONTAINER-001.yaml": [
+    "INFRA",
+    "RUNTIME",
+    "CONTAINER"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-COMPUTE-VM-001.yaml": [
+    "INFRA",
+    "COMPUTE",
+    "VIRTUAL"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-WAF-001.yaml": [
+    "D",
+    "P",
+    "WEB"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-COMPUTE-SERVER-001.yaml": [
+    "INFRA",
+    "COMPUTE",
+    "HARDWARE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-NETWORK-001.yaml": [
+    "INFRA",
+    "NET"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-DATA-STORAGE-001.yaml": [
+    "INFRA",
+    "DATA",
+    "STORAGE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CONTAINER-K8S-001.yaml": [
+    "INFRA",
+    "CONTAINER",
+    "K8S"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-LDAP-001.yaml": [
+    "INFRA",
+    "AUTH",
+    "DIRECTORY"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-SERVERLESS-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "SERVERLESS"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-KERBEROS-001.yaml": [
+    "INFRA",
+    "AUTH",
+    "PROTOCOL"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-RUNTIME-JVM-001.yaml": [
+    "INFRA",
+    "RUNTIME",
+    "JAVA"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-DATA-MQ-001.yaml": [
+    "INFRA",
+    "DATA",
+    "MESSAGING"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-AZURE-AD-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "AZURE",
+    "IAM"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "PLATFORM"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-APP-WAS-WEBLOGIC-001.yaml": [
+    "INFRA",
+    "APP",
+    "WAS",
+    "JAVA",
+    "ENTERPRISE"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NETWORK-VPN-001.yaml": [
+    "INFRA",
+    "NET",
+    "VPN"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-IAM-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "IAM"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-NET-DNS-001.yaml": [
+    "NET"
+  ],
+  "04_knowledge_base/infrastructure/INFRA-CLOUD-AWS-IAM-001.yaml": [
+    "INFRA",
+    "CLOUD",
+    "AWS",
+    "IAM"
+  ]
+}

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
-    atom_tags: ["DEF", "NET", "PKI"]
+    atom_tags: ["AUTHZ", "CACHE", "NETWORK", "TLS"]
 
 definition:
   what: |

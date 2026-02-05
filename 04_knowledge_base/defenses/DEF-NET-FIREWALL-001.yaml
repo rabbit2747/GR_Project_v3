@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    atom_tags: ["DEF", "PREVENT", "NETWORK"]
+    atom_tags: ["FW", "LOG", "NETWORK"]
 
 definition:
   what: |

@@ -24,7 +24,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Cross"
-    atom_tags: ["S"]
+    atom_tags: ["EXEC", "INJ"]
 
 definition:
   what: |

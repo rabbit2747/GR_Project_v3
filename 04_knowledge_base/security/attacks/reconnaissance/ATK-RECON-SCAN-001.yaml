@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z3"
-    atom_tags: ["ATK", "RECON", "NET"]
+    atom_tags: ["COLLECT", "EXEC", "IDS", "PENTEST", "RECON", "TCP", "UDP"]
 
 definition:
   what: |

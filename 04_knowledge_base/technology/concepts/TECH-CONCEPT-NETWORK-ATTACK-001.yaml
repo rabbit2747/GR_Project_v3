@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    atom_tags: ["ATK", "N"]
+    atom_tags: ["CRYPTO", "DNS", "NETWORK", "TLS"]
 
 definition:
   what: |

@@ -20,9 +20,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "OWASP-A03"
+    atom_tags: ["AUTHN", "AUTHZ", "EXEC", "EXFIL", "LDAP", "XSS"]
 
 definition:
   what: |

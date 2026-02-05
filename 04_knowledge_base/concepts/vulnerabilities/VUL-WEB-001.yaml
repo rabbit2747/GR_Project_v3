@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z3"
-    atom_tags: ["CONCEPT", "VULNERABILITY", "WEB"]
+    atom_tags: ["AUTHZ", "WEB"]
 
 definition:
   what: |

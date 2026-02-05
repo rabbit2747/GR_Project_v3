@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"  # OS 레벨
     zone: "Z2"
-    atom_tags: ["INJ", "EXPLOIT"]
+    atom_tags: ["EXEC", "INJ", "NETWORK"]
 
 definition:
   what: |

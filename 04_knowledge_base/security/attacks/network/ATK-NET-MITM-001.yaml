@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["EXPLOIT", "NET"]
+    atom_tags: ["AUTHN", "CACHE", "CRED", "CRYPTO", "DNS", "HTTP", "NETWORK", "PROXY", "TLS"]
 
 definition:
   what: |

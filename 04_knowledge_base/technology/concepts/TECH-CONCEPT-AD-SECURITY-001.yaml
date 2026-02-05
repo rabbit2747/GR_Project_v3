@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["TECH", "CONCEPT", "AD"]
+    atom_tags: ["AD", "AUTHN", "CRYPTO", "KERBEROS", "LOG", "NETWORK", "WINDOWS"]
 
 definition:
   what: |

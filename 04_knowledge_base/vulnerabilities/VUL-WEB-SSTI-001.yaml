@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["VUL", "WEB", "RCE"]
+    atom_tags: ["DISCOV", "EXEC", "EXFIL", "INJ", "WEB"]
 
 definition:
   what: |

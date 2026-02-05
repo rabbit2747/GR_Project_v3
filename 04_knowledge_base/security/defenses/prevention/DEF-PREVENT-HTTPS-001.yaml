@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Z1"
-    atom_tags: ["P", "E"]
+    atom_tags: ["AUTHN", "CRYPTO", "HTTP", "NETWORK", "TLS", "WEB"]
 
 definition:
   what: |

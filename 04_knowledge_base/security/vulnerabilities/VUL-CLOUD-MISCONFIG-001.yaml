@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["VUL", "CLOUD", "CONFIG"]
+    atom_tags: ["CLOUD", "CONFIG", "CRYPTO", "EXFIL", "LOG", "WEB"]
 
 definition:
   what: |

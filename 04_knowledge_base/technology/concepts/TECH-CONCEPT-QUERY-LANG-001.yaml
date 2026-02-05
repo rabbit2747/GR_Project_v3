@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["TECH", "DATA", "DB"]
+    atom_tags: ["API", "EXEC", "INJ", "MONGODB", "NOSQL", "REDIS"]
 
 definition:
   what: |

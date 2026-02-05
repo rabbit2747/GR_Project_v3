@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["TECH", "INFRA"]
+    atom_tags: ["API", "AUTHN", "CONFIG", "EXEC", "IMPACT", "NETWORK"]
 
 definition:
   what: |

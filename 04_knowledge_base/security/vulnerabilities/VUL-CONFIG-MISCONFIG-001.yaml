@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["CONFIG"]
+    atom_tags: ["CLOUD", "CONFIG", "WEB"]
 
 definition:
   what: |

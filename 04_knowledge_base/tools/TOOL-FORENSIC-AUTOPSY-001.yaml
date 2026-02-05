@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["TOOL", "FORENSIC", "DISK"]
+    atom_tags: ["EXEC", "IOT", "PENTEST"]
 
 definition:
   what: |

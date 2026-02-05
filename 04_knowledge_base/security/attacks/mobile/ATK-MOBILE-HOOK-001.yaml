@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["ATK", "MOBILE", "HOOK"]
+    atom_tags: ["CRYPTO", "LOG", "MOBILE", "TLS"]
 
 definition:
   what: |

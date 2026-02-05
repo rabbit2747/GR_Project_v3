@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["ATK", "MITRE", "IMPACT"]
+    atom_tags: ["BACKUP", "CRYPTO", "EDR", "EXEC", "EXFIL", "IMPACT", "INITIAL", "LATERAL", "PERSIST", "PRIVESC"]
 
 definition:
   what: |

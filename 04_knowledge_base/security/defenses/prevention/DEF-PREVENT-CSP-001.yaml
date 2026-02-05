@@ -18,7 +18,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["P", "XSS"]
+    atom_tags: ["CRYPTO", "EXEC", "HTTP", "IMPACT", "LOG", "WEB", "XSS"]
 
 definition:
   what: |

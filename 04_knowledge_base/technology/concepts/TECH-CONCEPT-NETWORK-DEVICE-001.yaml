@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    atom_tags: ["N", "INFRA"]
+    atom_tags: ["DNS", "FW", "LB", "NETWORK", "WAF", "WEB"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INJ", "EXPLOIT", "WEB", "XSS"]
+    atom_tags: ["EXEC", "HTTP", "INJ", "LOG", "WEB", "XSS"]
 
 definition:
   what: |

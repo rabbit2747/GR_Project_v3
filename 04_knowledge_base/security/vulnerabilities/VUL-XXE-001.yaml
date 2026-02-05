@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INJECT", "XML"]
+    atom_tags: ["API", "AUTHN", "AUTHZ", "EXEC", "EXFIL", "FTP", "INJ", "NETWORK", "PENTEST", "SSRF", "WEB"]
 
 definition:
   what: |

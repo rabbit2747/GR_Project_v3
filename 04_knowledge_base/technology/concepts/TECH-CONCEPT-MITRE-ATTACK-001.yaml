@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
-    atom_tags: ["TECH", "FRAMEWORK", "TTP"]
+    atom_tags: ["IOT"]
 
 definition:
   what: |

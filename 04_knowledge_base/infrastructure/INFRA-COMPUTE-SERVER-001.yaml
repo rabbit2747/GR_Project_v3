@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L1"
     zone: "Z1"
-    atom_tags: ["INFRA", "COMPUTE", "HARDWARE"]
+    function: "C1"
+    atom_tags: ["CONFIG", "EMBEDDED", "EXEC", "LINUX", "NETWORK", "PRIVESC", "WINDOWS"]
 
 definition:
   what: |

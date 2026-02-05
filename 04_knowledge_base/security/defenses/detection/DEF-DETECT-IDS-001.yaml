@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["D"]
+    atom_tags: ["AUTHZ", "FW", "IDS", "LOG", "NETWORK", "SIEM"]
 
 definition:
   what: |

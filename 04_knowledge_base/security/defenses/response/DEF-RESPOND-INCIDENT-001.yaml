@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["R"]
+    atom_tags: ["IMPACT", "LOG", "NETWORK"]
 
 definition:
   what: |

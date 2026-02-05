@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["CONCEPT", "ATTACK", "LATERAL"]
+    atom_tags: ["AUTHZ", "COLLECT", "CRED", "CRYPTO", "LATERAL", "NETWORK", "PERSIST"]
 
 definition:
   what: |

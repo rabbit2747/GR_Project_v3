@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["ATK", "CLOUD", "STORAGE"]
+    atom_tags: ["AZURE", "CLOUD", "CONFIG", "CRYPTO", "DNS", "EXFIL"]
 
 definition:
   what: |

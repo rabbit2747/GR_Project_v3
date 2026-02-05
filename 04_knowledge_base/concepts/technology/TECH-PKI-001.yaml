@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    atom_tags: ["CONCEPT", "TECHNOLOGY", "PKI"]
+    atom_tags: ["AUTHN", "AUTHZ", "TLS"]
 
 definition:
   what: |

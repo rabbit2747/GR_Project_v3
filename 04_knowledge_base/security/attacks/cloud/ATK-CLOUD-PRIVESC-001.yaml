@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["ATK", "CLOUD", "PRIVESC"]
+    atom_tags: ["AWS", "CLOUD", "IAM", "INITIAL", "PRIVESC"]
 
 definition:
   what: |

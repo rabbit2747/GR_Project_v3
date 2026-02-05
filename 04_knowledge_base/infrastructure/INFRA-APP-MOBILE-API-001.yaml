@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INFRA", "APP", "MOBILE", "API"]
+    function: "A2.1"
+    atom_tags: ["API", "AUTHN", "CACHE", "MOBILE", "NETWORK", "WEB"]
 
 definition:
   what: |

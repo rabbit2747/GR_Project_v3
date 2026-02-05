@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["EXPLOIT", "WEB"]
+    atom_tags: ["EXEC", "HTTP", "NETWORK", "PATH", "WEB"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["ATK", "NETWORK", "COVERT"]
+    atom_tags: ["C2", "DNS", "EXFIL", "FW", "NETWORK"]
 
 definition:
   what: |

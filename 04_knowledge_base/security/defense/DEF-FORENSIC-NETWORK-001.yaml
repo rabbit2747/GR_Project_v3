@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z3"
-    atom_tags: ["DEF", "FORENSIC", "NET"]
+    atom_tags: ["C2", "EXFIL", "IOT", "LATERAL", "NETWORK"]
 
 definition:
   what: |

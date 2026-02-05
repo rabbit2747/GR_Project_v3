@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z3"
-    atom_tags: ["TOOL", "WIRELESS", "PENTEST"]
+    atom_tags: ["AUTHN", "LOG", "NETWORK", "PENTEST"]
 
 definition:
   what: |

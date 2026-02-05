@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["SSRF", "WEB"]
+    atom_tags: ["API", "AWS", "AZURE", "CLOUD", "CRED", "DNS", "GCP", "IAM", "NETWORK", "SSRF"]
 
 definition:
   what: |

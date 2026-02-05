@@ -23,7 +23,8 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["INFRA", "IAM", "AUTH"]
+    function: "S1.1"
+    atom_tags: ["AD", "AUTHN", "AUTHZ", "CRYPTO", "IAM", "INJ", "KERBEROS", "LDAP", "PRIVESC"]
 
 definition:
   what: |

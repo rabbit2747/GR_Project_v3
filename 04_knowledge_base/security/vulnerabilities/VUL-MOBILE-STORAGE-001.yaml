@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["VUL", "MOBILE", "STORAGE"]
+    atom_tags: ["CRED", "CRYPTO", "EXFIL", "MOBILE", "SQLITE"]
 
 definition:
   what: |

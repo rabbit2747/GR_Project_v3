@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["ATK", "SRV"]
+    atom_tags: ["DESERIAL", "DISCOV", "EXEC", "EXFIL", "PATH", "PRIVESC", "PROXY", "SSRF", "UPLOAD"]
 
 definition:
   what: |

@@ -19,9 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "P-SECURE-DESIGN"
+    atom_tags: ["EXEC", "INJ", "XSS"]
 
 definition:
   what: |

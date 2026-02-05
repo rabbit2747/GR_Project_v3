@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["ATK", "WIN", "NTLM"]
+    atom_tags: ["AD", "AUTHN", "CRYPTO", "LATERAL", "WINDOWS"]
 
 definition:
   what: |

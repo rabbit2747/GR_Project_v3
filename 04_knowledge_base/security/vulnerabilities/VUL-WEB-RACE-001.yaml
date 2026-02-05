@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["VUL", "WEB", "RACE"]
+    atom_tags: ["PRIVESC", "RACE", "WEB"]
 
 definition:
   what: |

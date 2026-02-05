@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Cross"
-    atom_tags: ["N", "WEB"]
+    atom_tags: ["AUTHZ", "CRYPTO", "HTTP", "NETWORK", "WEB"]
 
 definition:
   what: |

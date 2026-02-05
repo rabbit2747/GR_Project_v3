@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["AUTH", "EXPLOIT"]
+    atom_tags: ["AUTHN", "CRED", "IAM", "PENTEST"]
 
 definition:
   what: |

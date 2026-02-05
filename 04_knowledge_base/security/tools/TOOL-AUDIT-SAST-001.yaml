@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    atom_tags: ["TOOL", "AUDIT", "SAST"]
+    atom_tags: ["EXEC", "PENTEST"]
 
 definition:
   what: |

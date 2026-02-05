@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z4"
-    atom_tags: ["CONCEPT", "COMPLIANCE", "AUDIT"]
+    atom_tags: ["AUTHN", "AUTHZ"]
 
 definition:
   what: |

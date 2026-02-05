@@ -20,10 +20,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "D-DB-SQL"
-      - "T-ATK-MODIFY"
+    atom_tags: ["API", "EXEC", "INJ", "MSSQL", "MYSQL", "PGSQL", "PRIVESC"]
 
 definition:
   what: |

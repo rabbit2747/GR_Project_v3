@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["ATK", "ACCESS", "API"]
+    atom_tags: ["API", "EXFIL", "PRIVESC", "WEB"]
 
 definition:
   what: |

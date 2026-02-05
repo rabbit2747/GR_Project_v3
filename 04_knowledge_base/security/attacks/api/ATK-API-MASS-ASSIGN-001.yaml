@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z1"
-    atom_tags: ["ATK", "API", "INJECTION"]
+    atom_tags: ["API", "PRIVESC"]
 
 definition:
   what: |

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
-    atom_tags: ["WEB"]
+    atom_tags: ["HTTP", "INJ", "PENTEST", "PROXY", "WEB", "XSS"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z4"
-    atom_tags: ["TOOL", "DEFENSE", "ENDPOINT"]
+    atom_tags: ["COLLECT", "EDR", "NETWORK", "PENTEST"]
 
 definition:
   what: |

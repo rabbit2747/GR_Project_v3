@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["CONCEPT", "TOOL", "OFFENSE"]
+    atom_tags: ["AUTHZ", "DISCOV", "EXEC", "PENTEST"]
 
 definition:
   what: |

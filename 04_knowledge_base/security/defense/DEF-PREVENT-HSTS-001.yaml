@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["DEF", "WEB", "TRANSPORT"]
+    atom_tags: ["HTTP", "TLS", "WEB"]
 
 definition:
   what: |

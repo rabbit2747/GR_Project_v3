@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["AUTHZ"]
+    atom_tags: ["API", "AUTHN", "AUTHZ", "PRIVESC", "WEB"]
 
 definition:
   what: |

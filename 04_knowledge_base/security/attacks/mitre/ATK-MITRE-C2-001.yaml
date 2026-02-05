@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["ATK", "MITRE", "TACTIC"]
+    atom_tags: ["C2", "CRYPTO", "DNS", "EXEC", "EXFIL", "HTTP", "TLS"]
 
 definition:
   what: |

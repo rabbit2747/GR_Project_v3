@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z5"
-    atom_tags: ["DEF", "RESPOND", "FORENSICS"]
+    atom_tags: ["COLLECT", "IMPACT", "IOT", "NETWORK"]
 
 definition:
   what: |

@@ -24,7 +24,8 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["NET", "P"]
+    function: "N2.1"
+    atom_tags: ["CLOUD", "FW", "IDS", "LOG", "NETWORK", "WAF"]
 
 definition:
   what: |

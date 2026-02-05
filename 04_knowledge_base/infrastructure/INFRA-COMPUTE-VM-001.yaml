@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["INFRA", "COMPUTE", "VIRTUAL"]
+    function: "C2"
+    atom_tags: ["EXEC", "NETWORK"]
 
 definition:
   what: |

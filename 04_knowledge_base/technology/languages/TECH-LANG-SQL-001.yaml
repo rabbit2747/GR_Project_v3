@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Cross"
-    atom_tags: ["D"]
+    atom_tags: ["EXEC", "INJ", "MSSQL", "MYSQL", "PGSQL", "WEB"]
 
 definition:
   what: |

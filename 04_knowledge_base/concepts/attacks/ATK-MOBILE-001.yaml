@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["CONCEPT", "ATTACK", "MOBILE"]
+    atom_tags: ["AUTHZ", "MOBILE"]
 
 definition:
   what: |

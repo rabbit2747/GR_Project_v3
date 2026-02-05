@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["INFRA", "DATA", "MESSAGING"]
+    function: "D4.1"
+    atom_tags: ["AUTHN", "AWS", "NETWORK"]
 
 definition:
   what: |

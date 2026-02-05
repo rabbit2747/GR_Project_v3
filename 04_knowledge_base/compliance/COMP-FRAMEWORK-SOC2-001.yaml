@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
-    atom_tags: ["COMP", "FRAMEWORK", "AUDIT"]
+    atom_tags: ["AUTHN", "CLOUD", "COLLECT"]
 
 definition:
   what: |

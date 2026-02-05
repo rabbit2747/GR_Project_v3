@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["DEF", "DEVSECOPS", "TEST"]
+    atom_tags: ["EXEC", "WEB"]
 
 definition:
   what: |

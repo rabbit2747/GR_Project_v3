@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["TOOL", "AD", "RECON"]
+    atom_tags: ["AD", "COLLECT", "NETWORK", "PENTEST", "PRIVESC", "WINDOWS"]
 
 definition:
   what: |

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["ATK", "NET", "AUTH"]
+    atom_tags: ["AUTHN", "CRYPTO", "NETWORK"]
 
 definition:
   what: |

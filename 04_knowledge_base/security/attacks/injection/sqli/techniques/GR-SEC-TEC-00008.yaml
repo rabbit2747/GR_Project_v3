@@ -19,10 +19,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "D-DB-SQL"
-      - "T-EVA-BYPASS"
+    atom_tags: ["EXEC", "INJ", "MSSQL", "MYSQL", "PGSQL", "WAF"]
 
 definition:
   what: |

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z0A"
-    atom_tags: ["NET", "RECON"]
+    atom_tags: ["EXFIL", "HTTP", "IDS", "IOT", "LOG", "NETWORK", "PENTEST", "TCP", "UDP"]
 
 definition:
   what: |

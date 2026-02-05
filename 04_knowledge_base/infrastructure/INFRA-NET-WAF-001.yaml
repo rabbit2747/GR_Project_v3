@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["D", "P", "WEB"]
+    function: "S3.4"
+    atom_tags: ["AWS", "CLOUD", "FW", "HTTP", "IDS", "INJ", "LOG", "NETWORK", "WAF", "WEB", "XSS"]
 
 definition:
   what: |

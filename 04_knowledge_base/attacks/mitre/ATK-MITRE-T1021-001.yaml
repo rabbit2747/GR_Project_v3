@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["ATK", "MITRE", "LATERAL"]
+    atom_tags: ["CRED", "EXEC", "LATERAL", "NETWORK", "PERSIST", "RDP", "SMB", "SSH"]
 
 definition:
   what: |

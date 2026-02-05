@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z2"
-    atom_tags: ["P"]
+    atom_tags: ["CONTAINER", "EXEC", "EXFIL", "IMPACT", "LINUX", "WEB"]
 
 definition:
   what: |

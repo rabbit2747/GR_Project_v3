@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["N", "TECH"]
+    atom_tags: ["CRYPTO", "DNS", "FTP", "HTTP", "ICMP", "NETWORK", "TCP", "TLS", "UDP"]
 
 definition:
   what: |

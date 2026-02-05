@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
-    atom_tags: ["CONCEPT", "ARCHITECTURE", "MODERN"]
+    atom_tags: ["AUTHZ", "IAM", "LATERAL", "LOG", "NETWORK"]
 
 definition:
   what: |

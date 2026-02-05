@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z1"
-    atom_tags: ["DEF", "DETECT", "BEHAVIOR"]
+    atom_tags: ["COLLECT", "IOT"]
 
 definition:
   what: |

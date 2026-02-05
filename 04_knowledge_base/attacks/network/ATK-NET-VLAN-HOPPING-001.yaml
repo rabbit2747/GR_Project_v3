@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z3"
-    atom_tags: ["ATK", "NETWORK", "LATERAL"]
+    atom_tags: ["NETWORK"]
 
 definition:
   what: |

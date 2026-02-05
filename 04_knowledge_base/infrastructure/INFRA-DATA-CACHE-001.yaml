@@ -23,7 +23,8 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    atom_tags: ["D", "S"]
+    function: "D3.1"
+    atom_tags: ["AUTHN", "CACHE", "EXFIL", "NETWORK", "REDIS", "TLS"]
 
 definition:
   what: |

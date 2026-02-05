@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0B"
-    atom_tags: ["NET"]
+    atom_tags: ["CACHE", "CLOUD", "DNS", "EXFIL", "HTTP", "NETWORK", "TLS", "WEB"]
 
 definition:
   what: |

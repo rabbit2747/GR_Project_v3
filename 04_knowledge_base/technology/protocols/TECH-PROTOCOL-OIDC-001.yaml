@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["TECH", "PROTOCOL", "AUTH", "IDENTITY"]
+    atom_tags: ["API", "AUTHN", "AUTHZ", "IAM", "NETWORK"]
 
 definition:
   what: |

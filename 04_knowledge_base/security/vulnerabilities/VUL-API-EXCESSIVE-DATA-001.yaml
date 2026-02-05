@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z3"
-    atom_tags: ["VUL", "API", "DATA"]
+    atom_tags: ["API", "COLLECT", "EXFIL", "SMTP", "WEB"]
 
 definition:
   what: |

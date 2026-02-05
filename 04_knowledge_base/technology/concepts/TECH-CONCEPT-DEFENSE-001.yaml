@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["SEC", "D"]
+    atom_tags: ["CRYPTO", "IDS", "LOG", "WAF"]
 
 definition:
   what: |

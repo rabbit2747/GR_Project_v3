@@ -20,7 +20,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Cross"
-    atom_tags: ["N"]
+    atom_tags: ["FTP", "HTTP", "NETWORK", "TCP", "UDP"]
 
 definition:
   what: |

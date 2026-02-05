@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z4"
-    atom_tags: ["ATK", "NET", "ROUTING"]
+    atom_tags: ["CRYPTO", "NETWORK", "TLS"]
 
 definition:
   what: |

@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    atom_tags: ["INFRA", "COMPUTE", "CONTAINER"]
+    function: "C3"
+    atom_tags: ["CONTAINER", "EXEC", "PRIVESC", "WEB"]
 
 definition:
   what: |

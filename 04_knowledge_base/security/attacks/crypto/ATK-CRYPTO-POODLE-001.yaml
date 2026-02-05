@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z4"
-    atom_tags: ["ATK", "CRYPTO", "SSL"]
+    atom_tags: ["CRYPTO", "TLS"]
 
 definition:
   what: |

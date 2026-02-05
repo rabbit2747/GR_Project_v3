@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    atom_tags: ["TECH", "PROTOCOL", "IAM"]
+    atom_tags: ["AD", "AUTHN", "INJ", "LDAP", "NETWORK"]
 
 definition:
   what: |

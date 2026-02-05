@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z0A"
-    atom_tags: ["TECH", "COMPLIANCE", "FRAMEWORK"]
+    atom_tags: ["AUTHN", "LOG"]
 
 definition:
   what: |

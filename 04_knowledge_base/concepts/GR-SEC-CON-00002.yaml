@@ -20,10 +20,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags:
-      - "S-VUL-INJ"
-      - "D-DB-SQL"
-      - "A-WEB-API"
+    atom_tags: ["AUTHN", "AUTHZ", "EXEC", "EXFIL", "WEB", "XSS"]
 
 definition:
   what: |

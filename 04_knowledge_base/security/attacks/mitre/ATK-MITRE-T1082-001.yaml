@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    atom_tags: ["ATK", "MITRE", "DISCOVERY"]
+    atom_tags: ["COLLECT", "DISCOV", "EXEC"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["VUL", "CLOUD", "IAM"]
+    atom_tags: ["AWS", "CLOUD", "CONFIG", "EXFIL", "IAM", "PRIVESC"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z1"
-    atom_tags: ["ATK", "IOT", "FIRMWARE"]
+    atom_tags: ["CRED", "CRYPTO", "EMBEDDED", "IMPACT", "IOT"]
 
 definition:
   what: |

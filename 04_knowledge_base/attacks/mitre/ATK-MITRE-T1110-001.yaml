@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["ATK", "MITRE", "CREDENTIAL"]
+    atom_tags: ["AUTHN", "CRED"]
 
 definition:
   what: |

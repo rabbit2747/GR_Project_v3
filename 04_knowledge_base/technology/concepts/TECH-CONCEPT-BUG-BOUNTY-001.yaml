@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["CONCEPT", "VULN", "PROGRAM"]
+    atom_tags: ["PENTEST"]
 
 definition:
   what: |

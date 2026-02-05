@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L1"
     zone: "Z4"
-    atom_tags: ["ATK", "PHYSICAL", "USB"]
+    atom_tags: ["EXEC"]
 
 definition:
   what: |

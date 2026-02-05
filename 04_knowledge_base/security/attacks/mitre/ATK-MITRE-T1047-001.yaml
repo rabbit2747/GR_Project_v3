@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z4"
-    atom_tags: ["ATK", "MITRE", "EXECUTION"]
+    atom_tags: ["COLLECT", "EXEC", "PERSIST", "WINDOWS"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z1"
-    atom_tags: ["ATK", "WEB", "WEBSOCKET"]
+    atom_tags: ["AUTHN", "PRIVESC", "WEB"]
 
 definition:
   what: |

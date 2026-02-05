@@ -22,7 +22,8 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"  # Data Zone
-    atom_tags: ["D", "S"]
+    function: "D1.1"
+    atom_tags: ["AUTHN", "CRYPTO", "EXEC", "INJ", "MSSQL", "MYSQL", "NETWORK", "PGSQL"]
 
 definition:
   what: |

@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z4"
-    atom_tags: ["ATK", "SOCIAL", "PHISHING"]
+    atom_tags: ["CRED", "INITIAL", "SMTP"]
 
 definition:
   what: |

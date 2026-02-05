@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["CONCEPT", "TOOL", "AD"]
+    atom_tags: ["AD", "AUTHZ", "COLLECT", "KERBEROS", "PENTEST", "PRIVESC", "WINDOWS"]
 
 definition:
   what: |

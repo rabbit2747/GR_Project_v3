@@ -20,7 +20,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z2"
-    atom_tags: ["TECH", "API", "GRAPHQL"]
+    atom_tags: ["API"]
 
 definition:
   what: |

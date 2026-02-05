@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Z1"
-    atom_tags: ["INFRA", "SYS", "SERVER"]
+    atom_tags: ["COLLECT", "EDR", "EXEC", "LOG"]
 
 definition:
   what: |
@@ -55,7 +55,7 @@ properties:
   technical:
     security_components:
       - name: "EDR Agent"
-        function: "엔드포인트 탐지 및 대응"
+        function: "C1"
       - name: "Log Agent"
         function: "로그 수집 및 전송"
       - name: "Vulnerability Scanner"

@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z0A"
-    atom_tags: ["RECON"]
+    atom_tags: ["COLLECT", "DISCOV", "EXEC", "NETWORK", "PENTEST", "RECON", "TCP", "UDP"]
 
 definition:
   what: |

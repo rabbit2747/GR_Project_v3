@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z2"
-    atom_tags: ["CONCEPT", "INFRASTRUCTURE", "CLOUD"]
+    atom_tags: ["AUTHZ", "AWS", "AZURE", "CLOUD"]
 
 definition:
   what: |

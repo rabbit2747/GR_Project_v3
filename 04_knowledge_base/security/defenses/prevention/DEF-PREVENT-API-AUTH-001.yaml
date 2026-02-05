@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L6"
     zone: "Z4"
-    atom_tags: ["DEF", "API", "AUTH"]
+    atom_tags: ["API", "AUTHN", "AUTHZ", "HTTP", "IAM", "TLS"]
 
 definition:
   what: |

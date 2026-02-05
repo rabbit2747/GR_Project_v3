@@ -23,7 +23,8 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["N"]
+    function: "N2.3"
+    atom_tags: ["AWS", "CRYPTO", "HTTP", "LB", "NETWORK", "PROXY", "TCP", "TLS", "UDP"]
 
 definition:
   what: |

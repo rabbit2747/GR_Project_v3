@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z3"
-    atom_tags: ["ATK", "MITRE", "EVASION"]
+    atom_tags: ["EVASION", "EXEC", "INJ"]
 
 definition:
   what: |

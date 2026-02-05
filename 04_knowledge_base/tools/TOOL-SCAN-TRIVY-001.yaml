@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["TOOL", "CONTAINER", "SCAN"]
+    atom_tags: ["CONFIG", "CONTAINER", "EXEC", "NETWORK", "PENTEST"]
 
 definition:
   what: |

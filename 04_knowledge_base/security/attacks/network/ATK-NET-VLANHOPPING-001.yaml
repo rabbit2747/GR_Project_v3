@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L2"
     zone: "Z1"
-    atom_tags: ["ATK", "NET", "VLAN"]
+    atom_tags: ["LATERAL", "NETWORK"]
 
 definition:
   what: |

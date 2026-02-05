@@ -22,7 +22,7 @@ classification:
   gr_coordinates:
     layer: "L3"
     zone: "Cross"
-    atom_tags: ["INFRA", "SYS"]
+    atom_tags: ["EXEC", "LINUX", "MACOS", "NETWORK", "PRIVESC", "WINDOWS"]
 
 definition:
   what: |

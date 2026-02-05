@@ -20,7 +20,7 @@ classification:
   gr_coordinates:
     layer: "L7"
     zone: "Z2"
-    atom_tags: ["INJECT", "FILE"]
+    atom_tags: ["AUTHN", "AUTHZ", "EXEC", "EXFIL", "PATH", "PENTEST", "WINDOWS"]
 
 definition:
   what: |

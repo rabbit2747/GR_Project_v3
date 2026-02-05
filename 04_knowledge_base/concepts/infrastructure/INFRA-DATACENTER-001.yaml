@@ -21,7 +21,7 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z2"
-    atom_tags: ["CONCEPT", "INFRASTRUCTURE", "DATACENTER"]
+    atom_tags: ["AUTHZ"]
 
 definition:
   what: |

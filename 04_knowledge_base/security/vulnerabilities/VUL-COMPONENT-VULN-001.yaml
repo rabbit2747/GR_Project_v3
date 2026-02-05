@@ -19,7 +19,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Cross"
-    atom_tags: ["SUPPLY-CHAIN", "DEPENDENCY"]
+    atom_tags: ["CONTAINER", "IMPACT"]
 
 definition:
   what: |

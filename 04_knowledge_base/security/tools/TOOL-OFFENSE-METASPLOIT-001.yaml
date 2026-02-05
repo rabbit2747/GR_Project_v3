@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "Cross"
     zone: "Z0A"
-    atom_tags: ["EXPLOIT"]
+    atom_tags: ["API", "COLLECT", "EXEC", "PENTEST", "PERSIST", "PRIVESC"]
 
 definition:
   what: |

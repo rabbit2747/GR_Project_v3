@@ -21,7 +21,8 @@ classification:
   gr_coordinates:
     layer: "L4"
     zone: "Z2"
-    atom_tags: ["INFRA", "CLOUD", "MESH"]
+    function: "N5"
+    atom_tags: ["CRYPTO", "NETWORK", "PROXY", "TLS"]
 
 definition:
   what: |

@@ -23,7 +23,7 @@ classification:
   gr_coordinates:
     layer: "L5"
     zone: "Z3"
-    atom_tags: ["DATA", "INFRA"]
+    atom_tags: ["CACHE", "EXFIL", "INJ", "IOT", "MONGODB", "MYSQL", "NOSQL", "PGSQL", "REDIS"]
 
 definition:
   what: |
