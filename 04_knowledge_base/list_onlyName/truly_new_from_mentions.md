@@ -1,0 +1,184 @@
+# 언급되었으나 Missing 리스트에 없는 신규 개념
+
+총 180개
+
+- 1password
+- 2fa
+- access management
+- active directory attack
+- acunetix
+- air gap
+- aircrack-ng
+- amass
+- amqp
+- anomaly detection
+- anti-malware
+- antivirus
+- appscan
+- as-rep roasting
+- auth0
+- bec
+- bettercap
+- biometric
+- blind sql
+- boolean-based
+- burp suite
+- burpsuite
+- carbon black
+- cef
+- censys
+- certipy
+- checkmarx
+- cloud attack
+- command and control
+- containerd
+- containerization
+- cortex
+- covenant
+- crackmapexec
+- credential access
+- csrf
+- cyberark
+- data loss prevention
+- datadog
+- defender
+- digital forensics
+- dirbuster
+- disk forensics
+- dns tunneling
+- doh
+- elastic
+- email security
+- empire
+- endpoint detection
+- envoy
+- error-based
+- ettercap
+- fail secure
+- fail2ban
+- ffuf
+- filebeat
+- flow analysis
+- fluentd
+- fortify
+- fortinet
+- freeipa
+- ghidra
+- gitlab
+- gobuster
+- golden ticket
+- grafana
+- graylog
+- haproxy
+- hashcat
+- havoc
+- hids
+- homograph attack
+- hsts
+- hydra
+- identity management
+- ipfix
+- jit access
+- john the ripper
+- juniper
+- kali
+- kerberoasting
+- keycloak
+- keylogging
+- kismet
+- l2tp
+- lastpass
+- lateral movement
+- lazagne
+- ldaps
+- least privilege
+- lfi
+- linpeas
+- living-off-the-land
+- loader
+- log management
+- log poisoning
+- logstash
+- lolbin
+- maltego
+- metasploit
+- micro-segmentation
+- mimikatz
+- mitmproxy
+- mythic
+- nbt-ns poisoning
+- nessus
+- nfs
+- ngfw
+- nginx
+- nids
+- nikto
+- nmap
+- ntlm relay
+- nuclei
+- okta
+- openvas
+- opnsense
+- os command injection
+- out-of-band
+- overpass-the-hash
+- owasp zap
+- pass-the-hash
+- pass-the-ticket
+- patch management
+- pfsense
+- podman
+- port forwarding
+- poshc2
+- powersploit
+- pptp
+- prometheus
+- qradar
+- qualys
+- rapid7
+- reaver
+- reflected xss
+- reverse shell
+- rfc 5424
+- rubeus
+- seatbelt
+- secure access
+- secure sdlc
+- sentinelone
+- sftp
+- shodan
+- silver ticket
+- skeleton key
+- sliver
+- smb relay
+- sql injection
+- sqlmap
+- ssrf
+- ssti
+- stack overflow
+- stacked queries
+- startup folder
+- static analysis
+- stored xss
+- subfinder
+- syslog
+- template injection
+- thehive
+- time-based
+- timestomping
+- toctou
+- tplmap
+- type juggling
+- union-based
+- veracode
+- vishing
+- vnc
+- wazuh
+- web shell
+- webshell
+- wifite
+- winpeas
+- wireshark
+- wpa3
+- xpath injection
+- xxe
